@@ -1,0 +1,1292 @@
+c:\users\user\documents\visual studio 2010\Projects\Billing\Billing\bin\Billing.dll
+c:\users\user\documents\visual studio 2010\Projects\Billing\Billing\bin\Billing.pdb
+c:\users\user\documents\visual studio 2010\Projects\Billing\Billing\obj\Debug\Billing.dll
+c:\users\user\documents\visual studio 2010\Projects\Billing\Billing\obj\Debug\Billing.pdb
+C:\Users\USER\documents\visual studio 2010\Projects\Billing\Billing\bin\BusinessLayer.dll
+C:\Users\USER\documents\visual studio 2010\Projects\Billing\Billing\bin\CommonLayer.dll
+C:\Users\USER\documents\visual studio 2010\Projects\Billing\Billing\bin\DataLayer.dll
+C:\Users\USER\documents\visual studio 2010\Projects\Billing\Billing\bin\BusinessLayer.pdb
+C:\Users\USER\documents\visual studio 2010\Projects\Billing\Billing\bin\CommonLayer.pdb
+C:\Users\USER\documents\visual studio 2010\Projects\Billing\Billing\bin\DataLayer.pdb
+C:\Users\USER\documents\visual studio 2010\Projects\Billing\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\Billing\Billing\bin\Billing.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\Billing\Billing\bin\Billing.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\Billing\Billing\bin\BusinessLayer.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\Billing\Billing\bin\CommonLayer.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\Billing\Billing\bin\DataLayer.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\Billing\Billing\bin\BusinessLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\Billing\Billing\bin\CommonLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\Billing\Billing\bin\DataLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\Billing\Billing\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\Billing\Billing\obj\Debug\Billing.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\Billing\Billing\obj\Debug\Billing.pdb
+I:\Billing\Billing\bin\Billing.dll
+I:\Billing\Billing\bin\Billing.pdb
+I:\Billing\Billing\bin\BusinessLayer.dll
+I:\Billing\Billing\bin\CommonLayer.dll
+I:\Billing\Billing\bin\DataLayer.dll
+I:\Billing\Billing\bin\BusinessLayer.pdb
+I:\Billing\Billing\bin\CommonLayer.pdb
+I:\Billing\Billing\bin\DataLayer.pdb
+I:\Billing\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+I:\Billing\Billing\obj\Debug\Billing.dll
+I:\Billing\Billing\obj\Debug\Billing.pdb
+I:\Billing\Billing\bin\MySql.Data.DLL
+I:\Billing\Billing\bin\MySql.Web.dll
+I:\Billing_feb12\Billing\bin\Billing.dll
+I:\Billing_feb12\Billing\bin\Billing.pdb
+I:\Billing_feb12\Billing\bin\BusinessLayer.dll
+I:\Billing_feb12\Billing\bin\CommonLayer.dll
+I:\Billing_feb12\Billing\bin\DataLayer.dll
+I:\Billing_feb12\Billing\bin\MySql.Data.DLL
+I:\Billing_feb12\Billing\bin\MySql.Web.dll
+I:\Billing_feb12\Billing\bin\BusinessLayer.pdb
+I:\Billing_feb12\Billing\bin\CommonLayer.pdb
+I:\Billing_feb12\Billing\bin\DataLayer.pdb
+I:\Billing_feb12\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+I:\Billing_feb12\Billing\obj\Debug\Billing.dll
+I:\Billing_feb12\Billing\obj\Debug\Billing.pdb
+C:\Users\intel\Documents\Visual Studio 2010\Projects\Billing_feb12\Billing\bin\Billing.dll
+C:\Users\intel\Documents\Visual Studio 2010\Projects\Billing_feb12\Billing\bin\Billing.pdb
+C:\Users\intel\Documents\Visual Studio 2010\Projects\Billing_feb12\Billing\bin\BusinessLayer.dll
+C:\Users\intel\Documents\Visual Studio 2010\Projects\Billing_feb12\Billing\bin\CommonLayer.dll
+C:\Users\intel\Documents\Visual Studio 2010\Projects\Billing_feb12\Billing\bin\DataLayer.dll
+C:\Users\intel\Documents\Visual Studio 2010\Projects\Billing_feb12\Billing\bin\BusinessLayer.pdb
+C:\Users\intel\Documents\Visual Studio 2010\Projects\Billing_feb12\Billing\bin\CommonLayer.pdb
+C:\Users\intel\Documents\Visual Studio 2010\Projects\Billing_feb12\Billing\bin\DataLayer.pdb
+C:\Users\intel\Documents\Visual Studio 2010\Projects\Billing_feb12\Billing\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\intel\Documents\Visual Studio 2010\Projects\Billing_feb12\Billing\obj\Debug\Billing.dll
+C:\Users\intel\Documents\Visual Studio 2010\Projects\Billing_feb12\Billing\obj\Debug\Billing.pdb
+C:\Users\intel\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\bin\Billing.dll
+C:\Users\intel\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\bin\Billing.pdb
+C:\Users\intel\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\bin\BusinessLayer.dll
+C:\Users\intel\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\bin\CommonLayer.dll
+C:\Users\intel\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\bin\DataLayer.dll
+C:\Users\intel\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\bin\BusinessLayer.pdb
+C:\Users\intel\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\bin\CommonLayer.pdb
+C:\Users\intel\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\bin\DataLayer.pdb
+C:\Users\intel\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\intel\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\obj\Debug\Billing.dll
+C:\Users\intel\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\obj\Debug\Billing.pdb
+D:\BillingSingle\Billing\bin\Billing.dll
+D:\BillingSingle\Billing\bin\Billing.pdb
+D:\BillingSingle\Billing\bin\BusinessLayer.dll
+D:\BillingSingle\Billing\bin\CommonLayer.dll
+D:\BillingSingle\Billing\bin\DataLayer.dll
+D:\BillingSingle\Billing\bin\BusinessLayer.pdb
+D:\BillingSingle\Billing\bin\CommonLayer.pdb
+D:\BillingSingle\Billing\bin\DataLayer.pdb
+D:\BillingSingle\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+D:\BillingSingle\Billing\obj\Debug\Billing.dll
+D:\BillingSingle\Billing\obj\Debug\Billing.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\bin\Billing.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\bin\Billing.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\bin\BusinessLayer.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\bin\CommonLayer.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\bin\DataLayer.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\bin\BusinessLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\bin\CommonLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\bin\DataLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\obj\Debug\Billing.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\obj\Debug\Billing.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle\Billing\bin\ASPSnippets.SmsAPI.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle _stock\Billing\bin\Billing.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle _stock\Billing\bin\Billing.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle _stock\Billing\bin\ASPSnippets.SmsAPI.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle _stock\Billing\bin\BusinessLayer.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle _stock\Billing\bin\CommonLayer.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle _stock\Billing\bin\DataLayer.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle _stock\Billing\bin\BusinessLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle _stock\Billing\bin\CommonLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle _stock\Billing\bin\DataLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle _stock\Billing\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle _stock\Billing\obj\Debug\Billing.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle _stock\Billing\obj\Debug\Billing.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\DEMO_BillingSingle _stock\Billing\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\DEMO_BillingSingle _stock\Billing\obj\Debug\Billing.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\DEMO_BillingSingle _stock\Billing\bin\Billing.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\DEMO_BillingSingle _stock\Billing\bin\Billing.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\DEMO_BillingSingle _stock\Billing\bin\ASPSnippets.SmsAPI.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\DEMO_BillingSingle _stock\Billing\bin\BusinessLayer.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\DEMO_BillingSingle _stock\Billing\bin\CommonLayer.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\DEMO_BillingSingle _stock\Billing\bin\DataLayer.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\DEMO_BillingSingle _stock\Billing\bin\BusinessLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\DEMO_BillingSingle _stock\Billing\bin\CommonLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\DEMO_BillingSingle _stock\Billing\bin\DataLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\DEMO_BillingSingle _stock\Billing\obj\Debug\Billing.pdb
+D:\DEMO_BillingSingle _stock\Billing\bin\Billing.dll
+D:\DEMO_BillingSingle _stock\Billing\bin\Billing.pdb
+D:\DEMO_BillingSingle _stock\Billing\bin\BusinessLayer.dll
+D:\DEMO_BillingSingle _stock\Billing\bin\CommonLayer.dll
+D:\DEMO_BillingSingle _stock\Billing\bin\DataLayer.dll
+D:\DEMO_BillingSingle _stock\Billing\bin\BusinessLayer.pdb
+D:\DEMO_BillingSingle _stock\Billing\bin\CommonLayer.pdb
+D:\DEMO_BillingSingle _stock\Billing\bin\DataLayer.pdb
+D:\DEMO_BillingSingle _stock\Billing\obj\Debug\Billing.dll
+D:\DEMO_BillingSingle _stock\Billing\obj\Debug\Billing.pdb
+D:\DEMO_BillingSingle _stock\Billing\obj\Debug\ResolveAssemblyReference.cache
+G:\DEMO_BillingSingle _stock\Billing\bin\Billing.dll
+G:\DEMO_BillingSingle _stock\Billing\bin\Billing.pdb
+G:\DEMO_BillingSingle _stock\Billing\bin\BusinessLayer.dll
+G:\DEMO_BillingSingle _stock\Billing\bin\CommonLayer.dll
+G:\DEMO_BillingSingle _stock\Billing\bin\DataLayer.dll
+G:\DEMO_BillingSingle _stock\Billing\bin\BusinessLayer.pdb
+G:\DEMO_BillingSingle _stock\Billing\bin\CommonLayer.pdb
+G:\DEMO_BillingSingle _stock\Billing\bin\DataLayer.pdb
+G:\DEMO_BillingSingle _stock\Billing\obj\Debug\ResolveAssemblyReference.cache
+G:\DEMO_BillingSingle _stock\Billing\obj\Debug\Billing.dll
+G:\DEMO_BillingSingle _stock\Billing\obj\Debug\Billing.pdb
+G:\Working projects\DEMO_BillingSingle _stock\Billing\bin\Billing.dll
+G:\Working projects\DEMO_BillingSingle _stock\Billing\bin\Billing.pdb
+G:\Working projects\DEMO_BillingSingle _stock\Billing\bin\BusinessLayer.dll
+G:\Working projects\DEMO_BillingSingle _stock\Billing\bin\CommonLayer.dll
+G:\Working projects\DEMO_BillingSingle _stock\Billing\bin\DataLayer.dll
+G:\Working projects\DEMO_BillingSingle _stock\Billing\bin\BusinessLayer.pdb
+G:\Working projects\DEMO_BillingSingle _stock\Billing\bin\CommonLayer.pdb
+G:\Working projects\DEMO_BillingSingle _stock\Billing\bin\DataLayer.pdb
+G:\Working projects\DEMO_BillingSingle _stock\Billing\obj\Debug\ResolveAssemblyReference.cache
+G:\Working projects\DEMO_BillingSingle _stock\Billing\obj\Debug\Billing.dll
+G:\Working projects\DEMO_BillingSingle _stock\Billing\obj\Debug\Billing.pdb
+E:\DEMO_BillingSingle _stock\Billing\bin\Billing.dll
+E:\DEMO_BillingSingle _stock\Billing\bin\Billing.pdb
+E:\DEMO_BillingSingle _stock\Billing\bin\BusinessLayer.dll
+E:\DEMO_BillingSingle _stock\Billing\bin\CommonLayer.dll
+E:\DEMO_BillingSingle _stock\Billing\bin\DataLayer.dll
+E:\DEMO_BillingSingle _stock\Billing\bin\BusinessLayer.pdb
+E:\DEMO_BillingSingle _stock\Billing\bin\CommonLayer.pdb
+E:\DEMO_BillingSingle _stock\Billing\bin\DataLayer.pdb
+E:\DEMO_BillingSingle _stock\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\DEMO_BillingSingle _stock\Billing\obj\Debug\Billing.dll
+E:\DEMO_BillingSingle _stock\Billing\obj\Debug\Billing.pdb
+F:\Working projects\Black Forrest\Billing\bin\Billing.dll
+F:\Working projects\Black Forrest\Billing\bin\Billing.pdb
+F:\Working projects\Black Forrest\Billing\bin\Ajaxified.dll
+F:\Working projects\Black Forrest\Billing\bin\BusinessLayer.dll
+F:\Working projects\Black Forrest\Billing\bin\CommonLayer.dll
+F:\Working projects\Black Forrest\Billing\bin\DataLayer.dll
+F:\Working projects\Black Forrest\Billing\bin\TimePicker.dll
+F:\Working projects\Black Forrest\Billing\bin\BusinessLayer.pdb
+F:\Working projects\Black Forrest\Billing\bin\CommonLayer.pdb
+F:\Working projects\Black Forrest\Billing\bin\DataLayer.pdb
+F:\Working projects\Black Forrest\Billing\obj\Debug\ResolveAssemblyReference.cache
+F:\Working projects\Black Forrest\Billing\obj\Debug\Billing.dll
+F:\Working projects\Black Forrest\Billing\obj\Debug\Billing.pdb
+E:\Black Forrest\Billing\bin\Billing.dll
+E:\Black Forrest\Billing\bin\Billing.pdb
+E:\Black Forrest\Billing\bin\BusinessLayer.dll
+E:\Black Forrest\Billing\bin\CommonLayer.dll
+E:\Black Forrest\Billing\bin\DataLayer.dll
+E:\Black Forrest\Billing\bin\BusinessLayer.pdb
+E:\Black Forrest\Billing\bin\CommonLayer.pdb
+E:\Black Forrest\Billing\bin\DataLayer.pdb
+E:\Black Forrest\Billing\obj\Debug\Billing.dll
+E:\Black Forrest\Billing\obj\Debug\Billing.pdb
+E:\latest black forest 29092015\Black Forrest\Billing\bin\Billing.dll
+E:\latest black forest 29092015\Black Forrest\Billing\bin\Billing.pdb
+E:\latest black forest 29092015\Black Forrest\Billing\bin\BusinessLayer.dll
+E:\latest black forest 29092015\Black Forrest\Billing\bin\CommonLayer.dll
+E:\latest black forest 29092015\Black Forrest\Billing\bin\DataLayer.dll
+E:\latest black forest 29092015\Black Forrest\Billing\bin\BusinessLayer.pdb
+E:\latest black forest 29092015\Black Forrest\Billing\bin\CommonLayer.pdb
+E:\latest black forest 29092015\Black Forrest\Billing\bin\DataLayer.pdb
+E:\latest black forest 29092015\Black Forrest\Billing\obj\Debug\ResolveAssemblyReference.cache
+E:\latest black forest 29092015\Black Forrest\Billing\obj\Debug\Billing.dll
+E:\latest black forest 29092015\Black Forrest\Billing\obj\Debug\Billing.pdb
+E:\Black Forrest\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\Black Forrest\Billing\bin\Billing.dll
+F:\Black Forrest\Billing\bin\Billing.pdb
+F:\Black Forrest\Billing\bin\BusinessLayer.dll
+F:\Black Forrest\Billing\bin\CommonLayer.dll
+F:\Black Forrest\Billing\bin\DataLayer.dll
+F:\Black Forrest\Billing\bin\BusinessLayer.pdb
+F:\Black Forrest\Billing\bin\CommonLayer.pdb
+F:\Black Forrest\Billing\bin\DataLayer.pdb
+F:\Black Forrest\Billing\obj\Debug\ResolveAssemblyReference.cache
+F:\Black Forrest\Billing\obj\Debug\Billing.dll
+F:\Black Forrest\Billing\obj\Debug\Billing.pdb
+F:\Working projects\Black Forrest\Billing\bin\Microsoft.Office.Interop.Excel.dll
+F:\Working projects\Black Forrest\Billing\bin\Office.dll
+F:\Working projects\Black Forrest\Billing\bin\Microsoft.Office.Interop.Excel.xml
+F:\Working projects\Black Forrest\Billing\bin\Office.xml
+D:\Black Forrest\Billing\bin\Billing.dll
+D:\Black Forrest\Billing\bin\Billing.pdb
+D:\Black Forrest\Billing\bin\BusinessLayer.dll
+D:\Black Forrest\Billing\bin\CommonLayer.dll
+D:\Black Forrest\Billing\bin\DataLayer.dll
+D:\Black Forrest\Billing\bin\BusinessLayer.pdb
+D:\Black Forrest\Billing\bin\CommonLayer.pdb
+D:\Black Forrest\Billing\bin\DataLayer.pdb
+D:\Black Forrest\Billing\obj\Debug\ResolveAssemblyReference.cache
+D:\Black Forrest\Billing\obj\Debug\Billing.dll
+D:\Black Forrest\Billing\obj\Debug\Billing.pdb
+F:\Working projects\Black Forrest Current - Copy\Billing\bin\Billing.dll
+F:\Working projects\Black Forrest Current - Copy\Billing\bin\Billing.pdb
+F:\Working projects\Black Forrest Current - Copy\Billing\bin\Ajaxified.dll
+F:\Working projects\Black Forrest Current - Copy\Billing\bin\BusinessLayer.dll
+F:\Working projects\Black Forrest Current - Copy\Billing\bin\CommonLayer.dll
+F:\Working projects\Black Forrest Current - Copy\Billing\bin\DataLayer.dll
+F:\Working projects\Black Forrest Current - Copy\Billing\bin\Microsoft.Office.Interop.Excel.dll
+F:\Working projects\Black Forrest Current - Copy\Billing\bin\Office.dll
+F:\Working projects\Black Forrest Current - Copy\Billing\bin\TimePicker.dll
+F:\Working projects\Black Forrest Current - Copy\Billing\bin\BusinessLayer.pdb
+F:\Working projects\Black Forrest Current - Copy\Billing\bin\CommonLayer.pdb
+F:\Working projects\Black Forrest Current - Copy\Billing\bin\DataLayer.pdb
+F:\Working projects\Black Forrest Current - Copy\Billing\bin\Microsoft.Office.Interop.Excel.xml
+F:\Working projects\Black Forrest Current - Copy\Billing\bin\Office.xml
+F:\Working projects\Black Forrest Current - Copy\Billing\obj\Debug\ResolveAssemblyReference.cache
+F:\Working projects\Black Forrest Current - Copy\Billing\obj\Debug\Billing.dll
+F:\Working projects\Black Forrest Current - Copy\Billing\obj\Debug\Billing.pdb
+F:\Completed Projects\Black Forrest Current - Copy\Billing\bin\Billing.dll
+F:\Completed Projects\Black Forrest Current - Copy\Billing\bin\Billing.pdb
+F:\Completed Projects\Black Forrest Current - Copy\Billing\bin\Ajaxified.dll
+F:\Completed Projects\Black Forrest Current - Copy\Billing\bin\BusinessLayer.dll
+F:\Completed Projects\Black Forrest Current - Copy\Billing\bin\CommonLayer.dll
+F:\Completed Projects\Black Forrest Current - Copy\Billing\bin\DataLayer.dll
+F:\Completed Projects\Black Forrest Current - Copy\Billing\bin\Microsoft.Office.Interop.Excel.dll
+F:\Completed Projects\Black Forrest Current - Copy\Billing\bin\Office.dll
+F:\Completed Projects\Black Forrest Current - Copy\Billing\bin\TimePicker.dll
+F:\Completed Projects\Black Forrest Current - Copy\Billing\bin\BusinessLayer.pdb
+F:\Completed Projects\Black Forrest Current - Copy\Billing\bin\CommonLayer.pdb
+F:\Completed Projects\Black Forrest Current - Copy\Billing\bin\DataLayer.pdb
+F:\Completed Projects\Black Forrest Current - Copy\Billing\bin\Microsoft.Office.Interop.Excel.xml
+F:\Completed Projects\Black Forrest Current - Copy\Billing\bin\Office.xml
+F:\Completed Projects\Black Forrest Current - Copy\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\Completed Projects\Black Forrest Current - Copy\Billing\obj\Debug\UChat.Global.resources
+F:\Completed Projects\Black Forrest Current - Copy\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\Completed Projects\Black Forrest Current - Copy\Billing\obj\Debug\Billing.dll
+F:\Completed Projects\Black Forrest Current - Copy\Billing\obj\Debug\Billing.pdb
+F:\Black Forrest Current - Copy\Billing\bin\Billing.dll
+F:\Black Forrest Current - Copy\Billing\bin\Billing.pdb
+F:\Black Forrest Current - Copy\Billing\bin\BusinessLayer.dll
+F:\Black Forrest Current - Copy\Billing\bin\CommonLayer.dll
+F:\Black Forrest Current - Copy\Billing\bin\DataLayer.dll
+F:\Black Forrest Current - Copy\Billing\bin\Microsoft.Office.Interop.Excel.dll
+F:\Black Forrest Current - Copy\Billing\bin\Office.dll
+F:\Black Forrest Current - Copy\Billing\bin\Microsoft.Vbe.Interop.dll
+F:\Black Forrest Current - Copy\Billing\bin\BusinessLayer.pdb
+F:\Black Forrest Current - Copy\Billing\bin\CommonLayer.pdb
+F:\Black Forrest Current - Copy\Billing\bin\DataLayer.pdb
+F:\Black Forrest Current - Copy\Billing\bin\Microsoft.Office.Interop.Excel.xml
+F:\Black Forrest Current - Copy\Billing\bin\Office.xml
+F:\Black Forrest Current - Copy\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\Black Forrest Current - Copy\Billing\obj\Debug\UChat.Global.resources
+F:\Black Forrest Current - Copy\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\Black Forrest Current - Copy\Billing\obj\Debug\Billing.dll
+F:\Black Forrest Current - Copy\Billing\obj\Debug\Billing.pdb
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\Billing\bin\Billing.dll
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\Billing\bin\Billing.pdb
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\Billing\bin\Ajaxified.dll
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\Billing\bin\CommonLayer.dll
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\Billing\bin\DataLayer.dll
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.dll
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\Billing\bin\Office.dll
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\Billing\bin\DataLayer.pdb
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.xml
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\Billing\bin\Office.xml
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+E:\Harishbabu\Black Forrest Production live\Billing\bin\Billing.dll
+E:\Harishbabu\Black Forrest Production live\Billing\bin\Billing.pdb
+E:\Harishbabu\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+E:\Harishbabu\Black Forrest Production live\Billing\bin\CommonLayer.dll
+E:\Harishbabu\Black Forrest Production live\Billing\bin\DataLayer.dll
+E:\Harishbabu\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.dll
+E:\Harishbabu\Black Forrest Production live\Billing\bin\Office.dll
+E:\Harishbabu\Black Forrest Production live\Billing\bin\Microsoft.Vbe.Interop.dll
+E:\Harishbabu\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+E:\Harishbabu\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+E:\Harishbabu\Black Forrest Production live\Billing\bin\DataLayer.pdb
+E:\Harishbabu\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.xml
+E:\Harishbabu\Black Forrest Production live\Billing\bin\Office.xml
+E:\Harishbabu\Black Forrest Production live\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\Harishbabu\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+E:\Harishbabu\Black Forrest Production live\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\Harishbabu\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+E:\Harishbabu\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\Billing\bin\Billing.dll
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\Billing\bin\Billing.pdb
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\Billing\bin\CommonLayer.dll
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\Billing\bin\DataLayer.dll
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.dll
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\Billing\bin\Office.dll
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\Billing\bin\Microsoft.Vbe.Interop.dll
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\Billing\bin\DataLayer.pdb
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.xml
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\Billing\bin\Office.xml
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+E:\Application Backup\Black Forrest Production live\Billing\bin\Billing.dll
+E:\Application Backup\Black Forrest Production live\Billing\bin\Billing.pdb
+E:\Application Backup\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+E:\Application Backup\Black Forrest Production live\Billing\bin\CommonLayer.dll
+E:\Application Backup\Black Forrest Production live\Billing\bin\DataLayer.dll
+E:\Application Backup\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.dll
+E:\Application Backup\Black Forrest Production live\Billing\bin\Office.dll
+E:\Application Backup\Black Forrest Production live\Billing\bin\Microsoft.Vbe.Interop.dll
+E:\Application Backup\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+E:\Application Backup\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+E:\Application Backup\Black Forrest Production live\Billing\bin\DataLayer.pdb
+E:\Application Backup\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.xml
+E:\Application Backup\Black Forrest Production live\Billing\bin\Office.xml
+E:\Application Backup\Black Forrest Production live\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\Application Backup\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+E:\Application Backup\Black Forrest Production live\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\Application Backup\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+E:\Application Backup\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+F:\Working projects\Harsihbabu\Black Forrest Production live\Billing\bin\Billing.dll
+F:\Working projects\Harsihbabu\Black Forrest Production live\Billing\bin\Billing.pdb
+F:\Working projects\Harsihbabu\Black Forrest Production live\Billing\bin\Ajaxified.dll
+F:\Working projects\Harsihbabu\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+F:\Working projects\Harsihbabu\Black Forrest Production live\Billing\bin\CommonLayer.dll
+F:\Working projects\Harsihbabu\Black Forrest Production live\Billing\bin\DataLayer.dll
+F:\Working projects\Harsihbabu\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.dll
+F:\Working projects\Harsihbabu\Black Forrest Production live\Billing\bin\Office.dll
+F:\Working projects\Harsihbabu\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+F:\Working projects\Harsihbabu\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+F:\Working projects\Harsihbabu\Black Forrest Production live\Billing\bin\DataLayer.pdb
+F:\Working projects\Harsihbabu\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.xml
+F:\Working projects\Harsihbabu\Black Forrest Production live\Billing\bin\Office.xml
+F:\Working projects\Harsihbabu\Black Forrest Production live\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\Working projects\Harsihbabu\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+F:\Working projects\Harsihbabu\Black Forrest Production live\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\Working projects\Harsihbabu\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+F:\Working projects\Harsihbabu\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+E:\All Documents\vinoth\Black Forrest Production live\Billing\bin\Billing.dll
+E:\All Documents\vinoth\Black Forrest Production live\Billing\bin\Billing.pdb
+E:\All Documents\vinoth\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+E:\All Documents\vinoth\Black Forrest Production live\Billing\bin\CommonLayer.dll
+E:\All Documents\vinoth\Black Forrest Production live\Billing\bin\DataLayer.dll
+E:\All Documents\vinoth\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.dll
+E:\All Documents\vinoth\Black Forrest Production live\Billing\bin\Office.dll
+E:\All Documents\vinoth\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+E:\All Documents\vinoth\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+E:\All Documents\vinoth\Black Forrest Production live\Billing\bin\DataLayer.pdb
+E:\All Documents\vinoth\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.xml
+E:\All Documents\vinoth\Black Forrest Production live\Billing\bin\Office.xml
+E:\All Documents\vinoth\Black Forrest Production live\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\All Documents\vinoth\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+E:\All Documents\vinoth\Black Forrest Production live\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\All Documents\vinoth\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+E:\All Documents\vinoth\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+C:\Users\system5\Desktop\Black Forrest Production live\Billing\bin\Billing.dll
+C:\Users\system5\Desktop\Black Forrest Production live\Billing\bin\Billing.pdb
+C:\Users\system5\Desktop\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+C:\Users\system5\Desktop\Black Forrest Production live\Billing\bin\CommonLayer.dll
+C:\Users\system5\Desktop\Black Forrest Production live\Billing\bin\DataLayer.dll
+C:\Users\system5\Desktop\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+C:\Users\system5\Desktop\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+C:\Users\system5\Desktop\Black Forrest Production live\Billing\bin\DataLayer.pdb
+C:\Users\system5\Desktop\Black Forrest Production live\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+C:\Users\system5\Desktop\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+C:\Users\system5\Desktop\Black Forrest Production live\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+C:\Users\system5\Desktop\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+C:\Users\system5\Desktop\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+E:\ApplicationS\Black Forrest Production live\Billing\bin\Billing.dll
+E:\ApplicationS\Black Forrest Production live\Billing\bin\Billing.pdb
+E:\ApplicationS\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+E:\ApplicationS\Black Forrest Production live\Billing\bin\CommonLayer.dll
+E:\ApplicationS\Black Forrest Production live\Billing\bin\DataLayer.dll
+E:\ApplicationS\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+E:\ApplicationS\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+E:\ApplicationS\Black Forrest Production live\Billing\bin\DataLayer.pdb
+E:\ApplicationS\Black Forrest Production live\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\ApplicationS\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+E:\ApplicationS\Black Forrest Production live\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\ApplicationS\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+E:\ApplicationS\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+F:\New folder (4)\Black Forrest Production live\Billing\bin\Billing.dll
+F:\New folder (4)\Black Forrest Production live\Billing\bin\Billing.pdb
+F:\New folder (4)\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+F:\New folder (4)\Black Forrest Production live\Billing\bin\CommonLayer.dll
+F:\New folder (4)\Black Forrest Production live\Billing\bin\DataLayer.dll
+F:\New folder (4)\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+F:\New folder (4)\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+F:\New folder (4)\Black Forrest Production live\Billing\bin\DataLayer.pdb
+F:\New folder (4)\Black Forrest Production live\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\New folder (4)\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+F:\New folder (4)\Black Forrest Production live\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\New folder (4)\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+F:\New folder (4)\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+C:\Black Forrest Production live\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+C:\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+C:\Black Forrest Production live\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+C:\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+C:\Black Forrest Production live\Billing\bin\Billing.dll
+C:\Black Forrest Production live\Billing\bin\Billing.pdb
+C:\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+C:\Black Forrest Production live\Billing\bin\CommonLayer.dll
+C:\Black Forrest Production live\Billing\bin\DataLayer.dll
+C:\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+C:\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+C:\Black Forrest Production live\Billing\bin\DataLayer.pdb
+C:\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+E:\All Documents\Black Forrest Production live\Billing\bin\Billing.dll
+E:\All Documents\Black Forrest Production live\Billing\bin\Billing.pdb
+E:\All Documents\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+E:\All Documents\Black Forrest Production live\Billing\bin\CommonLayer.dll
+E:\All Documents\Black Forrest Production live\Billing\bin\DataLayer.dll
+E:\All Documents\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.dll
+E:\All Documents\Black Forrest Production live\Billing\bin\Office.dll
+E:\All Documents\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+E:\All Documents\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+E:\All Documents\Black Forrest Production live\Billing\bin\DataLayer.pdb
+E:\All Documents\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.xml
+E:\All Documents\Black Forrest Production live\Billing\bin\Office.xml
+E:\All Documents\Black Forrest Production live\Billing\obj\Debug\ResolveAssemblyReference.cache
+E:\All Documents\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+E:\All Documents\Black Forrest Production live\Billing\obj\Debug\ResGen.read.1.tlog
+E:\All Documents\Black Forrest Production live\Billing\obj\Debug\ResGen.write.1.tlog
+E:\All Documents\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+E:\All Documents\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\Billing\bin\Billing.dll
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\Billing\bin\Billing.pdb
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\Billing\bin\Ajaxified.dll
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\Billing\bin\CommonLayer.dll
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\Billing\bin\DataLayer.dll
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.dll
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\Billing\bin\Office.dll
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\Billing\bin\DataLayer.pdb
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.xml
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\Billing\bin\Office.xml
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+E:\ApplicationS\BlaackForest\2509\Black Forrest Production live\Billing\bin\Billing.dll
+E:\ApplicationS\BlaackForest\2509\Black Forrest Production live\Billing\bin\Billing.pdb
+E:\ApplicationS\BlaackForest\2509\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+E:\ApplicationS\BlaackForest\2509\Black Forrest Production live\Billing\bin\CommonLayer.dll
+E:\ApplicationS\BlaackForest\2509\Black Forrest Production live\Billing\bin\DataLayer.dll
+E:\ApplicationS\BlaackForest\2509\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+E:\ApplicationS\BlaackForest\2509\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+E:\ApplicationS\BlaackForest\2509\Black Forrest Production live\Billing\bin\DataLayer.pdb
+E:\ApplicationS\BlaackForest\2509\Black Forrest Production live\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\ApplicationS\BlaackForest\2509\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+E:\ApplicationS\BlaackForest\2509\Black Forrest Production live\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\ApplicationS\BlaackForest\2509\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+E:\ApplicationS\BlaackForest\2509\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+E:\ApplicationS\BlaackForest\Black Forrest Production live\Billing\bin\Billing.dll
+E:\ApplicationS\BlaackForest\Black Forrest Production live\Billing\bin\Billing.pdb
+E:\ApplicationS\BlaackForest\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+E:\ApplicationS\BlaackForest\Black Forrest Production live\Billing\bin\CommonLayer.dll
+E:\ApplicationS\BlaackForest\Black Forrest Production live\Billing\bin\DataLayer.dll
+E:\ApplicationS\BlaackForest\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+E:\ApplicationS\BlaackForest\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+E:\ApplicationS\BlaackForest\Black Forrest Production live\Billing\bin\DataLayer.pdb
+E:\ApplicationS\BlaackForest\Black Forrest Production live\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\ApplicationS\BlaackForest\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+E:\ApplicationS\BlaackForest\Black Forrest Production live\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\ApplicationS\BlaackForest\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+E:\ApplicationS\BlaackForest\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+D:\Applications\BlaackForest\Black Forrest Production live\Billing\bin\Billing.dll
+D:\Applications\BlaackForest\Black Forrest Production live\Billing\bin\Billing.pdb
+D:\Applications\BlaackForest\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+D:\Applications\BlaackForest\Black Forrest Production live\Billing\bin\CommonLayer.dll
+D:\Applications\BlaackForest\Black Forrest Production live\Billing\bin\DataLayer.dll
+D:\Applications\BlaackForest\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+D:\Applications\BlaackForest\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+D:\Applications\BlaackForest\Black Forrest Production live\Billing\bin\DataLayer.pdb
+D:\Applications\BlaackForest\Black Forrest Production live\Billing\obj\Debug\ResolveAssemblyReference.cache
+D:\Applications\BlaackForest\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+D:\Applications\BlaackForest\Black Forrest Production live\Billing\obj\Debug\ResGen.read.1.tlog
+D:\Applications\BlaackForest\Black Forrest Production live\Billing\obj\Debug\ResGen.write.1.tlog
+D:\Applications\BlaackForest\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+D:\Applications\BlaackForest\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+C:\Users\intel\Desktop\Black Forrest Production live\Billing\bin\Billing.dll
+C:\Users\intel\Desktop\Black Forrest Production live\Billing\bin\Billing.pdb
+C:\Users\intel\Desktop\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+C:\Users\intel\Desktop\Black Forrest Production live\Billing\bin\CommonLayer.dll
+C:\Users\intel\Desktop\Black Forrest Production live\Billing\bin\DataLayer.dll
+C:\Users\intel\Desktop\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+C:\Users\intel\Desktop\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+C:\Users\intel\Desktop\Black Forrest Production live\Billing\bin\DataLayer.pdb
+C:\Users\intel\Desktop\Black Forrest Production live\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+C:\Users\intel\Desktop\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+C:\Users\intel\Desktop\Black Forrest Production live\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+C:\Users\intel\Desktop\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+C:\Users\intel\Desktop\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+E:\Black Forrest Production live\Billing\bin\Billing.dll
+E:\Black Forrest Production live\Billing\bin\Billing.pdb
+E:\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+E:\Black Forrest Production live\Billing\bin\CommonLayer.dll
+E:\Black Forrest Production live\Billing\bin\DataLayer.dll
+E:\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+E:\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+E:\Black Forrest Production live\Billing\bin\DataLayer.pdb
+E:\Black Forrest Production live\Billing\obj\Debug\ResolveAssemblyReference.cache
+E:\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+E:\Black Forrest Production live\Billing\obj\Debug\ResGen.read.1.tlog
+E:\Black Forrest Production live\Billing\obj\Debug\ResGen.write.1.tlog
+E:\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+E:\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+F:\BlaackForest\Black Forrest Production live\Billing\bin\Billing.dll
+F:\BlaackForest\Black Forrest Production live\Billing\bin\Billing.pdb
+F:\BlaackForest\Black Forrest Production live\Billing\bin\Ajaxified.dll
+F:\BlaackForest\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+F:\BlaackForest\Black Forrest Production live\Billing\bin\CommonLayer.dll
+F:\BlaackForest\Black Forrest Production live\Billing\bin\DataLayer.dll
+F:\BlaackForest\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.dll
+F:\BlaackForest\Black Forrest Production live\Billing\bin\Office.dll
+F:\BlaackForest\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+F:\BlaackForest\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+F:\BlaackForest\Black Forrest Production live\Billing\bin\DataLayer.pdb
+F:\BlaackForest\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.xml
+F:\BlaackForest\Black Forrest Production live\Billing\bin\Office.xml
+F:\BlaackForest\Black Forrest Production live\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\BlaackForest\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+F:\BlaackForest\Black Forrest Production live\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\BlaackForest\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+F:\BlaackForest\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\Billing\bin\Billing.dll
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\Billing\bin\Billing.pdb
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\Billing\bin\Ajaxified.dll
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\Billing\bin\CommonLayer.dll
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\Billing\bin\DataLayer.dll
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.dll
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\Billing\bin\Office.dll
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\Billing\bin\DataLayer.pdb
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.xml
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\Billing\bin\Office.xml
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\Billing\bin\Billing.dll
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\Billing\bin\Billing.pdb
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\Billing\bin\Ajaxified.dll
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\Billing\bin\BusinessLayer.dll
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\Billing\bin\CommonLayer.dll
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\Billing\bin\DataLayer.dll
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.dll
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\Billing\bin\Office.dll
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\Billing\bin\BusinessLayer.pdb
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\Billing\bin\CommonLayer.pdb
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\Billing\bin\DataLayer.pdb
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\Billing\bin\Microsoft.Office.Interop.Excel.xml
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\Billing\bin\Office.xml
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\Billing\obj\Debug\UChat.Global.resources
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\Billing\obj\Debug\Billing.dll
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\Billing\obj\Debug\Billing.pdb
+F:\Priya_Working\BlackforestProduction\Billing\bin\Billing.dll
+F:\Priya_Working\BlackforestProduction\Billing\bin\Billing.pdb
+F:\Priya_Working\BlackforestProduction\Billing\bin\BusinessLayer.dll
+F:\Priya_Working\BlackforestProduction\Billing\bin\CommonLayer.dll
+F:\Priya_Working\BlackforestProduction\Billing\bin\DataLayer.dll
+F:\Priya_Working\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+F:\Priya_Working\BlackforestProduction\Billing\bin\CommonLayer.pdb
+F:\Priya_Working\BlackforestProduction\Billing\bin\DataLayer.pdb
+F:\Priya_Working\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\Priya_Working\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+F:\Priya_Working\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\Priya_Working\BlackforestProduction\Billing\obj\Debug\Billing.dll
+F:\Priya_Working\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+D:\BlackforestProduction\Billing\bin\Billing.dll
+D:\BlackforestProduction\Billing\bin\Billing.pdb
+D:\BlackforestProduction\Billing\bin\BusinessLayer.dll
+D:\BlackforestProduction\Billing\bin\CommonLayer.dll
+D:\BlackforestProduction\Billing\bin\DataLayer.dll
+D:\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+D:\BlackforestProduction\Billing\bin\CommonLayer.pdb
+D:\BlackforestProduction\Billing\bin\DataLayer.pdb
+D:\BlackforestProduction\Billing\obj\Debug\ResolveAssemblyReference.cache
+D:\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+D:\BlackforestProduction\Billing\obj\Debug\ResGen.read.1.tlog
+D:\BlackforestProduction\Billing\obj\Debug\ResGen.write.1.tlog
+D:\BlackforestProduction\Billing\obj\Debug\Billing.dll
+D:\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+G:\Projects\Received\BlackforestProduction\Billing\bin\Billing.dll
+G:\Projects\Received\BlackforestProduction\Billing\bin\Billing.pdb
+G:\Projects\Received\BlackforestProduction\Billing\bin\Ajaxified.dll
+G:\Projects\Received\BlackforestProduction\Billing\bin\BusinessLayer.dll
+G:\Projects\Received\BlackforestProduction\Billing\bin\CommonLayer.dll
+G:\Projects\Received\BlackforestProduction\Billing\bin\DataLayer.dll
+G:\Projects\Received\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.dll
+G:\Projects\Received\BlackforestProduction\Billing\bin\Office.dll
+G:\Projects\Received\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+G:\Projects\Received\BlackforestProduction\Billing\bin\CommonLayer.pdb
+G:\Projects\Received\BlackforestProduction\Billing\bin\DataLayer.pdb
+G:\Projects\Received\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.xml
+G:\Projects\Received\BlackforestProduction\Billing\bin\Office.xml
+G:\Projects\Received\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+G:\Projects\Received\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+G:\Projects\Received\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+G:\Projects\Received\BlackforestProduction\Billing\obj\Debug\Billing.dll
+G:\Projects\Received\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+G:\Projects\Working\BlackforestProduction\Billing\bin\Billing.dll
+G:\Projects\Working\BlackforestProduction\Billing\bin\Billing.pdb
+G:\Projects\Working\BlackforestProduction\Billing\bin\Ajaxified.dll
+G:\Projects\Working\BlackforestProduction\Billing\bin\BusinessLayer.dll
+G:\Projects\Working\BlackforestProduction\Billing\bin\CommonLayer.dll
+G:\Projects\Working\BlackforestProduction\Billing\bin\DataLayer.dll
+G:\Projects\Working\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.dll
+G:\Projects\Working\BlackforestProduction\Billing\bin\Office.dll
+G:\Projects\Working\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+G:\Projects\Working\BlackforestProduction\Billing\bin\CommonLayer.pdb
+G:\Projects\Working\BlackforestProduction\Billing\bin\DataLayer.pdb
+G:\Projects\Working\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.xml
+G:\Projects\Working\BlackforestProduction\Billing\bin\Office.xml
+G:\Projects\Working\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+G:\Projects\Working\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+G:\Projects\Working\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+G:\Projects\Working\BlackforestProduction\Billing\obj\Debug\Billing.dll
+G:\Projects\Working\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+G:\Projects\Working\BlaackForest\BlackforestProduction\Billing\bin\Billing.dll
+G:\Projects\Working\BlaackForest\BlackforestProduction\Billing\bin\Billing.pdb
+G:\Projects\Working\BlaackForest\BlackforestProduction\Billing\bin\Ajaxified.dll
+G:\Projects\Working\BlaackForest\BlackforestProduction\Billing\bin\BusinessLayer.dll
+G:\Projects\Working\BlaackForest\BlackforestProduction\Billing\bin\CommonLayer.dll
+G:\Projects\Working\BlaackForest\BlackforestProduction\Billing\bin\DataLayer.dll
+G:\Projects\Working\BlaackForest\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.dll
+G:\Projects\Working\BlaackForest\BlackforestProduction\Billing\bin\Office.dll
+G:\Projects\Working\BlaackForest\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+G:\Projects\Working\BlaackForest\BlackforestProduction\Billing\bin\CommonLayer.pdb
+G:\Projects\Working\BlaackForest\BlackforestProduction\Billing\bin\DataLayer.pdb
+G:\Projects\Working\BlaackForest\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.xml
+G:\Projects\Working\BlaackForest\BlackforestProduction\Billing\bin\Office.xml
+G:\Projects\Working\BlaackForest\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+G:\Projects\Working\BlaackForest\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+G:\Projects\Working\BlaackForest\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+G:\Projects\Working\BlaackForest\BlackforestProduction\Billing\obj\Debug\Billing.dll
+G:\Projects\Working\BlaackForest\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\Raja\BlackforestProduction\Billing\bin\Billing.dll
+E:\Raja\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Raja\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Raja\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Raja\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Raja\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Raja\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Raja\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Raja\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\Raja\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\Raja\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\Raja\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\Raja\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\Raja\BF\BlackforestProduction\Billing\obj\Debug\ResolveAssemblyReference.cache
+E:\Raja\BF\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\Raja\BF\BlackforestProduction\Billing\obj\Debug\ResGen.read.1.tlog
+E:\Raja\BF\BlackforestProduction\Billing\obj\Debug\ResGen.write.1.tlog
+E:\Raja\BF\BlackforestProduction\Billing\bin\Billing.dll
+E:\Raja\BF\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Raja\BF\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Raja\BF\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Raja\BF\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Raja\BF\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Raja\BF\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Raja\BF\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Raja\BF\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\Raja\BF\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+F:\BlackforestProduction\Billing\bin\Billing.dll
+F:\BlackforestProduction\Billing\bin\Billing.pdb
+F:\BlackforestProduction\Billing\bin\BusinessLayer.dll
+F:\BlackforestProduction\Billing\bin\CommonLayer.dll
+F:\BlackforestProduction\Billing\bin\DataLayer.dll
+F:\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+F:\BlackforestProduction\Billing\bin\CommonLayer.pdb
+F:\BlackforestProduction\Billing\bin\DataLayer.pdb
+F:\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+F:\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\BlackforestProduction\Billing\obj\Debug\Billing.dll
+F:\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\Applications\BF\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\Applications\BF\BlackforestProduction\Billing\bin\Billing.dll
+E:\Applications\BF\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Applications\BF\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Applications\BF\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Applications\BF\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Applications\BF\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Applications\BF\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Applications\BF\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Applications\BF\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\Applications\BF\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\Applications\BlackforestProduction\Billing\obj\Debug\ResolveAssemblyReference.cache
+E:\Applications\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\Applications\BlackforestProduction\Billing\obj\Debug\ResGen.read.1.tlog
+E:\Applications\BlackforestProduction\Billing\obj\Debug\ResGen.write.1.tlog
+E:\Applications\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\Applications\BlackforestProduction\Billing\bin\Billing.dll
+E:\Applications\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Applications\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Applications\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Applications\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Applications\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Applications\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Applications\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Applications\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\Applications\BF\Sales\BlackforestProduction\Billing\obj\Debug\ResolveAssemblyReference.cache
+E:\Applications\BF\Sales\BlackforestProduction\Billing\obj\Debug\ResGen.read.1.tlog
+E:\Applications\BF\Sales\BlackforestProduction\Billing\obj\Debug\ResGen.write.1.tlog
+E:\Applications\BF\Sales\BlackforestProduction\Billing\bin\Billing.dll
+E:\Applications\BF\Sales\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Applications\BF\Sales\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Applications\BF\Sales\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Applications\BF\Sales\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Applications\BF\Sales\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Applications\BF\Sales\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Applications\BF\Sales\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Applications\BF\Sales\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\Applications\BF\Sales\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\Applications\BF\Sales\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\Billing\bin\Billing.dll
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\Billing\bin\Ajaxified.dll
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.dll
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\Billing\bin\Office.dll
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.xml
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\Billing\bin\Office.xml
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\Priya\BlaackForest\BlackforestProduction\Billing\bin\Billing.dll
+E:\Priya\BlaackForest\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Priya\BlaackForest\BlackforestProduction\Billing\bin\Ajaxified.dll
+E:\Priya\BlaackForest\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Priya\BlaackForest\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Priya\BlaackForest\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Priya\BlaackForest\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.dll
+E:\Priya\BlaackForest\BlackforestProduction\Billing\bin\Office.dll
+E:\Priya\BlaackForest\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Priya\BlaackForest\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Priya\BlaackForest\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Priya\BlaackForest\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.xml
+E:\Priya\BlaackForest\BlackforestProduction\Billing\bin\Office.xml
+E:\Priya\BlaackForest\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\Priya\BlaackForest\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\Priya\BlaackForest\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\Priya\BlaackForest\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\Priya\BlaackForest\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+F:\Priya_Working\Janarthanan\BF_0111\BlackforestProduction\Billing\bin\Billing.dll
+F:\Priya_Working\Janarthanan\BF_0111\BlackforestProduction\Billing\bin\Billing.pdb
+F:\Priya_Working\Janarthanan\BF_0111\BlackforestProduction\Billing\bin\BusinessLayer.dll
+F:\Priya_Working\Janarthanan\BF_0111\BlackforestProduction\Billing\bin\CommonLayer.dll
+F:\Priya_Working\Janarthanan\BF_0111\BlackforestProduction\Billing\bin\DataLayer.dll
+F:\Priya_Working\Janarthanan\BF_0111\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+F:\Priya_Working\Janarthanan\BF_0111\BlackforestProduction\Billing\bin\CommonLayer.pdb
+F:\Priya_Working\Janarthanan\BF_0111\BlackforestProduction\Billing\bin\DataLayer.pdb
+F:\Priya_Working\Janarthanan\BF_0111\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\Priya_Working\Janarthanan\BF_0111\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+F:\Priya_Working\Janarthanan\BF_0111\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\Priya_Working\Janarthanan\BF_0111\BlackforestProduction\Billing\obj\Debug\Billing.dll
+F:\Priya_Working\Janarthanan\BF_0111\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+F:\Priya_Working\Janarthanan\BlackforestProduction\Billing\bin\Billing.dll
+F:\Priya_Working\Janarthanan\BlackforestProduction\Billing\bin\Billing.pdb
+F:\Priya_Working\Janarthanan\BlackforestProduction\Billing\bin\BusinessLayer.dll
+F:\Priya_Working\Janarthanan\BlackforestProduction\Billing\bin\CommonLayer.dll
+F:\Priya_Working\Janarthanan\BlackforestProduction\Billing\bin\DataLayer.dll
+F:\Priya_Working\Janarthanan\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+F:\Priya_Working\Janarthanan\BlackforestProduction\Billing\bin\CommonLayer.pdb
+F:\Priya_Working\Janarthanan\BlackforestProduction\Billing\bin\DataLayer.pdb
+F:\Priya_Working\Janarthanan\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\Priya_Working\Janarthanan\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+F:\Priya_Working\Janarthanan\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\Priya_Working\Janarthanan\BlackforestProduction\Billing\obj\Debug\Billing.dll
+F:\Priya_Working\Janarthanan\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+F:\Priya_Working\Janarthanan\Jothi Blackforest\BlackforestProduction\Billing\bin\Billing.dll
+F:\Priya_Working\Janarthanan\Jothi Blackforest\BlackforestProduction\Billing\bin\Billing.pdb
+F:\Priya_Working\Janarthanan\Jothi Blackforest\BlackforestProduction\Billing\bin\BusinessLayer.dll
+F:\Priya_Working\Janarthanan\Jothi Blackforest\BlackforestProduction\Billing\bin\CommonLayer.dll
+F:\Priya_Working\Janarthanan\Jothi Blackforest\BlackforestProduction\Billing\bin\DataLayer.dll
+F:\Priya_Working\Janarthanan\Jothi Blackforest\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+F:\Priya_Working\Janarthanan\Jothi Blackforest\BlackforestProduction\Billing\bin\CommonLayer.pdb
+F:\Priya_Working\Janarthanan\Jothi Blackforest\BlackforestProduction\Billing\bin\DataLayer.pdb
+F:\Priya_Working\Janarthanan\Jothi Blackforest\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\Priya_Working\Janarthanan\Jothi Blackforest\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+F:\Priya_Working\Janarthanan\Jothi Blackforest\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\Priya_Working\Janarthanan\Jothi Blackforest\BlackforestProduction\Billing\obj\Debug\Billing.dll
+F:\Priya_Working\Janarthanan\Jothi Blackforest\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+F:\Priya_Working\Janarthanan\BFRaja\BlackforestProduction\Billing\bin\Billing.dll
+F:\Priya_Working\Janarthanan\BFRaja\BlackforestProduction\Billing\bin\Billing.pdb
+F:\Priya_Working\Janarthanan\BFRaja\BlackforestProduction\Billing\bin\BusinessLayer.dll
+F:\Priya_Working\Janarthanan\BFRaja\BlackforestProduction\Billing\bin\CommonLayer.dll
+F:\Priya_Working\Janarthanan\BFRaja\BlackforestProduction\Billing\bin\DataLayer.dll
+F:\Priya_Working\Janarthanan\BFRaja\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+F:\Priya_Working\Janarthanan\BFRaja\BlackforestProduction\Billing\bin\CommonLayer.pdb
+F:\Priya_Working\Janarthanan\BFRaja\BlackforestProduction\Billing\bin\DataLayer.pdb
+F:\Priya_Working\Janarthanan\BFRaja\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\Priya_Working\Janarthanan\BFRaja\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+F:\Priya_Working\Janarthanan\BFRaja\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\Priya_Working\Janarthanan\BFRaja\BlackforestProduction\Billing\obj\Debug\Billing.dll
+F:\Priya_Working\Janarthanan\BFRaja\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+F:\Priya_Working\Janarthanan\Jothi BFProduction\BlackforestProduction\Billing\bin\Billing.dll
+F:\Priya_Working\Janarthanan\Jothi BFProduction\BlackforestProduction\Billing\bin\Billing.pdb
+F:\Priya_Working\Janarthanan\Jothi BFProduction\BlackforestProduction\Billing\bin\BusinessLayer.dll
+F:\Priya_Working\Janarthanan\Jothi BFProduction\BlackforestProduction\Billing\bin\CommonLayer.dll
+F:\Priya_Working\Janarthanan\Jothi BFProduction\BlackforestProduction\Billing\bin\DataLayer.dll
+F:\Priya_Working\Janarthanan\Jothi BFProduction\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+F:\Priya_Working\Janarthanan\Jothi BFProduction\BlackforestProduction\Billing\bin\CommonLayer.pdb
+F:\Priya_Working\Janarthanan\Jothi BFProduction\BlackforestProduction\Billing\bin\DataLayer.pdb
+F:\Priya_Working\Janarthanan\Jothi BFProduction\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\Priya_Working\Janarthanan\Jothi BFProduction\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+F:\Priya_Working\Janarthanan\Jothi BFProduction\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\Priya_Working\Janarthanan\Jothi BFProduction\BlackforestProduction\Billing\obj\Debug\Billing.dll
+F:\Priya_Working\Janarthanan\Jothi BFProduction\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\Billing\bin\Billing.dll
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\Billing\bin\Billing.pdb
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\Billing\bin\BusinessLayer.dll
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\Billing\bin\CommonLayer.dll
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\Billing\bin\DataLayer.dll
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.dll
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\Billing\bin\Office.dll
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\Billing\bin\Microsoft.Vbe.Interop.dll
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\Billing\bin\CommonLayer.pdb
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\Billing\bin\DataLayer.pdb
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.xml
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\Billing\bin\Office.xml
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\Billing\obj\Debug\Billing.dll
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\Billing\bin\Billing.dll
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\Billing\bin\Billing.pdb
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\Billing\bin\BusinessLayer.dll
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\Billing\bin\CommonLayer.dll
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\Billing\bin\DataLayer.dll
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.dll
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\Billing\bin\Office.dll
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\Billing\bin\Microsoft.Vbe.Interop.dll
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\Billing\bin\CommonLayer.pdb
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\Billing\bin\DataLayer.pdb
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.xml
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\Billing\bin\Office.xml
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\Billing\obj\Debug\Billing.dll
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\BlackforestProduction\Billing\bin\Billing.dll
+E:\BlackforestProduction\Billing\bin\Billing.pdb
+E:\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\Billing\bin\Billing.dll
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\Billing\bin\Billing.pdb
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\Billing\bin\BusinessLayer.dll
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\Billing\bin\CommonLayer.dll
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\Billing\bin\DataLayer.dll
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.dll
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\Billing\bin\Office.dll
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\Billing\bin\Microsoft.Vbe.Interop.dll
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\Billing\bin\CommonLayer.pdb
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\Billing\bin\DataLayer.pdb
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.xml
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\Billing\bin\Office.xml
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\Billing\obj\Debug\Billing.dll
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\Applications\BF\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\Applications\BF\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+C:\Users\intel\Desktop\New folder\BlackforestProduction\Billing\bin\Billing.dll
+C:\Users\intel\Desktop\New folder\BlackforestProduction\Billing\bin\Billing.pdb
+C:\Users\intel\Desktop\New folder\BlackforestProduction\Billing\bin\BusinessLayer.dll
+C:\Users\intel\Desktop\New folder\BlackforestProduction\Billing\bin\CommonLayer.dll
+C:\Users\intel\Desktop\New folder\BlackforestProduction\Billing\bin\DataLayer.dll
+C:\Users\intel\Desktop\New folder\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+C:\Users\intel\Desktop\New folder\BlackforestProduction\Billing\bin\CommonLayer.pdb
+C:\Users\intel\Desktop\New folder\BlackforestProduction\Billing\bin\DataLayer.pdb
+C:\Users\intel\Desktop\New folder\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+C:\Users\intel\Desktop\New folder\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+C:\Users\intel\Desktop\New folder\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+C:\Users\intel\Desktop\New folder\BlackforestProduction\Billing\obj\Debug\Billing.dll
+C:\Users\intel\Desktop\New folder\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+C:\Users\HP\Desktop\BlackforestProduction\Billing\bin\Billing.dll
+C:\Users\HP\Desktop\BlackforestProduction\Billing\bin\Billing.pdb
+C:\Users\HP\Desktop\BlackforestProduction\Billing\bin\BusinessLayer.dll
+C:\Users\HP\Desktop\BlackforestProduction\Billing\bin\CommonLayer.dll
+C:\Users\HP\Desktop\BlackforestProduction\Billing\bin\DataLayer.dll
+C:\Users\HP\Desktop\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.dll
+C:\Users\HP\Desktop\BlackforestProduction\Billing\bin\Office.dll
+C:\Users\HP\Desktop\BlackforestProduction\Billing\bin\Microsoft.Vbe.Interop.dll
+C:\Users\HP\Desktop\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+C:\Users\HP\Desktop\BlackforestProduction\Billing\bin\CommonLayer.pdb
+C:\Users\HP\Desktop\BlackforestProduction\Billing\bin\DataLayer.pdb
+C:\Users\HP\Desktop\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.xml
+C:\Users\HP\Desktop\BlackforestProduction\Billing\bin\Office.xml
+C:\Users\HP\Desktop\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+C:\Users\HP\Desktop\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+C:\Users\HP\Desktop\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+C:\Users\HP\Desktop\BlackforestProduction\Billing\obj\Debug\Billing.dll
+C:\Users\HP\Desktop\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\Applications\BF_Jothy\BlackforestProduction\Billing\bin\Billing.dll
+E:\Applications\BF_Jothy\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Applications\BF_Jothy\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Applications\BF_Jothy\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Applications\BF_Jothy\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Applications\BF_Jothy\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Applications\BF_Jothy\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Applications\BF_Jothy\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Applications\BF_Jothy\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\Applications\BF_Jothy\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\Applications\BF_Jothy\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\Applications\BF_Jothy\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\Applications\BF_Jothy\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+F:\blaack forest new production\BlackforestProduction_before combo\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\blaack forest new production\BlackforestProduction_before combo\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\blaack forest new production\BlackforestProduction_before combo\Billing\bin\Billing.dll
+F:\blaack forest new production\BlackforestProduction_before combo\Billing\bin\Billing.pdb
+F:\blaack forest new production\BlackforestProduction_before combo\Billing\bin\BusinessLayer.dll
+F:\blaack forest new production\BlackforestProduction_before combo\Billing\bin\CommonLayer.dll
+F:\blaack forest new production\BlackforestProduction_before combo\Billing\bin\DataLayer.dll
+F:\blaack forest new production\BlackforestProduction_before combo\Billing\bin\BusinessLayer.pdb
+F:\blaack forest new production\BlackforestProduction_before combo\Billing\bin\CommonLayer.pdb
+F:\blaack forest new production\BlackforestProduction_before combo\Billing\bin\DataLayer.pdb
+F:\blaack forest new production\BlackforestProduction_before combo\Billing\obj\Debug\UChat.Global.resources
+F:\blaack forest new production\BlackforestProduction_before combo\Billing\obj\Debug\Billing.dll
+F:\blaack forest new production\BlackforestProduction_before combo\Billing\obj\Debug\Billing.pdb
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\Billing\bin\Billing.dll
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\Billing\bin\Billing.pdb
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\Billing\bin\BusinessLayer.dll
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\Billing\bin\CommonLayer.dll
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\Billing\bin\DataLayer.dll
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.dll
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\Billing\bin\Office.dll
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\Billing\bin\Microsoft.Vbe.Interop.dll
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\Billing\bin\CommonLayer.pdb
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\Billing\bin\DataLayer.pdb
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\Billing\bin\Microsoft.Office.Interop.Excel.xml
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\Billing\bin\Office.xml
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\Billing\obj\Debug\Billing.dll
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+F:\blaack forest new production\BlackforestProduction\Billing\bin\Billing.dll
+F:\blaack forest new production\BlackforestProduction\Billing\bin\Billing.pdb
+F:\blaack forest new production\BlackforestProduction\Billing\bin\BusinessLayer.dll
+F:\blaack forest new production\BlackforestProduction\Billing\bin\CommonLayer.dll
+F:\blaack forest new production\BlackforestProduction\Billing\bin\DataLayer.dll
+F:\blaack forest new production\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+F:\blaack forest new production\BlackforestProduction\Billing\bin\CommonLayer.pdb
+F:\blaack forest new production\BlackforestProduction\Billing\bin\DataLayer.pdb
+F:\blaack forest new production\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\blaack forest new production\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+F:\blaack forest new production\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\blaack forest new production\BlackforestProduction\Billing\obj\Debug\Billing.dll
+F:\blaack forest new production\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\bin\Billing.dll
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\Bama\BlackforestNew\BlackforestNew\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\Bama\BlackforestNew\BlackforestNew\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\Bama\BlackforestNew\BlackforestNew\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\Bama\BlackforestNew\BlackforestNew\BlackforestProduction\Billing\bin\Billing.dll
+E:\Bama\BlackforestNew\BlackforestNew\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Bama\BlackforestNew\BlackforestNew\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Bama\BlackforestNew\BlackforestNew\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Bama\BlackforestNew\BlackforestNew\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Bama\BlackforestNew\BlackforestNew\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Bama\BlackforestNew\BlackforestNew\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Bama\BlackforestNew\BlackforestNew\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Bama\BlackforestNew\BlackforestNew\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\Bama\BlackforestNew\BlackforestNew\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\JothiKumar\BlackforestProduction\Billing\bin\Billing.dll
+E:\JothiKumar\BlackforestProduction\Billing\bin\Billing.pdb
+E:\JothiKumar\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\JothiKumar\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\JothiKumar\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\JothiKumar\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\JothiKumar\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\JothiKumar\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\JothiKumar\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\JothiKumar\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\JothiKumar\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\JothiKumar\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\JothiKumar\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+F:\blaack forest new production\Application\BlackforestProduction\Billing\bin\Billing.dll
+F:\blaack forest new production\Application\BlackforestProduction\Billing\bin\Billing.pdb
+F:\blaack forest new production\Application\BlackforestProduction\Billing\bin\BusinessLayer.dll
+F:\blaack forest new production\Application\BlackforestProduction\Billing\bin\CommonLayer.dll
+F:\blaack forest new production\Application\BlackforestProduction\Billing\bin\DataLayer.dll
+F:\blaack forest new production\Application\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+F:\blaack forest new production\Application\BlackforestProduction\Billing\bin\CommonLayer.pdb
+F:\blaack forest new production\Application\BlackforestProduction\Billing\bin\DataLayer.pdb
+F:\blaack forest new production\Application\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\blaack forest new production\Application\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+F:\blaack forest new production\Application\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\blaack forest new production\Application\BlackforestProduction\Billing\obj\Debug\Billing.dll
+F:\blaack forest new production\Application\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\JothiKumar\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\bin\Billing.dll
+E:\JothiKumar\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\bin\Billing.pdb
+E:\JothiKumar\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\JothiKumar\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\JothiKumar\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\JothiKumar\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\JothiKumar\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\JothiKumar\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\JothiKumar\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\JothiKumar\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\JothiKumar\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\JothiKumar\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\JothiKumar\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+F:\blaack forest new production\Application\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\bin\Billing.dll
+F:\blaack forest new production\Application\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\bin\Billing.pdb
+F:\blaack forest new production\Application\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\bin\BusinessLayer.dll
+F:\blaack forest new production\Application\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\bin\CommonLayer.dll
+F:\blaack forest new production\Application\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\bin\DataLayer.dll
+F:\blaack forest new production\Application\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+F:\blaack forest new production\Application\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\bin\CommonLayer.pdb
+F:\blaack forest new production\Application\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\bin\DataLayer.pdb
+F:\blaack forest new production\Application\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\blaack forest new production\Application\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+F:\blaack forest new production\Application\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\blaack forest new production\Application\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\obj\Debug\Billing.dll
+F:\blaack forest new production\Application\BlackForestNewProduction\Application\Application\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\bin\Billing.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\Billing.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\Billing.dll
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\Billing.pdb
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\BusinessLayer.dll
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\CommonLayer.dll
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\DataLayer.dll
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\CommonLayer.pdb
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\DataLayer.pdb
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\Billing.dll
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\Billing.dll
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\Rajaram\SourcesNew\Sources\Bharani Bakerey\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\Billing.dll
+E:\Rajaram\SourcesNew\Sources\Bharani Bakerey\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Rajaram\SourcesNew\Sources\Bharani Bakerey\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bharani Bakerey\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bharani Bakerey\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bharani Bakerey\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bharani Bakerey\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bharani Bakerey\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bharani Bakerey\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\Rajaram\SourcesNew\Sources\Bharani Bakerey\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\Rajaram\SourcesNew\Sources\Bharani Bakerey\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\Rajaram\SourcesNew\Sources\Bharani Bakerey\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\Rajaram\SourcesNew\Sources\Bharani Bakerey\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\sasta\BlackforestProduction\Billing\bin\Billing.dll
+E:\sasta\BlackforestProduction\Billing\bin\Billing.pdb
+E:\sasta\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\sasta\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\sasta\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\sasta\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\sasta\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\sasta\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\sasta\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+E:\sasta\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\sasta\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+E:\sasta\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\sasta\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\bin\Billing.dll
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\obj\Debug\ResolveAssemblyReference.cache
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\obj\Debug\ResGen.read.1.tlog
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\obj\Debug\ResGen.write.1.tlog
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\obj\Debug\Billing.dll
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+F:\nellai shawlon\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\bin\Billing.dll
+F:\nellai shawlon\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\bin\Billing.pdb
+F:\nellai shawlon\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\bin\BusinessLayer.dll
+F:\nellai shawlon\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\bin\CommonLayer.dll
+F:\nellai shawlon\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\bin\DataLayer.dll
+F:\nellai shawlon\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+F:\nellai shawlon\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\bin\CommonLayer.pdb
+F:\nellai shawlon\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\bin\DataLayer.pdb
+F:\nellai shawlon\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\nellai shawlon\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\obj\Debug\UChat.Global.resources
+F:\nellai shawlon\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\nellai shawlon\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\obj\Debug\Billing.dll
+F:\nellai shawlon\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\Billing\obj\Debug\Billing.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\Billing.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\Billing.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\BusinessLayer.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\CommonLayer.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\DataLayer.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\BusinessLayer.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\CommonLayer.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\DataLayer.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\UChat.Global.resources
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.pdb
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.11\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\Billing.dll
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.11\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\Billing.pdb
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.11\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\BusinessLayer.dll
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.11\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\CommonLayer.dll
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.11\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\DataLayer.dll
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.11\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\BusinessLayer.pdb
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.11\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\CommonLayer.pdb
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.11\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\DataLayer.pdb
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.11\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.11\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\UChat.Global.resources
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.11\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.11\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.dll
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.11\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.pdb
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\Billing.dll
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\Billing.pdb
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\BusinessLayer.dll
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\CommonLayer.dll
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\DataLayer.dll
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\BusinessLayer.pdb
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\CommonLayer.pdb
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\DataLayer.pdb
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\UChat.Global.resources
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.dll
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1 - SAKTHI\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1 - SAKTHI\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\UChat.Global.resources
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1 - SAKTHI\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1 - SAKTHI\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1 - SAKTHI\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\Billing.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1 - SAKTHI\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\Billing.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1 - SAKTHI\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\BusinessLayer.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1 - SAKTHI\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\CommonLayer.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1 - SAKTHI\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\DataLayer.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1 - SAKTHI\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\BusinessLayer.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1 - SAKTHI\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\CommonLayer.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1 - SAKTHI\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\DataLayer.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1 - SAKTHI\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\Billing.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\Billing.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\BusinessLayer.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\CommonLayer.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\DataLayer.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\BusinessLayer.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\CommonLayer.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\bin\DataLayer.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\UChat.Global.resources
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.pdb
+H:\Jothi Project\nellai shawlon,Amirutham\sakthi code\BigdbizPOS Ver.1.1\Billing\bin\Billing.dll
+H:\Jothi Project\nellai shawlon,Amirutham\sakthi code\BigdbizPOS Ver.1.1\Billing\bin\Billing.pdb
+H:\Jothi Project\nellai shawlon,Amirutham\sakthi code\BigdbizPOS Ver.1.1\Billing\bin\BusinessLayer.dll
+H:\Jothi Project\nellai shawlon,Amirutham\sakthi code\BigdbizPOS Ver.1.1\Billing\bin\CommonLayer.dll
+H:\Jothi Project\nellai shawlon,Amirutham\sakthi code\BigdbizPOS Ver.1.1\Billing\bin\DataLayer.dll
+H:\Jothi Project\nellai shawlon,Amirutham\sakthi code\BigdbizPOS Ver.1.1\Billing\bin\BusinessLayer.pdb
+H:\Jothi Project\nellai shawlon,Amirutham\sakthi code\BigdbizPOS Ver.1.1\Billing\bin\CommonLayer.pdb
+H:\Jothi Project\nellai shawlon,Amirutham\sakthi code\BigdbizPOS Ver.1.1\Billing\bin\DataLayer.pdb
+H:\Jothi Project\nellai shawlon,Amirutham\sakthi code\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.csprojResolveAssemblyReference.cache
+H:\Jothi Project\nellai shawlon,Amirutham\sakthi code\BigdbizPOS Ver.1.1\Billing\obj\Debug\UChat.Global.resources
+H:\Jothi Project\nellai shawlon,Amirutham\sakthi code\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.csproj.GenerateResource.Cache
+H:\Jothi Project\nellai shawlon,Amirutham\sakthi code\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.dll
+H:\Jothi Project\nellai shawlon,Amirutham\sakthi code\BigdbizPOS Ver.1.1\Billing\obj\Debug\Billing.pdb
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\Billing.dll
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\Billing.pdb
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\BusinessLayer.dll
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\CommonLayer.dll
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\DataLayer.dll
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\Microsoft.Office.Interop.Excel.dll
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\Office.dll
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\Microsoft.Vbe.Interop.dll
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\stdole.dll
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\BusinessLayer.pdb
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\CommonLayer.pdb
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\DataLayer.pdb
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\Microsoft.Office.Interop.Excel.xml
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\Office.xml
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.AssemblyReference.cache
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug\UChat.Global.resources
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.GenerateResource.cache
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.CoreCompileInputs.cache
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.CopyComplete
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.dll
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.pdb

@@ -1,0 +1,45 @@
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\BusinessLayer\bin\Release\BusinessLayer.dll
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\BusinessLayer\bin\Release\BusinessLayer.pdb
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\BusinessLayer\bin\Release\CommonLayer.dll
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\BusinessLayer\bin\Release\DataLayer.dll
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\BusinessLayer\bin\Release\CommonLayer.pdb
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\BusinessLayer\bin\Release\DataLayer.pdb
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\BusinessLayer\obj\Release\BusinessLayer.csprojResolveAssemblyReference.cache
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\BusinessLayer\obj\Release\BusinessLayer.dll
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\BusinessLayer\obj\Release\BusinessLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\BusinessLayer\bin\Release\BusinessLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\BusinessLayer\bin\Release\BusinessLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\BusinessLayer\bin\Release\CommonLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\BusinessLayer\bin\Release\DataLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\BusinessLayer\bin\Release\CommonLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\BusinessLayer\bin\Release\DataLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\BusinessLayer\obj\Release\BusinessLayer.csprojResolveAssemblyReference.cache
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\BusinessLayer\obj\Release\BusinessLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\BusinessLayer\obj\Release\BusinessLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\obj\Release\BusinessLayer.csprojResolveAssemblyReference.cache
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\obj\Release\BusinessLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\obj\Release\BusinessLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\bin\Release\BusinessLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\bin\Release\BusinessLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\bin\Release\CommonLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\bin\Release\DataLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\bin\Release\CommonLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\bin\Release\DataLayer.pdb
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\bin\Release\BusinessLayer.dll
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\bin\Release\BusinessLayer.pdb
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\bin\Release\CommonLayer.dll
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\bin\Release\DataLayer.dll
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\bin\Release\CommonLayer.pdb
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\bin\Release\DataLayer.pdb
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\obj\Release\BusinessLayer.csprojResolveAssemblyReference.cache
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\obj\Release\BusinessLayer.dll
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\obj\Release\BusinessLayer.pdb
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\bin\Release\BusinessLayer.dll
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\bin\Release\BusinessLayer.pdb
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\bin\Release\CommonLayer.dll
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\bin\Release\DataLayer.dll
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\bin\Release\CommonLayer.pdb
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\bin\Release\DataLayer.pdb
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\obj\Release\BusinessLayer.csprojResolveAssemblyReference.cache
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\obj\Release\BusinessLayer.dll
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\BusinessLayer\obj\Release\BusinessLayer.pdb

@@ -1,0 +1,432 @@
+C:\Users\pratheepkumar\Documents\Visual Studio 2008\Projects\WebSite5\DataLayer\bin\Debug\DataLayer.dll
+C:\Users\pratheepkumar\Documents\Visual Studio 2008\Projects\WebSite5\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\pratheepkumar\Documents\Visual Studio 2008\Projects\WebSite5\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\pratheepkumar\Documents\Visual Studio 2008\Projects\WebSite5\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\pratheepkumar\Documents\Visual Studio 2008\Projects\WebSite5\DataLayer\obj\Debug\DataLayer.pdb
+C:\Documents and Settings\spradeep\Desktop\DocApp\DataLayer\bin\Debug\DataLayer.dll
+C:\Documents and Settings\spradeep\Desktop\DocApp\DataLayer\bin\Debug\DataLayer.pdb
+C:\Documents and Settings\spradeep\Desktop\DocApp\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\spradeep\Desktop\DocApp\DataLayer\obj\Debug\DataLayer.dll
+C:\Documents and Settings\spradeep\Desktop\DocApp\DataLayer\obj\Debug\DataLayer.pdb
+F:\DocApp\DataLayer\bin\Debug\DataLayer.pdb
+F:\DocApp\DataLayer\obj\Debug\DataLayer.dll
+F:\DocApp\DataLayer\obj\Debug\DataLayer.pdb
+F:\DocApp\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+F:\DocApp\DataLayer\bin\Debug\BusinessLayer.dll
+F:\DocApp\DataLayer\bin\Debug\CommonLayer.dll
+F:\DocApp\DataLayer\bin\Debug\BusinessLayer.pdb
+F:\DocApp\DataLayer\bin\Debug\CommonLayer.pdb
+G:\Pharma\DataLayer\bin\Debug\DataLayer.pdb
+G:\Pharma\DataLayer\bin\Debug\BusinessLayer.dll
+G:\Pharma\DataLayer\bin\Debug\CommonLayer.dll
+G:\Pharma\DataLayer\bin\Debug\BusinessLayer.pdb
+G:\Pharma\DataLayer\bin\Debug\CommonLayer.pdb
+G:\Pharma\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+G:\Pharma\DataLayer\obj\Debug\DataLayer.dll
+G:\Pharma\DataLayer\obj\Debug\DataLayer.pdb
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Pharma\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Pharma\DataLayer\bin\Debug\BusinessLayer.pdb
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Pharma\DataLayer\bin\Debug\CommonLayer.pdb
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Pharma\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Pharma\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Pharma\DataLayer\obj\Debug\DataLayer.pdb
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Billing\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Billing\DataLayer\bin\Debug\BusinessLayer.pdb
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Billing\DataLayer\bin\Debug\CommonLayer.pdb
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Billing\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Billing\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Billing\DataLayer\obj\Debug\DataLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\Billing\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\Billing\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\Billing\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\Billing\DataLayer\obj\Debug\DataLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\Billing\DataLayer\bin\Debug\DataLayer.dll
+I:\Billing\DataLayer\bin\Debug\DataLayer.dll
+I:\Billing\DataLayer\bin\Debug\DataLayer.pdb
+I:\Billing\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+I:\Billing\DataLayer\obj\Debug\DataLayer.dll
+I:\Billing\DataLayer\obj\Debug\DataLayer.pdb
+I:\Billing\DataLayer\bin\Debug\MySql.Data.DLL
+I:\Billing\DataLayer\bin\Debug\MySql.Web.dll
+C:\Users\intel\Documents\Visual Studio 2010\Projects\BillingSingle\DataLayer\bin\Debug\DataLayer.dll
+C:\Users\intel\Documents\Visual Studio 2010\Projects\BillingSingle\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\intel\Documents\Visual Studio 2010\Projects\BillingSingle\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\intel\Documents\Visual Studio 2010\Projects\BillingSingle\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\intel\Documents\Visual Studio 2010\Projects\BillingSingle\DataLayer\obj\Debug\DataLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle\DataLayer\bin\Debug\DataLayer.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\BillingSingle\DataLayer\obj\Debug\DataLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\DEMO_BillingSingle _stock\DataLayer\bin\Debug\DataLayer.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\DEMO_BillingSingle _stock\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\DEMO_BillingSingle _stock\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\DEMO_BillingSingle _stock\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\ADMIN\Documents\Visual Studio 2010\Projects\DEMO_BillingSingle _stock\DataLayer\obj\Debug\DataLayer.pdb
+D:\DEMO_BillingSingle _stock\DataLayer\bin\Debug\DataLayer.dll
+D:\DEMO_BillingSingle _stock\DataLayer\bin\Debug\DataLayer.pdb
+D:\DEMO_BillingSingle _stock\DataLayer\obj\Debug\DataLayer.dll
+D:\DEMO_BillingSingle _stock\DataLayer\obj\Debug\DataLayer.pdb
+D:\DEMO_BillingSingle _stock\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+G:\DEMO_BillingSingle _stock\DataLayer\bin\Debug\DataLayer.dll
+G:\DEMO_BillingSingle _stock\DataLayer\bin\Debug\DataLayer.pdb
+G:\DEMO_BillingSingle _stock\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+G:\DEMO_BillingSingle _stock\DataLayer\obj\Debug\DataLayer.dll
+G:\DEMO_BillingSingle _stock\DataLayer\obj\Debug\DataLayer.pdb
+G:\Working projects\DEMO_BillingSingle _stock\DataLayer\bin\Debug\DataLayer.dll
+G:\Working projects\DEMO_BillingSingle _stock\DataLayer\bin\Debug\DataLayer.pdb
+G:\Working projects\DEMO_BillingSingle _stock\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+G:\Working projects\DEMO_BillingSingle _stock\DataLayer\obj\Debug\DataLayer.dll
+G:\Working projects\DEMO_BillingSingle _stock\DataLayer\obj\Debug\DataLayer.pdb
+E:\DEMO_BillingSingle _stock\DataLayer\bin\Debug\DataLayer.dll
+E:\DEMO_BillingSingle _stock\DataLayer\bin\Debug\DataLayer.pdb
+E:\DEMO_BillingSingle _stock\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\DEMO_BillingSingle _stock\DataLayer\obj\Debug\DataLayer.dll
+E:\DEMO_BillingSingle _stock\DataLayer\obj\Debug\DataLayer.pdb
+F:\Working projects\Black Forrest\DataLayer\bin\Debug\DataLayer.dll
+F:\Working projects\Black Forrest\DataLayer\bin\Debug\DataLayer.pdb
+F:\Working projects\Black Forrest\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+F:\Working projects\Black Forrest\DataLayer\obj\Debug\DataLayer.dll
+F:\Working projects\Black Forrest\DataLayer\obj\Debug\DataLayer.pdb
+E:\Black Forrest\DataLayer\bin\Debug\DataLayer.dll
+E:\Black Forrest\DataLayer\bin\Debug\DataLayer.pdb
+E:\Black Forrest\DataLayer\obj\Debug\DataLayer.dll
+E:\Black Forrest\DataLayer\obj\Debug\DataLayer.pdb
+E:\latest black forest 29092015\Black Forrest\DataLayer\bin\Debug\DataLayer.dll
+E:\latest black forest 29092015\Black Forrest\DataLayer\bin\Debug\DataLayer.pdb
+E:\latest black forest 29092015\Black Forrest\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+E:\latest black forest 29092015\Black Forrest\DataLayer\obj\Debug\DataLayer.dll
+E:\latest black forest 29092015\Black Forrest\DataLayer\obj\Debug\DataLayer.pdb
+F:\Black Forrest\DataLayer\bin\Debug\DataLayer.dll
+F:\Black Forrest\DataLayer\bin\Debug\DataLayer.pdb
+F:\Black Forrest\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+F:\Black Forrest\DataLayer\obj\Debug\DataLayer.dll
+F:\Black Forrest\DataLayer\obj\Debug\DataLayer.pdb
+D:\Black Forrest\DataLayer\bin\Debug\DataLayer.dll
+D:\Black Forrest\DataLayer\bin\Debug\DataLayer.pdb
+D:\Black Forrest\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+D:\Black Forrest\DataLayer\obj\Debug\DataLayer.dll
+D:\Black Forrest\DataLayer\obj\Debug\DataLayer.pdb
+F:\Working projects\Black Forrest Current - Copy\DataLayer\bin\Debug\DataLayer.dll
+F:\Working projects\Black Forrest Current - Copy\DataLayer\bin\Debug\DataLayer.pdb
+F:\Working projects\Black Forrest Current - Copy\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+F:\Working projects\Black Forrest Current - Copy\DataLayer\obj\Debug\DataLayer.dll
+F:\Working projects\Black Forrest Current - Copy\DataLayer\obj\Debug\DataLayer.pdb
+F:\Completed Projects\Black Forrest Current - Copy\DataLayer\bin\Debug\DataLayer.dll
+F:\Completed Projects\Black Forrest Current - Copy\DataLayer\bin\Debug\DataLayer.pdb
+F:\Completed Projects\Black Forrest Current - Copy\DataLayer\obj\Debug\DataLayer.dll
+F:\Completed Projects\Black Forrest Current - Copy\DataLayer\obj\Debug\DataLayer.pdb
+F:\Completed Projects\Black Forrest Current - Copy\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+F:\Black Forrest Current - Copy\DataLayer\bin\Debug\DataLayer.dll
+F:\Black Forrest Current - Copy\DataLayer\bin\Debug\DataLayer.pdb
+F:\Black Forrest Current - Copy\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+F:\Black Forrest Current - Copy\DataLayer\obj\Debug\DataLayer.dll
+F:\Black Forrest Current - Copy\DataLayer\obj\Debug\DataLayer.pdb
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.dll
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.pdb
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.dll
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.pdb
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\Harishbabu\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.dll
+E:\Harishbabu\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.pdb
+E:\Harishbabu\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\Harishbabu\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.dll
+E:\Harishbabu\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.pdb
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.dll
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.pdb
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.dll
+D:\HRPORTAL_bigdbiz\Harishbabu\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.pdb
+E:\Application Backup\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.dll
+E:\Application Backup\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.pdb
+E:\Application Backup\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\Application Backup\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.dll
+E:\Application Backup\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.pdb
+F:\Working projects\Harsihbabu\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.dll
+F:\Working projects\Harsihbabu\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.pdb
+F:\Working projects\Harsihbabu\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+F:\Working projects\Harsihbabu\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.dll
+F:\Working projects\Harsihbabu\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.pdb
+C:\Users\system5\Desktop\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.dll
+C:\Users\system5\Desktop\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\system5\Desktop\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\system5\Desktop\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\system5\Desktop\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.pdb
+E:\ApplicationS\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.dll
+E:\ApplicationS\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.pdb
+E:\ApplicationS\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\ApplicationS\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.dll
+E:\ApplicationS\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.pdb
+F:\New folder (4)\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.dll
+F:\New folder (4)\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.pdb
+F:\New folder (4)\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+F:\New folder (4)\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.dll
+F:\New folder (4)\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.pdb
+C:\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.dll
+C:\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.pdb
+C:\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+C:\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.dll
+C:\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.pdb
+E:\All Documents\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.dll
+E:\All Documents\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.pdb
+E:\All Documents\Black Forrest Production live\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+E:\All Documents\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.dll
+E:\All Documents\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.pdb
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.dll
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.pdb
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.dll
+F:\RAJI\Working\Black Forest(29-07-2017)\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.pdb
+E:\ApplicationS\BlaackForest\2509\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.dll
+E:\ApplicationS\BlaackForest\2509\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.pdb
+E:\ApplicationS\BlaackForest\2509\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\ApplicationS\BlaackForest\2509\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.dll
+E:\ApplicationS\BlaackForest\2509\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.pdb
+E:\ApplicationS\BlaackForest\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.dll
+E:\ApplicationS\BlaackForest\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.pdb
+E:\ApplicationS\BlaackForest\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.dll
+E:\ApplicationS\BlaackForest\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.pdb
+D:\Applications\BlaackForest\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.dll
+D:\Applications\BlaackForest\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.pdb
+D:\Applications\BlaackForest\Black Forrest Production live\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+D:\Applications\BlaackForest\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.dll
+D:\Applications\BlaackForest\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.pdb
+E:\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.dll
+E:\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.pdb
+E:\Black Forrest Production live\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+E:\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.dll
+E:\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.pdb
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.dll
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.pdb
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.dll
+F:\RAJIni\Working\Black Forest\06-12-2017\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.pdb
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.dll
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\DataLayer\bin\Debug\DataLayer.pdb
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.dll
+F:\RAJI\Working\Black Forest\BillingandProduction\Black Forrest Production live\DataLayer\obj\Debug\DataLayer.pdb
+F:\Priya_Working\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+F:\Priya_Working\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+F:\Priya_Working\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+F:\Priya_Working\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+F:\Priya_Working\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+D:\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+D:\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+D:\BlackforestProduction\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+D:\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+D:\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+G:\Projects\Received\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+G:\Projects\Received\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+G:\Projects\Received\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+G:\Projects\Received\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+G:\Projects\Received\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+G:\Projects\Working\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+G:\Projects\Working\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+G:\Projects\Working\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+G:\Projects\Working\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+G:\Projects\Working\BlaackForest\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+G:\Projects\Working\BlaackForest\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+G:\Projects\Working\BlaackForest\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+G:\Projects\Working\BlaackForest\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\Raja\BF\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\Raja\BF\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\Raja\BF\BlackforestProduction\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+E:\Raja\BF\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\Raja\BF\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\Applications\BF\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\Applications\BF\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\Applications\BF\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\Applications\BF\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\Applications\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\Applications\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\Applications\BlackforestProduction\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+E:\Applications\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\Applications\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\Applications\BF\Sales\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\Applications\BF\Sales\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\Applications\BF\Sales\BlackforestProduction\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+E:\Applications\BF\Sales\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\Applications\BF\Sales\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\Priya\BlaackForest Sales and Prodctions\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\Priya\BlaackForest\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\Priya\BlaackForest\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\Priya\BlaackForest\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\Priya\BlaackForest\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\Priya\BlaackForest\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+F:\Priya_Working\Janarthanan\BF_0111\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+F:\Priya_Working\Janarthanan\BF_0111\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+F:\Priya_Working\Janarthanan\BF_0111\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+F:\Priya_Working\Janarthanan\BF_0111\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+F:\Priya_Working\Janarthanan\BF_0111\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+F:\Priya_Working\Janarthanan\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+F:\Priya_Working\Janarthanan\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+F:\Priya_Working\Janarthanan\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+F:\Priya_Working\Janarthanan\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+F:\Priya_Working\Janarthanan\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\Raja\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\Raja\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\Raja\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\Raja\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\Raja\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+F:\Priya_Working\Janarthanan\Jothi Blackforest\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+F:\Priya_Working\Janarthanan\Jothi Blackforest\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+F:\Priya_Working\Janarthanan\Jothi Blackforest\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+F:\Priya_Working\Janarthanan\Jothi Blackforest\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+F:\Priya_Working\Janarthanan\Jothi Blackforest\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+F:\Priya_Working\Janarthanan\BFRaja\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+F:\Priya_Working\Janarthanan\BFRaja\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+F:\Priya_Working\Janarthanan\BFRaja\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+F:\Priya_Working\Janarthanan\BFRaja\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+F:\Priya_Working\Janarthanan\Jothi BFProduction\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+F:\Priya_Working\Janarthanan\Jothi BFProduction\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+F:\Priya_Working\Janarthanan\Jothi BFProduction\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+F:\Priya_Working\Janarthanan\Jothi BFProduction\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+F:\Priya_Working\Janarthanan\Jothi BFProduction\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\HP\Desktop\HP Laptop 1603\Jothi BFProduction\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\HP\Desktop\BF23032019\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\HP\Desktop\jothi\New folder (7)\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\Applications\BF\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\intel\Desktop\New folder\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+C:\Users\intel\Desktop\New folder\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\intel\Desktop\New folder\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\intel\Desktop\New folder\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\intel\Desktop\New folder\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+C:\Users\HP\Desktop\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+C:\Users\HP\Desktop\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\HP\Desktop\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\HP\Desktop\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\Applications\BF_Jothy\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\Applications\BF_Jothy\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\Applications\BF_Jothy\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\Applications\BF_Jothy\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\Applications\BF_Jothy\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+F:\blaack forest new production\BlackforestProduction_before combo\DataLayer\obj\Debug\DataLayer.pdb
+F:\blaack forest new production\BlackforestProduction_before combo\DataLayer\bin\Debug\DataLayer.dll
+F:\blaack forest new production\BlackforestProduction_before combo\DataLayer\bin\Debug\DataLayer.pdb
+F:\blaack forest new production\BlackforestProduction_before combo\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+F:\blaack forest new production\BlackforestProduction_before combo\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+C:\Users\Jothi kumar\Desktop\BF\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+F:\blaack forest new production\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+F:\blaack forest new production\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+F:\blaack forest new production\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+F:\blaack forest new production\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+F:\blaack forest new production\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\Bama\BlackforestNew\BlackforestNew\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\Bama\BlackforestNew\BlackforestNew\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\Bama\BlackforestNew\BlackforestNew\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\Bama\BlackforestNew\BlackforestNew\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\Bama\BlackforestNew\BlackforestNew\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\JothiKumar\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\JothiKumar\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\JothiKumar\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\JothiKumar\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\JothiKumar\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+F:\blaack forest new production\Application\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+F:\blaack forest new production\Application\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+F:\blaack forest new production\Application\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+F:\blaack forest new production\Application\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+F:\blaack forest new production\Application\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\JothiKumar\BlackForestNewProduction\Application\Application\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\JothiKumar\BlackForestNewProduction\Application\Application\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\JothiKumar\BlackForestNewProduction\Application\Application\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\JothiKumar\BlackForestNewProduction\Application\Application\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\JothiKumar\BlackForestNewProduction\Application\Application\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+F:\blaack forest new production\Application\BlackForestNewProduction\Application\Application\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+F:\blaack forest new production\Application\BlackForestNewProduction\Application\Application\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+F:\blaack forest new production\Application\BlackForestNewProduction\Application\Application\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+F:\blaack forest new production\Application\BlackForestNewProduction\Application\Application\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+F:\blaack forest new production\Application\BlackForestNewProduction\Application\Application\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bharani Bakerey\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bharani Bakerey\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bharani Bakerey\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\Rajaram\SourcesNew\Sources\Bharani Bakerey\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bharani Bakerey\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\sasta\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\sasta\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\sasta\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\sasta\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\sasta\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+E:\Source code\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+F:\nellai shawlon\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\DataLayer\bin\Debug\DataLayer.dll
+F:\nellai shawlon\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\DataLayer\bin\Debug\DataLayer.pdb
+F:\nellai shawlon\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+F:\nellai shawlon\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\DataLayer\obj\Debug\DataLayer.dll
+F:\nellai shawlon\Bakery & Restaurent Pos Version 1.1\BlackforestProduction\DataLayer\obj\Debug\DataLayer.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\DataLayer\bin\Debug\DataLayer.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\DataLayer\bin\Debug\DataLayer.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\DataLayer\obj\Debug\DataLayer.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\DataLayer\obj\Debug\DataLayer.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\DataLayer\bin\Debug\DataLayer.dll
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\DataLayer\bin\Debug\DataLayer.pdb
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\DataLayer\obj\Debug\DataLayer.dll
+D:\BAKERY 1.1\Bakery & Restaurent Pos Version 1.1\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\DataLayer\obj\Debug\DataLayer.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1 - SAKTHI\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\DataLayer\bin\Debug\DataLayer.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1 - SAKTHI\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\DataLayer\bin\Debug\DataLayer.pdb
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1 - SAKTHI\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1 - SAKTHI\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\DataLayer\obj\Debug\DataLayer.dll
+F:\nellai shawlon,Amirutham\Bakery & Restaurent Pos Version 1.1 - SAKTHI\Bakery & Restaurent Pos Version 1.1\BigdbizPOS Ver.1.1\DataLayer\obj\Debug\DataLayer.pdb
+H:\Jothi Project\nellai shawlon,Amirutham\sakthi code\BigdbizPOS Ver.1.1\DataLayer\bin\Debug\DataLayer.dll
+H:\Jothi Project\nellai shawlon,Amirutham\sakthi code\BigdbizPOS Ver.1.1\DataLayer\bin\Debug\DataLayer.pdb
+H:\Jothi Project\nellai shawlon,Amirutham\sakthi code\BigdbizPOS Ver.1.1\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+H:\Jothi Project\nellai shawlon,Amirutham\sakthi code\BigdbizPOS Ver.1.1\DataLayer\obj\Debug\DataLayer.dll
+H:\Jothi Project\nellai shawlon,Amirutham\sakthi code\BigdbizPOS Ver.1.1\DataLayer\obj\Debug\DataLayer.pdb
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\bin\Debug\DataLayer.dll
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.csproj.AssemblyReference.cache
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.csproj.CoreCompileInputs.cache
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.csproj.CopyComplete
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\intel\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.pdb

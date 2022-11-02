@@ -1,0 +1,17 @@
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\StockTransfer\bin\Debug\StockTransfer.exe
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\StockTransfer\bin\Debug\StockTransfer.pdb
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\StockTransfer\bin\Debug\BusinessLayer.dll
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\StockTransfer\bin\Debug\DataLayer.dll
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\StockTransfer\bin\Debug\BusinessLayer.pdb
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\StockTransfer\bin\Debug\DataLayer.pdb
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\StockTransfer\obj\x86\Debug\StockTransfer.csprojResolveAssemblyReference.cache
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\StockTransfer\obj\x86\Debug\StockTransfer.exe
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\StockTransfer\obj\x86\Debug\StockTransfer.pdb
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\StockTransfer\bin\Debug\StockTransfer.exe.manifest
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\StockTransfer\bin\Debug\StockTransfer.application
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\StockTransfer\obj\x86\Debug\StockTransfer.exe.manifest
+F:\Completed Projects\Web Applications Woking\Black Forrest Production live\StockTransfer\obj\x86\Debug\StockTransfer.application
+E:\Harishbabu\Black Forrest Production live\StockTransfer\obj\x86\Debug\StockTransfer.csprojResolveAssemblyReference.cache
+E:\Harishbabu\Black Forrest Production live\StockTransfer\obj\x86\Debug\StockTransfer.exe
+E:\Harishbabu\Black Forrest Production live\StockTransfer\obj\x86\Debug\StockTransfer.pdb
+F:\Priya_Working\BlackforestProduction\StockTransfer\obj\x86\Debug\StockTransfer.csprojResolveAssemblyReference.cache

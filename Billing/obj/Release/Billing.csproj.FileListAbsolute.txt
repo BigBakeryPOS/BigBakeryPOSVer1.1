@@ -1,0 +1,65 @@
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\bin\Billing.dll
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\obj\Release\Billing.csprojResolveAssemblyReference.cache
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\obj\Release\UChat.Global.resources
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\obj\Release\Billing.csproj.GenerateResource.Cache
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\obj\Release\Billing.dll
+E:\Rajaram\SourcesNew\Sources\BlackforestNew\BlackforestProduction\Billing\obj\Release\Billing.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\bin\Billing.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\obj\Release\Billing.csprojResolveAssemblyReference.cache
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\obj\Release\UChat.Global.resources
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\obj\Release\Billing.csproj.GenerateResource.Cache
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\obj\Release\Billing.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BlackforestProduction\Billing\obj\Release\Billing.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\Billing.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Release\Billing.csprojResolveAssemblyReference.cache
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Release\UChat.Global.resources
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Release\Billing.csproj.GenerateResource.Cache
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Release\Billing.dll
+E:\Rajaram\SourcesNew\Sources\Bigdbiz Solution Sources\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Release\Billing.pdb
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\Billing.dll
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\Billing.pdb
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\BusinessLayer.dll
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\CommonLayer.dll
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\DataLayer.dll
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\CommonLayer.pdb
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\DataLayer.pdb
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Release\Billing.csprojResolveAssemblyReference.cache
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Release\UChat.Global.resources
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Release\Billing.csproj.GenerateResource.Cache
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Release\Billing.dll
+F:\Priya_Working\Janarthanan\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Release\Billing.pdb
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\Billing.dll
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\Billing.pdb
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\BusinessLayer.dll
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\CommonLayer.dll
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\DataLayer.dll
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\BusinessLayer.pdb
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\CommonLayer.pdb
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\bin\DataLayer.pdb
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Release\Billing.csprojResolveAssemblyReference.cache
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Release\UChat.Global.resources
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Release\Billing.csproj.GenerateResource.Cache
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Release\Billing.dll
+E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Release\Billing.pdb
