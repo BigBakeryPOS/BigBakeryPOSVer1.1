@@ -139,8 +139,9 @@
                                     <div id="Div1" runat="server">
                                      <div class="table-responsive panel-grid-left">
                                         <asp:GridView ID="gridview" runat="server" AllowPaging="false" PageSize="10"  cssClass="table table-striped pos-table"
-                                            AutoGenerateColumns="false"  OnRowCommand="gridview_rowcommand" EmptyDataText="No Records Found" padding="0" spacing="0" border="0"
-                                            AllowSorting="true"  HeaderStyle-CssClass="header" RowStyle-CssClass="rows" >
+                                            AutoGenerateColumns="false"  OnRowCommand="gridview_rowcommand" 
+                                             EmptyDataText="No Records Found" padding="0" spacing="0" border="0"
+                                            AllowSorting="true"  HeaderStyle-CssClass="header" RowStyle-CssClass="rows >
                                             <PagerStyle CssClass="pos-paging" />
                                             <EmptyDataRowStyle HorizontalAlign="Center" BackColor="#59d3b4" ForeColor="Black" />
                                            <%-- <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"

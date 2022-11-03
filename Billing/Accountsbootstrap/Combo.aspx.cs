@@ -174,7 +174,11 @@ namespace Billing.Accountsbootstrap
         {
             double grandtotal = 0.00;
             DataSet duplicate = new DataSet();
-
+            if (getttal.Text == "0.0000")
+            {
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Rate Required.Thanks You!!!')", true);
+                return;
+            }
             for (int vLoop = 0; vLoop < gvcombo.Rows.Count; vLoop++)
             {
                 DropDownList drpitem = (DropDownList)gvcombo.Rows[vLoop].FindControl("drpItem");
@@ -186,6 +190,7 @@ namespace Billing.Accountsbootstrap
                 {
 
                 }
+
                 else
                 {
 
@@ -240,7 +245,14 @@ namespace Billing.Accountsbootstrap
                     DropDownList ddltax = (DropDownList)gvcombo.Rows[vLoop].FindControl("ddltax");
                     if (drpitem.SelectedItem.Text == "Select Item")
                     {
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Select Item.Thanks You!!!')", true);
+                        return;
+                    }
+                    else if (ddltax.SelectedItem.Text == "Select Tax")
+                    {
 
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Select tax.Thanks You!!!')", true);
+                        return;
                     }
                     else
                     {
@@ -266,7 +278,14 @@ namespace Billing.Accountsbootstrap
                     DropDownList ddltax = (DropDownList)gvcombo.Rows[vLoop].FindControl("ddltax");
                     if (drpitem.SelectedItem.Text == "Select Item")
                     {
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Select Item.Thanks You!!!')", true);
+                        return;
+                    }
+                    else if (ddltax.SelectedItem.Text == "Select Tax")
+                    {
 
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Select tax.Thanks You!!!')", true);
+                        return;
                     }
                     else
                     {

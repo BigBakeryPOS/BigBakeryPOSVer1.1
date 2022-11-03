@@ -16647,7 +16647,8 @@ namespace BusinessLayer
         public DataSet getupdatedonlinemaster(string iCat)
         {
             DataSet ds = new DataSet();
-            string sqry = "select * from tblonlinemaster where OnlineNo ='" + iCat + "'";
+            //string sqry = "select * from tblonlinemaster where OnlineNo ='" + iCat + "'";
+            string sqry = "select * from tblonlinemaster where OnlineID ='" + iCat + "'";
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
         }
@@ -17872,7 +17873,7 @@ namespace BusinessLayer
         public DataSet GetSalesType()
         {
             DataSet ds = new DataSet();
-            string qr = "select * from tblsalestype";
+            string qr = "select * from tblsalestype where IsActive='Yes'";
             ds = dbObj.InlineExecuteDataSet(qr);
             return ds;
         }

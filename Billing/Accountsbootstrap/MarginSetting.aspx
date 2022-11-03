@@ -118,8 +118,8 @@
                                                 <asp:BoundField HeaderText="TaxID" DataField="Catmarginid" Visible="false" />
                                                 <asp:BoundField HeaderText="Tax" DataField="printcategory" />
                                                 <asp:BoundField HeaderText="Own Branch Margin" DataField="OwnBranch" />
-                                                <asp:BoundField HeaderText="Fanchise Margin" DataField="franchise" />
-                                                <asp:BoundField HeaderText="Fanchise Margin" DataField="Ownfranchise" />
+                                                <asp:BoundField HeaderText="Franchise Margin" DataField="franchise" />
+                                                <asp:BoundField HeaderText="Franchise Margin" DataField="Ownfranchise" />
                                                 <asp:TemplateField HeaderText="Edit" Visible="true" >
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="btnedit" CommandArgument='<%#Eval("Catmarginid") %>' CommandName="EditRow" cssclass="btn btn-warning btn-md"
