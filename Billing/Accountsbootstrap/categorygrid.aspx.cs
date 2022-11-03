@@ -157,8 +157,8 @@ namespace Billing.Accountsbootstrap
                         txtprintcat.Text = ds.Tables[0].Rows[0]["Printcategory"].ToString();
                         drpcattype.SelectedValue = ds.Tables[0].Rows[0]["CatType"].ToString();
 
-                        lblFile_Path.Text = ds.Tables[0].Rows[0]["ImagePath"].ToString();
-                        img_Photo.ImageUrl = ds.Tables[0].Rows[0]["ImagePath"].ToString();
+                        lblFile_Path.Text = (ds.Tables[0].Rows[0]["ImagePath"].ToString()).Remove(0,2);
+                        img_Photo.ImageUrl = (ds.Tables[0].Rows[0]["ImagePath"].ToString());
 
                         drpcattype.Enabled = false;
 
@@ -355,12 +355,12 @@ namespace Billing.Accountsbootstrap
             if (lblFile_Path.Text == "")
                 lblFile_Path.Text = "Files/BlackForrest.png";
 
-
             string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority +
-Request.ApplicationPath.TrimEnd('/') + "/";
-
+                                Request.ApplicationPath.TrimEnd('/') + "/";
             string Pagepath = baseUrl + lblFile_Path.Text;
 
+
+            //string Pagepath =  lblFile_Path.Text;
             string request = "0";
             string production = "0";
             string manualGRN = "0";

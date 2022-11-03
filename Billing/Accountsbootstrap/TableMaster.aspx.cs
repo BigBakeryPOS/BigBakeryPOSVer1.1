@@ -206,7 +206,12 @@ namespace Billing.Accountsbootstrap
 
             if (btnSave.Text == "Save")
             {
-                DataSet dsCategory = objBs.Duplicatetablecheck(txttablename.Text);
+                if (txttablename.Text.Trim() == "")
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Please Enter Table name.');", true);
+                    return;
+                }
+            DataSet dsCategory = objBs.Duplicatetablecheck(txttablename.Text);
                 if (dsCategory.Tables[0].Rows.Count > 0)
                 {
 

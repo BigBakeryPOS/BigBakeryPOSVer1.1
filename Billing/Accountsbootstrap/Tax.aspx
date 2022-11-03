@@ -55,7 +55,19 @@
                 tblData.rows[i].style.display = styleDisplay;
             }
         }    
-    </script>
+        function requiredValue(inputtxt) 
+        {
+            
+            var numbers = /^[0-9]+$/;
+            alert(inputtxt);
+            if (this.val().)) {
+            }
+            else {
+                alert('Please input numeric characters only');                
+                return false;
+            }
+            
+        }      </script>
     <link href="../Styles/chosen.css" rel="Stylesheet" />
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
@@ -167,7 +179,8 @@
                                             <div class="list-group">
                                                 <asp:TextBox ID="txtid" Visible="false" runat="server"></asp:TextBox>
                                                 <label>Tax</label>
-                                                <asp:TextBox placeholder="Enter Tax" ID="txtTax" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox placeholder="Enter Tax" ID="txtTax" runat="server" 
+                                                    CssClass="form-control" onkeyup="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" AutoPostBack="false"></asp:TextBox>
                                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtendername" runat="server"
                                                     FilterType="LowercaseLetters, UppercaseLetters,Custom,Numbers" ValidChars=" ./\!@#$%^&*,"
                                                     TargetControlID="txtTax" />
