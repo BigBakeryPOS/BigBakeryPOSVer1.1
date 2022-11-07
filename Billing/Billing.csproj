@@ -15,6 +15,12 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <UseIISExpress>false</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -457,6 +463,8 @@
     <Content Include="Accountsbootstrap\Uom.aspx" />
     <Content Include="Accountsbootstrap\usercreate.aspx" />
     <Content Include="Accountsbootstrap\UserGrid.aspx" />
+    <Content Include="Accountsbootstrap\userrole.aspx" />
+    <Content Include="Accountsbootstrap\UserRoleGrid.aspx" />
     <Content Include="Accountsbootstrap\VariableExpenseMaster.aspx" />
     <Content Include="Accountsbootstrap\VehicleMaster.aspx" />
     <Content Include="Accountsbootstrap\ViewBank.aspx" />
@@ -3612,6 +3620,20 @@
     </Compile>
     <Compile Include="Accountsbootstrap\UserGrid.aspx.designer.cs">
       <DependentUpon>UserGrid.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\userrole.aspx.cs">
+      <DependentUpon>userrole.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\userrole.aspx.designer.cs">
+      <DependentUpon>userrole.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\UserRoleGrid.aspx.cs">
+      <DependentUpon>UserRoleGrid.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\UserRoleGrid.aspx.designer.cs">
+      <DependentUpon>UserRoleGrid.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\VariableExpenseMaster.aspx.cs">
       <DependentUpon>VariableExpenseMaster.aspx</DependentUpon>

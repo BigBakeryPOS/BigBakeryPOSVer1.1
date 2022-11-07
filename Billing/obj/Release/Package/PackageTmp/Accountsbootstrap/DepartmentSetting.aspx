@@ -91,47 +91,61 @@
     <form id="Form1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+        <div class="container-fluid">
+	<div class="row">
     <div class="col-lg-12">
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Department Setting Details</b></div>
+        <div class="col-lg-8">
+        <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Department Setting Details</h1>
+	    </div>
+            
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="col-lg-6">
+                        
+                            <div class="col-lg-4">
+                            <div class="form-group has-feedback">
                                 <asp:TextBox CssClass="form-control" placeholder="Search Details.. " ID="txtsearch"
-                                    onkeyup="Search_Gridview(this, 'gridview')" runat="server" MaxLength="50" Width="150px"></asp:TextBox>
+                                    onkeyup="Search_Gridview(this, 'gridview')" runat="server" MaxLength="50" ></asp:TextBox>
                                 <asp:Label ID="lblerror" runat="server" Style="color: Red"></asp:Label>
                             </div>
-                            <div class="col-lg-6">
-                                <asp:Button ID="btnresret" runat="server" class="btn btn-warning" Text="Reset" OnClick="Btn_Reset"
-                                    Width="150px" /></div>
-                        </div>
-                    </div>
-                    <div style="height: 350px; overflow: scroll">
-                        <br />
-                        <asp:GridView ID="gridview" runat="server" UseAccessibleHeader="true" CssClass="mGrid"
+                            </div>
+                            <div class="col-lg-8">
+                                <asp:Button ID="btnresret" runat="server" class="btn btn-secondary" Text="Reset" OnClick="Btn_Reset"
+                                    />
+                            </div>
+                       
+                        <div class="col-lg-12">
+                     <div class="table-responsive panel-grid-left">
+                        <asp:GridView ID="gridview" runat="server" UseAccessibleHeader="true" cssClass="table table-striped pos-table"
                             AllowPaging="false" AutoGenerateColumns="false" AllowSorting="true" OnRowCommand="gvcat_RowCommand"
-                            OnSorting="gridview_Sorting" OnRowDataBound="gridview_OnRowDataBound" OnRowEditing="gridview_RowEditing">
-                            <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
-                                NextPageText="Next" PreviousPageText="Previous" />
+                            OnSorting="gridview_Sorting" OnRowDataBound="gridview_OnRowDataBound" OnRowEditing="gridview_RowEditing" padding="0" spacing="0" border="0">
+                          <%--  <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" 
+                                NextPageText="Next" PreviousPageText="Previous" />--%>
+                                <PagerStyle CssClass="pos-paging" />
                             <Columns>
+
                                 <asp:BoundField HeaderText="Department Name" DataField="DeptName" />
                                 <asp:BoundField HeaderText="Production Code" DataField="ProdCode" />
                                 <asp:BoundField HeaderText="Is Active" DataField="IsActive" />
                                 <asp:TemplateField HeaderText="Edit">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="btnedit" ForeColor="White" CommandArgument='<%#Eval("DeptNo") %>'
+                                        <asp:LinkButton ID="btnedit" ForeColor="White" CommandArgument='<%#Eval("DeptNo") %>' cssclass="btn btn-warning btn-md"
                                             CommandName="Edit" runat="server">
-                                            <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server" width="55px"/></asp:LinkButton>
+                                            <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server" visible="false" width="55px"/>
+                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                            </asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Delete">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="btndel" CommandArgument='<%#Eval("DeptNo") %>' CommandName="Del"
                                             runat="server">
-                                            <asp:Image ID="Image1" ImageUrl="~/images/delete.png" runat="server" /></asp:LinkButton>
+                                            <asp:Image ID="Image1" ImageUrl="~/images/delete.png" runat="server" visible="false" />
+                                             <button type="button" class="btn btn-danger btn-md">
+												<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+												</button>
+                                                </asp:LinkButton>
                                         <asp:ImageButton ID="imgdisable1321" ImageUrl="~/images/delete.png" runat="server"
                                             Visible="false" Enabled="false" ToolTip="Not Allow To Delete" />
                                         <ajaxToolkit:ModalPopupExtender ID="lnkDelete_ModalPopupExtender" runat="server"
@@ -148,41 +162,44 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <%--   <blink> <label  style="color:Green; font-size:12px">Need To Add Branch Setting For Daily Stock Request Process.Please Fill CareFull!!!.Thank You!!!</label></blink>--%>
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Department Setting Create</b></div>
-                <div class="panel-body">
-                    <div class="col-lg-12">
-                        <div class="form-group">
+        </div>
+        <div class="col-lg-4">
+        <div class="panel panel-custom1">
+		<div class="panel-header">
+				<h1 class="page-header">Add Department Setting</h1>
+		</div>
+           
+                <div class="panel-body panel-form-right">
+                    <div class="list-group">
+                      
                             <asp:TextBox CssClass="form-control" ID="txtsettingid" runat="server" Visible="false"></asp:TextBox>
-                        </div>
-                        <div class="form-group">
+                       
                             <label>
                                 Department</label>
                             <label id="lblsettingID" visible="false" runat="server">
                             </label>
                             <asp:DropDownList ID="drpdepartment" runat="server" CssClass="form-control">
                             </asp:DropDownList>
-                        </div>
-                        <div class="form-group">
+                       <br />
                             <label>
                                 Select Store </label>
                             <asp:DropDownList ID="DrpProductionBranch" runat="server" CssClass="form-control">
                             </asp:DropDownList>
-                        </div>
-                        <asp:Button ID="btnSave" runat="server" class="btn btn-success" Text="Save" OnClick="btnSave_Click"
+                        <br />
+                        <asp:Button ID="btnSave" runat="server" class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="btnSave_Click"
                             ValidationGroup="val1" AccessKey="s" Width="150px" />
                         <label>
                         </label>
-                        <asp:Button ID="btnexit" runat="server" class="btn btn-warning" Text="Exit" OnClick="Exit_Click"
+                        <asp:Button ID="btnexit" runat="server" class="btn btn-lg btn-link" Text="Clear" OnClick="Exit_Click"
                             Width="150px" />
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <asp:Panel class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none"
         runat="server">

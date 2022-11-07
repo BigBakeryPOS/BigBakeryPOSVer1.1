@@ -325,70 +325,64 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="black" CssClass="label" Visible="false"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="black" CssClass="label" Visible="false"> </asp:Label>
     <form runat="server" id="form1" method="post">
-    <div class="row" style="">
-        <div class="col-lg-12" style="">
-            <%-- <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
-    <ContentTemplate>   --%>
-            <div class="panel panel-primary" style="">
-                <div class="panel-heading">
-                    Goods Requested</div>
-                <div class="panel-body" style="">
-                    <div class="row" style="">
-                        <div class="col-lg-3" style="">
-                        </div>
-                    </div>
-                    <div class="row" style="">
-                        <div class="col-lg-12" style="">
-                            <div class="panel-body" style="height: 68px">
-                                <div style="">
-                                    <div class="row" style="">
-                                        <div class="col-lg-2" style="">
-                                            <div class="form-group" style="">
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Goods Requested</h1>
+	    </div>
+
+                <div class="panel-body">
+                    <div class="row">
+                       
+                                        <div class="col-lg-3">
                                                 <asp:Label runat="server" ID="lblDcNo" Enabled="false"><label> Transfer No.</label></asp:Label>
-                                                <asp:TextBox ID="txtDCNo" Width="150px" runat="server" CssClass="form-control" Enabled="false"
+                                                <asp:TextBox ID="txtDCNo"  runat="server" CssClass="form-control" Enabled="false"
                                                     onkeypress="return NumberOnly()"></asp:TextBox>
                                                 <asp:TextBox ID="txtcompanyname" Visible="false" runat="server" CssClass="form-control"></asp:TextBox>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-2" style="">
-                                            <div class="form-group">
+                                        
+                                        <div class="col-lg-3">
+                                           
                                                 <asp:Label runat="server" ID="lblDCDate"><label> Transfer Date</label></asp:Label>
-                                                <asp:TextBox ID="txtDCDate" runat="server" CssClass="form-control" Width="150px"></asp:TextBox>
+                                                <asp:TextBox ID="txtDCDate" runat="server" CssClass="form-control" ></asp:TextBox>
                                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txtDCDate"
                                                     runat="server" CssClass="cal_Theme1">
                                                 </ajaxToolkit:CalendarExtender>
-                                            </div>
+                                            
                                         </div>
-                                        <div class="col-lg-2" style="">
-                                            <div class="form-group">
+                                       <div class="col-lg-3">
+                                           
                                                 <label>
                                                     Accepted By</label>
-                                                <asp:TextBox ID="txtAccepted" runat="server" CssClass="form-control" Width="150px"
+                                                <asp:TextBox ID="txtAccepted" runat="server" CssClass="form-control" 
                                                     required></asp:TextBox>
-                                            </div>
+                                           
                                         </div>
-                                        <div class="col-lg-2">
-                                            <div class="form-group">
+                                        <div class="col-lg-3">
+                                            <div class="form-group has-feedback">
                                                 <label>
                                                     Search
                                                 </label>
                                                 <asp:TextBox ID="txtSearch" runat="server" onkeyup="Search_Gridview(this, 'gvPurchase')"
-                                                    CssClass="form-control" placeholder="Search Category/Item.." Width="200px"></asp:TextBox>
-                                            </div>
+                                                    CssClass="form-control" placeholder="Search Category/Item.." ></asp:TextBox>
+                                                     <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                           </div>
                                         </div>
-                                        <div class="col-lg-2">
+                                      <div class="col-lg-3">
                                             <br />
-                                            <asp:Button ID="btnvalue" runat="server" Text="Transfer" CssClass="btn btn-success" />
+                                            <asp:Button ID="btnvalue" runat="server" Text="Transfer" CssClass="btn btn-primary pos-btn1" />
                                         </div>
-                                    </div>
+                                  
                                     <asp:ScriptManager ID="ScriptManager1" runat="server">
                                     </asp:ScriptManager>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <asp:GridView ID="gvPurchase" runat="server" AutoGenerateColumns="false" Width="100%"
+                             </div>  
+                          
+                       
+                    
+                      <div class="table-responsive panel-grid-left">
+                        <asp:GridView ID="gvPurchase" runat="server" AutoGenerateColumns="false" Width="100%" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" OnRowDataBound="onrowdatabound"
                             Font-Size="Medium">
                             <Columns>
                                 <asp:BoundField HeaderText="categoryID" DataField="categoryid" Visible="false" />
@@ -435,27 +429,23 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
-                            <RowStyle CssClass="RowStyleBackGroundColor" ForeColor="Black" />
-                            <AlternatingRowStyle CssClass="RowAlternateStyleBackGroundColor" />
-                            <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                           <RowStyle CssClass="RowStyleBackGroundColor" ForeColor="Black" />
+                          <%--   <AlternatingRowStyle CssClass="RowAlternateStyleBackGroundColor" />
+                            <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                             <%--<HeaderStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                         </asp:GridView>
+                    </div>
                         <br />
                         <asp:Label ForeColor="Red" ID="lblMsg" runat="server"></asp:Label>
                         <asp:Button ID="btnPreview" runat="server" CssClass="btn btn-danger" Text="preview"
                             OnClick="btnPreview_Click" Visible="false" />
                         <asp:Label ID="lblError" runat="server" Style="color: Red"></asp:Label>
-                    </div>
+                   
                 </div>
-            </div>
-            <%-- </ContentTemplate>
-    </asp:UpdatePanel>--%>
-        </div>
-    </div>
-    <!-- /.col-lg-6 (nested) -->
+           
     <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-            <div>
+           
                 <asp:LinkButton ID="lnkbtn" Text="" runat="server"></asp:LinkButton>
                 <ajaxToolkit:ModalPopupExtender ID="lnkDelete_ModalPopupExtender" runat="server"
                     CancelControlID="ButtonDeleteCancel" TargetControlID="lnkbtn" PopupControlID="DivDeleteConfirmation"
@@ -463,13 +453,11 @@
                 </ajaxToolkit:ModalPopupExtender>
                 <asp:Panel ScrollBars="Auto" Height="600px" Width="900px" ID="DivDeleteConfirmation"
                     CssClass="modalPopup" runat="server">
-                    <div>
-                        <div align="center">
-                            <table border="0" cellpadding="0" cellspacing="0">
-                                <tr>
-                                    <td>
-                                        <div id="Div19" runat="server" style="overflow: auto; height: 450px">
-                                            <asp:GridView ID="GridView1" runat="server" AllowPaging="false" EmptyDataText="No Item Avaliable "
+                   
+                       
+                       
+                                        <div id="Div19" runat="server" class="table-responsive panel-grid-left">
+                                            <asp:GridView ID="GridView1" runat="server" AllowPaging="false" EmptyDataText="No Item Avaliable " cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                                                 AutoGenerateColumns="false" Width="100%">
                                                 <PagerSettings FirstPageText="First" LastPageText="Last" NextPageText="Next" PreviousPageText="Previous" />
                                                 <Columns>
@@ -479,20 +467,22 @@
                                                 <%--<HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />--%>
                                             </asp:GridView>
                                         </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+                                    
+                        
                         <div align="center">
                             <asp:Button ID="btnPreview1" runat="server" CssClass="btn btn-danger" OnClientClick="ClientSideClick(this)"
                                 UseSubmitBehavior="false" Text="Ok" OnClick="btnPrev_Click" />
                             <input id="ButtonDeleteCancel" type="button" cssclass="btn btn-danger" value="Cancel" />
                         </div>
-                    </div>
+                   
                 </asp:Panel>
-            </div>
+            
         </ContentTemplate>
     </asp:UpdatePanel>
+    </div>
+    </div>
+    </div>
+    </div>
     </form>
 </body>
 </html>

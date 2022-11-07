@@ -238,75 +238,64 @@
     <form runat="server" id="form1" method="post">
     <%--    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
     <ContentTemplate>     --%>
-    <div class="col-lg-12" style="">
-        <div class="panel panel-default" style="">
-            <div class="panel-heading " style="background-color: #428bca; color: White">
-                <b>Receive Raw Materials</b></div>
+     <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Receive Raw Materials</h1>
+	    </div>
             <div class="panel-body" style="">
-                <div class="row" style="">
-                    <div class="col-lg-3" style="">
-                    </div>
-                </div>
-                <div class="row" style="">
-                    <div class="col-lg-12" style="">
-                        <div class="panel-body" style="height: 68px">
-                            <div style="">
-                                <%--   <blink> <label  style="color:Green; font-size:12px">Screen Show Detail as Per Your Goods  To Your raw Material Request Store.Please Be Carefull While Sending Stock Entry.Thank You!!!</label></blink>--%>
-                                <div class="row" style="">
-                                    <div class="col-lg-2" style="">
-                                        <div class="form-group" style="">
+              <div class="row">
+                                    <div class="col-lg-3">
+                                    
                                             <asp:Label runat="server" ID="Label2"><label>Accepted No.</label></asp:Label>
-                                            <asp:DropDownList ID="ddlrequestno" runat="server" CssClass="form-control" Width="200px"
+                                            <asp:DropDownList ID="ddlrequestno" runat="server" CssClass="form-control"
                                                 AutoPostBack="true" OnSelectedIndexChanged="ddlrequestno_OnSelectedIndexChanged">
                                             </asp:DropDownList>
-                                        </div>
+                                       
                                     </div>
-                                    <div class="col-lg-2" style="">
-                                        <div class="form-group" style="">
+                                    <div class="col-lg-3" >
+                                        
                                             <asp:Label runat="server" ID="lblDcNo"><label>Receive No.</label></asp:Label>
-                                            <asp:TextBox ID="txtDCNo" Width="150px" runat="server" CssClass="form-control" onkeypress="return NumberOnly()"
+                                            <asp:TextBox ID="txtDCNo"  runat="server" CssClass="form-control" onkeypress="return NumberOnly()"
                                                 Enabled="false"></asp:TextBox>
                                             <asp:TextBox ID="txtcompanyname" Visible="false" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </div>
+                                       
                                     </div>
-                                    <div class="col-lg-2" style="">
-                                        <div class="form-group">
+                                    <div class="col-lg-3">
+                                      
                                             <asp:Label runat="server" ID="lblDCDate"><label>Receive Date</label></asp:Label>
-                                            <asp:TextBox ID="txtDCDate" runat="server" CssClass="form-control" Width="150px"></asp:TextBox>
+                                            <asp:TextBox ID="txtDCDate" runat="server" CssClass="form-control" ></asp:TextBox>
                                             <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txtDCDate"
                                                 Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
                                             </ajaxToolkit:CalendarExtender>
-                                        </div>
+                                       
                                     </div>
-                                    <div class="col-lg-2" style="">
-                                        <div class="form-group">
+                                    <div class="col-lg-3">
+                                      
                                             <label>
                                                 Prepared By</label>
-                                            <asp:TextBox ID="txtAccepted" runat="server" CssClass="form-control" Width="150px"></asp:TextBox>
+                                            <asp:TextBox ID="txtAccepted" runat="server" CssClass="form-control" ></asp:TextBox>
                                               
-                                        </div>
+                                       
                                     </div>
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-3">
                                     <br />
-                                     <asp:Button ID="btnPreview" runat="server" CssClass="btn btn-danger" Text="Receive Raw"
+                                     <asp:Button ID="btnPreview" runat="server" CssClass="btn btn-info pos-btn1" Text="Receive Raw"
                                 OnClick="btnPrev_Click" Visible="true" />
                                     </div>
-                                    <div class="col-lg-2" style="">
-                                    </div>
+                                    
                                 </div>
                                 <asp:ScriptManager ID="ScriptManager1" runat="server">
                                 </asp:ScriptManager>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
+                                <br />
+              <div class="row">
+               
                         <div class="col-lg-6">
-                            <div class="panel panel-default" style="">
-                                <div class="panel-heading " style="background-color: #428bca; color: White">
-                                    <b>Raw Materials Details</b></div>
-                                <div class="panel-body" style="">
+
+                                    <label>Raw Materials Details</label>
+                                    <div class="table-responsive panel-grid-left">
                                     <asp:GridView ID="GridView2" AutoGenerateColumns="False" ShowFooter="True" CssClass="chzn-container"
                                         GridLines="Both" Width="80%" runat="server">
                                         <Columns>
@@ -345,13 +334,11 @@
                                         </Columns>
                                     </asp:GridView>
                                     <asp:Label ID="lblError" runat="server" Style="color: Red"></asp:Label>
-                                </div>
-                            </div>
+                                    </div>
                         </div>
                         <div class="col-lg-6">
-                        <div class="panel-heading " style="background-color: #428bca; color: White">
-                                    <b>Item Details</b></div>
-                                    <br />
+                                    <label>Item Details</label>
+                                    <div class="table-responsive panel-grid-left">
                             <asp:GridView ID="gvRawRequest" runat="server" AutoGenerateColumns="false" Width="100%" Font-Names="Calibri"
                                 Font-Size="Medium"   AllowSorting="true">
                                  <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> 
@@ -398,13 +385,13 @@
                          
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>
-    <!-- /.col-lg-6 (nested) -->
-    </div>
-    <!-- /.row (nested) -->
+   </div>
+   </div>
+   </div>
+  
     </form>
 </body>
 </html>

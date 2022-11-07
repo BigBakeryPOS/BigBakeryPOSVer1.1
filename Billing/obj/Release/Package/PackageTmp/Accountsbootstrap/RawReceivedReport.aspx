@@ -121,105 +121,96 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <usc:Header ID="Header" runat="server" />
-    <div class="row">
-        <!-- /.col-lg-12 -->
-    </div>
-    <div class="row" align="center">
-        <div class="col-lg-12">
-            <div class="panel panel-default" style="height: 100%; padding-top: 10px">
-                <div class="panel-heading" style="background-color: #0071BD; color: White">
-                    Kitchen Raw Received Report
-                </div>
+<div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Kitchen Raw Received Report</h1>
+	    </div>
                 <div class="panel-body">
-                    <div class="row">
+                    
                         <form runat="server" id="form1" method="post">
                         <asp:ScriptManager ID="script" runat="server">
                         </asp:ScriptManager>
-                        <div id="Div123" class="col-lg-12">
-                            <div class="col-lg-1">
+                        <div id="Div123" class="row">
+                            <div class="col-lg-3">
                                 <div class="form-group">
                                     <label>
                                         From Date</label>
-                                    <asp:TextBox ID="txtfromdate" CssClass="form-control" runat="server" Width="100px"></asp:TextBox>
+                                    <asp:TextBox ID="txtfromdate" CssClass="form-control" runat="server"></asp:TextBox>
                                     <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="dd/MM/yyyy" TargetControlID="txtfromdate"
                                         runat="server" CssClass="cal_Theme1">
                                     </ajaxToolkit:CalendarExtender>
                                 </div>
                             </div>
-                            <div class="col-lg-1">
+                            <div class="col-lg-3">
                                 <div class="form-group">
                                     <label>
                                         To Date</label>
-                                    <asp:TextBox ID="txttodate" CssClass="form-control" runat="server" Width="100px"> </asp:TextBox>
+                                    <asp:TextBox ID="txttodate" CssClass="form-control" runat="server" > </asp:TextBox>
                                     <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="dd/MM/yyyy" TargetControlID="txttodate"
                                         runat="server" CssClass="cal_Theme1">
                                     </ajaxToolkit:CalendarExtender>
                                 </div>
                             </div>
-                            <div class="col-lg-2">
-                                <div id="Div1" runat="server" visible="false" class="form-group">
-                                    <label>
-                                        Type
-                                    </label>
-                                    <br />
-                                    <asp:DropDownList runat="server" ID="ddltype" CssClass="chzn-select" Width="150px" OnSelectedIndexChanged="ddltype_SelectedIndexChanged" AutoPostBack="true">
+                            
+                                <div id="Div1" runat="server" visible="false" class="col-lg-3">
+                                    <label>Type </label>
+                                    <asp:DropDownList runat="server" ID="ddltype" CssClass="form-control"  OnSelectedIndexChanged="ddltype_SelectedIndexChanged" AutoPostBack="true">
                                         <asp:ListItem Text="Summary" Value="1"></asp:ListItem>
                                         <asp:ListItem Text="Detailed" Selected="True" Value="2"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
-                            </div>
-                            <div class="col-lg-1" id="entry" runat="server">
-                                <div class="form-group">
-                                    <label>
-                                        Entry No
-                                    </label>
+                           <div class="col-lg-3" id="entry" runat="server">
+                                
+                                    <label>Entry No</label>
                                     <br />
-                                    <asp:DropDownList runat="server" ID="ddldcno" CssClass="chzn-select" Width="150px">
+                                    <asp:DropDownList runat="server" ID="ddldcno" CssClass="chzn-select" >
                                     </asp:DropDownList>
-                                </div>
+                                
                             </div>
-                            <div class="col-lg-2" id="cat" runat="server">
-                                <div class="form-group">
+                            <div class="col-lg-3" id="cat" runat="server">
+                                
                                     <label>
                                         Category
                                     </label>
                                     <br />
-                                    <asp:DropDownList runat="server" ID="ddlCategory" CssClass="chzn-select" Width="150px">
+                                    <asp:DropDownList runat="server" ID="ddlCategory" CssClass="form-control" >
                                     </asp:DropDownList>
-                                </div>
+                                
                             </div>
-                            <div class="col-lg-2" id="ind" runat="server">
-                                <div class="form-group">
+                            <div class="col-lg-3" id="ind" runat="server">
+                                
                                     <label>
                                         Ingridients
                                     </label>
-                                    <br />
-                                    <asp:DropDownList runat="server" ID="ddlIngridients" CssClass="chzn-select" Width="150px">
+                                   
+                                    <asp:DropDownList runat="server" ID="ddlIngridients" CssClass="form-control" >
                                     </asp:DropDownList>
-                                </div>
+                                
                             </div>
-                            <div class="col-lg-1">
-                                <asp:Label ID="Label2" runat="server"></asp:Label><br />
-                                <asp:Button ID="btnsearch" runat="server" Text="Search" Visible="true" CssClass="btn btn-success"
-                                    OnClick="btnsearch_Click" Width="100px" />
+                            <div class="col-lg-3">
+                            <br />
+                               
+                                <asp:Button ID="btnsearch" runat="server" Text="Search" Visible="true" CssClass="btn btn-info pos-btn1"
+                                    OnClick="btnsearch_Click" />
+
+                               
+                                &nbsp;&nbsp;&nbsp;<asp:Button ID="btnexcel" runat="server" Text="Export Excel" Visible="true" CssClass="btn btn-success"
+                                    OnClick="btnexcel_Click" />
+                            
+                                &nbsp;&nbsp;&nbsp;<asp:Button ID="btn" runat="server" Text="Print" Visible="true" CssClass="btn btn-secondary"
+                                    OnClientClick="Denomination123()" />
                             </div>
-                            <div class="col-lg-1">
-                                <asp:Label ID="Label1" runat="server"></asp:Label><br />
-                                <asp:Button ID="btnexcel" runat="server" Text="Export Excel" Visible="true" CssClass="btn btn-success"
-                                    OnClick="btnexcel_Click" Width="100px" />
-                            </div>
-                            <div class="col-lg-1">
-                                <asp:Label ID="lblPrint" runat="server">Print</asp:Label><br />
-                                <asp:Button ID="btn" runat="server" Text="Print" Visible="true" CssClass="btn btn-group"
-                                    OnClientClick="Denomination123()" Width="100px" />
-                            </div>
-                        </div>
+                        
                         <div class="col-lg-12">
-                            <asp:GridView ID="gvsales" align="center" EmptyDataText="No Records Found" runat="server"
+                        <div class="table-responsive panel-grid-left">
+                            <asp:GridView ID="gvsales" align="center" EmptyDataText="No Records Found" runat="server" cssClass="table table-striped pos-table"
                                 Caption="Kitchen Raw Received Usage Report" OnRowDataBound="gvsales_OnRowDataBound" ShowFooter="true"
-                                AutoGenerateColumns="false" CssClass="mGrid">
-                                <HeaderStyle BackColor="#990000" />
-                                <PagerSettings FirstPageText="1" Mode="Numeric" />
+                                AutoGenerateColumns="false" padding="0" spacing="0" border="0">
+                                <%--<HeaderStyle BackColor="#990000" />
+                                <PagerSettings FirstPageText="1" Mode="Numeric" />--%>
                                 <Columns>
                                     <asp:TemplateField HeaderText="S.No" ItemStyle-Width="10%">
                                         <ItemTemplate>
@@ -237,6 +228,8 @@
                                 </Columns>
                             </asp:GridView>
                         </div>
+                        </div>
+                        </div>
                         <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
                         <script type="text/javascript">
                             window.onload = function () {
@@ -244,15 +237,12 @@
                             }
                         </script>
                         </form>
-                        <!-- /.col-lg-6 (nested) -->
-                    </div>
-                    <!-- /.row (nested) -->
+                   
                 </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
+            
+    </div>
+    </div>
+    </div>
     </div>
 </body>
 </html>

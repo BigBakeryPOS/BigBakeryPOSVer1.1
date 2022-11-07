@@ -63,6 +63,7 @@
     <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet" />
+    <link href="../css/Pos_style.css" rel="stylesheet" />
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <style type="text/css"> 
@@ -82,60 +83,65 @@
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+    <div class="container-fluid">
+	<div class="row">
     <div class="col-lg-12">
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading" style="background-color: #0071BD; color: White; text-align: left">
-                    Ingridients Master
-                </div>
+        <div class="col-lg-8">
+            <div class="row panel-custom1">
+                <div class="panel-header">
+          <h1 class="page-header">Ingridients Masterr</h1>
+	    </div>
                 <div class="panel-body">
-                    <div class="col-lg-12">
-                        <div class="col-lg-6">
-                            <asp:TextBox ID="txtname" runat="server" Width="200px" placeholder="Search Ingredient.."
-                                onkeyup="Search_Gridview(this, 'Ingredientdrid')" CssClass="form-control"></asp:TextBox>
+                    <div class="row">
+                        <div class="col-lg-4">
+                        <div class="form-group has-feedback">
+                            <asp:TextBox ID="txtname" runat="server" placeholder="Search Ingredient.." 
+                                onkeyup="Search_Gridview(this, 'Ingredientdrid')" CssClass="form-control">
+                                </asp:TextBox>
+                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
                         </div>
-                        <div class="col-lg-6">
-                            <asp:Button ID="btnReset" runat="server" Width="200px" class="btn btn-warning" Text="Reset"
+                        </div>
+                        <div class="col-lg-8">
+                            <asp:Button ID="btnReset" runat="server" Width="150px" class="btn btn-secondary" Text="Reset"
                                 OnClick="btnReset_Click" />
                         </div>
-                    </div>
+                    
+
                     <div class="col-lg-12">
-                        <br />
-                        <div style="height: 392px; overflow: scroll">
-                            <asp:GridView ID="Ingredientdrid" runat="server" PagerStyle-CssClass="pager" Font-Names="Calibri"
-                                ShowHeader="true" Width="100%" AutoGenerateColumns="False" OnRowCommand="Ingredientdrid_RowCommand">
+                       
+                         <div class="table-responsive panel-grid-left">
+                            <asp:GridView ID="Ingredientdrid" runat="server" PagerStyle-CssClass="pager"  cssClass="table table-striped pos-table"
+                                ShowHeader="true" Width="100%" AutoGenerateColumns="False" OnRowCommand="Ingredientdrid_RowCommand" padding="0" spacing="0" border="0">
                                 <AlternatingRowStyle></AlternatingRowStyle>
-                                <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                    HorizontalAlign="Center" ForeColor="White" />
+                               <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                    HorizontalAlign="Center" ForeColor="White" />--%>
                                 <Columns>
                                     <asp:BoundField DataField="IngridID" HeaderText="ID" ItemStyle-CssClass="hide" HeaderStyle-CssClass="hide" />
-                                    <asp:BoundField DataField="IngreCategory" HeaderText="Ingr.Category" ItemStyle-HorizontalAlign="left"
-                                        HeaderStyle-HorizontalAlign="left" />
-                                    <asp:BoundField DataField="IngredientCode" HeaderText="Ingr.Code" ItemStyle-HorizontalAlign="left"
-                                        HeaderStyle-HorizontalAlign="left" />
-                                    <asp:BoundField DataField="IngredientName" HeaderText="IngredientName" ItemStyle-HorizontalAlign="left"
-                                        HeaderStyle-HorizontalAlign="left" />
-                                    <asp:BoundField DataField="UOM" HeaderText="UOM" ItemStyle-HorizontalAlign="Center"
-                                        HeaderStyle-HorizontalAlign="left" />
-                                        <asp:BoundField DataField="hsncode" HeaderText="HSNCODE" ItemStyle-HorizontalAlign="Center"
-                                        HeaderStyle-HorizontalAlign="left" />
-                                    <asp:BoundField DataField="Quantity" HeaderText="Min.Qty" ItemStyle-HorizontalAlign="Center"
-                                        HeaderStyle-HorizontalAlign="left" />
-                                    <asp:BoundField DataField="TaxValue" HeaderText="Tax" ItemStyle-HorizontalAlign="Center"
-                                        HeaderStyle-HorizontalAlign="left" />
-                                    <asp:TemplateField HeaderText="Edit" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                    <asp:BoundField DataField="IngreCategory" HeaderText="Ingr.Category" ItemStyle-Width="100px" />
+                                    <asp:BoundField DataField="IngredientCode" HeaderText="Ingr.Code" ItemStyle-Width="100px" />
+                                    <asp:BoundField DataField="IngredientName" HeaderText="IngredientName" ItemStyle-Width="250px" />
+                                    <asp:BoundField DataField="UOM" HeaderText="UOM" ItemStyle-Width="100px" />
+                                        <asp:BoundField DataField="hsncode" HeaderText="HSNCODE" ItemStyle-Width="100px" />
+                                    <asp:BoundField DataField="Quantity" HeaderText="Min.Qty" ItemStyle-Width="100px" />
+                                    <asp:BoundField DataField="TaxValue" HeaderText="Tax" ItemStyle-Width="100px"  />
+                                    <asp:TemplateField HeaderText="Edit" ItemStyle-Width="50px">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="btnedit" ForeColor="White" CommandName="et" CommandArgument='<%#Eval("IngridID") %>'
+                                            <asp:LinkButton ID="btnedit" ForeColor="White" CommandName="et" CommandArgument='<%#Eval("IngridID") %>' cssclass="btn btn-warning btn-md"
                                                 runat="server">
-                                                <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server" width="55px" /></asp:LinkButton>
+                                                <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server" width="55px" Visible="false" />
+                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                </asp:LinkButton>
                                             <%--<asp:LinkButton ID="btnedit" runat="server"  Text="edit"  CommandArgument='<%#Eval("categoryid") %>' CommandName="edit"></asp:LinkButton>--%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Delete" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                    <asp:TemplateField HeaderText="Delete" ItemStyle-Width="50px">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="btndel" CommandName="Dl" CommandArgument='<%#Eval("IngridID") %>'
                                                 runat="server">
-                                                <asp:Image ID="Image1" ImageUrl="~/images/delete.png" runat="server" /></asp:LinkButton>
+                                                <asp:Image ID="Image1" ImageUrl="~/images/delete.png" runat="server" visible="false"/>
+                                                <button type="button" class="btn btn-danger btn-md">
+												<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+												</button></asp:LinkButton>
                                             <ajaxToolkit:ModalPopupExtender ID="lnkDelete_ModalPopupExtender" runat="server"
                                                 CancelControlID="ButtonDeleteCancel" OkControlID="ButtonDeleleOkay" TargetControlID="btndel"
                                                 PopupControlID="DivDeleteConfirmation" BackgroundCssClass="ModalPopupBG">
@@ -154,15 +160,17 @@
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="panel panel-default">
+        <div class="col-lg-4">
+            <div class="row panel-custom1">
                 <%--           <blink> <label  style="color:Green; font-size:12px">Please Fill Ingredient Details  </label></blink>--%>
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Add IngredientName </b>
-                </div>
-                <div class="panel-body">
+                <div class="panel-header">
+          <h1 class="page-header">Add Ingredient</h1>
+	    </div>
+                
+                <div class="panel-body panel-form-right">
                     <div class="list-group">
                         <label>
                             Select Ingredient Category</label>
@@ -195,39 +203,38 @@
                             Tax</label>
                         <asp:DropDownList ID="ddltax" runat="server" CssClass="form-control">
                         </asp:DropDownList>
-                        <label>
-                            Allow Request</label>
+                        <br />
                         <asp:CheckBox ID="chkallow" runat="server" />
-                        <br />
-                        <br />
-                        <br />
-                        <div class="form-group">
-                            <label>
-                                Upload Data From Excel
+                         <label>Allow Request</label>
+                         <br /><br />
+                        
+                            <label>Upload Data From Excel
                             </label>
                             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                 <ContentTemplate>
-                                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                                    <asp:FileUpload ID="FileUpload1" runat="server" style="display:inline" width="50%" />
                                     <asp:Button ID="btnAsyncUpload" Visible="false" runat="server" Text="Async_Upload"
                                         OnClick="Async_Upload_File" />
-                                    <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="Upload_File" CssClass="btn btn-danger" />
+                                    <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="Upload_File" CssClass="btn btn-danger pos-btn1" />
                                 </ContentTemplate>
                                 <Triggers>
                                     <asp:AsyncPostBackTrigger ControlID="btnAsyncUpload" EventName="Click" />
                                     <asp:PostBackTrigger ControlID="btnUpload" />
                                 </Triggers>
                             </asp:UpdatePanel>
-                            <asp:GridView ID="GridView2" runat="server">
-                            </asp:GridView>
-                        </div>
-                        <asp:Button ID="btnSubmit" Style="width: 150px; margin-left: 0px;" runat="server"
-                            class="btn btn-success" Text="Save" OnClick="btnadd_Click" />
-                        <asp:Button ID="btnclaear" Style="width: 150px; margin-left: 1px;" runat="server"
-                            class="btn btn-warning" Text="Cancel" OnClick="btncancel_Click" />
+                           <br />
+                       
+                        <asp:Button ID="btnSubmit" width= "150px" runat="server"
+                            class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="btnadd_Click" />
+                        <asp:Button ID="btnclaear"  width= "150px" runat="server"
+                            class="btn btn-lg btn-link" Text="Clear" OnClick="btncancel_Click" />
                     </div>
+                </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <asp:Panel Width="30%" class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none;
         background-color: #c7c7c7" runat="server">

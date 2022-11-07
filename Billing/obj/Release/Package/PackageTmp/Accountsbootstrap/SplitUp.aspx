@@ -83,22 +83,15 @@
     <form id="form1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-
-                <div class="row">
-                <div class="col-lg-12" style="margin-top:6px">
-                    <h1 class="page-header" style="text-align:center;font-size:20px; font-weight:bold">
-                        Todays Advance & Balance Report</h1>
-                </div>
-            </div>
-
-
-
-    
-    
-    <div>
-        <div class="row">
-            <div class="panel panel-body">
-                <div class="col-lg-3">
+     <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Todays Advance & Balance Report</h1>
+	    </div>
+            <div class="panel-body">
+                    <div class="row">
                     <label style="display:none;">
                         Select Store</label>
                     <asp:DropDownList CssClass="form-control" ID="ddlBranch" runat="server" Visible="false"
@@ -115,29 +108,29 @@
                           <asp:ListItem Text="Thirunelveli" Value="co9"></asp:ListItem>
                            <asp:ListItem Text="Periyar" Value="co10"></asp:ListItem>
                     </asp:DropDownList>
-                </div>
-                <div class="col-lg-10">
-                    <div class="col-lg-2">
-                        From Date
-                        <asp:TextBox ID="txtfrom" Width="175px" runat="server" CssClass="form-control" AutoPostBack="true"  ontextchanged="txttodate_TextChanged"></asp:TextBox>
+               
+               
+                    <div class="col-lg-3">
+                        <label>From Date</label>
+                        <asp:TextBox ID="txtfrom"  runat="server" CssClass="form-control" AutoPostBack="true"  ontextchanged="txttodate_TextChanged"></asp:TextBox>
                         <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtfrom" runat="server"
                             CssClass="cal_Theme1">
                         </ajaxToolkit:CalendarExtender>
                     </div>
-                    <div class="col-lg-2">
-                        To Date
-                        <asp:TextBox ID="txtto" Width="175px" runat="server" CssClass="form-control"></asp:TextBox>
+                    <div class="col-lg-3">
+                        <label>To Date</label>
+                        <asp:TextBox ID="txtto"  runat="server" CssClass="form-control"></asp:TextBox>
                         <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txtto" runat="server"
                             CssClass="cal_Theme1">
                         </ajaxToolkit:CalendarExtender>
-                           </div>
-                           <div class="col-lg-2">
-                        <asp:Button ID="btnser" runat="server" CssClass="btn-danger" Text="Search" style="margin-top: 25px;" OnClick="btnser_Click" />
-                     
+                      </div>
+
+                           <div class="col-lg-6">
+                           <br />
+                        <asp:Button ID="btnser" runat="server" CssClass="btn btn-info pos-btn1" Text="Search"  OnClick="btnser_Click" />
+                        &nbsp;&nbsp;&nbsp;<asp:Button ID="Button1" runat="server" CssClass="btn btn-secondary" Text="Print" OnClientClick="printGrid()" />
                     </div>
-                    <div>
-                    </div>
-                </div>
+                  
                 <div class="col-lg-12">
                     <div class="col-lg-4">
                         <asp:GridView ID="gvAvance" runat="server" CssClass="hidden" Caption="Advance Payment">
@@ -152,33 +145,38 @@
                         </asp:GridView>
                     </div>
                 </div>
-                <div align="center" id="print" runat="server" class="row">
-                    <asp:GridView ID="gvsplit" CssClass="mGrid" runat="server" AutoGenerateColumns="false"
-                        Width="60%">
+                <div class="col-lg-12">
+                <div id="print" runat="server" class="table-responsive panel-grid-left">
+                    <asp:GridView ID="gvsplit"  runat="server" AutoGenerateColumns="false"
+                        cssClass="table table-striped pos-table"  padding="0" spacing="0" border="0">
                         <Columns>
                             <asp:BoundField SortExpression="NetAmount" HeaderText="OrderNo" DataField="OrderNo"
                                 />
                             <asp:BoundField SortExpression="NetAmount" HeaderText="BookNo" DataField="BookNo"
                                />
-                            <asp:BoundField SortExpression="NetAmount" HeaderText="Total Amount	" DataField="Total Amount" ItemStyle-HorizontalAlign="Right"
+                            <asp:BoundField SortExpression="NetAmount" HeaderText="Total Amount	" DataField="Total Amount" 
                                 DataFormatString="{0:f}" />
-                            <asp:BoundField SortExpression="NetAmount" HeaderText="Advance" DataField="Advance" ItemStyle-HorizontalAlign="Right"
+                            <asp:BoundField SortExpression="NetAmount" HeaderText="Advance" DataField="Advance" 
                                 DataFormatString="{0:f}" />
-                                 <asp:BoundField SortExpression="NetAmount" HeaderText="Balance" DataField="Balance" ItemStyle-HorizontalAlign="Right"
+                                 <asp:BoundField SortExpression="NetAmount" HeaderText="Balance" DataField="Balance" 
                                 DataFormatString="{0:f}" />
-                            <asp:BoundField SortExpression="NetAmount" HeaderText="Remaining" DataField="Remaining" ItemStyle-HorizontalAlign="Right"
+                            <asp:BoundField SortExpression="NetAmount" HeaderText="Remaining" DataField="Remaining" 
                                 DataFormatString="{0:f}" />
                         </Columns>
                     </asp:GridView>
-                    Advance Total:=<label id="lblAdv" runat="server"></label>
-                    Balance Total:=<label id="lblBal" runat="server"></label>
+                   </div>
+                    Advance Total:=<label id="lblAdv" runat="server"></label><br />
+                    Balance Total:=<label id="lblBal" runat="server"></label><br />
                     FullPayment Total:=<label id="lblFull" runat="server"></label>
-                </div>
-                <div>
-                    <asp:Button ID="Button1" runat="server" CssClass="btn btn-success" Text="Print" OnClientClick="printGrid()" />
-                </div>
+                
+               </div>
+                    
+               
             </div>
-        </div>
+             </div>
+    </div>
+    </div>
+    </div>
     </div>
     </form>
 </body>

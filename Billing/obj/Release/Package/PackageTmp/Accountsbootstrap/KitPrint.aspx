@@ -76,8 +76,10 @@
                                 <asp:BoundField HeaderText="Item" DataField="Definition" HeaderStyle-HorizontalAlign="Center" />
                                 <asp:BoundField HeaderText="Qty" DataField="Qty" DataFormatString="{0:N1}" ItemStyle-HorizontalAlign="Center"
                                     HeaderStyle-HorizontalAlign="Center" />
+                                    <asp:BoundField HeaderText="Packing Notes" DataField="Packingnotes" DataFormatString="{0:N1}" ItemStyle-HorizontalAlign="Center"
+                                    HeaderStyle-HorizontalAlign="Center" />
                                 <%--<asp:ImageField HeaderText="Cake Img."  ></asp:ImageField>--%>
-                                <asp:TemplateField HeaderText="Cake.Img">
+                                <asp:TemplateField Visible="false" HeaderText="Cake.Img">
                                     <ItemTemplate>
                                         <asp:Image ID="Image1" runat="server" Height="122px" ImageUrl='<%# Eval("Modelimgpath") %>'
                                             Width="148px" />

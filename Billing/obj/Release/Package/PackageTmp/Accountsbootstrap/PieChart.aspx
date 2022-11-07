@@ -51,12 +51,15 @@
     </script>
 </head>
 <body>
-<usc:Header ID="Header" runat="server" />
+    <usc:Header ID="Header" runat="server" />
     <form id="form1" runat="server">
     <div>
-   <ajaxToolkit:ToolkitScriptManager ID="scriptmanager1" runat="server" ></ajaxToolkit:ToolkitScriptManager>
-<ajaxToolkit:PieChart ID="countrychart" runat="server" ChartHeight="300"
-ChartWidth="450" ChartTitle="World wide Data usage %" ChartTitleColor="#0E426C"></ajaxToolkit:PieChart>
+        <ajaxToolkit:ToolkitScriptManager ID="scriptmanager1" runat="server">
+        </ajaxToolkit:ToolkitScriptManager>
+        
+        <%--<ajaxToolkit:PieChart ID="PieChart1" runat="server" ChartHeight="300" ChartWidth = "300"
+    ChartType="Column" ChartTitleColor="#0E426C" >
+        </ajaxToolkit:PieChart>--%>
     </div>
     </form>
 </body>

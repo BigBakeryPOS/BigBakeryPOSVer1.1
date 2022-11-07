@@ -80,63 +80,69 @@
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label" >Welcome : </asp:Label>
                     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label"> </asp:Label>
                     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
-          <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading " style="background-color:#428bca; color:White" ><b>Payment Details</b></div>
+          <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row">
+                 <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Payment Details
+           <span class="pull-right">
+          <asp:LinkButton ID="btnadd1" runat="server" onclick="btnadd_Click">
+             <button type="button" class="btn btn-primary btn-md pos-btn1">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD
+			</button>
+                </asp:LinkButton>
+                </span>
+                </h1>
+	    </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-6">
-                                  
+
                                      <asp:scriptmanager id="ScriptManager1" runat="server">
                                               </asp:scriptmanager>
-                                    <div class="form-group">
+                                   
                                          
-                                           
                                             <asp:DropDownList ID="ddlsearch" CssClass="form-control"  Visible="false"
                                                 runat="server" Width="237px"> 
-                                                </asp:DropDownList><br />
+                                                </asp:DropDownList>
+                                               <div class="col-lg-3">
                                               <label>From :</label>
                                                 <asp:TextBox ID="txtFrom" runat="server" CssClass="form-control"  Text="--Select Date--"
-                                                Width="237px" ></asp:TextBox>
+                                                 ></asp:TextBox>
                                                  <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="yyyy-MM-dd" TargetControlID="txtFrom" runat="server"  
                                         CssClass="cal_Theme1"></ajaxToolkit:CalendarExtender>
-                                       
+                                       </div>
+                                       <div class="col-lg-3">
                                                  <label>To :</label>
                                                 <asp:TextBox ID="txtTo" runat="server" CssClass="form-control" Text="--Select Date--" 
-                                                Width="237px" ></asp:TextBox>
+                                                ></asp:TextBox>
                                                  <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="yyyy-MM-dd" TargetControlID="txtTo" runat="server"
                                         CssClass="cal_Theme1"></ajaxToolkit:CalendarExtender>
-                                              
-                                        <asp:Button ID="btnsearch" runat="server" class="btn btn-success" Text="Search" 
-                                                style="margin-top: 10px;" onclick="btnsearch_Click"  /> 
+                                              </div>
+                                              <div class="col-lg-6">
+                                              <br />
+                                        <asp:Button ID="btnsearch" runat="server" class="btn btn-info pos-btn1" Text="Search" 
+                                                onclick="btnsearch_Click"  /> 
                                          
-                                        <asp:Button ID="btnadd" runat="server" class="btn btn-primary" Text="Add" 
-                                                style="margin-top: 10px;" onclick="btnadd_Click" />  
-
+                                       
+                                           
                                                  <asp:Button ID="btnPrint" runat="server" class="btn btn-success" Visible="false" Text="Print" 
                                                 style="margin-top: 10px;" OnClientClick=" printGrid();" />  
 
-                                                 <asp:Button ID="btnexportexcel" runat="server" class="btn  btn-warning" Text="Export-Excel"  OnClick="btnExport_Click"
-                                                style="margin-top: 10px;"  />  
-                                        </div> 
-                               </div>
+                                           &nbsp;&nbsp;&nbsp;<asp:Button ID="btnexportexcel" runat="server" class="btn  btn-success" Text="Export-Excel"  OnClick="btnExport_Click"/>  
+                                        
+                                            </div>
 
                                <div class="col-lg-12">
 
-                               <div runat="server" id="div1" class="table-responsive">
+                               <div runat="server" id="div2" class="table-responsive panel-grid-left">
                                         
-                                <table class="table table-bordered table-striped">
-                                <tr>
-                                <td>
-
-                                 <div runat="server" id="div2" class="table-responsive">
-                                
                                 <asp:GridView ID="gridledger" runat="server" AllowPaging ="false"  PageSize="50"   
-                                        AutoGenerateColumns="false" CssClass="mGrid" 
+                                        AutoGenerateColumns="false" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                                         onrowcommand="gridledger_RowCommand">
-                                 <HeaderStyle BackColor="#3366FF" />
-                                <PagerSettings FirstPageText="1"  Mode="Numeric"  />
+                                <%-- <HeaderStyle BackColor="#3366FF" />
+                                <PagerSettings FirstPageText="1"  Mode="Numeric"  />--%>
                                 <Columns>
                                 
                                 <asp:BoundField HeaderText="Payment Entry ID" DataField="PaymentEntryID"  />
@@ -146,7 +152,12 @@
                                 <asp:BoundField HeaderText="Amount" DataField="Amount" DataFormatString="{0:###,##0.00}" />
                                 <asp:TemplateField HeaderText="Delete">
                                 <ItemTemplate>
-                                <asp:LinkButton ID="lnkbtn" runat="server" CommandName="Del" CommandArgument='<%#Eval("PaymentEntryID") %>'><asp:Image ID="imgdel" runat="server" ImageUrl="~/images/delete.png" /></asp:LinkButton>
+                                <asp:LinkButton ID="lnkbtn" runat="server" CommandName="Del" CommandArgument='<%#Eval("PaymentEntryID") %>'>
+                                <asp:Image ID="imgdel" runat="server" ImageUrl="~/images/delete.png"  Visible="false"/>
+                                 <button type="button" class="btn btn-danger btn-md">
+												<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+												</button>
+                                </asp:LinkButton>
                                 <%-- <ajaxToolkit:modalpopupextender   
 		id="lnkDelete_ModalPopupExtender" runat="server" 
 		cancelcontrolid="ButtonDeleteCancel" okcontrolid="ButtonDeleleOkay" 
@@ -160,18 +171,13 @@
                                 </ItemTemplate>
                                 </asp:TemplateField>
                                 </Columns>
-                          <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-   <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                         <%-- <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+   <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                                  </asp:GridView>
                                  </div>
-                                </td>
-                                </tr>
-                                <tr>
-                                            <td>
+                               
                                             Total: <label id="lblTotal" runat="server"></label>
-                                            </td>
-                                            </tr>
-                                </table>
+                                          
                                 </div>
 
 
@@ -200,17 +206,14 @@
                                 
                                 </div>
                                 
-                                <!-- /.col-lg-6 (nested) -->
+                               
                             </div>
-                            <!-- /.row (nested) -->
+                            
                         </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
+               </div>       
             </div>
-
+            </div>
+            </div>
                 </form>
 </body>
 </html>

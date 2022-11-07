@@ -63,3 +63,24 @@ E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing
 E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Release\Billing.csproj.GenerateResource.Cache
 E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Release\Billing.dll
 E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\Billing\obj\Release\Billing.pdb
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\bin\Billing.dll
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\bin\Billing.pdb
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\bin\BusinessLayer.dll
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\bin\CommonLayer.dll
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\bin\DataLayer.dll
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\bin\Microsoft.Office.Interop.Excel.dll
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\bin\Office.dll
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\bin\Microsoft.Vbe.Interop.dll
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\bin\stdole.dll
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\bin\BusinessLayer.pdb
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\bin\CommonLayer.pdb
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\bin\DataLayer.pdb
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\bin\Microsoft.Office.Interop.Excel.xml
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\bin\Office.xml
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\obj\Release\Billing.csproj.AssemblyReference.cache
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\obj\Release\UChat.Global.resources
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\obj\Release\Billing.csproj.GenerateResource.cache
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\obj\Release\Billing.csproj.CoreCompileInputs.cache
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\obj\Release\Billing.csproj.CopyComplete
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\obj\Release\Billing.dll
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\Billing\obj\Release\Billing.pdb

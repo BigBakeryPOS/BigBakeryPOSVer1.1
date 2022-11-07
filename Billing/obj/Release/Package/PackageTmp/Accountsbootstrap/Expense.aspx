@@ -66,19 +66,14 @@
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label">Welcome : </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">
-            </h1>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Payment Entry</b></div>
+<div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Payment Entry</h1>
+	    </div>
+
                 <div class="panel-body">
                     <div class="row">
                         <form id="Form1" runat="server">
@@ -87,7 +82,7 @@
                                 <asp:ScriptManager ID="scriptmanager" runat="server">
                                 </asp:ScriptManager>
                                 <div class="col-lg-3">
-                                    <div class="form-group">
+                                   
                                         <label>
                                             Date</label>
                                         <asp:TextBox CssClass="form-control" ID="txtdate" Text="--Select Date--" runat="server"></asp:TextBox>
@@ -96,19 +91,19 @@
                                             runat="server" CssClass="cal_Theme1">
                                         </ajaxToolkit:CalendarExtender>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="col-lg-3">
                                         <label>
                                             Account Name</label>
                                         <asp:DropDownList ID="ddlLedger" CssClass="form-control" Width="100%" runat="server">
                                         </asp:DropDownList>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="col-lg-3">
                                         <label>
                                             Description(Any)</label>
                                         <asp:TextBox CssClass="form-control" ID="txtdescrip" runat="server">
                                         </asp:TextBox>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="col-lg-3">
                                         <label>
                                             Amount</label>
                                         <asp:TextBox CssClass="form-control" ID="txtamount" runat="server"></asp:TextBox>
@@ -128,10 +123,10 @@
                                             <asp:ListItem Value="card"></asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
-                                    <div class="form-group">
-                                        <asp:Button ID="btnsave" runat="server" OnClientClick="ClientSideClick(this)" UseSubmitBehavior="false" ValidationGroup="val1"
-                                            class="btn btn-success" Text="Save" OnClick="btnsave_Click" />
-                                        <asp:Button ID="Button1" runat="server" class="btn btn-warning" Text="Exit" OnClick="btnexit_Click" />
+                                    <div class="col-lg-3">
+                                        <asp:Button ID="btnsave" runat="server" OnClientClick="ClientSideClick(this)" UseSubmitBehavior="false" ValidationGroup="val1" width="150px"
+                                            class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="btnsave_Click" />
+                                        <asp:Button ID="Button1" runat="server" class="btn btn-lg btn-link" Text="Exit" OnClick="btnexit_Click" />
                                         <asp:RadioButton ID="order" runat="server" Text="Order" Visible="false" AutoPostBack="true"
                                             OnCheckedChanged="order_CheckedChanged" />
                                     </div>
@@ -145,14 +140,10 @@
                     </div>
                     <!-- /.row (nested) -->
                 </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-    <!-- /#page-wrapper -->
-    <!-- jQuery -->
+            
+   </div>
+   </div>
+   </div>
+   </div>
 </body>
 </html>

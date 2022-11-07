@@ -56,14 +56,92 @@
     <form id="form1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <div class="row">
-        <div runat="server" class="col-lg-12">
-            <div id="Div1" runat="server" class="col-lg-4">
-                <table runat="server" width="100%">
-                    <tr>
-                        <td>
-                            <asp:GridView ID="gvip" runat="server" AutoGenerateColumns="false" HeaderStyle-BackColor="RosyBrown" OnRowCommand="gvcat_RowCommand"
-                                HeaderStyle-ForeColor="White" HeaderStyle-Height="30px">
+     <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+   
+         <div class="col-lg-4">
+        <div class="panel panel-custom1">
+		<div class="panel-header">
+				<h1 class="page-header">Add Notification Details</h1>
+		</div>
+                <div class="panel-body panel-form-right">
+                <div class="list-group">
+                  <label>
+                        Select Branch(MultiSelect)
+                    </label>
+                    <asp:TextBox ID="txtbranch" runat="server" onkeyup="SearchEmployees(this,'#chkbranch');"
+                        CssClass="form-control"></asp:TextBox>
+                        <br />
+                    <asp:CheckBoxList ID="chkbranch" runat="server" >
+                    </asp:CheckBoxList>
+                    <br />
+                    <asp:Label ID="lblmessgaeid" runat="server" Visible="false" ></asp:Label>
+                    <label>
+                        Message Title</label>
+                    <asp:TextBox CssClass="form-control" ID="txtmsgtitle" runat="server" MaxLength="150"></asp:TextBox>
+                    <br />
+                    <label>
+                        Message Content</label>
+                    <asp:TextBox CssClass="form-control" ID="txtmessagecontent" TextMode="MultiLine"
+                        runat="server" MaxLength="150"></asp:TextBox>
+                    <br />
+                     <label>
+                        From Date</label>
+                    <asp:TextBox CssClass="form-control" ID="txtfromdate" runat="server" MaxLength="150"></asp:TextBox>
+                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtfromdate"
+                        PopupButtonID="txtfromdate" EnabledOnClient="true" runat="server" Format="dd/MM/yyyy"
+                        CssClass="cal_Theme1">
+                    </ajaxToolkit:CalendarExtender>
+                    <asp:Label ID="Label1" runat="server" Style="color: Red"></asp:Label>
+                    <br />
+                    <label>
+                        To Date</label>
+                    <asp:TextBox CssClass="form-control" ID="txttodate" runat="server" MaxLength="150"></asp:TextBox>
+                    <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txttodate"
+                        Format="dd/MM/yyyy" PopupButtonID="txttodate" EnabledOnClient="true" runat="server"
+                        CssClass="cal_Theme1">
+                    </ajaxToolkit:CalendarExtender>
+                    <br />
+                     <label>
+                        From Time
+                    </label>
+                    <asp:DropDownList ID="ddlTimeFrom" CssClass="form-control" runat="server">
+                    </asp:DropDownList>
+                    <asp:Label ID="fromtime" runat="server" BackColor="Red" Font-Bold="true" ForeColor="White"
+                        Visible="false"></asp:Label>
+                        <br />
+                          <label>
+                        TO Time</label>
+                    <asp:DropDownList ID="ddlTimeTo" CssClass="form-control" runat="server">
+                    </asp:DropDownList>
+                    <asp:Label ID="totime" runat="server" BackColor="Red" Font-Bold="true" ForeColor="White"
+                        Visible="false"></asp:Label>
+                        <br />
+                     <label>
+                        Is Active</label>
+                    <asp:DropDownList ID="drpisactive" CssClass="form-control" runat="server">
+                        <asp:ListItem Text="Yes" Selected="True" Value="Yes"> </asp:ListItem>
+                        <asp:ListItem Text="No" Value="No"> </asp:ListItem>
+                    </asp:DropDownList>
+                    <br />
+                     <asp:Button ID="btnadd" runat="server" class="btn btn-lg btn-primary pos-btn1" ValidationGroup="val1"
+                                    Text="Save" width="150px" OnClick="addclick" />
+                                <asp:Button ID="btnexit" runat="server" class="btn btn-lg btn-link" 
+                                    Text="Clear" PostBackUrl="~/Accountsbootstrap/NotificationPage.aspx"  />
+                </div>
+                </div>
+                </div>
+                </div>
+            <div id="Div1" runat="server" class="col-lg-8">
+              <div class="row panel-custom1">
+                    <div class="panel-header">
+                      <h1 class="page-header">Notification List</h1>
+	                </div>
+                <div class="panel-body">
+                <div class="col-lg-12">
+                        <div class="table-responsive panel-grid-left">
+                            <asp:GridView ID="gvip" runat="server" AutoGenerateColumns="false" cssClass="table table-striped pos-table" OnRowCommand="gvcat_RowCommand" padding="0" spacing="0" border="0"  >
                                 <Columns>
                                 <asp:BoundField DataField="MessageTitle" HeaderText="Messgae Title" />
                                 <asp:BoundField DataField="MessageContent" HeaderText="Messgae Content" />
@@ -72,95 +150,27 @@
                                 <asp:BoundField DataField="IsActive" HeaderText="Is Active" />
                                  <asp:TemplateField Visible="true" ItemStyle-HorizontalAlign="Center" HeaderText="Edit">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="btnedit" CommandArgument='<%#Eval("messageid") %>' CommandName="Edits"
+                                                        <asp:LinkButton ID="btnedit" CommandArgument='<%#Eval("messageid") %>' CommandName="Edits" cssclass="btn btn-warning btn-md"
                                                             runat="server">
-                                                            <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server" /></asp:LinkButton>
+                                                            <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server" Visible="false" />
+                                                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                            </asp:LinkButton>
                                                         <%--<asp:LinkButton ID="btnedit" runat="server"  Text="edit"  CommandArgument='<%#Eval("categoryid") %>' CommandName="edit"></asp:LinkButton>--%>
                                                         <asp:HiddenField ID="ldgID" runat="server" Value='<%# Bind("messageid") %>' />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                 </Columns>
                             </asp:GridView>
-                        </td>
-                    </tr>
-                </table>
+              </div>
+              </div>         
             </div>
-            <div id="Div3" runat="server" class="col-lg-2">
-                <div class="form-group">
-                    <label>
-                        Select Branch(MultiSelect)
-                    </label>
-                    <asp:TextBox ID="txtbranch" runat="server" onkeyup="SearchEmployees(this,'#chkbranch');"
-                        CssClass="form-control"></asp:TextBox>
-                    <asp:CheckBoxList ID="chkbranch" runat="server">
-                    </asp:CheckBoxList>
-                    <%--<asp:CustomValidator ID="CustomValidator1" ErrorMessage="Please select at least one item."
-                        ForeColor="Red" ClientValidationFunction="ValidateCheckBoxList" runat="server" />--%>
-                </div>
-            </div>
-            <div id="Div2" runat="server" class="col-lg-6">
-                <div class="form-group">
-                <asp:Label ID="lblmessgaeid" runat="server" Visible="false" ></asp:Label>
-                    <label style="margin-top: -10px">
-                        Message Title</label>
-                    <asp:TextBox CssClass="form-control" ID="txtmsgtitle" runat="server" MaxLength="150"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label style="margin-top: -10px">
-                        Message Content</label>
-                    <asp:TextBox CssClass="form-control" ID="txtmessagecontent" TextMode="MultiLine"
-                        runat="server" MaxLength="150"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label>
-                        From Date</label>
-                    <asp:TextBox CssClass="form-control" ID="txtfromdate" runat="server" MaxLength="150"></asp:TextBox>
-                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtfromdate"
-                        PopupButtonID="txtfromdate" EnabledOnClient="true" runat="server" Format="dd/MM/yyyy"
-                        CssClass="cal_Theme1">
-                    </ajaxToolkit:CalendarExtender>
-                    <asp:Label ID="Label1" runat="server" Style="color: Red"></asp:Label>
-                </div>
-                <div class="form-group">
-                    <label>
-                        To Date</label>
-                    <asp:TextBox CssClass="form-control" ID="txttodate" runat="server" MaxLength="150"></asp:TextBox>
-                    <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txttodate"
-                        Format="dd/MM/yyyy" PopupButtonID="txttodate" EnabledOnClient="true" runat="server"
-                        CssClass="cal_Theme1">
-                    </ajaxToolkit:CalendarExtender>
-                </div>
-                <div class="form-group">
-                    <label>
-                        From Time
-                    </label>
-                    <asp:DropDownList ID="ddlTimeFrom" CssClass="form-control" runat="server">
-                    </asp:DropDownList>
-                    <asp:Label ID="fromtime" runat="server" BackColor="Red" Font-Bold="true" ForeColor="White"
-                        Visible="false"></asp:Label>
-                </div>
-                <div class="form-group">
-                    <label>
-                        TO Time</label>
-                    <asp:DropDownList ID="ddlTimeTo" CssClass="form-control" runat="server">
-                    </asp:DropDownList>
-                    <asp:Label ID="totime" runat="server" BackColor="Red" Font-Bold="true" ForeColor="White"
-                        Visible="false"></asp:Label>
-                </div>
-                <div class="form-group">
-                    <label>
-                        Is Active</label>
-                    <asp:DropDownList ID="drpisactive" CssClass="form-control" runat="server">
-                        <asp:ListItem Text="Yes" Selected="True" Value="Yes"> </asp:ListItem>
-                        <asp:ListItem Text="No" Value="No"> </asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-                   <asp:Button ID="btnadd" runat="server" class="btn btn-info" ValidationGroup="val1"
-                                    Text="Save" Style="width: 120px; margin-top: 15px" OnClick="addclick" />
-                                <asp:Button ID="btnexit" runat="server" class="btn  btn-warning" Style="width: 120px;
-                                    margin-top: 15px" Text="Reset" PostBackUrl="~/Accountsbootstrap/NotificationPage.aspx"  />
-            </div>
-        </div>
+           </div>
+           </div>
+            
+        
+    
+    </div>
+    </div>
     </div>
     </form>
 </body>

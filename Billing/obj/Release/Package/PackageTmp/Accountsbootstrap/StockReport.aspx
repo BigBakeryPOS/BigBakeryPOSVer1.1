@@ -74,60 +74,61 @@
     <form id="Form1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+     <div class="container-fluid">
+	<div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                Stock Report</div>
+        <div class="row panel-custom1">
+              <div class="panel-header">
+          <h1 class="page-header">Stock Report</h1>
+	    </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="table-responsive">
+                    
                         <div class="col-lg-12">
-                            <div class="col-lg-1">
-                            </div>
-                            <div class="col-lg-2">
+                           
+                            <div class="col-lg-3">
                                 <label>
                                     Admin PassWord</label>
-                                <asp:TextBox ID="txtpassword" runat="server" CssClass="form-control" Width="158px"
+                                <asp:TextBox ID="txtpassword" runat="server" CssClass="form-control"
                                     TextMode="Password" placeholder="Enter your Password" AutoPostBack="true" OnTextChanged="txtpassword_OnTextChanged"></asp:TextBox>
                             </div>
-                            <div class="col-lg-2">
-                                <div class="form-group">
+                            <div class="col-lg-3">
+                               
                                     <label>
                                         Type</label>
                                     <asp:RadioButtonList ID="rdbtype" runat="server" Enabled="false" RepeatColumns="2"
-                                        Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged">
+                                         AutoPostBack="true" OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged">
                                         <asp:ListItem Text="Qty Details" Value="1" Selected="True"></asp:ListItem>
                                         <asp:ListItem Text="Qty Value Details" Value="2"></asp:ListItem>
                                     </asp:RadioButtonList>
-                                </div>
+                               
                             </div>
-                            <div class="col-lg-2">
-                                <div class="form-group">
+                            <div class="col-lg-3">
+
                                     <label>
                                         Category</label>
                                     <asp:DropDownList ID="ddlcategory" AutoPostBack="true" runat="server" class="form-control"
-                                        Width="150px" OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged">
+                                        OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged">
                                     </asp:DropDownList>
-                                </div>
+                               
                             </div>
-                            <div class="col-lg-1">
-                                <div class="form-group">
+                            <div class="col-lg-3">
+                               
                                     <br />
-                                    <asp:Button ID="btnPrint" runat="server" CssClass="btn btn-danger" Width="110px"
+                                    <asp:Button ID="btnPrint" runat="server" CssClass="btn btn-secondary" 
                                         Text="Print" OnClick="btnPrintFromCodeBehind_Click" />
-                                </div>
+                                        &nbsp;&nbsp;&nbsp;<asp:Button ID="btnpdf" runat="server" Text="PDF" CssClass="btn btn-info" OnClick="btnpdf_Click"
+                                    />
+                                
                             </div>
-                            <div class="col-lg-1" runat="server" visible="false">
-                                <div class="form-group">
+                            <div class="col-lg-3" runat="server" visible="false">
+                                
                                     <br />
                                     <asp:Button ID="btnExport" Text="Export to Excel" runat="server" Width="110px" CssClass="btn btn-success"
                                         OnClick="btnExport_Click" />
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
+                            
                                 <br />
-                                <asp:Button ID="btnpdf" runat="server" Text="PDF" CssClass="btn btn-info" OnClick="btnpdf_Click"
-                                    Width="110px" />
+                                
                             </div>
                             <div class="col-lg-1">
                                 <asp:Button ID="btnsearch" runat="server" Text="Filter" CssClass="btn btn-success"
@@ -141,34 +142,37 @@
                                 <asp:Button ID="btnApp" runat="server" Text="exe" OnClick="btnApp_Click" Visible="false" />
                             </div>
                         </div>
-                        <table class="table table-bordered table-striped" border="0">
-                            <tr>
-                                <td colspan="4" align="left">
+                        </div>
+                        
+                        <div class="table-responsive panel-grid-left">
+                        <div class="row">
                                     <asp:GridView ID="gvstock" runat="server" AutoGenerateColumns="false" AllowPaging="false"
-                                        CssClass="mGrid" PageSize="50" OnPageIndexChanging="page_change" OnRowDataBound="gvstock_RowDataBound" Caption="Store Stock Details"
-                                        OnRowCreated="gvstock_RowCreated">
-                                        <HeaderStyle BackColor="#3366FF" />
-                                        <PagerSettings FirstPageText="1" Mode="Numeric" />
+                                        cssClass="table table-striped pos-table" PageSize="50" OnPageIndexChanging="page_change" OnRowDataBound="gvstock_RowDataBound" Caption="Store Stock Details"
+                                        OnRowCreated="gvstock_RowCreated" padding="0" spacing="0" border="0">
+                                         <PagerStyle CssClass="pos-paging" />
+                                        <%--<HeaderStyle BackColor="#3366FF" />
+                                        <PagerSettings FirstPageText="1" Mode="Numeric" />--%>
                                         <Columns>
+                                        <asp:BoundField HeaderText="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S.No" DataField="serial"  Visible="true" />
                                             <asp:BoundField HeaderText="Category " DataField="Category" Visible="true" />
-                                            <asp:BoundField HeaderText="Sub Category" DataField="Definition" />
-                                            <asp:BoundField HeaderText="Quantity" Visible="false" DataField="Quantity" DataFormatString='{0:N0}' />
-                                            <asp:BoundField HeaderText="Available Quantity" DataField="Available_QTY" DataFormatString='{0:N0}' />
+                                            <asp:BoundField HeaderText="Item Name" DataField="Definition" />
+                                            <asp:BoundField HeaderText="Quantity" Visible="false" DataField="Quantity" DataFormatString='{0:f3}' />
+                                            <asp:BoundField HeaderText="Available Quantity" DataField="Available_QTY" DataFormatString='{0:f3}' />
                                             <asp:BoundField HeaderText="Purchase Price" Visible="false" DataFormatString="{0:f}"
                                                 DataField="Rate" />
                                             <asp:BoundField HeaderText="Stock Total Price" Visible="false" DataFormatString="{0:f}"
                                                 DataField="StockAmount" />
                                             <asp:BoundField HeaderText="Min Stock" Visible="false" DataFormatString="{0:f}" DataField="MinQty" />
                                         </Columns>
-                                        <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-                                        <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                                        <%--<FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                                        <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                                     </asp:GridView>
                                     <div id="div1" runat="server">
-                                        <asp:GridView ID="gvStockValue" Caption="Stock Value Report" runat="server" CssClass="mGrid"
+                                        <asp:GridView ID="gvStockValue" Caption="Stock Value Report" runat="server" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                                             OnRowDataBound="gvStockValue_OnRowDataBound" ShowFooter="true" AutoGenerateColumns="false"
                                             Width="100%">
-                                            <HeaderStyle BackColor="#3366FF" />
-                                            <PagerSettings FirstPageText="1" Mode="Numeric" />
+                                           <%-- <HeaderStyle BackColor="#3366FF" />
+                                            <PagerSettings FirstPageText="1" Mode="Numeric" />--%>
                                             <Columns>
                                                 <asp:TemplateField HeaderText="SNo">
                                                     <ItemTemplate>
@@ -181,19 +185,16 @@
                                                 <asp:BoundField HeaderText="Tax" DataField="Tax" DataFormatString="{0:f2}" ItemStyle-HorizontalAlign="Right" />
                                                 <asp:BoundField HeaderText="MRP" DataField="MRP" DataFormatString="{0:f2}" ItemStyle-HorizontalAlign="Right" />
                                                 <asp:BoundField HeaderText="QTY" DataField="Available_QTY" DataFormatString="{0:f2}"
-                                                    ItemStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right" />
+                                                     />
                                                 <asp:BoundField HeaderText="TotalAmount" DataField="TotalAmount" DataFormatString="{0:f2}"
-                                                    ItemStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right" />
+                                                     />
                                             </Columns>
-                                            <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-                                            <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                                            <%--<FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                                            <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                                         </asp:GridView>
                                     </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="4" align="left">
-                                    <asp:GridView Visible="false" ID="gvlowstock" runat="server" AutoGenerateColumns="false"
+                                
+                                    <asp:GridView Visible="false" ID="gvlowstock" runat="server" AutoGenerateColumns="false" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                                         AllowPaging="true" BackColor="Red" ForeColor="WhiteSmoke">
                                         <Columns>
                                             <asp:BoundField HeaderText="Category " DataField="Category" />
@@ -202,21 +203,22 @@
                                             <asp:BoundField HeaderText="Available Quantity" DataField="Available_QTY" />
                                             <asp:BoundField HeaderText="Unit Price" DataFormatString="{0:f}" DataField="unitprice" />
                                         </Columns>
-                                        <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-                                        <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                                       <%-- <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                                        <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                                     </asp:GridView>
                                     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-                                </td>
-                            </tr>
+                             
                             <tr id="admin" runat="server">
                                 <td>
                                 </td>
                             </tr>
-                        </table>
+                        
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     </form>
 </body>

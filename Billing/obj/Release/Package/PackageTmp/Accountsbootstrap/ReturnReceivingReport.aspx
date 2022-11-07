@@ -59,24 +59,31 @@
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <div class="Row">
-        <div class="col-lg-12">
-            <div class="col-lg-1">
-            </div>
-            <div class="col-lg-2">
-                <div class="form-group" runat="server" visible="false">
+     <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Return Receiving Report</h1>
+	    </div>
+        <div class="panel-body">
+    
+        <div class="row">
+
+
+                <div class="col-lg-3" runat="server" visible="false">
                     <label>
                         Reason
                     </label>
                     <asp:DropDownList ID="ddlreason" runat="server" CssClass="form-control" Width="150px">
                     </asp:DropDownList>
                 </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="form-group">
+           
+            <div class="col-lg-3">
+                
                     <label>
                         From Date</label>
-                    <asp:TextBox runat="server" ID="txtfromdate" CssClass="form-control" Width="150px">
+                    <asp:TextBox runat="server" ID="txtfromdate" CssClass="form-control" >
                     </asp:TextBox>
                     <%--  <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtfromdate"
                         ErrorMessage="Please Select valid Date Thank You!!!" Type="Date">
@@ -84,13 +91,13 @@
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtfromdate"
                         Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
-                </div>
+               
             </div>
-            <div class="col-lg-2">
-                <div class="form-group">
+            <div class="col-lg-3">
+              
                     <label>
                         To Date</label>
-                    <asp:TextBox runat="server" ID="txttodate" CssClass="form-control" Width="150px">
+                    <asp:TextBox runat="server" ID="txttodate" CssClass="form-control" >
                     </asp:TextBox>
                     <%-- <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="txttodate"
                         ErrorMessage="Please Select valid Date Thank You!!!" Type="Date">
@@ -98,28 +105,24 @@
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txttodate"
                         Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
-                </div>
+                
             </div>
-            <div class="col-lg-1">
+            <div class="col-lg-3">
                 <br />
-                <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-success" Text="Search"
-                    Width="120px" OnClick="btnSearch_Click" />
-            </div>
-            <div class="col-lg-1">
-                <br />
-                <asp:Button ID="btnExp" runat="server" Text="Export" CssClass="btn btn-danger" Width="120px"
+                <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-primary pos-btn1" Text="Search"
+                   OnClick="btnSearch_Click" />
+           
+                &nbsp;&nbsp;&nbsp;<asp:Button ID="btnExp" runat="server" Text="Export" CssClass="btn btn-success" 
                     OnClick="btnexp_Click" />
-            </div>
-            <div class="col-lg-1">
-                <br />
-                <asp:Button ID="btnPrint" runat="server" Text="Print" CssClass="btn btn-warning"
-                    OnClientClick="printGrid()" Width="120px" />
+           
+                &nbsp;&nbsp;&nbsp;<asp:Button ID="btnPrint" runat="server" Text="Print" CssClass="btn btn-secondary"
+                    OnClientClick="printGrid()"  />
             </div>
         </div>
-    </div>
+   
     <div id="div1" runat="server">
-        <div class="col-lg-12">
-            <asp:GridView ID="gvReturns" Caption="Return Receiving Qty Report" runat="server" CssClass="mGrid"
+       <div class="table-responsive panel-grid-left">
+            <asp:GridView ID="gvReturns" Caption="Return Receiving Qty Report" runat="server" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                 EmptyDataText="No Data Found" OnRowDataBound="gvReturns_OnRowDataBound" ShowFooter="true"
                 AutoGenerateColumns="false" Width="100%">
                 <Columns>
@@ -139,11 +142,15 @@
                     <asp:BoundField HeaderText="Recqty" DataField="qty" />
                     <asp:BoundField HeaderText="MissingQty" DataField="MissingQty" />
                 </Columns>
-                <FooterStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
-                <HeaderStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
+               <%-- <FooterStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
+                <HeaderStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />--%>
             </asp:GridView>
         </div>
     </div>
-    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+  </form>
 </body>
 </html>

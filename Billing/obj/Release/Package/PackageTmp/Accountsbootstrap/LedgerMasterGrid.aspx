@@ -28,6 +28,7 @@
 
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet"/>
+    <link href="../css/Pos_style.css" rel="stylesheet" />
 
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -78,54 +79,66 @@
                 <!-- /.col-lg-12 -->
             
         <!-- /.row -->  
-          
-                    <div class="panel panel-default" align="center">
-                         <div class="panel-heading " style="background-color:#428bca; color:White" ><b>Ledger Master</b></div>
+          <div class="container-fluid">
+	   <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Ledger Master
+           <span class="pull-right">
+          <asp:LinkButton ID="Button1" runat="server" onclick="btnnew_Click">
+                                                <button type="button" class="btn btn-primary btn-md pos-btn1">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD
+			</button>
+                                             </asp:LinkButton>
+                  
+                </span>
+          </h1>
+	    </div>          
+                    
                         <div class="panel-body">
-                            
-       <asp:Button ID="btnnew" runat="server" CssClass="btn btn-success" Text="Add New Ledger" 
-                onclick="btnnew_Click" /><br /><br />
-      <asp:GridView ID="gvledgrid" runat="server"  AllowPaging="true" PageSize="10"
-                                     
-                                        AutoGenerateColumns="false" CssClass="mGrid"  AllowSorting="true" 
-                                        onrowcommand="gvledgrid_RowCommand" onpageindexchanging="Page_Change"  OnRowDataBound="gvledgrid_OnRowDataBound"
-                                       >
-                                 <HeaderStyle BackColor="#990000" />
-                                 <PagerSettings FirstPageText="1"  Mode="Numeric"  />
+                      
+                        
+                            <div class="table-responsive panel-grid-left">
+                            <asp:GridView ID="gvledgrid" runat="server"  AllowPaging="true" PageSize="10"
+                                        AutoGenerateColumns="false"   AllowSorting="true"  CssClass="table table-striped pos-table" 
+                                        onrowcommand="gvledgrid_RowCommand" onpageindexchanging="Page_Change"  OnRowDataBound="gvledgrid_OnRowDataBound" padding="0" spacing="0" border="0">
+                                 
+                                 <PagerStyle cssclass="pos-paging" />
                                 <Columns>
                                 
                                     <%--<asp:BoundField HeaderText="Category ID" DataField="CategoryID" />--%>
                                     <asp:BoundField HeaderText="Ledger" DataField="LedgerName"    />
-                                    
 
-                               <asp:TemplateField HeaderText="Edit">
-     <ItemTemplate>
-     <asp:LinkButton ID="btnedit"   CommandArgument='<%#Eval("LedgerID") %>' CommandName="Edit" runat="server"> <asp:Image ID="imdedit"  ImageUrl="~/images/edit.png" runat="server" width="55px"/></asp:LinkButton>
-    
-
-                                     </ItemTemplate>
-    
-     
-     
-     </asp:TemplateField>
-          <asp:TemplateField HeaderText="Delete">
-     <ItemTemplate>
-    
-     <asp:LinkButton ID="btndel"   CommandArgument='<%#Eval("LedgerID") %>' CommandName="Del" runat="server"> <asp:Image ID="Image1"  ImageUrl="~/images/delete.png" runat="server" /></asp:LinkButton>
-   
-                                <%--<asp:LinkButton ID="btnedit" runat="server"  Text="edit"  CommandArgument='<%#Eval("categoryid") %>' CommandName="edit"></asp:LinkButton>--%>
+                                <asp:TemplateField HeaderText="Edit" ItemStyle-Width="50px">
+                                 <ItemTemplate>
+                                 <asp:LinkButton ID="btnedit"   CommandArgument='<%#Eval("LedgerID") %>' cssclass="btn btn-warning btn-md" CommandName="Edit" runat="server"> 
+                                 <asp:Image ID="imdedit"  ImageUrl="~/images/edit.png" runat="server" visible="false" width="55px"/>
+                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                 </asp:LinkButton>
                                  </ItemTemplate>
+                                 </asp:TemplateField>
+                                
+                                
+                                <asp:TemplateField HeaderText="Delete"  ItemStyle-Width="50px">
+                             <ItemTemplate>
+                             <asp:LinkButton ID="btndel"   CommandArgument='<%#Eval("LedgerID") %>' CommandName="Del" runat="server"> 
+                             <asp:Image ID="Image1"  ImageUrl="~/images/delete.png" visible="false" runat="server" />
+                             <button type="button" class="btn btn-danger btn-md">
+									<span class="glyphicon glyphicon-remove"  aria-hidden="true"></span>
+							</button>
+                              </asp:LinkButton>
+                                <%--<asp:LinkButton ID="btnedit" runat="server"  Text="edit"  CommandArgument='<%#Eval("categoryid") %>' CommandName="edit"></asp:LinkButton>--%>
+                             </ItemTemplate>
+                        </asp:TemplateField> 
+                </Columns>
     
-     
-     
-     </asp:TemplateField> 
-    </Columns><FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-   <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+   <%-- <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+   <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                                 </asp:GridView>
-                               
+                             
          
-        </div>
         
+        </div>
+        </div>
         <!-- /#page-wrapper -->
 		</div>
         </div>
@@ -134,4 +147,5 @@
 </asp:UpdatePanel>
 </form>
 </body>
+
 </html>

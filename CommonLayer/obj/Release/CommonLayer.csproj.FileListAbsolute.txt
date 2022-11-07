@@ -18,3 +18,9 @@ E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\CommonL
 E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\CommonLayer\bin\Release\CommonLayer.pdb
 E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\CommonLayer\obj\Release\CommonLayer.dll
 E:\Rajaram\BigPOS(Version 1.1)\BigPOS(Version 1.1)\BlackforestProduction\CommonLayer\obj\Release\CommonLayer.pdb
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\CommonLayer\bin\Release\CommonLayer.dll
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\CommonLayer\bin\Release\CommonLayer.pdb
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\CommonLayer\obj\Release\CommonLayer.csproj.AssemblyReference.cache
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\CommonLayer\obj\Release\CommonLayer.csproj.CoreCompileInputs.cache
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\CommonLayer\obj\Release\CommonLayer.dll
+C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\CommonLayer\obj\Release\CommonLayer.pdb

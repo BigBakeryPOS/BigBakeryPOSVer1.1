@@ -14,6 +14,7 @@
     <title>Customer Order </title>
     <link href="css/mGrid.css" rel="stylesheet" type="text/css" />
     <link rel="Stylesheet" type="text/css" href="../css/date.css" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <script type="text/javascript" src="../jqueryCalendar/jquery-1.6.2.min.js"></script>
     <script type="text/javascript" src="../jqueryCalendar/jquery-ui-1.8.15.custom.min.js"></script>
     <link rel="stylesheet" href="../jqueryCalendar/jqueryCalendar.css" />
@@ -69,7 +70,7 @@
             z-index: 80;
             padding: 25px 25px 20px;
             border-radius: 7px;
-            background: #e84c3d;
+            background: #007aff;
             margin: 30px auto 0;
             padding: 6px;
             color: White;
@@ -140,65 +141,72 @@
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label" Visible="false">  </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
-    <div class="row" style="">
-        <div class="col-lg-12" style="">
-            <div class="panel panel-default" style="">
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Order Details</b></div>
-                <div class="panel-body" style="">
-                    <div class="row" style="">
-                        <div class="col-lg-12" style="">
+    <asp:Label runat="server" ID="lblbooknocheck" Visible="false" Text="N" ></asp:Label>
+<div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+           <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Order Details
+          <span class="pull-right">
+         <asp:LinkButton ID="btnadd" runat="server" OnClick="btnadd_Click">
+           <button type="button" class="btn btn-primary btn-md pos-btn1">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD NEW ORDER
+			</button>
+            </asp:LinkButton>
+           </span>    
+                </h1>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
                             <form runat="server" id="form1" method="post">
                             <asp:ScriptManager ID="ScriptManager1" runat="server">
                             </asp:ScriptManager>
                             <asp:Label ID="lblpendingdays" runat="server" Text="60" Visible="false" ></asp:Label>
                             <asp:UpdatePanel ID="Update" runat="server" EnableViewState="true" UpdateMode="Conditional">
                                 <ContentTemplate>
-                                    <div class="col-lg-12" style="">
-                                        <div class="col-lg-3" runat="server" visible="false" style="">
+                                   
+                                        <div  runat="server" visible="false" style="">
                                             <label>
                                                 Enter Order Cancel Password</label>
                                             <asp:TextBox ID="txtcancelpassword" runat="server" Width="200px" CssClass="form-control"
                                                 TextMode="Password" AutoPostBack="false" OnTextChanged="txtcancelpassword_OnTextChanged"></asp:TextBox>
                                         </div>
-                                        <div class="col-lg-3" style="">
-                                            <br />
-                                            <asp:Button ID="btnadd" runat="server" style="background-color: #428bca; border: 3px solid #428bca;    margin-left: 1294px;" class="btn btn-success" Text="Add New Order"
-                                                OnClick="btnadd_Click" /></div>
-                                        <div class="col-lg-3" style="">
+                                       
                                             <asp:Button ID="btnemail" runat="server" Visible="false" CssClass="btn btn-default" Text="Email"
                                                 OnClick="btnSendMail_Click" />
+                                           
                                             <div runat="server" visible="false">
                                                 <asp:GridView ID="gvorderinfo" runat="server">
-                                                    
                                                     <HeaderStyle BackColor="#df5015" Font-Bold="true" ForeColor="White" />
                                                 </asp:GridView>
                                             </div>
-                                            <div class="form-group" style="">
-                                                <asp:TextBox ID="txtser" runat="server" Visible="false" Style="width: 250px;" placeholder="Search Custer Name"
+                                           
+                                              <asp:TextBox ID="txtser" runat="server" Visible="false" Style="width: 250px;" placeholder="Search Custer Name"
                                                     onkeyup="Search_Gridview(this, 'gvOrder')"></asp:TextBox>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" style="">
+                                        
+                                       
                                             <asp:DropDownList ID="ddlsearch" CssClass="form-control" Visible="false" runat="server"
                                                 Width="237px">
                                             </asp:DropDownList>
-                                            <br />
-                                            <asp:Button ID="btnsearch" runat="server" class="btn btn-success" Text="Search" Style="margin-top: 0px;"
+                                           
+                                            <asp:Button ID="btnsearch" runat="server" class="btn btn-success" Text="Search" 
                                                 Visible="false" />
                                             <asp:Button ID="btnsyncclick" runat="server" class="btn btn-warning" Text="Sync. to Production"
                                                 Visible="false" OnClick="btnsyncclick_OnClick" Width="170px" />
-                                            <br />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12" style="">
-                                        <div class="table-responsive" style="">
-                                            <asp:GridView ID="gvorderToday" runat="server"  Width="100%" HeaderStyle-Height="40px" AutoGenerateColumns="false"
-                                                Font-Names="Calibri" DataKeyNames="orderno" Caption="Today Delivery Orders" OnRowCommand="gvorderToday_RowCommand"
-                                                OnRowDataBound="GVORderToday_Rowdatabound" Font-Bold="true" CellPadding="20"
+                                       
+                                    <asp:RadioButtonList ID="radstatus" runat="server" OnSelectedIndexChanged="status_checked"
+                                                AutoPostBack="true">
+                                                <asp:ListItem Text="Pending" Value="Pending" Selected="True"></asp:ListItem>
+                                                <asp:ListItem Text="Delivered" Value="Delivered"></asp:ListItem>
+                                            </asp:RadioButtonList>
+                                    <div class="table-responsive panel-grid-left">
+                                            <asp:GridView ID="gvorderToday" runat="server"  Width="100%"  AutoGenerateColumns="false" cssClass="table table-striped pos-table"
+                                                Font-Names="Calibri" DataKeyNames="orderno" Caption="Today Delivery Orders" OnRowCommand="gvorderToday_RowCommand" padding="0" spacing="0" border="0"
+                                                OnRowDataBound="GVORderToday_Rowdatabound" 
                                                 Visible="true">
-                                                <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                                    HorizontalAlign="Center" ForeColor="White" />
+                                                <%--<HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                                    HorizontalAlign="Center" ForeColor="White" />--%>
                                                 <Columns>
                                                     <asp:BoundField HeaderText="Book No" DataField="BookNo" />
                                                     <asp:BoundField HeaderText="Customer Name" DataField="CustomerName" />
@@ -234,7 +242,10 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btnprint" CommandArgument='<%#Eval("OrderNo") %>' CommandName="Print"
                                                                 runat="server">
-                                                                <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png" width="55px" />
+                                                                <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png" width="55px" visible="false"/>
+                                                                <button type="button" class="btn btn-default btn-md">
+						                                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+					                                            </button>
                                                             </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -242,7 +253,10 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btnBill" CommandArgument='<%#Eval("OrderNo") %>' CommandName="Bill"
                                                                 runat="server">
-                                                                <asp:Image ID="imgBill" runat="server" ImageUrl="~/images/Billing.png" width="45px"  />
+                                                                <asp:Image ID="imgBill" runat="server" ImageUrl="~/images/Billing.png" width="45px" visible="false" />
+                                                                <button type="button" class="btn btn-info btn-md">
+						                                            <span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+					                                            </button>
                                                             </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -250,7 +264,10 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btninvprint" CommandArgument='<%#Eval("OrderNo") %>' CommandName="InvPrint"
                                                                 runat="server">
-                                                                <asp:Image ID="imginvprint" runat="server" ImageUrl="~/images/print (1).png" width="55px" />
+                                                                <asp:Image ID="imginvprint" runat="server" ImageUrl="~/images/print (1).png" width="55px" visible="false"/>
+                                                                <button type="button" class="btn btn-default btn-md">
+						                                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+					                                            </button>
                                                             </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -258,7 +275,11 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btncancelnew" runat="server" CommandArgument='<%#Eval("OrderNo") %>'
                                                                 CommandName="Cancell">
-                                                                <asp:Image ID="imgcancelnew" runat="server" ImageUrl="~/images/cancel-circle.png" width="37px"  /></asp:LinkButton>
+                                                                <asp:Image ID="imgcancelnew" runat="server" ImageUrl="~/images/cancel-circle.png" width="37px" visible="false" />
+                                                                <button type="button" class="btn btn-danger btn-md">
+						                                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					                                                </button>
+                                                                    </asp:LinkButton>
                                                             <%-- <asp:ImageButton ID="imgdisablenew" ImageUrl="~/images/delete.png" runat="server"
                                                                         Visible="false" Enabled="false" ToolTip="Not Allow To Delete" />--%>
                                                             <%-- <ajaxToolkit:ModalPopupExtender ID="lnkDelete_ModalPopupExtendernew" runat="server"
@@ -274,19 +295,23 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btneditBill" CommandArgument='<%#Eval("OrderNo") %>' CommandName="Editt"
                                                                 runat="server">
-                                                                <asp:Image ID="imgBilledit" runat="server" ImageUrl="~/images/edit.png" width="55px" />
+                                                                <asp:Image ID="imgBilledit" runat="server" ImageUrl="~/images/edit.png" width="55px" visible="false"/>
+                                                                <button type="button" class="btn btn-warning btn-md">
+						                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					                                            </button>
                                                             </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                 </Columns>
                                             </asp:GridView>
-                                            <asp:GridView ID="gvrest" runat="server" AllowPaging="false" Width="100%"  HeaderStyle-Height="40px" AutoGenerateColumns="false"
-                                                Font-Names="Calibri" DataKeyNames="orderno" Caption="Upcoming Orders" Font-Bold="true" OnRowCommand="gvrest_RowCommand"
+                                            <asp:GridView ID="gvrest" runat="server" AllowPaging="false" Width="100%"   AutoGenerateColumns="false" cssClass="table table-striped pos-table"
+                                                 DataKeyNames="orderno" Caption="Upcoming Orders"  OnRowCommand="gvrest_RowCommand" padding="0" spacing="0" border="0"
                                                 OnRowDataBound="gvrest_RowDataBound">
                                                 <%-- <HeaderStyle BackColor="#990000" />--%>
-                                                <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                               <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
                                                     HorizontalAlign="Center" ForeColor="White" />
-                                                <PagerSettings FirstPageText="1" Mode="Numeric" />
+                                                <PagerSettings FirstPageText="1" Mode="Numeric" />--%>
+                                                 <PagerStyle cssclass="pos-paging" />
                                                 <Columns>
                                                     <asp:BoundField HeaderText="Book No" DataField="BookNo" />
                                                     <asp:BoundField HeaderText="Customer Name" DataField="CustomerName" />
@@ -316,14 +341,17 @@
                                                     <asp:TemplateField HeaderText="Delivery Status">
                                                         <ItemTemplate>
                                                                 <asp:Label ID="lblstatus" runat="server" Text='<%#Eval("DeliveryStatus") %>'></asp:Label>
-                                                            </asp:LinkButton>
+                                                           
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Print">
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btnprint" CommandArgument='<%#Eval("OrderNo") %>' CommandName="Print"
                                                                 runat="server">
-                                                                <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png" width="55px"/>
+                                                                <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png" width="55px" Visible="false"/>
+                                                                <button type="button" class="btn btn-default btn-md">
+						                                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+					                                            </button>
                                                             </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -331,7 +359,10 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btnBill" CommandArgument='<%#Eval("OrderNo") %>' CommandName="Bill"
                                                                 runat="server">
-                                                                <asp:Image ID="imgBill" runat="server" ImageUrl="~/images/Billing.png" width="45px"  />
+                                                                <asp:Image ID="imgBill" runat="server" ImageUrl="~/images/Billing.png" width="45px" Visible="false" />
+                                                                <button type="button" class="btn btn-info btn-md">
+						                                        <span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+					                                        </button>
                                                             </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -357,7 +388,11 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btncancelnew" runat="server" CommandArgument='<%#Eval("OrderNo") %>'
                                                                 CommandName="Cancell">
-                                                                <asp:Image ID="imgcancelnew" runat="server" ImageUrl="~/images/cancel-circle.png" width="37px"  /></asp:LinkButton>
+                                                                <asp:Image ID="imgcancelnew" runat="server" ImageUrl="~/images/cancel-circle.png" width="37px" Visible="false" />
+                                                                <button type="button" class="btn btn-danger btn-md">
+						                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					                                            </button>
+                                                                </asp:LinkButton>
                                                             <%--  <asp:ImageButton ID="imgdisablenew" ImageUrl="~/images/delete.png" runat="server"
                                                                         Visible="false" Enabled="false" ToolTip="Not Allow To Delete" />--%>
                                                             <%-- <ajaxToolkit:ModalPopupExtender ID="lnkDelete_ModalPopupExtendernew" runat="server"
@@ -373,7 +408,10 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btnlinkedit" CommandArgument='<%#Eval("OrderNo") %>' CommandName="Editt"
                                                                 runat="server">
-                                                                <asp:Image ID="btnimgedit" runat="server" ImageUrl="~/images/edit.png" width="55px" />
+                                                                <asp:Image ID="btnimgedit" runat="server" ImageUrl="~/images/edit.png" width="55px" visible="false"/>
+                                                                 <button type="button" class="btn btn-warning btn-md">
+						                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					                                            </button>
                                                             </asp:LinkButton>
                                                             <%-- <asp:ImageButton ID="btnimgbtedit" ImageUrl="~/images/edit.png" runat="server" Visible="false"
                                                                         Enabled="false" ToolTip="Not Allow To Edit" />--%>
@@ -391,7 +429,10 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btnpayment" CommandArgument='<%#Eval("OrderNo") %>' CommandName="PAmount"
                                                                 runat="server">
-                                                                <asp:Image ID="payamt" runat="server" ImageUrl="~/images/edit_add.png" width="55px" />
+                                                                <asp:Image ID="payamt" runat="server" ImageUrl="~/images/edit_add.png" width="55px" visible="false"/>
+                                                                <button type="button" class="btn btn-success btn-md">
+						                                        <span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
+					                                        </button>
                                                             </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -399,19 +440,17 @@
                                                 <%-- <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                                                 <%-- <HeaderStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                                             </asp:GridView>
-                                            <asp:RadioButtonList ID="radstatus" runat="server" OnSelectedIndexChanged="status_checked"
-                                                AutoPostBack="true">
-                                                <asp:ListItem Text="Pending" Value="Pending" Selected="True"></asp:ListItem>
-                                                <asp:ListItem Text="Delivered" Value="Delivered"></asp:ListItem>
-                                            </asp:RadioButtonList>
-                                            <asp:GridView ID="GridView1" HeaderStyle-Height="40px" runat="server" AllowPaging="false" AutoGenerateColumns="false"
-                                                Width="100%" DataKeyNames="orderno" Caption="Pending Orders" Font-Bold="true" OnRowCommand="GridView1_RowCommand"
-                                                Font-Names="Calibri" OnRowDataBound="GridView1_OnRowDataBound">
-                                                <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                           
+                                            
+                                             
+                                            <asp:GridView ID="GridView1" runat="server" AllowPaging="false" AutoGenerateColumns="false"  cssClass="table table-striped pos-table"
+                                                DataKeyNames="orderno" Caption="Pending Orders"  OnRowCommand="GridView1_RowCommand"
+                                                OnRowDataBound="GridView1_OnRowDataBound" padding="0" spacing="0" border="0">
+                                               <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
                                                     HorizontalAlign="Center" ForeColor="White" />
-                                                <RowStyle ForeColor="Red" Font-Bold="true" />
+                                                <RowStyle ForeColor="Red" Font-Bold="true" />--%>
                                                 <%--<HeaderStyle BackColor="#990000" />--%>
-                                                <PagerSettings FirstPageText="1" Mode="Numeric" />
+                                               <%-- <PagerSettings FirstPageText="1" Mode="Numeric" />--%>
                                                 <Columns>
                                                     <asp:BoundField HeaderText="Book No" DataField="BookNo" />
                                                     <asp:BoundField HeaderText="Customer Name" DataField="CustomerName" />
@@ -452,7 +491,10 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btnpenstst" CommandArgument='<%#Eval("OrderNo") %>' CommandName="PendingMSG"
                                                                 runat="server">
-                                                                <img src="../images/add.jpg" width="70px" />
+                                                                <%--<img src="../images/add.jpg" width="70px" visible="false"/>--%>
+                                                                 <button type="button" class="btn btn-primary btn-md pos-btn1">
+				                                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+			                                                    </button>
                                                             </asp:LinkButton>
                                                             <asp:Label ID="lblpendingmsg" runat="server" Text='<%#Eval("PendingMsg") %>' ></asp:Label>
                                                         </ItemTemplate>
@@ -467,7 +509,10 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btnprint" CommandArgument='<%#Eval("OrderNo") %>' CommandName="Print"
                                                                 runat="server">
-                                                                <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png"  width="55px" />
+                                                                <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png"  width="55px" Visible="false" />
+                                                               <button type="button" class="btn btn-default btn-md">
+						                                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+					                                            </button>
                                                             </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -475,7 +520,10 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btnBill" CommandArgument='<%#Eval("OrderNo") %>' CommandName="Bill"
                                                                 runat="server">
-                                                                <asp:Image ID="imgBill" runat="server" ImageUrl="~/images/Billing.png" width="45px"  />
+                                                               <%-- <asp:Image ID="imgBill" runat="server" ImageUrl="~/images/Billing.png" width="45px"  />--%>
+                                                                <button type="button" class="btn btn-info btn-md">
+						                                        <span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+					                                        </button>
                                                             </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -483,7 +531,11 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btncancel" runat="server" CommandArgument='<%#Eval("OrderNo") %>'
                                                                 CommandName="Cancell">
-                                                                <asp:Image ID="imgcancel" runat="server" ImageUrl="~/images/cancel-circle.png" width="37px"  /></asp:LinkButton>
+                                                                <%--<asp:Image ID="imgcancel" runat="server" ImageUrl="~/images/cancel-circle.png" width="37px"  />--%>
+                                                                <button type="button" class="btn btn-danger btn-md">
+						                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					                                            </button>
+                                                                </asp:LinkButton>
                                                             <%--<ajaxToolkit:ModalPopupExtender ID="lnkDelete_ModalPopupExtender" runat="server"
                                                                         CancelControlID="ButtonDeleteCancel" OkControlID="ButtonDeleleOkay" TargetControlID="btncancel"
                                                                         PopupControlID="DivDeleteConfirmation" BackgroundCssClass="ModalPopupBG">
@@ -497,7 +549,10 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btnlinkedit" CommandArgument='<%#Eval("OrderNo") %>' CommandName="Editt"
                                                                 runat="server">
-                                                                <asp:Image ID="btnimgedit" runat="server" ImageUrl="~/images/edit.png" width="55px"/>
+                                                                <%--<asp:Image ID="btnimgedit" runat="server" ImageUrl="~/images/edit.png" width="55px"/>--%>
+                                                                <button type="button" class="btn btn-warning btn-md">
+						                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					                                            </button>
                                                             </asp:LinkButton>
                                                             <%-- <asp:ImageButton ID="btnimgbtedit" ImageUrl="~/images/edit.png" runat="server" Visible="false"
                                                                         Enabled="false" ToolTip="Not Allow To Edit" />--%>
@@ -507,7 +562,10 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btnpayment" CommandArgument='<%#Eval("OrderNo") %>' CommandName="PAmount"
                                                                 runat="server">
-                                                                <asp:Image ID="payamt" runat="server" ImageUrl="~/images/edit_add.png" width="55px" />
+                                                               <%-- <asp:Image ID="payamt" runat="server" ImageUrl="~/images/edit_add.png" width="55px" /--%>
+                                                               <button type="button" class="btn btn-success btn-md">
+						                                        <span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
+					                                        </button>
                                                             </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -524,19 +582,20 @@
                                                 <%--<HeaderStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                                             </asp:GridView>
                                         </div>
-                                    </div>
+                                  
                                     <div title="What's Your Name" id="popup" class="messagepop">
                                        
                                         <div id="olddiv" runat="server" visible="false" >
-                                         Current Login Details:<asp:Label ID="lblcurrentuser" Font-Bold="true" BackColor="Black"
+                                         Current Login Details:<asp:Label ID="lblcurrentuser" 
                                             runat="server"></asp:Label>
                                         <br />
                                         Enter Your Name
-                                        <asp:TextBox ID="txtnam" runat="server" Style="background-color: White; color: #e84c3d"></asp:TextBox>
-                                        <asp:TextBox ID="txtpendingmsg" runat="server" TextMode="MultiLine" Visible="false" Style="background-color: White; color: #e84c3d" ></asp:TextBox>
-                                        <asp:Button ID="btnok" runat="server" Text="Ok" OnClick="btnok_click" ForeColor="Black" />
-                                         <a onclick="klose();" style="color: White; background-color:Black" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">
+                                        <asp:TextBox ID="txtnam" runat="server" ></asp:TextBox>
+                                        <asp:TextBox ID="txtpendingmsg" runat="server" TextMode="MultiLine" Visible="false"  width="267px" Height="28px"></asp:TextBox>
+                                        <asp:Button ID="btnok" runat="server" Text="Ok" OnClick="btnok_click"  class="btn btn-default" />
+                                        <a onclick="klose();"  class="btn btn-default" >
                                             Close</a>
+                                         
                                         </div>
                                         <div id="Newdiv" runat="server" visible="false" >
                                        <asp:Label Font-Bold="true" Font-Size="16px" runat="server" Text="Enter Your Book No" > </asp:Label><br />
@@ -545,8 +604,8 @@
                                         <asp:TextBox ID="txtbookNo" MaxLength="4" Width="30%" Font-Bold="true" Font-Size="20px" runat="server" Style="background-color: White; color: #191717"></asp:TextBox>
                                         <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
                                             FilterType="Numbers" ValidChars="" TargetControlID="txtbookNo" />
-                                        <asp:Button ID="btok1" runat="server" Text="Order Now" OnClick="btnok1_click" class="btn btn-success" ForeColor="Black" />
-                                         <a onclick="klose();"  class="btn btn-warning" >
+                                        <asp:Button ID="btok1" runat="server" Text="Order Now" OnClick="btnok1_click" class="btn btn-default" ForeColor="Black" />
+                                         <a onclick="klose();"  class="btn btn-default" >
                                             Close</a>
                                         </div>
                                         
@@ -623,9 +682,9 @@
                 </div>
                 <!-- /.panel-body -->
             </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
+     </div>
+     </div>
+     </div>   
+   </div>  
 </body>
 </html>

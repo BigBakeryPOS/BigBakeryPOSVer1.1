@@ -151,57 +151,47 @@
         ID="val1" ShowMessageBox="true" ShowSummary="false" />
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+     <div class="container-fluid">
+	<div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="text-align: center; font-size: large">
-                Store Raw Materials Detail</div>
+   <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Store Raw Materials Detail</h1>
+	    </div>
+        
             <div class="panel-body">
-                <div class="col-lg-12">
-                    <div class="col-lg-2">
-                        <div class="form-group ">
+                <div class="row">
+                    <div class="col-lg-3">
                             <label>
                                 Enter Search Text</label>
                             <asp:TextBox CssClass="form-control" Enabled="true" ID="txtsearch" runat="server"
-                                onkeyup="Search_Gridview(this, 'BankGrid')" placeholder="Search Items.." Style="width: 150px;"></asp:TextBox>
-                        </div>
+                                onkeyup="Search_Gridview(this, 'BankGrid')" placeholder="Search Items.." ></asp:TextBox>
                     </div>
-                    <div class="col-lg-2">
-                        <div class="form-group ">
+                    <div class="col-lg-3">
                             <label>
                                 Select Ingredient Category</label>
                             <asp:DropDownList ID="ddlIngreCategory" runat="server" CssClass="form-control" OnSelectedIndexChanged="Ingcat_indexchnaged"
                                 AutoPostBack="true" Visible="true">
                             </asp:DropDownList>
-                        </div>
                     </div>
-                    <div class="col-lg-2">
-                    </div>
-                    <div class="col-lg-1">
-                        <div class="form-group">
+                    <div class="col-lg-3">
                             <br />
-                            <asp:Button ID="btnPrint" runat="server" CssClass="btn btn-danger" Width="110px"
+                            <asp:Button ID="btnPrint" runat="server" CssClass="btn btn-secondary" 
                                 Text="Print" OnClick="btnPrintFromCodeBehind_Click" />
-                        </div>
+                               &nbsp;&nbsp;&nbsp; <asp:Button ID="btnpdf" runat="server" Text="PDF" CssClass="btn btn-info" OnClick="btnpdf_Click" />
                     </div>
-                    <div id="Div2" class="col-lg-1" runat="server" visible="false">
-                        <div class="form-group">
+                    <div id="Div2" class="col-lg-3" runat="server" visible="false">
                             <br />
-                            <asp:Button ID="btnExport" Text="Export to Excel" runat="server" Width="110px" CssClass="btn btn-success"
+                            <asp:Button ID="btnExport" Text="Export to Excel" runat="server"  CssClass="btn btn-success"
                                 OnClick="btnExport_Click" />
-                        </div>
                     </div>
-                    <div class="col-lg-1">
-                        <br />
-                        <asp:Button ID="btnpdf" runat="server" Text="PDF" CssClass="btn btn-info" OnClick="btnpdf_Click"
-                            Width="110px" />
-                    </div>
-                </div>
+                
                 <div class="col-lg-12">
-                    <div id="Div1" runat="server" style="overflow: auto; height: 350px">
-                        <asp:GridView ID="BankGrid" runat="server" CssClass="mGrid" Width="100%" AllowSorting="true"
+                    <div id="Div1" runat="server" class="table-responsive panel-grid-left">
+                        <asp:GridView ID="BankGrid" runat="server" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" Width="100%" AllowSorting="true"
                             EmptyDataText="No Records Found" AutoGenerateColumns="false">
-                            <HeaderStyle BackColor="#3366FF" />
-                            <EmptyDataRowStyle HorizontalAlign="Center" BackColor="#59d3b4" ForeColor="Black" />
+                           <%-- <HeaderStyle BackColor="#3366FF" />
+                            <EmptyDataRowStyle HorizontalAlign="Center" BackColor="#59d3b4" ForeColor="Black" />--%>
                             <Columns>
                                 <asp:BoundField HeaderText="Ingr. Category" DataField="IngreCategory" />
                                 <asp:BoundField HeaderText="Ingredient Name" DataField="IngredientName" />
@@ -209,18 +199,25 @@
                                 <asp:BoundField HeaderText="Unit" DataField="UOM" />
                                 <%--<asp:BoundField HeaderText="Expired Date" DataField="ExpiredDate" DataFormatString="{0:dd/MM/yyyy}" />--%>
                             </Columns>
-                            <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-                            <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                            <%--<FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                            <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                         </asp:GridView>
                     </div>
-                    <!-- /.row (nested) -->
+                </div>
                 </div>
             </div>
         </div>
         <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
         <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
         <script type="text/javascript">            $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
+  
     </div>
+    </div>
+    </div>
+    
+    
+    
+    
     <asp:Panel class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none"
         runat="server">
         <div class="popup_Container">

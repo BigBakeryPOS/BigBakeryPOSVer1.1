@@ -48,559 +48,555 @@
         .r-tabs .r-tabs-nav .r-tabs-tab {
             background-color: #007AFF;
         }
+
         .r-tabs {
-            border:0;
+            border: 0;
             padding: 2px;
             background: #007AFF;
         }
-        .r-tabs .r-tabs-nav .r-tabs-state-active .r-tabs-anchor, .r-tabs .r-tabs-accordion-title.r-tabs-state-active .r-tabs-anchor {
-            color: #243333;
-        }
-        .r-tabs .r-tabs-accordion-title .r-tabs-anchor {
-            border:0;
-            background: #007AFF
-        }
+
+            .r-tabs .r-tabs-nav .r-tabs-state-active .r-tabs-anchor, .r-tabs .r-tabs-accordion-title.r-tabs-state-active .r-tabs-anchor {
+                color: #243333;
+            }
+
+            .r-tabs .r-tabs-accordion-title .r-tabs-anchor {
+                border: 0;
+                background: #007AFF
+            }
     </style>
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label">Welcome : </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <form id="Form1" runat="server">
-                        <asp:ScriptManager ID="ScriptManager1" runat="server">
-                        </asp:ScriptManager>
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
 
-    <div class="row panel-custom1">
-        <div class="col-lg-12">
-            <h1 class="page-header">
-                User Master</h1>
-        </div>
-        <div class="panel-body">
-            <div class="col-md-3" style="height: calc(100vh - 215px); overflow-y: auto;"><!-- left -->
-                <asp:ValidationSummary runat="server" HeaderText="Validation Messages" ValidationGroup="val1"
-                                    ID="val1" ShowMessageBox="true" ShowSummary="false" />
-                                <div class="form-group" id="divcode" runat="server">
-                                    <asp:TextBox CssClass="form-control" ID="txtUserid" runat="server" Enabled="false"></asp:TextBox>
-                                </div>
-                                <div class="form-group " >
-                                    <label>
-                                        User Name</label>
-                                    <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" Text="*" ID="RequiredFieldValidator1"
-                                        ControlToValidate="txtusername" ErrorMessage="Please enter User name!" Style="color: Red" />
-                                    <asp:TextBox CssClass="form-control" ID="txtusername" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="form-group " >
-                                    <label>
-                                        Mobile No.</label>
-                                    <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" Text="*" ID="RequiredFieldValidator3"
-                                        ControlToValidate="txtmobile" ErrorMessage="Please enter Mobile No.!" Style="color: Red" />
-                                    <asp:TextBox CssClass="form-control" ID="txtmobile" runat="server"
-                                        MaxLength="10"></asp:TextBox>
-                                </div>
-                                <div class="form-group "  runat="server" visible="false">
-                                    <label>
-                                        IsAdmin</label>
-                                    <asp:CheckBox ID="chkadminrights" runat="server" />
-                                </div>
-                                <div class="form-group " >
-                                    <label>
-                                        Password</label>
-                                    <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" Text="*" ID="reqName"
-                                        ControlToValidate="txtpassword" ErrorMessage="Please enter Password!" Style="color: Red" />
-                                    <asp:TextBox CssClass="form-control" ID="txtpassword" TextMode="Password"
-                                        runat="server"></asp:TextBox>
-                                </div>
-                                <div class="form-group " >
-                                    <label>
-                                        Confirm Password</label>
-                                    <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" Text="*" ID="RequiredFieldValidator2"
-                                        ControlToValidate="txtconfirmpasswprd" ErrorMessage="Please enter Confirm passowrd!"
-                                        Style="color: Red" />
-                                    <asp:TextBox CssClass="form-control" ID="txtconfirmpasswprd" TextMode="Password"
-                                        runat="server"></asp:TextBox>
-                                </div>
-                                <div runat="server" visible="false">
-                                    <div class="form-group ">
-                                        <label>
-                                            Email</label>
-                                        <asp:TextBox CssClass="form-control" ID="txtEmail" runat="server"></asp:TextBox>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label>
-                                            Select Employee</label>
-                                        <asp:CompareValidator ID="CompareValidator2" runat="server" ValidationGroup="val1"
-                                            Text="*" Style="color: Red" InitialValue="0" ControlToValidate="ddlemployee"
-                                            ValueToCompare="Select Employee" Operator="NotEqual" Type="String" ErrorMessage="Please Select Employee"></asp:CompareValidator>
-                                        <asp:DropDownList CssClass="form-control" ID="ddlemployee" runat="server">
-                                        </asp:DropDownList>
-                                        <div runat="server" visible="false" class="checkbox">
-                                            All Branch:<asp:CheckBox Style="margin-left: 20px;" ID="chkRememberMe" runat="server" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group ">
-                                    <label>
-                                        Select Branch</label>
-                                    <asp:DropDownList ID="drpbranch" runat="server" CssClass="form-control">
-                                    </asp:DropDownList>
-                                    <asp:CheckBox ID="chkAllbranch" Text="All Branch Access" runat="server" />
-                                    </asp:CheckBox>
-                                </div>
-                                <div class="form-group ">
-                                    <label>
-                                        Select LoginType</label>
-                                    <asp:DropDownList ID="drplogintype" runat="server" CssClass="form-control">
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="form-group ">
-                                    <label>
-                                        Report Processing Days</label>
-                                    <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
-                                        FilterType="Numbers" ValidChars="" TargetControlID="txtreportdays" />
-                                    <asp:TextBox CssClass="form-control" ID="txtreportdays" MaxLength="4" 
-                                        runat="server">7</asp:TextBox>
-                                </div>
-                                <div class="form-group " >
-                                    <label>
-                                        Select Login Bill</label>
-                                    <asp:DropDownList ID="drpbilltype" runat="server" CssClass="form-control">
-                                        <asp:ListItem Text="System" Value="S" Selected="True"></asp:ListItem>
-                                        <asp:ListItem Text="Android App." Value="A"></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="form-group">
-                                    <label>
-                                        Access Rights Type
-                                    </label>
-                                    <asp:DropDownList ID="drpRighttype" runat="server" AutoPostBack="true" OnSelectedIndexChanged="drpRighttype_OnSelectedIndexChanged" CssClass="form-control">
-                                      
-                                    </asp:DropDownList>
-                                </div>
-                             
+        <div class="row panel-custom1">
+            <div class="col-lg-12">
+                <h1 class="page-header">User Master</h1>
             </div>
-            <div class="col-md-9"  style="height: calc(100vh - 215px); overflow-y: auto;"><!-- right -->
-                <div id="horizontalTab">
-                                <ul>
-                                    <li><a href="#tab-1">Master Menu</a></li>
-                                    <li><a href="#tab-2">Order Form Menu</a></li>
-                                    <li><a href="#tab-3">Inventory Menu</a></li>
-                                    <li><a href="#tab-4">Request Accept</a></li>
-                                    <li><a href="#tab-5">Reports</a></li>
-                                    <li><a href="#tab-6">Reports Detailed View</a></li>
-                                </ul>
-                                <div class="" id="tab-1">
-                                     
-                                        
-                                                    <asp:UpdatePanel ID="UpdatePanel7" runat="server" UpdateMode="Conditional">
-                                                        <ContentTemplate>
-                                                            <asp:GridView ID="grdmaster" AutoGenerateColumns="False" BorderWidth="0px" BorderStyle="Solid"
-                                                                GridLines="Both" SaveButtonID="SaveButton" runat="server" CssClass="table table-striped table-hover pos-table" >
-                                                                <SelectedRowStyle CssClass="SelectdataRow" />
-                                                                <AlternatingRowStyle CssClass="altRow" />
-                                                                <EmptyDataRowStyle CssClass="HeadataRow" Font-Bold="true" />
-                                                                <%-- <HeaderStyle CssClass="HeadataRow" Wrap="false" />
+            <div class="panel-body">
+                <div class="col-md-3" style="height: calc(100vh - 215px); overflow-y: auto;">
+                    <!-- left -->
+                    <asp:ValidationSummary runat="server" HeaderText="Validation Messages" ValidationGroup="val1"
+                        ID="val1" ShowMessageBox="true" ShowSummary="false" />
+                    <div class="form-group" id="divcode" runat="server">
+                        <asp:TextBox CssClass="form-control" ID="txtUserid" runat="server" Enabled="false"></asp:TextBox>
+                    </div>
+                    <div class="form-group ">
+                        <label>
+                            Select LoginType</label>
+                        <asp:DropDownList ID="drplogintype" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="drplogintype_OnSelectedIndexChanged">
+                        </asp:DropDownList>
+                    </div>
+                    <div class="form-group ">
+                        <label>
+                            User Name</label>
+                        <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" Text="*" ID="RequiredFieldValidator1"
+                            ControlToValidate="txtusername" ErrorMessage="Please enter User name!" Style="color: Red" />
+                        <asp:TextBox CssClass="form-control" ID="txtusername" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="form-group ">
+                        <label>
+                            Mobile No.</label>
+                        <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" Text="*" ID="RequiredFieldValidator3"
+                            ControlToValidate="txtmobile" ErrorMessage="Please enter Mobile No.!" Style="color: Red" />
+                        <asp:TextBox CssClass="form-control" ID="txtmobile" runat="server"
+                            MaxLength="10"></asp:TextBox>
+                    </div>
+                    <div class="form-group " runat="server" visible="false">
+                        <label>
+                            IsAdmin</label>
+                        <asp:CheckBox ID="chkadminrights" runat="server" />
+                    </div>
+                    <div class="form-group ">
+                        <label>
+                            Password</label>
+                        <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" Text="*" ID="reqName"
+                            ControlToValidate="txtpassword" ErrorMessage="Please enter Password!" Style="color: Red" />
+                        <asp:TextBox CssClass="form-control" ID="txtpassword" TextMode="Password"
+                            runat="server"></asp:TextBox>
+                    </div>
+                    <div class="form-group ">
+                        <label>
+                            Confirm Password</label>
+                        <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" Text="*" ID="RequiredFieldValidator2"
+                            ControlToValidate="txtconfirmpasswprd" ErrorMessage="Please enter Confirm passowrd!"
+                            Style="color: Red" />
+                        <asp:TextBox CssClass="form-control" ID="txtconfirmpasswprd" TextMode="Password"
+                            runat="server"></asp:TextBox>
+                    </div>
+                    <div runat="server" visible="false">
+                        <div class="form-group ">
+                            <label>
+                                Email</label>
+                            <asp:TextBox CssClass="form-control" ID="txtEmail" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="form-group ">
+                            <label>
+                                Select Employee</label>
+                            <asp:CompareValidator ID="CompareValidator2" runat="server" ValidationGroup="val1"
+                                Text="*" Style="color: Red" InitialValue="0" ControlToValidate="ddlemployee"
+                                ValueToCompare="Select Employee" Operator="NotEqual" Type="String" ErrorMessage="Please Select Employee"></asp:CompareValidator>
+                            <asp:DropDownList CssClass="form-control" ID="ddlemployee" runat="server">
+                            </asp:DropDownList>
+                            <div runat="server" visible="false" class="checkbox">
+                                All Branch:<asp:CheckBox Style="margin-left: 20px;" ID="chkRememberMe" runat="server" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label>
+                            Select Branch</label>
+                        <asp:DropDownList ID="drpbranch" runat="server" CssClass="form-control">
+                        </asp:DropDownList>
+                        <asp:CheckBox ID="chkAllbranch" Text="All Branch Access" runat="server" />
+                        </asp:CheckBox>
+                    </div>
+
+                    <div class="form-group ">
+                        <label>
+                            Report Processing Days</label>
+                        <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
+                            FilterType="Numbers" ValidChars="" TargetControlID="txtreportdays" />
+                        <asp:TextBox CssClass="form-control" ID="txtreportdays" MaxLength="4"
+                            runat="server">7</asp:TextBox>
+                    </div>
+                    <div class="form-group ">
+                        <label>
+                            Select Login Bill</label>
+                        <asp:DropDownList ID="drpbilltype" runat="server" CssClass="form-control">
+                            <asp:ListItem Text="System" Value="S" Selected="True"></asp:ListItem>
+                            <asp:ListItem Text="Android App." Value="A"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                <div class="col-md-9" style="height: calc(100vh - 215px); overflow-y: auto;">
+                    <!-- right -->
+                    <div id="horizontalTab">
+                        <ul>
+                            <li><a href="#tab-1">Master Menu</a></li>
+                            <li><a href="#tab-2">Order Form Menu</a></li>
+                            <li><a href="#tab-3">Inventory Menu</a></li>
+                            <li><a href="#tab-4">Request Accept</a></li>
+                            <li><a href="#tab-5">Reports</a></li>
+                            <li><a href="#tab-6">Reports Detailed View</a></li>
+                        </ul>
+                        <div class="" id="tab-1">
+
+
+                            <asp:UpdatePanel ID="UpdatePanel7" runat="server" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <asp:GridView ID="grdmaster" AutoGenerateColumns="False" BorderWidth="0px" BorderStyle="Solid"
+                                        GridLines="Both" SaveButtonID="SaveButton" runat="server" CssClass="table table-striped table-hover pos-table">
+                                        <SelectedRowStyle CssClass="SelectdataRow" />
+                                        <AlternatingRowStyle CssClass="altRow" />
+                                        <EmptyDataRowStyle CssClass="HeadataRow" Font-Bold="true" />
+                                        <%-- <HeaderStyle CssClass="HeadataRow" Wrap="false" />
                                                                 <FooterStyle CssClass="dataRow" />--%>
-                                                                <Columns>
-                                                                    <asp:TemplateField Visible="false">
-                                                                        <ItemTemplate>
-                                                                            <asp:Label ID="lblDebtorID" runat="server" Text='<%# Eval("roleid")%>' />
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:BoundField DataField="Area" HeaderText="Area" ReadOnly="true" ApplyFormatInEditMode="false"
-                                                                        HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
-                                                                    <asp:BoundField DataField="Screen" HeaderText="Section" ReadOnly="true" ApplyFormatInEditMode="false"
-                                                                        HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
-                                                                    <asp:BoundField DataField="Screenid" HeaderText="Screen" ReadOnly="true" ApplyFormatInEditMode="false"
-                                                                        HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Screen Visible"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkboxAdd" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChangedadd1"
-                                                                                runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
-                                                                                Checked='<%# Bind("Visible") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Read"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkRead" runat="server" Style="color: Black" Text="" Font-Names="arial"
-                                                                                AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged1" Font-Size="11px"
-                                                                                Checked='<%# Bind("Read") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Edit"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkEdit" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged1"
-                                                                                runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
-                                                                                Checked='<%# Bind("Edit") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Delete"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkDelete" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged1"
-                                                                                runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
-                                                                                Checked='<%# Bind("Delete") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Save"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkSave" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged1"
-                                                                                runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
-                                                                                Checked='<%# Bind("Save") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                </Columns>
-                                                            </asp:GridView>
-                                                        </ContentTemplate>
-                                                    </asp:UpdatePanel>
-                                                 
-                                     
-                                </div>
-                                <div class="" id="tab-2">
-                                     
-                                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
-                                                        <ContentTemplate>
-                                                            <asp:GridView ID="OrderFormMenu" AutoGenerateColumns="False" BorderWidth="0px" BorderStyle="Solid"
-                                                                GridLines="Both" SaveButtonID="SaveButton" runat="server" CssClass="table table-striped table-hover pos-table">
-                                                                <%-- <RowStyle CssClass="dataRow" />
-                                                                <SelectedRowStyle CssClass="SelectdataRow" />
-                                                                <AlternatingRowStyle CssClass="altRow" />
-                                                                <EmptyDataRowStyle CssClass="HeadataRow" Font-Bold="true" />
-                                                                <HeaderStyle CssClass="HeadataRow" Wrap="false" />
-                                                                <FooterStyle CssClass="dataRow" />--%>
-                                                                <Columns>
-                                                                    <asp:TemplateField Visible="false">
-                                                                        <ItemTemplate>
-                                                                            <asp:Label ID="lblDebtorID" runat="server" Text='<%# Eval("roleid")%>' />
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:BoundField DataField="Area" HeaderText="Area" ReadOnly="true" ApplyFormatInEditMode="false"
-                                                                        HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
-                                                                    <asp:BoundField DataField="Screen" HeaderText="Section" ReadOnly="true" ApplyFormatInEditMode="false"
-                                                                        HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
-                                                                    <asp:BoundField DataField="Screenid" HeaderText="Screen" ReadOnly="true" ApplyFormatInEditMode="false"
-                                                                        HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Screen Visible"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkboxAdd" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChangedadd2"
-                                                                                runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
-                                                                                Checked='<%# Bind("Visible") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Read"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkRead" runat="server" Style="color: Black" Text="" Font-Names="arial"
-                                                                                AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged2" Font-Size="11px"
-                                                                                Checked='<%# Bind("Read") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Edit"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkEdit" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged2"
-                                                                                runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
-                                                                                Checked='<%# Bind("Edit") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Delete"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkDelete" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged2"
-                                                                                runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
-                                                                                Checked='<%# Bind("Delete") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Save"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkSave" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged2"
-                                                                                runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
-                                                                                Checked='<%# Bind("Save") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                </Columns>
-                                                            </asp:GridView>
-                                                        </ContentTemplate>
-                                                    </asp:UpdatePanel>
-                                                
-                                </div>
-                                <div class="" id="tab-3" >
-                                     
-                                                    <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
-                                                        <ContentTemplate>
-                                                            <asp:GridView ID="grdinventory" AutoGenerateColumns="False" BorderWidth="0px" BorderStyle="Solid"
-                                                                GridLines="Both" SaveButtonID="SaveButton" runat="server" CssClass="table table-striped table-hover pos-table">
-                                                                <%--  <RowStyle CssClass="myGridStyle" />
-                                                                <SelectedRowStyle CssClass="SelectdataRow" />
-                                                                <AlternatingRowStyle CssClass="altRow" />
-                                                                <EmptyDataRowStyle CssClass="HeadataRow" Font-Bold="true" />
-                                                                <HeaderStyle CssClass="HeadataRow" Wrap="false" />
-                                                                <FooterStyle CssClass="dataRow" />--%>
-                                                                <Columns>
-                                                                    <asp:TemplateField Visible="false">
-                                                                        <ItemTemplate>
-                                                                            <asp:Label ID="lblDebtorID" runat="server" Text='<%# Eval("roleid")%>' />
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:BoundField DataField="Area" HeaderText="Area" ReadOnly="true" ApplyFormatInEditMode="false"
-                                                                        HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
-                                                                    <asp:BoundField DataField="Screen" HeaderText="Section" ReadOnly="true" ApplyFormatInEditMode="false"
-                                                                        HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
-                                                                    <asp:BoundField DataField="Screenid" HeaderText="Screen" ReadOnly="true" ApplyFormatInEditMode="false"
-                                                                        HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Screen Visible"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkboxAdd" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChangedadd3"
-                                                                                runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
-                                                                                Checked='<%# Bind("Visible") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Read"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkRead" runat="server" Style="color: Black" Text="" Font-Names="arial"
-                                                                                AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged3" Font-Size="11px"
-                                                                                Checked='<%# Bind("Read") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Edit"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkEdit" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged3"
-                                                                                runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
-                                                                                Checked='<%# Bind("Edit") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Delete"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkDelete" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged3"
-                                                                                runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
-                                                                                Checked='<%# Bind("Delete") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Save"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkSave" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged3"
-                                                                                runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
-                                                                                Checked='<%# Bind("Save") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                </Columns>
-                                                            </asp:GridView>
-                                                        </ContentTemplate>
-                                                    </asp:UpdatePanel>
-                                               
-                                </div>
-                                <div class="" id="tab-4">
-                                    
-                                                    <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional">
-                                                        <ContentTemplate>
-                                                            <asp:GridView ID="grRequestAccept" AutoGenerateColumns="False" BorderWidth="0px"
-                                                                BorderStyle="Solid" GridLines="Both" SaveButtonID="SaveButton" runat="server"
-                                                                CssClass="table table-striped table-hover pos-table">
-                                                                <%--<RowStyle CssClass="dataRow" />
+                                        <Columns>
+                                            <asp:TemplateField Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDebtorID" runat="server" Text='<%# Eval("roleid")%>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField DataField="Area" HeaderText="Area" ReadOnly="true" ApplyFormatInEditMode="false"
+                                                HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
+                                            <asp:BoundField DataField="Screen" HeaderText="Section" ReadOnly="true" ApplyFormatInEditMode="false"
+                                                HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
+                                            <asp:BoundField DataField="Screenid" HeaderText="Screen" ReadOnly="true" ApplyFormatInEditMode="false"
+                                                HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Screen Visible"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkboxAdd" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChangedadd1"
+                                                        runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
+                                                        Checked='<%# Bind("Visible") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Read"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkRead" runat="server" Style="color: Black" Text="" Font-Names="arial"
+                                                        AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged1" Font-Size="11px"
+                                                        Checked='<%# Bind("Read") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Edit"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkEdit" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged1"
+                                                        runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
+                                                        Checked='<%# Bind("Edit") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Delete"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkDelete" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged1"
+                                                        runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
+                                                        Checked='<%# Bind("Delete") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Save"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkSave" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged1"
+                                                        runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
+                                                        Checked='<%# Bind("Save") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+
+
+                        </div>
+                        <div class="" id="tab-2">
+
+                            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <asp:GridView ID="OrderFormMenu" AutoGenerateColumns="False" BorderWidth="0px" BorderStyle="Solid"
+                                        GridLines="Both" SaveButtonID="SaveButton" runat="server" CssClass="table table-striped table-hover pos-table">
+                                        <%-- <RowStyle CssClass="dataRow" />
                                                                 <SelectedRowStyle CssClass="SelectdataRow" />
                                                                 <AlternatingRowStyle CssClass="altRow" />
                                                                 <EmptyDataRowStyle CssClass="HeadataRow" Font-Bold="true" />
                                                                 <HeaderStyle CssClass="HeadataRow" Wrap="false" />
                                                                 <FooterStyle CssClass="dataRow" />--%>
-                                                                <Columns>
-                                                                    <asp:TemplateField Visible="false">
-                                                                        <ItemTemplate>
-                                                                            <asp:Label ID="lblDebtorID" runat="server" Text='<%# Eval("roleid")%>' />
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:BoundField DataField="Area" HeaderText="Area" ReadOnly="true" ApplyFormatInEditMode="false"
-                                                                        HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
-                                                                    <asp:BoundField DataField="Screen" HeaderText="Section" ReadOnly="true" ApplyFormatInEditMode="false"
-                                                                        HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
-                                                                    <asp:BoundField DataField="Screenid" HeaderText="Screen" ReadOnly="true" ApplyFormatInEditMode="false"
-                                                                        HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Screen Visible"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkboxAdd" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChangedadd4"
-                                                                                runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
-                                                                                Checked='<%# Bind("Visible") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Read"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkRead" runat="server" Style="color: Black" Text="" Font-Names="arial"
-                                                                                AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged4" Font-Size="11px"
-                                                                                Checked='<%# Bind("Read") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Edit"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkEdit" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged4"
-                                                                                runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
-                                                                                Checked='<%# Bind("Edit") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Delete"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkDelete" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged4"
-                                                                                runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
-                                                                                Checked='<%# Bind("Delete") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Save"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkSave" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged4"
-                                                                                runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
-                                                                                Checked='<%# Bind("Save") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                </Columns>
-                                                            </asp:GridView>
-                                                        </ContentTemplate>
-                                                    </asp:UpdatePanel>
-                                                 
-                                </div>
-                                <div class="" id="tab-5">
-                                     
-                                                    <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional">
-                                                        <ContentTemplate>
-                                                            <asp:GridView ID="grdreport" AutoGenerateColumns="False" BorderWidth="0px" BorderStyle="Solid"
-                                                                GridLines="Both" SaveButtonID="SaveButton" runat="server" CssClass="table table-striped table-hover pos-table">
-                                                                <%-- <RowStyle CssClass="dataRow" />
+                                        <Columns>
+                                            <asp:TemplateField Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDebtorID" runat="server" Text='<%# Eval("roleid")%>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField DataField="Area" HeaderText="Area" ReadOnly="true" ApplyFormatInEditMode="false"
+                                                HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
+                                            <asp:BoundField DataField="Screen" HeaderText="Section" ReadOnly="true" ApplyFormatInEditMode="false"
+                                                HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
+                                            <asp:BoundField DataField="Screenid" HeaderText="Screen" ReadOnly="true" ApplyFormatInEditMode="false"
+                                                HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Screen Visible"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkboxAdd" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChangedadd2"
+                                                        runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
+                                                        Checked='<%# Bind("Visible") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Read"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkRead" runat="server" Style="color: Black" Text="" Font-Names="arial"
+                                                        AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged2" Font-Size="11px"
+                                                        Checked='<%# Bind("Read") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Edit"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkEdit" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged2"
+                                                        runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
+                                                        Checked='<%# Bind("Edit") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Delete"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkDelete" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged2"
+                                                        runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
+                                                        Checked='<%# Bind("Delete") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Save"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkSave" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged2"
+                                                        runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
+                                                        Checked='<%# Bind("Save") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+
+                        </div>
+                        <div class="" id="tab-3">
+
+                            <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <asp:GridView ID="grdinventory" AutoGenerateColumns="False" BorderWidth="0px" BorderStyle="Solid"
+                                        GridLines="Both" SaveButtonID="SaveButton" runat="server" CssClass="table table-striped table-hover pos-table">
+                                        <%--  <RowStyle CssClass="myGridStyle" />
                                                                 <SelectedRowStyle CssClass="SelectdataRow" />
                                                                 <AlternatingRowStyle CssClass="altRow" />
                                                                 <EmptyDataRowStyle CssClass="HeadataRow" Font-Bold="true" />
                                                                 <HeaderStyle CssClass="HeadataRow" Wrap="false" />
                                                                 <FooterStyle CssClass="dataRow" />--%>
-                                                                <Columns>
-                                                                    <asp:TemplateField Visible="false">
-                                                                        <ItemTemplate>
-                                                                            <asp:Label ID="lblDebtorID" runat="server" Text='<%# Eval("roleid")%>' />
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:BoundField DataField="Area" HeaderText="Area" ReadOnly="true" ApplyFormatInEditMode="false"
-                                                                        HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
-                                                                    <asp:BoundField DataField="Screen" HeaderText="Section" ReadOnly="true" ApplyFormatInEditMode="false"
-                                                                        HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
-                                                                    <asp:BoundField DataField="Screenid" HeaderText="Screen" ReadOnly="true" ApplyFormatInEditMode="false"
-                                                                        HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Screen Visible"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkboxAdd" runat="server" Style="color: Black" Text="" Font-Names="arial"
-                                                                                Font-Size="11px" Checked='<%# Bind("Visible") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Read"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkRead" runat="server" Style="color: Black" Text="" Font-Names="arial"
-                                                                                Font-Size="11px" Checked='<%# Bind("Read") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Edit"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkEdit" runat="server" Style="color: Black" Text="" Font-Names="arial"
-                                                                                Font-Size="11px" Checked='<%# Bind("Edit") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Delete"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkDelete" runat="server" Style="color: Black" Text="" Font-Names="arial"
-                                                                                Font-Size="11px" Checked='<%# Bind("Delete") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Save"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkSave" runat="server" Style="color: Black" Text="" Font-Names="arial"
-                                                                                Font-Size="11px" Checked='<%# Bind("Save") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                </Columns>
-                                                            </asp:GridView>
-                                                        </ContentTemplate>
-                                                    </asp:UpdatePanel>
-                                               
-                                </div>
-                                <div class="" id="tab-6">
-                                    
-                                                    <asp:UpdatePanel ID="UpdatePanel6" runat="server" UpdateMode="Conditional">
-                                                        <ContentTemplate>
-                                                            <asp:GridView ID="grddetailedreport" AutoGenerateColumns="False" BorderWidth="0px"
-                                                                BorderStyle="Solid" GridLines="Both" SaveButtonID="SaveButton" runat="server"
-                                                                CssClass="table table-striped table-hover pos-table" >
-                                                                <%-- <RowStyle CssClass="dataRow" />
+                                        <Columns>
+                                            <asp:TemplateField Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDebtorID" runat="server" Text='<%# Eval("roleid")%>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField DataField="Area" HeaderText="Area" ReadOnly="true" ApplyFormatInEditMode="false"
+                                                HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
+                                            <asp:BoundField DataField="Screen" HeaderText="Section" ReadOnly="true" ApplyFormatInEditMode="false"
+                                                HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
+                                            <asp:BoundField DataField="Screenid" HeaderText="Screen" ReadOnly="true" ApplyFormatInEditMode="false"
+                                                HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Screen Visible"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkboxAdd" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChangedadd3"
+                                                        runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
+                                                        Checked='<%# Bind("Visible") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Read"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkRead" runat="server" Style="color: Black" Text="" Font-Names="arial"
+                                                        AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged3" Font-Size="11px"
+                                                        Checked='<%# Bind("Read") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Edit"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkEdit" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged3"
+                                                        runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
+                                                        Checked='<%# Bind("Edit") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Delete"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkDelete" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged3"
+                                                        runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
+                                                        Checked='<%# Bind("Delete") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Save"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkSave" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged3"
+                                                        runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
+                                                        Checked='<%# Bind("Save") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+
+                        </div>
+                        <div class="" id="tab-4">
+
+                            <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <asp:GridView ID="grRequestAccept" AutoGenerateColumns="False" BorderWidth="0px"
+                                        BorderStyle="Solid" GridLines="Both" SaveButtonID="SaveButton" runat="server"
+                                        CssClass="table table-striped table-hover pos-table">
+                                        <%--<RowStyle CssClass="dataRow" />
                                                                 <SelectedRowStyle CssClass="SelectdataRow" />
                                                                 <AlternatingRowStyle CssClass="altRow" />
                                                                 <EmptyDataRowStyle CssClass="HeadataRow" Font-Bold="true" />
                                                                 <HeaderStyle CssClass="HeadataRow" Wrap="false" />
                                                                 <FooterStyle CssClass="dataRow" />--%>
-                                                                <Columns>
-                                                                    <asp:TemplateField Visible="false">
-                                                                        <ItemTemplate>
-                                                                            <asp:Label ID="lblDebtorID" runat="server" Text='<%# Eval("roleid")%>' />
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:BoundField DataField="Area" HeaderText="Area" ReadOnly="true" ApplyFormatInEditMode="false"
-                                                                        HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
-                                                                    <asp:BoundField DataField="Screen" HeaderText="Section" ReadOnly="true" ApplyFormatInEditMode="false"
-                                                                        HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
-                                                                    <asp:BoundField DataField="Screenid" HeaderText="Screen" ReadOnly="true" ApplyFormatInEditMode="false"
-                                                                        HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Screen Visible"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkboxAdd" runat="server" Style="color: Black" Text="" Font-Names="arial"
-                                                                                Font-Size="11px" Checked='<%# Bind("Visible") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Read"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkRead" runat="server" Style="color: Black" Text="" Font-Names="arial"
-                                                                                Font-Size="11px" Checked='<%# Bind("Read") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Edit"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkEdit" runat="server" Style="color: Black" Text="" Font-Names="arial"
-                                                                                Font-Size="11px" Checked='<%# Bind("Edit") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Delete"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkDelete" runat="server" Style="color: Black" Text="" Font-Names="arial"
-                                                                                Font-Size="11px" Checked='<%# Bind("Delete") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Save"
-                                                                        HeaderStyle-BorderColor="Gray">
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkSave" runat="server" Style="color: Black" Text="" Font-Names="arial"
-                                                                                Font-Size="11px" Checked='<%# Bind("Save") %>'></asp:CheckBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                </Columns>
-                                                            </asp:GridView>
-                                                        </ContentTemplate>
-                                                    </asp:UpdatePanel>
-                                                
-                                </div>
-                                <script src="../js/jquery.responsiveTabs.js" type="text/javascript"></script>
-                                <script type="text/javascript">
+                                        <Columns>
+                                            <asp:TemplateField Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDebtorID" runat="server" Text='<%# Eval("roleid")%>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField DataField="Area" HeaderText="Area" ReadOnly="true" ApplyFormatInEditMode="false"
+                                                HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
+                                            <asp:BoundField DataField="Screen" HeaderText="Section" ReadOnly="true" ApplyFormatInEditMode="false"
+                                                HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
+                                            <asp:BoundField DataField="Screenid" HeaderText="Screen" ReadOnly="true" ApplyFormatInEditMode="false"
+                                                HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Screen Visible"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkboxAdd" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChangedadd4"
+                                                        runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
+                                                        Checked='<%# Bind("Visible") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Read"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkRead" runat="server" Style="color: Black" Text="" Font-Names="arial"
+                                                        AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged4" Font-Size="11px"
+                                                        Checked='<%# Bind("Read") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Edit"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkEdit" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged4"
+                                                        runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
+                                                        Checked='<%# Bind("Edit") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Delete"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkDelete" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged4"
+                                                        runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
+                                                        Checked='<%# Bind("Delete") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Save"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkSave" AutoPostBack="true" OnCheckedChanged="chkRead_OnCheckedChanged4"
+                                                        runat="server" Style="color: Black" Text="" Font-Names="arial" Font-Size="11px"
+                                                        Checked='<%# Bind("Save") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+
+                        </div>
+                        <div class="" id="tab-5">
+
+                            <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <asp:GridView ID="grdreport" AutoGenerateColumns="False" BorderWidth="0px" BorderStyle="Solid"
+                                        GridLines="Both" SaveButtonID="SaveButton" runat="server" CssClass="table table-striped table-hover pos-table">
+                                        <%-- <RowStyle CssClass="dataRow" />
+                                                                <SelectedRowStyle CssClass="SelectdataRow" />
+                                                                <AlternatingRowStyle CssClass="altRow" />
+                                                                <EmptyDataRowStyle CssClass="HeadataRow" Font-Bold="true" />
+                                                                <HeaderStyle CssClass="HeadataRow" Wrap="false" />
+                                                                <FooterStyle CssClass="dataRow" />--%>
+                                        <Columns>
+                                            <asp:TemplateField Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDebtorID" runat="server" Text='<%# Eval("roleid")%>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField DataField="Area" HeaderText="Area" ReadOnly="true" ApplyFormatInEditMode="false"
+                                                HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
+                                            <asp:BoundField DataField="Screen" HeaderText="Section" ReadOnly="true" ApplyFormatInEditMode="false"
+                                                HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
+                                            <asp:BoundField DataField="Screenid" HeaderText="Screen" ReadOnly="true" ApplyFormatInEditMode="false"
+                                                HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Screen Visible"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkboxAdd" runat="server" Style="color: Black" Text="" Font-Names="arial"
+                                                        Font-Size="11px" Checked='<%# Bind("Visible") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Read"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkRead" runat="server" Style="color: Black" Text="" Font-Names="arial"
+                                                        Font-Size="11px" Checked='<%# Bind("Read") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Edit"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkEdit" runat="server" Style="color: Black" Text="" Font-Names="arial"
+                                                        Font-Size="11px" Checked='<%# Bind("Edit") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Delete"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkDelete" runat="server" Style="color: Black" Text="" Font-Names="arial"
+                                                        Font-Size="11px" Checked='<%# Bind("Delete") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Save"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkSave" runat="server" Style="color: Black" Text="" Font-Names="arial"
+                                                        Font-Size="11px" Checked='<%# Bind("Save") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+
+                        </div>
+                        <div class="" id="tab-6">
+
+                            <asp:UpdatePanel ID="UpdatePanel6" runat="server" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <asp:GridView ID="grddetailedreport" AutoGenerateColumns="False" BorderWidth="0px"
+                                        BorderStyle="Solid" GridLines="Both" SaveButtonID="SaveButton" runat="server"
+                                        CssClass="table table-striped table-hover pos-table">
+                                        <%-- <RowStyle CssClass="dataRow" />
+                                                                <SelectedRowStyle CssClass="SelectdataRow" />
+                                                                <AlternatingRowStyle CssClass="altRow" />
+                                                                <EmptyDataRowStyle CssClass="HeadataRow" Font-Bold="true" />
+                                                                <HeaderStyle CssClass="HeadataRow" Wrap="false" />
+                                                                <FooterStyle CssClass="dataRow" />--%>
+                                        <Columns>
+                                            <asp:TemplateField Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDebtorID" runat="server" Text='<%# Eval("roleid")%>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField DataField="Area" HeaderText="Area" ReadOnly="true" ApplyFormatInEditMode="false"
+                                                HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
+                                            <asp:BoundField DataField="Screen" HeaderText="Section" ReadOnly="true" ApplyFormatInEditMode="false"
+                                                HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
+                                            <asp:BoundField DataField="Screenid" HeaderText="Screen" ReadOnly="true" ApplyFormatInEditMode="false"
+                                                HeaderStyle-BorderColor="Gray" HeaderStyle-Wrap="false" />
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Screen Visible"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkboxAdd" runat="server" Style="color: Black" Text="" Font-Names="arial"
+                                                        Font-Size="11px" Checked='<%# Bind("Visible") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Read"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkRead" runat="server" Style="color: Black" Text="" Font-Names="arial"
+                                                        Font-Size="11px" Checked='<%# Bind("Read") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Edit"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkEdit" runat="server" Style="color: Black" Text="" Font-Names="arial"
+                                                        Font-Size="11px" Checked='<%# Bind("Edit") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Delete"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkDelete" runat="server" Style="color: Black" Text="" Font-Names="arial"
+                                                        Font-Size="11px" Checked='<%# Bind("Delete") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField ItemStyle-CssClass="command" HeaderStyle-Width="60px" HeaderText="Save"
+                                                HeaderStyle-BorderColor="Gray">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkSave" runat="server" Style="color: Black" Text="" Font-Names="arial"
+                                                        Font-Size="11px" Checked='<%# Bind("Save") %>'></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+
+                        </div>
+                        <script src="../js/jquery.responsiveTabs.js" type="text/javascript"></script>
+                        <script type="text/javascript">
                                     $(document).ready(function () {
                                         var $tabs = $('#horizontalTab');
                                         $tabs.responsiveTabs({
@@ -639,23 +635,23 @@
                                     });
             
         
-                                </script>
-                            </div>
-            </div>
-            <div id="Div1" runat="server" class="col-md-12">
-                            <asp:Label ID="lblerror" runat="server" Style="color: Red"></asp:Label><br>
-                            <asp:Button ID="btnadd" runat="server" class="btn btn-primary pos-btn1" Text="Save" ValidationGroup="val1"
-                                OnClick="Add_Click" />
-                            <asp:Button ID="btnexit" runat="server" class="btn btn-link" Text="Exit"  
-                                PostBackUrl="~/Accountsbootstrap/UserGrid.aspx" />
-                            <asp:UpdatePanel ID="UpdatePanel4" runat="server" UpdateMode="Conditional">
-                                <ContentTemplate>
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
-                        </div>
-        <div class="col-md-12">
+                        </script>
+                    </div>
+                </div>
+                <div id="Div1" runat="server" class="col-md-12">
+                    <asp:Label ID="lblerror" runat="server" Style="color: Red"></asp:Label><br>
+                    <asp:Button ID="btnadd" runat="server" class="btn btn-primary pos-btn1" Text="Save" ValidationGroup="val1"
+                        OnClick="Add_Click" />
+                    <asp:Button ID="btnexit" runat="server" class="btn btn-link" Text="Exit"
+                        PostBackUrl="~/Accountsbootstrap/UserGrid.aspx" />
+                    <asp:UpdatePanel ID="UpdatePanel4" runat="server" UpdateMode="Conditional">
+                        <ContentTemplate>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+                <div class="col-md-12">
                     <div class="row">
-                        <div class="col-lg-12" style="display:none">
+                        <div class="col-lg-12" style="display: none">
                             <div class="col-lg-2">
                                 <div id="Div2" runat="server">
                                     <div class="form-group ">
@@ -704,11 +700,11 @@
                         </div>
                     </div>
                     <!-- /.row (nested) -->
+                </div>
+                <!-- /.col-md-12 -->
+            </div>
         </div>
-        <!-- /.col-md-12 -->
-    </div>
-    </div>
-</form>
+    </form>
     <!-- /.row -->
     <!-- /#page-wrapper -->
     <!-- jQuery -->

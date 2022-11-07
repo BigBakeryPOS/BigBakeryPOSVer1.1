@@ -152,7 +152,7 @@
                                         <table class="table table-striped table-bordered table-hover">
                                             <tr>
                                                 <td style="">
-                                                    <asp:GridView ID="gvPurchase" runat="server" AutoGenerateColumns="false" Width="100%" Font-Names="Calibri" >
+                                                    <asp:GridView ID="gvPurchase" runat="server" AutoGenerateColumns="false" Width="100%" Font-Names="Calibri" OnRowDataBound="onrowdatabound" >
                                                     <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> 
                                                         <Columns>
                                                             <asp:BoundField HeaderText="category" DataField="Category" />

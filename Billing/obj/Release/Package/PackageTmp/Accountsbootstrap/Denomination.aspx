@@ -147,51 +147,33 @@
         <ContentTemplate>
             <asp:ScriptManager ID="ScriptManager1" runat="server">
             </asp:ScriptManager>
+            <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Denomination</h1>
+	    </div>
+         <div class="panel-body">
             <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Denomination</h1>
-                    <%-- <blink> <label  style="color:Green; font-size:16px">Please Provide Denomination For Closing Cash</label></blink>--%>
-                </div>
-                <div class="col-lg-12">
-                    <div class="col-lg-2">
-                    </div>
-                    <div class="col-lg-8">
-                        Select Date:<asp:TextBox ID="date" Enabled="false" runat="server" CssClass="cal_Theme1"></asp:TextBox>
+               <div class="col-lg-2">
+                        <label>Select Date:</label>
+                        <asp:TextBox ID="date" Enabled="false" runat="server" Class="form-control"></asp:TextBox>
                         <ajaxToolkit:CalendarExtender ID="cal1" runat="server" TargetControlID="date" Format="yyyy-MM-dd">
                         </ajaxToolkit:CalendarExtender>
-                        <asp:Button ID="btnSubmit" runat="server" Visible="false" Text="Submit" CssClass="btn btn-info" /></div>
+                        <asp:Button ID="btnSubmit" runat="server" Visible="false" Text="Submit" CssClass="btn btn-info" />
+                </div>
                 
-                <div class="col-lg-2">
                 <asp:Button ID="btndayyclose" Visible="false" Text=" Day-Close " CssClass="btn btn-danger" runat="server" PostBackUrl="~/Accountsbootstrap/Closing_report.aspx" />
-                    </div>
-                    </div>
-                <!-- /.col-lg-12 -->
             </div>
-            <%-- <div class="container-fluid">--%>
+            <br />
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                    <!-- Row1-->
-                    <%--<div class="row">--%>
-                    <div class="col-lg-1">
-                    </div>
+              
+                    
                     <div class="col-lg-3">
-                        <div class="table-responsive">
-                            <table class="table-responsive table table-striped1">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2" style="background-color: #5bc0de; color: white">
-                                          Over-All  Denomination Table
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tr>
-                                <td colspan="3">
-                                
-                                 <div class="table-responsive">
-                                <asp:GridView ID="griddenomination" Width="100%" runat="server" AutoGenerateColumns="false">
+                                         <label> Over-All  Denomination Table</label>
+                                 <div class="table-responsive panel-grid-left">
+                                <asp:GridView ID="griddenomination" Width="100%" runat="server" AutoGenerateColumns="false" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0">
                                     <Columns>
                                         <asp:BoundField DataField="Name" HeaderText="" />
                                         <asp:TemplateField HeaderText="No's">
@@ -213,50 +195,39 @@
                                 </asp:GridView>
                                  </div>
                                         <div>
-                                        <asp:Button ID="Button1" runat="server" Visible="false" Text=" " Enabled="false" CssClass="btn btn-info"
+                                        <asp:Button ID="Button1" runat="server" Visible="false" Text=" " Enabled="false" CssClass="btn btn-info pos-btn1"
                                             OnClick="Button1_Click" />
                                   
                                         <asp:Label ID="lblErr" runat="server" ForeColor="Red" Visible="false"></asp:Label>
                                    
-                                        <asp:Button ID="btncalc" runat="server" Text="Calculate" CssClass="btn btn-info"
+                                        <asp:Button ID="btncalc" runat="server" Text="Calculate" CssClass="btn btn-info pos-btn1"
                                             OnClick="getoverallcalculation" TabIndex="11" />
                                     </div>
                                
                             <div>
                                 <label>
                                     Total Amount :</label>
-                                <asp:Label ID="lblgrandtotal" Font-Size="25px" ForeColor="Red" runat="server" Font-Bold="true"></asp:Label>
+                                <asp:Label ID="lblgrandtotal" runat="server" Font-Bold="true"></asp:Label>
                             </div>
                              <div>
                                 <label>
                                     Balance Amount :</label>
-                                <asp:Label ID="lblbalanceamount" Font-Size="25px" ForeColor="Red" runat="server" Font-Bold="true"></asp:Label>
+                                <asp:Label ID="lblbalanceamount"   runat="server" Font-Bold="true"></asp:Label>
                             </div>
-                             </td>
-                                </tr>
-                            </table>
-                        </div>
+                             
                         </div>
                          <div class="col-lg-3">
-                        <div class="table-responsive">
-                            <table class="table-responsive table table-striped1">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2" style="background-color: #5bc0de; color: white">
-                                           Cash To Office
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tr>
-                                    <td colspan="3">
-                                        <div class="form-group">
+                   
+                                          <label> Cash To Office</label>
+                                     <div class="table-responsive panel-grid-left">
+                                        <div class="col-lg-12" align="center">
                                             <label>
                                                 Select Session Type</label>
-                                            <asp:DropDownList ID="drpsessiontype1" runat="server" CssClass="form-control">
+                                            <asp:DropDownList ID="drpsessiontype1" runat="server" CssClass="form-control" Width="80%" >
                                             </asp:DropDownList>
+                                      
                                         </div>
-                                        <div class="table-responsive">
-                                            <asp:GridView ID="gvdenominationoffice" Width="100%" runat="server" AutoGenerateColumns="false">
+                                            <asp:GridView ID="gvdenominationoffice" Width="100%" runat="server" AutoGenerateColumns="false" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0">
                                                 <Columns>
                                                     <asp:BoundField DataField="Name" HeaderText="" />
                                                     <asp:TemplateField HeaderText="No's">
@@ -276,46 +247,37 @@
                                                 <RowStyle CssClass="RowStyleBackGroundColor" ForeColor="Black" />
                                                 <AlternatingRowStyle CssClass="RowAlternateStyleBackGroundColor" />
                                             </asp:GridView>
-                                            <asp:Button ID="Button3" runat="server" Visible="false" Text="Save" Enabled="true" CssClass="btn btn-info"
+                                           
+                                        </div>
+                                         <asp:Button ID="Button3" runat="server" Visible="false" Text="Save" Enabled="true" CssClass="btn btn-info"
                                                 OnClick="Button11office_Click" />
                                             <asp:Label ID="Label1" runat="server" ForeColor="Red" Visible="false"></asp:Label>
-                                            <asp:Button ID="Button5" runat="server" Text="Calculate" CssClass="btn btn-info"
+                                            <asp:Button ID="Button5" runat="server" Text="Calculate" CssClass="btn btn-info pos-btn1"
                                                 OnClick="getoverallcalculation" TabIndex="11" />
-                                        </div>
                                         <div>
+
                                             <label>
                                                 Total Amount :</label>
-                                            <asp:Label ID="lblgrandtotalDenominoffice" Font-Size="25px" ForeColor="Red" runat="server"
+                                            <asp:Label ID="lblgrandtotalDenominoffice"  runat="server"
                                                 Font-Bold="true"></asp:Label>
                                         </div>
-                                    </td>
-                                </tr>
-                            </table>
+                                    
                         </div>
-                    </div>
+                    
 
 
-
-                         <div class="col-lg-3">
-                        <div class="table-responsive">
-                            <table class="table-responsive table table-striped1">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2" style="background-color: #5bc0de; color: white">
-                                            Closing Petty Cash
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tr>
-                                    <td colspan="3">
-                                        <div class="form-group">
+                                            <div class="col-lg-3">
+                        
+                                            <label>Closing Petty Cash</label>
+                                        <div class="table-responsive panel-grid-left">
+                                        <div class="col-lg-12" align="center">
                                             <label>
                                                 Select Session Type</label>
-                                            <asp:DropDownList ID="drpsessiontype" runat="server" CssClass="form-control">
+                                            <asp:DropDownList ID="drpsessiontype" runat="server" CssClass="form-control" Width="80%">
                                             </asp:DropDownList>
-                                        </div>
-                                        <div class="table-responsive">
-                                            <asp:GridView ID="gvdenominationcloseing" Width="100%" runat="server" AutoGenerateColumns="false">
+                                       </div>
+                                        
+                                            <asp:GridView ID="gvdenominationcloseing" Width="100%" runat="server" AutoGenerateColumns="false" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0">
                                                 <Columns>
                                                     <asp:BoundField DataField="Name" HeaderText="" />
                                                     <asp:TemplateField HeaderText="No's">
@@ -335,26 +297,24 @@
                                                 <RowStyle CssClass="RowStyleBackGroundColor" ForeColor="Black" />
                                                 <AlternatingRowStyle CssClass="RowAlternateStyleBackGroundColor" />
                                             </asp:GridView>
-                                            <asp:Button ID="Button4" runat="server" Text="Day Close" Enabled="true" CssClass="btn btn-info" ValidationGroup="val1"
+                                            
+                                        </div>
+                                        <asp:Button ID="Button4" runat="server" Text="Day Close" Enabled="true" CssClass="btn btn-info pos-btn1" ValidationGroup="val1"
                                                 OnClick="Button1_Click" />
                                             <asp:Label ID="Label7" runat="server" ForeColor="Red" Visible="false"></asp:Label>
-                                            <asp:Button ID="Button2" runat="server" Text="Calculate" Visible="false" CssClass="btn btn-info"
+                                            <asp:Button ID="Button2" runat="server" Text="Calculate" Visible="false" CssClass="btn btn-info pos-btn1"
                                                 OnClick="btncalcc_Click" TabIndex="11" />
-                                        </div>
                                         <div>
                                             <label>
                                                 Total Amount :</label>
-                                            <asp:Label ID="lblgrandtotalDenomin" Font-Size="25px" ForeColor="Red" runat="server"
+                                            <asp:Label ID="lblgrandtotalDenomin" runat="server"
                                                 Font-Bold="true"></asp:Label>
                                         </div>
-                                    </td>
-                                </tr>
-                            </table>
+                                   
                         </div>
-                    </div>
-                   
-                    <div class="col-lg-2">
-                    <div class="form-group" runat="server" >
+                  
+                    <div class="col-lg-3">
+                    <div  runat="server" >
                     <label>Over All Card Amount</label>
                     <asp:TextBox ID="txtoverallcard" runat="server" CssClass="form-control" ></asp:TextBox>
                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
@@ -362,15 +322,15 @@
                                             <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="phono" ControlToValidate="txtoverallcard"
                                                     ErrorMessage="Please enter your Card Amount!" Style="color: Red" />
                     </div>
-                    <div id="Div1" class="form-group" runat="server" >
-                    <label>Over All Paytm Amount</label>
+                    <div id="Div1"  runat="server" >
+                    <label>Over All Acc.Tans. Amount</label>
                     <asp:TextBox ID="txtoverallpaytm" runat="server" CssClass="form-control" ></asp:TextBox>
                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server"
                                             FilterType="Numbers,Custom" ValidChars="." TargetControlID="txtoverallpaytm" />
                                             <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="RequiredFieldValidator1" ControlToValidate="txtoverallpaytm"
                                                     ErrorMessage="Please enter your Paytm Amount!" Style="color: Red" />
                     </div>
-                      <div id="Div3" class="form-group" runat="server" >
+                      <div id="Div3"  runat="server" >
                     <label>Over All PhonePe Amount</label>
                     <asp:TextBox ID="txtoverallphonepe" runat="server" CssClass="form-control" ></asp:TextBox>
                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
@@ -378,7 +338,7 @@
                                             <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="RequiredFieldValidator3" ControlToValidate="txtoverallphonepe"
                                                     ErrorMessage="Please enter your Paytm Amount!" Style="color: Red" />
                     </div>
-                    <div id="Div2" class="form-group" runat="server" >
+                    <div id="Div2"  runat="server" >
                     <label>Over All Credit Amount</label>
                     <asp:TextBox ID="txtcreditamount" runat="server" CssClass="form-control" ></asp:TextBox>
                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server"
@@ -388,11 +348,13 @@
                     </div>
                     </div>
                    
-                    </div>
-                    </div>
-                </div>
+                   </div> 
             </div>
-            
+            </div>
+            </div>
+            </div>
+           </div>
+          
         </ContentTemplate>
         <Triggers>
         </Triggers>

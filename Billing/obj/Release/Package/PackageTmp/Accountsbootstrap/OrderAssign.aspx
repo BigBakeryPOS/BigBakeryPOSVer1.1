@@ -107,24 +107,30 @@
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label">Welcome : </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label">Welcome: </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
-    <div class="row" style="">
-        <div class="col-lg-12">
+     <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header"> Order Assign Entry</h1>
+	    </div>
+
             <div id="Div2" runat="server" visible="false">
                 <%-- Blaackforestonline@gmail.com--%>
                 <asp:TextBox ID="txtemail" runat="server" Text="jothikumar@bigdbiz.in"></asp:TextBox>
             </div>
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    Order Assign Entry</div>
+           
                 <div class="panel-body">
                     <form runat="server" id="form1">
                     <asp:ValidationSummary runat="server" HeaderText="Validation Messages" ValidationGroup="val1"
                         ID="val1" ShowMessageBox="true" ShowSummary="false" />
                     <asp:ScriptManager ID="ScriptManager1" runat="server">
                     </asp:ScriptManager>
+
+                    <div class="row">
                     <div class="col-lg-12">
-                        <div runat="server" visible="false" class="col-lg-2">
-                            <div class="form-group ">
+                        <div runat="server" visible="false" class="col-lg-3">
+                            
                                 <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="phono" ControlToValidate="txtsearch"
                                     ErrorMessage="Please enter your searching Data!" Text="*" Style="color: White" />
                                 <asp:TextBox CssClass="form-control" Enabled="true" ID="txtsearch" runat="server"
@@ -132,65 +138,69 @@
                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
                                     FilterType="LowercaseLetters, UppercaseLetters,Numbers,Custom" ValidChars=" "
                                     TargetControlID="txtsearch" />
-                            </div>
+                           
                         </div>
-                        <div class="col-lg-2">
-                            <div class="form-group ">
+                        <div class="col-lg-3">
+                            
                                 <label>
                                     Date Type</label>
-                                <asp:RadioButtonList ID="raddatetype" OnSelectedIndexChanged="Date_chnage" AutoPostBack="true"
+                                <asp:RadioButtonList ID="raddatetype" OnSelectedIndexChanged="Date_chnage" AutoPostBack="true" RepeatColumns="2"
                                     runat="server">
                                     <asp:ListItem Value="OrderDate" Text="Order Date"></asp:ListItem>
                                     <asp:ListItem Value="DeliveryDate" Text="Delivery Date" Selected="True"></asp:ListItem>
                                 </asp:RadioButtonList>
-                            </div>
+                            
                         </div>
-                        <div class="col-lg-2">
-                            <div class="form-group ">
+                        <div class="col-lg-3">
+                           
                                 <label>
                                     Select Date</label>
                                 <asp:TextBox runat="server" ID="txtfromdate" CssClass="form-control" AutoPostBack="true"
                                     OnTextChanged="txtfromdate_TextChanged"> 
                                 </asp:TextBox>
                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtfromdate"
-                                    Format="dd/MM/yyyy" runat="server">
+                                    Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
                                 </ajaxToolkit:CalendarExtender>
-                            </div>
-                            <div class="form-group ">
+                           </div>
+                           <div class="col-lg-3">
+                           
                                 <label>
                                     From Date(only For Deliery date)</label>
                                 <asp:TextBox runat="server" ID="txttodate" CssClass="form-control"> 
                                 </asp:TextBox>
                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txttodate"
-                                    Format="dd/MM/yyyy" runat="server">
+                                    Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
                                 </ajaxToolkit:CalendarExtender>
+                            </div>
+                            <div class="col-lg-3">
                                 <label>
                                     Time Up TO for Delivery Date :
                                 </label>
-                                <asp:Label ID="lblshowtime" runat="server" Text="12:00 PM" Font-Bold="true"></asp:Label>
+                                <asp:Label ID="lblshowtime" runat="server" Text="12:00 PM" Font-Bold="true"></asp:Label> <br />
                                 <asp:Label ID="lbltime" runat="server" Text="12:00" Visible="false"></asp:Label>
+                                <br /> <br />
                             </div>
-                        </div>
-                        <div class="col-lg-2">
-                            <div class="form-group">
+                        
+                        <div class="col-lg-3">
+                          
                                 <label>
                                     Select Status</label>
                                 <asp:DropDownList ID="drpstatus" runat="server" OnSelectedIndexChanged="Status_chnaged"
                                     AutoPostBack="true" CssClass="form-control">
                                 </asp:DropDownList>
-                            </div>
+                           
                         </div>
-                        <div class="col-lg-2">
-                            <div class="form-group">
+                        <div class="col-lg-3">
+                          
                                 <label>
                                     Branch</label>
-                                <asp:DropDownList CssClass=" form-control chzn-select" ID="drpbranch" AutoPostBack="true"
-                                    OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged" Height="50px" runat="server">
+                                <asp:DropDownList CssClass=" form-control" ID="drpbranch" AutoPostBack="true"
+                                    OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged"  runat="server">
                                 </asp:DropDownList>
-                            </div>
+                           
                         </div>
-                        <div class="col-lg-4">
-                            <div class="form-group ">
+                        <div class="col-lg-3">
+                         
                                 <label>
                                     Status Details</label>
                                 <asp:GridView ID="gridstatus" runat="server" AutoGenerateColumns="false" CssClass="mGrid">
@@ -199,7 +209,7 @@
                                         <asp:BoundField DataField="cnt" HeaderText="Count" />
                                     </Columns>
                                 </asp:GridView>
-                            </div>
+                           
                         </div>
                         <asp:Button ID="btnemail" Visible="false" runat="server" CssClass="btn btn-default"
                             Text="Email - Order Detailed Report" OnClick="btnSendMail_Click" />
@@ -208,78 +218,79 @@
                                 Style="width: 120px; margin-right: 450px; margin-top: 20px" />
                         </div>--%>
                     </div>
+                   
                     <div class="col-lg-12">
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="col-lg-2">
-                            <div class="form-group ">
+                        <div class="col-lg-3">
+                           
                                 <%--<asp:Button ID="btnpending" runat="server" Text="Pending" Font-Bold="true" Font-Size="20px"
                                     OnClick="Pending_click" Width="100%" Height="5pc" CssClass="btn btn-info" />--%>
                                 <asp:Label ID="lblpending" runat="server" Font-Bold="true" Font-Size="18px"></asp:Label>
-                            </div>
+                            
                         </div>
-                        <div class="col-lg-2">
-                            <div class="form-group ">
+                        <div class="col-lg-3">
+                           
                                 <%--<asp:Button ID="btnaccpeted" runat="server" Text="Accepted" Font-Bold="true" Font-Size="20px"
                                     OnClick="Accept_chnaged" Width="100%" Height="5pc" CssClass="btn btn-secondary" />--%>
                                 <asp:Label ID="lblaccpetedandassign" runat="server" Font-Bold="true" Font-Size="18px"></asp:Label>
-                            </div>
+                            
                         </div>
-                        <div class="col-lg-2">
-                            <div class="form-group ">
+                        <div class="col-lg-3">
+                          
                                 <%--<asp:Button ID="btnassign" runat="server" Text="Assigned" Font-Bold="true" Font-Size="20px"
                                     OnClick="Assign_chnaged" Width="100%" Height="5pc" CssClass="btn btn-danger" />--%>
                                 <asp:Label ID="lblhold" runat="server" Font-Bold="true" Font-Size="18px"></asp:Label>
-                            </div>
+                            
                         </div>
                         <div class="col-lg-2">
-                            <div class="form-group ">
+                            
                                 <%--<asp:Button ID="btncompleted" runat="server" Text="Completed" Font-Bold="true" Font-Size="20px"
                                     OnClick="Completed_chnaged" Width="100%" Height="5pc" CssClass="btn btn-warning" />--%>
                                 <asp:Label ID="lblcompleted" runat="server" Font-Bold="true" Font-Size="18px"></asp:Label>
-                            </div>
+                            
                         </div>
-                        <div class="col-lg-2">
-                            <div class="form-group ">
+                        <div class="col-lg-3">
+                          
                                 <%--<asp:Button ID="btntransit" runat="server" Text="Transit" Font-Bold="true" Font-Size="20px"
                                     OnClick="Transit_chnaged" Width="100%" Height="5pc" CssClass="btn btn-success" />--%>
                                 <asp:Label ID="lbltransit" runat="server" Font-Bold="true" Font-Size="18px"></asp:Label>
-                            </div>
+                           
                         </div>
-                        <div class="col-lg-2">
-                            <div class="form-group ">
+                        <div class="col-lg-3">
+                           
                                 <%--<asp:Button ID="btndelivered" runat="server" Text="Delivered" Font-Bold="true" Font-Size="20px"
                                     Width="100%" Height="5pc" CssClass="btn btn-primary" OnClick="Delivered_chnaged" />--%>
                                 <asp:Label ID="lbldelivered" runat="server" Font-Bold="true" Font-Size="18px"></asp:Label>
-                            </div>
+                            
                         </div>
-                        <div class="col-lg-2">
-                            <div class="form-group ">
+                        <div class="col-lg-3">
+                            
                                 <%--<asp:Button ID="btndelivered" runat="server" Text="Delivered" Font-Bold="true" Font-Size="20px"
                                     Width="100%" Height="5pc" CssClass="btn btn-primary" OnClick="Delivered_chnaged" />--%>
                                 <asp:Label ID="lblcancel" runat="server" Font-Bold="true" Font-Size="18px"></asp:Label>
-                            </div>
+                            
                         </div>
                     </div>
+                    </div>
+                    
                     <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div id="Div1" runat="server" style="overflow: auto; height: 350px">
-                                    <asp:GridView ID="BankGrid" runat="server" DataKeyNames="billno,Branchcode,bookno"
+
+                                <div id="Div1" runat="server" class="table-responsive panel-grid-left">
+                                    <asp:GridView ID="BankGrid" runat="server" DataKeyNames="billno,Branchcode,bookno" cssClass="table table-striped pos-table"
                                         Width="100%" AllowSorting="true" Font-Names="Calibri" OnRowDataBound="GridView1_OnRowDataBound"
-                                        OnRowCommand="bankgrid_rowcommand" EmptyDataText="No Records Found" AutoGenerateColumns="false">
-                                        <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                            HorizontalAlign="Center" ForeColor="White" />
+                                        OnRowCommand="bankgrid_rowcommand" EmptyDataText="No Records Found" AutoGenerateColumns="false" padding="0" spacing="0" border="0">
+                                     <%--   <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                            HorizontalAlign="Center" ForeColor="White" />--%>
                                         <%--  <HeaderStyle BackColor="#3366FF" />--%>
-                                        <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
-                                            NextPageText="Next" PreviousPageText="Previous" />
+                                       <%-- <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
+                                            NextPageText="Next" PreviousPageText="Previous" />--%>
+                                            <PagerStyle CssClass="pos-paging" />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Preview">
                                                 <ItemTemplate>
                                                     <%--<asp:LinkButton ID="btnprint" CommandArgument='<%#Eval("OrderNo") + ";" +Eval("Branchcode")+ ";" +Eval("ProcessStatus") + ";"+Eval("bookno")+";"+Eval("SubOrderSummaryId")%>'--%>
                                                     <asp:LinkButton ID="btnprint" CommandArgument='<%#Eval("OrderNo") + ";" +Eval("Branchcode")+ ";"+Eval("bookno")%>'
                                                         CommandName="Preview" runat="server">
-                                                        <asp:Image ID="print" runat="server" ImageAlign="Middle" ImageUrl="~/images/info_button.png" /></asp:LinkButton>
+                                                        <asp:Image ID="print" runat="server" ImageAlign="Middle" ImageUrl="~/images/info_button.png" Visible="false" /></asp:LinkButton>
                                                     
                                                 </ItemTemplate>
                                             </asp:TemplateField>
@@ -297,10 +308,10 @@
                                                         <%--<img id="imdiv<%# Eval("BookNo") %>" alt="Show" runat="server"  border="0" src="../images/plus.gif" />--%>
                                                     </a>
                                                     <div id="dv<%# Eval("BookNo") %>">
-                                                        <asp:GridView ID="GridView11" runat="server" ShowFooter="true" AutoGenerateColumns="false"
-                                                            Font-Names="Calibri" EmptyDataText="No Records Found" Width="550px">
-                                                            <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                                                HorizontalAlign="Center" ForeColor="White" />
+                                                        <asp:GridView ID="GridView11" runat="server" ShowFooter="true" AutoGenerateColumns="false" cssClass="table table-striped pos-table"
+                                                            Font-Names="Calibri" EmptyDataText="No Records Found" padding="0" spacing="0" border="0">
+                                                          <%--  <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                                                HorizontalAlign="Center" ForeColor="White" />--%>
                                                             <Columns>
                                                                 <asp:BoundField DataField="definition" HeaderText="Item Name" />
                                                                 <asp:BoundField DataField="Qty" HeaderText="Qty" />
@@ -329,11 +340,11 @@
                                                     <%--<img id="imdiv<%# Eval("BookNo") %>" alt="Show" runat="server"  border="0" src="../images/plus.gif" />--%>
                                                     <%--   </a>--%>
                                                     <%-- <div id="dv<%# Eval("BillNo") %>"> --%>
-                                                    <asp:GridView ID="GridView12" runat="server" ShowFooter="true" AutoGenerateColumns="false"
-                                                        DataKeyNames="billno,Branchcode,bookno,SubStatusId" Font-Names="Calibri" EmptyDataText="No Records Found"
-                                                        Width="550px" OnRowDataBound="GridView12_OnRowDataBound">
-                                                        <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                                            HorizontalAlign="Center" ForeColor="White" />
+                                                    <asp:GridView ID="GridView12" runat="server" ShowFooter="true" AutoGenerateColumns="false" cssClass="table table-striped pos-table"
+                                                        DataKeyNames="billno,Branchcode,bookno,SubStatusId" Font-Names="Calibri" EmptyDataText="No Records Found" padding="0" spacing="0" border="0"
+                                                        OnRowDataBound="GridView12_OnRowDataBound">
+                                                       <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                                            HorizontalAlign="Center" ForeColor="White" />--%>
                                                         <Columns>
                                                             <asp:BoundField DataField="SubStatusId" HeaderText="SubStatusId" Visible="false" />
                                                             <asp:BoundField DataField="SubStatusName" HeaderText="SubStatusName" />
@@ -396,18 +407,16 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>--%>
                                         </Columns>
-                                        <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-                                        <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                                       <%-- <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                                        <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                                     </asp:GridView>
                                 </div>
-                            </div>
-                            <!-- /.col-lg-6 (nested) -->
-                        </div>
-                        <!-- /.row (nested) -->
+
                         <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
                         <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
                         <script type="text/javascript">                            $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
                     </div>
+                   
                     <asp:Panel class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none"
                         runat="server">
                         <div class="popup_Container">
@@ -430,8 +439,10 @@
                     </asp:Panel>
                     </form>
                 </div>
-            </div>
-        </div>
+ 
+    </div>
+    </div>
+    </div>
     </div>
 </body>
 </html>

@@ -197,80 +197,88 @@
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="White" Visible="false" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
+    <asp:Label runat="server" ID="lblbooknocheck" Visible="false" Text="N" ></asp:Label>
+    <asp:Label runat="server" ID="lblpackingnamenew" Visible="false" Text="Qty" ></asp:Label>
+    <asp:Label runat="server" ID="lbltaxchecking" Visible="false" Text="N" ></asp:Label>
     <form id="form1" runat="server" autocomplete="Off">
     <asp:UpdatePanel ID="UpdatePalnel" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
+        <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+            <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Order Form
+           <span class="pull-right">
+          <label>Order No:</label>
+            <label id="lblBranch" runat="server">
+               </label>
+             <label id="lblOrderNo" runat="server">
+             </label>
+                </span>
+                </h1>
+	    </div>
+                   
                         <asp:ScriptManager ID="ScriptManager1" runat="server">
                         </asp:ScriptManager>
+                         <div class="panel-body">
+                                <div class="row">
                         <div runat="server" id="editbill" visible="false">
                             <blink> <label  id="lbleditbill" runat="server"  style="color:Green; font-size:12px"></label></blink>
                             <asp:Label ID="lblstatus" runat="server" Visible="false"></asp:Label>
                             <asp:Label ID="lblbillno" runat="server" Visible="false"></asp:Label>
                             <asp:Label ID="lblpaymodesic" runat="server" Visible="false"></asp:Label>
                         </div>
-                        <%-- <div class="col-lg-12">--%>
-                        <div class="panel-heading" style="background-color: #0071BD; color: White">
-                            Order Form
-                            <div align="center" style="margin-top: -2pc;" >
+                      
+                            <div class="col-lg-3" >
                             <label>
                                 Select ProductionType</label>
-                            <asp:DropDownList ID="drpproductiontype" runat="server" Width="10%" CssClass="form-control"
+                            <asp:DropDownList ID="drpproductiontype" runat="server"  CssClass="form-control"
                                 OnSelectedIndexChanged="Producttype_chnaged" AutoPostBack="true">
                             </asp:DropDownList>
                             </div>
-                            <div class="pull-right" style="margin-top: -2pc;" >
-                                <label>
-                                    Order No:</label>
-                                <label id="lblBranch" runat="server">
-                                    -</label>
-                                <label id="lblOrderNo" runat="server">
-                                </label>
-                            </div>
-                        </div>
-                        <%--</div>--%>
-                        <div class="panel-body">
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-lg-12">
+                        
                                         <div runat="server" visible="false" align="center">
                                             Want to Sync to Production:
                                             <asp:CheckBox ID="chkchecklist" Checked="false" runat="server" /></div>
-                                        <div class="col-lg-1">
+                                        <div class="col-lg-3">
                                             <b>Book No :</b>
-                                            <asp:Label ID="lblbookcode" Font-Bold="true" Font-Size="16px" runat="server"></asp:Label>
+                                            <asp:Label ID="lblbookcode" Font-Bold="true" runat="server"></asp:Label>
                                             <asp:TextBox ID="txtbookNo" MaxLength="4" runat="server" Width="100%" CssClass="form-control"></asp:TextBox>
                                             <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender6" runat="server"
                                                 FilterType="Numbers" ValidChars="" TargetControlID="txtbookNo" />
                                             <asp:TextBox ID="txtabookno" runat="server" Width="100%" Visible="false" CssClass="form-control"></asp:TextBox>
                                         </div>
-                                        <div class="col-lg-1">
+                                        <div class="col-lg-3">
                                             <b>Date</b>
                                             <asp:TextBox ID="txtOrderDate" Enabled="false" runat="server" CssClass="form-control"
-                                                Width="95px"></asp:TextBox>
+                                               ></asp:TextBox>
                                                 
                                             <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtOrderDate"
                                                 Format="yyyy-MM-dd hh:mm tt" runat="server"   CssClass="cal_Theme1 ">
                                             </ajaxToolkit:CalendarExtender>
                                         </div>
-                                        <div class="col-lg-1">
+
+                                        
+                                        <div class="col-lg-3">
                                             <b>PayMode</b>
                                             <asp:DropDownList ID="drpPayment" onchange="Confirm(this)" OnSelectedIndexChanged="paymodeclick"
                                                 AutoPostBack="true" runat="server" CssClass="form-control">
                                             </asp:DropDownList>
                                             <asp:HiddenField ID="hfResponse" runat="server" />
                                         </div>
-                                        <div class="col-lg-2">
+                                        </div>
+                                         <div class="row">
+                                        <div class="col-lg-3">
                                             <b>Phone No</b>
                                             <asp:TextBox ID="txtPhineNo" OnTextChanged="txtphone_TextChanged" MaxLength="10"
                                                 AutoPostBack="true" runat="server" CssClass="form-control"></asp:TextBox>
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-3">
                                             <b>Customer Name</b>
                                             <asp:TextBox ID="txtCustname" runat="server" CssClass="form-control"></asp:TextBox></div>
-                                        <div class="col-lg-2">
+                                            
+                                        <div class="col-lg-3">
                                             <b>Delivery Date</b>
                                             <asp:TextBox ID="txtDeliveryDate" runat="server" CssClass="form-control" OnTextChanged="txtDeliveryDtae_textChanged"
                                                 AutoPostBack="true"></asp:TextBox>
@@ -278,7 +286,8 @@
                                                 runat="server" CssClass="cal_Theme1"  OnClientDateSelectionChanged="checkDate">
                                             </ajaxToolkit:CalendarExtender>
                                         </div>
-                                        <div class="col-lg-2">
+                              
+                                        <div class="col-lg-3">
                                             <b>Delivery Time</b>
                                             <table>
                                                 <tr>
@@ -320,47 +329,25 @@
                                                 </tr>
                                             </table>
                                         </div>
-                                        <table id="dataTables-example" width="100%">
-                                            <tr align="center">
-                                                <td>
+                                </div>
+                                        
                                                     <div style="display: none">
                                                         <b>Previous cancel order no.</b>
                                                         <asp:DropDownList ID="ddlcancelorder" runat="server" CssClass="form-control" AutoPostBack="true"
                                                             OnSelectedIndexChanged="ddlcancelorder_SelectedIndexChanged">
                                                         </asp:DropDownList>
                                                     </div>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                </td>
-                                                <td>
-                                                </td>
-                                            </tr>
-                                            <tr align="center">
-                                                <td>
-                                                    <label>
-                                                </td>
-                                                <td style="display: none">
+                                               
+                                                <div style="display: none">
                                                     <label>
                                                         Address</label>
                                                     <asp:TextBox ID="txtaddress" runat="server" CssClass="form-control" TextMode="MultiLine"
                                                         Width="250px" Height="50px"></asp:TextBox>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                </td>
-                                                <td>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        <div style="width: 100%;">
-                                            <%--  <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
-                                                <ContentTemplate>--%>
-                                            <asp:GridView ID="gridorder" runat="server" AutoGenerateColumns="false" Width="100%"
-                                                HeaderStyle-BackColor="Black" HeaderStyle-ForeColor="Wheat" OnRowDeleting="gridorder_RowDeleting"
+                                                </div>
+                                             
+                                        <div class="table-responsive panel-grid-left">
+                                            <asp:GridView ID="gridorder" runat="server" AutoGenerateColumns="false" Width="100%" padding="0" spacing="0" border="0" cssClass="table table-striped pos-table"
+                                              OnRowDeleting="gridorder_RowDeleting"
                                                 OnRowDataBound="gridorder_RowDataBound">
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="Category" HeaderStyle-Width="15%">
@@ -377,10 +364,23 @@
                                                             </asp:DropDownList>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Qty" ItemStyle-Width="5%" ItemStyle-Font-Size="Smaller">
+                                                    <asp:TemplateField HeaderText="Packing Type" HeaderStyle-Width="11%">
+                                                        <ItemTemplate>
+                                                            <asp:DropDownList ID="drppackingtype" OnSelectedIndexChanged="packing_type" AutoPostBack="true" runat="server" CssClass="form-control" >
+                                                            </asp:DropDownList>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                     <asp:TemplateField HeaderStyle-Width="6%" HeaderText="No. Of pack/Qty" ItemStyle-Font-Size="Smaller">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtnoofpack" Width="100%" OnTextChanged="pack_chnaged" AutoPostBack="true" Enabled="true" CssClass="form-control" runat="server"></asp:TextBox>
+                                                            <ajaxToolkit:FilteredTextBoxExtender ID="ftbeeqty" runat="server" TargetControlID="txtnoofpack"
+                                                                FilterType="Custom,Numbers" ValidChars="." />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Total Qty" ItemStyle-Width="7%" ItemStyle-Font-Size="Smaller">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblitemdiscount" runat="server" Style="display: none">0</asp:Label>
-                                                            <asp:TextBox ID="txtQty" AutoPostBack="true" Width="100%" Enabled="true" OnTextChanged="txtqty_chnaged"
+                                                            <asp:TextBox ID="txtQty" AutoPostBack="true" Width="100%" Enabled="false" OnTextChanged="txtqty_chnaged"
                                                                 runat="server" CssClass="form-control"></asp:TextBox>
                                                             <ajaxToolkit:FilteredTextBoxExtender ID="ftbeqty" runat="server" TargetControlID="txtQty"
                                                                 FilterType="Custom,Numbers" ValidChars="." />
@@ -402,7 +402,7 @@
                                                                 runat="server" Enabled="false"></asp:TextBox>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderStyle-Width="5%" HeaderText="Units" ItemStyle-Font-Size="Smaller">
+                                                    <asp:TemplateField HeaderStyle-Width="7%" HeaderText="Units" ItemStyle-Font-Size="Smaller">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblunits" Visible="false" runat="server"></asp:Label>
                                                             <asp:Label ID="lblunitid" Visible="false" runat="server"></asp:Label>
@@ -412,14 +412,19 @@
                                                             </asp:DropDownList>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                     <asp:TemplateField HeaderText="Model no" Visible="true" HeaderStyle-Width="15%">
+                                                     <asp:TemplateField HeaderText="Packing Notes(optional)" Visible="true" HeaderStyle-Width="15%">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtpackingnotes" runat="server" TextMode="MultiLine" CssClass="form-control" ></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                     <asp:TemplateField HeaderText="Model no" Visible="false" HeaderStyle-Width="15%">
                                                         <ItemTemplate>
                                                             <asp:DropDownList ID="drpmodelno" runat="server" CssClass="form-control" OnSelectedIndexChanged="ModelNo_chnaged"
                                                                 AutoPostBack="true">
                                                             </asp:DropDownList>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                     <asp:TemplateField HeaderText="Model Image" Visible="true" HeaderStyle-Width="15%">
+                                                     <asp:TemplateField HeaderText="Model Image" Visible="false" HeaderStyle-Width="15%">
                                                         <ItemTemplate>
                                                             <asp:Image ID="lblimg" runat="server" Width="5pc"  />
                                                             <asp:Label ID="lblimgpath" runat="server" Visible="true" ></asp:Label>
@@ -428,20 +433,29 @@
                                                     <asp:TemplateField>
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="add" runat="server" OnClick="btnnew_Click">
-                                                                <asp:Image ID="img" Width="20px" runat="server" ImageUrl="~/images/edit_add.png" /></asp:LinkButton>
+                                                                <asp:Image ID="img" Width="20px" runat="server" ImageUrl="~/images/edit_add.png" Visible="false" />
+                                                                <button type="button" class="btn btn-primary pos-btn1">
+						                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+					                                    </button>
+                                                        </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:CommandField ShowDeleteButton="True" ButtonType="Button" />
+                                                    <asp:CommandField ShowDeleteButton="True" ButtonType="Button"/>
                                                 </Columns>
                                             </asp:GridView>
-                                            <hr />
-                                            <br />
-                                            <br />
-                                            <div align="center" style="background-color: Silver">
-                                                <label>
-                                                    Calculation Details</label>
-                                            </div>
-                                            <table class="table ">
+                                        </div>
+                                           </div>
+                                   
+                                </div>
+                         <div class="col-lg-8">
+                                <div class="row panel-custom1">
+                                <div class="panel-header">
+                                  <h1 class="page-header">Calculation Details</h1>
+	                            </div>
+                                      <div class="panel-body">     
+                                               
+                                         
+                                          
                                                 <tr runat="server" visible="false" align="center">
                                                     <td>
                                                         <label>
@@ -633,106 +647,105 @@
                                                         </asp:DropDownList>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>
+                                                <div class="row">
+                                               <div class="col-lg-4">
                                                         <label>
                                                             Order Option</label>
-                                                    </td>
-                                                    <td>
+                                                   
                                                         <asp:DropDownList ID="drporderlist" runat="server" CssClass="form-control">
                                                         </asp:DropDownList>
                                                         <%--<asp:RequiredFieldValidator id="reqFavoriteColor" ValidationGroup="val" Text="Please Select Order Type" InitialValue="Select Order Option" ControlToValidate="drporderlist" Runat="server" /> </td>--%>
-                                                        <td>
+                                                      </div>
+                                                       <div class="col-lg-4">
+                                                       <br />
                                                             <asp:DropDownList ID="ddlfunctions" runat="server" CssClass="form-control">
                                                             </asp:DropDownList>
-                                                        </td>
-                                                        <td>
+                                                      
+                                                      </div>
+                                                      <div class="col-lg-4">
                                                             <label>
                                                                 Sub.Total
                                                             </label>
-                                                        </td>
-                                                        <td>
+                                                        
                                                             <asp:TextBox ID="txtsubtotal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
+                                                       </div>
+                                                       <div class="col-lg-4">
                                                         <label>
                                                             Pick Up Location</label>
-                                                    </td>
-                                                    <td>
+                                                   
                                                         <asp:DropDownList ID="drppickup" runat="server" CssClass="form-control">
                                                         </asp:DropDownList>
                                                         <%--<asp:RequiredFieldValidator id="RequiredFieldValidator1" ValidationGroup="val" Text="Please Select PickUp Location" InitialValue="Select Pickup Location" ControlToValidate="drppickup" Runat="server" />--%>
-                                                    </td>
-                                                    <td>
+                                                   </div>
+                                                   <div class="col-lg-4">
+                                                   <br />
                                                         <asp:RadioButtonList ID="radiomode" runat="server" AutoPostBack="true" OnSelectedIndexChanged="radiomode_SelectedIndexChanged"
                                                             RepeatDirection="Horizontal">
                                                             <asp:ListItem Text="Full payment" Value="Full"></asp:ListItem>
                                                             <asp:ListItem Text="Advance" Value="Adv"></asp:ListItem>
                                                         </asp:RadioButtonList>
-                                                    </td>
-                                                    <td>
+                                                        </div>
+                                                   <div class="col-lg-4">
                                                         <label>
                                                             CGST
                                                         </label>
-                                                    </td>
-                                                    <td>
+                                                    
                                                         <asp:TextBox ID="txtcgst" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
+                                                  </div>
+                                                  <div class="col-lg-4">
                                                         <label>
                                                             Delivery charge</label>
-                                                    </td>
-                                                    <td>
+                                                   
                                                         <asp:TextBox ID="txtdeliverycharge" runat="server" CssClass="form-control">0</asp:TextBox>
-                                                    </td>
-                                                    <td>
+                                                  </div>
+                                                   <div class="col-lg-4">
+                                                   <br />
                                                         <asp:CheckBox ID="chk" runat="server" Text="Sms" />
-                                                    </td>
-                                                    <td>
+                                                   </div>
+                                                   <div class="col-lg-4">
                                                         <label>
                                                             SGST
                                                         </label>
-                                                    </td>
-                                                    <td>
+                                                   
                                                         <asp:TextBox ID="txtsgst" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
+                                                   </div>
+                                                   <div class="col-lg-4">
                                                         <label>
                                                             Order Taken by
                                                         </label>
-                                                    </td>
-                                                    <td>
+                                                   
                                                         <asp:TextBox ID="txtOrdetBy" runat="server" CssClass="form-control"></asp:TextBox>
-                                                    </td>
-                                                    <td>
-                                                        <%--<td colspan="2" width="70px">--%>
+                                                   </div>
+                                                   <div class="col-lg-4">
+                                                   <br />
                                                         <asp:Label ID="lblNbilltype" runat="server" Visible="false" Text="'1'"></asp:Label>
                                                         <asp:Label ID="lbldisctype" runat="server" Visible="false" Text="'2'"></asp:Label>
                                                         <asp:DropDownList ID="attednertype" OnSelectedIndexChanged="attednerchk" AutoPostBack="true"
                                                             runat="server" Enabled="false">
                                                         </asp:DropDownList>
                                                         <asp:Label ID="lbloritot" runat="server" Visible="false"></asp:Label>
-                                                        <label>
+                                                       </div>
+                                                       <div class="col-lg-4">
+                                                       <br />
+                                                       <label>
                                                             Disc.Chk</label>
                                                         <asp:CheckBox ID="chkdisc" runat="server" OnCheckedChanged="disc_checkedchanged"
                                                             AutoPostBack="true" />
-                                                        <asp:TextBox ID="txtdiscotp" runat="server" placeholder="Enter OTP" Enabled="false"
+                                                       
+                                                       &nbsp;&nbsp;&nbsp; <asp:TextBox ID="txtdiscotp" runat="server" placeholder="Enter OTP" Enabled="false"
                                                             TextMode="Password" AutoCompleteType="Disabled" Width="95px" OnTextChanged="otp_chnaged"
                                                             AutoPostBack="true"></asp:TextBox>
+                                                        </div>
+                                            </div>
+                                            <div class="row">
+                                                        <div class="col-lg-4">
                                                         <br />
                                                         <label>
                                                             Max.disc</label>
                                                         <asp:Label ID="lblmaxdiscount" Text="0" Visible="true" Font-Bold="true" Font-Size="Larger"
                                                             ForeColor="Red" runat="server"></asp:Label>
-                                                        <%-- </td>--%>
-                                                    </td>
-                                                    <td>
+                                                     </div>
+                                                   <div class="col-lg-4">
                                                         <label>
                                                             Discount %
                                                         </label>
@@ -741,29 +754,14 @@
                                                         </asp:DropDownList>
                                                         <asp:TextBox ID="txtdiscper" runat="server" Visible="false" Text="0" Enabled="false"
                                                             CssClass="form-control" OnTextChanged="txtDiscount_TextChanged" AutoPostBack="true">0</asp:TextBox>
-                                                    </td>
-                                                    <td>
+                                                  </div>
+                                                  <div class="col-lg-4">
                                                         <label>
                                                             Disc.Amount
                                                         </label>
                                                         <asp:TextBox ID="txtdiscamount" runat="server" CssClass="form-control" Enabled="false">0</asp:TextBox>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <asp:Button ID="btnSave" runat="server" CssClass="btn btn-success" ValidationGroup="val"
-                                                            Text="Save & Print" UseSubmitBehavior="false" OnClientClick="this.disabled=true;"
-                                                            OnClick="btnSave_Click" />
-                                                        <asp:Button ID="Button1" runat="server" CssClass="btn btn-danger" Text="Exit" UseSubmitBehavior="false"
-                                                            PostBackUrl="~/Accountsbootstrap/OrderGrid.aspx" />
-                                                        <div id="chkdelv" runat="server" visible="false">
-                                                            <label>
-                                                                Delivery Status</label>
-                                                            <asp:CheckBox ID="chkdelivery" runat="server" />
-                                                            <asp:TextBox ID="txtdeliveryby" runat="server"></asp:TextBox>
-                                                        </div>
-                                                    </td>
-                                                    <td>
+                                                   </div>
+                                                   
                                                         <div runat="server" id="Tpaid" visible="false">
                                                             <label>
                                                                 Total Paid (Advance + P.amount + BAL. - Refund):</label>
@@ -776,19 +774,12 @@
                                                             <asp:Label ID="lblrefundamount" Font-Bold="true" Font-Size="30px" BackColor="Red"
                                                                 runat="server"></asp:Label>
                                                         </div>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                    <td>
+                                                  <div class="col-lg-4">
                                                         <label>
                                                             Total Amount</label>
-                                                    </td>
-                                                    <td>
+                                                  
                                                         <asp:TextBox ID="txttotal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
+                                                   </div>
                                                         <div id="Epaymode" runat="server" visible="false">
                                                             <b>PayMode</b>
                                                             <asp:DropDownList ID="drpPayment1" onchange="Confirm(this)" OnSelectedIndexChanged="paymodeclick"
@@ -796,8 +787,7 @@
                                                             </asp:DropDownList>
                                                             <asp:HiddenField ID="HiddenField1" runat="server" />
                                                         </div>
-                                                    </td>
-                                                    <td>
+                                                    
                                                         <div style="padding-left: 2pc" id="Pamount" runat="server" visible="false">
                                                             <b>Amount</b><br />
                                                             <asp:TextBox ID="txtpartialamount" runat="server" OnTextChanged="partial_amount"
@@ -805,29 +795,39 @@
                                                             <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server"
                                                                 TargetControlID="txtpartialamount" FilterType="Custom,Numbers" ValidChars="." />
                                                         </div>
-                                                    </td>
-                                                    <td>
+                                                    
                                                         <div runat="server" visible="false" id="balpaid">
                                                             <label>
                                                                 Balance Paid</label>
                                                             <asp:Label ID="lblbalpaid" runat="server"></asp:Label>
                                                         </div>
-                                                    </td>
-                                                    <td>
+                                                   <div class="col-lg-4">
                                                         <label>
                                                             Advance</label>
-                                                    </td>
-                                                    <td>
+                                                   
                                                         <asp:TextBox ID="txtAdvance" runat="server" CssClass="form-control" AutoPostBack="true"
                                                             Enabled="false" OnTextChanged="txtAdvance_TextChanged">0</asp:TextBox>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                    </td>
-                                                    <td>
-                                                        <label>
-                                                            Payment Details</label>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                     <label>
+                                                            Balance</label>
+                                                        <asp:TextBox ID="txtBalance" runat="server" Enabled="false" CssClass="form-control">0</asp:TextBox>
+                                                    </div>
+                                                 
+                                                       
+                            </div>
+                            </div>  
+                            </div>
+                            </div>
+                             <div class="col-lg-4">
+                                <div class="row panel-custom1">
+                                <div class="panel-header">
+                                  <h1 class="page-header">Payment Details</h1>
+	                            </div>     
+                                 <div class="panel-body">
+                <div class="list-group">
+                                 
+                                   <label>Payment Details</label>
                                                         <asp:GridView ID="Gridpaymentdetails" EmptyDataText="No Payment Details" runat="server"
                                                             Width="100%" AutoGenerateColumns="false" Font-Names="Calibri">
                                                             <Columns>
@@ -837,50 +837,42 @@
                                                                 <asp:BoundField DataField="mod" HeaderText="Pay Mode" />
                                                             </Columns>
                                                         </asp:GridView>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                    <td>
-                                                        <label>
-                                                            Balance</label>
-                                                    </td>
-                                                    <td>
-                                                        <asp:TextBox ID="txtBalance" runat="server" Enabled="false" CssClass="form-control">0</asp:TextBox>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="display: none">
+                                                   
+                                                       
                                                         <label>
                                                             Messege</label>
-                                                        <asp:TextBox TextMode="MultiLine" MaxLength="50" ID="txtMessege" runat="server" CssClass="form-control"></asp:TextBox>
-                                                    </td>
-                                                    <td style="display: none">
+                                                        <asp:TextBox TextMode="MultiLine"  ID="txtMessege" runat="server" CssClass="form-control"></asp:TextBox>
+                                                   <br />
+                                                    <div style="display: none">
                                                         <label>
                                                             Notes</label>
                                                         <asp:TextBox TextMode="MultiLine" MaxLength="50" ID="txtNotes" runat="server" CssClass="form-control"></asp:TextBox>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="display: none">
+                                                    </div>
+                                              
                                                         <label>
                                                             Delivery Place
                                                         </label>
-                                                        <asp:TextBox ID="txtPlace" runat="server" CssClass="form-control" placeholder="eg Kk Nagar"></asp:TextBox>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <%-- </ContentTemplate>
-                                            </asp:UpdatePanel>--%>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                                        <asp:TextBox ID="txtPlace" runat="server" TextMode="MultiLine" CssClass="form-control" ></asp:TextBox>
+                                                     
+                                                     <br />
+                                                        <asp:Button ID="btnSave" runat="server" CssClass="btn btn-lg btn-primary pos-btn1" ValidationGroup="val"
+                                                            Text="Save & Print" UseSubmitBehavior="false" OnClientClick="this.disabled=true;"
+                                                            OnClick="btnSave_Click" />
+                                                        <asp:Button ID="Button1" runat="server" CssClass="btn btn-lg btn-link" Text="Exit" UseSubmitBehavior="false"
+                                                            PostBackUrl="~/Accountsbootstrap/OrderGrid.aspx" />
+                                                        <br />
+                                                        <div id="chkdelv" runat="server" visible="false">
+                                                            <label>
+                                                                Delivery Status</label>
+                                                            <asp:CheckBox ID="chkdelivery" runat="server" />
+                                                            <asp:TextBox ID="txtdeliveryby" runat="server"></asp:TextBox>
+                                                        </div>
+                                                    </div>
                     </div>
-                </div>
-            </div>
+        </div>
+        </div>
+        </div>
+        </div>
         </ContentTemplate>
     </asp:UpdatePanel>
     <asp:UpdateProgress ID="UpdateProgress" runat="server" AssociatedUpdatePanelID="UpdatePalnel">

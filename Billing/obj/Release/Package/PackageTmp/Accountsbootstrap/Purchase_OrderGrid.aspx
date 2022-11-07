@@ -124,44 +124,56 @@
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label">Welcome : </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label">Welcome: </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
-     <div class="row" style="">
-      <div class="col-lg-12">
-        <div class="panel panel-primary">
-            <div class="panel-heading" >
-                Purchase Order Entry</div>
+     <form runat="server" id="form1">
+     <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Purchase Order Entry
+          <span class="pull-right">
+          <asp:LinkButton ID="addbtn" runat="server" onclick="Add_Click">
+            <button type="button" class="btn btn-primary btn-md pos-btn1">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD
+			</button>
+           </asp:LinkButton>
+                </span>
+                </h1>
+	    </div>
+  
             <div class="panel-body">
-    <form runat="server" id="form1">
+    
     <asp:ValidationSummary runat="server" HeaderText="Validation Messages" ValidationGroup="val1"
         ID="val1" ShowMessageBox="true" ShowSummary="false" />
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
   
-                <div class="col-lg-12">
-                    <div class="col-lg-2">
+                <div class="row">
+                    <div class="col-lg-3">
                         <div class="form-group ">
                             <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="phono" ControlToValidate="txtsearch"
                                 ErrorMessage="Please enter your searching Data!" Text="*" Style="color: White" />
                             <asp:TextBox CssClass="form-control" Enabled="true" ID="txtsearch" runat="server"
-                                placeholder="Search Text" Style="width: 150px;"></asp:TextBox>
+                                placeholder="Search Text" ></asp:TextBox>
                             <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
                                 FilterType="LowercaseLetters, UppercaseLetters,Numbers,Custom" ValidChars=" "
                                 TargetControlID="txtsearch" />
                         </div>
                     </div>
-                    <div class="col-lg-2">
-                        <div class="form-group ">
+                    <div class="col-lg-3">
+                       
                             <label>
                                 From date</label>
                             <asp:TextBox runat="server" ID="txtfromdate" CssClass="form-control" AutoPostBack="true"
                                 OnTextChanged="txtfromdate_TextChanged"> 
                             </asp:TextBox>
                             <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtfromdate"
-                                Format="dd/MM/yyyy" runat="server">
+                                Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
                             </ajaxToolkit:CalendarExtender>
-                        </div>
+                        
                     </div>
-                    <div class="col-lg-2">
-                        <div class="form-group ">
+                    <div class="col-lg-3">
+                        
                             <label>
                                 To date</label>
                             <asp:TextBox runat="server" ID="txttodate" CssClass="form-control" AutoPostBack="true"
@@ -170,32 +182,28 @@
                             <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txttodate"
                                 Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
                             </ajaxToolkit:CalendarExtender>
-                        </div>
+                        
                     </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
+                    <div class="col-lg-3">
+                       
                             <label>
                                 Supplier</label>
-                            <asp:DropDownList CssClass=" form-control chzn-select" ID="ddlsuplier" Width="150px" AutoPostBack="true"
-                                OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged"  Height="50px" runat="server">
+                            <asp:DropDownList CssClass=" form-control" ID="ddlsuplier"  AutoPostBack="true"
+                                OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged"   runat="server">
                             </asp:DropDownList>
-                        </div>
+                        
                     </div>
-                    <div class="col-lg-2 ">
-                        <asp:Button ID="btnadd" runat="server" class="btn btn-success" Text="Add New" OnClick="Add_Click"
-                            Style="width: 120px; margin-right: 450px; margin-top: 20px" />
-                    </div>
-                </div>
+                   
+                
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div id="Div1" runat="server" style="overflow: auto; height: 350px">
-                                <asp:GridView ID="BankGrid" runat="server" Width="100%" AllowSorting="true" OnSelectedIndexChanged="BankGrid_SelectedIndexChanged"  Font-Names="Calibri"
-                                    EmptyDataText="No Records Found" AutoGenerateColumns="false" OnRowCommand="BankGrid_RowCommand" OnRowDataBound="gridview_OnRowDataBound">
+
+                            <div class="table-responsive panel-grid-left">
+                                <asp:GridView ID="BankGrid" runat="server" Width="100%" AllowSorting="true" OnSelectedIndexChanged="BankGrid_SelectedIndexChanged"  cssClass="table table-striped pos-table"
+                                    EmptyDataText="No Records Found" AutoGenerateColumns="false" OnRowCommand="BankGrid_RowCommand" OnRowDataBound="gridview_OnRowDataBound" padding="0" spacing="0" border="0">
                                    <%-- <HeaderStyle BackColor="#3366FF" />--%>
-                                   <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> 
+                                  <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> 
                                     <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
-                                        NextPageText="Next" PreviousPageText="Previous" />
+                                        NextPageText="Next" PreviousPageText="Previous" />--%>
                                     <Columns>
                                         <asp:BoundField HeaderText="LedgerID" DataField="Purchaseid" Visible="false" />
                                         <asp:BoundField HeaderText="OrderNo" DataField="OrderNo" />
@@ -206,33 +214,43 @@
                                         <asp:BoundField HeaderText="Order Status" DataField="Status" />
 
 
-                                          <asp:TemplateField HeaderText="Print" ItemStyle-HorizontalAlign="center" Visible="true">
+                                          <asp:TemplateField HeaderText="Print"  Visible="true">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btnPrint" runat="server" CommandArgument='<%#Eval("OrderNo") %>'
                                                     CommandName="Print">
-                                                    <asp:Image ID="img1" runat="server" ImageUrl="~/images/print%20(1).png" Width="44px"  /></asp:LinkButton>
+                                                    <asp:Image ID="img1" runat="server" ImageUrl="~/images/print%20(1).png" Width="44px" visible="false" />
+                                                    <button type="button" class="btn btn-default btn-md">
+						                                <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+					                                </button>
+                                                    </asp:LinkButton>
                                                 <asp:ImageButton ID="imgdisable2" ImageUrl="~/images/edit.png"  width="55px"  runat="server" Visible="false"
                                                     Enabled="false" ToolTip="Not Allow To Delete" />
                                                
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Edit" ItemStyle-HorizontalAlign="center" Visible="true">
+                                        <asp:TemplateField HeaderText="Edit"  Visible="true">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="btnedit" runat="server" CommandArgument='<%#Eval("OrderNo") %>'
+                                                <asp:LinkButton ID="btnedit" runat="server" CommandArgument='<%#Eval("OrderNo") %>' cssclass="btn btn-warning btn-md"
                                                    CommandName="Select" >
-                                                    <asp:Image ID="img" runat="server" ImageUrl="~/images/edit.png" width="55px"/></asp:LinkButton>
+                                                    <asp:Image ID="img" runat="server" ImageUrl="~/images/edit.png" width="55px" Visible="false"  />
+                                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                    </asp:LinkButton>
                                                 <asp:ImageButton ID="imgdisable" ImageUrl="~/images/edit.png" runat="server" Visible="false"
                                                     Enabled="false" ToolTip="Not Allow To Delete" width="55px"/>
                                                 <asp:HiddenField ID="ldgID" runat="server" Value='<%# Bind("OrderNo") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         
-                                        <asp:TemplateField HeaderText="Delete" ItemStyle-HorizontalAlign="Center" Visible="true">
+                                        <asp:TemplateField HeaderText="Delete"  Visible="true">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btndelete" runat="server" CommandArgument='<%#Eval("OrderNo") %>'
                                                     CommandName="delete" OnClientClick="alertMessage()">
-                                                    <asp:Image ID="dlt" runat="server" ImageAlign="Middle" ImageUrl="~/images/delete.png" /></asp:LinkButton>
+                                                    <asp:Image ID="dlt" runat="server" ImageAlign="Middle" ImageUrl="~/images/delete.png" Visible="false"/>
+                                                    <button type="button" class="btn btn-danger btn-md">
+												<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+												</button>
+                                                </asp:LinkButton>
                                                 <asp:ImageButton ID="imgdisable1" ImageUrl="~/images/delete.png" runat="server" Visible="false"
                                                     Enabled="false" ToolTip="Not Allow To Delete" />
                                                 <ajaxToolkit:ModalPopupExtender ID="lnkDelete_ModalPopupExtender" runat="server"
@@ -249,15 +267,11 @@
                                    <%-- <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                                 </asp:GridView>
                             </div>
-                        </div>
-                        <!-- /.col-lg-6 (nested) -->
-                    </div>
-                    <!-- /.row (nested) -->
-              
-        
+                     
         <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
         <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
         <script type="text/javascript">            $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
+    </div>
     </div>
     <asp:Panel class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none"
         runat="server">
@@ -279,7 +293,12 @@
             </div>
         </div>
     </asp:Panel>
-    </form></div>
-    </div></div></div>
+    </div>
+    
+    </div>
+    </div>
+    </div>
+    </div>
+    </form>
 </body>
 </html>

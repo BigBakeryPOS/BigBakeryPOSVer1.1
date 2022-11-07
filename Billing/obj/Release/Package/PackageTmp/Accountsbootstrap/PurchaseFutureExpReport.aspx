@@ -101,7 +101,7 @@
         }
     </style>
 </head>
-<body style="">
+<body>
     <form runat="server" id="form1" method="post">
     <usc:Header ID="Header" runat="server" />
     <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -109,42 +109,38 @@
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" Visible="false" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="White" Visible="false" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
-    <div class="row" style="padding-top: 50px">
-        <div class="row" style="padding-left: 25px">
-            <div class="col-lg-12">
-                <h3 class="page-header">
-                    Purchase Expiry Status Report</h3>
-            </div>
-            <!-- /.col-lg-12 -->
-        </div>
-        <div class="col-lg-12">
-            <div class="col-lg-1">
-                <div class="form-group">
-                    <asp:Label runat="server" ID="Label1">No of Days </asp:Label>
-                </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="form-group">
+  <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Purchase Expiry Status Report</h1>
+	    </div>
+        <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-3">
+            
+                    <b><asp:Label runat="server" ID="Label1">No of Days </asp:Label></b>
                     <asp:TextBox ID="txtnoofdays" CssClass="form-control" runat="server" Text="10"></asp:TextBox>
-                </div>
+               
             </div>
-            <div class="col-lg-2">
-                <div class="form-group">
-                    <asp:Button ID="btnsearch" runat="server" ValidationGroup="val1" class="btn btn-success"
-                        Text="Generate Report" OnClick="Search_Click" Style="width: 150px" />
-                </div>
+            <div class="col-lg-3">
+               <br />
+                    <asp:Button ID="btnsearch" runat="server" ValidationGroup="val1" class="btn btn-primary pos-btn1"
+                        Text="Generate Report" OnClick="Search_Click"  />
+                
             </div>
-            <div class="col-lg-2" runat="server" visible="false">
-                <div class="form-group">
+            <div class="col-lg-3" runat="server" visible="false">
+                
                     <br />
                     <%-- <asp:Button ID="btnexcel" runat="server" ValidationGroup="val1" class="btn btn-warning"
                         Text="Excel" OnClick="btnexcel_Click" Style="width: 120px" />--%>
                     <asp:Button ID="btnexcel" runat="server" ValidationGroup="val1" class="btn btn-warning"
                         Text="Excel" Style="width: 120px" />
-                </div>
+                
             </div>
         </div>
-    </div>
+    
     <div class="col-lg-12">
         <div class="col-lg-3">
         </div>
@@ -154,14 +150,12 @@
         <div class="col-lg-2">
         </div>
     </div>
-    <div class="row" style="padding-top: 30px">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="col-lg-12">
-                    <div class="col-lg-12">
+    <br />
+                   
                         <label>
                             Purchase Expiry Status</label>
-                        <asp:GridView ID="gvSalesValue" runat="server" AutoGenerateColumns="false" CssClass="myGridStyle1"
+                            <div class="table-responsive panel-grid-left">
+                        <asp:GridView ID="gvSalesValue" runat="server" AutoGenerateColumns="false" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                            EmptyDataText="No Record found"
                             Width="100%" ShowFooter="true">
                             <Columns>
@@ -204,10 +198,12 @@
                            <%-- <FooterStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
                             <HeaderStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />--%>
                         </asp:GridView>
-                    </div>
-                </div>
-            </div>
+                    
         </div>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
     </form>
 </body>

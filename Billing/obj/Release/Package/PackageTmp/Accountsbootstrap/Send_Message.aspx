@@ -64,60 +64,54 @@
                     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
    <usc:Header ID="Header" runat="server" Visible="true" />
    <form runat="server" id="form1">
-    <div style="margin-top:100px"  class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Message Sender</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Message Sender</h1>
+	    </div>
 
-        
-          <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-6">
-                                        <div class="form-group">
+                                <div class="col-lg-3">
+                                       
             <label>Send Message To: </label>
-            <asp:DropDownList ID="ddsrchby" Width="150px" CssClass="form-control" runat="server">
+            <asp:DropDownList ID="ddsrchby" CssClass="form-control" runat="server">
            
             </asp:DropDownList>
-            <asp:TextBox ID="txtser" Visible="false" runat="server" Width="175px"  CssClass="form-control" style="width:150px;margin-top: -34px;margin-left: 150px;" ></asp:TextBox>
-             </div>
-            <div>
-            <asp:Button ID="btnsearch" runat="server" CssClass="btn btn-success"  Text="Search" onclick="btnsearch_Click"/>
+            </div>
+           
+            <asp:TextBox ID="txtser" Visible="false" runat="server"  CssClass="form-control"></asp:TextBox>
+            
+           <div class="col-lg-2">
+           <br />
+            <asp:Button ID="btnsearch" runat="server" CssClass="btn btn-success pos-btn1"  Text="Search" onclick="btnsearch_Click" Width="150px"/>
             </div>
               
-           
-         
-          
-            
-                                    <div style="color: Green; font-weight: bold" class="form-group form-inline">
-         <div class="form-control">
+            <div class="col-lg-7">
+    <br />
          <asp:RadioButton ID="rbSMS" runat="server" Text="SMS" GroupName="Mode" Checked/>
          
          &nbsp;&nbsp;
          
          <asp:RadioButton ID="rbEmail" runat="server" Text="E-Mail" GroupName="Mode"/>
-         </div> 
-        </div>
-                               <div class="table-responsive">
+         </div>
+       </div>
+       <div class="row">
+       <div class="col-md-6">
+                               <div class="table-responsive panel-grid-left">
                                         
-                                <table class="table table-bordered table-striped">
-                                <tr>
-                                <td>
                                 <asp:GridView UseAccessibleHeader="true" ID="gvcust"  ShowHeaderWhenEmpty="true" 
                                         EmptyDataText="No Records Found"  runat="server" AllowPaging="true" PageSize="10" 
-                                        AllowSorting="true" CssClass="myGridStyle" AutoGenerateColumns="false" 
-                                        onpageindexchanging="gvcust_PageIndexChanging" onrowdatabound="gvcust_RowDataBound" 
-                                        >
-                                 <HeaderStyle BackColor="#3366FF" />
-                                <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" NextPageText="Next" PreviousPageText="Previous" />
+                                        AllowSorting="true" cssClass="table table-striped pos-table" AutoGenerateColumns="false" 
+                                        onpageindexchanging="gvcust_PageIndexChanging" onrowdatabound="gvcust_RowDataBound" padding="0" spacing="0" border="0">
+                                        <PagerStyle CssClass="pos-paging" />
+                                <%-- <HeaderStyle BackColor="#3366FF" />
+                                <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" NextPageText="Next" PreviousPageText="Previous" />--%>
     <Columns>
     <asp:BoundField HeaderText="Customer ID" DataField="CustomerID" Visible="false" />
-    <asp:BoundField HeaderText="Customer Name" DataField="CustomerName"  SortExpression="Customername"  />
+    <asp:BoundField HeaderText="Customer Name" DataField="CustomerName"    />
     <asp:BoundField HeaderText="Mobile No" DataField="MobileNo" />
     <asp:BoundField HeaderText="Area" DataField="Area" />
     <asp:BoundField HeaderText="Email" DataField="Email" />
@@ -136,38 +130,32 @@
      
      </asp:TemplateField>
    
-   </Columns><FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-   <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+   </Columns><%--<FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+   <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
    </asp:GridView>
-                                </td>
-                                </tr>
-                                </table>
+                               
                                 </div>
-                                <div><asp:TextBox TextMode="MultiLine" ID="txtMessage" runat="server" Width="491px" 
-                                        Height="50px"></asp:TextBox>
-                                     <asp:Button ID="btnSMS" runat="server" Text="Send SMS" 
-                                        CssClass="btn btn-danger" onclick="btnSMS_Click" />
-                                        </div>
-										
+                                </div>
+                                <div class="col-md-6">
 
-         
-        
+                                <br /><asp:TextBox TextMode="MultiLine" ID="txtMessage" runat="server" Width="600px" 
+                                        Height="250px"></asp:TextBox>
+                                        <br /><br />
+                                     <center><asp:Button ID="btnSMS" runat="server" Text="Send SMS" 
+                                        CssClass="btn btn-danger pos-btn1" onclick="btnSMS_Click" /></center>
                                         
-                                        
-										
+										</div>
                                     
                                 </div>
                                 
-                                <!-- /.col-lg-6 (nested) -->
+                               </div>
                             </div>
                             <!-- /.row (nested) -->
                         </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
+               
             </div>
+            </div>
+            
 <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
 		<script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
 		<script type="text/javascript">		    $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>

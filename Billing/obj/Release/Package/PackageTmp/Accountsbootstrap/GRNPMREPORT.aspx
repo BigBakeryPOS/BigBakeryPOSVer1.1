@@ -83,16 +83,20 @@
     <form id="Form1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-body" style="">
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+ 
+            <div class="row panel-custom1">
+             <div class="panel-header">
+          <h1 class="page-header">GRN-P/M Report</h1>
+	    </div>
+                <div class="panel-body">
                     <div class="row">
-                        <div>
-                            <h2>
-                                GRN-P/M Report</h2>
-                            <div class="col-lg-2">
-                                <div class="form-group" id="admin" runat="server">
+                      
+
+                           
+                                <div class="form-group" id="admin" runat="server" >
                                     <legend>Filter By Branch</legend>
                                     <asp:DropDownList CssClass="form-control" ID="ddlBranch" runat="server" AutoPostBack="true">
                                         <asp:ListItem Value="5" Text="Kk Nagar"></asp:ListItem>
@@ -108,10 +112,10 @@
                                         <asp:ListItem Value="24" Text="Palayam"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
-                            </div>
-                            <div class="col-lg-2">
+                           
+                            <div class="col-lg-3">
                                 <div id="Divv1" runat="server" visible="true">
-                                    <label style=" color:#428bca">
+                                    <label >
                                         From Date</label>
                                     <asp:TextBox runat="server" ID="txtFrom" CssClass="form-control"  AutoPostBack="true"
                                         OnTextChanged="txttodate_TextChanged">
@@ -124,8 +128,8 @@
                                     </ajaxToolkit:CalendarExtender>
                                 </div>
                                 </div>
-                                <div class="col-lg-2">
-                                    <label style=" color:#428bca">
+                                <div class="col-lg-3">
+                                    <label>
                                         To Date</label>
                                     <asp:TextBox runat="server" ID="txttodate" CssClass="form-control"  >
                                     </asp:TextBox>
@@ -136,26 +140,25 @@
                                         runat="server" CssClass="cal_Theme1">
                                     </ajaxToolkit:CalendarExtender>
                                 </div>
-                                <div class="col-lg-2">
+                                <div class="col-lg-6">
                                 <br />
-                                    <asp:Button ID="btnsearch" runat="server" class="btn  btn-primary" Text="Generate Report"  
+                                    <asp:Button ID="btnsearch" runat="server" class="btn  btn-primary  pos-btn1" Text="Generate Report"  
                                         OnClick="Btn_Search" />
-                                </div>
-                                <div class="col-lg-1">
-                                <br />
-                                    <asp:Button ID="btnprintgrnn" runat="server" class="btn btn-success" Text="Print GRN"
+                                
+                                    &nbsp;&nbsp;&nbsp;<asp:Button ID="btnprintgrnn" runat="server" class="btn btn-secondary" Text="Print GRN"
                                           OnClick="PrintGRN_Search" />
-                                </div>
-                                <div class="col-lg-2">
-                                <br />
-                                    <asp:Button ID="btnexp" runat="server"  class="btn btn-warning" 
+                                
+
+                                    &nbsp;&nbsp;&nbsp;<asp:Button ID="btnexp" runat="server"  class="btn btn-success" 
                                         Text="Export" OnClick="btnexp_Click" />
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" >
+                           
+                       
+                   
                         <div class="col-lg-12">
+                         <label id="caption" runat="server" visible="true">
+                                            </label>
+                        <div class="table-responsive panel-grid-left">
                             <div id="div1" runat="server">
                                 <table  id="Table1" runat="server" visible="false">
                                     <tr>
@@ -178,17 +181,10 @@
                                     </tr>
                                 </table>
                                
-                                <table id="tbl" style="width: 1494px;">
-                                    <tr>
-                                        <td>
-                                        </td>
-                                    </tr>
-                                    <tr valign="top">
-                                        <td colspan="4" align="left">
-                                            <label id="caption" runat="server" visible="true">
-                                            </label>
-                                            <asp:GridView ID="GVStockAlert" runat="server" HeaderStyle-Height="40px" Width="1494px" CssClass="mGrid"  AutoGenerateColumns="false"
-                                                EmptyDataText="No Records Found" Caption="Grn Qty">
+                               
+                                           
+                                            <asp:GridView ID="GVStockAlert" runat="server"  Caption="Grn Qty" padding="0" spacing="0" border="0" cssClass="table table-striped pos-table" AutoGenerateColumns="false"
+                                                EmptyDataText="No Records Found">
                                                 <Columns>
                                                     <asp:BoundField HeaderText="Date" DataField="Date" DataFormatString='{0:dd/MMM/yyyy}' />
                                                     <asp:BoundField HeaderText="Group" DataField="Category" />
@@ -200,24 +196,18 @@
                                                     <asp:BoundField HeaderText="GRN Type" DataField="type" />
                                                     <asp:BoundField HeaderText="Sign" DataField="signa" />
                                                 </Columns>
-                                                <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                                    HorizontalAlign="Center" ForeColor="White" />
+                                              <%--  <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                                    HorizontalAlign="Center" ForeColor="White" />--%>
                                             </asp:GridView>
-                                            <br />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                        </td>
-                                    </tr>
-                                </table>
+                                        
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    </div>
+               
         </div>
+    </div>
     </div>
     </form>
 </body>

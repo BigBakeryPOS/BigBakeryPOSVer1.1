@@ -42,16 +42,26 @@
     <asp:Label runat="server" ID="lblWelcome" Visible="false" ForeColor="White" CssClass="label" >Welcome : </asp:Label>
                     <asp:Label runat="server" ID="lblUser" Visible="false" ForeColor="White" CssClass="label"> </asp:Label>
                     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
-                    <div >
-                 
+                  <div class="container-fluid">
+	<div class="row">
                     <div class="col-lg-12">
 
-                    <div class="col-lg-6" >
-                        <div class="panel panel-primary">
-                              <div class="panel-heading">Supervisor Details</div>
+                    <div class="col-lg-8" >
+                        <div class="row panel-custom1">
+                         <div class="panel-header">
+          <h1 class="page-header">Supervisor Details</h1>
+	    </div>
+                             
                         <div class="panel-body">
-                    <asp:TextBox ID="txtser" runat="server" Placeholder="Search Supervisor.." Width="150px" CssClass="form-control" onkeyup="Search_Gridview(this, 'gvs')" ></asp:TextBox>
- <br />   <asp:GridView ID="gvs" runat="server" CssClass="mGrid" AutoGenerateColumns="false" 
+                        <div class="col-lg-4">
+                    <div class="form-group has-feedback">
+                    <asp:TextBox ID="txtser" runat="server" Placeholder="Search Supervisor.."  CssClass="form-control" onkeyup="Search_Gridview(this, 'gvs')" ></asp:TextBox>
+                     <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                    </div>
+                    </div>
+                    <div class="col-lg-12">
+                    <div class="table-responsive panel-grid-left">
+ <asp:GridView ID="gvs" runat="server"  AutoGenerateColumns="false" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" 
             onrowcommand="gvs_RowCommand" >
    <Columns>
    <asp:BoundField DataField="Empid" HeaderText="Empid" />
@@ -62,23 +72,35 @@
    <asp:TemplateField  HeaderText="Edit">
    <ItemTemplate>
    
-   <asp:Button ID="btnedit" runat="server"  Text="Edit" CssClass="btn btn-info"  CommandArgument='<%#Eval("Empid") %>' />
+   <asp:LinkButton ID="btnedit" runat="server"  cssclass="btn btn-warning btn-md"  CommandArgument='<%#Eval("Empid") %>' >
+   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+   </asp:LinkButton>
    </ItemTemplate>
    </asp:TemplateField>
    <asp:TemplateField  HeaderText="Delete">
    <ItemTemplate>
-   <asp:Button ID="btndel" runat="server"  Text="Delete" CssClass="btn btn-danger" CommandName="RM"  CommandArgument='<%#Eval("Empid") %>' />
+   <asp:LinkButton ID="btndel" runat="server" CommandName="RM"  CommandArgument='<%#Eval("Empid") %>' >
+     <button type="button" class="btn btn-danger btn-md">
+		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+			</button>
+		
+        </asp:LinkButton>										
    </ItemTemplate>
    </asp:TemplateField>
    </Columns>
     </asp:GridView>
    </div>
    </div>
+   </div>
+   </div>
                     </div>
-                    <div class="col-lg-6">
-                     <div class="panel panel-primary">
-                              <div class="panel-heading">Supervisor Master</div>
-                        <div class="panel-body">
+                    <div class="col-lg-4">
+                     <div class="panel panel-custom1">
+                     <div class="panel-header">
+				<h1 class="page-header">Supervisor Master</h1>
+		            </div>
+                             
+                        <div class="panel-body panel-form-right">
     <label> Name</label>
     <asp:TextBox ID="txtname" runat="server" CssClass="form-control"></asp:TextBox>
     <br />
@@ -110,16 +132,12 @@
    
 
     <br />
-    <asp:Button ID="btnsave" runat="server" Text="Save"
-         CssClass="btn btn-success" onclick="btnsave_Click" />
+    <asp:Button ID="btnsave" runat="server" Text="Save" width="150px"
+         CssClass="btn btn-lg btn-primary pos-btn1" onclick="btnsave_Click" />
     </div></div></div></div>
-                    
-                    </div>
-   
-
-    
-
-    </div>
+          </div>
+          </div>          
+                  
     </form>
 </body>
 </html>

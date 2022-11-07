@@ -48,22 +48,25 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="black" Visible="false" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="black" CssClass="label" Visible="false"> </asp:Label>
     <!-- begin SIDE NAV USER PANEL -->
-    <div class="col-md-12">
-        <nav class="navbar navbar-inverse top-navbar" id="top-nav">
-     <div id="dash">   
-
-    <div class="row">
-     <div class="col-md-12">
-         <div class="col-md-3">
-         <asp:RadioButton ID="rbsales" runat="server" Text="Sales" OnCheckedChanged="rbsales_CheckedChanged" AutoPostBack="true" ForeColor="White" />
-         <asp:RadioButton ID="rbstockreturn" runat="server" Text="Stock Return" OnCheckedChanged="rbstockreturn_CheckedChanged" AutoPostBack="true" ForeColor="White" />
-         </div>
-     </div>
-     <div class="col-md-12">
-     <div class="col-md-3">
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Sales and Return Report</h1>
+	    </div>
+        <div class="panel-body">
+  
      
-     <label><font color="white"> Select Type : </font></label>
-      <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control" Width="200px" AutoPostBack="true" OnSelectedIndexChanged="ddlType_Change">
+         <div class="col-md-3">
+         <br />
+         <asp:RadioButton ID="rbsales" runat="server" Text="Sales" OnCheckedChanged="rbsales_CheckedChanged" AutoPostBack="true"  />
+         <asp:RadioButton ID="rbstockreturn" runat="server" Text="Stock Return" OnCheckedChanged="rbstockreturn_CheckedChanged" AutoPostBack="true"  />
+         </div>
+     
+     <div class="col-md-3">
+     <label>Select Type </label>
+      <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control"  AutoPostBack="true" OnSelectedIndexChanged="ddlType_Change">
       <asp:ListItem Text="--Select Type--" Selected="True" Value="Select Type"></asp:ListItem>
       <asp:ListItem Text="DayWise" Value="Daywise"></asp:ListItem>
       <asp:ListItem Text="DateWise" Value="Datewise"></asp:ListItem>
@@ -73,34 +76,34 @@
       </div>
 
       <div class="col-lg-3" id="divfrm" runat="server" visible="false">
-        <label><font color="white">
-                                        From date</font></label>
-                                    <asp:TextBox runat="server" Visible="false" ID="txtCustomerName">
+        <label>From date</label>
+                                    <asp:TextBox runat="server" Visible="false" ID="txtCustomerName" class="form-control">
                                     </asp:TextBox>
-                                    <asp:TextBox runat="server" ID="txtfromdate" AutoPostBack="true">
+                                    <asp:TextBox runat="server" ID="txtfromdate" AutoPostBack="true" class="form-control">
                                     </asp:TextBox>
                                     <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="yyyy-MM-dd" TargetControlID="txtfromdate"
                                         runat="server" CssClass="cal_Theme1">
                                     </ajaxToolkit:CalendarExtender>
                                     </div>
                                     <div class="col-lg-3" id="divto" runat="server" visible="false">
-                                    <label ><font color="white">
-                                        To date</font></label>
-                                    <asp:TextBox runat="server" ID="txttodate" >
+                                    <label >
+                                        To date</label>
+                                    <asp:TextBox runat="server" ID="txttodate" class="form-control" >
                                     </asp:TextBox>
                                     <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="yyyy-MM-dd" TargetControlID="txttodate"
                                         runat="server" CssClass="cal_Theme1">
                                     </ajaxToolkit:CalendarExtender>
                                     </div>
                                      <div class="col-lg-3" id="divbtn" runat="server" visible="false">
-                                    <asp:Button ID="btnReport" runat="server" Text="Generate Report" CssClass="btn btn-success"
+                                     <br />
+                                    <asp:Button ID="btnReport" runat="server" Text="Generate Report" CssClass="btn btn-primary pos-btn1"
 
                                         OnClick="btnReport_Click" />
       </div>
-      </div>
-     </div>
+      
+   
 
-                       <div class="row" style="padding-top:15px">
+                       <div class="row" >
                        <div class="col-lg-12 col-sm-12" >
                         <div class="circle-tile">
                            <a href="#">
@@ -236,20 +239,12 @@
 
                         
            </div>                                 
-     
-    </div><!-- page-wrapper END-->
-    </div>
-    <!-- container-1 END-->
-    <div class="col-md-12">
-        <div class="col-md-6">
-            <div class="col-lg-10">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="col-lg-10">
-            </div>
-        </div>
-    </div>
+ 
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
     </form>
 
     <script type="text/javascript" src="../js/jquery-3.1.1.js"></script>

@@ -11,7 +11,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Sales Report </title>
-    <style type="text/css">
+    <%--<style type="text/css">
         .GroupHeaderStyle
         {
             background-color: #afc3dd;
@@ -71,7 +71,7 @@
             border: 1px solid gray;
             padding: 8px;
         }
-    </style>
+    </style>--%>
     <!-- Start Styles. Move the 'style' tags and everything between them to between the 'head' tags -->
     <script type="text/javascript">
         function Denomination() {
@@ -174,15 +174,14 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label">Welcome: </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <usc:Header ID="Header" runat="server" />
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header" style="text-align: center">
-                Report Grid</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Report Grid</h1>
+	    </div>
+
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
@@ -190,9 +189,8 @@
                             <asp:UpdatePanel ID="update" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
                                     <div class="row">
-                                        <div class="col-lg-4">
-                                        </div>
-                                        <div class="col-lg-2">
+                                       
+                                        <div class="col-lg-3">
                                             <asp:ScriptManager ID="ScriptManager1" runat="server">
                                             </asp:ScriptManager>
                                             <div class="form-group">
@@ -204,7 +202,7 @@
                                                 </ajaxToolkit:CalendarExtender>
                                             </div>
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-3">
                                             <div class="form-group">
                                                 <asp:Label ID="lblToDate" runat="server">To Date</asp:Label>
                                                 <asp:TextBox ID="txtToDate" runat="server" AutoPostBack="true" CssClass="form-control center-block"
@@ -214,10 +212,27 @@
                                                 </ajaxToolkit:CalendarExtender>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4">
-                                        </div>
+                                        
+                                    
+                                    
+
+                                    <div class="col-lg-6" >
+                                    <br />
+                                    <div class="col-lg-4">
+                                     <asp:RadioButton ID="rbproqty" runat="server" Text="Reading Report" CssClass="center-block" 
+                                                    AutoPostBack="true" GroupName="a" OnCheckedChanged="reading_checked" />
+                                      </div>
+                                      <div class="col-lg-4">
+                                     <asp:RadioButton ID="rbdcatqty" runat="server" Text="Consoildated Report" CssClass="center-block"
+                                                    AutoPostBack="true" GroupName="a" OnCheckedChanged="consoildated_Checked" />
                                     </div>
-                                    <div class="row">
+                                    <div class="col-lg-4">
+                                       <asp:RadioButton ID="rbdepartment" runat="server" Text="Category Wise Report" CssClass="center-block"
+                                                    AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdepartment_CheckedChanged" />
+                                      </div>
+                                    </div>
+                                    </div>
+                                       <div class="row"> 
                                         <div id="Div1" runat="server" visible="false" class="col-lg-2">
                                             <div id="Div2" runat="server" visible="false" class="form-group">
                                                 <asp:RadioButton ID="rdbCustomer" runat="server" Text="Reading Report" CssClass="center-block"
@@ -230,26 +245,8 @@
                                                     AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdPayMode_CheckedChanged" />
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <asp:RadioButton ID="rbproqty" runat="server" Text="Reading Report" CssClass="center-block"
-                                                    AutoPostBack="true" GroupName="a" OnCheckedChanged="reading_checked" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <asp:RadioButton ID="rbdcatqty" runat="server" Text="Consoildated Report" CssClass="center-block"
-                                                    AutoPostBack="true" GroupName="a" OnCheckedChanged="consoildated_Checked" />
-                                            </div>
-                                        </div>
-
-                                            <div class="col-lg-3">
-                                            <div id="Div6" runat="server" visible="true" class="form-group">
-                                                <asp:RadioButton ID="rbdepartment" runat="server" Text="Category Wise Report" CssClass="center-block"
-                                                    AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdepartment_CheckedChanged" />
-                                            </div>
-                                        </div>
-
+                                       
+                                          
                                         <div class="col-lg-2" style=" display:none">
 
                                             <div runat="server" visible="false" class="form-group">
@@ -573,16 +570,14 @@
 
 
 
-
+                                     <div class="table-responsive panel-grid-left">
                                     <div runat="server" id="divDepartment" visible="false" class="row">
                                         <div class="col-lg-12">
                                             <div class="table-responsive">
-                                                <table class="table table-bordered table-striped">
-                                                    <tr>
-                                                        <td>
-                                                            <asp:GridView ID="gridPurchase" Width="100%" runat="server" EmptyDataText="Sorry Data Not Found!"
-                                                                CssClass="mGrid1" AutoGenerateColumns="false" OnRowCreated="gridPurchase_RowCreated"
-                                                                OnRowDataBound="gridPurchase_RowDataBound">
+                                               
+                                                            <asp:GridView ID="gridPurchase" Width="100%" runat="server" EmptyDataText="Sorry Data Not Found!" cssClass="table table-striped pos-table"
+                                                               AutoGenerateColumns="false" OnRowCreated="gridPurchase_RowCreated"
+                                                                OnRowDataBound="gridPurchase_RowDataBound" padding="0" spacing="0" border="0">
                                                                 <Columns>
                                                                     <asp:BoundField DataField="BillNo" Visible="false" />
                                                                     <asp:BoundField DataField="BillNo" HeaderText="Bill No" ItemStyle-HorizontalAlign="Center" />
@@ -599,12 +594,10 @@
                                                                     <asp:BoundField DataField="NetAmount" HeaderText="Amount" ItemStyle-HorizontalAlign="Right" />
                                                                 </Columns>
                                                             </asp:GridView>
-                                                        </td>
-                                                    </tr>
-                                                </table>
+                                                        
                                                  <label>Item Wise</label>
-                                                <asp:GridView ID="gridcatqty" Width="100%" runat="server" OnRowDataBound="gridcatqty_RowDataBound" EmptyDataText="Sorry Data Not Found!"
-                                                    CssClass="mGrid1" AutoGenerateColumns="false">
+                                                <asp:GridView ID="gridcatqty" Width="100%" runat="server" OnRowDataBound="gridcatqty_RowDataBound" EmptyDataText="Sorry Data Not Found!" cssClass="table table-striped pos-table"
+                                                    AutoGenerateColumns="false" padding="0" spacing="0" border="0">
                                                     <Columns>
                                                          <asp:BoundField DataField="item" HeaderText="ItemName" />
                                     
@@ -612,10 +605,11 @@
                                      <asp:BoundField DataField="rec" HeaderText="Actual Qty" ItemStyle-HorizontalAlign="Right" />
                                                     </Columns>
                                                 </asp:GridView>
+                                                
                                                 <div id="printss" runat="server">
                                                
-                                                    <asp:GridView ID="gvdepartment" Width="100%" runat="server" EmptyDataText="Sorry Data Not Found!"
-                                                        CssClass="mGrid1" AutoGenerateColumns="false" OnRowDataBound="gvdepartment_RowDataBound"
+                                                    <asp:GridView ID="gvdepartment" Width="100%" runat="server" EmptyDataText="Sorry Data Not Found!" padding="0" spacing="0" border="0"
+                                                       cssClass="table table-striped pos-table" AutoGenerateColumns="false" OnRowDataBound="gvdepartment_RowDataBound"
                                                         OnRowCreated="gvdepartment_RowCreated">
                                                         <Columns>
                                                             <asp:BoundField DataField="Item" HeaderStyle-Width="20%" HeaderText="ItemName" />
@@ -624,10 +618,11 @@
                                                             <asp:BoundField DataField="Amount" HeaderText="Amount" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="left" DataFormatString="{0:f}" />
                                                         </Columns>
                                                     </asp:GridView>
+                                                    
                                                     <label>
                                                         *** Sales Contribution Percentage ***</label>
-                                                    <asp:GridView ID="gridcontribution" Width="100%" OnRowDataBound="gridContri_RowDataBound"
-                                                        runat="server" EmptyDataText="Sorry Data Not Found!" ShowFooter="true" CssClass="mGrid1"
+                                                    <asp:GridView ID="gridcontribution" Width="100%" OnRowDataBound="gridContri_RowDataBound" padding="0" spacing="0" border="0"
+                                                        runat="server" EmptyDataText="Sorry Data Not Found!" ShowFooter="true" cssClass="table table-striped pos-table"
                                                         AutoGenerateColumns="false">
                                                         <Columns>
                                                             <asp:BoundField DataField="Department" HeaderStyle-Width="20%" HeaderText="ItemName" />
@@ -646,6 +641,7 @@
                                         </div>
                                          <asp:Button ID="Button2" runat="server" Text="Print" Style="background-color: Teal;
                                                     color: White; width: 100px; height: 40px" OnClientClick="Denomination2() ;" />
+                                    </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
@@ -694,8 +690,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+         
+    </div>
+    </div>
+    </div>
     </div>
 </body>
 </html>

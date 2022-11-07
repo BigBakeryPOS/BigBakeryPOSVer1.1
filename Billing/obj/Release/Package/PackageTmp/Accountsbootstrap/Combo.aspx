@@ -50,6 +50,7 @@
     <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet" />
+    <link href="../css/Pos_style.css" rel="stylesheet" />
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -65,149 +66,156 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <form id="Form1" runat="server">
-    <div class="row">
-        <div class="col-lg-12">
-            <h2 id="hd1" runat="server" class="page-header" style="text-align: left; color: #fe0002">
-                COMBO Product</h2>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
+   <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="col-lg-4">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Add Combo Product</h1>
+	    </div>
+    
                 <div class="panel-body">
                     <asp:HiddenField ID="selected_tab" runat="server" />
                     <asp:Button ID="Button3" runat="server" Text="Do PostBack" Visible="false" />
                     <asp:ScriptManager ID="ScriptManager1" runat="server">
                     </asp:ScriptManager>
-                    <div id="add" runat="server" class="form-group">
-                        <div class="row">
-                            <div class="col-lg-3">
+                    <div class="panel-body panel-form-right">
+                    <div class="list-group">
+                        
+                            
                                 <asp:ValidationSummary runat="server" HeaderText="Validation Messages" ValidationGroup="val1"
                                     ID="val1" ShowMessageBox="true" ShowSummary="false" />
                                 <asp:TextBox ID="txtcombiid" runat="server" Visible="false"></asp:TextBox>
-                                <div class="form-group">
-                                    <label>
-                                        Category</label>
+                                
+                                    <label>Category</label>
                                     <asp:DropDownList runat="server" Enabled="true" ID="drpCategory" class="form-control">
                                     </asp:DropDownList>
-                                </div>
-                                <div class="form-group">
-                                    <label style="margin-top: -10px">
-                                        Combo Name</label>
+                                <br />
+                               
+                                    <label>Combo Name</label>
                                     <asp:TextBox CssClass="form-control" ID="txtcomboname" runat="server" MaxLength="150"></asp:TextBox>
-                                </div>
+                               <br /> 
                                 <div runat="server" visible="false" class="form-group">
-                                    <label>
-                                        Is Discount</label>
+                                    <label>Is Discount</label>
                                     <asp:DropDownList ID="drpisdiscount" CssClass="form-control" runat="server">
                                         <asp:ListItem Text="Yes" Selected="True" Value="1"> </asp:ListItem>
                                         <asp:ListItem Text="No" Value="0"> </asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
-                                <div class="form-group">
-                                    <label>
-                                        Is Active
-                                    </label>
+
+
+                               
+                                    <label>Is Active</label>
                                     <asp:DropDownList ID="drpisactive" CssClass="form-control" runat="server">
                                         <asp:ListItem Text="Yes" Selected="True" Value="Yes"> </asp:ListItem>
                                         <asp:ListItem Text="No" Value="No"> </asp:ListItem>
                                     </asp:DropDownList>
+                                    <br />
                                     <%--<asp:CheckBox ID="chkisactive" runat="server" />--%>
-                                </div>
+                                
                                 <div id="Div1" runat="server" visible="false" class="form-group">
                                     <label>
                                         Total Amount</label>
                                     <asp:TextBox ID="txt1" runat="server"></asp:TextBox>
                                 </div>
-                                <asp:Button ID="btnadd" runat="server" class="btn btn-info" ValidationGroup="val1"
-                                    Text="Save" Style="width: 120px; margin-top: 15px" OnClick="addclick" />
-                                <asp:Button ID="btnexit" runat="server" class="btn  btn-warning" Style="width: 120px;
-                                    margin-top: 15px" Text="Exit" OnClick="btnexit_Click" />
-                            </div>
-                            <div class="col-lg-9">
-                                <div class="panel panel-default">
+
+
+                                <asp:Button ID="btnadd" runat="server" class="btn btn-lg btn-primary pos-btn1" ValidationGroup="val1"
+                                    Text="Save" width="150px" OnClick="addclick" />
+                                <asp:Button ID="btnexit" runat="server" class="btn btn-lg btn-link" width="150px" Text="Clear" OnClick="btnexit_Click" />
+                            
+                            
+                       
+                        
+                        <!-- /.col-lg-6 (nested) -->
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                </div>
+             
+    </div>
+    </div>
+    <div class="col-lg-8">
+                                <div class="row panel-custom1">
+                                <div class="panel-header">
+				                    <h1 class="page-header">Add Combo</h1>
+		                            </div>
                                     <!-- /.panel-heading -->
                                     <div class="panel-body">
-                                        <div class="table-responsive">
-                                            <asp:Label ID="Label7" runat="server" Style="color: Red"></asp:Label>
-                                            <table class="table table-striped table-bordered table-hover" id="Table1" width="100%">
-                                                <tr>
-                                                    <td colspan="7">
+                                        <div class="table-responsive panel-grid-left">
                                                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                                             <ContentTemplate>
-                                                                <asp:Panel ID="Panel1" runat="server" Width="100%">
+                                                                
                                                                     <asp:GridView ID="gvcombo" AutoGenerateColumns="False" ShowFooter="false" OnRowDataBound="GridView2_RowDataBound"
-                                                                        OnRowDeleting="GridView2_RowDeleting" CssClass="chzn-container" Width="100%"
+                                                                        OnRowDeleting="GridView2_RowDeleting" CssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                                                                         runat="server">
-                                                                        <HeaderStyle BackColor="#59d3b4" />
-                                                                        <EmptyDataRowStyle HorizontalAlign="Center" BackColor="#59d3b4" ForeColor="Black" />
+                                                                        <%--<HeaderStyle BackColor="#59d3b4" />--%>
+                                                                       <%-- <EmptyDataRowStyle HorizontalAlign="Center" BackColor="#59d3b4" ForeColor="Black" />--%>
                                                                         <Columns>
-                                                                            <asp:TemplateField HeaderText="S.No" ItemStyle-Width="3%">
+                                                                            <asp:TemplateField HeaderText="S.No">
                                                                                 <ItemTemplate>
                                                                                     <%# Container.DataItemIndex + 1 %>
                                                                                 </ItemTemplate>
                                                                             </asp:TemplateField>
-                                                                            <asp:TemplateField HeaderText="Item Name" ItemStyle-Width="30%">
+                                                                            <asp:TemplateField HeaderText="Item Name"  >
                                                                                 <ItemTemplate>
-                                                                                    <asp:DropDownList CssClass="form-control" ID="drpitem" OnSelectedIndexChanged="drpitem_changed"
+                                                                                    <asp:DropDownList  ID="drpitem" OnSelectedIndexChanged="drpitem_changed" CssClass="form-control" Width="100px"
                                                                                         AutoPostBack="true" runat="server">
                                                                                     </asp:DropDownList>
                                                                                 </ItemTemplate>
                                                                             </asp:TemplateField>
-                                                                            <asp:TemplateField HeaderText="Item Rate" ItemStyle-Width="10%">
+                                                                            <asp:TemplateField HeaderText="Item Rate" >
                                                                                 <ItemTemplate>
-                                                                                    <asp:TextBox ID="PRate" Enabled="false" runat="server" CssClass="form-control"></asp:TextBox>
+                                                                                    <asp:TextBox ID="PRate" Enabled="false" Width="100px" runat="server" CssClass="form-control"></asp:TextBox>
                                                                                 </ItemTemplate>
                                                                             </asp:TemplateField>
-                                                                            <asp:TemplateField HeaderText="GST %" ItemStyle-Width="10%">
+                                                                            <asp:TemplateField HeaderText="GST %" >
                                                                                 <ItemTemplate>
-                                                                                    <asp:DropDownList CssClass="form-control" ID="ddltax" runat="server">
+                                                                                    <asp:DropDownList ID="ddltax" Width="100px" runat="server" CssClass="form-control">
                                                                                     </asp:DropDownList>
                                                                                 </ItemTemplate>
                                                                             </asp:TemplateField>
-                                                                            <asp:TemplateField HeaderText="Qty" ItemStyle-Width="20%">
+                                                                            <asp:TemplateField HeaderText="Qty" >
                                                                                 <ItemTemplate>
-                                                                                    <asp:TextBox ID="txtqty" OnTextChanged="txtQty_TextChanged" AutoPostBack="true" runat="server"
-                                                                                        CssClass="form-control"></asp:TextBox>
+                                                                                    <asp:TextBox ID="txtqty" OnTextChanged="txtQty_TextChanged" CssClass="form-control"  Width="100px" AutoPostBack="true" runat="server"
+                                                                                        ></asp:TextBox>
                                                                                 </ItemTemplate>
                                                                             </asp:TemplateField>
-                                                                            <asp:TemplateField HeaderText="Rate" ItemStyle-Width="20%">
+                                                                            <asp:TemplateField HeaderText="Rate" >
                                                                                 <ItemTemplate>
-                                                                                    <asp:TextBox ID="txtrate" runat="server" OnTextChanged="txtRate_TextChanged" AutoPostBack="true"
-                                                                                        CssClass="form-control"></asp:TextBox>
+                                                                                    <asp:TextBox ID="txtrate" runat="server" OnTextChanged="txtRate_TextChanged" CssClass="form-control" Width="100px" AutoPostBack="true"
+                                                                                        ></asp:TextBox>
                                                                                 </ItemTemplate>
                                                                             </asp:TemplateField>
-                                                                            <asp:TemplateField HeaderText="Total Rate" ItemStyle-Width="20%">
+                                                                            <asp:TemplateField HeaderText="Total Rate" >
                                                                                 <ItemTemplate>
-                                                                                    <asp:TextBox ID="txttotalrate" Enabled="false" runat="server" CssClass="form-control"></asp:TextBox>
+                                                                                    <asp:TextBox ID="txttotalrate" Enabled="false" Width="100px" runat="server" CssClass="form-control" ></asp:TextBox>
                                                                                 </ItemTemplate>
                                                                             </asp:TemplateField>
                                                                             <asp:TemplateField>
                                                                                 <ItemTemplate>
-                                                                                    <asp:Button ID="ButtonAdd1" runat="server" AutoPostback="false" EnableTheming="false"
-                                                                                        Height="30px" Text="Add New" OnClick="ButtonAdd1_Click" />
+                                                                                    <asp:Button ID="ButtonAdd1" runat="server" AutoPostback="false" Width="100px" CssClass="btn btn-primary pos-btn1" EnableTheming="false" 
+                                                                                       Text="Add New" OnClick="ButtonAdd1_Click" />
                                                                                 </ItemTemplate>
                                                                             </asp:TemplateField>
-                                                                            <asp:CommandField ControlStyle-Width="80%" ShowDeleteButton="True" ButtonType="Button" />
+                                                                            <asp:CommandField ControlStyle-Width="100%" ShowDeleteButton="True" ButtonType="Button"  />
                                                                         </Columns>
                                                                     </asp:GridView>
                                                                     <div align="right">
-                                                                        <asp:TextBox ID="getttal" runat="server" Text="0.00" Style="padding-left: -26px;
-                                                                            margin-right: 165px; width: 100px;"></asp:TextBox>
+                                                                        <asp:TextBox ID="getttal" runat="server" Text="0.00" CssClass="form-control" Width="150px"></asp:TextBox>
                                                                     </div>
-                                                                </asp:Panel>
+                                                             
                                                             </ContentTemplate>
                                                         </asp:UpdatePanel>
-                                                    </td>
-                                                </tr>
-                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div id="div7" runat="server" align="center" visible="false">
+    </div>
+    </div>
+    </div>
+    <div id="div7" runat="server" align="center" visible="false">
                             <table cellpadding="1" cellspacing="2" width="450px" style="border: 1px solid blue;
                                 height: 150px;">
                                 <tr class="headerPopUp">
@@ -268,15 +276,6 @@
                                 </tr>
                             </table>
                         </div>
-                        <!-- /.col-lg-6 (nested) -->
-                    </div>
-                    <!-- /.row (nested) -->
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-    </div>
     <!-- /.col-lg-12 -->
     <!-- /.row -->
     </form>

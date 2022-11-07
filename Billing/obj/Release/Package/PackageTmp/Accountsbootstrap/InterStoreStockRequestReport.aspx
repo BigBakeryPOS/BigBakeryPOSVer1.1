@@ -79,30 +79,27 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <usc:Header ID="Header" runat="server" />
-    <div class="row" style="">
-        <div class="col-lg-12" style="">
-            <h1 class="page-header">
-                Inter Store Stock Request Report Details</h1>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <div class="row" style="">
-        <div class="col-lg-12" style="">
-            <div class="panel panel-default" style="">
-                <div class="panel-body" style="">
-                    <div class="row" style="">
-                        <div style="">
+     <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Inter Store Stock Request Report Details</h1>
+	    </div>
+
+                <div class="panel-body">
+                    
                             <form runat="server" id="form1" method="post">
                             <asp:UpdatePanel ID="panel" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
                                     <asp:ScriptManager ID="ScriptManager1" runat="server">
                                     </asp:ScriptManager>
-                                    <div class="col-lg-12">
-                                        <div class="col-lg-2">
+                                    <div class="row">
+                                        <div class="col-lg-3">
                                             <label>
                                                 From Date</label>
                                             <asp:TextBox runat="server" ID="txtfromdate" Enabled="true" CssClass="form-control"
-                                                Width="150px" AutoPostBack="true" OnTextChanged="txttodate_TextChanged">
+                                                AutoPostBack="true" OnTextChanged="txttodate_TextChanged">
                                             </asp:TextBox>
                                            <%-- <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtfromdate"
                                                 ErrorMessage="Please Select valid Date Thank You!!!" Type="Date">
@@ -111,11 +108,10 @@
                                                 runat="server" CssClass="cal_Theme1">
                                             </ajaxToolkit:CalendarExtender>
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-3">
                                             <label>
                                                 To Date</label>
-                                            <asp:TextBox runat="server" ID="txttodate" Enabled="true" CssClass="form-control"
-                                                Width="150px">
+                                            <asp:TextBox runat="server" ID="txttodate" Enabled="true" CssClass="form-control">
                                             </asp:TextBox>
                                            <%-- <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="txttodate"
                                                 ErrorMessage="Please Select valid Date Thank You!!!" Type="Date">
@@ -124,29 +120,22 @@
                                                 runat="server" CssClass="cal_Theme1">
                                             </ajaxToolkit:CalendarExtender>
                                         </div>
-                                        <div class="col-lg-2">
-                                            <asp:Button ID="btnsearch" runat="server" class="btn btn-success" Text="Search" Style="margin-top: 25px;"
+                                        <div class="col-lg-3">
+                                        <br />
+                                            <asp:Button ID="btnsearch" runat="server" class="btn btn-primary pos-btn1" Text="Search" 
                                                 OnClick="btnadd_Click" />
-                                            <asp:Button ID="btnrefresh" runat="server" class="btn btn-warning" Text="Reset" Style="margin-top: 25px;"
+                                            &nbsp;&nbsp;&nbsp;<asp:Button ID="btnrefresh" runat="server" class="btn btn-secondary" Text="Reset" 
                                                 OnClick="btnrefresh_Click" />
-                                            <asp:Button ID="btnadd" runat="server" class="btn btn-success" Text="Add" Style="margin-top: 10px;"
+                                            <asp:Button ID="btnadd" runat="server" class="btn btn-success" Text="Add" 
                                                 Visible="false" />
                                         </div>
-                                        <div class="col-lg-2">
-                                        </div>
-                                        <div class="col-lg-2">
-                                        </div>
-                                        <div class="col-lg-2">
-                                        </div>
                                     </div>
-                                    <div>
-                                        <table>
-                                            <tr>
-                                                <td>
+                                   <div class="table-responsive panel-grid-left">
+                                 
                                                     <asp:GridView ID="gvPurchaseEntry" runat="server" EmptyDataText="No Record Found"
-                                                        PageSize="10" Width="100%" AutoGenerateColumns="false" CssClass="myGridStyle"
+                                                        PageSize="10" Width="100%" AutoGenerateColumns="false" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                                                         DataKeyNames="RequestNO" OnRowDataBound="gvPurchaseEntry_RowDataBound">
-                                                        <HeaderStyle BackColor="#990000" />
+                                                        <%--<HeaderStyle BackColor="#990000" />--%>
                                                         <Columns>
                                                             <asp:TemplateField ItemStyle-HorizontalAlign="Left" ItemStyle-Width="30%" HeaderText="Req. No."
                                                                 HeaderStyle-HorizontalAlign="Center">
@@ -157,9 +146,9 @@
                                                                     </a>
                                                                     <%# Eval("RequestNO")%>
                                                                     <div id="dv<%# Eval("RequestNO") %>" style="display: none; position: relative;">
-                                                                        <asp:GridView runat="server" ID="gvdetails" CssClass="mGrid" GridLines="Both" AutoGenerateColumns="false"
+                                                                        <asp:GridView runat="server" ID="gvdetails" padding="0" spacing="0" border="0" cssClass="table table-striped pos-table" GridLines="Both" AutoGenerateColumns="false"
                                                                             DataKeyNames="TransP_Id">
-                                                                            <HeaderStyle BackColor="#990000" />
+                                                                          <%--  <HeaderStyle BackColor="#990000" />--%>
                                                                             <Columns>
                                                                                 <asp:BoundField HeaderText="Transid" Visible="false" DataField="TransP_Id" />
                                                                                 <asp:BoundField HeaderText="Category" DataField="IngreCategory" />
@@ -185,10 +174,10 @@
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>--%>
                                                         </Columns>
-                                                        <FooterStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />
-                                                        <HeaderStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />
+                                                       <%-- <FooterStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />
+                                                        <HeaderStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />--%>
                                                     </asp:GridView>
-                                                </td>
+                                                
                                                 <%-- <td style="">
                                                     <asp:GridView ID="gvPurchaseReqDetails" runat="server" AutoGenerateColumns="false"
                                                         CssClass="myGridStyle">
@@ -202,22 +191,17 @@
                                                         <HeaderStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />
                                                     </asp:GridView>
                                                 </td>--%>
-                                            </tr>
-                                        </table>
+
                                     </div>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                             </form>
-                        </div>
-                        <!-- /.col-lg-6 (nested) -->
-                    </div>
-                    <!-- /.row (nested) -->
+                        
                 </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
+            
+    </div>
+    </div>
+    </div>
     </div>
 </body>
 </html>

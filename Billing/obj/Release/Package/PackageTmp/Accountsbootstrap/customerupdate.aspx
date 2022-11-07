@@ -66,37 +66,33 @@
                     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
         
  
- 
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Customer Master</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        
+  <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+            <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Customer Master</h1>
+	    </div>
+                 
+          
                         <div class="panel-body">
                             <div class="row">
                             <form id="Form1" runat="server">
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     
-                                         <div class="form-group">
+                                         <div class="list-group">
                                             <label>Customer Code</label>
 											<asp:TextBox CssClass="form-control" ID="txtcuscode" runat="server" Enabled="false"></asp:TextBox>
                                             
                                             <p class="help-block">Enter Your Correct Code</p>
-                                        </div>
-                                        <div class="form-group">
+                                       
+                                       
                                             <label>Customer Name</label>
                                             <asp:TextBox CssClass="form-control" ID="txtcustomername" MaxLength="50" runat="server"></asp:TextBox>
                                             <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" id="reqName" controltovalidate="txtcustomername" errormessage="Please enter your name!" style="color:Red" />
-                                        </div>
+                                       <br />
                                         <label>Mobile No</label>
-                                        <div class="form-group input-group">
-
+                                        <div class="input-group">
                                             <span class="input-group-addon">+91</span>
                                             <asp:TextBox CssClass="form-control" ID="txtmobileno" MaxLength="10" runat="server"></asp:TextBox>
                                            
@@ -108,12 +104,9 @@
                                             
                                             <asp:TextBox CssClass="form-control" ID="txtmobileno" runat="server"></asp:TextBox>
                                         </div>--%>
-                                        <div class="form-group">
-                                            <label>Phone No</label>
-                                            <asp:TextBox CssClass="form-control" ID="txtphoneno" MaxLength="15" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" id="phono" controltovalidate="txtphoneno" errormessage="Please enter your Phone No!" style="color:Red" />
-                                        </div>
                                        
+                                        
+                                            
                                         <%--<label>Opening Balance</label>
                                         <div class="form-group input-group">
                                             <asp:TextBox CssClass="form-control" ID="txtblnce" runat="server" style="text-align:right" ></asp:TextBox>
@@ -125,67 +118,64 @@
                                         </div>
 --%>
                                         
-                                        
+                                      <asp:Button ID="btnupdate" runat="server" class="btn btn-lg btn-primary pos-btn1" Text="Update" OnClick="Update_Click" />
+										<asp:Button ID="btnexit" runat="server" class="btn btn-lg btn-link" Text="Clear" OnClick="Exit_Click" />   
 										
                                     
                                 </div>
-                                <!-- /.col-lg-6 (nested) -->
-                                <div class="col-lg-6">
+                                </div>
+                                <div class="col-lg-4">
                                     
-										<div class="form-group">
+										<div class="list-group">
+                                        <label>Phone No</label>
+                                            <asp:TextBox CssClass="form-control" ID="txtphoneno" MaxLength="15" runat="server"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" id="phono" controltovalidate="txtphoneno" errormessage="Please enter your Phone No!" style="color:Red" />
+                                       <p></p>
                                             <label>Address</label>
                                             <asp:TextBox CssClass="form-control" ID="txtaddress" MaxLength="150" runat="server"></asp:TextBox>
 											<asp:RequiredFieldValidator runat="server" ValidationGroup="val1" id="address" controltovalidate="txtaddress" errormessage="Please enter your Address!" style="color:Red" />
-                                        </div>
-                                        <div class="form-group">
+                                        <br />
+                                        
                                             <label>Area</label>
                                             <asp:TextBox CssClass="form-control" ID="txtarea" MaxLength="30" runat="server"></asp:TextBox>
                                             <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" id="area" controltovalidate="txtarea" errormessage="Please enter your Area!" style="color:Red" />
-                                        </div>
-										<div class="form-group">
-                                            <label>City</label>
+                                   
+                                            
+										</div>
+                                </div>
+                                 <div class="col-lg-4">
+										<div class="list-group">
+                                        <label>City</label>
                                             <asp:TextBox CssClass="form-control" ID="txtcity" MaxLength="30" runat="server"></asp:TextBox>
                                             <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" id="city" controltovalidate="txtcity" errormessage="Please enter your City!" style="color:Red" />
-                                        </div>
-										<div class="form-group">
+                                      <p></p>
                                             <label>Pincode</label>
                                             <asp:TextBox CssClass="form-control" ID="txtpincode" MaxLength="6" runat="server"></asp:TextBox>
                                             <asp:RegularExpressionValidator runat="server" id="RegularExpressionValidator1" controltovalidate="txtpincode" validationexpression="^[0-9]{6}$" errormessage="Please enter a 6 digit pin code!" style="color:Red"/>
                                             <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" id="pincode" controltovalidate="txtpincode" errormessage="Please enter your Pin Code!" style="color:Red" />
-                                        </div>
-										<div class="form-group">
+                                       <br />
                                             <label>E-mail</label>
                                             <asp:TextBox CssClass="form-control" ID="txtemail" placeholder="For Ex: test@gmail.com" runat="server"></asp:TextBox>
                                             <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" id="email" controltovalidate="txtemail" errormessage="Please enter your Email!" style="color:Red" />
                                         <asp:RegularExpressionValidator runat="server" id="RegularExpressionValidator2" ValidationGroup="val1" controltovalidate="txtemail"  validationexpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" errormessage="Please enter a correct Email Id!" style="color:Red"/>
-                                        </div>
+                                        
                                          <asp:Label ID="lblerror" runat="server" style="color:Red"></asp:Label>
 										
-                                        <asp:Button ID="btnupdate" runat="server" class="btn btn-success" Text="Update" OnClick="Update_Click" />
-										<asp:Button ID="btnexit" runat="server" class="btn btn-warning" Text="Exit" OnClick="Exit_Click" />
+                                       
                                         
-										
-                                </div>
+                                        </div>
+                                        </div>
                                 </form>
                                 <!-- /.col-lg-6 (nested) -->
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
                             <!-- /.row (nested) -->
                         </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-       
-        <!-- /#page-wrapper -->
-		
-		
-		
-		<!-- jQuery -->
-   
+                    
+        </div>  
+   </div>
+   </div>
+   </div>
 
 </body>
 

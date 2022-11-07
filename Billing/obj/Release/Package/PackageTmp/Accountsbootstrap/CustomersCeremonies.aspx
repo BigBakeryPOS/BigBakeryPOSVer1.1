@@ -122,81 +122,77 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <usc:Header ID="Header" runat="server" />
-    <div class="row">
-        <!-- /.col-lg-12 -->
-    </div>
-    <div class="row" align="center">
-        <div class="col-lg-12">
-            <div class="panel panel-default" style="height: 100%; padding-top: 10px">
-                <div class="panel-heading" style="background-color: #0071BD; color: White">
-                    Customers Ceremonies
-                </div>
+ <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Customers Ceremonies</h1>
+	    </div>
+
                 <div class="panel-body">
-                    <div class="row">
-                        <div>
+                    
+                        
                             <form runat="server" id="form1" method="post">
                             <asp:ScriptManager ID="script" runat="server">
                             </asp:ScriptManager>
-                            <div class="form-group">
-                                <div id="Div1" class="col-lg-12">
-                                    <div class="col-lg-1">
-                                    </div>
-                                    <div class="col-lg-2">
-                                    </div>
-                                    <div class="col-lg-1">
-                                        <div class="form-group">
+                            <div class="row">
+                                 
+                                    <div class="col-lg-3">
+                                        
                                             <label>
                                                 From Date</label>
                                             <asp:TextBox ID="txtfromdate" CssClass="form-control" runat="server" AutoPostBack="true"
-                                                Width="100px" OnTextChanged="search1"></asp:TextBox>
+                                                 OnTextChanged="search1"></asp:TextBox>
                                             <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="dd/MM/yyyy" TargetControlID="txtfromdate"
                                                 runat="server" CssClass="cal_Theme1">
                                             </ajaxToolkit:CalendarExtender>
-                                        </div>
+                                        
                                     </div>
-                                    <div class="col-lg-1">
-                                        <div class="form-group">
+                                    <div class="col-lg-3">
+                                       
                                             <label>
                                                 To Date</label>
                                             <asp:TextBox ID="txttodate" CssClass="form-control" runat="server" AutoPostBack="true"
-                                                Width="100px" OnTextChanged="search1"></asp:TextBox>
+                                                 OnTextChanged="search1"></asp:TextBox>
                                             <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="dd/MM/yyyy" TargetControlID="txttodate"
                                                 runat="server" CssClass="cal_Theme1">
                                             </ajaxToolkit:CalendarExtender>
-                                        </div>
+                                        
                                     </div>
-                                    <div class="col-lg-2">
-                                        <div class="form-group">
+                                    <div class="col-lg-3">
+                                        
                                             <label>
                                                 Customers</label><br />
                                                 <asp:HiddenField ID="hdcustid" runat="server" />
-                                            <asp:DropDownList runat="server" ID="ddlcustomer" CssClass="chzn-select" Width="150px"
+                                            <asp:DropDownList runat="server" ID="ddlcustomer" CssClass="form-control" 
                                                 AutoPostBack="true" 
                                                 onselectedindexchanged="ddlcustomer_SelectedIndexChanged" >
                                             </asp:DropDownList>
-                                        </div>
+                                        
                                     </div>
-                                    <div class="col-lg-2">
-                                        <label style="color: #428bca">
+                                    <div class="col-lg-3">
+                                        <label>
                                             Select Branch</label>
                                         <asp:DropDownList ID="ddlbranch" AutoPostBack="true" runat="server" 
                                             class="form-control" 
                                             onselectedindexchanged="ddlbranch_SelectedIndexChanged"  >
                                         </asp:DropDownList>
                                     </div>
-                                    <div class="col-lg-1">
-                                        <asp:Label ID="lblPrint" runat="server">Print</asp:Label><br />
-                                        <asp:Button ID="btn" runat="server" Text="Print" Visible="true" CssClass="btn btn-group"
+                                    <div class="col-lg-3">
+                                        <%--<asp:Label ID="lblPrint" runat="server">Print</asp:Label><br />--%>
+                                        <br />
+                                        <asp:Button ID="btn" runat="server" Text="Print" Visible="true" CssClass="btn btn-secondary"
                                             OnClientClick="Denomination123()" Width="100px" />
                                     </div>
-                                    <div class="col-lg-2">
-                                    </div>
-                                </div>
+                                   
+                               
                                 <div class="col-lg-12">
+                                <div class="table-responsive panel-grid-left">
                                     <asp:GridView ID="gvsales" align="center" EmptyDataText="No Records Found" runat="server"
-                                        Caption="Customer Ceremonies" ShowFooter="true" AutoGenerateColumns="false" CssClass="mGrid">
-                                        <HeaderStyle BackColor="#990000" />
-                                        <PagerSettings FirstPageText="1" Mode="Numeric" />
+                                        Caption="Customer Ceremonies" ShowFooter="true" AutoGenerateColumns="false" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0">
+                                       <%-- <HeaderStyle BackColor="#990000" />
+                                        <PagerSettings FirstPageText="1" Mode="Numeric" />--%>
                                         <Columns>
                                             <asp:BoundField HeaderText="Branch" DataField="Branch" />
                                             <asp:BoundField HeaderText="CustomerName" DataField="CustomerName" />
@@ -205,6 +201,7 @@
                                             <asp:BoundField HeaderText="Date" DataField="Date" DataFormatString="{0:dd/MMM/yyyy}" />
                                         </Columns>
                                     </asp:GridView>
+                                    </div>
                                 </div>
                             </div>
                             <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
@@ -214,16 +211,12 @@
                                 }
                             </script>
                             </form>
-                        </div>
-                        <!-- /.col-lg-6 (nested) -->
                     </div>
-                    <!-- /.row (nested) -->
                 </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
+               
+    </div>
+    </div>
+    </div>
     </div>
 </body>
 </html>

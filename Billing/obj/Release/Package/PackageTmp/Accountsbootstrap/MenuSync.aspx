@@ -90,20 +90,22 @@
     <form id="Form1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="col-lg-12" style="margin-top: 0px">
-                <div class="panel panel-default">
-                    <div class="panel-heading " style="background-color: #428bca; color: White">
-                        <b>Synchronization</b></div>
+     <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Synchronization</h1>
+	    </div>
+    
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-12">
-                                <div id="Divvv1" class="col-lg-2" runat="server">
+                           
+                                <div id="Divvv1" class="col-lg-3" runat="server">
                                     Employee Name
                                     <asp:TextBox ID="txtempname" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
-                                <div id="Divv1" class="col-lg-4" runat="server" visible="true">
+                                <div id="Divv1" class="col-lg-3" runat="server" visible="true">
                                     Select Type
                                     <asp:DropDownList ID="drptype" runat="server" Enabled="true" CssClass="form-control"
                                         OnSelectedIndexChanged="Type_chnaged" AutoPostBack="true">
@@ -111,7 +113,7 @@
                                         <asp:ListItem Text="Get Only Update Items" Value="2"> </asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
-                                <div id="Div2" class="col-lg-2" runat="server" visible="false">
+                                <div id="Div2" class="col-lg-3" runat="server" visible="false">
                                     <label>
                                         Select Date</label>
                                     <asp:TextBox ID="txtdate" runat="server" CssClass="form-control"></asp:TextBox>
@@ -121,69 +123,77 @@
                                     <asp:CheckBox ID="chkgetitem" runat="server" Text="Get Item List" OnCheckedChanged="chkitem"
                                         AutoPostBack="true" />
                                 </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div>
-                                    <div class="col-lg-1">
+                         </div>
+                         <br />
+                          <div class="row">
+                                    <div class="col-lg-3">
                                         <label>
                                             Sync.Ingr.</label>
-                                        <asp:Button ID="btning" runat="server" class="btn btn-warning" Text="Sync.Ingr."
+                                        <asp:Button ID="btning" runat="server" class="btn btn-primary pos-btn1" Text="Sync.Ingr."
                                             OnClick="btnsyncingclick_OnClick" />
                                     </div>
-                                    <div class="col-lg-1">
+                                    <div class="col-lg-3">
                                         <label>
                                             Sync.UOM.</label>
-                                        <asp:Button ID="btnuom" runat="server" class="btn btn-warning" Text="Sync.UOM." OnClick="btnsyncinguom_OnClick" />
+                                        <asp:Button ID="btnuom" runat="server" class="btn btn-primary pos-btn1" Text="Sync.UOM." OnClick="btnsyncinguom_OnClick" />
                                     </div>
-                                    <div class="col-lg-1">
+                                    <div class="col-lg-3">
                                         <label>
                                             Sync.TAX.</label>
-                                        <asp:Button ID="btntax" runat="server" class="btn btn-warning" Text="Sync.TAX." OnClick="btnsyncingtax_OnClick" />
+                                        <asp:Button ID="btntax" runat="server" class="btn btn-primary pos-btn1" Text="Sync.TAX." OnClick="btnsyncingtax_OnClick" />
                                     </div>
-                                    <div class="col-lg-1">
+                                    <div class="col-lg-3">
                                         <label>
                                             Sync.Group</label>
-                                        <asp:Button ID="Button1" runat="server" class="btn btn-warning" Text="Sync.Group"
+                                        <asp:Button ID="Button1" runat="server" class="btn btn-primary pos-btn1" Text="Sync.Group"
                                             Enabled="true" OnClick="btnsyncclick_OnClick" />
                                     </div>
-                                    <div class="col-lg-1">
+                                </div>
+                                 <br />
+                                 <div class="row">
+                                    <div class="col-lg-3">
                                         <label>
                                             Sync.Item</label>
-                                        <asp:Button ID="btnitemsync" runat="server" class="btn btn-success" Text="Sync.Item"
+                                        <asp:Button ID="btnitemsync" runat="server" class="btn btn-primary pos-btn1" Text="Sync.Item"
                                             OnClick="btnsyncclick" />
                                     </div>
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-3">
                                         <label>
                                             Sync.Store To Shop Item</label>
-                                        <asp:Button ID="btnsstsi" runat="server" class="btn btn-success" Text="Sync.Store To Shop Item"
+                                        <asp:Button ID="btnsstsi" runat="server" class="btn btn-primary pos-btn1" Text="Sync.Store To Shop Item"
                                             OnClick="btnsstsiclick" />
                                     </div>
-                                    <div class="col-lg-1">
+                                    <div class="col-lg-3">
                                         <label>
                                             Supplier</label>
-                                        <asp:Button ID="Button2" runat="server" class="btn btn-success" Text="New Supplier"
+                                        <asp:Button ID="Button2" runat="server" class="btn btn-primary pos-btn1" Text="New Supplier"
                                             PostBackUrl="~/Accountsbootstrap/ViewCustomer.aspx" />
                                     </div>
-                                </div>
-                                <div id="Divv2" runat="server" visible="false" class="col-lg-2">
+                               
+                                <div id="Divv2" runat="server" visible="false" class="col-lg-3">
                                     <label>
                                         Sync.Stock</label>
-                                    <asp:Button ID="btnstock" runat="server" class="btn btn-danger" Text="Sync.Stock"
-                                        OnClick="btnstocksyncclick" Width="170px" />
-                                </div>
-                                <div id="Div3" runat="server" visible="false" class="col-lg-2">
-                                    <label>
-                                        Sync.Sales</label>
-                                    <asp:Button ID="btnsalessyn" runat="server" class="btn btn-group" Text="Sync.Sales"
-                                        OnClick="btnsalessyn_OnClick" Width="170px" />
-                                </div>
-                                <div id="Div4" runat="server" visible="false" class="col-lg-2">
-                                    <label>
-                                        Sync.Order</label>
-                                    <asp:Button ID="btnordersyn" runat="server" class="btn btn-toolbar" Text="Sync.Order"
-                                        OnClick="btnordersyn_OnClick" Width="170px" />
+                                    <asp:Button ID="btnstock" runat="server" class="btn btn-primary pos-btn1" Text="Sync.Stock"
+                                        OnClick="btnstocksyncclick"  />
                                 </div>
                             </div>
+                             <br />
+                             <div class="row">
+                                <div id="Div3" runat="server" visible="false" class="col-lg-3">
+                                    <label>
+                                        Sync.Sales</label>
+                                    <asp:Button ID="btnsalessyn" runat="server" class="btn btn-primary pos-btn1" Text="Sync.Sales"
+                                        OnClick="btnsalessyn_OnClick"  />
+                                </div>
+                                <div id="Div4" runat="server" visible="false" class="col-lg-3">
+                                    <label>
+                                        Sync.Order</label>
+                                    <asp:Button ID="btnordersyn" runat="server" class="btn btn-primary pos-btn1" Text="Sync.Order"
+                                        OnClick="btnordersyn_OnClick"  />
+                                </div>
+                                </div>
+                           
+                            <br />
                             <div class="col-lg-12">
                                 <div id="grdlist" runat="server" visible="false" class="col-lg-6">
                                     <label>
@@ -239,12 +249,9 @@
                                     </asp:GridView>
                                 </div>
                             </div>
-                        </div>
+                        
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+               
     <asp:Panel class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none"
         runat="server">
         <div class="popup_Container">
@@ -266,6 +273,10 @@
             </div>
         </div>
     </asp:Panel>
+    </div>
+    </div>
+    </div>
+    </div>
     </form>
 </body>
 </html>

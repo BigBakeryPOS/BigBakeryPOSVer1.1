@@ -92,10 +92,18 @@ $("[id$=myButtonControlID]").click(function(e) {
     <form id="form1" runat="server">
       <asp:scriptmanager id="ScriptManager1" runat="server">
 </asp:scriptmanager>
- <div class="col-lg-3">
-    <label>Select Branch</label>
-                                    <asp:DropDownList CssClass="form-control" ID="ddlBranch" runat="server" Visible="false"  Width="150px" 
-                                       >
+<div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Stock Flow Report</h1>
+	    </div>
+        <div class="panel-body">
+                    <div class="row">
+                        <div visible="false">
+                        <%-- <label>Select Branch</label>--%>
+                                    <asp:DropDownList CssClass="form-control" ID="ddlBranch" runat="server" Visible="false"  >
                                        <asp:ListItem Text="KK Nagar" Value="co1"></asp:ListItem>
                                        <asp:ListItem Text=" Byepass" Value="co2"></asp:ListItem>
                                        <asp:ListItem Text=" BB Kulam" Value="co3"></asp:ListItem>
@@ -109,23 +117,30 @@ $("[id$=myButtonControlID]").click(function(e) {
                                          <asp:ListItem Text="Periyar" Value="co10"></asp:ListItem>
                                           <asp:ListItem Text="Palayam" Value="co11"></asp:ListItem>
                                     </asp:DropDownList>
-    </div>
-<div>
-<asp:TextBox ID="txttodate" runat="server" CssClass="form-control" Width="150px" placeholder="Select Date" AutoPostBack="true"  ontextchanged="txttodate_TextChanged"></asp:TextBox>
-  <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="yyyy-MM-dd" TargetControlID="txttodate" 
-                                        runat="server" CssClass="cal_Theme1"></ajaxToolkit:CalendarExtender>
- <asp:TextBox ID="txtserch" runat="server" CssClass="form-control" Width="150px" placeholder="Filter Items" onkeyup="Search_Gridview(this, 'gvDetails')"></asp:TextBox>
+                            </div>
+                   <div class="col-lg-3">
+                   <label>Select Date</label>
+                    <asp:TextBox ID="txttodate" runat="server" CssClass="form-control"  placeholder="Select Date" AutoPostBack="true"  ontextchanged="txttodate_TextChanged"></asp:TextBox>
+                      <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="yyyy-MM-dd" TargetControlID="txttodate" 
+                                                            runat="server" CssClass="cal_Theme1">
+                                                            </ajaxToolkit:CalendarExtender>
+                    </div>
+                    <div class="col-lg-3">
+                    <br />
+                     <asp:TextBox ID="txtserch" runat="server" CssClass="form-control"  placeholder="Filter Items" onkeyup="Search_Gridview(this, 'gvDetails')"></asp:TextBox>
                                         
-</div>
-<div>
-    <asp:Button ID="btnser" runat="server" Text="Search" onclick="btnser_Click" CssClass="btn btn-danger" />
+                    </div>
+<div class="col-lg-3">
+<br />
+    <asp:Button ID="btnser" runat="server" Text="Search" onclick="btnser_Click" CssClass="btn btn-primary pos-btn1" />
 
-    <asp:Button ID="Button1" runat="server" Text="Print" onclick="Button1_Click" CssClass="btn btn-success"   />
-     <asp:Button ID="myButtonControlID" runat="server" Text="Export" CssClass="btn btn-warning"   Visible="false"/>
+    &nbsp;&nbsp;&nbsp;<asp:Button ID="Button1" runat="server" Text="Print" onclick="Button1_Click" CssClass="btn btn-secondary"   />
+     &nbsp;&nbsp;&nbsp;<asp:Button ID="myButtonControlID" runat="server" Text="Export" CssClass="btn btn-success"   Visible="false"/>
     </div>
-    <div id="Excel" runat="server">
+    </div>
+    <div id="Excel" runat="server" class="table-responsive panel-grid-left">
    
-    <asp:GridView ID="gvDetails"  runat="server" CssClass="mGrid"  EmptyDataText="No Records Found" Caption="Grn Qty" AutoGenerateColumns="false" Width="70%">
+    <asp:GridView ID="gvDetails"  runat="server" cssClass="table table-striped pos-table"  padding="0" spacing="0" border="0" EmptyDataText="No Records Found" Caption="Grn Qty" AutoGenerateColumns="false" Width="70%">
                                   <Columns>
                                   <asp:BoundField HeaderText="Group" DataField="Group" />
                                   <asp:BoundField HeaderText="Item" DataField="Item" />
@@ -144,7 +159,11 @@ $("[id$=myButtonControlID]").click(function(e) {
                                 
                                 </asp:GridView>
     </div>
-    
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
     </form>
 </body>
 </html>

@@ -15,7 +15,7 @@
     <!-- Custom Fonts -->
     <link href="../Menu/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet"
         type="text/css" />
-    <title>Bakery POS Billing BigbBiz Solutions</title>
+    <title>POS Billing BigbBiz Solutions</title>
     <%-- <script>
         $(document).ready(function () {
 
@@ -210,10 +210,11 @@
     <style>
         .modal-header, h4, .close
         {
-            background-color: #5cb85c;
-            color: white !important;
+            
+            color: black !important;
             text-align: center;
             font-size: 30px;
+           <%-- background-color: #5cb85c;--%>
         }
         .modal-footer
         {
@@ -245,8 +246,11 @@
             50% { opacity: 0; }
        }
       </style>
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+     <link href="../css/Pos_style.css" rel="stylesheet" />
 </head>
-<body style="font-family: Calibri; font-size: medium">
     <div style="background-color: #6c7079">
         <%-- <asp:Panel ID="Panel1" runat="server">
         <div id="myModal" class="modal">
@@ -301,7 +305,7 @@
                 </td>
                 <td style="width: 40%" align="center">
                     <label style="font-size: 30px; color: White;">
-                        Bakery Management System</label>
+                        Biz POS Management System</label>
                 </td>
                 <td style="width: 30%" align="right">
                     <div align="right">
@@ -321,7 +325,7 @@
             </a></li>--%>
             <li id="LiveDashBoard" runat="server" visible="false" style="margin-top: -6px;"><a
                 href="../Accountsbootstrap/Homepage.aspx" style="color: White"><i class="fa fa-home"
-                    aria-hidden="true" style="color: White; font-size: 19px;"></i>Dash board</a></li>
+                    aria-hidden="true" style="color: White; font-size: 19px;"></i>Dashboard</a></li>
             <li id="dashboard" runat="server" visible="false"><a href="../Accountsbootstrap/dashchart.aspx"
                 style="color: White">New Dash board</a></li>
             <li id="OPStockMaster1" runat="server" visible="false"><a href="../Accountsbootstrap/stockgrid.aspx"
@@ -335,12 +339,15 @@
             <li id="menusync" runat="server" visible="false"><a href="../Accountsbootstrap/Menusync.aspx">
                 Menu Sync</a></li>
             <li id="MasterMenu" visible="false" class='has-sub' runat="server" style="color: White">
-                <a href="" style="color: White">Master <b></b></a>
+                <a href="javascript:;" style="color: White">Master <b></b></a>
                 <ul>
                     <li id="notificationmsg" runat="server" visible="false"><a href="../Accountsbootstrap/NotificationPage.aspx">
                         Notification Alert</a></li>
                     <li id="tablemaster" runat="server" visible="false"><a href="../Accountsbootstrap/TableMaster.aspx">
                         Table Master</a></li>
+                        <li id="variablemaster" runat="server" visible="true"><a href="../Accountsbootstrap/VariableExpenseMaster.aspx">
+                        Variable Expense Master</a></li>
+                        
                     <li id="attender" runat="server" visible="false"><a href="../Accountsbootstrap/AttenderMaster.aspx">
                         Attender Master</a></li>
                     <li id="IBSM" runat="server" visible="false"><a href="../Accountsbootstrap/InterBranchSetting.aspx">
@@ -379,7 +386,7 @@
                         Ingridients Master</a></li>
                     <li id="Customer" runat="server" visible="false"><a href="../Accountsbootstrap/viewcustomer.aspx">
                         Contact Master</a></li>
-                    <li id="Li3" runat="server" visible="true"><a href="../Accountsbootstrap/viewbank.aspx">
+                    <li id="Bank" runat="server" visible="false"><a href="../Accountsbootstrap/viewbank.aspx">
                         Bank Master</a></li>
                     <li id="employee" runat="server" visible="false"><a href="../Accountsbootstrap/EmployeeMaster.aspx">
                         Employee Master</a></li>
@@ -410,7 +417,7 @@
                 </ul>
             </li>
             <li id="OrderFormMenu" runat="server" visible="false" class='has-sub'><a id="A10"
-                runat="server" style="color: White" href="">Order</a>
+                runat="server" style="color: White" href="javascript:;">Order</a>
                 <ul>
                     <li id="OrderForm" runat="server" visible="false"><a href="../Accountsbootstrap/OrderGrid.aspx">
                         Order Form</a></li>
@@ -418,7 +425,7 @@
                         Todays Delivery Orders </a></li>
                 </ul>
             </li>
-            <li id="InventoryMenu" visible="false" runat="server" class='has-sub'><a href=""
+            <li id="InventoryMenu" visible="false" runat="server" class='has-sub'><a href="javascript:;"
                 style="color: White">Sales/Inventory <b></b>
                 <br />
                 <label id="good" runat="server" style="color: ThreeDLighShadow; margin-left: 10px;
@@ -450,11 +457,11 @@
                         Stock Return</a></li>
                     <li id="StockReturnReasonChange" runat="server" visible="false"><a href="../Accountsbootstrap/ReasonChanaging.aspx">
                         Stock Return Reason Change</a></li>
-                    <li id="PaymentEntry" runat="server" visible="true"><a href="../Accountsbootstrap/Expensegrid.aspx">
+                    <li id="PaymentEntry" runat="server" visible="false"><a href="../Accountsbootstrap/Expensegrid.aspx">
                         Expense Payment Entry </a></li>
                     <li id="SalesTypeConversion" runat="server" visible="false"><a href="../Accountsbootstrap/salestypeconversion.aspx">
                         Sales Type Conversion</a></li>
-                    <li id="SupplierPaymentEntry" runat="server" visible="true"><a href="../Accountsbootstrap/PaymentEntryGrid.aspx">
+                    <li id="SupplierPaymentEntry" runat="server" visible="false"><a href="../Accountsbootstrap/PaymentEntryGrid.aspx">
                         Supplier Payment Entry</a></li>
                     <li id="billset" runat="server" visible="false"><a href="../Accountsbootstrap/billsetting.aspx"
                         style="color: White">Bill Settlement</a></li>
@@ -468,7 +475,7 @@
                 Cake Order Assign</a></li>
             <li id="Cakeorderprocess" runat="server" visible="false"><a href="../Accountsbootstrap/orderassign_old.aspx">
                 Cake Order Process Assign</a></li>
-            <li id="RequestAccept" visible="false" runat="server" class='has-sub'><a href=""
+            <li id="RequestAccept" visible="false" runat="server" class='has-sub'><a href="javascript:;"
                 style="color: White">Stock Entry <b></b>
                 <br />
                 <label id="Label1" runat="server" style="color: ThreeDLighShadow; margin-left: 10px;
@@ -532,14 +539,14 @@
                         Inter Production Stock Received</a> </li>
                 </ul>
             </li>
-            <li id="Payments" visible="false" runat="server" class='has-sub'><a href="" style="color: White">
+            <li id="Payments" visible="false" runat="server" class='has-sub'><a href="javascript:;" style="color: White">
                 Payments </a>
                 <ul>
                     <li id="CustomerSalesReceipts" runat="server" visible="false"><a href="../Accountsbootstrap/CashReceipts.aspx">
                         Customer Sales Receipts</a></li>
                 </ul>
             </li>
-            <li id="semiprodmenu" visible="false" runat="server" class='has-sub'><a href="" style="color: White">
+            <li id="semiprodmenu" visible="false" runat="server" class='has-sub'><a href="javascript:;" style="color: White">
                 Semi Production <b></b>
                 <br />
                 <label id="Label3" runat="server" style="color: ThreeDLighShadow; margin-left: 10px;
@@ -547,7 +554,7 @@
                 </label>
             </a>
                 <ul>
-                    <li id="semimaster" class='has-sub' runat="server" visible="false"><a id="A13" runat="server">
+                    <li id="semimaster" class='has-sub' runat="server" visible="false"><a id="A13" runat="server" href="javascript:;">
                         Master Menu</a>
                         <ul>
                             <li id="semicategory" runat="server" visible="false"><a id="A17" href="../Accountsbootstrap/SemiCategoryGrid.aspx"
@@ -558,7 +565,7 @@
                                 runat="server">Primary Uom</a></li>
                         </ul>
                     </li>
-                    <li id="semirequestMenu" class='has-sub' runat="server" visible="false"><a id="A22"
+                    <li id="semirequestMenu" class='has-sub' runat="server" visible="false"><a id="A22" href="javascript:;"
                         runat="server">Request Menu</a>
                         <ul>
                             <li id="semistockadd" runat="server" visible="false"><a id="A27" href="../Accountsbootstrap/SemiReceiveProductionStockGrid.aspx"
@@ -573,10 +580,12 @@
                     </li>
                 </ul>
             </li>
-            <li id="Reports" runat="server" visible="false" class='has-sub'><a href="" style="color: White">
+            <li id="Reports" runat="server" visible="false" class='has-sub'><a href="javascript:;" style="color: White">
                 Reports <b></b></a>
                 <ul>
-                    <li id="DayCloseReport" class='has-sub' runat="server" visible="false"><a id="A25"
+                 <li id="Li10" runat="server" visible="true"><a href="../Accountsbootstrap/dashboardtemplate.aspx">
+                New Dashboard Template</a></li>
+                    <li id="DayCloseReport" class='has-sub' runat="server" visible="false"><a id="A25" href="javascript:;"
                         runat="server">day Close Report</a>
                         <ul>
                             <li id="SessionClosingReport" runat="server" visible="false"><a href="../Accountsbootstrap/sessionreport.aspx"
@@ -587,11 +596,17 @@
                                 runat="server">Invoice Generate</a></li>
                             <li id="DenominationReport" runat="server" visible="false"><a href="../Accountsbootstrap/Denomination.aspx"
                                 runat="server">Denomination Report</a></li>
+                                <li id="NewTaxReport" runat="server" visible="false"><a id="A38" href="../Accountsbootstrap/NewTaxReport.aspx"
+                                runat="server">Tax Report</a></li>
                             <li id="SalesSummaryReport" runat="server" visible="false"><a href="../Accountsbootstrap/SalesSummaryReport.aspx"
                                 runat="server">Daily Summary Report</a></li>
+                                <li id="Li3" runat="server" visible="true"><a id="A39" href="../Accountsbootstrap/BranchCostingReport.aspx"
+                                runat="server">Branch Costing Report</a></li>
+
+                                
                         </ul>
                     </li>
-                    <li id="OrderFormReport" class='has-sub' runat="server" visible="false"><a id="A24"
+                    <li id="OrderFormReport" class='has-sub' runat="server" visible="false"><a id="A24" href="javascript:;"
                         runat="server">Order Form Report</a>
                         <ul>
                             <li id="CustomersCeremonies" runat="server" visible="false"><a href="../Accountsbootstrap/CustomersCeremonies.aspx"
@@ -610,7 +625,7 @@
                                 runat="server" style="color: White">Add Less Reports</a></li>
                         </ul>
                     </li>
-                    <li id="RawPurchaseReport" class='has-sub' runat="server" visible="false"><a id="A29"
+                    <li id="RawPurchaseReport" class='has-sub' runat="server" visible="false"><a id="A29" href="javascript:;"
                         runat="server">Raw - Purchase Report</a>
                         <ul>
                             <li id="StoreStockDetails" runat="server" visible="false"><a href="../Accountsbootstrap/StoreStockDetails.aspx">
@@ -631,7 +646,7 @@
                                 Purchase Future Expiry Details </a></li>
                         </ul>
                     </li>
-                    <li id="SalesReport" class='has-sub' runat="server" visible="false"><a id="ASalesReport"
+                    <li id="SalesReport" class='has-sub' runat="server" visible="false"><a id="ASalesReport" href="javascript:;"
                         runat="server">Sales Report</a>
                         <ul>
                             <li id="CustomerSalesRep" runat="server" visible="false"><a href="../Accountsbootstrap/CustomerSalesReport.aspx">
@@ -664,7 +679,7 @@
                                 DayEnd Report</a></li>
                         </ul>
                     </li>
-                    <li id="StockReport" class='has-sub' runat="server" visible="false"><a runat="server">
+                    <li id="StockReport" class='has-sub' runat="server" visible="false"><a runat="server" href="javascript:;">
                         Stock Report</a>
                         <ul>
                             <li id="Productionrep" runat="server" visible="false"><a href="../Accountsbootstrap/Production_Report.aspx">
@@ -685,7 +700,7 @@
                                 Stock Detailed Report </a></li>
                             <li id="StockAuditReport" runat="server" visible="false"><a href="../Accountsbootstrap/StockAuditReport.aspx">
                                 Stock Audit Report </a></li>
-                            <li id="StockReturned" runat="server" visible="false"><a>Stock Returned </a>
+                            <li id="StockReturned" runat="server" visible="false"><a href="javascript:;">Stock Returned </a>
                                 <ul>
                                     <li id="StockReturnedRep" runat="server" visible="false"><a href="../Accountsbootstrap/StockReturnReport.aspx">
                                         Stock Returned Report </a></li>
@@ -726,7 +741,7 @@
                         </ul>
                     </li>
                     <li id="ProductionReport" runat="server" visible="false" style="color: White" class='has-sub'>
-                        <a id="A3" runat="server">Goods Transfer Report</a>
+                        <a id="A3" runat="server" href="javascript:;">Goods Transfer Report</a>
                         <ul>
                             <li id="ProductionStockDetails" runat="server" visible="false"><a href="../Accountsbootstrap/ProduuctionStockDetails.aspx">
                                 KitchenStockDetails </a></li>
@@ -745,7 +760,7 @@
                         </ul>
                     </li>
                     <li id="supplierhead" class='has-sub' runat="server" visible="false"><a id="supplierreport"
-                        runat="server">Supplier Outstanding/Payment Report</a>
+                        runat="server" href="javascript:;">Supplier Outstanding/Payment Report</a>
                         <ul>
                             <li id="supplieroutstandingstore" runat="server" visible="false"><a href="../Accountsbootstrap/SupplierOustanding_report.aspx">
                                 Supplier Outstanding Wise Report </a></li>
@@ -755,7 +770,7 @@
                                 Supplier Summary/Detailed OutStanding </a></li>
                         </ul>
                     </li>
-                    <li id="ChartReport" runat="server" visible="false" class='has-sub'><a id="A9" runat="server">
+                    <li id="ChartReport" runat="server" visible="false" class='has-sub'><a id="A9" runat="server" href="javascript:;">
                         Chart Report</a>
                         <ul>
                             <li id="AnalysisReport" runat="server" visible="true"><a id="A15" href="../Accountsbootstrap/SalesandReturn_Report.aspx"
@@ -768,7 +783,7 @@
                     </li>
                     <li id="GeneralReports" runat="server" visible="false"><a id="A4" href="../Accountsbootstrap/GeneralReports.aspx"
                         runat="server">General Reports</a></li>
-                    <li id="OtherReport" runat="server" visible="false" class='has-sub'><a runat="server">
+                    <li id="OtherReport" runat="server" visible="false" class='has-sub'><a runat="server" href="javascript:;">
                         Other Report</a>
                         <ul>
                             <li id="CustomerReport" runat="server" visible="true"><a href="../Accountsbootstrap/Customer_ContactReport.aspx"
@@ -781,7 +796,7 @@
                                 Send Message</a></li>
                         </ul>
                     </li>
-                    <li id="PaymentReport" class='has-sub' runat="server" visible="false"><a id="A31"
+                    <li id="PaymentReport" class='has-sub' runat="server" visible="false"><a id="A31" href="javascript:;"
                         runat="server">Payment Report</a>
                         <ul>
                             <li id="CustomerReceiptReport" runat="server" visible="true"><a href="../Accountsbootstrap/CashReceiptsReport.aspx">
@@ -792,33 +807,35 @@
                                 Sales and Receipt Report</a></li>
                         </ul>
                     </li>
-                    <li id="billfrom" runat="server" visible="false"><a href="#" style="color: Silver"></a>
+                    <li id="billfrom" runat="server" visible="false"><a href="javascript:;" style="color: Silver"></a>
                     </li>
-                      <li id="Li5" class='has-sub' runat="server"  visible="false"><a id="A33"
-                        runat="server">Accounts Report</a>
+                    <li id="Li5" class='has-sub' runat="server"><a id="A33" runat="server" href="javascript:;">Accounts Report</a>
                         <ul>
                             <li id="Li6" runat="server" visible="true"><a id="A34" href="../Accountsbootstrap/LedgerReportNEW.aspx"
                                 runat="server">Ledger Report</a></li>
-                                  <li id="Li533" runat="server" visible="true"><a id="A20222" href="../Accountsbootstrap/DaybookNEW.aspx"
+                            <li id="Li533" runat="server" visible="true"><a id="A20222" href="../Accountsbootstrap/DaybookNEW.aspx"
                                 runat="server">Daybook Report</a></li>
-                                  <li id="Li7" runat="server" visible="true"><a id="A35" href="../Accountsbootstrap/CashAccount.aspx"
+                            <li id="Li7" runat="server" visible="true"><a id="A35" href="../Accountsbootstrap/CashAccount.aspx"
                                 runat="server">Cash Account Report</a></li>
-                             <%--    <li id="Li7" runat="server" visible="true"><a id="A22" href=""
+                            <%--    <li id="Li7" runat="server" visible="true"><a id="A22" href=""
                                 runat="server">Receipt Report</a></li>--%>
-                                 <li id="Li8" runat="server" visible="true"><a id="A36" href="../Accountsbootstrap/Statement.aspx"
-                                runat="server">Bank Statement Report</a></li>     
-                                   <li id="Li9" runat="server" visible="true"><a id="A37" href="../Accountsbootstrap/traildatewise.aspx"
-                                runat="server">Trial Balance Report</a></li>                                       
-                                </ul>
+                            <li id="Li8" runat="server" visible="true"><a id="A36" href="../Accountsbootstrap/Statement.aspx"
+                                runat="server">Bank Statement Report</a></li>
+                            <li id="Li9" runat="server" visible="true"><a id="A37" href="../Accountsbootstrap/traildatewise.aspx"
+                                runat="server">Trial Balance Report</a></li>
+                        </ul>
                     </li>
                 </ul>
             </li>
             <li id="onlineorderentry" runat="server" visible="false"><a href="../Accountsbootstrap/OnlineBillEntry.aspx"
-                style="color: White">Add Online Bill Entry</a></li>
+                style="color: White" href="javascript:;">Add Online Bill Entry</a></li>
             <li id="onlineentryreport" runat="server" visible="false"><a href="../Accountsbootstrap/OnlineEntryReport.aspx"
                 style="color: White">Online Entry Report</a></li>
+             <li id="Li11" runat="server" visible="true"><a href="../Accountsbootstrap/UserRoleGrid.aspx"
+                style="color: White">Add Roles</a></li>
             <li id="AddUsers" runat="server" visible="false"><a href="../Accountsbootstrap/UserGrid.aspx"
                 style="color: White">Add Users</a></li>
+            
             <li id="Synchronization" runat="server" visible="false"><a href="../Accountsbootstrap/Synchronization.aspx"
                 style="color: White">Sync.</a></li>
             <li id="Li2" runat="server" visible="false"><a href="../Accountsbootstrap/OnlineOrderScreen.aspx"
@@ -840,18 +857,14 @@
             <li id="chnagepassword" runat="server" visible="false"><a href="../Accountsbootstrap/ChangePassword.aspx"
                 style="color: White">Change Password</a></li>
             <li><a href="../Accountsbootstrap/login1.aspx" style="color: White">Sign Out</a></li>
-            <li>
+            <li><a href="javascript:;" style="padding: 11px; background: #54a6ff;">
                 <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label">Welcome : </asp:Label>
-            </li>
-            <br />
-            <li>
                 <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label" Style="font-size: 12px;
-                    text-decoration: blink; border-color: Gray" Visible="true"> </asp:Label>
+                    text-decoration: blink; border-color: Gray" Visible="true"> </asp:Label><br />
                 <asp:Label runat="server" ID="Label2" ForeColor="White" CssClass="label">: </asp:Label>
                 <asp:Label runat="server" ID="lblstore" ForeColor="White" Style="font-size: 12px;
-                    text-decoration: blink; border-color: Gray" Visible="true"> </asp:Label>
+                    text-decoration: blink; border-color: Gray" Visible="true"> </asp:Label></a>
             </li>
-            <br />
             <li>
                 <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false  "> </asp:Label><br />
                 <asp:Label ID="lblscreenname" Style="font-size: larger; color: White" runat="server"
@@ -876,5 +889,92 @@
             </div>
         </div>
     </div>
-</body>
+	
+	<script>
+	   (function($) {
+
+  $.fn.menumaker = function(options) {
+      
+      var cssmenu = $(this), settings = $.extend({
+        title: "Menu",
+        format: "dropdown",
+        sticky: false
+      }, options);
+
+      return this.each(function() {
+        cssmenu.prepend('<div id="menu-button">' + settings.title + '</div>');
+        $(this).find("#menu-button").on('click', function(){
+          $(this).toggleClass('menu-opened');
+          var mainmenu = $(this).next('ul');
+          if (mainmenu.hasClass('open')) { 
+            mainmenu.hide().removeClass('open');
+          }
+          else {
+            mainmenu.show().addClass('open');
+            if (settings.format === "dropdown") {
+              mainmenu.find('ul').show();
+            }
+          }
+        });
+
+        cssmenu.find('li ul').parent().addClass('has-sub');
+
+        multiTg = function() {
+          cssmenu.find(".has-sub").prepend('<span class="submenu-button"></span>')
+              .on("click", function () {
+                var submenuButton = $(this).find("span:first");
+                submenuButton.toggleClass('submenu-opened');
+                if (submenuButton.siblings('ul').hasClass('open')) {
+                    submenuButton.siblings('ul').removeClass('open').hide();
+                } else {
+                    submenuButton.siblings('ul').addClass('open').show();
+                };
+              });
+
+          /*
+          cssmenu.find('.submenu-button').on('click', function() {
+            $(this).toggleClass('submenu-opened');
+            if ($(this).siblings('ul').hasClass('open')) {
+              $(this).siblings('ul').removeClass('open').hide();
+            }
+            else {
+              $(this).siblings('ul').addClass('open').show();
+            }
+          });
+          */
+        };
+
+        if (settings.format === 'multitoggle') multiTg();
+        else cssmenu.addClass('dropdown');
+
+        if (settings.sticky === true) cssmenu.css('position', 'fixed');
+
+        resizeFix = function() {
+          if ($( window ).width() > 768) {
+            cssmenu.find('ul').show();
+          }
+
+          if ($(window).width() <= 768) {
+            cssmenu.find('ul').hide().removeClass('open');
+          }
+        };
+        resizeFix();
+        return $(window).on('resize', resizeFix);
+
+      });
+  };
+})(jQuery);
+
+(function($){
+$(document).ready(function(){
+
+$("#cssmenu").menumaker({
+   title: "Menu",
+   format: "multitoggle"
+});
+
+});
+})(jQuery);
+	</script>
+	
 </html>

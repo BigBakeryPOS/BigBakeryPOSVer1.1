@@ -123,26 +123,22 @@
                     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label">Welcome: </asp:Label>
                     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
    <usc:Header ID="Header" runat="server" />
-    <div class="row">
-                <div class="col-lg-12" style="padding-top:70px">
-                    <h1 class="page-header">Stock History</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
 
+ <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Stock History</h1>
+	    </div>
 
-          <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        
                         <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
+                            
                                     <form runat="server" id="form1" method="post">
+                                    <div class="row">
                                     <div class="col-lg-3">
-    <label>Select Branch</label>
-                                    <asp:DropDownList CssClass="form-control" ID="ddlBranch" runat="server" Visible="false"  Width="150px" 
-                                       >
+                                    <label>Select Branch</label>
+                                    <asp:DropDownList CssClass="form-control" ID="ddlBranch" runat="server" Visible="false"  >
                                        <asp:ListItem Text="KK Nagar" Value="co1"></asp:ListItem>
                                        <asp:ListItem Text=" Byepass" Value="co2"></asp:ListItem>
                                        <asp:ListItem Text=" BB Kulam" Value="co3"></asp:ListItem>
@@ -151,79 +147,50 @@
                                        <asp:ListItem Text="Maduravayol" Value="co6"></asp:ListItem>
                                        <asp:ListItem Text="Purasavakkam" Value="co7"></asp:ListItem>
                                         <asp:ListItem Text="Chennai Pothys" Value="co8"></asp:ListItem>
-
                                           <asp:ListItem Text="Thirunelveli" Value="co9"></asp:ListItem>
                                             <asp:ListItem Text="Periyar" Value="co10"></asp:ListItem>
                                               <asp:ListItem Text="Palayam" Value="co11"></asp:ListItem>
                                     </asp:DropDownList>
-    </div>
-                                    <div class="form-group">
+                                    </div>
+                                    <div class="col-lg-3">
                                             <label>Filter By Slot No</label>
-                                        <asp:TextBox ID="txtCustomerName" runat="server" Width="100px" CssClass="form-control"></asp:TextBox>
-                                                  
-
-                                               
-                                        <asp:Button ID="btnsearch" runat="server" class="btn btn-success" Text="Search"  
-                                                style="margin-top: 10px;" onclick="btnsearch_Click1"  /> 
-                                        <asp:Button ID="btnrefresh" runat="server" class="btn btn-warning" Text="Reset"  
-                                                style="margin-top: 10px;" onclick="btnrefresh_Click1"  /> 
-                                          
-                                        </div> 
-                               
-
-                               <div class="table-responsive">
-                                        
-                                <table class="table table-bordered table-striped">
-                                <tr>
-                                <td>
-
-                                
-                                <asp:GridView ID="gvPurchaseEntry" runat="server" AllowPaging="false"    CssClass=""   GridLines="Both"
-                                        AutoGenerateColumns="false"  onrowdatabound="gvPurchaseEntry_RowDataBound" 
-                                          >
-                                 
-                                <PagerSettings  Mode="Numeric"   />
-    <Columns>
-    <%--<asp:BoundField HeaderText="Customer ID" DataField="CustomerID" />--%>  
-    <asp:BoundField HeaderText="Group" DataField="category" />
-     <asp:BoundField HeaderText="Item" DataField="definition" />
-     <asp:BoundField HeaderText="Qty" DataField="grn_qty"  DataFormatString="{0:f0}"  />
-      <asp:BoundField HeaderText="Date" DataField="Date" />
-       <asp:BoundField HeaderText="Slot No" DataField="GRNNo" />
-    <asp:BoundField HeaderText="GRN TYPE" DataField="type" />
-    <asp:BoundField HeaderText="Branch Request No" DataField="reqno" />
-    <asp:BoundField HeaderText="Goods Received DC No" DataField="dcno" />
-   
-
-    
-   </Columns>
-    <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> 
-   </asp:GridView>
-                                </td>
-                                
-                                </tr>
-                                
-                                </table>
+                                        <asp:TextBox ID="txtCustomerName" runat="server" CssClass="form-control"></asp:TextBox>
+                                    </div>
+                                    <div class="col-lg-3">
+                                    <br />
+                                        <asp:Button ID="btnsearch" runat="server" class="btn btn-primary pos-btn1" Text="Search"  
+                                                 onclick="btnsearch_Click1"  /> 
+                                        &nbsp;&nbsp;&nbsp;<asp:Button ID="btnrefresh" runat="server" class="btn btn-secondary" Text="Reset"  
+                                                 onclick="btnrefresh_Click1"  /> 
+                                    </div> 
+                               </div>
+                               <div class="table-responsive panel-grid-left">
+                                <asp:GridView ID="gvPurchaseEntry" runat="server" AllowPaging="false"   cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"   GridLines="Both"
+                                        AutoGenerateColumns="false"  onrowdatabound="gvPurchaseEntry_RowDataBound"    >
+                                <%--<PagerSettings  Mode="Numeric"   />--%>
+                                <PagerStyle CssClass="pos-paging" />
+                            <Columns>
+                            <%--<asp:BoundField HeaderText="Customer ID" DataField="CustomerID" />--%>  
+                            <asp:BoundField HeaderText="Group" DataField="category" />
+                             <asp:BoundField HeaderText="Item" DataField="definition" />
+                             <asp:BoundField HeaderText="Qty" DataField="grn_qty"  DataFormatString="{0:f0}"  />
+                              <asp:BoundField HeaderText="Date" DataField="Date" />
+                               <asp:BoundField HeaderText="Slot No" DataField="GRNNo" />
+                            <asp:BoundField HeaderText="GRN TYPE" DataField="type" />
+                            <asp:BoundField HeaderText="Branch Request No" DataField="reqno" />
+                            <asp:BoundField HeaderText="Goods Received DC No" DataField="dcno" />
+                           </Columns>
+   <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> --%>
+                         </asp:GridView>
                                 </div>
-
-
-
-                                     
-                                   
-                                    </form>
+                              </form>
                                 </div>
                                 
-                                <!-- /.col-lg-6 (nested) -->
-                            </div>
-                            <!-- /.row (nested) -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-
+                            
+    </div>
+    </div>
+    </div>
+    </div>
 
 </body>
 </html>

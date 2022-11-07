@@ -126,20 +126,27 @@
    <usc:Header ID="Header" runat="server" />
     <form runat="server" id="form1" method="post">
    
-
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
          
-                    <div class="panel panel-primary" align="center">
-                                         <div class="panel-heading">Dealers List</div>
+                   <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Dealers List
+          <span class="pull-right">
+          <asp:LinkButton ID="btnNew1" runat="server" onclick="btnNew_Click" >
+                    <button type="button" class="btn btn-primary btn-md pos-btn1">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Dealers
+			</button>
+               </asp:LinkButton>
+                </span>
+                </h1>
+	    </div>
                         <div class="panel-body">
                             <div class="row">
-                                
-                                 
                                    <div class="col-lg-12">
-                    
-                                <asp:Button ID="btnNew" runat="server" CssClass="btn btn-success" Text="Add New Dealers" 
-                                        onclick="btnNew_Click" /><br /><br />
-                               
-                                <asp:GridView ID="gvReceiptReport" runat="server"  CssClass="mGrid"   
+                                   <div class="table-responsive panel-grid-left">
+                                <asp:GridView ID="gvReceiptReport" runat="server"  cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                                         AutoGenerateColumns="false">
                                 
                                 <Columns>
@@ -151,8 +158,8 @@
                                 
                                 
                                 </Columns>
-                                <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-   <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                                <%--<FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+   <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                                 </asp:GridView>
                                
                                
@@ -163,13 +170,15 @@
                                    
                                 </div>
                                 
-                                <!-- /.col-lg-6 (nested) -->
+                              </div>
                             </div>
                             <!-- /.row (nested) -->
                         </div>
                         <!-- /.panel-body -->
                     </div>
-                    <!-- /.panel -->
+         </div>
+         </div>
+         </div>          
               
  </form>
 </body>

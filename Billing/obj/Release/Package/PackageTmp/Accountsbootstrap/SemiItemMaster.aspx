@@ -82,31 +82,36 @@
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+     <div class="container-fluid">
+	<div class="row">
     <div class="col-lg-12">
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading" style="background-color: #0071BD; color: White; text-align: left">
-                    Semi Item Master
-                </div>
+        <div class="col-lg-8">
+        <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Semi Item Master</h1>
+	    </div>
+
                 <div class="panel-body">
-                    <div class="col-lg-12">
-                        <div class="col-lg-6">
-                            <asp:TextBox ID="txtname" runat="server" Width="200px" placeholder="Search Semi Item..."
+                    
+                        <div class="col-lg-4">
+                        <div class="form-group has-feedback">
+                            <asp:TextBox ID="txtname" runat="server"  placeholder="Search Semi Item..."
                                 onkeyup="Search_Gridview(this, 'Ingredientdrid')" CssClass="form-control"></asp:TextBox>
                         </div>
-                        <div class="col-lg-6">
-                            <asp:Button ID="btnReset" runat="server" Width="200px" class="btn btn-warning" Text="Reset"
+                        </div>
+                        <div class="col-lg-8">
+                            <asp:Button ID="btnReset" runat="server" class="btn btn-secondary" Text="Reset"
                                 OnClick="btnReset_Click" />
                         </div>
-                    </div>
+                   
                     <div class="col-lg-12">
-                        <br />
-                        <div style="height: 392px; overflow: scroll">
-                            <asp:GridView ID="Ingredientdrid" runat="server" PagerStyle-CssClass="pager" Font-Names="Calibri"
+                        
+                         <div class="table-responsive panel-grid-left">
+                            <asp:GridView ID="Ingredientdrid" runat="server" PagerStyle-CssClass="pager" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                                 ShowHeader="true" Width="100%" AutoGenerateColumns="False" OnRowCommand="Ingredientdrid_RowCommand">
-                                <AlternatingRowStyle></AlternatingRowStyle>
+                               <%-- <AlternatingRowStyle></AlternatingRowStyle>
                                 <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                    HorizontalAlign="Center" ForeColor="White" />
+                                    HorizontalAlign="Center" ForeColor="White" />--%>
                                 <Columns>
                                     <asp:BoundField DataField="SemiIngridID" HeaderText="ID" ItemStyle-CssClass="hide" HeaderStyle-CssClass="hide" />
                                     <asp:BoundField DataField="SemiCategory" HeaderText="Semi Category" ItemStyle-HorizontalAlign="left"
@@ -123,19 +128,27 @@
                                         HeaderStyle-HorizontalAlign="left" />
                                     <asp:BoundField DataField="TaxValue" HeaderText="Tax" ItemStyle-HorizontalAlign="Center"
                                         HeaderStyle-HorizontalAlign="left" />
-                                    <asp:TemplateField HeaderText="Edit" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                    <asp:TemplateField HeaderText="Edit" >
                                         <ItemTemplate>
                                             <asp:LinkButton ID="btnedit" ForeColor="White" CommandName="et" CommandArgument='<%#Eval("SemiIngridID") %>'
                                                 runat="server">
-                                                <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" width="55px" runat="server" /></asp:LinkButton>
+                                                <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" width="55px" runat="server" visible="false" />
+                                                  <button type="button" class="btn btn-warning btn-md">
+												<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+												</button>
+                                                </asp:LinkButton>
                                             <%--<asp:LinkButton ID="btnedit" runat="server"  Text="edit"  CommandArgument='<%#Eval("categoryid") %>' CommandName="edit"></asp:LinkButton>--%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Delete" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                    <asp:TemplateField HeaderText="Delete">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="btndel" CommandName="Dl" CommandArgument='<%#Eval("SemiIngridID") %>'
                                                 runat="server">
-                                                <asp:Image ID="Image1" ImageUrl="~/images/delete.png" runat="server" /></asp:LinkButton>
+                                                <asp:Image ID="Image1" ImageUrl="~/images/delete.png" runat="server" Visible="false" />
+                                                  <button type="button" class="btn btn-danger btn-md">
+												<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+												</button>
+                                                </asp:LinkButton>
                                             <ajaxToolkit:ModalPopupExtender ID="lnkDelete_ModalPopupExtender" runat="server"
                                                 CancelControlID="ButtonDeleteCancel" OkControlID="ButtonDeleleOkay" TargetControlID="btndel"
                                                 PopupControlID="DivDeleteConfirmation" BackgroundCssClass="ModalPopupBG">
@@ -147,23 +160,24 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
-                                <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                                <%--<FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                                 <%-- <HeaderStyle BackColor="#428bca" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
-                                <PagerStyle CssClass="pgr"></PagerStyle>
+                               <%-- <PagerStyle CssClass="pgr"></PagerStyle>--%>
+                                <PagerStyle CssClass="pos-paging" />
                             </asp:GridView>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <%--           <blink> <label  style="color:Green; font-size:12px">Please Fill Ingredient Details  </label></blink>--%>
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Add Semi Item Name </b>
-                </div>
-                <div class="panel-body">
-                    <div class="list-group">
+         <div class="col-lg-4">
+        <div class="panel panel-custom1">
+		<div class="panel-header">
+				<h1 class="page-header">Add Semi Item</h1>
+		</div>
+                <div class="panel-body panel-form-right">
+                <div class="list-group">
+
                         <label>
                             Select Semi Category</label>
                         <asp:DropDownList ID="ddlsemiIngreCategory" runat="server" CssClass="form-control" Visible="true">
@@ -171,21 +185,25 @@
                         <br />
                         <label>
                             Semi Item Name</label>
-                        <asp:TextBox ID="txtsemiingre" runat="server" placeholder="Enter Ingredient Name" CssClass="form-control"></asp:TextBox><br />
+                        <asp:TextBox ID="txtsemiingre" runat="server" placeholder="Enter Ingredient Name" CssClass="form-control"></asp:TextBox>
+                        <br />
                         <label>
                             Semi Item Code</label>
                         <asp:TextBox ID="txtsemiingreCode" runat="server" placeholder="Enter Ingredient Code"
-                            CssClass="form-control"></asp:TextBox><br />
+                            CssClass="form-control"></asp:TextBox>
+                         <br />
                              <label>
                             HSN Code</label>
                         <asp:TextBox ID="txthsncode" runat="server" placeholder="Enter HSN Code"
-                            CssClass="form-control"></asp:TextBox><br />
+                            CssClass="form-control"></asp:TextBox>
+                          <br />
                         <label>
                             Minimum Quantity</label>
                         <asp:TextBox ID="txtQuantity" runat="server" placeholder="Enter Minimum Quantity"
-                            CssClass="form-control"></asp:TextBox><br />
+                            CssClass="form-control"></asp:TextBox>
                         <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtendername" runat="server"
                             FilterType="Custom,Numbers" ValidChars=" ." TargetControlID="txtQuantity" />
+                            <br />
                         <label>
                             UOM</label>
                         <asp:DropDownList ID="ddlunits" runat="server" CssClass="form-control">
@@ -195,30 +213,25 @@
                             Tax</label>
                         <asp:DropDownList ID="ddltax" runat="server" CssClass="form-control">
                         </asp:DropDownList>
+                       <br />
                         <label>
                             Allow Request</label>
                         <asp:CheckBox ID="chkallow" runat="server" />
-                        <br />
-                        <br />
-                        <br />
-                         <div class="form-group">
+                           <br /> <br />     
                             <label>
-                                SELECT PRIMARY UOM</label>
-                            <asp:CheckBoxList ID="chkprimaryuom" runat="server">
+                                Select Primary UOM</label>
+                            <asp:CheckBoxList ID="chkprimaryuom" runat="server" RepeatColumns="2" Width="300px">
                             </asp:CheckBoxList>
-                        </div>
-                        <br />
-                        <br />
-                        <div class="form-group">
+                       <br />
                             <label>
                                 Upload Data From Excel
                             </label>
                             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                 <ContentTemplate>
-                                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                                    <asp:FileUpload ID="FileUpload1" runat="server" style="display:inline" width="190px"/>
                                     <asp:Button ID="btnAsyncUpload" Visible="false" runat="server" Text="Async_Upload"
                                         OnClick="Async_Upload_File" />
-                                    <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="Upload_File" CssClass="btn btn-danger" />
+                                    <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="Upload_File" CssClass="btn btn-primary pos-btn1" />
                                 </ContentTemplate>
                                 <Triggers>
                                     <asp:AsyncPostBackTrigger ControlID="btnAsyncUpload" EventName="Click" />
@@ -228,14 +241,16 @@
                             <asp:GridView ID="GridView2" runat="server">
                             </asp:GridView>
                         </div>
-                        <asp:Button ID="btnSubmit" Style="width: 150px; margin-left: 0px;" runat="server"
-                            class="btn btn-success" Text="Save" OnClick="btnadd_Click" />
-                        <asp:Button ID="btnclaear" Style="width: 150px; margin-left: 1px;" runat="server"
-                            class="btn btn-warning" Text="Cancel" OnClick="btncancel_Click" />
+                        <asp:Button ID="btnSubmit"  runat="server" width="150px"
+                            class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="btnadd_Click" />
+                        <asp:Button ID="btnclaear"  runat="server" width="150px"
+                            class="btn btn-lg btn-link" Text="Clear" OnClick="btncancel_Click" />
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <asp:Panel Width="30%" class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none;
         background-color: #c7c7c7" runat="server">

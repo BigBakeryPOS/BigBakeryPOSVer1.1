@@ -76,6 +76,7 @@
 
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet"/>
+    <link href="../css/Pos_style.css" rel="stylesheet" />
 
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -97,115 +98,115 @@
 
                     <form id="Form1" runat="server">
                     <asp:scriptmanager id="ScriptManager1" runat="server">
-</asp:scriptmanager>
-  
-                             <div class="col-lg-12">
-               <div class="col-lg-6">
-                    <div class="panel panel-default">
-                         <div class="panel-heading " style="background-color:#428bca; color:White" ><b>Branch Setting Details</b></div>
+                    </asp:scriptmanager>
+                    <div class="container-fluid">
+	                <div class="row">
+                   <div class="col-lg-12">
+                      <div class="col-lg-8">
+                    <div class="row panel-custom1">
+                          <div class="panel-header">
+                              <h1 class="page-header">Branch Setting</h1>
+	                        </div>
                         <div class="panel-body" >
                             <div class="row">
-                                <div   class="col-lg-12">
-                                     
-                                                  <div   class="col-lg-6">
-                                            <asp:TextBox CssClass="form-control" placeholder="Search Details.. " ID="txtsearch" onkeyup="Search_Gridview(this, 'gridview')"  runat="server" MaxLength="50"  Width="150px"></asp:TextBox>
-                                            <asp:Label ID="lblerror" runat="server" style="color:Red"></asp:Label>
-
-                                            </div>
+                                  <div class="col-lg-4">
+                                  <div class="form-group has-feedback">
+                                       <asp:TextBox CssClass="form-control" placeholder="Search Details.. " ID="txtsearch" onkeyup="Search_Gridview(this, 'gridview')"  runat="server" MaxLength="50"></asp:TextBox>
+                                       <asp:Label ID="lblerror" runat="server" style="color:Red"></asp:Label>
+                                       <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                   </div>
+                                   </div>
                                              
-                                               <div   class="col-lg-6">
-                                                <asp:Button ID="btnresret" runat="server" class="btn btn-warning" Text="Reset" onclick="Btn_Reset" Width="150px"/></div>
-                                        </div>
-                                         </div>
+                                   <div   class="col-lg-6">
+                                      <asp:Button ID="btnresret" runat="server" class="btn btn-secondary" Text="Reset" onclick="Btn_Reset" Width="150px"/>
+                                   </div>
+                                        
+                                        
                                           
-									
-                                <div style="height:350px; overflow:scroll"><br />
-                                <asp:GridView ID="gridview" runat="server" UseAccessibleHeader="true"  CssClass="mGrid"
-                                        AllowPaging="false" 
-                                        AutoGenerateColumns="false"  AllowSorting="true"
-                                        onrowcommand="gvcat_RowCommand" onsorting="gridview_Sorting" OnRowDataBound="gridview_OnRowDataBound" OnRowEditing="gridview_RowEditing">
+								<div class="col-lg-12">	
+                                <div class="table-responsive panel-grid-left">
+                                <asp:GridView ID="gridview" runat="server" UseAccessibleHeader="true"  CssClass="table table-striped pos-table" AllowPaging="false"  AutoGenerateColumns="false"  AllowSorting="true" 
+                                onrowcommand="gvcat_RowCommand" onsorting="gridview_Sorting" OnRowDataBound="gridview_OnRowDataBound" OnRowEditing="gridview_RowEditing" padding="0" spacing="0" border="0">
                                
-                                 <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" NextPageText="Next" PreviousPageText="Previous" />
+                                 <%--<PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" NextPageText="Next" PreviousPageText="Previous" />--%>
                                 <Columns>
-                                
-                                    
+
                                     <asp:BoundField HeaderText="Branch Code" DataField="BranchCode"    />
                                     <asp:BoundField HeaderText="Production Code" DataField="Productioncode"    />
                                     <asp:BoundField HeaderText="ICING Code" DataField="IcingCode"    />
                                     <asp:BoundField HeaderText="Is Active" DataField="IsActive"    />
                                     
 
-                               <asp:TemplateField HeaderText="Edit"    >
-     <ItemTemplate>
-     <asp:LinkButton ID="btnedit"  ForeColor="White"  CommandArgument='<%#Eval("Settingid") %>' CommandName="Edit" runat="server"> <asp:Image ID="imdedit"  ImageUrl="~/images/edit.png" runat="server" width="55px"/></asp:LinkButton>
-                                 </ItemTemplate>
-     </asp:TemplateField>
-          <asp:TemplateField HeaderText="Delete"   >
-     <ItemTemplate  >
-    
-     <asp:LinkButton ID="btndel"   CommandArgument='<%#Eval("Settingid") %>' CommandName="Del" runat="server"> <asp:Image ID="Image1"  ImageUrl="~/images/delete.png" runat="server" /></asp:LinkButton>
-
-     <asp:ImageButton ID="imgdisable1321" ImageUrl="~/images/delete.png" runat="server" Visible="false"
-                                                                                    Enabled="false" ToolTip="Not Allow To Delete" />
-
-     <ajaxToolkit:modalpopupextender   
-		id="lnkDelete_ModalPopupExtender" runat="server" 
-		cancelcontrolid="ButtonDeleteCancel" okcontrolid="ButtonDeleleOkay" 
-		targetcontrolid="btndel"  popupcontrolid="DivDeleteConfirmation" 
-		backgroundcssclass="ModalPopupBG">
-        </ajaxToolkit:modalpopupextender>
-        <ajaxToolkit:ConfirmButtonExtender id="lnkDelete_ConfirmButtonExtender" 
-		runat="server" targetcontrolid="btndel" enabled="True" 
-		displaymodalpopupid="lnkDelete_ModalPopupExtender">
-        </ajaxToolkit:ConfirmButtonExtender>               
-                                 </ItemTemplate>
-     </asp:TemplateField> 
-    </Columns>
-                                </asp:GridView></div>
+                               <asp:TemplateField HeaderText="Edit"  ItemStyle-Width="60px"  >
+                             <ItemTemplate>
+                             <asp:LinkButton ID="btnedit"  ForeColor="White"  CommandArgument='<%#Eval("Settingid") %>' CommandName="Edit" cssclass="btn btn-warning btn-md" runat="server">
+                              <asp:Image ID="imdedit"  ImageUrl="~/images/edit.png" runat="server" width="55px" Visible="false"/>
+                              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                              </asp:LinkButton>
+                             </ItemTemplate>
+                            </asp:TemplateField>
+          
+                              <asp:TemplateField HeaderText="Delete"  ItemStyle-Width="60px" >
+                         <ItemTemplate  >
+                         <asp:LinkButton ID="btndel"   CommandArgument='<%#Eval("Settingid") %>' CommandName="Del" runat="server">
+                          <asp:Image ID="Image1"  ImageUrl="~/images/delete.png" runat="server" Visible="false" />
+                           <button type="button" class="btn btn-danger btn-md">
+								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						  </button>
+                        </asp:LinkButton>
+                         <asp:ImageButton ID="imgdisable1321" ImageUrl="~/images/delete.png" runat="server" Visible="false"   Enabled="false" ToolTip="Not Allow To Delete" />
+                         <ajaxToolkit:modalpopupextender   
+		                    id="lnkDelete_ModalPopupExtender" runat="server" 
+		                    cancelcontrolid="ButtonDeleteCancel" okcontrolid="ButtonDeleleOkay" 
+		                    targetcontrolid="btndel"  popupcontrolid="DivDeleteConfirmation" 
+		                    backgroundcssclass="ModalPopupBG">
+                            </ajaxToolkit:modalpopupextender>
+                            <ajaxToolkit:ConfirmButtonExtender id="lnkDelete_ConfirmButtonExtender" 
+		                    runat="server" targetcontrolid="btndel" enabled="True" 
+		                    displaymodalpopupid="lnkDelete_ModalPopupExtender">
+                            </ajaxToolkit:ConfirmButtonExtender>               
+                        </ItemTemplate>
+                         </asp:TemplateField> 
+                        </Columns>
+                                </asp:GridView>
+                                </div>
+                                </div>
                             </div>
-</div>      
-</div>        
-                      <div class="col-lg-6">
-                                     <div class="panel panel-default">
+                        </div>      
+                        </div> 
+                         </div>       
+                      <div class="col-lg-4">
+                       <div class="panel panel-custom1">
                                    <%--   <blink> <label  style="color:Green; font-size:12px">Need To Add Branch Setting For Daily Stock Request Process.Please Fill CareFull!!!.Thank You!!!</label></blink>--%>
-               <div class="panel-heading " style="background-color:#428bca; color:White" ><b>Branch Setting Create</b></div>
-                <div class="panel-body">
-                  <div class="col-lg-12" >
-                         
-                            <div class="form-group">
+               <div class="panel-header">
+				<h1 class="page-header">Add Branch Setting</h1>
+		     </div>
+                <div class="panel-body panel-form-right">
+                  <div class="list-group" >
                                 <asp:TextBox CssClass="form-control" ID="txtsettingid" runat="server" Visible="false"></asp:TextBox>
-                            </div>
-                            <div class="form-group">
-                                <label>
-                                   Store Branch</label>
+                                <label>Store Branch</label>
                                <label id="lblsettingID" visible="false" runat="server"></label>
                                <asp:DropDownList ID="drpstorebranch" runat="server" CssClass="form-control" ></asp:DropDownList>
-                            </div>
-
-                            <div class="form-group">
-                                <label>
-                                   Production Branch</label>
-                               
+                               <br />
+                                <label>Production Branch</label>
                                <asp:DropDownList ID="DrpProductionBranch" runat="server" CssClass="form-control" ></asp:DropDownList>
-                            </div>
-
-                             <div class="form-group">
-                                <label>
-                                   ICING Branch</label>
-                               
+                               <br />
+                                <label>ICING Branch</label>
                                <asp:DropDownList ID="Drpicingbranch" runat="server" CssClass="form-control" ></asp:DropDownList>
-                            </div>
-
-                            <asp:Button ID="btnSave" runat="server" class="btn btn-success" Text="Save" OnClick="btnSave_Click"
+                    </div>
+                              <asp:Button ID="btnSave" runat="server" class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="btnSave_Click"
                                 ValidationGroup="val1" AccessKey="s" Width="150px" />
-                            <label>
-                            </label>
-                            <asp:Button ID="btnexit" runat="server" class="btn btn-warning" Text="Exit" OnClick="Exit_Click" Width="150px" />
+                            <asp:Button ID="btnexit" runat="server" class="btn btn-lg btn-link" Text="Clear" OnClick="Exit_Click" Width="150px" />
                             
-                            </div>
+                            
                             </div></div>
                                     </div>
-                                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    
+                              
+                              
                                 <asp:panel class="popupConfirmation" id="DivDeleteConfirmation" 
 	style="display: none" runat="server">
     <div class="popup_Container">

@@ -239,38 +239,35 @@
     <form runat="server" id="form1" method="post">
     <%--    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
     <ContentTemplate>     --%>
-    <div class="col-lg-12" style="">
-        <div class="panel panel-default" style="">
-            <div class="panel-heading " style="background-color: #428bca; color: White">
-                <b>Accept Raw Materials</b></div>
-            <div class="panel-body" style="">
-                <div class="row" style="">
-                    <div class="col-lg-12" style="">
-                        <div class="panel-body" style="height: 68px">
-                            <div style="">
-                                <div class="row" style="">
-                                    <div class="col-lg-1">
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Accept Raw Materials</h1>
+	    </div>
+
+            <div class="panel-body">
+            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="list-group">
                                         <label>
                                             OrderNo</label>
-                                        <asp:DropDownList ID="drpPO" runat="server" AutoPostBack="true" Width="100px" OnSelectedIndexChanged="drpPO_OnSelectedIndexChanged"
+                                        <asp:DropDownList ID="drpPO" runat="server" AutoPostBack="true"  OnSelectedIndexChanged="drpPO_OnSelectedIndexChanged"
                                             CssClass="form-control">
                                         </asp:DropDownList>
-                                    </div>
-                                    <div class="col-lg-2">
+                                   <br />
                                         <label>
                                             Supplier</label>
                                         <asp:DropDownList ID="ddlsuplier" runat="server" TabIndex="2" CssClass="form-control">
                                         </asp:DropDownList>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <div class="form-group">
+                                    <br />
                                             <asp:Label runat="server" ID="lblDCDate"><label> Rights Date</label></asp:Label>
-                                            <asp:TextBox ID="txtDCDate" runat="server" CssClass="form-control" Width="150px"></asp:TextBox>
+                                            <asp:TextBox ID="txtDCDate" runat="server" CssClass="form-control"></asp:TextBox>
                                             <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txtDCDate"
                                                 Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
                                             </ajaxToolkit:CalendarExtender>
-                                        </div>
-                                    </div>
+                                        <br />
                                     <div class="col-lg-3" runat="server" visible="false">
                                         <asp:RadioButtonList ID="rbdpurchasetype" runat="server" RepeatColumns="2" AutoPostBack="true"
                                             OnSelectedIndexChanged="rbdpurchasetype_OnSelectedIndexChanged">
@@ -293,18 +290,50 @@
                                     </asp:DropDownList>
                                     <asp:TextBox CssClass="form-control" ID="txtcheque" placeholder="Enter Bill No" runat="server"
                                         Visible="false"></asp:TextBox>
-                                    <div class="col-lg-1">
-                                    </div>
-                                </div>
+                                   
+                               </div>
+                               </div>
                                 <asp:ScriptManager ID="ScriptManager1" runat="server">
                                 </asp:ScriptManager>
-                            </div>
-                        </div>
+                          
+                
+                <div class="col-lg-3">
+                    <div class="list-group">
+                        <label>
+                            SubTotal</label>
+                        <asp:TextBox ID="txtSubTotal" Enabled="false" runat="server"  CssClass="form-control">0</asp:TextBox>
+               <br />
+                        <label>
+                            CGST</label>
+                        <asp:TextBox ID="txtcgst" runat="server" CssClass="form-control"  Enabled="false"
+                            AutoPostBack="true" >0</asp:TextBox>
+                   <br />
+                        <label>
+                            SGST</label>
+                        <asp:TextBox ID="txtsgst" runat="server" CssClass="form-control" Enabled="false"
+                            AutoPostBack="true" >0</asp:TextBox>
                     </div>
+                    </div>
+                    <div class="col-lg-3">
+                    <div class="list-group">
+                        <label>
+                            IGST</label>
+                        <asp:TextBox ID="txtigst" runat="server" CssClass="form-control"  Enabled="false"
+                            AutoPostBack="true" >0</asp:TextBox>
+                    <br />
+                        <label>
+                            Total</label>
+                        <asp:TextBox ID="txttotal" runat="server" Enabled="false" CssClass="form-control">0</asp:TextBox>
+                        <br /><br />
+                        <asp:Button ID="Button1" runat="server" CssClass=" btn btn-lg btn-primary pos-btn1" Text="Save"
+                            OnClick="btnSave_Click" OnClientClick="SetTarget();" />
+                        <asp:Button ID="Button2" runat="server" CssClass="btn btn-lg btn-link" Text="Exit"
+                            PostBackUrl="~/Accountsbootstrap/OrderRightsGrid.aspx" />
+                     </div>
                 </div>
+            </div>
                 <div class="col-lg-12">
-                    <div class="col-lg-10">
-                        <asp:GridView ID="gvcustomerorder" runat="server" AutoGenerateColumns="False" OnRowDeleting="grvStudentDetails_RowDeleting" Font-Names="Calibri"
+                   <asp:GridView ID="gvcustomerorder" runat="server" AutoGenerateColumns="False" OnRowDeleting="grvStudentDetails_RowDeleting" Font-Names="Calibri"
                            OnRowDataBound="gvcustomerorder_RowDataBound">
                           <%--  <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
                                 Height="20px" Font-Names="arial" Font-Size="Medium" HorizontalAlign="Center" />--%>
@@ -447,46 +476,14 @@
                                 <asp:CommandField ButtonType="Image" ShowDeleteButton="true" DeleteImageUrl="~/images/delete.png" />
                             </Columns>
                         </asp:GridView>
-                    </div>
-                    <div class="col-lg-2">
-                    </div>
+                   
                 </div>
-                <div class="col-lg-12">
-                    <div class="col-lg-2">
-                        <label>
-                            SubTotal</label>
-                        <asp:TextBox ID="txtSubTotal" Enabled="false" runat="server" Style="text-align: right"
-                            Width="130px" CssClass="form-control">0</asp:TextBox></div>
-                    <div class="col-lg-2">
-                        <label>
-                            CGST</label>
-                        <asp:TextBox ID="txtcgst" runat="server" CssClass="form-control" Width="130px" Enabled="false"
-                            AutoPostBack="true" Style="text-align: right">0</asp:TextBox></div>
-                    <div class="col-lg-2">
-                        <label>
-                            SGST</label>
-                        <asp:TextBox ID="txtsgst" runat="server" CssClass="form-control" Width="130px" Enabled="false"
-                            AutoPostBack="true" Style="text-align: right">0</asp:TextBox></div>
-                    <div class="col-lg-2">
-                        <label>
-                            IGST</label>
-                        <asp:TextBox ID="txtigst" runat="server" CssClass="form-control" Width="130px" Enabled="false"
-                            AutoPostBack="true" Style="text-align: right">0</asp:TextBox></div>
-                    <div class="col-lg-2">
-                        <label>
-                            Total</label>
-                        <asp:TextBox ID="txttotal" runat="server" Enabled="false" Style="text-align: right"
-                            Width="130px" CssClass="form-control">0</asp:TextBox></div>
-                    <div class="col-lg-2">
-                        <br />
-                        <asp:Button ID="Button1" runat="server" CssClass=" btn btn btn-success" Text="Save"
-                            OnClick="btnSave_Click" OnClientClick="SetTarget();" />
-                        <asp:Button ID="Button2" runat="server" CssClass=" btn btn btn-danger" Text="Exit"
-                            PostBackUrl="~/Accountsbootstrap/OrderRightsGrid.aspx" /></div>
                 </div>
             </div>
-        </div>
-        <!-- /.col-lg-6 (nested) -->
+ 
+   
+    </div>
+    </div>
     </div>
     <!-- /.row (nested) -->
     <script src="../Scripts/jquery.min.js" type="text/javascript"></script>

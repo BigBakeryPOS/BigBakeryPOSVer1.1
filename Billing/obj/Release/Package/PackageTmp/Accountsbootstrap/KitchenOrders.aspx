@@ -8,6 +8,12 @@
     <meta http-equiv="Refresh" content="5">
     <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+     <link href="../css/Pos_style.css" rel="stylesheet" />
     <script>
         function startTime() {
             var today = new Date();
@@ -28,20 +34,33 @@
 </head>
 <body onload="startTime()">
     <form id="form1" runat="server">
-    <div class="panel panel-body" >
-    <div class="panel-danger">
-    <h3 style="color:Green">Date :<asp:Label ID="lbldate" runat="server"></asp:Label> &nbsp <asp:Label ID="Label1" runat="server"></asp:Label> &nbsp &nbsp &nbsp <asp:Label ID="lblKOT" runat="server"> </asp:Label></h3>
-    </div>
+     <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+        <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Kitchen Orders</h1>
+	    </div>
+    <div class="panel-body" >
+   
+    <h3 style="color:#0073e4">Date :<asp:Label ID="lbldate" runat="server"></asp:Label> 
+    &nbsp; <asp:Label ID="Label1" runat="server"></asp:Label> &nbsp &nbsp &nbsp <asp:Label ID="lblKOT" runat="server"> 
+    </asp:Label>
+    </h3>
+  
     <div class="col-lg-12">
     <asp:DataList ID="datkot"   runat="server" RepeatColumns="5" RepeatDirection ="Horizontal" RepeatLayout="Table" Width="100%" CssClass="table table-responsive">
     <ItemTemplate>
     <div  class="row">
       <div class="col-lg-12">
    <div class="panel panel-primary">
-   <div class="panel panel-heading" style="padding-bottom:-50px"> Bill No:<asp:Label ID="lblkotno" runat="server" Text='<%# Eval("billno") %>'></asp:Label> &nbsp &nbsp &nbsp
-   Type:<asp:Label ID="Label2" runat="server" Text='<%# Eval("Type") %>'></asp:Label></div>
+   <div class="panel-header"> 
+   <h1 class="page-header">Bill No:<asp:Label ID="lblkotno" runat="server" Text='<%# Eval("billno") %>'></asp:Label>
+    &nbsp &nbsp &nbsp
+   Type:<asp:Label ID="Label2" runat="server" Text='<%# Eval("Type") %>'></asp:Label></h1>
+   </div>
   
-   <div class="panel" style="padding-top:-50px">
+   <div class="panel-body" >
     <div class="hidden" >
      <asp:Label ID="lbltbl" runat="server" Text='<%#Eval("billno") %>'></asp:Label>
     </div>
@@ -50,7 +69,9 @@
     </div>
   
     <div class="col-lg-12" >
-    <asp:GridView ID="gvitems"  runat="server" AutoGenerateColumns="false" Width="100%"><HeaderStyle BackColor="#428bca"  ForeColor="White"   />    <Columns>
+    <asp:GridView ID="gvitems"  cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" runat="server" AutoGenerateColumns="false" Width="100%">
+    <%--<HeaderStyle BackColor="#428bca"  ForeColor="White"   /> --%>   
+    <Columns>
     <asp:BoundField HeaderText="Item Name" DataField="Definition" ItemStyle-Font-Bold="true" ItemStyle-Font-Size="X-Large" />
     <asp:BoundField HeaderText="Quantity" DataField="Quantity" />
     <asp:BoundField  DataField="KotDate"  ItemStyle-CssClass="hidden"/>
@@ -59,8 +80,8 @@
     </asp:GridView><br />
     </div>
     <div class="row" align="center">
-    <asp:Button ID="btn" runat="server" CssClass="btn btn-danger" CommandArgument='<%#Eval("billno") %>' Text="Complete" OnClick="btncomplete" />
-      <asp:Button ID="Button1" runat="server" CssClass="btn btn-danger" Visible="false" CommandArgument='<%#Eval("billno") %>' Text="Print" OnClick="btn_print" />
+    <asp:Button ID="btn" runat="server" CssClass="btn btn-primary pos-btn1" CommandArgument='<%#Eval("billno") %>' Text="Complete" OnClick="btncomplete" />
+      <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary pos-btn1" Visible="false" CommandArgument='<%#Eval("billno") %>' Text="Print" OnClick="btn_print" />
     </div>
     </div>
     </div>
@@ -69,6 +90,10 @@
     </ItemTemplate>
     
     </asp:DataList>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
     </div>
     </form>

@@ -96,54 +96,64 @@
 <usc:Header ID="Header" runat="server" />
     <form id="Form1" runat="server" role="form">
     <asp:Panel ID="pnlContents" runat="server">
-        <!-- /.row -->
-        <div align="center">
-            <div class="col-lg-12" style="">
-                <div class="col-lg-2" class="row">
-                    <label class="form-control-label">
+      <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+        <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Dispatch Print</h1>
+	    </div>
+         <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label>
                         From Date</label>
-                    <asp:TextBox ID="txtDate" OnTextChanged="dispatchload" AutoPostBack="true" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtDate" OnTextChanged="dispatchload" AutoPostBack="true" runat="server" class="form-control"></asp:TextBox>
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="yyyy-MM-dd" TargetControlID="txtDate"
                         runat="server" CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
                 </div>
-                <div class="col-lg-2" class="row">
-                    <label class="form-control-label">
+               <div class="col-lg-3">
+                    <label>
                         To Date</label>
-                    <asp:TextBox ID="txtToDate" OnTextChanged="dispatchload" AutoPostBack="true" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtToDate" OnTextChanged="dispatchload" AutoPostBack="true" runat="server" class="form-control"></asp:TextBox>
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="yyyy-MM-dd" TargetControlID="txtToDate"
                         runat="server" CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-3">
                     <label>
                         Select Dispatch No</label>
                     <asp:DropDownList ID="drpdispatchno" runat="server" OnSelectedIndexChanged="dispatch_checked"
                         AutoPostBack="true" CssClass="form-control">
                     </asp:DropDownList>
                 </div>
-                <div class="col-lg-2">
+               <div class="col-lg-3">
                     <label>
                         Select Branch</label>
                     <asp:DropDownList ID="drpbranch" runat="server" CssClass="form-control" OnSelectedIndexChanged="Branch_select"
                         AutoPostBack="true">
                     </asp:DropDownList>
                 </div>
-                <div class="col-lg-2">
+            </div>
+            <br />
+             <div class="row">
+              <div class="col-lg-3">
                     <label>
                         Select DC No</label>
                     <asp:CheckBoxList ID="chkdclist" runat="server">
                     </asp:CheckBoxList>
                 </div>
-                <div class="col-lg-2">
-                    <asp:Button ID="btnsearch" runat="server" class="btn btn-success" Text="Search" Style="margin-top: 10px;"
+               <div class="col-lg-3">
+               <br />
+                    <asp:Button ID="btnsearch" runat="server" class="btn btn-primary pos-btn1" Text="Search" 
                         OnClick="btnsearch_Click" />
-                    <asp:Button ID="Button1" runat="server" class="btn btn-default" Text="Print" OnClientClick="printdataDC()" />
-                    <asp:Button ID="btnrefresh" runat="server" class="btn btn-warning" PostBackUrl="~/Accountsbootstrap/Dispatch_report.aspx"
-                        Text="Reset" Style="margin-top: 10px;" />
+                    &nbsp;&nbsp;&nbsp;<asp:Button ID="Button1" runat="server" class="btn btn-secondary" Text="Print" OnClientClick="printdataDC()" />
+                   &nbsp;&nbsp;&nbsp; <asp:Button ID="btnrefresh" runat="server" class="btn btn-secondary" PostBackUrl="~/Accountsbootstrap/Dispatch_report.aspx"
+                        Text="Reset"  />
                 </div>
             </div>
-            <div id="PRINTIDRec" runat="server">
+            <div id="PRINTIDRec" runat="server" align="center">
             <table width="500px" style="font-size: x-large; font-family: Calibri; font-weight: bold">
                 <tr>
                     <td colspan="2" align="center" style="font-size: x-large;">
@@ -190,10 +200,10 @@
                 <tr>
                     <td colspan="2" align="center" style="padding-left: 5px">
                         <div >
-                            <asp:GridView ID="Griddc" runat="server" AutoGenerateColumns="false" Font-Names="Calibri"
-                                OnRowCreated="Griddc_RowCreated" OnRowDataBound="Griddc_RowDataBound" Font-Size="15px">
-                                <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                    HorizontalAlign="Center" ForeColor="White" />
+                            <asp:GridView ID="Griddc" runat="server" AutoGenerateColumns="false" cssClass="table table-striped pos-table"
+                                OnRowCreated="Griddc_RowCreated" OnRowDataBound="Griddc_RowDataBound" padding="0" spacing="0" border="0">
+                              <%--  <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                    HorizontalAlign="Center" ForeColor="White" />--%>
                                 <Columns>
                                     <asp:BoundField HeaderText="Category" DataField="Category" />
                                     <asp:BoundField HeaderText="Item" DataField="Definition" />
@@ -207,7 +217,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
-                                <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                <%--<FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                             </asp:GridView>
                         </div>
                     </td>
@@ -241,8 +251,11 @@
             <asp:ScriptManager ID="ScriptManager1" runat="server">
             </asp:ScriptManager>
             </div>
-            <!-- /.panel -->
-        </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
     </asp:Panel>
     </form>
 </body>

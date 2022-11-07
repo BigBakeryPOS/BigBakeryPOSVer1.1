@@ -175,97 +175,29 @@
     <usc:Header ID="Header" runat="server" />
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">
-                Session Close Entry</h1>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <div class="panel panel-body">
-        <div class="col-lg-12">
-            <div class="col-lg-6">
-                <label>
-                    Session Close Details</label>
-                <asp:GridView ID="griddetails" Width="50%" runat="server" OnRowCommand="gvorderToday_RowCommand"
-                    AutoGenerateColumns="false">
-                    <Columns>
-                        <asp:BoundField DataField="sessionname" HeaderText="Session Type Name" />
-                        <asp:BoundField DataField="cashdate" HeaderText="Cash Date" DataFormatString='{0:dd/MM/yyyy hh:MM:ss tt}' />
-                        <asp:BoundField DataField="Totalcash" HeaderText="Total" DataFormatString='{0:f}' />
-                        <asp:TemplateField HeaderText="Delete">
-                            <ItemTemplate>
-                                <asp:LinkButton ID="btnDelete" CommandArgument='<%#Eval("cashsessionid") %>' CommandName="Del"
-                                    runat="server">
-                                    <asp:Image ID="imgdprint" runat="server" ImageUrl="~/images/delete.png" />
-                                </asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Print">
-                            <ItemTemplate>
-                                <asp:LinkButton ID="btnprint" CommandArgument='<%#Eval("cashsessionid") %>' CommandName="Print"
-                                    runat="server">
-                                    <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png" width="55px" />
-                                </asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
-                <table border="1" width="100%" style="border-color: Maroon;" id="deno" visible="false"
-                    runat="server">
-                    <thead>
-                        <tr>
-                            <th colspan="2" style="background-color: #5bc0de; color: white">
-                                Denomination Table For Cash Session Details
-                            </th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td colspan="2">
-                            <asp:GridView ID="GridView1" Width="100%" runat="server" AutoGenerateColumns="false">
-                                <Columns>
-                                    <asp:BoundField DataField="Name" HeaderText="" />
-                                    <asp:TemplateField HeaderText="No's">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblnos" Visible="true" runat="server" Text='<%#Eval("Nos")%>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Total">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lbltotal" Text='<%#Eval("Total","{0:f}")%>' runat="server"></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                </Columns>
-                                <RowStyle CssClass="RowStyleBackGroundColor" ForeColor="Black" />
-                                <AlternatingRowStyle CssClass="RowAlternateStyleBackGroundColor" />
-                            </asp:GridView>
-                            <div>
-                                <label>
-                                    Total Amount :</label>
-                                <asp:Label ID="lblDenototal" Font-Size="25px" ForeColor="Red" runat="server" Font-Bold="true"></asp:Label>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <label>
-                Session Close Entry</label>
-            <div class="col-lg-2">
-                <div class="form-group">
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="col-lg-4">
+        <div class="panel panel-custom1">
+		<div class="panel-header">
+				<h1 class="page-header"> Session Close Entry</h1>
+		</div>
+                <div class="panel-body panel-form-right">
+        
+                <div class="list-group">
                     <label>
                         Select Session Type</label>
                     <asp:DropDownList ID="drpsessiontype" runat="server" CssClass="form-control">
                     </asp:DropDownList>
-                </div>
-                <div class="form-group">
-                    <label>
+                    <br />
+                 <label>
                         Details Notes</label>
                     <asp:TextBox ID="txtnotes" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="table-responsive">
-                    <asp:GridView ID="griddenomination" Width="50%" runat="server" AutoGenerateColumns="false">
+               
+           <br />
+                 <div class="table-responsive panel-grid-left">
+                    <asp:GridView ID="griddenomination" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" runat="server" AutoGenerateColumns="false">
                         <Columns>
                             <asp:BoundField DataField="Name" HeaderText="" />
                             <asp:TemplateField HeaderText="No's">
@@ -273,7 +205,7 @@
                                     <asp:Label ID="lblDenominationid" Visible="false" runat="server" Text='<%#Eval("Denominationid")%>'></asp:Label>
                                     <asp:Label ID="lblname" Visible="false" runat="server" Text='<%#Eval("Name")%>'></asp:Label>
                                     <asp:Label ID="lblvalue" Visible="false" runat="server" Text='<%#Eval("Value")%>'></asp:Label>
-                                    <asp:TextBox ID="lblnos" runat="server" onBlur="ResetColor()" onFocus="ChangeColor()"></asp:TextBox>
+                                    <asp:TextBox ID="lblnos" runat="server" ></asp:TextBox>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Total">
@@ -282,20 +214,21 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
-                        <RowStyle CssClass="RowStyleBackGroundColor" ForeColor="Black" />
-                        <AlternatingRowStyle CssClass="RowAlternateStyleBackGroundColor" />
+                        <%--<RowStyle CssClass="RowStyleBackGroundColor" ForeColor="Black" />
+                        <AlternatingRowStyle CssClass="RowAlternateStyleBackGroundColor" />--%>
                     </asp:GridView>
-                    <asp:Button ID="Button1" runat="server" Text="Save" Enabled="true" CssClass="btn btn-info"
-                        OnClick="Button1_Click" />
-                    <asp:Label ID="lblErr" runat="server" ForeColor="Red" Visible="false"></asp:Label>
-                    <asp:Button ID="btncalc" runat="server" Text="Calculate" CssClass="btn btn-info"
-                        OnClick="btncalc_Click" TabIndex="11" />
-                </div>
-                <div>
+                    
+               
+                
                     <label>
                         Total Amount :</label>
                     <asp:Label ID="lblgrandtotal" Font-Size="25px" ForeColor="Red" runat="server" Font-Bold="true"></asp:Label>
                 </div>
+                <asp:Button ID="Button1" runat="server" Text="Save" Enabled="true" CssClass="btn btn-primary pos-btn1" Width="100px"
+                        OnClick="Button1_Click" />
+                    <asp:Label ID="lblErr" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+                    <asp:Button ID="btncalc" runat="server" Text="Calculate" CssClass="btn btn-info" Width="100px"
+                        OnClick="btncalc_Click" TabIndex="11" />
             </div>
         </div>
         <%-- <div class="col-lg-12">
@@ -311,6 +244,92 @@
             <label>
                 Total :</label><asp:Label ID="lbltotl" runat="server"></asp:Label>
         </div>--%>
+    </div>
+    </div>
+     <div class="col-lg-8">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Session Close Details</h1>
+	    </div>
+   
+    <div class="panel-body">
+        <div class="col-lg-12">
+                <div class="table-responsive panel-grid-left">
+                <asp:GridView ID="griddetails" runat="server" OnRowCommand="gvorderToday_RowCommand" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
+                    AutoGenerateColumns="false">
+                    <Columns>
+                        <asp:BoundField DataField="sessionname" HeaderText="Session Type Name" />
+                        <asp:BoundField DataField="cashdate" HeaderText="Cash Date" DataFormatString='{0:dd/MM/yyyy hh:MM:ss tt}' />
+                        <asp:BoundField DataField="Totalcash" HeaderText="Total" DataFormatString='{0:f}' />
+                        <asp:TemplateField HeaderText="Delete">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="btnDelete" CommandArgument='<%#Eval("cashsessionid") %>' CommandName="Del"
+                                    runat="server">
+                                    <asp:Image ID="imgdprint" runat="server" ImageUrl="~/images/delete.png" visible="false"/>
+                                    <button type="button" class="btn btn-danger btn-md">
+												<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+												</button>
+                                </asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Print">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="btnprint" CommandArgument='<%#Eval("cashsessionid") %>' CommandName="Print"
+                                    runat="server">
+                                    <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png" width="55px"  Visible="false"/>
+                                    <button type="button" class="btn btn-default btn-md">
+						            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+					            </button>
+                                </asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+                </div>
+                                 <table  id="deno" visible="false" runat="server">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                Denomination Table For Cash Session Details
+                            </th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td colspan="2">
+                            <div class="table-responsive panel-grid-left"> 
+                            <asp:GridView ID="GridView1" Width="100%" runat="server" AutoGenerateColumns="false" padding="0" spacing="0" border="0" cssClass="table table-striped pos-table">
+                                <Columns>
+                                    <asp:BoundField DataField="Name" HeaderText="" />
+                                    <asp:TemplateField HeaderText="No's">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblnos" Visible="true" runat="server" Text='<%#Eval("Nos")%>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Total">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbltotal" Text='<%#Eval("Total","{0:f}")%>' runat="server"></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                                <%--<RowStyle CssClass="RowStyleBackGroundColor" ForeColor="Black" />--%>
+                                <AlternatingRowStyle CssClass="RowAlternateStyleBackGroundColor" />
+                            </asp:GridView>
+                            </div>
+                            <div>
+                                <label>
+                                    Total Amount :</label>
+                                <asp:Label ID="lblDenototal" Font-Size="25px" ForeColor="Red" runat="server" Font-Bold="true"></asp:Label>
+                            </div>
+                         </td>
+                    </tr>
+                </table>
+            </div>
+            </div>
+            </div>
+            </div>
+             
+    </div>
+    </div>
     </div>
     </form>
 </body>

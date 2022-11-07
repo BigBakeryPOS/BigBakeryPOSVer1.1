@@ -77,40 +77,36 @@
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Return Receiving Stock</h1>
+	    </div>
     <div class="panel-body">
-        <div class="panel-heading " style="background-color: #428bca; color: White">
-            <b>Return  Receiving Stock</b></div>
-        <div class="row">
-            <div class="Row">
-                <div class="col-lg-12">
-                    <div class="col-lg-1">
-                    </div>
-                    <div class="col-lg-1">
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group" runat="server" visible="false">
+       
+            <div class="row">
+                
+                        <div  runat="server" visible="false" class="col-lg-3" >
                             <label>
                                 Select RetNo
                             </label>
-                            <asp:DropDownList ID="ddlretno" runat="server" CssClass="form-control" Width="150px"
+                            <asp:DropDownList ID="ddlretno" runat="server" CssClass="form-control"
                                 AutoPostBack="true" OnSelectedIndexChanged="ddlretno_OnSelectedIndexChanged">
                             </asp:DropDownList>
-                        </div>
                     </div>
-                    <div class="col-lg-1">
-                        <br />
-                        <asp:Button ID="btnsave" runat="server" CssClass="btn btn-success" Text="Receive"
-                            Width="120px" OnClick="btnsave_OnClick" OnClientClick="ClientSideClick(this)"
+                    <div class="col-lg-3">
+                        <asp:Button ID="btnsave" runat="server" CssClass="btn btn-info pos-btn1" Text="Receive"
+                             OnClick="btnsave_OnClick" OnClientClick="ClientSideClick(this)"
                             UseSubmitBehavior="false" />
                     </div>
-                    <div class="col-lg-1">
-                    </div>
-                </div>
             </div>
-            <div id="div1" runat="server">
-                <div class="col-lg-12">
-                    <div class="col-lg-5">
-                        <asp:GridView ID="gvallReturns" Caption="Stock Returned Receving" EmptyDataText="No Data Found" runat="server" CssClass="mGrid" OnRowCommand="gvPurchaseEntry_RowCommand"
+            <br />
+            <div id="div1" class="row" runat="server">
+                    <div class="col-lg-6">
+                    <div class="table-responsive panel-grid-left">
+                        <asp:GridView ID="gvallReturns" Caption="Stock Returned Receving" EmptyDataText="No Data Found" runat="server" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" OnRowCommand="gvPurchaseEntry_RowCommand"
                             ShowFooter="true" AutoGenerateColumns="false" Width="100%">
                             <Columns>
                                 <asp:TemplateField HeaderText="SNo">
@@ -129,16 +125,22 @@
                                     <ItemTemplate>
                                         <asp:LinkButton ID="btnprint" runat="server" CommandArgument='<%#Eval("RetNo") %>'
                                             CommandName="view">
-                                            <asp:Image ID="print" runat="server" ImageAlign="Middle" ImageUrl="~/images/info_button.png" /></asp:LinkButton>
+                                            <asp:Image ID="print" runat="server" ImageAlign="Middle" ImageUrl="~/images/info_button.png" Visible="false" />
+                                            <button type="button" class="btn btn-primary btn-md">
+						                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+					                        </button>
+                                            </asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
-                            <FooterStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
-                            <HeaderStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
+                          <%--  <FooterStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
+                            <HeaderStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />--%>
                         </asp:GridView>
                     </div>
+                    </div>
                     <div class="col-lg-6">
-                        <asp:GridView ID="gvReturns" Caption="Stock Return Receving Entry" runat="server" CssClass="mGrid"
+                    <div class="table-responsive panel-grid-left">
+                        <asp:GridView ID="gvReturns" Caption="Stock Return Receving Entry" runat="server" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                             ShowFooter="true" AutoGenerateColumns="false" Width="100%">
                             <Columns>
                                 <asp:TemplateField HeaderText="SNo">
@@ -174,13 +176,17 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
-                            <FooterStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
-                            <HeaderStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
+                            <%--<FooterStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
+                            <HeaderStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />--%>
                         </asp:GridView>
                     </div>
-                </div>
+                    </div>
             </div>
-        </div>
+       
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
     </form>
 </body>

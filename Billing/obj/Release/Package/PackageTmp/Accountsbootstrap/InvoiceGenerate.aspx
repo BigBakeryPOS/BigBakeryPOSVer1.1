@@ -60,19 +60,20 @@
     <%--Text="nknavaneethan4U@gmail.com,sriniavl@mirufood.com"--%>
     <asp:TextBox ID="txtdelorderemail" Visible="false" runat="server" Text="blaackforestonline@gmail.com"></asp:TextBox>
     <asp:Label ID="repdays" runat="server" Visible="false" Text="60"></asp:Label>
-    <div class="row" style="padding-top: 15px">
-        <div class="row" style="padding-left: 25px">
-            <div class="col-lg-12">
-                <h3 class="page-header">
-                    Invoice Generate For Sales</h3>
-            </div>
-        </div>
-    </div>
+    <div class="container-fluid">
+	<div class="row">
     <div class="col-lg-12">
-        <div class="col-lg-1">
-            <div class="form-group">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Invoice Generate For Sales</h1>
+	    </div>
+    
+    <div class="col-lg-12">
+    <div class="row">
+        <div class="col-lg-3">
+           
                 <asp:Label ID="lblpaymode" runat="server" Visible="false" Text="s.ipaymode <> ('15')"></asp:Label>
-                <label style="color: #428bca">
+                <label>
                     From Date</label>
                 <asp:TextBox CssClass="form-control" ID="txtfrmdate" runat="server" Text="--Select Date--"></asp:TextBox>
                 <%-- <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtfrmdate"
@@ -83,11 +84,11 @@
                 <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txtfrmdate"
                     Format="yyyy-MM-dd" runat="server" CssClass="cal_Theme1">
                 </ajaxToolkit:CalendarExtender>
-            </div>
+            
         </div>
-        <div id="Div2" class="col-lg-1" runat="server" visible="true">
-            <div class="form-group">
-                <label style="color: #428bca">
+        <div id="Div2" class="col-lg-3" runat="server" visible="true">
+           
+                <label>
                     To Date</label>
                 <asp:TextBox CssClass="form-control" runat="server" ID="txttodate">
                 </asp:TextBox>
@@ -108,56 +109,48 @@
                 <asp:DropDownList ID="ddlcat" runat="server" class="form-control" Width="150px" Visible="false">
                 </asp:DropDownList>
             </div>
-        </div>
-        <div class="col-lg-1">
-            <label style="color: #428bca">
+       
+        <div class="col-lg-3">
+            <label>
                 Admin Password</label>
             <asp:TextBox ID="txtpassword" TextMode="Password" runat="server" CssClass="form-control"
                 placeholder="Enter your Password" AutoPostBack="true" OnTextChanged="txtpassword_OnTextChanged"></asp:TextBox>
         </div>
       
-       <div class="col-lg-2">
-            <label style="color: #428bca">
+       <div class="col-lg-3">
+            <label>
                 Select Branch</label>
             <asp:DropDownList ID="ddlbranch" AutoPostBack="true" runat="server" class="form-control">
             </asp:DropDownList>
         </div>
-
-        <div class="col-lg-2">
-            <div class="form-group">
-                <br />
-                <asp:Button ID="btnsearch" runat="server" ValidationGroup="val1" class="btn btn-success"
-                    Text="Generate Report" OnClick="Search_Click" Style="width: 120px; background-color: #428bca" />
-            </div>
         </div>
-        <div id="Div3" class="col-lg-1" runat="server">
-            <div class="form-group">
-                <br />
-                <asp:Button ID="btnexcel" runat="server" ValidationGroup="val1" class="btn btn-danger"
-                    Text="Excel" OnClick="btnexcel_Click" Style="width: 120px" />
-            </div>
-        </div>
-        <div class="col-lg-2">
-            <br />
-            <asp:RadioButtonList ID="radbtn" runat="server">
+        <div class="row">
+        <div class="col-lg-3">
+            <asp:RadioButtonList ID="radbtn" runat="server" RepeatColumns="2">
                 <asp:ListItem Text="Sales" Value="1" Selected="True"></asp:ListItem>
                 <asp:ListItem Text="Order Form" Value="2"></asp:ListItem>
             </asp:RadioButtonList>
+            
         </div>
-        <div class="col-lg-1">
-            <br />
-            <asp:Button ID="btnsave" Visible="true" runat="server" class="btn btn-warning" Text="Email "
+        <div class="col-lg-3">
+           
+                <asp:Button ID="btnsearch" runat="server" ValidationGroup="val1" class="btn  btn-primary pos-btn1"
+                    Text="Generate Report" OnClick="Search_Click"  />
+             &nbsp;&nbsp;&nbsp;<asp:Button ID="btnsave" Visible="true" runat="server" class="btn btn-warning" Text="Email "
                 OnClick="Email_Click" Style="width: 120px" />
         </div>
+        <div id="Div3" class="col-lg-3" runat="server">
+          
+                <asp:Button ID="btnexcel" runat="server" ValidationGroup="val1" class="btn btn-success"
+                    Text="Excel" OnClick="btnexcel_Click" Style="width: 120px" />
+        </div>
+      
          
     </div>
-    <div class="col-lg-12">
-        <div class="row" style="padding-top: 10px">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="col-lg-12">
+   <div class="table-responsive panel-grid-left">
+    
                         <div runat="server" visible="false" class="col-lg-4">
-                            <asp:GridView ID="gvinvoice" runat="server" AutoGenerateColumns="false" CssClass="myGridStyle"
+                            <asp:GridView ID="gvinvoice" runat="server" AutoGenerateColumns="false" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                                 OnRowCommand="gvinvoice_OnRowCommand" EmptyDataText="No Record found" Width="100%"
                                 ShowFooter="true">
                                 <Columns>
@@ -178,9 +171,9 @@
                                 </Columns>
                             </asp:GridView>
                         </div>
-                        <div align="center" class="col-lg-8">
-                            <div id="div1" runat="server">
-                                <table border="1">
+                        <div  class="col-lg-12" id="div1" runat="server">
+                           
+                               
                                     <tr runat="server" visible="false">
                                         <td>
                                         </td>
@@ -216,9 +209,8 @@
                                             <br />
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="4">
-                                            <asp:GridView ID="gvSalesValue" runat="server" AutoGenerateColumns="false" CssClass="myGridStyle"
+                                   
+                                            <asp:GridView ID="gvSalesValue" runat="server" AutoGenerateColumns="false" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                                                 OnRowDataBound="gvSalesValue_OnRowDataBound" EmptyDataText="No Record found"
                                                 Width="100%" ShowFooter="true">
                                                 <Columns>
@@ -229,71 +221,53 @@
                                                     <asp:BoundField HeaderText="Item Name" DataField="Itemname" />
                                                     <asp:BoundField HeaderText="GST%" DataField="GST" />
                                                     <asp:BoundField HeaderText="Qty" DataField="Qty" DataFormatString="{0:f}" />
-                                                    <asp:BoundField HeaderText="Rate" DataField="rate" DataFormatString='{0:f}' ItemStyle-HorizontalAlign="Right" />
+                                                    <asp:BoundField HeaderText="Rate" DataField="rate" DataFormatString='{0:f}'  />
                                                     <asp:BoundField HeaderText="Total Rate" DataField="TotalRate" DataFormatString='{0:f}'
-                                                        ItemStyle-HorizontalAlign="Right" />
+                                                         />
                                                     <asp:BoundField HeaderText="Margin%" DataField="Margin" DataFormatString='{0:f}'
-                                                        ItemStyle-HorizontalAlign="Right" />
+                                                        />
                                                     <asp:BoundField HeaderText="Margin Value" DataField="Marginvalue" DataFormatString='{0:f}'
-                                                        ItemStyle-HorizontalAlign="Right" />
+                                                         />
                                                     <asp:BoundField HeaderText="Basic Cost After Margin" DataField="BasicCostAfterMargin"
-                                                        DataFormatString='{0:f}' ItemStyle-HorizontalAlign="Right" />
+                                                        DataFormatString='{0:f}'  />
                                                     <asp:BoundField HeaderText="GST Value" DataField="GSTvalue" DataFormatString='{0:f}'
-                                                        ItemStyle-HorizontalAlign="Right" />
+                                                         />
                                                     <asp:BoundField HeaderText="Net Amount" DataField="NetAmount" DataFormatString='{0:f}'
-                                                        ItemStyle-HorizontalAlign="Right" />
+                                                         />
                                                 </Columns>
-                                                <FooterStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
-                                                <HeaderStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
+                                                <FooterStyle BackColor="#007aff" ForeColor="White" HorizontalAlign="Center" />
+                                                <%--<HeaderStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />--%>
                                             </asp:GridView>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" align="right">
+                                  
                                             Sales Exempted :
                                             <asp:Label ID="lblsalesexempted" runat="server">0.00</asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" align="right">
+                                      <br />
                                             Taxable Sales :
                                             <asp:Label ID="lbltaxablesales" runat="server">0.00</asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" align="right">
+                                       <br />
                                             GST :
                                             <asp:Label ID="lblcgst" runat="server">0.00</asp:Label>
-                                        </td>
-                                    </tr>
+                                     
                                     <tr runat="server" visible="false">
                                         <td colspan="4" align="right">
                                             SGST :
                                             <asp:Label ID="lblsgst" runat="server">0.00</asp:Label>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="4" align="right">
+                                   <br />
                                             NET AMOUNT :
                                             <asp:Label ID="lblnetamount" runat="server">0.00</asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" align="right">
+                                       <br />
                                             Round Off :
                                             <asp:Label ID="lblroundoff" runat="server">0.00</asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" align="right">
+                                        <br />
                                             FINAL AMOUNT :
                                             <asp:Label ID="lblfinalamount" runat="server">0.00</asp:Label>
-                                        </td>
-                                    </tr>
-                                </table>
+                                        
                             </div>
-                            <div id="div4" runat="server">
-                                <table border="1">
+                            
+                            <div id="div4" runat="server"  class="col-lg-12">
+                               
                                     <tr id="Tr1" runat="server" visible="false">
                                         <td>
                                         </td>
@@ -329,9 +303,8 @@
                                             <br />
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="4">
-                                            <asp:GridView ID="gvorder" runat="server" AutoGenerateColumns="false" CssClass="myGridStyle"
+                                   
+                                            <asp:GridView ID="gvorder" runat="server" AutoGenerateColumns="false"  cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                                                 OnRowDataBound="gvorder_OnRowDataBound" EmptyDataText="No Record found" Width="100%"
                                                 ShowFooter="true">
                                                 <Columns>
@@ -342,70 +315,50 @@
                                                     <asp:BoundField HeaderText="Order Date" DataField="OrderDate" DataFormatString='{0:dd/MMM/yyyy}' />
                                                     <asp:BoundField HeaderText="Payment Date" DataField="Billdate" DataFormatString='{0:dd/MMM/yyyy}' />
                                                     <asp:BoundField HeaderText="Order AMOUNT" DataField="NetAmount" DataFormatString="{0:f}" />
-                                                    <asp:BoundField HeaderText="COST" DataField="COST" DataFormatString='{0:f}' ItemStyle-HorizontalAlign="Right" />
-                                                    <asp:BoundField HeaderText="GST %" DataField="GST" DataFormatString='{0:f}' ItemStyle-HorizontalAlign="Right" />
+                                                    <asp:BoundField HeaderText="COST" DataField="COST" DataFormatString='{0:f}'  />
+                                                    <asp:BoundField HeaderText="GST %" DataField="GST" DataFormatString='{0:f}'  />
                                                     <asp:BoundField HeaderText="Pay Type" DataField="paytype" />
-                                                    <asp:BoundField HeaderText="Amount" DataField="Amount" DataFormatString='{0:f}' ItemStyle-HorizontalAlign="Right" />
+                                                    <asp:BoundField HeaderText="Amount" DataField="Amount" DataFormatString='{0:f}'  />
                                                     <asp:BoundField HeaderText="Margin%" DataField="marginvalue" DataFormatString='{0:f}'
-                                                        ItemStyle-HorizontalAlign="Right" />
+                                                         />
                                                     <asp:BoundField HeaderText="Margin Value" DataField="Margin" DataFormatString='{0:f}'
-                                                        ItemStyle-HorizontalAlign="Right" />
+                                                         />
                                                     <asp:BoundField HeaderText="Basic Cost After Margin" DataField="castbeforemargin"
-                                                        DataFormatString='{0:f}' ItemStyle-HorizontalAlign="Right" />
+                                                        DataFormatString='{0:f}'  />
                                                     <asp:BoundField HeaderText="GST Value" DataField="GSTV" DataFormatString='{0:f}'
-                                                        ItemStyle-HorizontalAlign="Right" />
+                                                         />
                                                     <asp:BoundField HeaderText="Net Amount" DataField="NetamountV" DataFormatString='{0:f}'
-                                                        ItemStyle-HorizontalAlign="Right" />
+                                                         />
                                                 </Columns>
-                                                <FooterStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
-                                                <HeaderStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
+                                                <FooterStyle BackColor="#007aff" ForeColor="White" HorizontalAlign="Center" />
+                                               <%-- <HeaderStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />--%>
                                             </asp:GridView>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" align="right">
+                                       <br />
                                             Taxable Sales :
                                             <asp:Label ID="lbltaxablesalesorder" runat="server">0.00</asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" align="right">
+                                        <br />
                                             GST :
                                             <asp:Label ID="lblcgstorder" runat="server">0.00</asp:Label>
-                                        </td>
-                                    </tr>
+                                      <br />
                                     <tr id="Tr2" runat="server" visible="false">
                                         <td colspan="4" align="right">
                                             SGST :
                                             <asp:Label ID="Label6" runat="server">0.00</asp:Label>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="4" align="right">
+                                   
                                             NET AMOUNT :
                                             <asp:Label ID="lblnetamountorder" runat="server">0.00</asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" align="right">
+                                       <br />
                                             Round Off :
                                             <asp:Label ID="lblroundofforder" runat="server">0.00</asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" align="right">
+                                       <br />
                                             FINAL AMOUNT :
                                             <asp:Label ID="lblfinalamountorder" runat="server">0.00</asp:Label>
-                                        </td>
-                                    </tr>
-                                </table>
+                                       
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                   
     <div class="col-lg-12">
         <div class="col-lg-3">
         </div>
@@ -414,6 +367,11 @@
         </div>
         <div class="col-lg-2">
         </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
     </form>
 </body>

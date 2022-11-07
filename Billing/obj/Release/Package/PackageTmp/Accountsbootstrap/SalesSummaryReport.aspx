@@ -57,89 +57,96 @@
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <div class="Row">
-        <div class="col-lg-12">
+     <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Day Sales & Item Report</h1>
+	    </div>
+    <div class="panel-body">
+    <div class="row">
+       <div class="col-lg-12">
             <div class="col-lg-3">
-                <div class="form-group">
-                    <h2 style="text-align: left; color: #fe0002; font-size: 20px; font-weight: bold">
-                        Day Sales & Item Report</h2>
-                </div>
-            </div>
-            <div class="col-lg-1">
-                <div class="form-group">
                     <label>
                         From Date</label>
-                    <asp:TextBox runat="server" ID="txtfromdate" CssClass="form-control" Width="110px">
+                    <asp:TextBox runat="server" ID="txtfromdate" CssClass="form-control" >
                     </asp:TextBox>
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtfromdate"
                         Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
-                </div>
             </div>
-            <div class="col-lg-1">
-                <div class="form-group">
+            <div class="col-lg-3">
+                
                     <label>
                         To Date</label>
-                    <asp:TextBox runat="server" ID="txttodate" CssClass="form-control" Width="110px">
+                    <asp:TextBox runat="server" ID="txttodate" CssClass="form-control">
                     </asp:TextBox>
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txttodate"
                         Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
-                </div>
+                
             </div>
-            <div class="col-lg-1">
+            <div class="col-lg-6">
                 <br />
-                <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-success" Text="Search"
+                <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-info pos-btn1" Text="Search"
                     Width="110px" OnClick="btnSearch_Click" />
-            </div>
-            <div class="col-lg-1" runat="server" visible="true">
-                <br />
-                <asp:Button ID="btnExp" runat="server" Text="Export" CssClass="btn btn-danger" Width="110px"
+           
+                &nbsp;&nbsp;&nbsp;<asp:Button ID="btnExp" runat="server" Text="Export" CssClass="btn btn-success" Width="110px"
                     OnClick="btnexp_Click" />
-            </div>
-            <div class="col-lg-1">
-                <br />
-                <asp:Button ID="btnPrint" runat="server" Text="Print" CssClass="btn btn-warning"
+          
+                &nbsp;&nbsp;&nbsp;<asp:Button ID="btnPrint" runat="server" Text="Print" CssClass="btn btn-secondary"
                     OnClientClick="printGrid()" Width="110px" />
-            </div>
-            <div class="col-lg-4">
-                <br />
-                <asp:Button ID="btnpdf" runat="server" Text="PDF" CssClass="btn btn-info" OnClick="btnpdf_Click"
+            
+                &nbsp;&nbsp;&nbsp;<asp:Button ID="btnpdf" runat="server" Text="PDF" CssClass="btn btn-info" OnClick="btnpdf_Click"
                     Width="110px" />
             </div>
-        </div>
-    </div>
+      </div>
+     
     <div id="div1" runat="server">
         <div class="col-lg-12">
-        <asp:Label ID="lblheading" runat="server" Font-Bold="true" ></asp:Label>
-            <asp:Panel ID="Panel1" runat="server" Height="600px" ScrollBars="Both" Width="100%">
+        
+        <br />
+        <div class="col-lg-12">
+            <asp:Label ID="lblheading" runat="server" Font-Bold="true"></asp:Label>
+            </div>
+            <%--<asp:Panel ID="Panel1" runat="server" Height="600px" ScrollBars="Both" Width="100%">--%>
+            <div class="col-lg-6">
+            <div class="table-responsive panel-grid-left">
                 <asp:GridView ID="GVBillCount" Caption="Bill Count Details" runat="server" EmptyDataText="No Record Found!"
-                    OnRowDataBound="GVBillCount_OnRowDataBound" CssClass="mGrid" ShowFooter="true"
+                    OnRowDataBound="GVBillCount_OnRowDataBound" cssClass="table table-striped pos-table" ShowFooter="true" padding="0" spacing="0" border="0"
                     AutoGenerateColumns="false" Width="100%">
                     <Columns>
-                        <asp:BoundField HeaderText="Bill Type" DataField="Type" ItemStyle-HorizontalAlign="Right" />
-                        <asp:BoundField HeaderText="Start Bill" DataField="StartBill" ItemStyle-HorizontalAlign="Right" />
-                        <asp:BoundField HeaderText="End Bill" DataField="EndBill" ItemStyle-HorizontalAlign="Right"
-                            FooterStyle-HorizontalAlign="Right" />
-                        <asp:BoundField HeaderText="Total BillCount" DataField="BillCount" ItemStyle-HorizontalAlign="Right"
-                            FooterStyle-HorizontalAlign="Right" />
+                        <asp:BoundField HeaderText="Bill Type" DataField="Type" ItemStyle-width="350px" />
+                        <asp:BoundField HeaderText="Start Bill" DataField="StartBill" ItemStyle-width="350px" />
+                        <asp:BoundField HeaderText="End Bill" DataField="EndBill" ItemStyle-width="350px" />
+                        <asp:BoundField HeaderText="Total BillCount" DataField="BillCount" 
+                             />
                     </Columns>
-                    <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-                    <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                   <%-- <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                    <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                 </asp:GridView>
+              </div>
+              </div>
+              <div class="col-lg-6">
+               <div class="table-responsive panel-grid-left">
                 <asp:GridView ID="GVCancelBill" Caption="Cancel Bill Count Details" runat="server"
-                    EmptyDataText="No Record Found!" CssClass="mGrid" ShowFooter="true" AutoGenerateColumns="false"
+                    EmptyDataText="No Record Found!" cssClass="table table-striped pos-table" ShowFooter="true" padding="0" spacing="0" border="0" AutoGenerateColumns="false"
                     Width="100%">
                     <Columns>
                         <asp:BoundField HeaderText="CancelBill" DataField="CancelBill" />
                         <asp:BoundField HeaderText="Total BillCount" DataField="BillCount" />
                     </Columns>
-                    <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-                    <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                    <%--<FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                    <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                 </asp:GridView>
-                <asp:GridView ID="GVSalesTaxReport" Caption="Sales Tax Details" runat="server" CssClass="mGrid"
+                </div>
+                </div>
+                <div class="col-lg-6">
+                 <div class="table-responsive panel-grid-left">
+                <asp:GridView ID="GVSalesTaxReport" Caption="Sales Tax Details" runat="server" cssClass="table table-striped pos-table" ShowFooter="true" padding="0" spacing="0" border="0"
                     EmptyDataText="No Record Found!" OnRowDataBound="GVSalesTaxReport_OnRowDataBound"
-                    ShowFooter="true" AutoGenerateColumns="false" Width="100%">
+                     AutoGenerateColumns="false" Width="100%">
                     <Columns>
                         <asp:TemplateField HeaderText="SNo">
                             <ItemTemplate>
@@ -148,52 +155,106 @@
                         </asp:TemplateField>
                         <asp:BoundField HeaderText="Tax(%)" DataField="Tax" DataFormatString="{0:f2}" />
                         <asp:BoundField HeaderText="NetAmount" DataField="NetAmount" DataFormatString="{0:f2}"
-                            ItemStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right" />
+                             />
                         <asp:BoundField HeaderText="DisCount" DataField="DisCount" DataFormatString="{0:f2}"
-                            ItemStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right" />
+                             />
                         <asp:BoundField HeaderText="CGST" DataField="TaxValue" DataFormatString="{0:f2}"
-                            ItemStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right" />
+                             />
                         <asp:BoundField HeaderText="SGST" DataField="TaxValue" DataFormatString="{0:f2}"
-                            ItemStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right" />
+                             />
                         <asp:BoundField HeaderText="TotalAmont" DataField="Total" DataFormatString="{0:f2}"
-                            ItemStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right" />
+                             />
                     </Columns>
-                    <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-                    <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                   <%-- <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                    <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                 </asp:GridView>
-                <asp:GridView ID="GVSalesQtyReport" Caption="Sales Item Qty Details" runat="server"
-                    AllowSorting="true" OnSorting="GVSalesQtyReport_OnSorting" OnRowDataBound="GVSalesQtyReport_OnRowDataBound"
-                    EmptyDataText="No Record Found!" CssClass="mGrid" AutoGenerateColumns="false"
-                    ShowFooter="true" Width="100%">
-                    <HeaderStyle BackColor="#3366FF" />
-                    <PagerSettings FirstPageText="1" Mode="Numeric" />
+               </div>
+               </div>
+               <div class="col-lg-6">
+                <div class="table-responsive panel-grid-left">
+                <asp:GridView ID="gvcategorywise" Caption="Category Wise Tax Report" runat="server"
+                   cssClass="table table-striped pos-table" ShowFooter="true" padding="0" spacing="0" border="0" EmptyDataText="No Record Found!" OnRowDataBound="GVcategorywise_OnRowDataBound"
+                    AutoGenerateColumns="false" Width="100%">
                     <Columns>
                         <asp:TemplateField HeaderText="SNo">
                             <ItemTemplate>
                                 <%#Container.DataItemIndex+1 %>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField HeaderText="Category" DataField="Category" SortExpression="Category" />
-                        <asp:BoundField HeaderText="Item" DataField="Definition" SortExpression="Definition" />
-                        <asp:BoundField HeaderText="Quantity" DataField="Quantity" SortExpression="Quantity"
-                            ItemStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right" />
-                        <asp:BoundField HeaderText="Amount" DataField="Amount" SortExpression="Amount" DataFormatString="{0:f2}"
-                            ItemStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right" />
-                        <asp:BoundField HeaderText="Discount" DataField="Disc" SortExpression="Disc" DataFormatString="{0:f2}"
-                            ItemStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right" />
-                        <asp:BoundField HeaderText="CGST" DataField="TaxAmount" SortExpression="TaxAmount"
-                            DataFormatString="{0:f2}" ItemStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right" />
-                        <asp:BoundField HeaderText="SGST" DataField="TaxAmount" SortExpression="TaxAmount"
-                            DataFormatString="{0:f2}" ItemStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right" />
-                        <asp:BoundField HeaderText="NetAmount" DataField="NetAmount" SortExpression="NetAmount"
-                            DataFormatString="{0:f2}" ItemStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right" />
+                        <asp:BoundField HeaderText="Category" DataField="Category" DataFormatString="{0:f2}" />
+                        <asp:BoundField HeaderText="Tax(%)" DataField="Tax" DataFormatString="{0:f2}" />
+                        <asp:BoundField HeaderText="NetAmount" DataField="NetAmount" DataFormatString="{0:f2}"
+                            />
+                        <asp:BoundField HeaderText="DisCount" DataField="DisCount" DataFormatString="{0:f2}"
+                            />
+                        <asp:BoundField HeaderText="CGST" DataField="TaxValue" DataFormatString="{0:f2}"
+                             />
+                        <asp:BoundField HeaderText="SGST" DataField="TaxValue" DataFormatString="{0:f2}"
+                             />
+                        <asp:BoundField HeaderText="TotalAmont" DataField="Total" DataFormatString="{0:f2}"
+                            />
                     </Columns>
-                    <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-                    <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                   <%-- <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                    <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                 </asp:GridView>
-            </asp:Panel>
+                </div>
+                </div>
+                <div class="col-lg-6">
+                 <div class="table-responsive panel-grid-left">
+                <asp:GridView ID="GridsummaryView" Width="100%" runat="server" AutoGenerateColumns="false"
+                    OnRowDataBound="gridsummary_rowdatabound" cssClass="table table-striped pos-table" ShowFooter="true" padding="0" spacing="0" border="0">
+                    <Columns>
+                        <asp:BoundField DataField="Name" HeaderText="" />
+                        <asp:BoundField DataField="value" HeaderText="" />
+                    </Columns>
+                   <%-- <RowStyle CssClass="RowStyleBackGroundColor" ForeColor="Black" />
+                    <AlternatingRowStyle CssClass="RowAlternateStyleBackGroundColor" />--%>
+                </asp:GridView>
+                </div>
+                </div>
+                <div class="col-lg-6">
+                 <div class="table-responsive panel-grid-left">
+                <asp:GridView ID="GVSalesQtyReport" Caption="Sales Item Qty Details" runat="server"
+                    AllowSorting="true" OnSorting="GVSalesQtyReport_OnSorting" OnRowDataBound="GVSalesQtyReport_OnRowDataBound"
+                    EmptyDataText="No Record Found!" cssClass="table table-striped pos-table" ShowFooter="true" padding="0" spacing="0" border="0" AutoGenerateColumns="false"
+                     Width="100%">
+                    <%--<HeaderStyle BackColor="#3366FF" />
+                    <PagerSettings FirstPageText="1" Mode="Numeric" />--%>
+                    <PagerStyle CssClass="pos-paging" />
+                    <Columns>
+                        <asp:TemplateField HeaderText="SNo">
+                            <ItemTemplate>
+                                <%#Container.DataItemIndex+1 %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField HeaderText="Category" DataField="Category"  />
+                        <asp:BoundField HeaderText="Item" DataField="Definition"  />
+                        <asp:BoundField HeaderText="Quantity" DataField="Quantity" />
+                        <asp:BoundField HeaderText="Amount" DataField="Amount"  DataFormatString="{0:f2}"  />
+                        <asp:BoundField HeaderText="Discount" DataField="Disc"  DataFormatString="{0:f2}"  />
+                        <asp:BoundField HeaderText="CGST" DataField="TaxAmount" 
+                            DataFormatString="{0:f2}" />
+                        <asp:BoundField HeaderText="SGST" DataField="TaxAmount" 
+                            DataFormatString="{0:f2}"  />
+                        <asp:BoundField HeaderText="NetAmount" DataField="NetAmount" 
+                            DataFormatString="{0:f2}"  />
+                    </Columns>
+                   <%-- <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                    <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
+                </asp:GridView>
+                </div>
+                </div>
+                <%--  </asp:Panel>--%>
         </div>
+   
     </div>
+    </div>
+    </div>
+     </div>
+    </div>
+    </div>
+    </div>
+   
     <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
     <script type="text/javascript">        $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
     <script type="text/javascript">

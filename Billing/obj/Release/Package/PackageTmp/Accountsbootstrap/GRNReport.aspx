@@ -83,23 +83,29 @@
     <form id="Form1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-body" style="">
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+            <div class="row panel-custom1">
+             <div class="panel-header">
+          <h1 class="page-header">GRN Report</h1>
+	    </div>
+                <div class="panel-body">
                     <div class="row">
-                        <div>
-                            <h2>
-                                GRN Report</h2>
+                       
+                            
                             <div class="form-group" id="admin" runat="server">
                                 <legend>Filter By Branch</legend>
                                 <asp:DropDownList CssClass="form-control" ID="ddlBranch" runat="server" AutoPostBack="true">
                                 </asp:DropDownList>
                             </div>
                             <div runat="server" visible="true" class="col-lg-6">
-                                <label style="color: #428bca">
+                            <div class="row">
+                            <div class="col-lg-6">
+                            
+                            <label >
                                     From Date</label>
-                                <asp:TextBox runat="server" ID="txtFrom" CssClass="form-control" Width="150px" AutoPostBack="true"
+                                <asp:TextBox runat="server" ID="txtFrom" CssClass="form-control"  AutoPostBack="true"
                                     OnTextChanged="txttodate_TextChanged">
                                 </asp:TextBox>
                                 <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtFrom"
@@ -108,10 +114,12 @@
                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="yyyy-MM-dd" TargetControlID="txttodate"
                                     runat="server" CssClass="cal_Theme1">
                                 </ajaxToolkit:CalendarExtender>
-                                <br />
-                                <label style="color: #428bca">
+                               
+                            </div>
+                                <div class="col-lg-6">
+                                <label>
                                     To Date</label>
-                                <asp:TextBox runat="server" ID="txttodate" CssClass="form-control" Width="150px">
+                                <asp:TextBox runat="server" ID="txttodate" CssClass="form-control">
                                 </asp:TextBox>
                                 <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="txttodate"
                                     ErrorMessage="Please Select valid Date Thank You!!!" Type="Date">
@@ -119,47 +127,53 @@
                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="yyyy-MM-dd" TargetControlID="txtFrom"
                                     runat="server" CssClass="cal_Theme1">
                                 </ajaxToolkit:CalendarExtender>
-                                <br />
-                                <asp:Button ID="btnsearch" runat="server" class="btn btn-success" Text="Search" Style="margin-top: 10px;
-                                    background-color: #428bca" OnClick="Btn_Search" />
-                                <asp:Button ID="btnprintgrnn" runat="server" class="btn btn-success" Text="Print GRN"
-                                    Style="margin-top: 10px;" OnClick="PrintGRN_Search" />
+                           </div>
+                           </div>
+                                <asp:Button ID="btnsearch" runat="server" class="btn btn-success pos-btn1" Text="Search" 
+                                    OnClick="Btn_Search" />
+                                &nbsp;&nbsp;&nbsp;<asp:Button ID="btnprintgrnn" runat="server" class="btn btn-secondary" Text="Print GRN"
+                                     OnClick="PrintGRN_Search" />
                             </div>
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label style="color: #428bca">
+                            <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label>
                                         Group</label>
                                     <asp:DropDownList ID="ddlcategory" AutoPostBack="true" runat="server" class="form-control"
-                                        Width="150px" OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged">
+                                        OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged">
                                     </asp:DropDownList>
-                                </div>
-                                <div class="form-group">
-                                    <label style="color: #428bca">
-                                        Itam</label>
-                                    <asp:DropDownList ID="ddlSubCategory" runat="server" class="form-control" Width="150px"
+                                    </div>
+                               <div class="col-lg-6">
+                                    <label>
+                                        Item</label>
+                                    <asp:DropDownList ID="ddlSubCategory" runat="server" class="form-control"
                                         AutoPostBack="true">
                                     </asp:DropDownList>
-                                    <asp:Label ID="lblsuberror" runat="server" Style="color: Red"></asp:Label>
+                                    <asp:Label ID="lblsuberror" runat="server" ></asp:Label>
                                 </div>
-                                <asp:Button ID="Button1" runat="server" class="btn btn-danger" Text="Search" Style="margin-top: 10px;
-                                    background-color: #428bca" OnClick="Button1_Click" />
+                                </div>
+                                <br />
+                                <asp:Button ID="Button1" runat="server" class="btn btn pos-btn1" Text="Search"
+                                    OnClick="Button1_Click" />
                                 &nbsp
-                                <asp:Button ID="Button2" runat="server" class="btn btn-warning" Text="Print" Style="margin-top: 10px;"
+                                &nbsp;&nbsp;<asp:Button ID="Button2" runat="server" class="btn btn-secondary" Text="Print" 
                                     OnClick="Button2_Click" />
-                                <asp:Button ID="btnexp" runat="server" Style="margin-top: 10px;" class="btn  btn-primary"
-                                    Text="Export" OnClick="btnexp_Click" />
+                                &nbsp;&nbsp;&nbsp;<asp:Button ID="btnexp" runat="server"  class="btn  btn-success"
+                                    Text="Export To Excel" OnClick="btnexp_Click" />
                             </div>
-                        </div>
+                       
                     </div>
-                    <div class="row" align="center">
-                        <div class="col-lg-12">
-                            <div id="div1" runat="server">
-                                <table width="100%" id="Table1" runat="server" visible="false">
+                    <br />
+                    <div class="row">
+                            <div id="div1" runat="server" class="col-lg-12">
+                            <div class="col-lg-12">
+                                <table  id="Table1" runat="server" visible="false">
+                                <div class="table-responsive panel-grid-left">
                                     <tr>
                                         <td>
                                             <asp:Label ID="lblprintcaptionn" runat="server" Visible="true"></asp:Label>
-                                            <asp:GridView ID="GridView2" runat="server" CssClass="" AutoGenerateColumns="false"
-                                                EmptyDataText="No Records Found" Caption="Summary Wise-Grn Qty">
+                                            <asp:GridView ID="GridView2" runat="server"  AutoGenerateColumns="false" cssClass="table table-striped pos-table"
+                                                EmptyDataText="No Records Found" Caption="Summary Wise-Grn Qty" padding="0" spacing="0" border="0">
                                                 <Columns>
                                                     <asp:BoundField HeaderText="Group" DataField="Category" />
                                                     <asp:BoundField HeaderText="Item" DataField="Definition" />
@@ -172,18 +186,15 @@
                                             </asp:GridView>
                                         </td>
                                     </tr>
+                                    </div>
                                 </table>
-                                <table width="100%" id="tbl">
-                                    <tr>
-                                        <td>
-                                        </td>
-                                    </tr>
-                                    <tr valign="top">
-                                        <td colspan="4" align="left">
+                                </div>
+                                <div class="col-lg-6">
                                             <label id="caption" runat="server" visible="true">
                                             </label>
-                                            <asp:GridView ID="GVStockAlert" runat="server" CssClass="" AutoGenerateColumns="false"
-                                                EmptyDataText="No Records Found" Caption="Grn Qty">
+                                            <div class="table-responsive panel-grid-left">
+                                            <asp:GridView ID="GVStockAlert" runat="server"  AutoGenerateColumns="false" cssClass="table table-striped pos-table"
+                                                EmptyDataText="No Records Found" Caption="Grn Qty" padding="0" spacing="0" border="0">
                                                 <Columns>
                                                     <asp:BoundField HeaderText="Date" DataField="Date" DataFormatString='{0:dd/MMM/yyyy}' />
                                                     <asp:BoundField HeaderText="Group" DataField="Category" />
@@ -194,11 +205,14 @@
                                                     <asp:BoundField HeaderText="Branch Request No" DataField="Reqno" />
                                                     <asp:BoundField HeaderText="Goods Received NO" DataField="DcNo" />
                                                 </Columns>
-                                                <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                                    HorizontalAlign="Center" ForeColor="White" />
+                                               <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                                    HorizontalAlign="Center" ForeColor="White" />--%>
                                             </asp:GridView>
-                                            <br />
+                                            </div>
+                                          </div>
+                                           
                                             <%--Other Branch GRN--%>
+
                                             <asp:GridView ID="GridView1" Visible="false" runat="server" CssClass="mGrid" ShowHeader="false"
                                                 AutoGenerateColumns="false" EmptyDataText="No Records Found">
                                                 <Columns>
@@ -207,35 +221,35 @@
                                                     <asp:BoundField DataField="Quantity" DataFormatString="{0:###,##0}" />
                                                 </Columns>
                                             </asp:GridView>
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            <asp:GridView ID="gvsales" runat="server" CssClass="" AutoGenerateColumns="false"
-                                                EmptyDataText="No Records Found" Caption="Sales_Qty">
+                                       
+                                       
+                                       
+                                       
+                                       <div class="col-lg-6">
+                                       <br />
+                                       <div class="table-responsive panel-grid-left">
+                                            <asp:GridView ID="gvsales" runat="server" cssClass="table table-striped pos-table" AutoGenerateColumns="false"
+                                                EmptyDataText="No Records Found" Caption="Sales_Qty" padding="0" spacing="0" border="0">
                                                 <Columns>
                                                     <asp:BoundField HeaderText="Date" DataField="Date" DataFormatString='{0:dd/MMM/yyyy}' />
                                                     <asp:BoundField HeaderText="Group" DataField="Category" />
                                                     <asp:BoundField HeaderText="Item" DataField="Definition" />
                                                     <asp:BoundField HeaderText="Sales Qty" DataField="Quantity" DataFormatString="{0:###,##0}" />
                                                 </Columns>
-                                                <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                                    HorizontalAlign="Center" ForeColor="White" />
+                                               <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                                    HorizontalAlign="Center" ForeColor="White" />--%>
                                             </asp:GridView>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                        </td>
-                                    </tr>
-                                </table>
+                                            </div>
+                                        </div>
+                                   
                             </div>
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        </div>
+        </div>
     </form>
 </body>
 </html>

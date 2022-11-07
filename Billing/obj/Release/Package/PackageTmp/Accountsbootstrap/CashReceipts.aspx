@@ -197,36 +197,47 @@
     </asp:scriptmanager>
      <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-    <div class="panel panel-default" style="height: 100%; padding-top: 10px">
-        <div class="panel-heading" style="background-color: #0071BD; color: White">
-            Customer Sales Receipt & Report
-        </div>
+
+ <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Customer Sales Receipt & Report</h1>
+	    </div>
+
         <div class="panel-body">
             <div class="row">
-                <div class="col-lg-12">
+              
                     <div class="col-lg-6">
-                        <div class="col-lg-2" style="    width: 117px;">
-                            <label style="color: Black">
+                        <div class="col-lg-6">
+                            <label>
                                 Receipt No</label>
-                            <asp:textbox id="txtBillNo" cssclass="form-control" runat="server" width="100px"
+                            <asp:textbox id="txtBillNo" cssclass="form-control" runat="server" 
                                 enabled="false">
                             </asp:textbox>
+                    </div>
+                     <div class="col-lg-6">
                             <label style="color: Black">
                                 Paid Amount
                             </label>
                             <asp:textbox id="txtAmount" cssclass="form-control" runat="server" autopostback="true"
-                                width="100px" enabled="false" ontextchanged="txtAmount_TextChanged">0.00</asp:textbox>
+                                 enabled="false" ontextchanged="txtAmount_TextChanged">0.00</asp:textbox>
+                     </div>
+                     <div class="col-lg-6">
                             <label style="color: Black">
                                 Bank Name
                             </label>
-                            <asp:dropdownlist id="ddlbank" runat="server" width="100px" cssclass="form-control">
+                            <asp:dropdownlist id="ddlbank" runat="server" cssclass="form-control">
                             </asp:dropdownlist>
                             <asp:textbox id="txtbank" cssclass="form-control" runat="server" enabled="false"
                                 visible="false">
                             </asp:textbox>
+                     </div>
+                     <div class="col-lg-6">
                             <label style="color: Black;">
                                 Cheque Date</label>
-                            <asp:textbox id="txtchequedate" cssclass="form-control" style="width: 100px;" enabled="false"
+                            <asp:textbox id="txtchequedate" cssclass="form-control"  enabled="false"
                                 runat="server">
                             </asp:textbox>
                             <ajaxToolkit:CalendarExtender ID="CalendarExtender4" TargetControlID="txtchequedate"
@@ -234,130 +245,116 @@
                                 CssClass="cal_Theme1">
                             </ajaxToolkit:CalendarExtender>
                         </div>
-                        <div class="col-lg-2" style="    width: 128px;" >
+                     <div class="col-lg-6">
                             <label style="color: Black">
                                 Receipt Date</label>
-                            <asp:textbox id="txtBillDate" cssclass="form-control" width="100px" runat="server">
+                            <asp:textbox id="txtBillDate" cssclass="form-control"  runat="server">
                             </asp:textbox>
                             <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtBillDate"
                                 Format="dd/MM/yyyy" PopupButtonID="txtdate1" EnabledOnClient="true" runat="server"
                                 CssClass="cal_Theme1">
                             </ajaxToolkit:CalendarExtender>
+                     </div>
+                     <div class="col-lg-6">
                             <label style="color: Black">
                                 Close Discount
                             </label>
-                            <asp:textbox id="txtCloseDiscount" cssclass="form-control" runat="server" width="100px"
+                            <asp:textbox id="txtCloseDiscount" cssclass="form-control" runat="server" 
                                 enabled="false">0.00</asp:textbox>
+                     </div>
+                     <div class="col-lg-6">
                             <label>
                                 Pay Mode</label>
                             <asp:dropdownlist id="ddlPayMode" autopostback="true" runat="server" cssclass="form-control"
-                                onselectedindexchanged="ddlPayMode_OnSelectedIndexChanged" width="100px">
+                                onselectedindexchanged="ddlPayMode_OnSelectedIndexChanged" >
                             </asp:dropdownlist>
+                     </div>
+                     <div class="col-lg-6">
                             <label style="color: Black">
                                 Cheque/UTR
                             </label>
-                            <asp:textbox id="txtCheqeNo" cssclass="form-control" runat="server" width="100px"
+                            <asp:textbox id="txtCheqeNo" cssclass="form-control" runat="server"
                                 enabled="false">
                             </asp:textbox>
-                        </div>
-                        <div class="col-lg-3">
+                       </div>
+                     <div class="col-lg-6">
                             <label style="color: Black">
                                 Customer
                             </label>
-                            <asp:dropdownlist runat="server" id="ddlcustomer"  CssClass="chzn-select" autopostback="true"
-                                width="200px" onselectedindexchanged="ddlcustomer_OnSelectedIndexChanged">
+                            <asp:dropdownlist runat="server" id="ddlcustomer"  CssClass="form-control" autopostback="true"
+                                onselectedindexchanged="ddlcustomer_OnSelectedIndexChanged">
                             </asp:dropdownlist>
-                            <br />
-                            <asp:button id="btnSubmit" runat="server" class="btn btn-danger" text="Process" onclientclick="return confirm('Please Check the Amount?');"
-                                width="90px" onclick="Process_Click" style="top: -17px;" />
-                            <asp:button id="Button1" runat="server" text="Export To Excel" visible="true" cssclass="btn btn-group"
-                                onclick="btnExcel_Click1" style="width: 107px; top: -32px; left: 92px;" />
-                            <asp:button id="btncalc" runat="server" class="btn btn-group" text="Calc" onclick="btncalc_Click"
-                                width="90px" style="top: -17px;" />
+                     </div>
+                     <div class="col-lg-6">
+                     <br />
+                            <asp:button id="btnSubmit" runat="server" class="btn btn-primary pos-btn1" text="Process" onclientclick="return confirm('Please Check the Amount?');"
+                                 onclick="Process_Click"  />
+                           &nbsp;&nbsp;&nbsp; <asp:button id="Button1" runat="server" text="Export To Excel" visible="true" cssclass="btn btn-success"
+                                onclick="btnExcel_Click1" />
+                          &nbsp;&nbsp;&nbsp;  <asp:button id="btncalc" runat="server" class="btn btn-warning" text="Calc" onclick="btncalc_Click"
+                                 />
                         </div>
+                     
                     </div>
                     <div class="col-lg-6">
-                        <div class="col-lg-2" style="    width: 117px;" >
+                        <div class="col-lg-6">
                             <label style="color: Black">
                                 From Date</label>
-                            <asp:textbox id="txtfromdate" cssclass="form-control" runat="server" width="100px">
+                            <asp:textbox id="txtfromdate" cssclass="form-control" runat="server">
                             </asp:textbox>
                             <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txtfromdate"
                                 Format="dd/MM/yyyy" PopupButtonID="txtfromdate" runat="server" CssClass="cal_Theme1">
                             </ajaxToolkit:CalendarExtender>
+                            </div>
+                    <div class="col-lg-6">
                             <label style="color: Black">
                                 Customer
                             </label>
-                            <asp:dropdownlist runat="server" id="ddlcustomerrep" cssclass="form-control" width="220px">
+                            <asp:dropdownlist runat="server" id="ddlcustomerrep" cssclass="form-control">
                             </asp:dropdownlist>
-                        </div>
-                        <div class="col-lg-2" style="    width: 117px;" >
+                       </div>
+                    <div class="col-lg-6">
                             <label style="color: Black">
                                 To Date</label>
-                            <asp:textbox id="txttodate" cssclass="form-control" runat="server" width="100px">
+                            <asp:textbox id="txttodate" cssclass="form-control" runat="server" >
                             </asp:textbox>
                             <ajaxToolkit:CalendarExtender ID="CalendarExtender3" TargetControlID="txttodate"
                                 Format="dd/MM/yyyy" PopupButtonID="txttodate" runat="server" CssClass="cal_Theme1">
                             </ajaxToolkit:CalendarExtender>
                         </div>
-                        <div class="col-lg-2" style="    width: 117px;" >
-                            <label style="color: Black">
-                                Search</label>
-                            <asp:button id="btnsearch" runat="server" class="btn btn-success" text="Search" onclick="btnsearch_OnClick" />
-                            <asp:label id="lblPrint" runat="server"></asp:label><br />
-                            <label>
-                                Print</label>
-                            <asp:button id="btn" runat="server" text="Print" visible="true" cssclass="btn btn-group"
-                                onclientclick="Denomination123()" width="100px" />
-                        </div>
-                        <div class="col-lg-2" style="    width: 136px;" >
-                            <div class="form-group">
-                                <label>
+                         <div class="col-lg-6">
+                         <label>
                                     Pay Mode</label>
-                                <asp:dropdownlist id="ddlpay" runat="server" cssclass="form-control" width="100px">
+                                <asp:dropdownlist id="ddlpay" runat="server" cssclass="form-control" >
                                 </asp:dropdownlist>
-                                <label>
-                                    Export To Excel</label>
-                                <asp:button id="btnExcel" runat="server" text="Export To Excel" visible="true" cssclass="btn btn-group"
-                                    onclick="btnExcel_Click" width="100px" />
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <asp:textbox placeholder="Search Text" id="txtsearchmobile" style="height: 28px;"
-                                    runat="server" cssclass="form-control" maxlength="25" visible="false" onkeyup="Search_Gridview(this, 'gv')">
-                                </asp:textbox>
-                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtendername" runat="server"
-                                    FilterType="LowercaseLetters, UppercaseLetters,Custom,Numbers" ValidChars=" ._/-"
-                                    TargetControlID="txtsearchmobile" />
+                    <div class="col-lg-6">
+                    <br />
+                          
+                            <asp:button id="btnsearch" runat="server" class="btn btn-primary pos-btn1" text="Search" onclick="btnsearch_OnClick" />
+                            <asp:label id="lblPrint" runat="server"></asp:label>
+                            
+                           
+                            &nbsp;&nbsp;&nbsp;<asp:button id="btn" runat="server" text="Print" visible="true" cssclass="btn btn-secondary"
+                                onclientclick="Denomination123()" />
+                     
+                             
+                            
+                              
+                             &nbsp;&nbsp;&nbsp;   <asp:button id="btnExcel" runat="server" text="Export To Excel" visible="true" cssclass="btn btn-success"
+                                    onclick="btnExcel_Click"  />
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12" style="margin-top: 10px">
-                                <div class="col-lg-9">
-                                </div>
-                                <div class="col-lg-16">
-                                </div>
-                                <div class="col-lg-2">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="IDValues" runat="server">
-                    <div class="col-lg-12" style="margin-left: -175px;">
-                        <div class="col-lg-3">
-                        </div>
-                        <div class="col-lg-6">
+                  </div>
+              </div> 
+              <div id="IDValues"  runat="server"> 
+              <div class="col-lg-6">
+                      <div class="table-responsive panel-grid-left">
                             <asp:gridview id="gv" emptydatatext="Oops! No Activity Performed." showfooter="true"
-                                onrowdatabound="gvsales_OnRowDataBound" caption="Customer Cash Receive" cssclass="mGrid"
-                                emptydatarowstyle-backcolor="#F4F4F4" headerstyle-backcolor="#F4F4F4" runat="server"
+                                onrowdatabound="gvsales_OnRowDataBound" caption="Customer Cash Receive" cssClass="table table-striped pos-table"
+                                 runat="server" padding="0" spacing="0" border="0"
                                 autogeneratecolumns="false">
-                                <pagerstyle horizontalalign="Left" cssclass="GridPager" />
+                                <PagerStyle CssClass="pos-paging" />
+                               <%-- <pagerstyle horizontalalign="Left" cssclass="GridPager" />--%>
                                 <columns>
                                     <asp:TemplateField HeaderText="S.No">
                                         <ItemTemplate>
@@ -440,12 +437,11 @@
                                     </asp:TemplateField>
                                 </columns>
                             </asp:gridview>
-                            <br />
-                            <div id="refund" runat="server" visible="false">
-                                <asp:label id="Label1" runat="server" style="font-size: larger; font-weight: bold">Refund Amont:</asp:label>
-                                <asp:label id="lblledgerbalance" runat="server" style="font-size: larger; font-weight: bold">0</asp:label>
                             </div>
-                            <asp:gridview id="gvreceiptamt" emptydatatext="Oops! No Activity Performed." cssclass="mGrid"
+                        </div>
+                        <div class="col-lg-6">
+                             <div class="table-responsive panel-grid-left">
+                            <asp:gridview id="gvreceiptamt" emptydatatext="Oops! No Activity Performed." cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                                 onrowcommand="gvsales_RowCommand" caption="Customer Payment Receipt" onrowdatabound="gvreceiptamt_OnRowDataBound"
                                 runat="server" autogeneratecolumns="false" showfooter="true">
                                 <columns>
@@ -464,19 +460,42 @@
                                         <ItemTemplate>
                                             <asp:LinkButton ID="btnprint" runat="server" CommandArgument='<%#Eval("ReceiptID") %>'
                                                 CommandName="print">
-                                                <asp:Image ID="print" runat="server" ImageAlign="Middle" ImageUrl="~/images/print (1).png" width="55px"/></asp:LinkButton>
+                                                <asp:Image ID="print" runat="server" ImageAlign="Middle" ImageUrl="~/images/print (1).png" width="55px" Visible="false"/>
+                                                <button type="button" class="btn btn-default btn-md">
+						                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+					                            </button>
+                                                </asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </columns>
                             </asp:gridview>
+                            </div>
                         </div>
-                        <div class="col-lg-3">
-                        </div>
+              </div>
+                            <div class="col-lg-2">
+                                <asp:textbox placeholder="Search Text" id="txtsearchmobile" style="height: 28px;"
+                                    runat="server" cssclass="form-control" maxlength="25" visible="false" onkeyup="Search_Gridview(this, 'gv')">
+                                </asp:textbox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtendername" runat="server"
+                                    FilterType="LowercaseLetters, UppercaseLetters,Custom,Numbers" ValidChars=" ._/-"
+                                    TargetControlID="txtsearchmobile" />
+                            </div>
+                
+                            <div id="refund" runat="server" visible="false">
+                                <asp:label id="Label1" runat="server" style="font-size: larger; font-weight: bold">Refund Amont:</asp:label>
+                                <asp:label id="lblledgerbalance" runat="server" style="font-size: larger; font-weight: bold">0</asp:label>
+                            </div>
+                         
+                       
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+  </div>
+  </div>
+  </div>
+  </div>  
+    
+    
     </ContentTemplate>
     </asp:UpdatePanel>
   <script src="../Scripts/jquery.min.js" type="text/javascript"></script>

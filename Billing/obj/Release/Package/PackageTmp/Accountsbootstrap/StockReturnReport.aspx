@@ -57,16 +57,19 @@
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <div style="margin-top: 10px">
-        <h2>
-            Stock Return Report</h2>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-body" style="">
-                        <div class="col-lg-2">
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Stock Return Report</h1>
+	    </div>
+
+                    <div class="panel-body">
+                   
+                       <div class="row">
                             <div id="admin" runat="server">
-                                <label style=" color:#428bca">
+                                <label>
                                     Select Branch</label>
                                 <asp:DropDownList CssClass="form-control" ID="ddlBranch" runat="server">
                                     <asp:ListItem Text="KK Nagar" Value="co1"></asp:ListItem>
@@ -80,9 +83,9 @@
                                     <asp:ListItem Text="Palayam" Value="co11"></asp:ListItem>
                                 </asp:DropDownList>
                             </div>
-                        </div>
-                        <div class="col-lg-2">
-                            <label style=" color:#428bca">
+                       
+                        <div class="col-lg-3">
+                            <label>
                                 From Date</label>
                             <asp:TextBox runat="server" ID="txtfromdate" CssClass="form-control" >
                             </asp:TextBox>
@@ -93,8 +96,8 @@
                                 runat="server" CssClass="cal_Theme1">
                             </ajaxToolkit:CalendarExtender>
                         </div>
-                        <div class="col-lg-2">
-                            <label style=" color:#428bca">
+                        <div class="col-lg-3">
+                            <label>
                                 To Date</label>
                             <asp:TextBox runat="server" ID="txttodate" CssClass="form-control" >
                             </asp:TextBox>
@@ -105,31 +108,33 @@
                                 runat="server" CssClass="cal_Theme1">
                             </ajaxToolkit:CalendarExtender>
                         </div>
-                        <div class="col-lg-2">
-                            <label style=" color:#428bca">
+                        <div class="col-lg-3">
+                            <label>
                                 Reasons</label>
                             <asp:DropDownList ID="ddlreason" runat="server" CssClass="form-control">
                             </asp:DropDownList>
                         </div>
-                        <div class="col-lg-1">
+                        <div class="col-lg-3">
                         <br />
-                            <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-success" Text="Generate Report" style="background-color: #428bca; border: 3px solid #428bca;"
+                            <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-info pos-btn1" Text="Generate Report" 
                                 OnClick="btnSearch_Click" />
-                        </div>
-                        <div class="col-lg-1">
-                            <br />
-                            <asp:Button ID="btnPrint" runat="server" Text="Print" style="    height: 38px;    margin-left: 19px;" CssClass="btn btn-warning"
+                       
+                            &nbsp;&nbsp;&nbsp;<asp:Button ID="btnPrint" runat="server" Text="Print"  CssClass="btn btn-secondary"
                                 OnClick="btnPrint_Click" />
+                                 &nbsp;&nbsp;&nbsp; <asp:Button ID="btnExp" runat="server" Text="Export" CssClass="btn btn-success" OnClick="btnExp_Click1" />
                         </div>
-                        <div class="col-lg-1">
-                            <br />
-                            <asp:Button ID="btnExp" runat="server" Text="Export" CssClass="btn btn-danger"  style="    height: 38px; " OnClick="btnExp_Click1" />
-                            <h3>
-                                <asp:Label runat="server" ID="lblresult" ForeColor="Black" Visible="true" CssClass="label">Welcome: </asp:Label></h3>
                         </div>
-                        <div class="col-lg-12">
-                            <asp:GridView ID="gvReturns" Caption="Returned Goods" runat="server" CssClass="myGridStyle"
-                                AutoGenerateColumns="false" BackColor="#99cc99" EmptyDataText="No Records Found"
+                        <div class="row">
+                        <div class="col-lg-3">
+                          
+                            <h3><asp:Label runat="server" ID="lblresult" ForeColor="Black" Visible="true" CssClass="label">Welcome: </asp:Label></h3>
+                        </div>
+                       </div>
+                        <div class="row">
+                         <div class="col-lg-12">
+                         <div class="table-responsive panel-grid-left">
+                            <asp:GridView ID="gvReturns" Caption="Returned Goods" runat="server" cssClass="table table-striped pos-table"
+                                AutoGenerateColumns="false" EmptyDataText="No Records Found" padding="0" spacing="0" border="0"
                                 Width="100%">
                                 <Columns>
                                     <asp:BoundField HeaderText="Return No" DataField="RetNo" Visible="false" />
@@ -142,19 +147,19 @@
                                     <asp:BoundField HeaderText="Sub Reason" DataField="SubReasons" />
                                     <asp:BoundField HeaderText="Name" DataField="Name" />
                                 </Columns>
-                                <FooterStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
-                                <HeaderStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
+                               <%-- <FooterStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
+                                <HeaderStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />--%>
                             </asp:GridView>
-                            <label style=" color:#428bca">
+                            </div>
+                            <label>
                                 Total Amount:-Rs</label>
                             <label id="lblTotal" runat="server">
                             </label>
                         </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                    
+                
     <div id="Div">
         <table id="Mytale" runat="server">
             <tr>
@@ -179,6 +184,11 @@
                 </td>
             </tr>
         </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
     </form>
 </body>

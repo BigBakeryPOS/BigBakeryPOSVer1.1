@@ -154,67 +154,65 @@
                     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label"  Visible="false"> </asp:Label>
                     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
    <usc:Header ID="Header" runat="server" />
-    <div class="row">
-                <div class="col-lg-12" align="center" >
-                    <h2>Order Paymode Setting Details</h2>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
+   <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Order Paymode Setting Details - Order List</h1>
+	    </div>
 
-
-          <div class="row col-lg-12" align="center"  >
-            <div class="col-lg-1"  ></div>
-                <div class="col-lg-10"  >
-                    <div class="panel panel-primary"  >
-                                  <div class="panel-heading" align="left"   > Order List    </div>
                         <div class="panel-body"  >
-                            <div class="row"  >
-                                <div >
+                           
+                               
                                     <form runat="server" id="form1" method="post">
                                     <asp:UpdatePanel ID="updatepanel" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
                                       <asp:ScriptManager ID="script" runat="server"  EnablePartialRendering="true"></asp:ScriptManager>
-                                    <div class="form-group"  >
+                                       <div class="row"  >
+                                    <div class="col-lg-12">
+                                    <div class="col-lg-3">
                                     <label>Select Date</label>
-                                            <asp:TextBox ID="txtFromDate" Width="10%" runat="server" CssClass="form-control center-block"></asp:TextBox>
+                                            <asp:TextBox ID="txtFromDate" runat="server" CssClass="form-control center-block"></asp:TextBox>
                                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="dd/MM/yyyy" TargetControlID="txtFromDate"
                                                     runat="server" CssClass="cal_Theme1">
                                                 </ajaxToolkit:CalendarExtender>
-
-                                        <asp:Button ID="btnsearch" runat="server" class="btn btn-success" Text="Refresh" OnClick="Search_Click" style="margin-top: 10px;"  /> 
-                                         <asp:Button ID="btnbillprocess" runat="server" class="btn btn-success" Text="Process Bill's" OnClick="process_Click" style="margin-top: 10px;"  /> 
+                                        </div>
+                                        <div class="col-lg-3">
+                                        <br />
+                                        <asp:Button ID="btnsearch" runat="server" class="btn btn-secondary" Text="Refresh" OnClick="Search_Click" /> 
+                                        &nbsp;&nbsp;&nbsp; <asp:Button ID="btnbillprocess" runat="server" class="btn btn-success pos-btn1" Text="Process Bill's" OnClick="process_Click"   /> 
                                         
                                         </div> 
-                                       
-                              
+                                       </div>
+                                        </div>
                               <div runat="server" visible="false">
                                <label>Select All</label>
                                 <asp:RadioButtonList ID="allradselect" RepeatColumns="2" RepeatDirection="Horizontal" runat="server" OnSelectedIndexChanged="radselect_All" AutoPostBack="true" >
                                 <asp:ListItem Text="Cash" Value="1" ></asp:ListItem>
                                 <asp:ListItem Text="Card" Value="4" ></asp:ListItem></asp:RadioButtonList>
                               </div>
-                               <div class="table-responsive" align="center" >
-                                        
-                                <table class="table table-bordered table-striped">
-                                <tr>
-                                <td width="50%">
-                                <div id="Div1" runat="server" class="form-group">
+                              <br />
+                              <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-4">
+                             
                                         <label>Enter Order/Book No</label>
-                                        <asp:TextBox ID="txtAutoName" runat="server" CssClass="form-control" Width="200px" placeholder="Enter Order/Book No and Press Tab"  
+                                        <asp:TextBox ID="txtAutoName" runat="server" CssClass="form-control"  placeholder="Enter Order/Book No and Press Tab"  
                                                  onkeyup="Search_Gridview(this, 'gvsales')" ></asp:TextBox>
-                                                
-                                        </div>
-                                
+                                        
+                                <div class="table-responsive panel-grid-left">
                                 <asp:GridView ID="gvsales" align="center"  runat="server" AllowPaging="false" PageSize="25"
-                                 AutoGenerateColumns="false" CssClass="mGrid"  EmptyDataText="No Records Found"  >
-                                 <HeaderStyle BackColor="#990000" />
-                                <PagerSettings FirstPageText="1" Mode="Numeric"  />
+                                 AutoGenerateColumns="false" cssClass="table table-striped pos-table"  EmptyDataText="No Records Found" padding="0" spacing="0" border="0" >
+                               <%-- <HeaderStyle BackColor="#990000" />
+                                <PagerSettings FirstPageText="1" Mode="Numeric"  />--%>
+                                <PagerStyle cssclass="pos-paging" />
     <Columns>
     <%--<asp:BoundField HeaderText="Customer ID" DataField="CustomerID" />--%>
     <asp:BoundField HeaderText="Payment Type" DataField="type" />
     <asp:BoundField HeaderText="Order No" DataField="OrderNo" />
     <asp:BoundField HeaderText="BOOk No" DataField="BookNo" />
-    <asp:BoundField HeaderText="Bill Date" DataField="Billdate" DataFormatString='{0:d}' />
+    <asp:BoundField HeaderText="Bill Date" DataField="Billdate" DataFormatString='{0:d}'  />
     <asp:TemplateField Visible="false">
     <ItemTemplate>
     <asp:Label ID="lbltransorderid" runat="server" Text='<%#Eval("transorderid")  %>' style="display:none" ></asp:Label>
@@ -227,7 +225,7 @@
     
     <asp:TemplateField HeaderText="PayMode Type" >
     <ItemTemplate>
-    <asp:RadioButtonList ID="lblradtype"  RepeatColumns="2" RepeatDirection="Horizontal" runat="server" >
+    <asp:RadioButtonList ID="lblradtype"  RepeatColumns="1" width="100px" runat="server" >
     <asp:ListItem Text="Cash" Value="1" ></asp:ListItem>
     <asp:ListItem Text="Card" Value="4" ></asp:ListItem>
     <asp:ListItem Text="Paytm" Value="10" ></asp:ListItem>
@@ -237,16 +235,20 @@
     </asp:TemplateField>
    </Columns>
    
- <FooterStyle BackColor="#990000"  ForeColor="Black" HorizontalAlign="Center" />
-   <HeaderStyle BackColor="#990000"  ForeColor="Black" HorizontalAlign="Center" />
+ <%--<FooterStyle BackColor="#990000"  ForeColor="Black" HorizontalAlign="Center" />
+   <HeaderStyle BackColor="#990000"  ForeColor="Black" HorizontalAlign="Center" />--%>
    </asp:GridView>
-                                </td>
-                                 <td >
+                                    </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                 <br /><br />
                                  <label>Cash Bill's</label>
+                                 <div class="table-responsive panel-grid-left">
                                   <asp:GridView ID="gridcash" align="center"  runat="server" AllowPaging="false" PageSize="25"
-                                 AutoGenerateColumns="false" CssClass="mGrid"  EmptyDataText="No Records Found"  >
-                                 <HeaderStyle BackColor="#990000" />
-                                <PagerSettings FirstPageText="1" Mode="Numeric"  />
+                                 AutoGenerateColumns="false" cssClass="table table-striped pos-table"  EmptyDataText="No Records Found" padding="0" spacing="0" border="0"  >
+                               <%--  <HeaderStyle BackColor="#990000" />
+                                <PagerSettings FirstPageText="1" Mode="Numeric"  />--%>
+                                <PagerStyle cssclass="pos-paging" />
     <Columns>
     <%--<asp:BoundField HeaderText="Customer ID" DataField="CustomerID" />--%>
    <asp:BoundField HeaderText="Payment Type" DataField="type" />
@@ -260,13 +262,17 @@
  <FooterStyle BackColor="#990000"  ForeColor="Black" HorizontalAlign="Center" />
    <HeaderStyle BackColor="#990000"  ForeColor="Black" HorizontalAlign="Center" />
    </asp:GridView>
-                                 </td>
-                                 <td >
+                                 </div>
+                                 </div>
+                                 <div class="col-lg-4">
+                                 <br /><br />
                                  <label>Card Bill's</label>
-                                  <asp:GridView ID="gridcard" align="center"  runat="server" AllowPaging="false" PageSize="25"
-                                 AutoGenerateColumns="false" CssClass="mGrid"  EmptyDataText="No Records Found"  >
-                                 <HeaderStyle BackColor="#990000" />
-                                <PagerSettings FirstPageText="1" Mode="Numeric"  />
+                                 <div class="table-responsive panel-grid-left">
+                                  <asp:GridView ID="gridcard" align="center"  runat="server" AllowPaging="false" PageSize="25" padding="0" spacing="0" border="0"
+                                 AutoGenerateColumns="false" cssClass="table table-striped pos-table"  EmptyDataText="No Records Found"  >
+                                 <%--<HeaderStyle BackColor="#990000" />
+                                <PagerSettings FirstPageText="1" Mode="Numeric"  />--%>
+                                <PagerStyle cssclass="pos-paging" />
     <Columns>
    <asp:BoundField HeaderText="Payment Type" DataField="type" />
     <asp:BoundField HeaderText="Order No" DataField="OrderNo" />
@@ -279,18 +285,11 @@
  <FooterStyle BackColor="#990000"  ForeColor="Black" HorizontalAlign="Center" />
    <HeaderStyle BackColor="#990000"  ForeColor="Black" HorizontalAlign="Center" />
    </asp:GridView>
-                                 </td>
-                                 <td id="refre" runat="server" visible="false">
-                                 
-                                 </td>
-                                </tr>
-                                
-                                    
-                                
-                                </table>
-                                   </td>
-                                   </tr>
-                                   </table>
+                                    </div>
+                                 </div>
+                                </div>
+                                </div>
+                                </div>   
                                 </div>
 
 
@@ -323,19 +322,12 @@
 </asp:panel> 
                                    
                                     </form>
-                                </div>
-                                
-                                <!-- /.col-lg-6 (nested) -->
-                            </div>
-                            <!-- /.row (nested) -->
                         </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-
+                      
+</div>
+</div>
+</div>
+</div>
 
 </body>
 

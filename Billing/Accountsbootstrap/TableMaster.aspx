@@ -121,10 +121,12 @@
                     
                     <div class="col-lg-12">
                         <div class="table-responsive panel-grid-left">
-                         <asp:GridView ID="gridview" runat="server" OnRowCommand="gvcat_RowCommand" cssClass="table table-striped pos-table" AllowPaging="false" 
+                         <asp:GridView ID="gridview" runat="server" OnRowCommand="gvcat_RowCommand" cssClass="table table-striped pos-table" AllowPaging="true" PageSize="10"
                                     Width="100%" EmptyDataText="Oops! No Activity Performed." OnRowDataBound="gridview_OnRowDataBound" OnRowEditing="gridview_RowEditing"
+                             OnPageIndexChanging="gvPurchaseEntry_PageIndexChanging"
                                     AutoGenerateColumns="false" padding="0" spacing="0" border="0">
                                     <PagerStyle CssClass="pos-paging" />
+                              <PagerSettings Mode="Numeric" />
                             <%--asp:GridView ID="gridview" runat="server" AllowPaging="false" AutoGenerateColumns="false" Width="100%" Font-Names="Calibri"
                                 AllowSorting="true" OnRowCommand="gvcat_RowCommand" OnSorting="gridview_Sorting"
                                 OnRowDataBound="gridview_OnRowDataBound" OnRowEditing="gridview_RowEditing">--%>

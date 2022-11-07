@@ -101,8 +101,9 @@
         <ContentTemplate>--%>
             <asp:ScriptManager ID="script" runat="server">
             </asp:ScriptManager>
-            <div>
-            </div>
+            <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
             <div id="popDiv" class="ontop">
                 <table border="1" id="popup" style="background-color: Red">
                     <tr>
@@ -112,44 +113,46 @@
                     </tr>
                 </table>
             </div>
+            <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Stock Return Entry</h1>
+	    </div>
             <div class="panel-body">
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Stock Return Entry</b></div>
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="col-lg-12">
-                            <div class="col-lg-2">
-                                <div class="form-group">
+                    
+                       
+                            <div class="col-lg-3">
+                                
                                     <label>
                                         Return No</label>
                                     <asp:TextBox CssClass="form-control" ID="txtbillno" Enabled="false" runat="server"
-                                        Width="165px"></asp:TextBox>
-                                </div>
+                                        ></asp:TextBox>
+                              
                             </div>
-                            <div class="col-lg-2">
-                                <div class="form-group">
+                            <div class="col-lg-3">
+                                
                                     <label>
                                         Return Date</label>
                                     <asp:TextBox CssClass="form-control" ID="txtsdate1" runat="server" Text="-----Select Date-----"
-                                        Width="165px" Enabled="false"></asp:TextBox>
+                                         Enabled="false"></asp:TextBox>
                                     <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="dd/MM/yyyy" TargetControlID="txtsdate1"
                                         runat="server" CssClass="cal_Theme1">
                                     </ajaxToolkit:CalendarExtender>
-                                </div>
+                                
                             </div>
-                            <div class="col-lg-2" runat="server" visible="false">
-                                <div class="form-group">
+                            <div  runat="server" visible="false">
+                                
                                     <asp:Label runat="server" ID="Label1">Production Name </asp:Label>
-                                    <asp:DropDownList runat="server" ID="ddlvendor" class="form-control" Width="200px"
+                                    <asp:DropDownList runat="server" ID="ddlvendor" class="form-control" 
                                         AutoPostBack="true">
                                     </asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="col-lg-2">
-                                <div class="form-group">
+                               </div>
+                           
+                            <div class="col-lg-3">
+                               
                                     <label>
                                         Reasons</label>
-                                    <asp:DropDownList ID="ddlreason" runat="server" CssClass="form-control" Width="200px"
+                                    <asp:DropDownList ID="ddlreason" runat="server" CssClass="form-control" 
                                         AutoPostBack="true" OnSelectedIndexChanged="drpPayment_OnSelectedIndexChanged">
                                         <%--<asp:ListItem Text="Select Reasons" Value="0"></asp:ListItem>
                                  <asp:ListItem Text="Wastage" Value="1" Enabled="false" ></asp:ListItem>
@@ -168,13 +171,13 @@
                                 <asp:ListItem Text="Stock Shift" Value="14"></asp:ListItem>
                                 <asp:ListItem Text="Stock Consumed" Value="15"></asp:ListItem>--%>
                                     </asp:DropDownList>
-                                </div>
+                                
                             </div>
-                            <div class="col-lg-2">
-                                <div class="form-group">
+                            <div class="col-lg-3">
+                                
                                     <label>
                                         Sub Reasons</label>
-                                    <asp:DropDownList ID="ddlsubreasons" runat="server" CssClass="form-control" Width="200px">
+                                    <asp:DropDownList ID="ddlsubreasons" runat="server" CssClass="form-control">
                                         <%--<asp:ListItem  Text="Stock Excess" Value="1" Enabled="false"></asp:ListItem>
  <asp:ListItem Text="Stock Shortage" Value="2" Enabled="false"></asp:ListItem>
  <asp:ListItem Text="Fungus" Value="3" Enabled="false"></asp:ListItem>
@@ -185,36 +188,33 @@
       <asp:ListItem Text="Wrong GRN" Value="8" Enabled="false"></asp:ListItem>
       <asp:ListItem Text="Stock Consumed" Value="9" Enabled="false"></asp:ListItem>--%>
                                     </asp:DropDownList>
-                                </div>
+                                
                             </div>
-                            <div class="col-lg-2">
-                                <div class="form-group">
+                            <div class="col-lg-3">
+                               
                                     <label>
                                         Person Name</label>
-                                    <asp:TextBox ID="txtreturningPerson" runat="server" CssClass="form-control" Width="200px"></asp:TextBox>
+                                    <asp:TextBox ID="txtreturningPerson" runat="server" CssClass="form-control" ></asp:TextBox>
                                 </div>
-                            </div>
-                            <div class="col-lg-2">
-                                <div class="form-group">
+                            
+                            <div class="col-lg-3">
+                                
                                     <label>
                                         Detailed Notes
                                     </label>
                                     <asp:TextBox ID="txtnotes" runat="server" TextMode="MultiLine" CssClass="form-control"
-                                        Width="200px"></asp:TextBox>
-                                </div>
+                                       ></asp:TextBox>
+                                
                             </div>
                         </div>
-                        <div class="col-lg-12">
-                            
-                            <div class="col-lg-2" runat="server" visible="false">
+
+                            <div class="col-lg-3" runat="server" visible="false">
                                 <asp:TextBox ID="txtSupplied" runat="server" CssClass="form-control" Width="200px"
                                     TextMode="MultiLine" Height="50px"></asp:TextBox>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                    </div>
-                    <div class="col-lg-4">
+                    
+                    
+                    
                         <div class="form-group" id="admin" runat="server">
                             <label>
                                 Branch</label>
@@ -228,37 +228,38 @@
                                 <asp:ListItem Text="Purawalkam" Value="co7"></asp:ListItem>
                             </asp:DropDownList>
                         </div>
-                        <div class="form-group">
-                        </div>
-                    </div>
-                </div>
+                      </div>
+                      </div>
+                        
+               
                 <div class="row">
                     <%--<table class="table" style="background-color: #ffb85f">--%>
-                    <table class="table" style="background-color: lightgreen">
-                        <tr>
-                            <td>
+                   <div class="col-lg-4">
+        <div class="panel panel-custom1">
+        <div class="panel-header">
+				<h1 class="page-header">Add Return Stock</h1>
+		</div>
+         <div class="panel-body panel-form-right">
+                <div class="list-group">
                                 <label>
                                     Select Group</label>
                                 <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlcat_selectedindexchanged"
                                     AutoPostBack="true">
                                 </asp:DropDownList>
-                            </td>
-                            <td>
+                           <br />
                                 <label>
                                     Select Item</label>
                                 <asp:DropDownList ID="ddlitem" runat="server" CssClass="form-control" OnSelectedIndexChanged="dditem_selectedindexchanged"
                                     AutoPostBack="true">
                                 </asp:DropDownList>
-                            </td>
-                            <td>
+                           <br />
                                 <label>
                                     Available Qty</label>
                                 <asp:TextBox ID="txtAvalQty" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server"
                                     FilterType="Numbers,custom" TargetControlID="txtAvalQty" ValidChars=".">
                                 </ajaxToolkit:FilteredTextBoxExtender>
-                            </td>
-                            <td>
+                            <br />
                                 <label>
                                     Return Qty</label>
                                 <asp:TextBox ID="txtretQty" runat="server" CssClass="form-control" AutoPostBack="true"
@@ -266,51 +267,52 @@
                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server"
                                     FilterType="Numbers,custom" TargetControlID="txtretQty" ValidChars=".">
                                 </ajaxToolkit:FilteredTextBoxExtender>
-                            </td>
-                            <td>
+                            <br />
                                 <label>
                                     Rate</label>
                                 <asp:TextBox ID="txtRate" runat="server" CssClass="form-control"></asp:TextBox>
                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
                                     FilterType="Numbers,custom" TargetControlID="txtRate" ValidChars=".">
                                 </ajaxToolkit:FilteredTextBoxExtender>
-                            </td>
-                            <td>
+                           <br />
                                 <label>
                                     Amount</label>
                                 <asp:TextBox ID="txtAmount" runat="server" CssClass="form-control"></asp:TextBox>
                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
                                     FilterType="Numbers,custom" TargetControlID="txtAmount" ValidChars=".">
                                 </ajaxToolkit:FilteredTextBoxExtender>
-                            </td>
-                            <td>
+                            
                                 <asp:Label ID="lblcatid" runat="server" Style="display: none"></asp:Label>
                                 <asp:Label ID="lblSubcatid" runat="server" Style="display: none"></asp:Label>
                                 <asp:Label ID="stockid" runat="server" Style="display: none"></asp:Label>
                                 <asp:Label ID="lblError" runat="server" Style="display: none"></asp:Label>
-                            </td>
-                            <td>
-                                <label>
-                                    Add</label>
-                                <asp:ImageButton ID="img" runat="server" CssClass="img-responsive" Width="70px" style="margin-left: -19px;" ImageUrl="~/images/add.jpg"
-                                    OnClick="add_click" EnableViewState="true" />
-                            </td>
-                        </tr>
-                    </table>
-                    <table width="100%" style="overflow: scroll">
-                        <tr>
-                            <td>
+                           <br />
+                                
+                                <asp:ImageButton ID="img" runat="server" CssClass="btn btn-lg btn-primary pos-btn1" Width="70px" ImageUrl="~/images/add.jpg" 
+                                    OnClick="add_click"  />
+                        </div>
+                        </div>    
+                    </div>
+                    </div>
+                    <div class="col-lg-8">
+        <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">STOCK RETURN Details</h1>
+	    </div>
+        <div class="panel-body">
+                     <div class="table-responsive panel-grid-left">
                                 <asp:GridView ID="gvItems" runat="server" Width="100%" OnRowDeleting="OnRowDeleting"
-                                    OnRowDataBound="OnRowDataBound" AutoGenerateColumns="false" Font-Names="Calibri">
-                                    <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                        HorizontalAlign="Center" ForeColor="White" />
+                                    OnRowDataBound="OnRowDataBound" AutoGenerateColumns="false" cssClass="table table-striped pos-table"  padding="0" spacing="0" border="0">
+                                    <%--<HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                        HorizontalAlign="Center" ForeColor="White" />--%>
                                     <Columns>
                                         <asp:TemplateField HeaderText="" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblSubCatID" runat="server" Text='<%#Eval("SubCatID") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:CommandField ShowDeleteButton="True" ButtonType="Button" ControlStyle-CssClass="btn btn-danger" />
+
+                                        <asp:CommandField ShowDeleteButton="True" ButtonType="Button" ControlStyle-CssClass="btn btn-danger btn-md"/>
                                         <asp:BoundField HeaderText="Group" DataField="Group" />
                                         <asp:BoundField HeaderText="Item" DataField="Item" />
                                         <asp:BoundField HeaderText="ExistQty" DataField="ExistQty" />
@@ -322,26 +324,23 @@
                                         <asp:BoundField HeaderText="stockid" DataField="stockid" Visible="false" />
                                     </Columns>
                                 </asp:GridView>
-                            </td>
-                        </tr>
-                        <tr align="center">
-                            <td>
+                           
                                 Total
                                 <asp:Label ID="total" runat="server">0</asp:Label>
-                            </td>
-                        </tr>
-                    </table>
+                  </div>  
+                   <asp:Button ID="btnSave" Text="Save" runat="server" 
+            OnClick="btnSave_Click" OnClientClick="ClientSideClick(this)" CssClass="btn btn-lg btn-primary pos-btn1" UseSubmitBehavior="false"></asp:Button>
+        <asp:Button ID="btnexit" Text="Clear" runat="server" CssClass="btn btn-lg btn-link" OnClick="btnexit_Click" />       
+                </div>
+                </div>
                 </div>
             </div>
-            <center>
-        <h3>
-        </h3>
-        <br />
-        <asp:Button ID="btnSave" Text="Save" runat="server" 
-            OnClick="btnSave_Click" OnClientClick="ClientSideClick(this)" CssClass="btn btn-success" UseSubmitBehavior="false"></asp:Button>
-        <asp:Button ID="btnexit" Text="Exit" runat="server" CssClass="btn btn-primary" OnClick="btnexit_Click" />
-    </center>
-       <%-- </ContentTemplate>
+       
+        </div>
+        </div>
+        </div>
+        </div>
+   <%-- </ContentTemplate>
     </asp:UpdatePanel>--%>
     </form>
 </body>

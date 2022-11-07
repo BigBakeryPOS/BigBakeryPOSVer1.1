@@ -13,12 +13,16 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Tax Wise Order Report</title>
+    <link rel="Stylesheet" type="text/css" href="../css/date.css" />
+    <link href="../Styles/chosen.css" rel="Stylesheet" />
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Styles/style1.css" rel="stylesheet" />
     <!-- MetisMenu CSS -->
     <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet" />
+    
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
@@ -47,29 +51,30 @@
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" Visible="false" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="White" Visible="false" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
-    <div class="row" style="padding-top: 50px">
-        <div class="row" style="padding-left: 25px">
-            <div class="col-lg-12">
-                <h3 class="page-header">
-                    Tax Wise Order Report</h3>
-            </div>
-            <!-- /.col-lg-12 -->
-        </div>
-        <div class="col-lg-12">
-            <div class="col-lg-2">
-                <div class="form-group">
+   <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Tax Wise Order Report</h1>
+	    </div>
+   
+         <div class="panel-body">
+           <div class="row">
+            <div class="col-lg-3">
+                
                     <label>
                         Select Branch</label>
-                    <asp:DropDownList CssClass="form-control" ID="ddlBranch" runat="server" Width="50%">
+                    <asp:DropDownList CssClass="form-control" ID="ddlBranch" runat="server">
                     </asp:DropDownList>
-                </div>
+               
             </div>
-            <div class="col-lg-2">
-                <div class="form-group">
+            <div class="col-lg-3">
+                
                     <label>
                         From Date</label>
-                    <asp:TextBox CssClass="form-control" ID="txtfrmdate" runat="server" Style="width: 130px;
-                        margin-left: 9px" Text="--Select Date--"></asp:TextBox>
+                    <asp:TextBox CssClass="form-control" ID="txtfrmdate" runat="server" 
+                         Text="--Select Date--"></asp:TextBox>
                     <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtfrmdate"
                         ErrorMessage="Please Select valid Date Thank You!!!" Type="Date">
                     </asp:RangeValidator>
@@ -78,13 +83,13 @@
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txtfrmdate"
                         Format="yyyy-MM-dd" runat="server" CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
-                </div>
+               
             </div>
-            <div id="Div1" class="col-lg-2" runat="server" visible="true">
-                <div class="form-group">
+            <div id="Div1" class="col-lg-3" runat="server" visible="true">
+               
                     <label>
                         To Date</label>
-                    <asp:TextBox CssClass="form-control" ID="txttodate" runat="server" Style="width: 130px"
+                    <asp:TextBox CssClass="form-control" ID="txttodate" runat="server" 
                         Text="--Select Date--"></asp:TextBox>
                     <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="txttodate"
                         ErrorMessage="Please Select valid Date Thank You!!!" Type="Date">
@@ -94,64 +99,56 @@
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txttodate"
                         Format="yyyy-MM-dd" runat="server" CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
-                </div>
+               
             </div>
-            <div id="Div2" class="col-lg-0" runat="server" visible="false">
+            <div id="Div2" class="col-lg-3" runat="server" visible="false">
                 <div class="form-group">
                     <label>
                         Category</label>
-                    <asp:DropDownList ID="ddlsalestype" runat="server" class="form-control" Width="150px"
+                    <asp:DropDownList ID="ddlsalestype" runat="server" class="form-control" 
                         Visible="true">
                         <asp:ListItem Text="Sales" Value="1" Selected="True"></asp:ListItem>
                         <asp:ListItem Text="Order" Value="2"></asp:ListItem>
                     </asp:DropDownList>
-                    <asp:DropDownList ID="ddlcat" runat="server" class="form-control" Width="150px" Visible="false">
+                    <asp:DropDownList ID="ddlcat" runat="server" class="form-control"  Visible="false">
                     </asp:DropDownList>
                 </div>
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-3">
                 <label>
                     Admin PassWord</label>
                 <asp:TextBox ID="txtpassword" TextMode="Password" runat="server" CssClass="form-control"
-                    Width="150px" placeholder="Enter your Password" AutoPostBack="true" OnTextChanged="txtpassword_OnTextChanged"></asp:TextBox>
+                    placeholder="Enter your Password" AutoPostBack="true" OnTextChanged="txtpassword_OnTextChanged"></asp:TextBox>
             </div>
+            </div>
+            <div class="row">
             <div class="col-lg-1">
-                <div class="form-group">
-                    <br />
-                    <asp:Button ID="btnsearch" runat="server" ValidationGroup="val1" class="btn btn-success"
-                        Text="Search" OnClick="Search_Click" Style="width: 120px" />
-                </div>
+                    <asp:Button ID="btnsearch" runat="server" ValidationGroup="val1" class="btn btn-primary pos-btn1"
+                        Text="Search" OnClick="Search_Click" width="100px" />
             </div>
             <div id="Div3" class="col-lg-1" runat="server" visible="true">
-                <div class="form-group">
-                    <br />
-                    <asp:Button ID="btnexcel" runat="server" ValidationGroup="val1" class="btn btn-warning"
-                        Text="Excel" OnClick="btnexcel_Click" Style="width: 120px" />
-                </div>
+                    <asp:Button ID="btnexcel" runat="server" ValidationGroup="val1" class="btn btn-success"
+                        Text="Excel" OnClick="btnexcel_Click" width="100px" />
             </div>
             <div id="Div5" class="col-lg-1" runat="server" visible="true">
-                <div class="form-group">
-                    <br />
-                    <asp:Button ID="btnpdf" runat="server" ValidationGroup="val1" class="btn btn-danger"
-                        Text="PDF" OnClick="btnpdf_Click" Style="width: 120px" />
+                    <asp:Button ID="btnpdf" runat="server" ValidationGroup="val1" class="btn btn-info"
+                        Text="PDF" OnClick="btnpdf_Click" width="100px"  />
                 </div>
-            </div>
-            <div id="Div4" class="col-lg-2" runat="server" visible="false">
-                <div class="form-group">
+            <div id="Div4" class="col-lg-3" runat="server" visible="false">
+               
                     <label>
                         Category</label>
-                    <asp:DropDownList ID="DropDownList1" runat="server" class="form-control" Width="150px"
+                    <asp:DropDownList ID="DropDownList1" runat="server" class="form-control" 
                         Visible="true">
                         <asp:ListItem Text="Sales" Value="1" Selected="True"></asp:ListItem>
                         <asp:ListItem Text="Order" Value="2"></asp:ListItem>
                     </asp:DropDownList>
-                    <asp:DropDownList ID="DropDownList2" runat="server" class="form-control" Width="150px"
+                    <asp:DropDownList ID="DropDownList2" runat="server" class="form-control" 
                         Visible="false">
                     </asp:DropDownList>
-                </div>
+               
             </div>
-        </div>
-    </div>
+          </div>
     <div class="col-lg-12">
         <div class="col-lg-3">
         </div>
@@ -161,27 +158,24 @@
         <div class="col-lg-2">
         </div>
     </div>
-    <div class="row" style="padding-top: 30px">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="col-lg-12">
-                    <div class="col-lg-12">
-                        <asp:GridView ID="gvSalesValue" runat="server" AutoGenerateColumns="false" CssClass="myGridStyle"
-                            EmptyDataText="No Record found" Width="100%" ShowFooter="true">
+
+                        <div class="table-responsive panel-grid-left">
+                        <asp:GridView ID="gvSalesValue" runat="server" AutoGenerateColumns="false" cssClass="table table-striped pos-table"
+                            EmptyDataText="No Record found" Width="100%" ShowFooter="true" padding="0" spacing="0" border="0">
                             <Columns>
                                 <asp:BoundField HeaderText="BillNo" DataField="BillNo" />
                                 <asp:BoundField HeaderText="OrderNo" DataField="OrderNo" />
                                 <asp:BoundField HeaderText="BookNo" DataField="BookNo" />
                                 <asp:BoundField HeaderText="OrderDate" DataField="OrderDate" DataFormatString='{0:dd/MMM/yyyy}'
-                                    ItemStyle-HorizontalAlign="Right" />
+                                    />
                                 <asp:BoundField HeaderText="NetAmount" DataField="NetAmount" DataFormatString='{0:f}'
-                                    ItemStyle-HorizontalAlign="Right" />
-                                <asp:BoundField HeaderText="Amount" DataField="Amount" DataFormatString='{0:d}' ItemStyle-HorizontalAlign="Right" />
+                                     />
+                                <asp:BoundField HeaderText="Amount" DataField="Amount" DataFormatString='{0:d}'  />
                                 <asp:BoundField HeaderText="Paytype" DataField="Paytype" />
                                 <asp:BoundField HeaderText="SubTotal" DataField="SubTotal" DataFormatString='{0:d}'
-                                    ItemStyle-HorizontalAlign="Right" />
-                                <asp:BoundField HeaderText="CGST" DataField="CGST" DataFormatString='{0:f}' ItemStyle-HorizontalAlign="Right" />
-                                <asp:BoundField HeaderText="SGST" DataField="SGST" DataFormatString='{0:f}' ItemStyle-HorizontalAlign="Right" />
+                                     />
+                                <asp:BoundField HeaderText="CGST" DataField="CGST" DataFormatString='{0:f}'  />
+                                <asp:BoundField HeaderText="SGST" DataField="SGST" DataFormatString='{0:f}'  />
                                 <%--
                                 <asp:BoundField HeaderText="Margin" DataField="Margin" DataFormatString='{0:f}' ItemStyle-HorizontalAlign="Right"/>
                                      <asp:BoundField HeaderText="BasicValue" DataField="BasicValue" DataFormatString='{0:f}' ItemStyle-HorizontalAlign="Right"/>
@@ -191,13 +185,14 @@
                                 <asp:BoundField HeaderText="SGST" DataField="GSTAmt" DataFormatString='{0:f}' ItemStyle-HorizontalAlign="Right"/>
                                 <asp:BoundField HeaderText="NetAmount" DataField="NetAmount" DataFormatString='{0:f}' ItemStyle-HorizontalAlign="Right" />--%>
                             </Columns>
-                            <FooterStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
-                            <HeaderStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
+                            <%--<FooterStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
+                            <HeaderStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />--%>
                         </asp:GridView>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        </div>
+
+    </div>
+    </div>
+    </div>
     </div>
     </form>
 </body>

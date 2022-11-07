@@ -74,6 +74,7 @@
     <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet" />
+     <link href="../css/Pos_style.css" rel="stylesheet" />
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -83,7 +84,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body style="font-family: Calibri; font-size: medium;">
+<body>
     <usc:Header ID="Header" runat="server" />
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" Visible="false" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="White" Visible="false" CssClass="label"> </asp:Label>
@@ -91,46 +92,58 @@
     <form id="Form1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+     <div class="container-fluid">
+	<div class="row">
     <div class="col-lg-12">
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Inter Branch Setting Details</b></div>
+        <div class="col-lg-8">
+            <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Inter Branch Setting</h1>
+	    </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="col-lg-6">
+                        
+                            <div class="col-lg-4">
+                            <div class="form-group has-feedback">
                                 <asp:TextBox CssClass="form-control" placeholder="Search Details.. " ID="txtsearch"
-                                    onkeyup="Search_Gridview(this, 'gridview')" runat="server" MaxLength="50" Width="150px"></asp:TextBox>
+                                    onkeyup="Search_Gridview(this, 'gridview')" runat="server" MaxLength="50" ></asp:TextBox>
                                 <asp:Label ID="lblerror" runat="server" Style="color: Red"></asp:Label>
+                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
                             </div>
-                            <div class="col-lg-6">
-                                <asp:Button ID="btnresret" runat="server" class="btn btn-warning" Text="Reset" OnClick="Btn_Reset"
+                            </div>
+                            <div class="col-lg-8">
+                                <asp:Button ID="btnresret" runat="server" class="btn btn-secondary" Text="Reset" OnClick="Btn_Reset"
                                     Width="150px" /></div>
-                        </div>
-                    </div>
-                    <div style="height: 350px; overflow: scroll">
-                        <br />
-                        <asp:GridView ID="gridview" runat="server" UseAccessibleHeader="true" CssClass="mGrid"
-                            AllowPaging="false" AutoGenerateColumns="false" AllowSorting="true" OnRowCommand="gvcat_RowCommand"
+                        
+                    <div class="col-lg-12">
+                    <div class="table-responsive panel-grid-left">
+                        
+                        <asp:GridView ID="gridview" runat="server" UseAccessibleHeader="true" cssClass="table table-striped pos-table"
+                            AllowPaging="false" AutoGenerateColumns="false" AllowSorting="true" OnRowCommand="gvcat_RowCommand" padding="0" spacing="0" border="0"
                             OnSorting="gridview_Sorting" OnRowDataBound="gridview_OnRowDataBound" OnRowEditing="gridview_RowEditing">
-                            <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
-                                NextPageText="Next" PreviousPageText="Previous" />
+                           <%-- <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
+                                NextPageText="Next" PreviousPageText="Previous" />--%>
                             <Columns>
                                 <asp:BoundField HeaderText="Branch Name" DataField="branchname" />
                                 <asp:BoundField HeaderText="Is Active" DataField="IsActive" />
-                                <asp:TemplateField HeaderText="Edit">
+                                <asp:TemplateField HeaderText="Edit" ItemStyle-Width="60px">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="btnedit" ForeColor="White" CommandArgument='<%#Eval("Interid") %>'
+                                        <asp:LinkButton ID="btnedit" ForeColor="White" cssclass="btn btn-warning btn-md" CommandArgument='<%#Eval("Interid") %>'
                                             CommandName="Editt" runat="server">
-                                            <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server" width="55px"/></asp:LinkButton>
+                                            <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server" visible="false" width="55px"/>
+                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                            </asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Delete">
+                                <asp:TemplateField HeaderText="Delete" ItemStyle-Width="60px">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="btndel" CommandArgument='<%#Eval("Interid") %>' CommandName="Del"
                                             runat="server">
-                                            <asp:Image ID="Image1" ImageUrl="~/images/delete.png" runat="server" /></asp:LinkButton>
+                                            <asp:Image ID="Image1" ImageUrl="~/images/delete.png" runat="server" visible="false"/>
+                                            <button type="button" class="btn btn-danger btn-md">
+												<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+												</button>
+                                                </asp:LinkButton>
                                         <asp:ImageButton ID="imgdisable1321" ImageUrl="~/images/delete.png" runat="server"
                                             Visible="false" Enabled="false" ToolTip="Not Allow To Delete" />
                                         <ajaxToolkit:ModalPopupExtender ID="lnkDelete_ModalPopupExtender" runat="server"
@@ -144,43 +157,45 @@
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <%--   <blink> <label  style="color:Green; font-size:12px">Need To Add Branch Setting For Daily Stock Request Process.Please Fill CareFull!!!.Thank You!!!</label></blink>--%>
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Inter Branch Setting Create</b></div>
-                <div class="panel-body">
-                    <div class="col-lg-12">
-                        <div class="form-group">
+        <div class="col-lg-4">
+         <div class="panel panel-custom1">
+		<div class="panel-header">
+				<h1 class="page-header">Add Inter Branch Setting</h1>
+		</div>
+                <div class="panel-body panel-form-right">
+                    <div class="list-group">
+                       
                             <asp:TextBox CssClass="form-control" ID="txtinterid" runat="server" Visible="false"></asp:TextBox>
-                        </div>
-                        <div class="form-group">
+                       
                             <label>
                                 Store Branch</label>
                             <asp:DropDownList ID="drpstorebranch" runat="server" CssClass="form-control" OnSelectedIndexChanged="storebranchchange"
                                 AutoPostBack="true">
                             </asp:DropDownList>
-                        </div>
-                        <div class="form-group">
+                      <br />
                             <label>
                                 Inter Branch</label>
                             <asp:CheckBoxList ID="chkinterbranch" runat="server">
                             </asp:CheckBoxList>
-                        </div>
-                        <asp:Button ID="btnSave" runat="server" class="btn btn-success" Text="Save" OnClick="btnSave_Click"
+                      <br />
+                        <asp:Button ID="btnSave" runat="server" class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="btnSave_Click"
                             ValidationGroup="val1" AccessKey="s" Width="150px" />
                         <label>
                         </label>
-                        <asp:Button ID="btnexit" runat="server" class="btn btn-warning" Text="Exit" OnClick="Exit_Click"
+                        <asp:Button ID="btnexit" runat="server" class="btn btn-lg btn-link" Text="Clear" OnClick="Exit_Click"
                             Width="150px" />
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <asp:Panel class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none"
         runat="server">

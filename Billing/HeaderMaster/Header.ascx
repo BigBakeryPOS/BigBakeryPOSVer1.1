@@ -845,8 +845,11 @@
                 style="color: White" href="javascript:;">Add Online Bill Entry</a></li>
             <li id="onlineentryreport" runat="server" visible="false"><a href="../Accountsbootstrap/OnlineEntryReport.aspx"
                 style="color: White">Online Entry Report</a></li>
+             <li id="Li11" runat="server" visible="true"><a href="../Accountsbootstrap/UserRoleGrid.aspx"
+                style="color: White">Add Roles</a></li>
             <li id="AddUsers" runat="server" visible="false"><a href="../Accountsbootstrap/UserGrid.aspx"
                 style="color: White">Add Users</a></li>
+            
             <li id="Synchronization" runat="server" visible="false"><a href="../Accountsbootstrap/Synchronization.aspx"
                 style="color: White">Sync.</a></li>
             <li id="Li2" runat="server" visible="false"><a href="../Accountsbootstrap/OnlineOrderScreen.aspx"

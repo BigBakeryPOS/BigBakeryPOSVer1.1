@@ -13,7 +13,10 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Stock Master</title>
+  
+    <link rel="Stylesheet" type="text/css" href="../css/date.css" />
     <!-- Bootstrap Core CSS -->
+    <link href="../Styles/style1.css" rel="stylesheet" type="text/css" />
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <!-- MetisMenu CSS -->
     <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet" />
@@ -36,84 +39,76 @@
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" Visible="false" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="White" Visible="false" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
-    <div class="row" style="padding-top: 50px">
-        <div class="row" style="padding-left: 25px">
-            <div class="col-lg-12">
-                <h3 class="page-header">
-                    Stock Return and GRN(+)(-)</h3>
-            </div>
-            <!-- /.col-lg-12 -->
-        </div>
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Stock Return and GRN(+)(-)</h1>
+	    </div>
+        <div class="panel-body">
+         <div class="row">      
         <div class="col-lg-12">
-            <div class="col-lg-2">
-            </div>
-            <div class="col-lg-2">
-                <div class="form-group">
+           
+            <div class="col-lg-3">
+                
                     <label>
                         From Date</label>
-                    <asp:TextBox CssClass="form-control" ID="txtfrmdate" runat="server" Style="width: 130px;
-                        margin-left: 9px" Text="--Select Date--"   AutoPostBack="true"  ontextchanged="txttodate_TextChanged"></asp:TextBox>
+                    <asp:TextBox CssClass="form-control" ID="txtfrmdate" runat="server" 
+                         Text="--Select Date--"   AutoPostBack="true"  ontextchanged="txttodate_TextChanged"></asp:TextBox>
                     <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="phono" ControlToValidate="txtfrmdate"
                         ErrorMessage="Please enter From Date!" Text="" Style="color: White" />
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txtfrmdate" Format="yyyy-MM-dd"
                         runat="server" CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
-                </div>
+                
             </div>
-            <div class="col-lg-2">
-                <div class="form-group">
+            <div class="col-lg-3">
+                
                     <label>
                         To Date</label>
-                    <asp:TextBox CssClass="form-control" ID="txttodate" runat="server" Style="width: 130px"
+                    <asp:TextBox CssClass="form-control" ID="txttodate" runat="server"
                         Text="--Select Date--"></asp:TextBox>
                     <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="RequiredFieldValidator1"
                         ControlToValidate="txttodate" ErrorMessage="Please enter To Date!" Text="" Style="color: White" />
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txttodate" Format="yyyy-MM-dd"
                         runat="server" CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
-                </div>
+                
             </div>
-            <div class="col-lg-2">
-                <div class="form-group">
+            <div class="col-lg-3">
+               
                     <label>
                         Category</label>
-                    <asp:DropDownList ID="ddlcat" runat="server" class="form-control" Width="150px">
+                    <asp:DropDownList ID="ddlcat" runat="server" class="form-control" >
                     </asp:DropDownList>
-                </div>
+               
             </div>
-            <div class="col-lg-2">
-                <div class="form-group">
+            <div class="col-lg-3">
+                
                     <br />
-                    <asp:Button ID="btnsearch" runat="server" ValidationGroup="val1" class="btn btn-success"
-                        Text="Search" OnClick="Search_Click" Style="width: 120px" />
-                </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="form-group">
-                    <br />
-                    <asp:Button ID="btnexcel" runat="server" ValidationGroup="val1" class="btn btn-warning"
-                        Text="Excel" OnClick="btnexcel_Click" Style="width: 120px" />
-                </div>
+                    <asp:Button ID="btnsearch" runat="server" ValidationGroup="val1" class="btn btn-success pos-btn1"
+                        Text="Search" OnClick="Search_Click" Style="width: 100px" />
+                
+                    &nbsp;&nbsp;&nbsp;<asp:Button ID="btnexcel" runat="server" ValidationGroup="val1" class="btn btn-success"
+                        Text="Excel" OnClick="btnexcel_Click" Style="width: 100px" />
+               
             </div>
         </div>
-    </div>
+  </div>
+  <div class="row">   
     <div class="col-lg-12">
-        <div class="col-lg-3">
-        </div>
-        <div class="col-lg-7">
+       
+       <div class="col-lg-12">
             <asp:Label runat="server" ID="lblstkreturn" ForeColor="RoyalBlue" Visible="true"> </asp:Label>
-        </div>
-        <div class="col-lg-2">
-        </div>
-    </div>
-    <div class="row" style="padding-top: 30px">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="col-lg-12">
+       </div>
+       
                     <div class="col-lg-6">
+                    <br />
                         <label>
                             Stock Return</label>
-                        <asp:GridView ID="gvreturn" runat="server" AutoGenerateColumns="false" CssClass="myGridStyle"
+                             <div class="table-responsive panel-grid-left">
+                        <asp:GridView ID="gvreturn" runat="server" AutoGenerateColumns="false" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                             EmptyDataText="No Record found" Width="100%">
                             <Columns>
                                 <asp:BoundField HeaderText="Date" DataField="RetDate"   DataFormatString="{0:dd-MMM-yyyy}"/>
@@ -125,11 +120,14 @@
                             <FooterStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />
                             <HeaderStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
                         </asp:GridView>
+                        </div>
                     </div>
                     <div class="col-lg-6">
+                    <br />
                         <label>
                             GRN (+)(-)</label>
-                        <asp:GridView ID="gvgrnmp" runat="server" AutoGenerateColumns="false" CssClass="myGridStyle"
+                             <div class="table-responsive panel-grid-left">
+                        <asp:GridView ID="gvgrnmp" runat="server" AutoGenerateColumns="false" padding="0" spacing="0" border="0" cssClass="table table-striped pos-table"
                             EmptyDataText="No Record found" Width="100%">
                             <Columns>
                                 <asp:BoundField HeaderText="Date" DataField="Date" />
@@ -141,10 +139,15 @@
                             <FooterStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />
                             <HeaderStyle BackColor="#990000" ForeColor="White" HorizontalAlign="Center" />
                         </asp:GridView>
+                        </div>
                     </div>
+
                 </div>
             </div>
-        </div>
+       </div>
+    </div>
+    </div>
+    </div>
     </div>
     </form>
 </body>

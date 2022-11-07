@@ -143,52 +143,56 @@
     <form runat="server" id="form1">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <div class="row" style="">
+    <div class="container-fluid">
+    <div class="row">
         <div class="col-lg-12">
-            <div class="panel panel-default">
-            <%--<div class="panel-heading " style="background-color: #428bca; color: White">
-                        <b>Contact Details</b></div>--%>
-                <div class="panel-heading" style="background-color: #0071BD;  color: White;
-                    text-align: left">
-                    Contact Details
-                </div>
+            <div class="row panel-custom1">
+           <div class="panel-header">
+          <h1 class="page-header">Contact Details
+           <span class="pull-right">
+          <asp:LinkButton ID="btnadd1" runat="server" onclick="Add_Click">
+                        <button type="button" class="btn btn-primary btn-md pos-btn1">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD
+			</button>
+          </asp:LinkButton>
+                   
+                </span>
+                </h1>
+	    </div>
                 <div class="panel-body">
-                    <%--<div class="row" style="">--%>
-                        <div class="col-lg-12">
-                            <div class="col-lg-2" runat="server" visible="true">
-                                <asp:DropDownList CssClass="form-control" ID="ddlfilter" Style="width: 120px;" runat="server">
+                    
+                       
+                            <div class="col-lg-3" runat="server" visible="true">
+                                <asp:DropDownList CssClass="form-control" ID="ddlfilter"  runat="server">
                                     <asp:ListItem Text="Name" Value="LedgerName"></asp:ListItem>
                                     <asp:ListItem Text="MobileNo" Value="MobileNo"></asp:ListItem>
                                     <asp:ListItem Text="Email" Value="Email"></asp:ListItem>
                                 </asp:DropDownList>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
+                            <div class="form-group has-feedback">
                                 <asp:TextBox CssClass="form-control" Enabled="true"  placeholder="Search Name.." ID="txtsearch"
-                                    runat="server" onkeyup="Search_Gridview(this, 'gvcust')" Style="width: 150px;"></asp:TextBox>
+                                    runat="server" onkeyup="Search_Gridview(this, 'gvcust')" ></asp:TextBox>
                                 <asp:Label ID="lblerror" runat="server" Style="color: Red"></asp:Label>
-                            </div>
-                            <div class="col-lg-2" runat="server" visible="true">
-                                <div class="form-group">
-                                    <asp:Button ID="btnsearch" runat="server" class="btn btn-success" Text="Search" OnClick="Search_Click"
-                                        Width="150px" />
                                 </div>
                             </div>
-                            <div class="col-lg-2">
-                                <asp:Button ID="btnrefresh" runat="server" class="btn btn-warning" Text="Reset" OnClick="refresh_Click"
+                            <div class="col-lg-6" runat="server" visible="true">
+                                    <asp:Button ID="btnsearch" runat="server" class="btn btn-success pos-btn1" Text="Search" OnClick="Search_Click"
+                                         />
+                               
+                          
+                                &nbsp;&nbsp;&nbsp;<asp:Button ID="btnrefresh" runat="server" class="btn btn-secondary" Text="Reset" OnClick="refresh_Click"
                                     Width="150px" />
+                           
+                               
                             </div>
-                            <div class="col-lg-2">
-                                <asp:Button ID="btnadd" runat="server" class="btn btn-success" Text="Add" OnClick="Add_Click"
-                                    Width="150px" />
-                            </div>
-                        </div>
-                  <%--  </div>--%>
+                       
                     <div class="col-lg-12">
-                        <br />
-                        <div style="height: 392px; overflow: scroll">
-                            <asp:GridView ID="gvcust" runat="server" AutoGenerateColumns="false" OnRowCommand="gvcust_RowCommand" DataKeyNames="LedgerID"  Font-Names="Calibri"
-                                Width="100%" OnRowDataBound="gvcust_OnRowDataBound">
-                                 <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> 
+                       
+                        <div class="table-responsive panel-grid-left">
+                            <asp:GridView ID="gvcust" runat="server" AutoGenerateColumns="false" OnRowCommand="gvcust_RowCommand" DataKeyNames="LedgerID"  padding="0" spacing="0" border="0" cssClass="table table-striped pos-table"
+                                OnRowDataBound="gvcust_OnRowDataBound">
+                                 <%--<HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" />--%> 
                                 <%-- <HeaderStyle BackColor="#990000" />--%>
                                 <%--  <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
                                                         NextPageText="Next" PreviousPageText="Previous" />--%>
@@ -197,11 +201,13 @@
                                     <asp:BoundField HeaderText="Mobile No" DataField="MobileNo" />
                                     <asp:BoundField HeaderText="Area" DataField="Area" />
                                     <asp:BoundField HeaderText="Email" DataField="Email" />
-                                    <asp:TemplateField HeaderText="Edit">
+                                    <asp:TemplateField HeaderText="Edit" ItemStyle-Width="150px">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="btnedit" runat="server" CommandArgument='<%#Eval("LedgerID") %>'
+                                            <asp:LinkButton ID="btnedit" runat="server" CommandArgument='<%#Eval("LedgerID") %>' cssclass="btn btn-warning btn-md"
                                                 CommandName="edite">
-                                                <asp:Image ID="img" runat="server" ImageUrl="~/images/edit.png" /></asp:LinkButton>
+                                                <asp:Image ID="img" runat="server" ImageUrl="~/images/edit.png" Visible="false" />
+
+                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                      <asp:TemplateField Visible="false" HeaderText="Delete">
@@ -227,10 +233,12 @@
                 </div>
             </div>
         </div>
+        </div>
+        </div>
         <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
         <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
         <script type="text/javascript">            $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
-    </div>
+    
     <asp:Panel class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none"
         runat="server">
         <div class="popup_Container">

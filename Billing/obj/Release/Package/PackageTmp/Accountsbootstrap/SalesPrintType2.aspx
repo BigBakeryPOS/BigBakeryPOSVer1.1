@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SalesPrintType2.aspx.cs" Inherits="Billing.Accountsbootstrap.SalesPrintType2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SalesPrintType2.aspx.cs"
+    Inherits="Billing.Accountsbootstrap.SalesPrintType2" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -50,7 +51,7 @@
 <body onload="window.print()">
     <form id="Form1" runat="server">
     <asp:Panel ID="pnlContents" runat="server">
-    <asp:Label ID="lblautomastic" runat="server" Text="N" Visible="false" ></asp:Label>
+        <asp:Label ID="lblautomastic" runat="server" Text="N" Visible="false"></asp:Label>
         <!-- /.row -->
         <%--   <div id="idimglog" runat="server" visible="false">
                             <img width="200px" height="121px" src="../images/BlackForrest.png" />
@@ -68,6 +69,11 @@
                     <td colspan="2" align="center" style="font-size: x-large;">
                         <asp:Label ID="l2" runat="server" Style="font-weight: bolder; font-size: x-large"
                             Visible="false">INVOICE</asp:Label>
+                        <div id="idimglog" runat="server" visible="true">
+                            <asp:Image ID="log" src='<%#Eval("Image")%>' Style="width: 11pc; margin-left: 0px;"
+                                runat="server" />
+                            <br />
+                        </div>
                         <asp:Label ID="lblstore" runat="server" Style="font-weight: bold; font-size: 36px"
                             Visible="false"></asp:Label>
                         <br />
@@ -95,12 +101,14 @@
                         <asp:Label ID="Label4" runat="server" Style="font-size: 18px">Tel No:</asp:Label>
                         <asp:Label ID="lblstoreno" runat="server" Style="font-size: 18px"></asp:Label>
                         <br />
-                        <asp:Label ID="lblTINNo" runat="server" Style="font-size: 18px">GSTIN:</asp:Label>
-                        <asp:Label ID="lbltin" runat="server" Style="font-size: 18px"></asp:Label>
-                        <br />
-                        <%--<asp:Label ID="Label9" runat="server" Style="font-size: 18px">FSSAI NO:</asp:Label>--%>
-                        <img style="width: 4pc" src="../images/fssailogo.png" />
-                        <asp:Label ID="lblfssaino" runat="server" Style="font-size: 18px"></asp:Label>
+                        <label runat="server" visible="false">
+                            <asp:Label ID="lblTINNo" runat="server" Style="font-size: 18px">GSTIN:</asp:Label>
+                            <asp:Label ID="lbltin" runat="server" Style="font-size: 18px"></asp:Label>
+                            <br />
+                            <%--<asp:Label ID="Label9" runat="server" Style="font-size: 18px">FSSAI NO:</asp:Label>--%>
+                            <img style="width: 4pc" src="../images/fssailogo.png" />
+                            <asp:Label ID="lblfssaino" runat="server" Style="font-size: 18px"></asp:Label>
+                        </label>
                     </td>
                 </tr>
                 <tr>
@@ -150,10 +158,10 @@
                 </tr>
                 <tr style="font-size: large; font-weight: 300">
                     <td colspan="2" align="left" style="padding-left: 5px">
-                        GSTIN:   <asp:Label ID="lblgstno" Visible="true" runat="server"></asp:Label>
+                        GSTIN:
+                        <asp:Label ID="lblgstno" Visible="true" runat="server"></asp:Label>
                     </td>
                     <td align="right" style="padding-right: 50px">
-                        
                     </td>
                 </tr>
                 <tr style="font-size: large; font-weight: bold; display: none">

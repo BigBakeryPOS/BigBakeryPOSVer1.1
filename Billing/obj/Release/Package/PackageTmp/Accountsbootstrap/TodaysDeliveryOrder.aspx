@@ -142,21 +142,26 @@
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label" Visible="false">  </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
-    <div class="row" style="">
-        <div class="col-lg-12" style="">
-            <div class="panel panel-primary" style="">
-            <div class="panel-heading">Todays Delivery Orders</div>
-                <div class="panel-body" style="">
-                    <div class="row" style="">
-                        <div class="col-lg-12" style="">
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+            <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Todays Delivery Orders</h1>
+	    </div>
+           
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12" >
                             <form id="form1" runat="server">
                             <asp:ScriptManager ID="ScriptManager1" runat="server">
                             </asp:ScriptManager>
-                            <div>
-                                <asp:GridView ID="gvorderToday" runat="server" AutoGenerateColumns="false" Width="100%" Font-Names="Calibri"
-                                     CellPadding="20" OnRowCommand="gvrest_RowCommand">
+                            
+                            <div class="table-responsive panel-grid-left">
+                                <asp:GridView ID="gvorderToday" runat="server" AutoGenerateColumns="false" Width="100%" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
+                                     OnRowCommand="gvrest_RowCommand">
                                   <%--  <HeaderStyle Font-Names="Comic Sans MS" />--%>
-                                   <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> 
+                                  <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> --%>
                                     <Columns>
                                         <asp:BoundField HeaderText="Customer Name" DataField="CustomerName" />
                                         <asp:BoundField HeaderText="OrderNo" DataField="BookNo" />
@@ -173,19 +178,25 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btnprint" CommandArgument='<%#Eval("OrderNo") %>' CommandName="Print"
                                                     runat="server">
-                                                    <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png" width="55px" />
+                                                    <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png" width="55px" Visible="false" />
+                                                    <button type="button" class="btn btn-default btn-md">
+						                                <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+					                                </button>
                                                 </asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
-                            </div>
+                                </div>
+                            
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+       
+    </div>
+    </div>
     </div>
 </body>
 </html>

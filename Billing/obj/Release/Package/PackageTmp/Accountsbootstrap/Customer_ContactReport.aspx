@@ -56,89 +56,74 @@
                     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
    <usc:Header ID="Header" runat="server" />
    <form runat="server" id="form1">
-   
-    <div style="margin-top:100px" class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Customer Contact Report</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-
-        
-          <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        
+   <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+   <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Customer Contact Report</h1>
+	    </div>
+              
+         
                         <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                        <div class="form-group">
-            <label></label>
+                      
             <%--<asp:DropDownList ID="ddsrchby" Width="150px" CssClass="form-control" runat="server">
            
             </asp:DropDownList>--%>
-            <asp:TextBox ID="txtser" Visible="true" placeholder="Search Name / Mobile No." runat="server" Width="200px"  CssClass="form-control" ></asp:TextBox>
+                   <div class="row">
+                <div class="col-lg-3">
+              <div class="form-group has-feedback">
+            <asp:TextBox ID="txtser" Visible="true" placeholder="Search Name / Mobile No." runat="server" CssClass="form-control" ></asp:TextBox>
+             <span class="glyphicon glyphicon-search form-control-feedback"></span>
              </div>
-            <div class="form-group">
-            <asp:Button ID="btnsearch" runat="server" CssClass="btn btn-success"  Text="Search" 
+             </div>
+            <div class="col-lg-9 text-left">
+            <asp:Button ID="btnsearch" runat="server" CssClass="btn btn-success pos-btn1"  Text="Search" Width="100px" 
                     onclick="btnsearch_Click" />
-                                <asp:Button ID="btn_Reset" runat="server" 
-                    class="btn btn-warning"  Text="Reset" onclick="btn_Reset_Click" 
+                                &nbsp; &nbsp; &nbsp;<asp:Button ID="btn_Reset" runat="server" Width="150px" 
+                    class="btn btn-secondary"  Text="Reset" onclick="btn_Reset_Click" 
                      />
+                      &nbsp; &nbsp; &nbsp; <asp:Button ID="btnexcel" runat="server" Text="Export To Excel" 
+                                        CssClass="btn btn-success" onclick="btnexcel_Click" />
+                                 
             </div>
               
-           
-         
-          
-            
-                                    <div style="color: Green; font-weight: bold">
-            <br />
-           
-        </div>
-                               <div class="table-responsive">
-                                        
-                                <table class="table table-bordered table-striped">
-                                <tr>
-                                <td>
+         <div class="col-lg-12">
+          <div class="table-responsive panel-grid-left">
                                 <asp:GridView ID="gvcust"  ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found"  runat="server" AllowPaging="true" PageSize="10" 
-                                        AllowSorting="true" CssClass="myGridStyle" OnPageIndexChanging="Page_Change" 
+                                        AllowSorting="true" CssClass="table table-striped pos-table" OnPageIndexChanging="Page_Change" padding="0" spacing="0" border="0"
                                         AutoGenerateColumns="false" onrowcommand="gvcust_RowCommand" 
                                         onsorting="gvcust_Sorting">
-                                 <HeaderStyle BackColor="#3366FF" />
-                                <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" NextPageText="Next" PreviousPageText="Previous" />
-    <Columns>
-    <%--<asp:BoundField HeaderText="Customer ID" DataField="CustomerID" />--%>
-    <asp:BoundField HeaderText="Customer Name" DataField="CustomerName" SortExpression="Customername"  />
-    <asp:BoundField HeaderText="Mobile No" DataField="MobileNo" />
-    <asp:BoundField HeaderText="Area" DataField="Area" />
-    <asp:BoundField HeaderText="Email" DataField="Email" />
-     <asp:TemplateField HeaderText="View Detail">
-     <ItemTemplate>
-     <asp:LinkButton ID="btnedit" runat="server" CommandArgument='<%#Eval("CustomerID") %>' CommandName="edit"><asp:Image ID="img" runat="server" ImageUrl="~/images/info_button.png" /></asp:LinkButton>
+                                        <PagerStyle cssclass="pos-paging" />
+                                <%-- <HeaderStyle BackColor="#3366FF" />
+                                <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" NextPageText="Next" PreviousPageText="Previous" />--%>
+                            <Columns>
+                            <%--<asp:BoundField HeaderText="Customer ID" DataField="CustomerID" />--%>
+                            <asp:BoundField HeaderText="Customer Name" DataField="CustomerName"   />
+                            <asp:BoundField HeaderText="Mobile No" DataField="MobileNo" />
+                            <asp:BoundField HeaderText="Area" DataField="Area" />
+                            <asp:BoundField HeaderText="Email" DataField="Email" />
+                             <asp:TemplateField HeaderText="View Detail" ItemStyle-Width="150px">
+                             <ItemTemplate>
+                             <asp:LinkButton ID="btnedit" runat="server" CommandArgument='<%#Eval("CustomerID") %>' CommandName="edit">
+                             <asp:Image ID="img" runat="server" ImageUrl="~/images/info_button.png" visible="false"/>
+                             <button type="button" class="btn btn-primary btn-md">
+						                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+					                            </button>
+                                                </asp:LinkButton>
       
-     </ItemTemplate>
+                             </ItemTemplate>
     
      
      
-     </asp:TemplateField>
+                             </asp:TemplateField>
    
-   </Columns><FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-   <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-   </asp:GridView>
-                                </td>
-                                </tr>
-                                </table>
+                           </Columns><%--<FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                           <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
+                           </asp:GridView>
+                               
                                 </div>
-                                     <asp:Button ID="btnexcel" runat="server" Text="Export" 
-                                        CssClass="btn btn-danger" onclick="btnexcel_Click" />
-                                        
-										
-
-         
-        
-                                        
-                                        
-										
+                                </div>
                                     
                                 </div>
                                 
@@ -146,11 +131,10 @@
                             </div>
                             <!-- /.row (nested) -->
                         </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
+                     
+            </div>
+            </div>
+            </div>
             </div>
 <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
 		<script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
