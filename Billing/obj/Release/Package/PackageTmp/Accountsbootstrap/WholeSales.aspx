@@ -151,7 +151,7 @@
                                         <div class="col-lg-3">
                                          
                                                 <label>
-                                                    Customer Name</label><br />
+                                                    Dealer Name</label><br />
                                                 <asp:DropDownList runat="server" ID="ddlcustomer"
                                                     CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlcustomer_OnSelectedIndexChanged">
                                                 </asp:DropDownList>
@@ -499,6 +499,8 @@
         }
     </script>
    
+    <asp:TextBox ID="stockoption" runat="server" class="form-control" Visible="false" Enabled="true"></asp:TextBox>
+                                            
     </form>
 </body>
 </html>

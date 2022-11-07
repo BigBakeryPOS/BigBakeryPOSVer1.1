@@ -96,20 +96,7 @@
                             ControlToValidate="txtusername" ErrorMessage="Please enter User name!" Style="color: Red" />
                         <asp:TextBox CssClass="form-control" ID="txtusername" runat="server"></asp:TextBox>
                     </div>
-                    <div class="form-group ">
-                        <label>
-                            Mobile No.</label>
-                        <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" Text="*" ID="RequiredFieldValidator3"
-                            ControlToValidate="txtmobile" ErrorMessage="Please enter Mobile No.!" Style="color: Red" />
-                        <asp:TextBox CssClass="form-control" ID="txtmobile" runat="server"
-                            MaxLength="10"></asp:TextBox>
-                    </div>
-                    <div class="form-group " runat="server" visible="false">
-                        <label>
-                            IsAdmin</label>
-                        <asp:CheckBox ID="chkadminrights" runat="server" />
-                    </div>
-                    <div class="form-group ">
+                     <div class="form-group ">
                         <label>
                             Password</label>
                         <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" Text="*" ID="reqName"
@@ -126,6 +113,20 @@
                         <asp:TextBox CssClass="form-control" ID="txtconfirmpasswprd" TextMode="Password"
                             runat="server"></asp:TextBox>
                     </div>
+                    <div class="form-group ">
+                        <label>
+                            Mobile No.</label>
+                        <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" Text="*" ID="RequiredFieldValidator3"
+                            ControlToValidate="txtmobile" ErrorMessage="Please enter Mobile No.!" Style="color: Red" />
+                        <asp:TextBox CssClass="form-control" ID="txtmobile" runat="server"
+                            MaxLength="10"></asp:TextBox>
+                    </div>
+                    <div class="form-group " runat="server" visible="false">
+                        <label>
+                            IsAdmin</label>
+                        <asp:CheckBox ID="chkadminrights" runat="server" />
+                    </div>
+                   
                     <div runat="server" visible="false">
                         <div class="form-group ">
                             <label>

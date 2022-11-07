@@ -384,8 +384,22 @@
                         Branch-Production Setting</a></li>
                     <li id="Ingridients" runat="server" visible="false"><a href="../Accountsbootstrap/Ingridients.aspx">
                         Ingridients Master</a></li>
-                    <li id="Customer" runat="server" visible="false"><a href="../Accountsbootstrap/viewcustomer.aspx">
-                        Contact Master</a></li>
+                        <li id="Customer" runat="server" class='has-sub' visible="false"><a id="A50" runat="server" href="javascript:;">
+                            Contact Master</a>
+                            <ul>
+                                <li id="CustMast" runat="server" visible="true"><a runat="server" href="../Accountsbootstrap/viewcustomer.aspx?id=1">
+                                    Customer Master</a></li>
+                                <li id="DealMast" runat="server" visible="true"><a runat="server" href="../Accountsbootstrap/viewcustomer.aspx?id=2">
+                                    Dealer Master</a></li>
+                                <li id="SupMast" runat="server" visible="true"><a runat="server" href="../Accountsbootstrap/viewcustomer.aspx?id=3">
+                                    Supplier Master</a></li>
+                                <li id="EmpMast" runat="server" visible="true"><a runat="server" href="../Accountsbootstrap/viewcustomer.aspx?id=4">
+                                    Icing Employee Master</a></li>
+                                <li id="Li11" runat="server" visible="true"><a runat="server" href="../Accountsbootstrap/viewcustomer.aspx?id=5">
+                                    Dispatch Employee Master</a></li>
+
+                            </ul>
+                        </li>
                     <li id="Bank" runat="server" visible="false"><a href="../Accountsbootstrap/viewbank.aspx">
                         Bank Master</a></li>
                     <li id="employee" runat="server" visible="false"><a href="../Accountsbootstrap/EmployeeMaster.aspx">
@@ -831,7 +845,7 @@
                 style="color: White" href="javascript:;">Add Online Bill Entry</a></li>
             <li id="onlineentryreport" runat="server" visible="false"><a href="../Accountsbootstrap/OnlineEntryReport.aspx"
                 style="color: White">Online Entry Report</a></li>
-             <li id="Li11" runat="server" visible="true"><a href="../Accountsbootstrap/UserRoleGrid.aspx"
+             <li id="Li114" runat="server" visible="true"><a href="../Accountsbootstrap/UserRoleGrid.aspx"
                 style="color: White">Add Roles</a></li>
             <li id="AddUsers" runat="server" visible="false"><a href="../Accountsbootstrap/UserGrid.aspx"
                 style="color: White">Add Users</a></li>

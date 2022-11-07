@@ -144,7 +144,7 @@
 
                                                     <div id="divcode" runat="server">
                                                         <label>Code</label>
-                                                        <asp:TextBox CssClass="form-control" ID="txtcuscode" runat="server" Enabled="false"></asp:TextBox>
+                                                        <asp:TextBox CssClass="form-control" ID="txtcuscode" runat="server" Enabled="true"></asp:TextBox>
                                                     </div>
                                                     <div >
                                                         <label>
