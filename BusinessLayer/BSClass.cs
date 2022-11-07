@@ -17565,12 +17565,31 @@ namespace BusinessLayer
             return ds;
         }
 
-
         public DataSet getcustomer()
         {
             DataSet ds = new DataSet();
             //string sQry = "select case contacttypeid when  1 then 'Customer' when 2 then 'Dealer'  when 3 then 'Manufaturer' else 'Vendor' end as ContactType,* from tblCustomer where IsActive='Yes'  order by customerid desc";
             string sQry = "select top 50 ct.ContactType,c.* from tblCustomer c inner join tblContactType ct on ct.ContactID=c.ContactTypeID  where c.IsActive='Yes'  order by idcust desc";//  order by CustomerName asc";
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+        public DataSet getcustomer(string ID)
+        {
+            DataSet ds = new DataSet();
+            string cont = "";
+            //string sQry = "select case contacttypeid when  1 then 'Customer' when 2 then 'Dealer'  when 3 then 'Manufaturer' else 'Vendor' end as ContactType,* from tblCustomer where IsActive='Yes'  order by customerid desc";
+            if (ID == "1")
+                cont = "and ct.contacttype='Customer'";
+            else if (ID == "2")
+                cont = "and ct.contacttype='Dealer'";
+            else if (ID=="3")
+                cont = "and ct.contacttype='Supplier'";
+            else if (ID=="4")
+                cont = "and ct.contacttype='icing Employee'";
+            else 
+                cont= "and ct.contacttype='dispatch Employee'";
+
+            string sQry = "select top 50 ct.ContactType,c.* from tblCustomer c inner join tblContactType ct on ct.ContactID=c.ContactTypeID  where c.IsActive='Yes' " + cont + "  order by idcust desc";//  order by CustomerName asc";
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
         }
@@ -19987,7 +20006,8 @@ namespace BusinessLayer
         public DataSet getgridforcustsale()
         {
             DataSet ds = new DataSet();
-            string sqry = "select * from tblCustomer  where ContactTypeID='1' and IsActive='Yes' ";
+            //string sqry = "select * from tblCustomer  where ContactTypeID='1' and IsActive='Yes' ";
+            string sqry = "select * from tblCustomer inner  join tblContactType on tblcustomer.ContactTypeID = tblContactType.ContactID where ContactType like  '%dealer' and IsActive = 'Yes'";
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
         }
@@ -21379,11 +21399,14 @@ namespace BusinessLayer
 
         public DataSet selectitems_wholesales(string Table, int ledgerid)
         {
+           
             DataSet ds = new DataSet();
             //string sQry = "select * from tblCategoryUser order by Definition asc";
             // string sQry = "select * from tblCategoryUser c inner join tblStock_" + Table + " s on s.SubCategoryID=c.CategoryUserID where Available_QTY>0 AND  WholeSalesRate>0  order by Definition asc";
-            string sQry = "select * from tblCategoryUser c inner join tblproductionqty_" + Table + " s " +
-                " on s.descriptionid=c.CategoryUserID inner join tblLedgerIngredient l on l.IngredientId=c.CategoryUserId where  l.ledgerId=" + ledgerid + " order by Definition asc";
+            //string sQry = "select * from tblCategoryUser c inner join tblproductionqty_" + Table + " s " +
+              //  " on s.descriptionid=c.CategoryUserID inner join tblLedgerIngredient l on l.IngredientId=c.CategoryUserId where  l.ledgerId=" + ledgerid + " order by Definition asc";
+             
+              string sQry = "select * from tblCustomer inner  join tblLedgerIngredient on tblcustomer.ledgerid = tblLedgerIngredient.LedgerId where tblcustomer.ledgerid=" + ledgerid + "";
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
         }
@@ -21455,6 +21478,7 @@ namespace BusinessLayer
             if (logintype == "3")
             {
                 string sQry = "select * from tblCategoryUser c inner join tblStock_" + Table + " s on s.SubCategoryID=c.CategoryUserID where c.CategoryUserID=" + CategoryUserID + " and Available_QTY>0 order by Definition asc";
+                //string sQry = "select  * from tblLedgerIngredient where LedgerId= '" + ledgerid + "'";
                 ds = dbObj.InlineExecuteDataSet(sQry);
             }
             else
@@ -21466,6 +21490,16 @@ namespace BusinessLayer
             return ds;
         }
 
+
+        public DataSet selectitemsRate_wholesales(string IngredientId, string ledgerid)
+        {
+            DataSet ds = new DataSet();
+            //string sQry = "select c.Rate as MRP,c.gst as Tax,s.Prod_Qty as Available_QTY from tblCstring sQry = "select  * from tblLedgerIngredient where LedgerId= '" + ledgerid + "'";egoryUser c inner join tblProductionQty_" + Table + " s on s.DescriptionId=c.CategoryUserID inner join tblLedgerIngredient l on l.IngredientId=c.CategoryUserId  inner join tblLedger ld on ld.LedgerID=l.LedgerId where  Prod_Qty>0  and c.CategoryUserID=" + CategoryUserID + "  and ld.LedgerID=" + ledgerid + "  order by Definition asc";
+            string sQry = "select  Rate as MRP from tblLedgerIngredient where IngredientId= '" + IngredientId + "' and LedgerID='" + ledgerid + "'"; 
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            
+            return ds;
+        }
 
 
 
@@ -36996,6 +37030,13 @@ namespace BusinessLayer
             string sqry = "update tblvariableexpense set Branchid='" + Branchid + "',Branchcode='" + Branchcode + "',VariableName='" + VariableName + "',TotalExpense='" + TotalExpense + "',Day='" + Day + "',PerDayExpense='" + PerDayExpense + "' where VariableId='" + varibaleid + "'";
             i = dbObj.InlineExecuteNonQuery(sqry);
             return i;
+        }
+        public DataSet GetStockOption(string Table)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select * from tblbranch where branchcode='" + Table + "'";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
         }
 
         #endregion

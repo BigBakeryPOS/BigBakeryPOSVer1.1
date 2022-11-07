@@ -299,7 +299,6 @@ namespace Billing.Accountsbootstrap
                     Session["MOnlSale"] = dsLogin.Tables[0].Rows[0]["MOnlSale"].ToString();
                     Session["ismasterlock"] = dsLogin.Tables[0].Rows[0]["ismasterlock"].ToString();
                     Session["LBranch"] = "B";
-
                     Session["state"] = 0;
                     Session["statecode"] = 0;
 

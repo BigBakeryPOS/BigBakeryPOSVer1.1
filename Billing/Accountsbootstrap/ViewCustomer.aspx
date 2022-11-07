@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
 <head>
- <%--   <style type="text/css">
+    <%--   <style type="text/css">
         a img
         {
             border: none;
@@ -52,11 +52,11 @@
     <meta name="author" content="" />
     <title>Customer Details</title>
 
-       <link rel="Stylesheet" type="text/css" href="../Styles/AjaxPopUp.css" />
+    <link rel="Stylesheet" type="text/css" href="../Styles/AjaxPopUp.css" />
     <script language="javascript" type="text/javascript" src="../js/Validation.js"></script>
     <link href="css/mGrid.css" rel="stylesheet" type="text/css" />
 
-      <link href="../Styles/chosen.css" rel="Stylesheet" />
+    <link href="../Styles/chosen.css" rel="Stylesheet" />
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <link href="../Styles/style1.css" rel="stylesheet" />
@@ -67,17 +67,19 @@
     <link href="../css/Pos_style.css" rel="stylesheet" />
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <style type="text/css"> 
-         blink, .blink {
+    <style type="text/css">
+        blink, .blink {
             animation: blinker 1s linear infinite;
         }
 
-       @keyframes blinker { 
-            50% { opacity: 0; }
-       }
-      </style>
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
 
-  <%--  <!-- Bootstrap Core CSS -->
+    <%--  <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="../Styles/chosen.css" />
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <!-- MetisMenu CSS -->
@@ -136,8 +138,8 @@
         }    
     </script>
     <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
-        <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
-        <script type="text/javascript">            $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
+    <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">            $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
 </head>
 <body style="">
     <asp:Label runat="server" Visible="false" ID="lblWelcome" ForeColor="White" CssClass="label">Welcome : </asp:Label>
@@ -145,128 +147,135 @@
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <usc:Header ID="Header" runat="server" />
     <form runat="server" id="form1">
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
-    <div class="container-fluid">
-	<div class="row">
-        <div class="col-lg-12">
-            <div class="row panel-custom1">
-            <%--<div class="panel-heading " style="background-color: #428bca; color: White">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row panel-custom1">
+                        <%--<div class="panel-heading " style="background-color: #428bca; color: White">
                         <b>Contact Details</b></div>--%>
-                 <div class="panel-header">
-                  <h1 class="page-header">Contact Master
-                  <span class="pull-right">
-                  <asp:LinkButton ID="Button1" runat="server" OnClick="Add_Click"
-                                   >
+                        <div class="panel-header">
+                            <div>
+                                <h1 class="page-header" id="head1" runat="server">
+                                Contact Master
+                                     </h1>
+                            </div>
+
+                            <span class="pull-right">
+                                <asp:LinkButton ID="Button1" runat="server" OnClick="Add_Click">
                                                 <button type="button" class="btn btn-primary btn-md pos-btn1">
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD
 			</button>
-                                             </asp:LinkButton>
-                  
-                </span>
-                </h1>
-	            </div>
-                <div class="panel-body">
-                    <%--<div class="row" style="">--%>
-                        <div class="row">
-                            <div class="col-lg-2" runat="server" visible="false">
-                                <asp:DropDownList CssClass="form-control" ID="ddlfilter" Style="width: 120px;" runat="server">
-                                    <asp:ListItem Text="Name" Value="1"></asp:ListItem>
-                                    <asp:ListItem Text="MobileNo" Value="2"></asp:ListItem>
-                                    <asp:ListItem Text="Email" Value="3"></asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                            <div class="col-lg-2">
-                            <div class="form-group has-feedback">
-                                <asp:TextBox CssClass="form-control" Enabled="true" Text="Search Name.." ID="txtsearch"
-                                    runat="server" onkeyup="Search_Gridview(this, 'gvcust')" ></asp:TextBox>
-                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                                <asp:Label ID="lblerror" runat="server" Style="color: Red"></asp:Label>
-                            </div>
-                            </div>
-                            <div class="col-lg-2" runat="server" visible="false">
-                                <div class="form-group">
-                                    <asp:Button ID="btnsearch" runat="server" class="btn btn-success" Text="Search" OnClick="Search_Click"
+                                </asp:LinkButton>
+
+                            </span>
+                           
+                        </div>
+                        <div class="panel-body">
+                            <%--<div class="row" style="">--%>
+                            <div class="row">
+                                <div class="col-lg-2" runat="server" visible="false">
+                                    <asp:DropDownList CssClass="form-control" ID="ddlfilter" Style="width: 120px;" runat="server">
+                                        <asp:ListItem Text="Name" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="MobileNo" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="Email" Value="3"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group has-feedback">
+                                        <asp:TextBox CssClass="form-control" Enabled="true" Text="Search Name.." ID="txtsearch"
+                                            runat="server" onkeyup="Search_Gridview(this, 'gvcust')"></asp:TextBox>
+                                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                        <asp:Label ID="srch"  Visible="false" runat="server" ></asp:Label>
+                                        <asp:Label ID="lblerror" runat="server" Style="color: Red"></asp:Label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2" runat="server" visible="false">
+                                    <div class="form-group">
+                                        <asp:Button ID="btnsearch" runat="server" class="btn btn-success" Text="Search" OnClick="Search_Click"
+                                            Width="150px" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <asp:Button ID="btnrefresh" runat="server" class="btn btn-secondary" Text="Reset" OnClick="refresh_Click"
                                         Width="150px" />
                                 </div>
-                            </div>
-                            <div class="col-lg-2">
-                                <asp:Button ID="btnrefresh" runat="server" class="btn btn-secondary" Text="Reset" OnClick="refresh_Click"
-                                    Width="150px" />
-                            </div>
-                            
-                        
-                  <%--  </div>--%>
-                    <div class="col-lg-12">
-                <div class="table-responsive panel-grid-left">
-                            <asp:GridView ID="gvcust" runat="server" AutoGenerateColumns="false" OnRowCommand="gvcust_RowCommand" cssClass="table table-striped pos-table" DataKeyNames="LedgerID"  
-                                Width="100%" OnRowDataBound="gvcust_OnRowDataBound" padding="0" spacing="0" border="0">
-                                <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> --%>
-                                <%-- <HeaderStyle BackColor="#990000" />--%>
-                                <%--  <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
+
+
+                                <%--  </div>--%>
+                                <div class="col-lg-12">
+                                    <div class="table-responsive panel-grid-left">
+                                        <asp:GridView ID="gvcust" runat="server" AutoGenerateColumns="false" OnRowCommand="gvcust_RowCommand" CssClass="table table-striped pos-table" DataKeyNames="LedgerID"
+                                            Width="100%" OnRowDataBound="gvcust_OnRowDataBound" padding="0" spacing="0" border="0">
+                                            <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> --%>
+                                            <%-- <HeaderStyle BackColor="#990000" />--%>
+                                            <%--  <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
                                                         NextPageText="Next" PreviousPageText="Previous" />--%>
-                                <Columns>
-                                    <asp:BoundField HeaderText="Contact Name" DataField="CustomerName" />
-                                    <asp:BoundField HeaderText="Contact Type" DataField="ContactType" />
-                                    <asp:BoundField HeaderText="Mobile No" DataField="MobileNo" />
-                                    <asp:BoundField HeaderText="Area" DataField="Area" />
-                                    <asp:BoundField HeaderText="Email" DataField="Email" />
-                                    <asp:TemplateField HeaderText="Edit">
-                                        <ItemTemplate>
-                                            <asp:LinkButton ID="btnedit" runat="server" cssclass="btn btn-warning btn-md" CommandArgument='<%#Eval("LedgerID") %>'
-                                                CommandName="edite">
-                                                <asp:Image ID="img" runat="server" ImageUrl="~/images/edit.png" width="55px" Visible="false"/>
-                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                                </asp:LinkButton>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField Visible="false" HeaderText="Delete">
-                                        <ItemTemplate>
-                                            <asp:LinkButton ID="btndelete" runat="server" CommandArgument='<%#Eval("LedgerID") %>'
-                                                CommandName="delete" OnClientClick="alertMessage()">
-                                                <asp:Image ID="dlt" runat="server" ImageAlign="Middle" ImageUrl="~/images/delete.png" /></asp:LinkButton>
-                                            <asp:ImageButton ID="imgdisable1321" ImageUrl="~/images/delete.png" runat="server"
-                                                Visible="false" Enabled="false" ToolTip="Not Allow To Delete" />
-                                            <ajaxToolkit:ModalPopupExtender ID="lnkDelete_ModalPopupExtender" runat="server"
-                                                CancelControlID="ButtonDeleteCancel" OkControlID="ButtonDeleleOkay" TargetControlID="btndelete"
-                                                PopupControlID="DivDeleteConfirmation" BackgroundCssClass="ModalPopupBG">
-                                            </ajaxToolkit:ModalPopupExtender>
-                                            <ajaxToolkit:ConfirmButtonExtender ID="lnkDelete_ConfirmButtonExtender" runat="server"
-                                                TargetControlID="btndelete" Enabled="True" DisplayModalPopupID="lnkDelete_ModalPopupExtender">
-                                            </ajaxToolkit:ConfirmButtonExtender>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                </Columns>
-                            </asp:GridView>
+                                            <Columns>
+                                                <asp:BoundField HeaderText="Contact Name" DataField="CustomerName" />
+                                                <asp:BoundField HeaderText="Contact Type" DataField="ContactType" />
+                                                <asp:BoundField HeaderText="Mobile No" DataField="MobileNo" />
+                                                <asp:BoundField HeaderText="Area" DataField="Area" />
+                                                <asp:BoundField HeaderText="Email" DataField="Email" />
+                                                <asp:TemplateField HeaderText="Edit">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="btnedit" runat="server" CssClass="btn btn-warning btn-md" CommandArgument='<%#Eval("LedgerID") %>'
+                                                            CommandName="edite">
+                                                            <asp:Image ID="img" runat="server" ImageUrl="~/images/edit.png" Width="55px" Visible="false" />
+                                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                        </asp:LinkButton>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField Visible="false" HeaderText="Delete">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="btndelete" runat="server" CommandArgument='<%#Eval("LedgerID") %>'
+                                                            CommandName="delete" OnClientClick="alertMessage()">
+                                                            <asp:Image ID="dlt" runat="server" ImageAlign="Middle" ImageUrl="~/images/delete.png" />
+                                                        </asp:LinkButton>
+                                                        <asp:ImageButton ID="imgdisable1321" ImageUrl="~/images/delete.png" runat="server"
+                                                            Visible="false" Enabled="false" ToolTip="Not Allow To Delete" />
+                                                        <ajaxToolkit:ModalPopupExtender ID="lnkDelete_ModalPopupExtender" runat="server"
+                                                            CancelControlID="ButtonDeleteCancel" OkControlID="ButtonDeleleOkay" TargetControlID="btndelete"
+                                                            PopupControlID="DivDeleteConfirmation" BackgroundCssClass="ModalPopupBG">
+                                                        </ajaxToolkit:ModalPopupExtender>
+                                                        <ajaxToolkit:ConfirmButtonExtender ID="lnkDelete_ConfirmButtonExtender" runat="server"
+                                                            TargetControlID="btndelete" Enabled="True" DisplayModalPopupID="lnkDelete_ModalPopupExtender">
+                                                        </ajaxToolkit:ConfirmButtonExtender>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                        </asp:GridView>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                </div>
+
             </div>
         </div>
-        
-    </div>
-    </div>
-    <asp:Panel class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none"
-        runat="server">
-        <div class="popup_Container">
-            <div class="popup_Titlebar" id="PopupHeader">
-                <div class="TitlebarLeft">
-                    Customer List</div>
-                <div class="TitlebarRight" onclick="$get('ButtonDeleteCancel').click();">
+        <asp:Panel class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none"
+            runat="server">
+            <div class="popup_Container">
+                <div class="popup_Titlebar" id="PopupHeader">
+                    <div class="TitlebarLeft">
+                        Customer List
+                    </div>
+                    <div class="TitlebarRight" onclick="$get('ButtonDeleteCancel').click();">
+                    </div>
+                </div>
+                <div class="popup_Body">
+                    <p>
+                        Are you sure want to delete?
+                    </p>
+                </div>
+                <div class="popup_Buttons">
+                    <input id="ButtonDeleleOkay" type="button" value="Yes" />
+                    <input id="ButtonDeleteCancel" type="button" value="No" />
                 </div>
             </div>
-            <div class="popup_Body">
-                <p>
-                    Are you sure want to delete?
-                </p>
-            </div>
-            <div class="popup_Buttons">
-                <input id="ButtonDeleleOkay" type="button" value="Yes" />
-                <input id="ButtonDeleteCancel" type="button" value="No" />
-            </div>
-        </div>
-    </asp:Panel>
+        </asp:Panel>
     </form>
 </body>
 </html>

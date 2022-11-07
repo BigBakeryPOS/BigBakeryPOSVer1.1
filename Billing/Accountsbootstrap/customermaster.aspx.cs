@@ -8,13 +8,16 @@ using BusinessLayer;
 using System.Data;
 using System.Text;
 using CommonLayer;
-
+using System.Data.SqlClient;
 
 namespace Billing.Accountsbootstrap
 {
+  
     public partial class AccPage : System.Web.UI.Page
     {
         BSClass objBs = new BSClass();
+        string ID = "";
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -49,8 +52,45 @@ namespace Billing.Accountsbootstrap
                     ddlCustomerType.Items.Insert(0, "Select Contact Type");
                 }
 
+                string iCusID = Request.QueryString.Get("iCusID");
+                
+                srch.Text = Request.QueryString.Get("id");
+                if (srch.Text != "")
+                    ddlCustomerType.Enabled = false;
+                else
+                    ddlCustomerType.Enabled = true;
+                if (srch.Text == "1")
+                {
+                    head1.InnerHtml = "Customer Master";
+                    head2.InnerHtml = "Customer Master";
+                    ddlCustomerType.SelectedValue = "1";
+                }
 
-                DataSet branch = objBs.getbranch_prod();
+                else if (srch.Text == "2")
+                {
+                    head1.InnerHtml = "Dealer Master";
+                    head2.InnerHtml = "Dealer Master";
+                    ddlCustomerType.SelectedValue = "2";
+                }
+                else if (srch.Text == "3")
+                {
+                    head1.InnerHtml = "Supplier Master";
+                    head2.InnerHtml = "Supplier Master";
+                    ddlCustomerType.SelectedValue = "6";
+                }
+                else if (srch.Text == "4")
+                {
+                    head1.InnerHtml = "icing Employee Master";
+                    head2.InnerHtml = "icing Employee Master"; 
+                    ddlCustomerType.SelectedValue = "17";
+                }
+                else if (srch.Text=="5")
+                {
+                    head1.InnerHtml = "dispatch Employee Master";
+                    head2.InnerHtml = "dispatch Employee Master"; 
+                    ddlCustomerType.SelectedValue = "1017";
+                }
+                    DataSet branch = objBs.getbranch_prod();
                 ddlbranch.DataSource = branch.Tables[0];
                 ddlbranch.DataValueField = "Branchid";
                 ddlbranch.DataTextField = "BranchName";
@@ -70,7 +110,6 @@ namespace Billing.Accountsbootstrap
                 txtcuscode.Text = ds.Tables[0].Rows[0][0].ToString();
 
 
-                string iCusID = Request.QueryString.Get("iCusID");
                 if (iCusID != "" || iCusID != null)
                 {
                     DataSet ds1 = objBs.getcontact(iCusID);
@@ -497,7 +536,6 @@ namespace Billing.Accountsbootstrap
 
 
 
-                    //  Response.Redirect("../Accountsbootstrap/viewcustomer.aspx");
                 }
 
             }
@@ -653,7 +691,6 @@ namespace Billing.Accountsbootstrap
                         }
                     }
 
-                    // Response.Redirect("../Accountsbootstrap/viewcustomer.aspx");
                 }
             }
 
@@ -664,7 +701,7 @@ namespace Billing.Accountsbootstrap
             }
             else
             {
-                Response.Redirect("../Accountsbootstrap/viewcustomer.aspx");
+                Response.Redirect("../Accountsbootstrap/viewcustomer.aspx?id="+srch.Text);
             }
         }
 
@@ -672,14 +709,13 @@ namespace Billing.Accountsbootstrap
         protected void Exit_Click(object sender, EventArgs e)
         {
             string MasterType = Request.QueryString.Get("MasterType");
-            //  Response.Redirect("../Accountsbootstrap/viewcustomer.aspx");
             if (MasterType == "Employee")
             {
                 Response.Redirect("../Accountsbootstrap/EmployeeMaster.aspx");
             }
             else
             {
-                Response.Redirect("../Accountsbootstrap/viewcustomer.aspx");
+                Response.Redirect("../Accountsbootstrap/viewcustomer.aspx?id=" + srch.Text);
             }
         }
     }

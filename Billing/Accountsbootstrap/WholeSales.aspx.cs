@@ -10,6 +10,7 @@ using System.Text;
 using System.Globalization;
 using System.Drawing;
 
+
 namespace Billing.Accountsbootstrap
 {
     public partial class WholeSales : System.Web.UI.Page
@@ -21,7 +22,8 @@ namespace Billing.Accountsbootstrap
         string Logintypeid = "";
         string iSalesID = "";
         string iOrderID = "";
-
+        string BranchCode = "";
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
@@ -29,6 +31,7 @@ namespace Billing.Accountsbootstrap
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
             IsSuperAdmin = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
             Logintypeid = Session["LoginTypeId"].ToString();
+            BranchCode= Session["BranchCode"].ToString();
             if (!IsPostBack)
             {
                 txtdate.Text = DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
@@ -37,6 +40,10 @@ namespace Billing.Accountsbootstrap
 
                 DataSet dssalesNo = objbs.getcrsalesno(sTableName);
                 txtbillno.Text = dssalesNo.Tables[0].Rows[0]["BillNo"].ToString();
+
+                DataSet dsstkoption = objbs.GetStockOption(sTableName);
+                stockoption.Text = dsstkoption.Tables[0].Rows[0]["Stockoption"].ToString();
+
 
                 DataSet dsdcNo = objbs.getsalesdcno(sTableName);
                 txtdcno.Text = dsdcNo.Tables[0].Rows[0]["DCNo"].ToString();
@@ -70,12 +77,12 @@ namespace Billing.Accountsbootstrap
                     ddlcustomer.DataTextField = "CustomerName";
                     ddlcustomer.DataValueField = "LedgerID";
                     ddlcustomer.DataBind();
-                    ddlcustomer.Items.Insert(0, "Select Customer");
+                    ddlcustomer.Items.Insert(0, "Select Dealer");
 
                 }
                 else
                 {
-                    ddlcustomer.Items.Insert(0, "Select Customer");
+                    ddlcustomer.Items.Insert(0, "Select Dealer");
                 }
 
                
@@ -495,8 +502,8 @@ namespace Billing.Accountsbootstrap
             if (dsitem.Tables[0].Rows.Count > 0)
             {
                 ddlitem.DataSource = dsitem.Tables[0];
-                ddlitem.DataTextField = "Definition";
-                ddlitem.DataValueField = "CategoryUserID";
+                ddlitem.DataTextField = "BIngredientName";
+                ddlitem.DataValueField = "IngredientId";
                 ddlitem.DataBind();
                 ddlitem.Items.Insert(0, "Select Item");
             }
@@ -534,19 +541,12 @@ namespace Billing.Accountsbootstrap
                     {
                         HiddenField hdtype = (HiddenField)GridView2.Rows[rowIndex].Cells[2].FindControl("hdtype");
 
-                        DropDownList drpItem =
-                       (DropDownList)GridView2.Rows[rowIndex].Cells[2].FindControl("drpItem");
-                        TextBox txtQty =
-                          (TextBox)GridView2.Rows[rowIndex].Cells[4].FindControl("txtQty");
-                        TextBox txtBQty =
-                         (TextBox)GridView2.Rows[rowIndex].Cells[4].FindControl("txtBQty");
-                        TextBox txtSQty =
-                      (TextBox)GridView2.Rows[rowIndex].Cells[4].FindControl("txtSQty");
-
-                        TextBox txtRate =
-                         (TextBox)GridView2.Rows[rowIndex].Cells[4].FindControl("txtRate");
-                        TextBox txtTax =
-                         (TextBox)GridView2.Rows[rowIndex].Cells[4].FindControl("txtTax");
+                        DropDownList drpItem = (DropDownList)GridView2.Rows[rowIndex].Cells[2].FindControl("drpItem");
+                        TextBox txtQty = (TextBox)GridView2.Rows[rowIndex].Cells[4].FindControl("txtQty");
+                        TextBox txtBQty = (TextBox)GridView2.Rows[rowIndex].Cells[4].FindControl("txtBQty");
+                        TextBox txtSQty = (TextBox)GridView2.Rows[rowIndex].Cells[4].FindControl("txtSQty");
+                        TextBox txtRate = (TextBox)GridView2.Rows[rowIndex].Cells[4].FindControl("txtRate");
+                        TextBox txtTax = (TextBox)GridView2.Rows[rowIndex].Cells[4].FindControl("txtTax");
 
                         TextBox txtTaxamount =
                         (TextBox)GridView2.Rows[rowIndex].Cells[4].FindControl("txtTaxamount");
@@ -584,29 +584,52 @@ namespace Billing.Accountsbootstrap
             string[] Itemidsplict = ddlitem.SelectedValue.Split('/');
 
             DataSet dsitem = objbs.selectitemsval_wholesales(sTableName, Convert.ToInt32(Itemidsplict[0].ToString()), Logintypeid,Convert.ToInt16(ddlcustomer.SelectedValue));
-          //  DataSet dsitem = objbs.selectitemsval(sTableName, Convert.ToInt32(ddlitem.SelectedValue), Logintypeid);
             if (dsitem.Tables[0].Rows.Count > 0)
             {
                 txtstock.Text = Convert.ToDouble(dsitem.Tables[0].Rows[0]["Available_QTY"]).ToString("f2");
+
                 if ((dsitem.Tables[0].Rows[0]["MRP"] == null) || (dsitem.Tables[0].Rows[0]["MRP"] == "") || (dsitem.Tables[0].Rows[0]["MRP"] == System.DBNull.Value))
                     txtMRP.Text = "0";
                 else
                 txtMRP.Text = Convert.ToDouble(dsitem.Tables[0].Rows[0]["MRP"]).ToString("f2");
-
+                
                 //string[] Rate = ddlitem.SelectedItem.Text.Split('/');
-
                 //txtrate.Text = Rate[1].ToString();
+
                 txttax.Text = Convert.ToDouble(dsitem.Tables[0].Rows[0]["Tax"]).ToString("f2");
 
 
                 double val = Convert.ToDouble(txttax.Text) + 100;
                 val = (Convert.ToDouble(txtMRP.Text) / val) * 100;
-
-                txtrate.Text = val.ToString("f2");
-
+                txtqty.Focus();
             }
-
-            txtqty.Focus();
+            else
+            {
+                txtstock.Text = "0";
+                txttax.Text = "0";
+                txtqty.Text = "0";
+            }
+            if ((stockoption.Text == "1") && (txtstock.Text == "0"))
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Stock is Empty');", true);
+                ddlitem.SelectedIndex = 0;
+                ddlitem.Focus();
+                return;
+            }
+            DataSet dsitem1 = objbs.selectitemsRate_wholesales((ddlitem.SelectedValue), (ddlcustomer.SelectedValue));
+            if (dsitem1.Tables[0].Rows.Count > 0)
+            {
+                if ((dsitem1.Tables[0].Rows[0]["MRP"] == null) || (dsitem1.Tables[0].Rows[0]["MRP"] == "") || dsitem1.Tables[0].Rows[0]["MRP"] == System.DBNull.Value)
+                    txtrate.Text = "0";
+                else
+                    txtrate.Text = Convert.ToDouble(dsitem1.Tables[0].Rows[0]["MRP"]).ToString("f2");
+                double val1 = Convert.ToDouble(txttax.Text) + 100;
+                val1 = (Convert.ToDouble(txtMRP.Text) / val1) * 100;
+            }
+            else
+            {
+                txtrate.Text = "0";
+            }
         }
 
         protected void drppacktype_SelectedIndexChanged(object sender, EventArgs e)
@@ -892,13 +915,27 @@ namespace Billing.Accountsbootstrap
                     dst = objbs.selectitems_wholesales(sTableName, Convert.ToInt16(ddlcustomer.SelectedValue));
                 }
 
-                drpItem.DataSource = dst;
-                drpItem.DataTextField = "Definition";
-                drpItem.DataValueField = "CategoryUserID";
-                drpItem.DataBind();
-                drpItem.Items.Insert(0, "Select Item");
+                //drpItem.DataSource = dst;
+                //drpItem.DataTextField = "IngredientId";
+                //drpItem.DataValueField = "CategoryUserID";
+                //drpItem.DataBind();
+                //drpItem.Items.Insert(0, "Select Item");
 
-               
+                sTableName = Request.Cookies["userInfo"]["User"].ToString();
+                DataSet dlitem = objbs.selectitems_wholesales(sTableName, Convert.ToInt16(ddlcustomer.SelectedValue));
+                if (dlitem.Tables[0].Rows.Count > 0)
+                {
+                    drpItem.DataSource = dlitem.Tables[0];
+                    drpItem.DataTextField = "BIngredientName";
+                    drpItem.DataValueField = "IngredientId";
+                    drpItem.DataBind();
+                    drpItem.Items.Insert(0, "Select Item");
+                }
+                else
+                {
+                    drpItem.Items.Insert(0, "Select Item");
+                }
+
                 DataSet dsitem = objbs.selectpacktype_wholesales();
                 if (dsitem.Tables[0].Rows.Count > 0)
                 {
@@ -1028,7 +1065,7 @@ namespace Billing.Accountsbootstrap
 
 
 
-            if (ddlcustomer.SelectedValue == "0" || ddlcustomer.SelectedValue == "" || ddlcustomer.SelectedValue == "Select Customer")
+            if (ddlcustomer.SelectedValue == "0" || ddlcustomer.SelectedValue == "" || ddlcustomer.SelectedValue == "Select Dealer")
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Please Select Customer.');", true);
                 ddlcustomer.Focus();
@@ -1060,14 +1097,14 @@ namespace Billing.Accountsbootstrap
                 TextBox txtSQty = (TextBox)GridView2.Rows[vLoop].FindControl("txtSQty");
                 TextBox txtBQty = (TextBox)GridView2.Rows[vLoop].FindControl("txtBQty");
 
-                if (drpItem.SelectedValue == "Select Item" || drpItem.SelectedValue == "" || drpItem.SelectedValue == "0")
-                {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Please Select Items.');", true);
-                    drpItem.Focus();
-                    return;
-                }
-                else
-                {
+             //   if (drpItem.SelectedValue == "Select Item" || drpItem.SelectedValue == "" || drpItem.SelectedValue == "0")
+             //   {
+             //       ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Please Select Items.');", true);
+             //       drpItem.Focus();
+             //       return;
+             //   }
+             //   else
+               // {
                     //if (btnadd.Text == "Save")
                     //{
                     //    DataSet dsdupds = objbs.CheckStock(sTableName, Convert.ToInt32(drpItem.SelectedValue), Convert.ToDouble(txtSQty.Text));
@@ -1091,7 +1128,7 @@ namespace Billing.Accountsbootstrap
                     //    }
                     //}
 
-                }
+             //   }
             }
 
             #endregion
@@ -1099,7 +1136,7 @@ namespace Billing.Accountsbootstrap
             if (txtDeliverCharge.Text == "")
                 txtDeliverCharge.Text = "0";
 
-            DateTime date = DateTime.ParseExact(txtdate.Text, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
+            DateTime date = DateTime.ParseExact(txtdate.Text, "dd-MM-yyyy hh:mm tt", CultureInfo.InvariantCulture);
 
             if (btnadd.Text == "Save")
             {
@@ -1367,13 +1404,13 @@ namespace Billing.Accountsbootstrap
                 ddlcustomer.DataTextField = "CustomerName";
                 ddlcustomer.DataValueField = "LedgerID";
                 ddlcustomer.DataBind();
-                ddlcustomer.Items.Insert(0, "Select Customer");
+                ddlcustomer.Items.Insert(0, "Select Dealer");
 
 
             }
             else
             {
-                ddlcustomer.Items.Insert(0, "Select Customer");
+                ddlcustomer.Items.Insert(0, "Select Dealer");
             }
 
             //DataSet dsitem = objbs.selectitems_wholesales(sTableName, Convert.ToInt16(ddlcustomer.SelectedValue));

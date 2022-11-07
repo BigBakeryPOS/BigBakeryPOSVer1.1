@@ -1303,6 +1303,11 @@ namespace Billing.HeaderMaster
                                     {
                                         MasterMenu.Visible = true;
                                         Customer.Visible = true;
+                                        CustMast.Visible = true;
+                                        DealMast.Visible = true;
+                                        SupMast.Visible = true;
+                                        EmpMast.Visible = true;
+                                        Li11.Visible = true;
                                     }
                                     if (screen == "employee")
                                     {
@@ -2471,6 +2476,10 @@ namespace Billing.HeaderMaster
                                 {
                                     MasterMenu.Visible = true;
                                     Customer.Visible = true;
+                                    CustMast.Visible = true;
+                                    DealMast.Visible = true;
+                                    SupMast.Visible = true;
+                                    EmpMast.Visible = true;
                                 }
                                 if (screen == "employee")
                                 {
@@ -3653,6 +3662,10 @@ namespace Billing.HeaderMaster
                             {
                                 MasterMenu.Visible = true;
                                 Customer.Visible = true;
+                                CustMast.Visible = true;
+                                DealMast.Visible = true;
+                                SupMast.Visible = true;
+                                EmpMast.Visible = true;
                             }
                             if (screen == "employee")
                             {

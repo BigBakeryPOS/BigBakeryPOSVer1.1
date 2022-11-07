@@ -8,6 +8,7 @@ using BusinessLayer;
 using DataLayer;
 using System.Data;
 using System.Text;
+using DocumentFormat.OpenXml.Office2010.Excel;
 
 
 namespace Billing.Accountsbootstrap
@@ -17,6 +18,7 @@ namespace Billing.Accountsbootstrap
         string superadmin = "";
         BSClass objBs = new BSClass();
         string Empid = "";
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             superadmin = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
@@ -24,10 +26,22 @@ namespace Billing.Accountsbootstrap
             lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             Empid = Request.Cookies["userInfo"]["Empid"].ToString();
+            ID = Request.QueryString.Get("id");
+            srch.Text = ID;
             if (!IsPostBack)
             {
-
-                DataSet ds = objBs.getcustomer();
+                
+                if (srch.Text == "1")
+                    head1.InnerHtml = "Customer Master";
+                else if (srch.Text == "2")
+                    head1.InnerHtml = "Dealer Master";
+                else if (srch.Text == "3")
+                    head1.InnerHtml = "Supplier Master";
+                else if (srch.Text == "4")
+                    head1.InnerHtml = "icing Employee Master";
+                else
+                    head1.InnerHtml = "dispatch Employee Master";
+                DataSet ds = objBs.getcustomer(srch.Text);
                 gvcust.DataSource = ds;
                 gvcust.DataBind();
             }
@@ -35,14 +49,14 @@ namespace Billing.Accountsbootstrap
         protected void Add_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("../Accountsbootstrap/customermaster.aspx");
+            Response.Redirect("../Accountsbootstrap/customermaster.aspx?id="+ srch.Text);
 
         }
 
         protected void refresh_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("../Accountsbootstrap/viewcustomer.aspx");
+            Response.Redirect("../Accountsbootstrap/viewcustomer.aspx?id="+ srch.Text);
 
         }
 
@@ -143,7 +157,7 @@ namespace Billing.Accountsbootstrap
         {
             if (e.CommandName == "edite")
             {
-                Response.Redirect("customermaster.aspx?iCusID=" + e.CommandArgument.ToString());
+                Response.Redirect("customermaster.aspx?iCusID=" + e.CommandArgument.ToString()+"&id="+ ID);
                 DataSet getaccess = objBs.getuseraccessforeditaccess(Empid, "contactedit");
                 if (getaccess.Tables[0].Rows.Count > 0)
                 {
