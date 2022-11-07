@@ -120,7 +120,7 @@
              <div class="col-lg-4">
                 <div class="panel panel-custom1">
                 <div class="panel-header">
-                  <h1 class="page-header">Add Contact</h1>
+                  <h1 runat="server" id="head1" class="page-header">Add Contact</h1>
 	            </div>
                     <div class="panel-body panel-form-right" >
                                <div class="list-group">
@@ -328,7 +328,7 @@
                 <div class="col-lg-8">
                 <div class="row panel-custom1">
                  <div class="panel-header">
-                  <h1 class="page-header">Contact Master</h1>
+                  <h1 id="head2" runat="server" class="page-header">Contact Master</h1>
 	            </div>
                     <div class="panel-body" >
                           
@@ -347,7 +347,8 @@
                             
                                                     <div id="Ingredient" runat="server" visible="false" class="form-group">
                                                         
-                                                       
+                                                                                                                                    <asp:Label ID="srch"  Visible="false" runat="server" ></asp:Label>
+
                                                             <asp:GridView ID="griditem" runat="server" AutoGenerateColumns="false" Width="100%" cssClass="table table-striped pos-table"
                                                                 OnRowDataBound="GridView1_OnRowDataBound" padding="0" spacing="0" border="0">
                                                                 <Columns>
@@ -368,6 +369,7 @@
                                                                             <asp:TextBox ID="txtitemprintname" Width="13pc" CssClass="form-control" runat="server"></asp:TextBox>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
+                                                                    <asp:BoundField HeaderText="MRP" DataField="Rate" DataFormatString="{0:N2}"  ItemStyle-Width="300px"  />
                                                                     <asp:TemplateField HeaderText="Rate">
                                                                         <ItemTemplate>
                                                                             <asp:TextBox ID="txtRate" Width="13pc" CssClass="form-control" runat="server"></asp:TextBox>

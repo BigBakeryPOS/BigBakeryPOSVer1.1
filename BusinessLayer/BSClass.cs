@@ -17591,7 +17591,7 @@ namespace BusinessLayer
             else 
                 cont= "and ct.contacttype='dispatch Employee'";
 
-            string sQry = "select top 50 ct.ContactType,c.* from tblCustomer c inner join tblContactType ct on ct.ContactID=c.ContactTypeID  where c.IsActive='Yes' " + cont + "  order by idcust desc";//  order by CustomerName asc";
+                string sQry = "select top 50 ct.ContactType,c.* from tblCustomer c inner join tblContactType ct on ct.ContactID=c.ContactTypeID  where c.IsActive='Yes' " + cont + "  order by idcust desc";//  order by CustomerName asc";
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
         }
@@ -32988,8 +32988,8 @@ namespace BusinessLayer
         public DataSet chkEmployeeUsername_Edit(string sUsername, string ledgerid)
         {
             DataSet ds = new DataSet();
-            string sqry = "select * from tblledger where username='" + sUsername + "' and ledgerid<>'" + ledgerid + "'";
-
+            // string sqry = "select * from tblledger where username='" + sUsername + "' and ledgerid<>'" + ledgerid + "'";
+            string sqry = "select * from tblledger where ledgerid<>'" + ledgerid + "'";
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
         }
