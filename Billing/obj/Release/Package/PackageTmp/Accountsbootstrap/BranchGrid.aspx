@@ -5,46 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
 <head>
-    <style type="text/css">
-        a img
-        {
-            border: none;
-        }
-        ol li
-        {
-            list-style: decimal outside;
-        }
-        div#container
-        {
-            width: 780px;
-            margin: 0 auto;
-            padding: 1em 0;
-        }
-        div.side-by-side
-        {
-            width: 100%;
-            margin-bottom: 1em;
-        }
-        div.side-by-side > div
-        {
-            float: left;
-            width: 50%;
-        }
-        div.side-by-side > div > em
-        {
-            margin-bottom: 10px;
-            display: block;
-        }
-        .clearfix:after
-        {
-            content: "\0020";
-            display: block;
-            height: 0;
-            clear: both;
-            overflow: hidden;
-            visibility: hidden;
-        }
-    </style>
+    
     <meta content="" charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -59,6 +20,7 @@
     <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet" />
+    <link href="../css/Pos_style.css" rel="stylesheet" />
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="../Styles/style1.css" rel="stylesheet" />
@@ -123,33 +85,35 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label" Visible="false">Welcome: </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <form runat="server" id="form1">
-    <div class="row">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <div class="col-lg-12" style="margin-top: 6px">
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Branch Master Details</b></div>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                           <div class="row">
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+       <div class="row panel-custom1">
+              <div class="panel-header">
+                  <h1 class="page-header">Branch Master
+                  <span class="pull-right">
+                  <asp:LinkButton ID="btnadd" runat="server" OnClick="btnadd_Onclick">
+                  
+                                                <button type="button" class="btn btn-primary btn-md pos-btn1">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD
+			</button>
+                   </asp:LinkButton>
+                   </span>
+                   </h1>
+	            </div>
+              <div class="panel-body">
+                    <div class="row">
                                 <div class="col-lg-4">
-                                    <asp:Button ID="btnadd" runat="server" class="btn btn-danger" Visible="false" OnClick="btnadd_Onclick"
-                                        Text="Add New" />
+                                    
                                 </div>
-                                <div class="col-lg-2">
-                                </div>
-                                <div class="col-lg-6">
+                               
+                                <div class="col-lg-8">
                                     <asp:Label runat="server" ID="lbMessage" Visible="false" Text="* Given Branch's Creation Limit Exceed. Please Contact Bigdbiz Solutions Pvt.Ltd. Thank You!'" ForeColor="Red" Font-Size="17px" Font-Bold="true"></asp:Label>
                                 </div>
-                                </div>
-                                 <table class="table table-bordered table-striped">
+                                
+                                 <%--<table class="table table-striped pos-table">
                                 <tr id="Tr1" runat="server" visible="false">
                                     <td>
                                         <div>
@@ -158,7 +122,7 @@
                                                 Visible="true" runat="server">
                                                 <asp:ListItem Text="Search By" Value="0"></asp:ListItem>
                                                 <asp:ListItem Text="User Name" Value="1"></asp:ListItem>
-                                                <%--<asp:ListItem Text="Email" Value="3"></asp:ListItem>--%>
+                                                <asp:ListItem Text="Email" Value="3"></asp:ListItem>
                                             </asp:DropDownList>
                                             <asp:TextBox CssClass="form-control" Enabled="true" ID="txtsearch" runat="server"
                                                 onkeyup="Search_Gridview(this, 'gvcust')" placeholder="Search Text" Style="width: 170px;
@@ -171,32 +135,35 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <asp:GridView ID="gvcust" EmptyDataText="No records Found" runat="server" CssClass="mGrid"
-                                            AutoGenerateColumns="false" OnRowCommand="gvcust_RowCommand" Width="100%">
+                                </table>--%>
+                                  <div class="col-lg-12">
+                                <div class="table-responsive panel-grid-left">
+                                    <asp:GridView ID="gvcust" EmptyDataText="No records Found" runat="server" CssClass="table table-striped pos-table"
+                                            AutoGenerateColumns="false" OnRowCommand="gvcust_RowCommand" Width="100%" padding="0" spacing="0" border="0">
                                             <Columns>
                                                 <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="login_id" Visible="false">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lbllogin_id" runat="server" CommandArgument='<%#Eval("BranchId") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:BoundField HeaderText="Branch Name" DataField="BranchName" ItemStyle-HorizontalAlign="Center" />
-                                                <asp:BoundField HeaderText="Contact Name" DataField="ContactName" ItemStyle-HorizontalAlign="Center" />
-                                                <asp:BoundField HeaderText="Mobile No." DataField="MobileNo" ItemStyle-HorizontalAlign="Center" />
-                                                <asp:BoundField HeaderText="LandLine No." DataField="LandLine" ItemStyle-HorizontalAlign="Center" />
-                                                <asp:BoundField HeaderText="B.Email" DataField="Email" ItemStyle-HorizontalAlign="Center" />
-                                                <asp:BoundField HeaderText="P.Email" DataField="Pemail" ItemStyle-HorizontalAlign="Center" />
-                                                <asp:BoundField HeaderText="I.Email" DataField="Iemail" ItemStyle-HorizontalAlign="Center" />
-                                                <asp:BoundField HeaderText="O.Email" DataField="Oemail" ItemStyle-HorizontalAlign="Center" />
-                                                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Edit">
+                                                <asp:BoundField HeaderText="Branch Name" DataField="BranchName"  />
+                                                <asp:BoundField HeaderText="Contact Name" DataField="ContactName"  />
+                                                <asp:BoundField HeaderText="Mobile No." DataField="MobileNo"  />
+                                                <asp:BoundField HeaderText="LandLine No." DataField="LandLine"  />
+                                                <asp:BoundField HeaderText="B.Email" DataField="Email"  />
+                                                <asp:BoundField HeaderText="P.Email" DataField="Pemail" Visible="false"  />
+                                                <asp:BoundField HeaderText="I.Email" DataField="Iemail" Visible="false"  />
+                                                <asp:BoundField HeaderText="O.Email" DataField="Oemail" Visible="false"  />
+                                                <asp:TemplateField  HeaderText="Edit">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="btnedit" runat="server" CommandArgument='<%#Eval("BranchId") %>'
+                                                        <asp:LinkButton ID="btnedit" runat="server" cssclass="btn btn-warning btn-md" CommandArgument='<%#Eval("BranchId") %>'
                                                             CommandName="edit">
-                                                            <asp:Image ID="img" runat="server" ImageUrl="~/images/edit.png" Width="55px" /></asp:LinkButton>
+                                                            <asp:Image ID="img" runat="server" ImageUrl="~/images/edit.png" Width="55px" Visible="false" />
+                                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                            </asp:LinkButton>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Delete" Visible="false">
+                                                <asp:TemplateField  HeaderText="Delete" Visible="false">
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="btndelete" runat="server" CommandArgument='<%#Eval("BranchId") %>'
                                                             CommandName="delete" OnClientClick="alertMessage()">
@@ -214,24 +181,19 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>
-                                        </asp:GridView>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.col-lg-6 (nested) -->
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
+                                    </asp:GridView>
+                                </div>
+                                </div>
+                          </div>
+               </div>
         </div>
-        <!-- /.col-lg-12 -->
+    </div>
+    </div>
     </div>
     <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
     <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
     <script type="text/javascript">        $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
-    </div>
+
     <asp:Panel class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none"
         runat="server">
         <div class="popup_Container">

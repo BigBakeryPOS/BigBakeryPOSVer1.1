@@ -182,110 +182,82 @@
     <form id="f1" runat="server">
     <asp:scriptmanager id="ScriptManager1" runat="server">
     </asp:scriptmanager>
-    <div class="panel panel-default" style="height: 100%; padding-top: 10px">
-        <div class="panel-heading" style="background-color: #0071BD; color: White">
-            Customer OutStanding
-        </div>
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Customer OutStanding</h1>
+	    </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="col-lg-1">
-                    </div>
-                    <div class="col-lg-1">
-                        <div class="form-group">
+               
+                    <div class="col-lg-3">
+                       
                             <label>
                                 Type</label>
-                            <asp:dropdownlist id="ddltype" runat="server" cssclass="form-control" width="110px">
+                            <asp:dropdownlist id="ddltype" runat="server" cssclass="form-control" >
                                 <asp:listitem text="Summary" value="1">
                                 </asp:listitem>
                                 <asp:listitem text="Detailed" value="2">
                                 </asp:listitem>
                             </asp:dropdownlist>
-                        </div>
+                        
                     </div>
-                    <div class="col-lg-1">
-                        <label style="color: Black">
+                    <div class="col-lg-3">
+                        <label>
                             From Date</label>
-                        <asp:textbox id="txtfromdate" cssclass="form-control" runat="server" width="100px">
+                        <asp:textbox id="txtfromdate" cssclass="form-control" runat="server">
                         </asp:textbox>
                         <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txtfromdate"
                             Format="dd/MM/yyyy" PopupButtonID="txtfromdate" runat="server" CssClass="cal_Theme1">
                         </ajaxToolkit:CalendarExtender>
                     </div>
-                    <div class="col-lg-1">
-                        <label style="color: Black">
+                    <div class="col-lg-3">
+                        <label>
                             To Date</label>
-                        <asp:textbox id="txttodate" cssclass="form-control" runat="server" width="100px">
+                        <asp:textbox id="txttodate" cssclass="form-control" runat="server" >
                         </asp:textbox>
                         <ajaxToolkit:CalendarExtender ID="CalendarExtender3" TargetControlID="txttodate"
                             Format="dd/MM/yyyy" PopupButtonID="txttodate" runat="server" CssClass="cal_Theme1">
                         </ajaxToolkit:CalendarExtender>
                     </div>
-                    <div class="col-lg-2">
-                        <label style="color: Black">
+                    <div class="col-lg-3">
+                        <label>
                             Customer
                         </label>
-                        <asp:dropdownlist runat="server" id="ddlcustomerrep" CssClass="chzn-select" width="210px">
+                        <asp:dropdownlist runat="server" id="ddlcustomerrep" CssClass="form-control">
                         </asp:dropdownlist>
                     </div>
-                    <div class="col-lg-1">
-                    </div>
-                    <div class="col-lg-1">
-                        <div class="form-group">
+                    
+                    <div class="col-lg-3">
+                       
                             <br />
-                            <asp:button id="btnsearch" runat="server" class="btn btn-success" text="Search"
-                                onclick="btnsearch_OnClick"  Width="110px" />
+                            <asp:button id="btnsearch" runat="server" class="btn btn-primary pos-btn1" text="Search"
+                                onclick="btnsearch_OnClick"  />
+                      
+                           &nbsp;&nbsp;&nbsp; <asp:button id="btn" runat="server" text="Print" visible="true" cssclass="btn btn-secondary"
+                                onclientclick="Denomination123()"   />
+                       
+                           &nbsp;&nbsp;&nbsp; <asp:button id="btnExcel" runat="server" text="Export To Excel" visible="true" cssclass="btn btn-success"
+                                onclick="btnexp_Click"   />
                         </div>
-                    </div>
-                    <div class="col-lg-1">
-                        <div class="form-group">
-                            <br />
-                            <asp:button id="btn" runat="server" text="Print" visible="true" cssclass="btn btn-warning"
-                                onclientclick="Denomination123()"  Width="110px"  />
-                        </div>
-                    </div>
-                    <div class="col-lg-1">
-                        <div class="form-group">
-                            <br />
-                            <asp:button id="btnExcel" runat="server" text="Export To Excel" visible="true" cssclass="btn btn-info"
-                                onclick="btnexp_Click"  Width="110px"  />
-                        </div>
-                    </div>
-                    <div class="col-lg-1">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <asp:textbox placeholder="Search Text" id="txtsearchmobile" style="height: 28px;"
+                        <div class="col-lg-3">
+                            <asp:textbox placeholder="Search Text" id="txtsearchmobile"
                                 runat="server" cssclass="form-control" maxlength="25" visible="false" onkeyup="Search_Gridview(this, 'gv')">
                             </asp:textbox>
                             <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtendername" runat="server"
                                 FilterType="LowercaseLetters, UppercaseLetters,Custom,Numbers" ValidChars=" ._/-"
                                 TargetControlID="txtsearchmobile" />
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12" style="margin-top: 10px">
-                            <div class="col-lg-9">
-                            </div>
-                            <div class="col-lg-16">
-                            </div>
-                            <div class="col-lg-2">
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
-            </div>
-            <div id="IDValues" runat="server">
-                <div id="div1" runat="server">
-                    <div class="col-lg-12" style="    margin-left: -209px;">
-                        <div class="col-lg-3">
-                        </div>
-                        <div class="col-lg-6">
-                            <asp:gridview id="gvreceiptamt" emptydatatext="Oops! No Activity Performed." cssclass="mGrid"
+           
+            
+           
+                <div id="div1" runat="server" class="table-responsive panel-grid-left">
+                   
+                            <asp:gridview id="gvreceiptamt" emptydatatext="Oops! No Activity Performed." cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                                 caption="Customer OutStanding Details" onrowdatabound="gvreceiptamt_OnRowDataBound"
                                 runat="server" autogeneratecolumns="false" showfooter="true">
                                 <columns>
@@ -309,15 +281,14 @@
                                     <asp:BoundField HeaderText="BillCount" DataField="BillCount" />
                                 </columns>
                             </asp:gridview>
-                        </div>
-                        <div class="col-lg-3">
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        
+                        
         </div>
-    </div>
-    </div>
+
+   </div>
+   </div>
+   </div>
+   </div>
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>

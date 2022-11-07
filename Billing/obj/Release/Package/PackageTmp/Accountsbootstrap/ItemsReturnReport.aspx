@@ -57,25 +57,30 @@
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <div style="margin-top: 10px">
-        <div class="col-lg-12">
-            <div class="col-lg-2">
-                <h2>
-                    Stock Return Report</h2>
-            </div>
-            <div class="col-lg-2">
-                <div class="form-group">
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Stock Return Report</h1>
+	    </div>
+   <div class="panel-body">
+   
+        
+        <div class="row">
+            <div class="col-lg-3">
+              
                     <label>
                         Branch</label>
-                    <asp:DropDownList ID="ddlBranch" runat="server" CssClass="form-control" Width="150px">
+                    <asp:DropDownList ID="ddlBranch" runat="server" CssClass="form-control">
                     </asp:DropDownList>
-                </div>
+               
             </div>
-            <div class="col-lg-1">
-                <div class="form-group">
+            <div class="col-lg-3">
+               
                     <label>
                         From date</label>
-                    <asp:TextBox runat="server" ID="txtfromdate" CssClass="form-control" Width="100px">
+                    <asp:TextBox runat="server" ID="txtfromdate" CssClass="form-control" >
                     </asp:TextBox>
                     <%--<asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtfromdate"
                         ErrorMessage="Please Select valid Date Thank You!!!" Type="Date">
@@ -83,13 +88,13 @@
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtfromdate"
                         Format="MM/dd/yyyy" runat="server" CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
-                </div>
+               
             </div>
-            <div class="col-lg-1">
-                <div class="form-group">
+            <div class="col-lg-3">
+               
                     <label>
                         To date</label>
-                    <asp:TextBox runat="server" ID="txttodate" CssClass="form-control" Width="100px">
+                    <asp:TextBox runat="server" ID="txttodate" CssClass="form-control" >
                     </asp:TextBox>
                     <%--<asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="txttodate"
                         ErrorMessage="Please Select valid Date Thank You!!!" Type="Date">
@@ -97,46 +102,40 @@
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txttodate"
                         Format="MM/dd/yyyy" runat="server" CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
-                </div>
+                
             </div>
-            <div class="col-lg-2">
-                <div class="form-group">
+            <div class="col-lg-3">
+                
                     <label>
                         Reasons</label>
-                    <asp:DropDownList ID="ddlreason" runat="server" CssClass="form-control" Width="150px">
+                    <asp:DropDownList ID="ddlreason" runat="server" CssClass="form-control" >
                     </asp:DropDownList>
-                </div>
+               
             </div>
-            <div class="col-lg-1">
-                <div class="form-group">
+            <div class="col-lg-6">
+                
                     <br />
-                    <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-success" Text="Search"
-                        Width="120px" OnClick="btnSearch_Click" />
-                </div>
-            </div>
-            <div class="col-lg-1">
-                <div class="form-group">
-                    <br />
-                    <asp:Button ID="btnPrint" runat="server" Text="Print" CssClass="btn btn-warning"
-                        Width="120px" OnClick="btnPrint_Click" />
-                </div>
-            </div>
-            <div class="col-lg-1">
-                <div class="form-group">
-                    <br />
-                    <asp:Button ID="btnExp" runat="server" Text="Export" CssClass="btn btn-danger" Width="120px"
+                    <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-success pos-btn1" Text="Search" Width="100px"
+                        OnClick="btnSearch_Click" />
+               
+    
+                   &nbsp; &nbsp; &nbsp; <asp:Button ID="btnPrint" runat="server" Text="Print" CssClass="btn btn-secondary" Width="100px"
+                        OnClick="btnPrint_Click" />
+                
+          
+                   &nbsp; &nbsp; &nbsp;  <asp:Button ID="btnExp" runat="server" Text="Export" CssClass="btn btn-success" Width="100px"
                         OnClick="btnExp_Click1" />
-                </div>
+                
             </div>
-            <div class="col-lg-1">
-                <div class="form-group">
-                </div>
-            </div>
-        </div>
+          </div>
+       
+       
+        <div class="col-lg-12">
+        <div class="row">
         <div id="div1" runat="server">
-            <div class="col-lg-12">
-                <asp:GridView ID="gvReturns"  runat="server" CssClass="myGridStyle"
-                    AutoGenerateColumns="false" BackColor="#99cc99" EmptyDataText="No Records Found"
+            <div class="table-responsive panel-grid-left">
+                <asp:GridView ID="gvReturns"  runat="server" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
+                    AutoGenerateColumns="false"  EmptyDataText="No Records Found"
                     Width="100%">
                     <Columns>
                         <asp:BoundField HeaderText="Return No" DataField="RetNo" Visible="false" />
@@ -159,7 +158,14 @@
                 </asp:GridView>
             </div>
         </div>
+        </div>
+        </div>
+        </div>
     </div>
+    </div>
+    </div>
+    </div>
+   
     </form>
 </body>
 </html>

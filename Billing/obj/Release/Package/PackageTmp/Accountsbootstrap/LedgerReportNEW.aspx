@@ -35,6 +35,7 @@
     <link href="../Styles/bootstrap.min.css" rel="stylesheet" />
     <!-- MetisMenu CSS -->
     <link href="../Styles/metisMenu.min.css" rel="stylesheet" />
+    <link href="../css/Pos_style.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="../Styles/sb-admin-2.css" rel="stylesheet" />
     <!-- Custom Fonts -->
@@ -70,15 +71,21 @@
         ID="val1" ShowMessageBox="true" ShowSummary="false" />
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="row">
+             <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
               
-                      <div class="col-lg-12" style="">
-                       <div class="col-lg-2">
-                <h1 class="page-header" style="text-align: center; color: #fe0002; font-size: 20px">
-                    Ledger Report</h1>
-            </div>
-                    <div class="col-lg-2" style="">
-                        <div class="form-group" id="from" runat="server">
+             
+        <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Ledger Report</h1>
+	    </div>
+            
+                
+                        <div class="panel-body" id="bill">
+                        <div class="row">
+                        <div class="col-lg-3">  
+                        <div id="from" runat="server">
                             <label>
                                 From Date</label>
                             <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="RequiredFieldValidator4"
@@ -91,9 +98,11 @@
                         </ajaxToolkit:CalendarExtender>
                         <asp:ScriptManager ID="ScriptManager1" runat="server">
                         </asp:ScriptManager>
-                    </div>
-                    <div class="col-lg-2" style="">
-                        <div class="form-group" id="to" runat="server">
+                        </div>
+
+
+                    <div class="col-lg-3">
+                        <div  id="to" runat="server">
                             <label>
                                 To Date</label>
                             <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="RequiredFieldValidator1"
@@ -104,8 +113,10 @@
                             </ajaxToolkit:CalendarExtender>
                         </div>
                     </div>
-                    <div class="col-lg-2" runat="server" visible="false">
-                        <div class="form-group">
+
+                    <div class="col-lg-3">
+                    <div id="Div2"  runat="server" visible="false">
+                        
                             <label>
                                 Heading</label>
                             <asp:CompareValidator ID="CompareValidator1" runat="server" ValidationGroup="val1"
@@ -114,10 +125,12 @@
                             <asp:DropDownList ID="DropHeading" runat="server" CssClass="form-control" AutoPostBack="true"
                                 OnSelectedIndexChanged="DropHeading_SelectedIndexChanged">
                             </asp:DropDownList>
-                        </div>
+                     </div>  
                     </div>
-                    <div class="col-lg-2" runat="server" visible="false">
-                        <div class="form-group">
+
+                    <div class="col-lg-3">
+                    <div id="Div3"  runat="server" visible="false">
+                        
                             <label>
                                 Group</label>
                             <asp:CompareValidator ID="CompareValidator2" runat="server" ValidationGroup="val1"
@@ -126,31 +139,31 @@
                             <asp:DropDownList ID="ddlGroup" runat="server" CssClass="form-control" AutoPostBack="true"
                                 OnSelectedIndexChanged="ddlGroup_SelectedIndexChanged">
                             </asp:DropDownList>
-                        </div>
+                    </div>   
                     </div>
-                    <div class="col-lg-2" style="">
-                        <div class="form-group">
+
+                   
+                       <div class="col-lg-3">
                             <label>
                                 Ledger Name</label>
-                            <asp:CompareValidator ID="CompareValidator3" runat="server" ValidationGroup="val1"
+                            <asp:CompareValidator ID="CompareValidator3" runat="server" ValidationGroup="val1" 
                                 Text="*" Style="color: Red" InitialValue="0" ControlToValidate="ddLedger" ValueToCompare="Select"
                                 Operator="NotEqual" Type="String" ErrorMessage="Please Select Ledger Name"></asp:CompareValidator>
-                            <asp:DropDownList ID="ddLedger" runat="server" CssClass="chzn-select" OnSelectedIndexChanged="ddLedger_SelectedIndexChanged">
+                            <asp:DropDownList ID="ddLedger" runat="server" CssClass="form-control " OnSelectedIndexChanged="ddLedger_SelectedIndexChanged" >
                             </asp:DropDownList>
                             <%--<asp:Button ID="btnfind" runat="server" Text="Find" CssClass="btn btn-success" 
                                                 onclick="btnfind_Click" />--%>
-                            <div class="form-group">
-                            </div>
-                        </div>
+                            
+                     
                     </div>
-                    <div class="col-lg-2" style="">
-                        <div class="form-group">
-                            <asp:Button ID="Button1" runat="server" Text="Generate Report" Style="margin-top: 20px;
-                                margin-left: 40px" ValidationGroup="val1" CssClass="btn btn-info" OnClick="btnSearch_Click" />
-                        </div>
-                    </div>
-                    <div class="col-lg-2" runat="server" visible="true">
-                        <div class="form-group">
+
+                   
+                     
+                    
+
+                    <div class="col-lg-3">
+                    <div id="Div4"  runat="server" visible="true">
+                       
                             <label>
                                 Select Company</label>
                             <asp:DropDownList ID="ddloutlet" runat="server" CssClass="form-control">
@@ -159,12 +172,24 @@
                                 <asp:ListItem Text="CO3" Value="CO3"></asp:ListItem>
                                 <asp:ListItem Text="All" Value="All"></asp:ListItem>
                             </asp:DropDownList>
+                       
+                        </div>
+                      </div> 
+                       </div>
+                       <br />
+                      <div class="row">
+                      <div class="col-lg-3">
+                            <asp:Button ID="Button1" runat="server" Text="Generate Report" 
+                                 ValidationGroup="val1" CssClass="btn btn-info pos-btn1" OnClick="btnSearch_Click" />
+                              &nbsp;&nbsp;&nbsp;  <asp:button id="Button2" runat="server" cssclass="btn btn-outline-secondary" text="Print" width="100px"
+                                 onclientclick="javascript:CallPrint('bill');" xmlns:asp="#unknown" />
+                        </div>
                         </div>
                         <%--<div class="form-group">
                             <asp:Button ID="btnSearch" runat="server" Text="Generate Report" ValidationGroup="val1"
                                 CssClass="btn btn-info" OnClick="btnSearch_Click" />
                         </div>--%>
-                    </div>
+                    
                     <%-- <div class="col-lg-2">
                                         <div class="form-group">
                                      <label>Select Company</label>
@@ -180,24 +205,13 @@
                                         </div>
                                        
                                         </div>--%>
-                    <!-- /.col-lg-12 -->
-               
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div align="right">
-                            <asp:button id="btnprint" runat="server" cssclass="btn btn-block center-block" text="Print"
-                                width="125px" onclientclick="javascript:CallPrint('bill');" xmlns:asp="#unknown" />
-                        </div>
-                        <div class="panel-body" id="bill">
-                            <div class="row">
+                                    
+                                     <div class="row">  
                                 <div class="col-lg-12">
                                     <asp:ValidationSummary runat="server" HeaderText="Validation Messages" ValidationGroup="val1"
                                         ID="ValidationSummary1" ShowMessageBox="true" ShowSummary="false" />
                                     <h2 align="center">
-                                        <asp:Label ID="lblMessage" Style="color: Blue;" runat="server"></asp:Label></h2>
+                                        <asp:Label ID="lblMessage" Style="color: #007aff;" runat="server"></asp:Label></h2>
                                     <!-- /.row -->
                                     <%-- <div  class="row" style="margin-left:10px"> <asp:RadioButton ID="rbBranch1" runat="server" Text="Branch1" 
                GroupName="Branch" oncheckedchanged="rbBranch1_CheckedChanged" AutoPostBack="true" />
@@ -237,24 +251,27 @@
                                 </td>
                             </tr>
                         </table>--%>
+                        <div class="table-responsive panel-grid-left">
                                     <div class="row" id="dd" runat="server" visible="false">
                                         <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
-                                        <div align="center">
-                                            <asp:GridView ID="gvdaybook" Width="100%" runat="server" ShowFooter="true" AutoGenerateColumns="false"
-                                                OnRowDataBound="gvdaybook_RowDataBound">
+                                          <asp:GridView ID="gvdaybook" runat="server"  cssClass="table table-striped pos-table" AllowPaging="false" 
+                                    Width="100%" EmptyDataText="Oops! No Activity Performed." OnRowDataBound="gvdaybook_RowDataBound" 
+                                    AutoGenerateColumns="false" padding="0" spacing="0" border="0">
+                                            
                                                 <Columns>
-                                                    <asp:BoundField DataField="Branchname" HeaderText="Branch Name" Visible="true" ItemStyle-HorizontalAlign="Center" />
-                                                    <asp:BoundField DataField="Date" ItemStyle-Width="5%" HeaderText="Date" ItemStyle-HorizontalAlign="Right"
+                                               
+                                                    <asp:BoundField DataField="Branchname"   HeaderText="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Branch Name" />
+                                                    <asp:BoundField DataField="Date"  HeaderText="Date"
                                                         DataFormatString="{0:dd/MM/yyyy}" />
-                                                    <asp:BoundField DataField="Particulars" ItemStyle-Width="30%" HeaderText="Particulars" />
-                                                    <asp:BoundField DataField="Narration" ItemStyle-Width="15%" HeaderText="Narration" />
+                                                    <asp:BoundField DataField="Particulars"  HeaderText="Particulars" />
+                                                    <asp:BoundField DataField="Narration"  HeaderText="Narration" />
                                                     <asp:BoundField DataField="Type" HeaderText="Type" />
-                                                    <asp:BoundField DataField="Debit" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right"
-                                                        DataFormatString="{0:f2}" HeaderText="Debit" ItemStyle-HorizontalAlign="Right" />
-                                                    <asp:BoundField DataField="Credit" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right"
-                                                        DataFormatString="{0:f2}" HeaderText="Credit" ItemStyle-HorizontalAlign="Right" />
-                                                    <asp:TemplateField ItemStyle-Width="18%" HeaderText="Balance" HeaderStyle-HorizontalAlign="Right"
-                                                        ItemStyle-HorizontalAlign="Right">
+                                                    <asp:BoundField DataField="Debit" 
+                                                        DataFormatString="{0:f2}" HeaderText="Debit"  />
+                                                    <asp:BoundField DataField="Credit" 
+                                                        DataFormatString="{0:f2}" HeaderText="Credit"  />
+                                                    <asp:TemplateField  HeaderText="Balance" 
+                                                        >
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblBalance" runat="server" CssClass="lblFont" Font-Bold="true" ForeColor="Blue"
                                                                 Text="0.00"> </asp:Label>
@@ -263,8 +280,7 @@
                                                     <asp:BoundField ItemStyle-Width="10%" DataField="LedgerID" Visible="false" />
                                                 </Columns>
                                             </asp:GridView>
-                                            <br />
-                                        </div>
+                                           
                                         <asp:Label ID="lblDebitTotal" runat="server" Visible="false"></asp:Label>
                                         <asp:Label ID="lblCreditTotal" runat="server" Visible="false"></asp:Label>
                                         <br />
@@ -274,7 +290,7 @@
                                         <asp:Label ID="lblNetDebit" runat="server" Visible="false"></asp:Label>
                                         <asp:Label ID="lblNetCredit" runat="server" Visible="false"></asp:Label>
                                         <table border="0" cellspacing="0">
-                                            <tr runat="server" visible="false">
+                                            <tr id="Tr1" runat="server" visible="false">
                                                 <td width="670px">
                                                     &nbsp;
                                                 </td>
@@ -291,7 +307,7 @@
                                                     <asp:Label ID="lblOBCR" runat="server"></asp:Label>
                                                 </td>
                                             </tr>
-                                            <tr runat="server" visible="false">
+                                            <tr id="Tr2" runat="server" visible="false">
                                                 <td width="670px">
                                                     &nbsp;
                                                 </td>
@@ -308,7 +324,7 @@
                                                     <asp:Label ID="lblCreditSum" runat="server"></asp:Label>
                                                 </td>
                                             </tr>
-                                            <div runat="server" visible="false">
+                                            <div id="Div1" runat="server" visible="false">
                                                 <tr>
                                                     <td width="670px">
                                                         &nbsp;
@@ -327,7 +343,7 @@
                                                     </td>
                                                 </tr>
                                             </div>
-                                            <tr runat="server" visible="false">
+                                            <tr id="Tr3" runat="server" visible="false">
                                                 <td>
                                                     &nbsp;
                                                 </td>
@@ -346,14 +362,18 @@
                                             </tr>
                                         </table>
                                     </div>
-                                    <div class="row">
-                                    </div>
+                                   
                                     <!-- /#page-wrapper -->
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                   
+            </div>
+            </div>
+           
+            
+            </div>
+            </div>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>

@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1">
     <title>Advance/Qty Order Report</title>
-    <style type="text/css">
+    <%--<style type="text/css">
         .button-success, .button-error, .button-warning, .button-secondary
         {
             color: white;
@@ -110,7 +110,7 @@
         {
             padding-top: 50px;
         }
-    </style>
+    </style>--%>
     <meta content="" charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -200,22 +200,24 @@
 <body>
     <form id="form1" runat="server">
     <usc:Header ID="Header" runat="server" />
-    <div class="panel-body">
-        <div class="row" align="center">
+   <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+       <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Todays Order Report</h1>
+	    </div>
             .
-            <div class="col-lg-10" align="center" style="margin-left: 40px">
-                <div class="col-lg-12" style="margin-top: 6px">
-                    <h1 class="page-header" style="text-align: center; color: #fe0002; font-size: 20px;
-                        font-weight: bold">
-                        Todays Order Report</h1>
-                </div>
-                <div align="center" style="margin-top: 40px; margin-left: -80px">
+          
+               
+               
                     <div class="col-lg-12">
+                    <div class="row">
                         <div runat="server" visible="false">
                             <%-- Blaackforestonline@gmail.com--%>
                             <asp:TextBox ID="txtemail" runat="server" Text="online@blaackforestcakes.com"></asp:TextBox>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <div id="Div1" runat="server">
                                 <label>
                                     Select Branch</label>
@@ -250,55 +252,68 @@
                             </asp:RangeValidator>
                         </div>
                         <div class="col-lg-3">
-                            <asp:RadioButtonList ID="radbtnlist" runat="server" OnSelectedIndexChanged="Radbtn_chnaged"
+                       <br />
+                       <asp:Button ID="btnemail" runat="server" CssClass="btn btn-secondary" Text="Email - Order Detailed Report"
+                            OnClick="btnSendMail_Click" />
+                        
+                            </div>
+                            </div>
+                            <div class="row">
+                         <div class="col-lg-6">
+                            
+                            <asp:RadioButtonList ID="radbtnlist" runat="server" OnSelectedIndexChanged="Radbtn_chnaged" RepeatColumns="3" width="500px"
                                 AutoPostBack="true">
                                 <asp:ListItem Text="Ordered Detailed Delivery Report" Value="0"> </asp:ListItem>
                                 <asp:ListItem Text="Advance" Value="1" Selected="True"> </asp:ListItem>
                                 <asp:ListItem Text="Ordered Qty" Value="2"> </asp:ListItem>
                             </asp:RadioButtonList>
                         </div>
-                        <asp:Button ID="btnser" runat="server" Text="Generate Report" Style="background-color: #428bca;
-                            border: 3px solid #428bca;" CssClass="btn btn-success" Visible="true" OnClick="btnser_Click" />
-                        <asp:Button ID="btnemail" runat="server" CssClass="btn btn-default" Text="Email - Order Detailed Report"
-                            OnClick="btnSendMail_Click" />
+                        
+                           <div class="col-lg-3">
+                       <asp:Button ID="btnser" runat="server" Text="Generate Report" 
+                            CssClass="btn btn-info pos-btn1" Visible="true" OnClick="btnser_Click" />
+                            </div>
+                          
+                          </div>  
+                        </div>
                         <asp:ScriptManager ID="scr1" runat="server">
                         </asp:ScriptManager>
                         <div class="col-lg-12">
-                            <div>
-                                <asp:GridView ID="gvAdvance" EmptyDataText="Sorry!! No Records Found" runat="server"
-                                    AutoGenerateColumns="false" Visible="false">
-                                    <HeaderStyle BackColor="Brown" ForeColor="White" />
+                            <div class="table-responsive panel-grid-left">
+                                <asp:GridView ID="gvAdvance" EmptyDataText="Sorry!! No Records Found" runat="server" cssClass="table table-striped pos-table"
+                                    AutoGenerateColumns="false" Visible="false" padding="0" spacing="0" border="0">
+                                    <%--<HeaderStyle BackColor="Brown" ForeColor="White" />--%>
                                     <Columns>
                                         <asp:TemplateField HeaderText="S No.">
                                             <ItemTemplate>
                                                 <%#Container.DataItemIndex+1 %>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField HeaderText="Branch Name" DataField="bname" SortExpression="bname" />
-                                        <asp:BoundField HeaderText="Customer Name" DataField="CustomerName" SortExpression="CustomerName" />
-                                        <asp:BoundField HeaderText="Mobile No" DataField="MobileNo" SortExpression="MobileNo" />
-                                        <asp:BoundField HeaderText="Order No" DataField="OrderNo" SortExpression="OrderNo" />
-                                        <asp:BoundField HeaderText="Advance" DataField="Advance" SortExpression="Advance" />
-                                        <asp:BoundField HeaderText="Order Mode" DataField="type" SortExpression="OrderNo" />
+                                        <asp:BoundField HeaderText="Branch Name" DataField="bname"  />
+                                        <asp:BoundField HeaderText="Customer Name" DataField="CustomerName"  />
+                                        <asp:BoundField HeaderText="Mobile No" DataField="MobileNo"  />
+                                        <asp:BoundField HeaderText="Order No" DataField="OrderNo"  />
+                                        <asp:BoundField HeaderText="Advance" DataField="Advance"  />
+                                        <asp:BoundField HeaderText="Order Mode" DataField="type"  />
                                     </Columns>
                                 </asp:GridView>
-                                <asp:GridView ID="gvorderedqty" EmptyDataText="Sorry!! No Records Found" runat="server"
-                                    AutoGenerateColumns="false" Visible="false">
-                                    <HeaderStyle BackColor="Brown" ForeColor="White" />
+                                <asp:GridView ID="gvorderedqty" EmptyDataText="Sorry!! No Records Found" runat="server" cssClass="table table-striped pos-table"
+                                    AutoGenerateColumns="false" Visible="false" padding="0" spacing="0" border="0">
+                                    <%--<HeaderStyle BackColor="Brown" ForeColor="White" />--%>
                                     <Columns>
                                         <asp:TemplateField HeaderText="S No.">
                                             <ItemTemplate>
                                                 <%#Container.DataItemIndex+1 %>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField HeaderText="Branch Name" DataField="bname" SortExpression="bname" />
-                                        <asp:BoundField HeaderText="Category" DataField="category" SortExpression="category" />
-                                        <asp:BoundField HeaderText="Item Name" DataField="Definition" SortExpression="Definition" />
-                                        <asp:BoundField HeaderText="Total Qty" DataField="Totalqty" SortExpression="Totalqty" />
+                                        <asp:BoundField HeaderText="Branch Name" DataField="bname"  />
+                                        <asp:BoundField HeaderText="Category" DataField="category"  />
+                                        <asp:BoundField HeaderText="Item Name" DataField="Definition"  />
+                                        <asp:BoundField HeaderText="Total Qty" DataField="Totalqty"  />
                                     </Columns>
                                 </asp:GridView>
-                                <asp:GridView ID="gvorderinfo" EmptyDataText="Sorry!! No Records Found" runat="server"
-                                    AutoGenerateColumns="false" Visible="false">
+                                <asp:GridView ID="gvorderinfo" EmptyDataText="Sorry!! No Records Found" runat="server" cssClass="table table-striped pos-table"
+                                    AutoGenerateColumns="false" Visible="false" padding="0" spacing="0" border="0">
                                     <Columns>
                                         <asp:BoundField HeaderText="Branch Name" DataField="Branch" />
                                         <asp:BoundField HeaderText="Delivery Date" DataField="Delivery Date" DataFormatString='{0:dd/MMM/yyyy}' />
@@ -315,13 +330,16 @@
                                         <asp:BoundField HeaderText="Total" DataField="Total" DataFormatString='{0:f2}' />
                                         <asp:BoundField HeaderText="Delivery Status" DataField="Dstatus" />
                                     </Columns>
-                                    <HeaderStyle BackColor="#df5015" Font-Bold="true" ForeColor="White" />
+                                   <%-- <HeaderStyle BackColor="#df5015" Font-Bold="true" ForeColor="White" />--%>
                                 </asp:GridView>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    
+                
+           
+        </div>
+        </div>
+        </div>
         </div>
     </form>
 </body>

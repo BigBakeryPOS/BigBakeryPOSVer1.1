@@ -84,70 +84,66 @@
                     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
                      <form id="Form1" runat="server">
                      <asp:scriptmanager id="ScriptManager1" runat="server">
-</asp:scriptmanager>
-                 
-    <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">Production Report</div>
+                        </asp:scriptmanager>
+          <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Production Report</h1>
+	    </div>           
+
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-12">
-                                
-
-
-                                    
-                                        
-                                        
-										<div class="table-responsive">
-                                        
-                                <table width="100%" class="table table-bordered table-striped" border="0">
-                               
-                               <tr>
-                               <td >
+								
+                         <div class="col-lg-3">
                                <Label>Select From Date</Label>
-                               <asp:TextBox ID="txtdate" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>
+                               <asp:TextBox ID="txtdate" runat="server" CssClass="form-control"></asp:TextBox>
                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtdate"
                                  PopupButtonID="txtdate" EnabledOnClient="true" runat="server" Format="yyyy-MM-dd" CssClass="cal_Theme1"></ajaxToolkit:CalendarExtender>
-
-                               </td>
-                               <td >
+                            </div>
+                             <div class="col-lg-3">
+                              
                                <Label>Select To Date</Label>
-                               <asp:TextBox ID="txttodate" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>
+                               <asp:TextBox ID="txttodate" runat="server" CssClass="form-control"></asp:TextBox>
                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txttodate"
                                  PopupButtonID="txttdate" EnabledOnClient="true" runat="server" Format="yyyy-MM-dd" CssClass="cal_Theme1"></ajaxToolkit:CalendarExtender>
 
-                               </td>
-                               <td>
+                              </div>
                                
-                                  <div class="form-group" >
+                                  <div class="col-lg-3">
                                             <label>Group</label>
 											<asp:DropDownList ID="ddlcategory" AutoPostBack="true" runat="server" 
-                                                        class="form-control" Width="150px" onselectedindexchanged="ddlcategory_SelectedIndexChanged" 
+                                                        class="form-control" onselectedindexchanged="ddlcategory_SelectedIndexChanged" 
                                                 ></asp:DropDownList>
                                         </div >
-                               </td>
-                               
                               
-                              
-                               </tr>
-                               <tr>
-                               <td>
-                               <asp:Button ID="btnsearch" runat="server" CssClass="btn btn-success" Text="Search" 
+                          
+                              <div class="col-lg-3">
+                              <br />
+                               <asp:Button ID="btnsearch" runat="server" CssClass="btn btn-primary pos-btn1" Text="Search" 
                                        onclick="btnsearch_Click" />
                                
-                               <asp:LinkButton ID="btnexp" runat="server" onclick="btnexp_Click"><asp:Image ID="imgexp" runat="server" ImageUrl="~/images/xcel.png"  Width="50px" Height="50px"/></asp:LinkButton>
+                               &nbsp;&nbsp;&nbsp;<asp:LinkButton ID="btnexp" runat="server" onclick="btnexp_Click" CssClass="btn btn-success" Text="Export to Excel">
+                               <asp:Image ID="imgexp" runat="server" ImageUrl="~/images/xcel.png"  Width="50px" Height="50px" Visible="false"/>
+                               </asp:LinkButton>
                                
-                               <asp:LinkButton ID="btnPrint" runat="server" onclick="btnPrint_Click"><asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png"  Width="50px" Height="50px"/></asp:LinkButton>
-                               </td>
-                               </tr>
-                                <tr>
-                                <div id="div1" runat="server" >
-                                <asp:Label ID="lblhead" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="Larger" ></asp:Label><br />
-                                <td colspan="4" align="left">
-                                <label>Production Details</label>
-                                <asp:GridView ID="gvprodstock" runat="server" Width="100%" CssClass="" AutoGenerateColumns="false" OnRowDataBound="gvprodstock_OnRowDataBound" ShowFooter="true" >
-                                 <FooterStyle BackColor="Red" Font-Bold="true"  ForeColor="White" />
+                               &nbsp;&nbsp;&nbsp;<asp:LinkButton ID="btnPrint" runat="server" onclick="btnPrint_Click" CssClass="btn btn-default" Text="Print">
+                               <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png"  Width="50px" Height="50px" Visible="false"/>
+                               </asp:LinkButton>
+                              </div>
+                              </div>
+                              <br />
+                               <div class="row">
+                                <div id="div1" runat="server">
+                                
+                               <div class="col-lg-6">
+                              
+                                <label>Production Details</label><br />
+                                <asp:Label ID="lblhead" runat="server" ></asp:Label>
+                                <div class="table-responsive panel-grid-left">
+                                <asp:GridView ID="gvprodstock" runat="server" Width="100%"  AutoGenerateColumns="false" padding="0" spacing="0" border="0" cssClass="table table-striped pos-table" OnRowDataBound="gvprodstock_OnRowDataBound" ShowFooter="true" >
+                                <%-- <FooterStyle BackColor="Red" Font-Bold="true"  ForeColor="White" />--%>
                                 <Columns>
                                 <asp:BoundField DataField="requestNo" HeaderText="Finish No" />
                                 <asp:BoundField DataField="RequestDate" HeaderText="Finish date"  DataFormatString="{0:dd-MMM-yyyy}"/>
@@ -158,50 +154,36 @@
                                    
                                 </Columns>
                  
-   <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> 
+  <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> --%>
                                 </asp:GridView>
-                                </td>
-                                <td colspan="4" align="right">
+                               </div>
+                               </div>
+                               <div class="col-lg-6">
+                               
                                 <label>Raw Materials Details</label>
-                                 <asp:GridView ID="gridraw" runat="server" Width="100%" CssClass="" AutoGenerateColumns="false" OnRowDataBound="gridraw_OnRowDataBound" ShowFooter="true" >
-                                 <FooterStyle BackColor="Red" Font-Bold="true"  ForeColor="White" />
+                                <br />
+                                <div class="table-responsive panel-grid-left">
+                                 <asp:GridView ID="gridraw" runat="server" Width="100%" padding="0" spacing="0" border="0" cssClass="table table-striped pos-table" AutoGenerateColumns="false" OnRowDataBound="gridraw_OnRowDataBound" ShowFooter="true" >
+                                 <%--<FooterStyle BackColor="Red" Font-Bold="true"  ForeColor="White" />--%>
                                 <Columns>
                                 <asp:BoundField DataField="IngredientName" HeaderText="Raw Materials" />
                                 <asp:BoundField DataField="qtyused" HeaderText="Qty Used" />
                                 </Columns>
                  
-   <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> 
+  <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> --%>
                                 </asp:GridView>
-                                </td>
                                 </div>
-                                </tr>
-                               
-                               
-                                   <tr>
-                                   
-                                <td align="left">
-                                
+                                </div>
+                                </div>
+                                </div>
                                 <%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>--%>
     
-                                </td>
-                                </tr>
-                                </table>
-                                
-                                </div>
-										
-									</div> 
-                                <div></div>
-                                    </div></div></div></div>	
-                                </div>
-                                  
-                              
-                                </form>
-                                
-                                <!-- /.col-lg-6 (nested) -->
-                                
-                
-		
-		
-
+                       </div>
+					</div> 
+              </div>
+           </div>      
+     </div>
+</form>
+                     
 </body>
 </html>

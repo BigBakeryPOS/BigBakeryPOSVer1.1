@@ -91,34 +91,38 @@
     <form id="Form1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+    <div class="container-fluid">
+	<div class="row">
     <div class="col-lg-12">
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Semi Category Details</b></div>
+        <div class="col-lg-8">
+        <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Semi Category Details</h1>
+	    </div>
                 <div class="panel-body">
-                    <div class="col-lg-12">
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
+                        <div class="form-group has-feedback">
                             <asp:TextBox CssClass="form-control" ID="txtsearch" placeholder="Search Category.."
-                                onkeyup="Search_Gridview(this, 'gridview')" runat="server" MaxLength="50" Width="150px"></asp:TextBox>
+                                onkeyup="Search_Gridview(this, 'gridview')" runat="server" MaxLength="50" ></asp:TextBox>
                             <asp:Label ID="lblerror" runat="server" Style="color: Red"></asp:Label>
+                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
                         </div>
-                        <div class="col-lg-6">
-                            <asp:Button ID="btnresret" runat="server" class="btn btn-warning" Text="Reset" OnClick="Btn_Reset"
-                                Width="100px" />
+                        </div>
+                        <div class="col-lg-8">
+                            <asp:Button ID="btnresret" runat="server" class="btn btn-secondary" Text="Reset" OnClick="Btn_Reset"
+                                />
                             <asp:Button ID="Button1" runat="server" class="btn btn-warning" Text="Sync.category"
                                 OnClick="btnsyncclick_OnClick" Visible="false" Width="150px" /></div>
-                    </div>
                     <div class="col-lg-12">
-                        <br />
-                        <div style="height: 350px; overflow: scroll">
-                            <asp:GridView ID="gridview" runat="server" AllowPaging="false" AutoGenerateColumns="false"
-                                Width="100%" Font-Names="Calibri" AllowSorting="true" OnRowCommand="gvcat_RowCommand"
+                        <div class="table-responsive panel-grid-left">
+                            <asp:GridView ID="gridview" runat="server" AllowPaging="false" AutoGenerateColumns="false" cssClass="table table-striped pos-table"
+                                Width="100%" Font-Names="Calibri" AllowSorting="true" OnRowCommand="gvcat_RowCommand" padding="0" spacing="0" border="0"
                                 OnSorting="gridview_Sorting" OnRowDataBound="gridview_OnRowDataBound" OnRowEditing="gridview_RowEditing">
-                                <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                <PagerStyle CssClass="pos-paging" />
+                              <%--  <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
                                     HorizontalAlign="Center" ForeColor="White" />
                                 <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
-                                    NextPageText="Next" PreviousPageText="Previous" />
+                                    NextPageText="Next" PreviousPageText="Previous" />--%>
                                 <Columns>
                                     <asp:BoundField HeaderText="Semi Category Name" DataField="SemiCategory" />
                                     <asp:BoundField HeaderText="Is Active" DataField="IsActive" />
@@ -126,14 +130,22 @@
                                         <ItemTemplate>
                                             <asp:LinkButton ID="btnedit" ForeColor="White" CommandArgument='<%#Eval("semiCatID") %>'
                                                 CommandName="Edit" runat="server">
-                                                <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" width="55px" runat="server" /></asp:LinkButton>
+                                                <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" width="55px" runat="server" visible="false"/>
+                                                 <button type="button" class="btn btn-warning btn-md">
+												<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+												</button>
+                                                </asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Delete">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="btndel" CommandArgument='<%#Eval("semiCatID") %>' CommandName="Del"
                                                 runat="server">
-                                                <asp:Image ID="Image1" ImageUrl="~/images/delete.png" runat="server" /></asp:LinkButton>
+                                                <asp:Image ID="Image1" ImageUrl="~/images/delete.png" runat="server" visible="false" />
+                                                 <button type="button" class="btn btn-danger btn-md">
+												<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+												</button>
+                                                </asp:LinkButton>
                                             <asp:ImageButton ID="imgdisable1321" ImageUrl="~/images/delete.png" runat="server"
                                                 Visible="false" Enabled="false" ToolTip="Not Allow To Delete" />
                                             <ajaxToolkit:ModalPopupExtender ID="lnkDelete_ModalPopupExtender" runat="server"
@@ -152,46 +164,45 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <blink> <label  style="color:Green; font-size:12px">Need To Add Semi Category Name and Code</label></blink>
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Semi-Category/Group Create</b></div>
-                <div class="panel-body">
-                    <div class="col-lg-12">
-                        <div class="col-lg-6">
-                            <div class="form-group">
+        <div class="col-lg-4">
+             <div class="panel panel-custom1">
+             <div class="panel-header">
+				<h1 class="page-header">Add Semi-Category/Group</h1>
+		</div>
+                <div class="panel-body panel-form-right">
+                <blink> <label  style="color:#007aff;">Need To Add Semi Category Name and Code</label></blink>
+                   
+                            <div class="list-group">
                                 <asp:TextBox CssClass="form-control" ID="txtsemicategoryId" runat="server" Visible="false"></asp:TextBox>
-                            </div>
-                            <div class="form-group">
+                           
                                 <label>
                                     Semi Category Name</label>
-                                <asp:ListBox Visible="false" Style="height: 100px" runat="server" DataValueField="CategoryID"
+                                <asp:ListBox Visible="false" runat="server" DataValueField="CategoryID"
                                     ID="listcategory" CssClass="form-control" AutoPostBack="true"></asp:ListBox>
                                 <asp:TextBox CssClass="form-control" ID="txtsemicategory" runat="server" placeholder="To Add New Category"
-                                    Style="text-transform: capitalize" Width="200px"></asp:TextBox>
+                                    Style="text-transform: capitalize"></asp:TextBox>
                                 <asp:RequiredFieldValidator runat="server" ID="txtcat" ControlToValidate="txtsemicategory"
                                     ValidationGroup="val1" ErrorMessage="Please enter your Semi Category!" Style="color: Red" />
-                            </div>
-                            <div class="form-group">
+                           <br />
                                 <label>
                                     IsActive</label>
                                 <asp:DropDownList ID="drpisactive" runat="server" CssClass="form-control">
                                     <asp:ListItem Text="Yes" Value="Yes" Selected="True"></asp:ListItem>
                                     <asp:ListItem Text="No" Value="No"></asp:ListItem>
                                 </asp:DropDownList>
-                            </div>
-                            <asp:Button ID="btnSave" runat="server" class="btn btn-success" Text="Save" OnClick="btnSave_Click"
-                                ValidationGroup="val1" AccessKey="s" Width="110px" />
+                           <br />
+                            <asp:Button ID="btnSave" runat="server" class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="btnSave_Click"
+                                ValidationGroup="val1" AccessKey="s" Width="150px" />
                             <label>
                             </label>
-                            <asp:Button ID="btnexit" runat="server" class="btn btn-warning" Text="Exit" OnClick="Exit_Click"
+                            <asp:Button ID="btnexit" runat="server" class="btn btn-lg btn-link" Text="Clear" OnClick="Exit_Click"
                                 Width="110px" />
                         </div>
                     </div>
-                </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <asp:Panel class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none"
         runat="server">

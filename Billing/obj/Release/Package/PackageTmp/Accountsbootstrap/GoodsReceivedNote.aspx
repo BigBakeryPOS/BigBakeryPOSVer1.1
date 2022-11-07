@@ -132,29 +132,20 @@
         <ContentTemplate>
             <asp:ScriptManager ID="ScriptManager1" runat="server">
             </asp:ScriptManager>
-            <div class="row" style="">
-                <div class="col-lg-12" style="">
-                    <div class="panel panel-default" style="">
-                        <div class="panel-body" style="">
-                            <div class="row">
-                                <div class="col-lg-12" style="margin-top: 0px;">
-                                   
-             <div class="panel panel-default" style="">
-            <div class="panel-heading " style="background-color: #428bca; color: White">
-                                        <b>
-                                            Goods Received Entry
-                                        </b>
-                                        </div>
-                   
-                        <asp:Button ID="btncheck" runat="server" OnClick="check_Qty" Text="Check Qty" CssClass="btn btn-info"  />
-                            <table class="table table-striped table-bordered table-hover" style="">
-                                <tr style="">
-                                    <td style="" align="center">
-                                        <table class="table table-striped table-bordered table-hover">
-                                            <tr>
-                                                <td style="">
-                                                    <asp:GridView ID="gvPurchase" runat="server" AutoGenerateColumns="false" Width="100%" Font-Names="Calibri" >
-                                                    <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> 
+            <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Goods Received Entry</h1>
+	    </div>
+
+                        <div class="panel-body">
+                            
+                        <asp:Button ID="btncheck" runat="server" OnClick="check_Qty" Text="Check Qty" CssClass="btn btn-primary pos-btn1"  />
+                        <div class="table-responsive panel-grid-left">
+                                                    <asp:GridView ID="gvPurchase" runat="server" AutoGenerateColumns="false" Width="100%" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" OnRowDataBound="onrowdatabound" >
+                                                   <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> --%>
                                                         <Columns>
                                                             <asp:BoundField HeaderText="category" DataField="Category" />
                                                             <asp:BoundField HeaderText="Item Name" DataField="printItem" />
@@ -206,42 +197,31 @@
                                                             <%--<asp:BoundField HeaderText="Expiry Date" DataField="ExpiryDate" />--%>
                                                         </Columns>
                                                     </asp:GridView>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="" colspan="2">
-                                                  
+                         </div>                   
+                                                  <div class="col-lg-3">
                                                     <label>
                                                         Remarks</label>
                                                     <asp:TextBox ID="txtRemarks" runat="server" TextMode="MultiLine" Width="300px" Height="75px"
                                                         CssClass="form-control"></asp:TextBox>  
-                                                    <label id="lblrem" runat="server" style="color: Red"><asp:Button ID="btnvalue" runat="server" CssClass="btn btn-success" Text="Receive"
+                                                    </div>
+                                                    <div class="col-lg-3"><br /><br />
+                                                   &nbsp;&nbsp;&nbsp; <label id="lblrem" runat="server">
+                                                    <asp:Button ID="btnvalue" runat="server" CssClass="btn btn-primary pos-btn1" Text="Receive"
                                                         OnClick="btnvalue_Click" OnClientClick="ClientSideClick(this)" UseSubmitBehavior="false" />
                                                     </label>
-                                                </td>
-                                               
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
+                                               </div>
                             <asp:Label ID="Label2" runat="server" Style="color: Red"></asp:Label>
-                            </td> </tr> </tbody>
+                          
                         
                     </div>
                     </div>
                     </div>
                      </div>
-                     </div>
-                    <!-- /.col-lg-6 (nested) -->
-                </div>
-                <!-- /.row (nested) -->
-            </div>
-            <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-            </div> </div>
-            <!-- /.col-lg-12 -->
+          
+         </div>
+         </div>
+         </div>
+         </div>  
         </ContentTemplate>
     </asp:UpdatePanel>
     <asp:UpdateProgress ID="UpdateProgress" runat="server" AssociatedUpdatePanelID="UpdatePanel1">

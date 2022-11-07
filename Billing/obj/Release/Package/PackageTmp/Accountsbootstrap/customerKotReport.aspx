@@ -83,19 +83,17 @@
         <ContentTemplate>
             <asp:ScriptManager ID="ScriptManager1" runat="server">
             </asp:ScriptManager>
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Customer Sales Report</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
+             <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Customer Sales Report</h1>
+	    </div>
+
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-8">
+                                <div class="col-lg-3">
                                     <label>
                                         Filter By Branch</label>
                                     <asp:DropDownList CssClass="form-control" ID="ddlBranch" runat="server" AutoPostBack="true"
@@ -109,11 +107,13 @@
                                         <asp:ListItem Text="Cancel" Value="Yes"></asp:ListItem>
                                         <asp:ListItem Text="Completed" Value="1"></asp:ListItem>
                                     </asp:DropDownList>
+                                   </div>
+                                   <div class="col-lg-3"> 
                                     <label>
                                         From date</label>
                                     <asp:TextBox runat="server" Visible="false" ID="txtCustomerName">
                                     </asp:TextBox>
-                                    <asp:TextBox runat="server" ID="txtfromdate">
+                                    <asp:TextBox runat="server" ID="txtfromdate" class="form-control">
                                     </asp:TextBox>
                                     <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtfromdate"
                                         ErrorMessage="Please Select valid Date Thank You!!!" Type="Date">
@@ -121,9 +121,11 @@
                                     <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="yyyy-MM-dd" TargetControlID="txtfromdate"
                                         runat="server" CssClass="cal_Theme1">
                                     </ajaxToolkit:CalendarExtender>
+                                    </div>
+                                    <div class="col-lg-3">
                                     <label>
                                         To date</label>
-                                    <asp:TextBox runat="server" ID="txttodate" AutoPostBack="true" OnTextChanged="txttodate_TextChanged">
+                                    <asp:TextBox runat="server" ID="txttodate" AutoPostBack="true" OnTextChanged="txttodate_TextChanged" class="form-control">
                                     </asp:TextBox>
                                     <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="txttodate"
                                         ErrorMessage="Please Select valid Date Thank You!!!" Type="Date">
@@ -131,31 +133,28 @@
                                     <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="yyyy-MM-dd" TargetControlID="txttodate"
                                         runat="server" CssClass="cal_Theme1">
                                     </ajaxToolkit:CalendarExtender>
-                                    <asp:Button ID="btnall" runat="server" Text="Generate Report" CssClass="btn btn-success"
+                                    </div>
+                                    <div class="col-lg-3">
+                                    <br />
+                                    <asp:Button ID="btnall" runat="server" Text="Generate Report" CssClass="btn btn-primary pos-btn1"
                                         OnClick="btnall_Click" />
                                     <asp:CheckBox ID="chkDiscout" Visible="false" runat="server" Text="Check Discount Sales" />
-                                    &nbsp
-                                    <br />
-                                    <asp:Button ID="btnViewAll" runat="server" Text="Print" CssClass="btn btn-success"
+                                    &nbsp;&nbsp;&nbsp;<asp:Button ID="btnViewAll" runat="server" Text="Print" CssClass="btn btn-secondary"
                                         OnClick="Button2_Click" />
+                                       &nbsp;&nbsp;&nbsp;  <asp:Button ID="btnExport" Text="Export to Excel" runat="server" CssClass="btn btn-success"
+                                             OnClick="btnExport_Click" />
                                 </div>
                                 <div class="col-lg-12">
-                                    <div>
-                                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                                        &nbsp &nbsp &nbsp &nbsp
                                         <asp:Label ID="lblbranch" runat="server" Font-Bold="true" Text="Store :" ForeColor="Black"
                                             Visible="false"></asp:Label>
                                         <asp:Label ID="Label123" runat="server" Font-Bold="true" Text="" ForeColor="Black"
                                             Visible="false"></asp:Label>
-                                    </div>
-                                    <div class="table-responsive" id="divPrint">
-                                        <table class="table table-bordered table-striped">
-                                            <tr>
-                                                <td>
-                                                    <asp:Label ID="lblCaption" runat="server" ForeColor="Red"></asp:Label>
-                                                    <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
-                                                    <asp:GridView ID="gvCustsales" runat="server" AllowPaging="false" CssClass="" Width="100%"
-                                                        DataKeyNames="KotNo" ShowFooter="true" OnRowDataBound="gvCustsales_RowDataBound"
+                                    <div class="table-responsive panel-grid-left" id="divPrint">
+                                     
+                                                    <asp:Label ID="lblCaption" runat="server"></asp:Label>
+                                                    <asp:Label ID="lblError" runat="server"></asp:Label>
+                                                    <asp:GridView ID="gvCustsales" runat="server" AllowPaging="false" cssClass="table table-striped pos-table" Width="100%"
+                                                        DataKeyNames="KotNo" ShowFooter="true" OnRowDataBound="gvCustsales_RowDataBound" padding="0" spacing="0" border="0"
                                                         AutoGenerateColumns="false" EmptyDataText="No data found!" ShowHeaderWhenEmpty="True">
                                                         <Columns>
                                                             <asp:TemplateField ItemStyle-HorizontalAlign="Left" ItemStyle-Width="30%" HeaderText="KotNo"
@@ -167,7 +166,7 @@
                                                                     </a>
                                                                     <%# Eval("KotNo")%>
                                                                     <div id="dv<%# Eval("KotNo") %>" style="display: none; position: relative;">
-                                                                        <asp:GridView runat="server" ID="gvLiaLedger" CssClass="" GridLines="Both" AutoGenerateColumns="false"
+                                                                        <asp:GridView runat="server" ID="gvLiaLedger" cssClass="table table-striped pos-table"  GridLines="Both" AutoGenerateColumns="false" padding="0" spacing="0" border="0"
                                                                             ShowFooter="true">
                                                                             <Columns>
                                                                                 <asp:BoundField HeaderText="Item" DataField="Item" />
@@ -186,31 +185,20 @@
                                                             <asp:BoundField HeaderText="type" DataField="type" />
                                                             <asp:BoundField HeaderText="Status" DataField="Status" />
                                                         </Columns>
-                                                        <HeaderStyle BackColor="#428bca" ForeColor="White" />
-                                                        <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
-                                                            NextPageText="Next" PreviousPageText="Previous" />
+                                                      <%--  <HeaderStyle BackColor="#428bca" ForeColor="White" />--%>
+                                                     <%--   <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
+                                                            NextPageText="Next" PreviousPageText="Previous" />--%>
+                                                             <PagerStyle CssClass="pos-paging" />
                                                     </asp:GridView>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
                                                     Total Net amount:<label id="lblTotal" runat="server"></label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
+                                                <br />
                                                     Total Tax amount:<label id="disc" runat="server"></label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
+                                               <br />
                                                     Total amount:<label id="gndtotal" runat="server"></label>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                               
                                     </div>
-                                    <div style="color: Green; font-weight: bold" class="form-group">
-                                        <label id="lblNoRecords" style="color: Red" runat="server">
+                                    <div style="color: #007aff";  class="col-lg-3">
+                                        <label id="lblNoRecords">
                                         </label>
                                         <br />
                                         <i>You are viewing page
@@ -219,21 +207,15 @@
                                             <%=gvCustsales.PageCount%>
                                         </i>
                                     </div>
-                                    <div>
-                                        <asp:Button ID="btnExport" Text="Export to Excel" runat="server" CssClass="btn btn-success"
-                                            Height="37px" OnClick="btnExport_Click" /></div>
+                                
                                 </div>
-                            </div>
-                            <!-- /.col-lg-6 (nested) -->
+                           
                         </div>
-                        <!-- /.row (nested) -->
-                    </div>
-                    <!-- /.panel-body -->
-                </div>
-                <!-- /.panel -->
-            </div>
-            <!-- /.col-lg-12 -->
-            </div>
+         
+          </div>
+          </div>
+          </div>
+          </div> 
         </ContentTemplate>
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="gvCustsales" EventName="RowDataBound" />

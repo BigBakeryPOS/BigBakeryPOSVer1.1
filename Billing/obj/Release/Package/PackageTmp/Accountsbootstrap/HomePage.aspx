@@ -23,35 +23,106 @@
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 </head>
-<body style="background-image: url('../images/back.jpg'); background-size: cover;">
+<body>
     <usc:Header ID="Header" runat="server" />
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" Visible="false" CssClass="label">Welcome : </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="White" Visible="false" CssClass="label">Welcome: </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <form id="form1" runat="server">
-    <div align="center">
-        <h2>
-            <blink><label style="color:Red" >Welcome To POS System</label></blink>
-        </h2>
-    </div>
-    <%-- Dashboard starts--%>
+        <div class="clearfix"></div>
     <div id="wrapper">
+        <!--div class="row">
+            <div class="col-xs-2">
+               
+            </div>
+            <div class="col-xs-2">
+                <asp:ImageButton ID="ImageButton1" src="../images/Bill.png" OnClick="Bill_OnClick"
+                    runat="server" ValidationGroup="Val1" />
+            </div>
+            <div class="col-xs-2">
+                <asp:ImageButton ID="ImageButton2" src="../images/Order.png" OnClick="Order_OnClick"
+                    runat="server" ValidationGroup="Val1" />
+            </div>
+            <div class="col-xs-2">
+                <asp:ImageButton ID="ImageButton3" src="../images/Product.png" OnClick="Product_OnClick"
+                    runat="server" ValidationGroup="Val1" />
+            </div>
+            <div class="col-xs-2">
+                <asp:ImageButton ID="ImageButton4" src="../images/Sales.png" OnClick="Sales_OnClick"
+                    runat="server" ValidationGroup="Val1" />
+            </div>
+            <div class="col-xs-2">
+                <asp:ImageButton ID="ImageButton5" src="../images/Stock.png" OnClick="Stock_OnClick"
+                    runat="server" ValidationGroup="Val1" />
+            </div>
+        </div-->
+        
+<div class="container-fluid">
+    <div class="row panel-custom1">
+		<div class="col-sm-12">
+		 
+			<ul class="nav navbar-nav pos-nav">
+				<li>
+                    
+					<a href="TodaysDeliveryOrder.aspx">
+						<i class="posi"><img src="i-delivery.png" /></i><span>New Delivery</span>
+					</a>
+				</li>
+				<li>
+					<a href="newbutton.aspx">
+						<i class="posi"><img src="i-bill.png" /></i><span>New Bill</span>
+					</a>
+				</li>
+				<li>
+					<a href="OrderGrid.aspx">
+						<i class="posi"><img src="i-order.png" /></i><span>New Order</span>
+					</a>
+				</li>
+				<li>
+					<a href="Descriptiongrid.aspx">
+						<i class="posi"><img src="i-product.png" /></i><span>Add Product</span>
+					</a>
+				</li>
+				<li>
+					<a href="CustomerSalesReport.aspx">
+						<i class="posi"><img src="i-report.png" /></i><span>Sales Report</span>
+					</a>
+				</li>
+				<li>
+					<a href="stockgrid.aspx">
+						<i class="posi"><img src="i-stock.png" /></i><span>Check Stock</span>
+					</a>
+				</li>
+			</ul>
+		 
+			
+		</div>
+	</div>
+
+
+
+
+</div>
+
+
+		 
+    <%-- Dashboard starts--%>
         <div id="wrapper">
             <!-- /.row -->
             <div class="col-lg-12 col-md-12">
                 <div class="col-lg-4 col-md-4">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading" style="height: 262px;">
-                            <div class="row" style="padding-left: 20px; padding: 20px;">
-                                <div align="left">
+                    <div class="panel panel-custom1">
+                        <div class="panel-body">
+                            <div>
+                                <div>
                                     <div class="hidden">
                                         <b>
                                             <asp:Label ID="lblsales1" ForeColor="White" Text="Rs 0.00" runat="server"></asp:Label></b><br />
                                         <b>
                                             <asp:Label ID="lblorder" ForeColor="White" Text="Rs 0.00" runat="server"></asp:Label></b>
                                     </div>
-                                    <label style="font-size: large">
-                                        Total Sale's:</label><br />
+                                    <h3 class="panel-title" >
+                                        Total Sale's:</h3>
                                     <asp:Label ID="Label6" Text="Today's Total Bill Count:" runat="server"></asp:Label>
                                     <b>
                                         <asp:Label ID="lbltotalsalescount" Text="Rs 0.00" runat="server"></asp:Label></b><br />
@@ -68,9 +139,9 @@
                                     <b>
                                         <asp:Label ID="lblcancelamount" Text="Rs 0.00" runat="server"></asp:Label></b><br />
                                 </div>
-                                <div align="left">
-                                    <label style="font-size: large">
-                                        Amount Details:</label><br />
+                                <div>
+                                    <h3 class="panel-title" >
+                                        Amount Details:</h3>
                                     <asp:Label ID="Label13" Text="Today's Total Cash Amount:" runat="server"></asp:Label>
                                     <b>
                                         <asp:Label ID="lbltotaltodaycashamnt" Text="Rs 0.00" runat="server"></asp:Label></b><br />
@@ -83,18 +154,18 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading" style="height: 262px;">
-                            <div class="row" style="padding-left: 20px; padding: 20px;">
-                                <div align="left">
+                    <div class="panel panel-custom1">
+                        <div class="panel-body">
+                            
+                                <div>
                                     <div class="hidden">
                                         <b>
                                             <asp:Label ID="Label1" ForeColor="White" Text="Rs 0.00" runat="server"></asp:Label></b><br />
                                         <b>
                                             <asp:Label ID="Label2" ForeColor="White" Text="Rs 0.00" runat="server"></asp:Label></b>
                                     </div>
-                                    <label style="font-size: large">
-                                        Total Orders's:</label><br />
+                                    <h3 class="panel-title" >
+                                        Total Orders's:</h3>
                                     <asp:Label ID="Label3" Text="Today's Order Total  Bill Count:" runat="server"></asp:Label>
                                     <b>
                                         <asp:Label ID="lblOrderCount" Text="Rs 0.00" runat="server"></asp:Label></b><br />
@@ -114,9 +185,9 @@
                                     <b>
                                         <asp:Label ID="lblOrderCancelAmount" Text="Rs 0.00" runat="server"></asp:Label></b><br />
                                 </div>
-                                <div align="left">
-                                    <label style="font-size: large">
-                                        Amount Details:</label><br />
+                                <div>
+                                    <h3 class="panel-title" >
+                                        Amount Details:</h3>
                                     <asp:Label ID="Label12" Text="Today's Order Total Cash Amount:" runat="server"></asp:Label>
                                     <b>
                                         <asp:Label ID="lblTotalOrderCash" Text="Rs 0.00" runat="server"></asp:Label></b><br />
@@ -124,25 +195,24 @@
                                     <b>
                                         <asp:Label ID="lblTotalOrderCard" Text="Rs 0.00" runat="server"></asp:Label></b><br />
                                 </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading" style="height: 262px;">
-                            <div class="row" style="padding-left: 20px; padding: 20px;">
-                                <div align="left">
-                                    <label style="font-size: large">
-                                        Order Delivery's Details:</label><br />
-                                    <marquee direction="up" scrollamount="2" style="background-color: #428bca; height: 175px;">                 
-                    <b style=" color:White">
-                       <a href="../Accountsbootstrap/TodaysDeliveryOrder.aspx"  style=" color:White"><asp:Label ID="lblDeliveryDetails"  runat="server"></asp:Label></a> </b><br /> 
+                    <div class="panel panel-custom1">
+                        <div class="panel-body">
+                            <div>
+                                
+                                    <h3 class="panel-title" >
+                                        Order Delivery's Details:</h3>
+                                    <marquee direction="up" scrollamount="2" style="background: #fff; min-height: 200px" >
+                       <a href="../Accountsbootstrap/TodaysDeliveryOrder.aspx" ><asp:Label ID="lblDeliveryDetails"  runat="server"></asp:Label></a> </b><br /> 
 
                           <%--<asp:LinkButton ID="LinkButton1" PostBackUrl="../Accountsbootstrap/TodaysDeliveryOrder.aspx" runat="server"></asp:LinkButton></b><br />--%>
                         
                          </marquee>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -185,7 +255,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="panel panel-green">
                         <div class="panel-heading">
-                            <div class="row">
+                            <div>
                                 <div class="col-xs-3">
                                     <i class="fa fa-users" style="font-size: 100px"></i>
                                 </div>
@@ -244,33 +314,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-2">
-                    <asp:ImageButton ID="ImageButton13" src="../images/Delivery.png" OnClick="Delivery_OnClick"
-                        runat="server" ValidationGroup="Val1" />
-                </div>
-                <div class="col-xs-2">
-                    <asp:ImageButton ID="ImageButton1" src="../images/Bill.png" OnClick="Bill_OnClick"
-                        runat="server" ValidationGroup="Val1" />
-                </div>
-                <div class="col-xs-2">
-                    <asp:ImageButton ID="ImageButton2" src="../images/Order.png" OnClick="Order_OnClick"
-                        runat="server" ValidationGroup="Val1" />
-                </div>
-                <div class="col-xs-2">
-                    <asp:ImageButton ID="ImageButton3" src="../images/Product.png" OnClick="Product_OnClick"
-                        runat="server" ValidationGroup="Val1" />
-                </div>
-                <div class="col-xs-2">
-                    <asp:ImageButton ID="ImageButton4" src="../images/Sales.png" OnClick="Sales_OnClick"
-                        runat="server" ValidationGroup="Val1" />
-                </div>
-                <div class="col-xs-2">
-                    <asp:ImageButton ID="ImageButton5" src="../images/Stock.png" OnClick="Stock_OnClick"
-                        runat="server" ValidationGroup="Val1" />
-                </div>
-            </div>
+            
         </div>
+		
+		
+		
     </div>
     <!-- /#page-wrapper -->
     </div>

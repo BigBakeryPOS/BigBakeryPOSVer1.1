@@ -60,6 +60,7 @@
     <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet" />
+    <link href="../css/Pos_style.css" rel="stylesheet" />
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -121,156 +122,151 @@
     <div class="row">
         <form id="Form1" runat="server" method="post">
         <div class="col-lg-12">
-        
-            <div class="panel panel-default">
-<%--            <blink> <label  style="color:Green; font-size:12px">Please Fill Item Name and Relevant Information. Note: Please Enter Rate Without Tax Because it's Tax Inclusive </label></blink>--%>
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Item Create Form</b>     </div>
+            <div class="panel panel-custom1">
+                <%--            <blink> <label  style="color:Green; font-size:12px">Please Fill Item Name and Relevant Information. Note: Please Enter Rate Without Tax Because it's Tax Inclusive </label></blink>--%>
+                <div class="panel-header">
+				<h1 class="page-header">Add Item</h1>
+		        </div>
                 <div class="panel-body">
                     <asp:ScriptManager ID="sc" runat="server">
                     </asp:ScriptManager>
-                    <div class="col-lg-4" style="display:none">
-                      
-                          <%--  <blink><label style="color:Red; font-size:10px;>Please Be CareFul.Selecting Below Multiselect CheckBox </label></blink>--%>
-                       
+                    <div style="display: none">
+                        <%--  <blink><label style="color:Red; font-size:10px;>Please Be CareFul.Selecting Below Multiselect CheckBox </label></blink>--%>
                         <div class="form-group">
                             <label>
                                 Select Branch(MultiSelect)
                             </label>
-                          
-                                <asp:TextBox ID="txtbranch" runat="server" Visible="false" onkeyup="SearchEmployees(this,'#chkbranch');"
-                                    CssClass="form-control"></asp:TextBox>
-                              
-                                    <asp:CheckBoxList ID="chkbranch" runat="server">
-                                    </asp:CheckBoxList>
-                                    <asp:CustomValidator ID="CustomValidator1" ErrorMessage="Please select at least one item."
-                                        ForeColor="Red" ClientValidationFunction="ValidateCheckBoxList" runat="server" />
-                               
-                            </div>
-                      
-                        <div class="form-group" style="display:none">
+                            <asp:TextBox ID="txtbranch" runat="server" Visible="false" onkeyup="SearchEmployees(this,'#chkbranch');"
+                                CssClass="form-control"></asp:TextBox>
+                            <asp:CheckBoxList ID="chkbranch" runat="server">
+                            </asp:CheckBoxList>
+                            <asp:CustomValidator ID="CustomValidator1" ErrorMessage="Please select at least one item."
+                                ForeColor="Red" ClientValidationFunction="ValidateCheckBoxList" runat="server" />
+                        </div>
+                        <div class="form-group" style="display: none">
                             <label>
                                 Select Sub Category(MultiSelect)
                             </label>
-                       
-                                <asp:TextBox ID="TextBox1" runat="server" onkeyup="SearchEmployees(this,'#chksubcategory');"
-                                    CssClass="form-control"></asp:TextBox>
-                             
-                                    <asp:CheckBoxList ID="chksubcategory" runat="server">
-                                    </asp:CheckBoxList>
-                              
-                       
+                            <asp:TextBox ID="TextBox1" runat="server" onkeyup="SearchEmployees(this,'#chksubcategory');"
+                                CssClass="form-control"></asp:TextBox>
+                            <asp:CheckBoxList ID="chksubcategory" runat="server">
+                            </asp:CheckBoxList>
                         </div>
                     </div>
+
+
                     <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>
-                                Select Category</label>
+                    <div class="list-group">
+                        
+                            <label>Select Category</label>
                             <asp:Label ID="lblitemid" runat="server" Visible="false"></asp:Label>
                             <asp:DropDownList runat="server" ID="ddlcategory" class="form-control" OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged"
                                 AutoPostBack="true">
                             </asp:DropDownList>
                             <%-- <p class="help-block">Select Your Category</p>--%>
-                        </div>
-                        <div class="form-group">
-                            <div>
-                                <p class="help-block">
-                                    <b>Category Code</b></p>
-                                <asp:TextBox CssClass="form-control" ID="txtcatdescription" runat="server"
-                                    MaxLength="150" Style="text-transform: capitalize" Enabled="false"></asp:TextBox>
-                                <label>
-                                    Item Name</label>
+                       <br />
+                                <label>Category Code</label>
+                                <asp:TextBox CssClass="form-control" ID="txtcatdescription" runat="server" MaxLength="150"
+                                    Style="text-transform: capitalize" Enabled="false"></asp:TextBox>
+                        <br />
+                                <label>Item Name</label>
                                 <asp:TextBox CssClass="form-control" ID="txtdescription" runat="server" MaxLength="150"
                                     Style="text-transform: capitalize;"></asp:TextBox>
-                            </div>
                             <asp:Label ID="lblerror" runat="server" Style="color: Red"></asp:Label>
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                Print Item Name
-                            </label>
+                        <br />
+                        
+                            <label>Print Item Name</label>
                             <asp:TextBox CssClass="form-control" ID="txtprintitemname" runat="server" MaxLength="150"></asp:TextBox>
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                Serial No
-                            </label>
+                        <br />
+                        
+                            <label>Serial No</label>
                             <asp:TextBox CssClass="form-control" ID="txtSerial" runat="server" MaxLength="150"></asp:TextBox>
-                        </div>
-                         <div class="form-group">
-                            <label>
-                                HSN Code
-                            </label>
+                       <br />
+                       
+                            <label>HSN Code</label>
                             <asp:TextBox CssClass="form-control" ID="txtHSNCode" runat="server" MaxLength="150"></asp:TextBox>
-                        </div>
-
-                           <div class="form-group">
-                            <label>
-                                MRP Price
-                            </label>
-                            <asp:TextBox CssClass="form-control" ID="txtMRPPrice" AutoPostBack="true" OnTextChanged="MRPPrice_OnTextChanged" runat="server" MaxLength="150"></asp:TextBox>
-                        </div>
-                        <div class="form-group">
+                        <br />
+                        
+                        <%--<button type="submit" class="btn btn-success" onclick="Add_Click">Add</button>--%>
+                    </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="list-group">
                             <asp:TextBox CssClass="form-control" ID="txtSerialNo" runat="server" Visible="false"
                                 MaxLength="150">0</asp:TextBox>
-                        </div>
-                        <div class="form-group">
                             <asp:TextBox CssClass="form-control" ID="txtSize" runat="server" Visible="false"
                                 MaxLength="150">0</asp:TextBox>
-                        </div>
-                        <div class="form-group">
                             <label>
                                 Tax
                             </label>
-                            <asp:DropDownList CssClass="form-control" ID="ddltax" AutoPostBack="true" OnTextChanged="MRPPrice_OnTextChanged" runat="server">
+                            <asp:DropDownList CssClass="form-control" ID="ddltax" AutoPostBack="true" OnTextChanged="mrp_calculation"
+                                runat="server">
                             </asp:DropDownList>
-                        </div>
-                        <div class="form-group">
+                        <br />
+                        
+                            <label>
+                                Rate Type
+                            </label>
+                            <asp:DropDownList ID="drpratetype" runat="server" CssClass="form-control" OnSelectedIndexChanged="mrp_calculation"
+                                AutoPostBack="true">
+                                <asp:ListItem Text="Inclusive of Tax" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Exclusive of Tax" Selected="True" Value="2"></asp:ListItem>
+                            </asp:DropDownList>
+                        <br />
+                        
+                            <label>
+                                MRP Price
+                            </label>
+                            <asp:TextBox CssClass="form-control" ID="txtMRPPrice" Enabled="false" AutoPostBack="true"
+                                OnTextChanged="mrp_calculation" runat="server" MaxLength="150"></asp:TextBox>
+                        <br />
+                        
                             <label>
                                 Rate *(Exclusive of Tax)
                             </label>
-                            <asp:TextBox ID="txtRate" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-                        </div>
-                        
+                            <asp:TextBox ID="txtRate" runat="server" Enabled="false" AutoPostBack="true" OnTextChanged="mrp_calculation"
+                                CssClass="form-control"></asp:TextBox>
+                        <br />
                         <div class="form-group" id="purchase" runat="server" visible="false">
                             <label>
                                 Expiry Date Required</label>
                             <asp:CheckBox ID="chkPurchsse" runat="server" />
                         </div>
-                        <%--<button type="submit" class="btn btn-success" onclick="Add_Click">Add</button>--%>
-                    </div>
-              
-                    <div class="col-lg-4">
-                    <div class="form-group">
+
                             <label>
                                 UOM
                             </label>
                             <asp:DropDownList ID="ddluom" runat="server" CssClass="form-control">
                             </asp:DropDownList>
-                        </div>
-                        <div class="form-group">
+                        <br />
                             <label>
                                 Minimum Stock Alert
                             </label>
                             <asp:TextBox CssClass="form-control" ID="txtminumumstock" runat="server" MaxLength="150">0</asp:TextBox>
                         </div>
-                        <div class="form-group">
+                    </div>
+
+
+                    <div class="col-lg-4">
+                    <div class="list-group">
                             <label>
                                 Display Online
                             </label>
-                            <asp:RadioButtonList ID="raddisplay" runat="server">
+                            <asp:RadioButtonList ID="raddisplay" runat="server" RepeatColumns="2">
                                 <asp:ListItem Text="Yes" Value="Y" Selected="True"></asp:ListItem>
                                 <asp:ListItem Text="No" Value="N"></asp:ListItem>
                             </asp:RadioButtonList>
-                        </div>
-                        <div>
+                        <br />
+                        
+                        
+                        
                             <label>
                                 Image Upload</label>
                             <asp:UpdatePanel ID="UpdatePanel" runat="server">
                                 <ContentTemplate>
-                                    <asp:FileUpload ID="fp_Upload" runat="server" />
-                                    <asp:Button ID="btnUpload123" runat="server" Text="Upload" CssClass="btn btn-primary"
-                                        OnClick="btnUpload_Clickimg" Width="100px" /><asp:Image ID="img_Photo" runat="server"
+                                    <asp:FileUpload ID="fp_Upload" runat="server" style="display:inline" width="45%"/>
+                                    <asp:Button ID="btnUpload123" runat="server" Text="Upload" CssClass="btn btn-danger pos-btn1"
+                                        OnClick="btnUpload_Clickimg"  /><asp:Image ID="img_Photo" runat="server"
                                             Width="5pc" BorderColor="1" />
                                     <asp:Label ID="lblFile_Path" runat="server" Visible="false"></asp:Label>
                                 </ContentTemplate>
@@ -278,31 +274,29 @@
                                     <asp:PostBackTrigger ControlID="btnUpload123" />
                                 </Triggers>
                             </asp:UpdatePanel>
-                            <br />
-                        </div>
-                         <div class="form-group">
+                            
+                        <br />
+                        
                             <label>
                                 Food type
                             </label>
-                            <asp:DropDownList ID="drpfoodtype" runat="server" CssClass="form-control" >
-                            <asp:ListItem Text="VEG" Value="VEG" ></asp:ListItem>
-                            <asp:ListItem Text="NON-VEG" Value="NON-VEG" ></asp:ListItem>
+                            <asp:DropDownList ID="drpfoodtype" runat="server" CssClass="form-control">
+                                <asp:ListItem Text="VEG" Value="VEG"></asp:ListItem>
+                                <asp:ListItem Text="NON-VEG" Value="NON-VEG"></asp:ListItem>
                             </asp:DropDownList>
-                        </div>
-
-                         <div class="form-group">
+                        <br />
+                        
                             <label>
                                 Bar Code
                             </label>
                             <asp:TextBox CssClass="form-control" ID="txtBarcode" runat="server"></asp:TextBox>
-                        </div>
-
-                         <div class="form-group">
+                        <br />
+                        
                             <label>
                                 Description
                             </label>
                             <asp:TextBox CssClass="form-control" ID="txtDetails" TextMode="MultiLine" runat="server"></asp:TextBox>
-                        </div>
+                       
                         <div class="form-group" runat="server" visible="false">
                             <label>
                                 Upload Data From Excel
@@ -322,19 +316,20 @@
                             <asp:GridView ID="GridView2" runat="server">
                             </asp:GridView>
                         </div>
-                        <div align="center">
-                            <asp:Button ID="btnadd" runat="server" class="btn btn-success" Text="Save" OnClick="btnadd_Click" />
-                            <asp:Button ID="btnexit" runat="server" class="btn  btn-warning" Text="Exit" OnClick="btnexit_Click" />
-                        </div>
-                    </div>
+                        <br />
+                            <asp:Button ID="btnadd" runat="server" class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="btnadd_Click" width="150px"/>
+                            <asp:Button ID="btnexit" runat="server" class="btn btn-lg btn-link" Text="Clear" OnClick="btnexit_Click" width="100px" />
+                       
+                        
                     
+                    </div>
+                    </div>
                     <!-- /.col-lg-6 (nested) -->
                 </div>
                 <!-- /.row (nested) -->
             </div>
             <!-- /.panel-body -->
         </div>
-       
         </form>
         <!-- /.panel -->
     </div>

@@ -116,28 +116,25 @@
     <form id="form" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <div class="row">
-        <div class="col-lg-12">
-        </div>
-    
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-body">
+   <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="col-lg-8">
+        <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Recipe Setting Details</h1>
+	    </div>
+        <div class="panel-body">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="col-lg-4 ">
-                                <div class="form-group">
-                                    <label>
-                                        Upload Data From Excel
+                    <div class="col-lg-6 ">
+                     <label>Upload Data From Excel
                                     </label>
                                     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                         <ContentTemplate>
-                                            <asp:FileUpload ID="FileUpload1" runat="server" />
+                                            <asp:FileUpload ID="FileUpload1" runat="server" style="display:inline" width="50%"/>
                                             <asp:Button ID="btnAsyncUpload" Visible="false" runat="server" Text="Async_Upload"
                                                 OnClick="Async_Upload_File" />
-                                            <asp:Button ID="btnUpload" CssClass="btn btn-danger" runat="server" Text="Upload"
+                                            <asp:Button ID="btnUpload" CssClass="btn btn-danger pos-btn1" runat="server" Text="Upload"
                                                 OnClick="Upload_File" />
                                         </ContentTemplate>
                                         <Triggers>
@@ -147,31 +144,26 @@
                                     </asp:UpdatePanel>
                                     <asp:GridView ID="GridView2" runat="server">
                                     </asp:GridView>
-                                </div>
-                                <div class="form-group" align="center">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" style="background-color: #0071BD; color: White">
-                                            <b>Recipe Setting Details</b>
-                                        </div>
-                                        <div class="panel-body">
-                                            <%-- <h2 align="center">
-                                        Receipe Setting Details
-                                    </h2>--%>
-                                        </div>
-                                        <asp:GridView ID="gridview" runat="server" PagerStyle-CssClass="pager" Width="100%" Font-Names="Calibri"
+                   </div>
+                    <div class="col-lg-12">
+                        <div class="table-responsive panel-grid-left">
+                                        <asp:GridView ID="gridview" runat="server" PagerStyle-CssClass="pager" Width="100%" cssClass="table table-striped pos-table"
                                             HeaderStyle-CssClass="header" RowStyle-CssClass="rows" AllowPaging="false" PageSize="20"
-                                            AutoGenerateColumns="false" AllowSorting="true" OnRowCommand="gvcat_RowCommand">
-                                             <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> 
+                                            AutoGenerateColumns="false" AllowSorting="true" OnRowCommand="gvcat_RowCommand" padding="0" spacing="0" border="0">
+                                            <PagerStyle CssClass="pos-paging" />
+                                            <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> 
                                             <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
-                                                NextPageText="Next" PreviousPageText="Previous" />
+                                                NextPageText="Next" PreviousPageText="Previous" />--%>
                                             <Columns>
                                                 <%--<asp:BoundField HeaderText="Category ID" DataField="CategoryID" />--%>
                                                 <asp:BoundField HeaderText="Item Name" DataField="definition" />
                                                 <asp:TemplateField HeaderText="Edit">
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="btnedit" ForeColor="White" CommandName="et" CommandArgument='<%#Eval("SettingId") %>'
-                                                            runat="server">
-                                                            <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server"  width="55px"/></asp:LinkButton>
+                                                            runat="server" cssclass="btn btn-warning btn-md">
+                                                            <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server"  width="55px" Visible="false"/>
+                                                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                             </asp:LinkButton>
                                                         <%--<asp:LinkButton ID="btnedit" runat="server"  Text="edit"  CommandArgument='<%#Eval("categoryid") %>' CommandName="edit"></asp:LinkButton>--%>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -179,7 +171,11 @@
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="btndel" CommandArgument='<%#Eval("SettingId") %>' CommandName="Del"
                                                             runat="server">
-                                                            <asp:Image ID="Image1" ImageUrl="~/images/delete.png" runat="server" /></asp:LinkButton>
+                                                            <asp:Image ID="Image1" ImageUrl="~/images/delete.png" runat="server" Visible="false" />
+                                                            <button type="button" class="btn btn-danger btn-md">
+												            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+												            </button>
+                                                            </asp:LinkButton>
                                                         <ajaxToolkit:ModalPopupExtender ID="lnkDelete_ModalPopupExtender" runat="server"
                                                             CancelControlID="ButtonDeleteCancel" OkControlID="ButtonDeleleOkay" TargetControlID="btndel"
                                                             PopupControlID="DivDeleteConfirmation" BackgroundCssClass="ModalPopupBG">
@@ -192,74 +188,45 @@
                                                 </asp:TemplateField>
                                             </Columns>
                                         </asp:GridView>
-                                    </div>
-                                </div>
-                            </div>
-                            <div runat="server" id="listitem" visible="false" class="col-lg-3">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" style="background-color: #0071BD; color: White">
-                                        <b>Details</b>
-                                    </div>
-                                    <div class="panel-body">
-                                        <label>
-                                            Item List:
-                                            <asp:Label ID="lblsettingname" runat="server"></asp:Label>
-                                        </label>
-                                        <label>
-                                            Measurement Used Per Qty:
-                                            <%-- Prepared for this Receipe Setting: --%>
-                                            <asp:Label ID="lblqty" runat="server"></asp:Label></label>
-                                        <asp:GridView ID="gridview1" runat="server" PagerStyle-CssClass="pager"
-                                            HeaderStyle-CssClass="header" GridLines="Both" RowStyle-CssClass="rows" AllowPaging="false"
-                                            PageSize="20" HeaderStyle-BackColor="#428bca" HeaderStyle-ForeColor="white" AutoGenerateColumns="false"
-                                            AllowSorting="true">
-                                            <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
-                                                NextPageText="Next" PreviousPageText="Previous" />
-                                            <Columns>
-                                                <asp:BoundField HeaderText="Raw Item Name" DataField="item" />
-                                                <asp:BoundField HeaderText="Rec Qty" DataField="recqty" DataFormatString='{0:f}' />
-                                                <asp:BoundField HeaderText="UOM" DataField="uom" />
-                                            </Columns>
-                                        </asp:GridView>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-5">
+                             </div>
+                             </div>
+             </div>
+        </div>
+        </div>
+        </div>
+                                     <div class="col-lg-4">
+                              <div class="panel panel-custom1">
+		                        <div class="panel-header">
+				                        <h1 class="page-header">Add Recepie Setting</h1>
+		                        </div>
+                               <div class="panel-body panel-form-right">    
+                               <div class="list-group">
+                               
                                 <asp:Label ID="lblerrorr" runat="server"></asp:Label>
                                 <%--  <blink> <label  style="color:Green; font-size:12px">Hint: Configure Required Raw material Quantity for Receipe.</label></blink>--%>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" style="background-color: #0071BD; color: White">
-                                        <b>Recepie Setting Creation </b>
-                                    </div>
-                                    <div class="panel-body">
                                         <asp:Label ID="lblerror" runat="server" Style="color: Red"></asp:Label>
-                                        <div class="col-lg-12">
-                                            <div class="col-lg-6">
-                                                <label>
-                                                    Select Item Name</label><br />
-                                                <asp:DropDownList ID="drpitem" runat="server" CssClass="chzn-select" Width="200px">
+                                         <label>Select Item Name</label>
+                                                <asp:DropDownList ID="drpitem" runat="server" CssClass="form-control" >
                                                 </asp:DropDownList>
+                                                <br />
                                                 <label id="lblRawID" visible="false" runat="server">
                                                 </label>
-                                                <label style="padding-top: 10px">
-                                                    Per Qty Recipe Setting</label>
+                                                <label>Per Qty Recipe Setting</label>
                                                 <asp:TextBox ID="txtprepareqty" runat="server" CssClass="form-control"></asp:TextBox>
-                                            </div>
-                                            <div class="col-lg-6">
+                                                <br />
                                                 <label>
                                                     Production hours(In MIN)</label>
                                                 <asp:TextBox ID="txtproductionhours" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <br />
                                                 <label>
                                                     Select Raw Item List</label>
                                                 <asp:TextBox ID="txtsearching" runat="server" placeholder="Search Raw Material .."
                                                     onkeyup="Search_Gridview(this, 'gridsemiitem')" CssClass="form-control"></asp:TextBox>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <br />
-                                            <div class="panel panel-default" style="height: 400px; overflow: scroll">
-                                                <asp:GridView ID="gridsemiitem" Width="100%" AutoGenerateColumns="false" runat="server" Font-Names="Calibri">
-                                                 <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> 
+                                                    <br />
+                                                     <br />
+                                            <div class="table-responsive panel-grid-left">
+                                                <asp:GridView ID="gridsemiitem"  AutoGenerateColumns="false" runat="server" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0">
+                                               <%--  <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> --%>
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="Raw Item Name">
                                                             <ItemTemplate>
@@ -284,25 +251,54 @@
                                                         </asp:TemplateField>
                                                     </Columns>
                                                 </asp:GridView>
-                                                <br />
                                             </div>
-                                            <asp:Button ID="btnadd" runat="server" class="btn btn-success" Text="Save" OnClick="Add_Click"
+                                            <br />
+                                            <asp:Button ID="btnadd" runat="server" class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="Add_Click"  width="150px"
                                                 ValidationGroup="val1" AccessKey="s" />
-                                            <asp:Button ID="btnexit" runat="server" class="btn btn-warning" Text="Exit" OnClick="Exit_Click" />
-                                        </div>
+                                            <asp:Button ID="btnexit" runat="server" class="btn btn-lg btn-link" Text="Clear" OnClick="Exit_Click"  width="150px" />
+
+                               </div>   
+                                 </div>
+                                 </div>
+                                 </div>      
+                            
+                            
+
+                                        
+                       <div runat="server" id="listitem" visible="false" class="col-lg-3">
+                                <div class="row panel-custom1">
+                                <div class="panel-header">
+                              <h1 class="page-header">Details</h1>
+	                        </div>
+                                   
+                                    <div class="panel-body">
+                                        <label>
+                                            Item List:
+                                            <asp:Label ID="lblsettingname" runat="server"></asp:Label>
+                                        </label>
+                                        <br />
+                                        <label>
+                                            Measurement Used Per Qty:
+                                            <%-- Prepared for this Receipe Setting: --%>
+                                            <asp:Label ID="lblqty" runat="server"></asp:Label></label>
+                                        <asp:GridView ID="gridview1" runat="server" PagerStyle-CssClass="pager"
+                                            cssClass="table table-striped pos-table" AllowPaging="false"
+                                            PageSize="20" padding="0" spacing="0" border="0" AutoGenerateColumns="false"
+                                            AllowSorting="true">
+                                            <%--<PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
+                                                NextPageText="Next" PreviousPageText="Previous" />--%>
+                                            <Columns>
+                                                <asp:BoundField HeaderText="Raw Item Name" DataField="item" />
+                                                <asp:BoundField HeaderText="Rec Qty" DataField="recqty" DataFormatString='{0:f}' />
+                                                <asp:BoundField HeaderText="UOM" DataField="uom" />
+                                            </Columns>
+                                        </asp:GridView>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- /.col-lg-6 (nested) -->
-                    </div>
-                    <!-- /.row (nested) -->
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
+   
+    </div>
+    </div>
     </div>
     <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
     <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>

@@ -202,97 +202,99 @@
     <form id="f1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-
+     <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Add payment Entry</h1>
+	    </div>
       <div class="panel-body">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="col-lg-1">
-                    <asp:label style="color: Black">
-                        Payment No</asp:label>
-                    <asp:TextBox ID="txtBillNo" CssClass="form-control" runat="server" Width="100px"
+           
+                <div class="col-lg-3">
+                    <label>Payment No</label>
+                    <asp:TextBox ID="txtBillNo" CssClass="form-control" runat="server" 
                         Enabled="false"></asp:TextBox>
-                    <asp:DropDownList runat="server" ID="ddltype" CssClass="form-control" Width="110px"
+                    <asp:DropDownList runat="server" ID="ddltype" CssClass="form-control" 
                         Visible="false">
                         <asp:ListItem Text="Payment" Value="Payment" Selected="True"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
-                <div class="col-lg-1">
-                    <asp:label style="color: Black">
-                        PaymentDate</asp:label>
-                    <asp:TextBox ID="txtBillDate" CssClass="form-control" Width="100px" runat="server"></asp:TextBox>
+                <div class="col-lg-3">
+                    <label>
+                        PaymentDate</label>
+                    <asp:TextBox ID="txtBillDate" CssClass="form-control"  runat="server"></asp:TextBox>
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtBillDate"
                         Format="dd/MM/yyyy" PopupButtonID="txtdate1" EnabledOnClient="true" runat="server"
                         CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
                 </div>
-                <div class="col-lg-2">
-                    <asp:label style="color: Black">
+                <div class="col-lg-3">
+                    <label>
                         Supplier
-                    </asp:label>
+                    </label>
                     <asp:DropDownList runat="server" ID="ddlsuplier" CssClass="form-control" AutoPostBack="true"
-                        Width="200px" OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged">
+                         OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged">
                     </asp:DropDownList>
                 </div>
-                <div class="col-lg-1">
-                    <asp:label style="color: Black">
+                
+                <div class="col-lg-3">
+                    <label>
                         PaidAmount
-                    </asp:label>
+                    </label>
                     <asp:TextBox ID="txtAmount" CssClass="form-control" runat="server" AutoPostBack="true"
-                        Width="100px" Enabled="false" OnTextChanged="txtAmount_TextChanged">0.00</asp:TextBox>
+                         Enabled="false" OnTextChanged="txtAmount_TextChanged">0.00</asp:TextBox>
                 </div>
-                <div class="col-lg-1">
-                    <asp:label>
-                        PayMode</asp:label>
-                    <asp:DropDownList ID="ddlPayMode" runat="server" CssClass="form-control" Width="100px"
+                </div>
+                <br />
+                <div class="row">
+                <div class="col-lg-3">
+                    <label>
+                        PayMode</label>
+                    <asp:DropDownList ID="ddlPayMode" runat="server" CssClass="form-control" 
                         AutoPostBack="true" OnSelectedIndexChanged="ddlPayMode_OnSelectedIndexChanged">
                     </asp:DropDownList>
                 </div>
-                <div class="col-lg-1">
-                    <asp:label>
-                        Bank Name</asp:label>
+                <div class="col-lg-3">
+                    <label>
+                        Bank Name</label>
                     <asp:TextBox ID="txtbank" CssClass="form-control" runat="server" Enabled="false" Visible="false"></asp:TextBox>
-                    <asp:DropDownList ID="ddlBank" runat="server" CssClass="form-control" Width="100px" Enabled="false">
+                    <asp:DropDownList ID="ddlBank" runat="server" CssClass="form-control"  Enabled="false">
                     </asp:DropDownList>
                 </div>
-                <div class="col-lg-1">
-                    <asp:label>
-                        CHQ/UTR</asp:label>
-                    <asp:TextBox ID="txtCheqeNo" CssClass="form-control" runat="server" Width="100px"
+                <div class="col-lg-3">
+                    <label>
+                        CHQ/UTR</label>
+                    <asp:TextBox ID="txtCheqeNo" CssClass="form-control" runat="server" 
                         Enabled="false"></asp:TextBox>
                 </div>
-                <div class="col-lg-1">
+                <div class="col-lg-3">
                     <br />
-                    <asp:Button ID="btncalc" runat="server" class="btn btn-warning" Text="Calc" OnClick="btncalc_Click"
-                        Width="100px" />
-                </div>
-                <div class="col-lg-1">
-                    <br />
-                    <asp:Button ID="btnSubmit" runat="server" class="btn btn-success" Text="Process"
-                        OnClientClick="Confirm(this)" UseSubmitBehavior="false" Width="100px" OnClick="Process_Click" />
+                   
+               
+                    <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary pos-btn1" Text="Process"
+                        OnClientClick="Confirm(this)" UseSubmitBehavior="false" OnClick="Process_Click" />
                     <%--<asp:DropDownList ID="ddlbank" runat="server" Width="100px" Visible="false" CssClass="form-control">
                     </asp:DropDownList>--%>
-                    <asp:TextBox ID="txtCloseDiscount" CssClass="form-control" runat="server" Width="100px"
+                    <asp:TextBox ID="txtCloseDiscount" CssClass="form-control" runat="server"
                         Enabled="false" Visible="false">0.00</asp:TextBox>
-                </div>
-                <div class="col-lg-1">
-                    <br />
-                    <asp:Button ID="btnexit" runat="server" class="btn btn-danger" Text="Exit" Width="100px"
-                        OnClick="btnexit_OnClick" />
-                    <asp:TextBox ID="txtchequedate" CssClass="form-control" Style="width: 100px;" runat="server"
+                &nbsp;&nbsp;<asp:Button ID="btncalc" runat="server" class="btn btn-warning" Text="Calculate" OnClick="btncalc_Click"
+                        />
+                    &nbsp; &nbsp; <asp:Button ID="Button1" runat="server" Text="Export To Excel" Visible="true" Class="btn btn-success"
+                        OnClick="btnExcel_Click"  /> 
+                    <%--<asp:Button ID="btnexit" runat="server" class="btn btn-danger" Text="Exit" 
+                        OnClick="btnexit_OnClick" />--%>
+                    <asp:TextBox ID="txtchequedate" CssClass="form-control" runat="server"
                         Visible="false" Enabled="false"></asp:TextBox>
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender4" TargetControlID="txtchequedate"
                         Format="dd/MM/yyyy" PopupButtonID="txtdate1" EnabledOnClient="true" runat="server"
                         CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
-                </div>
-                <div class="col-lg-1">
-                    <br />
-                    <asp:Button ID="Button1" runat="server" Text="Export To Excel" Visible="true" CssClass="btn btn-info"
-                        OnClick="btnExcel_Click" Style="width: 100px;" />
-                </div>
-                <div class="col-lg-1">
-                </div>
+                    
+               </div>
             </div>
+            <div class="row">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
@@ -307,15 +309,13 @@
                 </div>
             </div>
             <div id="IDValues" runat="server">
-                <div class="col-lg-12">
-                    <div class="col-lg-2">
-                    </div>
-                    <div class="col-lg-8">
-                        <div id="Div5" runat="server" style="height: 600px; overflow: scroll;">
+
+                    <div class="col-lg-12">
+                        <div id="Div5" runat="server" class="table-responsive panel-grid-left">
                             <asp:GridView ID="gv" EmptyDataText="Oops! No Activity Performed." ShowFooter="true"
-                                Caption="Customer Cash Receive" CssClass="mGrid" EmptyDataRowStyle-BackColor="#F4F4F4"
-                                HeaderStyle-BackColor="#F4F4F4" runat="server" AutoGenerateColumns="false">
-                                <PagerStyle HorizontalAlign="Left" CssClass="GridPager" />
+                                Caption="Customer Cash Receive" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
+                              runat="server" AutoGenerateColumns="false">
+                               <%-- <PagerStyle HorizontalAlign="Left" CssClass="GridPager" />--%>
                                 <Columns>
                                     <asp:TemplateField HeaderText="S.No">
                                         <ItemTemplate>
@@ -382,13 +382,14 @@
                             <asp:Label ID="lblledgerbalance" runat="server" Style="font-size: larger; font-weight: bold">0</asp:Label>
                         </div>
                     </div>
-                    <div class="col-lg-2">
-                    </div>
-                </div>
+                   
             </div>
         </div>
     </div>
-
+</div>
+</div>
+</div>
+</div>
   <%--  <div class="panel-body">
         <div class="row">
             <div class="col-lg-12">

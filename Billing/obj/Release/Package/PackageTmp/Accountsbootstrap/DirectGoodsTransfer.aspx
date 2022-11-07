@@ -8,6 +8,7 @@
 <head id="Head1">
     <title>Finished Goods Entry</title>
     <script type="text/javascript">
+
         function Search_Gridview(strKey, strGV) {
             var strData = strKey.value.toLowerCase().split(" ");
             var tblData = document.getElementById(strGV);
@@ -290,129 +291,119 @@ color:White;
     </asp:Label>
     <asp:Label ID="lblcatid" runat="server" Text="(1,2,7)" Visible="false"></asp:Label>
     <form runat="server" id="form1" method="post">
-    <div class="col-lg-12">
-        <asp:ScriptManager ID="ScriptManager1" runat="server">
-        </asp:ScriptManager>
-        <div class="panel panel-default">
-            <div class="panel-heading " style="background-color: #428bca; color: White">
-                <b>Finished Goods Entry</b>
-                <asp:RadioButtonList ID="radentrytype" runat="server" Visible="false">
-                    <asp:ListItem Text="Manual Type/with-out Stock Reduce" Value="3" Selected="True">
-                    </asp:ListItem>
-                </asp:RadioButtonList>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel-body" style="height: 68px">
-                            <div class="row">
-                                <div class="col-lg-1">
-                                    <div class="form-group">
-                                        <asp:Label runat="server" ID="lblDcNo">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg -12">
+                <div class="row panel-custom1">
+                    <div class="panel-header">
+                        <h1 class="page-header">
+                            Finished Goods Entry</h1>
+                    </div>
+                    <asp:ScriptManager ID="ScriptManager1" runat="server">
+                    </asp:ScriptManager>
+                    <asp:RadioButtonList ID="radentrytype" runat="server" Visible="false">
+                        <asp:ListItem Text="Manual Type/with-out Stock Reduce" Value="3" Selected="True">
+                        </asp:ListItem>
+                    </asp:RadioButtonList>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <asp:Label runat="server" ID="lblDcNo">
                                             <label>
                                                 Transfer No.</label></asp:Label>
-                                        <asp:TextBox ID="txtTransferNo" Width="110px" runat="server" CssClass="form-control"
-                                            onkeypress="return NumberOnly()" Enabled="false">
-                                        </asp:TextBox>
-                                        <asp:TextBox ID="txtcompanyname" Visible="false" runat="server" CssClass="form-control">
-                                        </asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <asp:Label runat="server" ID="lblDCDate">
+                                <asp:TextBox ID="txtTransferNo" runat="server" CssClass="form-control" onkeypress="return NumberOnly()"
+                                    Enabled="false">
+                                </asp:TextBox>
+                                <asp:TextBox ID="txtcompanyname" Visible="false" runat="server" CssClass="form-control">
+                                </asp:TextBox>
+                            </div>
+                            <div class="col-lg-3">
+                                <asp:Label runat="server" ID="lblDCDate">
                                             <label>
                                                 Transfer Date</label></asp:Label>
-                                        <asp:TextBox ID="txtTransferDate" runat="server" CssClass="form-control" Width="155px">
-                                        </asp:TextBox>
-                                        <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txtTransferDate"
-                                            Enabled="false" runat="server" CssClass="cal_Theme1">
-                                        </ajaxToolkit:CalendarExtender>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label>
-                                            Select Branch</label>
-                                        <asp:DropDownList ID="ddlBranch" runat="server" CssClass="form-control">
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label>
-                                            Entry By</label>
-                                        <asp:TextBox ID="txtEntryBy" runat="server" CssClass="form-control" Width="150px">
-                                        </asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <asp:Label runat="server" ID="Label1">
+                                <asp:TextBox ID="txtTransferDate" runat="server" CssClass="form-control">
+                                </asp:TextBox>
+                                <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txtTransferDate"
+                                    Enabled="false" runat="server" CssClass="cal_Theme1">
+                                </ajaxToolkit:CalendarExtender>
+                            </div>
+                            <div class="col-lg-3">
+                                <label>
+                                    Select Branch</label>
+                                <asp:DropDownList ID="ddlBranch" runat="server" CssClass="form-control">
+                                </asp:DropDownList>
+                            </div>
+                            <div class="col-lg-2">
+                                <label>
+                                    Entry By</label>
+                                <asp:TextBox ID="txtEntryBy" runat="server" CssClass="form-control">
+                                </asp:TextBox>
+                            </div>
+                            <div class="col-lg-3">
+                                <asp:Label runat="server" ID="Label1">
                                             <label>
                                                 Category</label></asp:Label>
-                                        <asp:DropDownList ID="ddlcategory" runat="server" CssClass="form-control" Width="200px"
-                                            AutoPostBack="true" OnSelectedIndexChanged="ddlrequestno_OnSelectedIndexChanged">
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                                <div class="col-lg-1">
-                                    <br />
-                                    <asp:Button ID="btnaddqueue" runat="server" Text="Add to Queue" OnClick="btnaddqueue_OnClick"
-                                        Width="110px" CssClass="btn btn-info" />
-                                </div>
-                                <div class="col-lg-1">
-                                    <br />
-                                    <asp:Button ID="btnPreview" runat="server" CssClass="btn btn-success" OnClientClick="ClientSideClick(this)"
-                                        UseSubmitBehavior="false" Text="Send" OnClick="btnPrev_Click" Width="110px" />
-                                </div>
-                                <div class="col-lg-2">
-                                </div>
+                                <asp:DropDownList ID="ddlcategory" runat="server" CssClass="form-control" AutoPostBack="true"
+                                    OnSelectedIndexChanged="ddlrequestno_OnSelectedIndexChanged">
+                                </asp:DropDownList>
+                            </div>
+                            <div class="col-lg-3">
+                                <br />
+                                <asp:Button ID="btnaddqueue" runat="server" Text="Add to Queue" OnClick="btnaddqueue_OnClick"
+                                    Width="110px" CssClass="btn btn-primary pos-btn1" />
+                                &nbsp;&nbsp;&nbsp;<asp:Button ID="btnPreview" runat="server" CssClass="btn btn-success"
+                                    OnClientClick="ClientSideClick(this)" UseSubmitBehavior="false" Text="Send "
+                                    OnClick="btnPrev_Click" />
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
-                    <div class="col-lg-8">
-                        <div class="panel panel-default">
-                            <div class="panel-heading " style="background-color: #428bca; color: White">
-                                <b>Finished Goods Details</b>
-                            </div>
-                            <div class="panel-body">
-                                <div class="col-lg-12">
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label>
-                                                Search From List
-                                            </label>
-                                            <asp:TextBox ID="txtSearch" runat="server" onkeyup="Search_Gridview(this, 'gvitems')"
-                                                CssClass="form-control" placeholder="Search Category/Item.." Width="200px">
-                                            </asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label>
-                                                Search From Item Master
-                                            </label>
-                                            <asp:TextBox ID="txtserch" runat="server" OnTextChanged="serach_text" AutoPostBack="true"
-                                                CssClass="form-control" placeholder="Search Category/Item.." Width="200px">
-                                            </asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label>
-                                                Search From BarCode
-                                            </label>
-                                            <asp:TextBox ID="txtbarcode" runat="server" OnTextChanged="search_barcode" AutoPostBack="true"
-                                                CssClass="form-control" placeholder="Search Barcode." Width="200px">
-                                            </asp:TextBox>
-                                        </div>
+                <div class="col-lg-8">
+                    <div class="row panel-custom1">
+                        <div class="panel-header">
+                            <h1 class="page-header">
+                                Finished Goods Details</h1>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group has-feedback">
+                                        <label>
+                                            Search From List
+                                        </label>
+                                        <asp:TextBox ID="txtSearch" runat="server" onkeyup="Search_Gridview(this, 'gvitems')"
+                                            CssClass="form-control" placeholder="Search Category/Item..">
+                                        </asp:TextBox>
+                                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
                                     </div>
                                 </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group has-feedback">
+                                        <label>
+                                            Search From Item Master
+                                        </label>
+                                        <asp:TextBox ID="txtserch" runat="server" OnTextChanged="serach_text" AutoPostBack="true"
+                                            CssClass="form-control" placeholder="Search Category/Item..">
+                                        </asp:TextBox>
+                                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group has-feedback">
+                                        <label>
+                                            Search From BarCode
+                                        </label>
+                                        <asp:TextBox ID="txtbarcode" runat="server" OnTextChanged="search_barcode" AutoPostBack="true"
+                                            CssClass="form-control" placeholder="Search Barcode.">
+                                        </asp:TextBox>
+                                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive panel-grid-left">
                                 <asp:GridView ID="gvRawRequest" runat="server" AutoGenerateColumns="false" Width="100%"
-                                    Font-Size="Medium" Font-Bold="true" AllowSorting="true">
+                                    padding="0" spacing="0" border="0" Font-Size="Medium" Font-Bold="true" AllowSorting="true"
+                                    CssClass="table table-striped pos-table">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Category">
                                             <ItemTemplate>
@@ -487,8 +478,8 @@ color:White;
                                     <%--<FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
                                                         <HeaderStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                                 </asp:GridView>
-                                <asp:GridView ID="gvitems" runat="server" AutoGenerateColumns="false" HeaderStyle-BackColor="Black"
-                                    HeaderStyle-ForeColor="Wheat" Width="100%">
+                                <asp:GridView ID="gvitems" runat="server" AutoGenerateColumns="false" CssClass="table table-striped pos-table"
+                                    padding="0" spacing="0" border="0" Width="100%">
                                     <Columns>
                                         <%--<asp:TemplateField HeaderText="Category">
                                                 <ItemTemplate>
@@ -520,6 +511,11 @@ color:White;
                                                 <asp:HiddenField ID="hdGST" runat="server" Value='<%#Eval("GST") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Code">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblserial" runat="server" Text='<%#Eval("serial") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Item">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblDefinition" runat="server" Text='<%#Eval("Definition") %>'></asp:Label>
@@ -549,48 +545,52 @@ color:White;
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
-                                    <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
-                                    <HeaderStyle BackColor="#428bca" ForeColor="White" HorizontalAlign="Center" />
+                                    <%-- <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                    <HeaderStyle BackColor="#428bca" ForeColor="White" HorizontalAlign="Center" />--%>
                                     <%--<FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />--%>
                                     <RowStyle CssClass="RowStyleBackGroundColor" ForeColor="Black" />
                                     <%--<SelectedRowStyle  Font-Bold="True" ForeColor="white" />--%>
                                     <%--<PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />--%>
                                     <%--<HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />--%>
-                                    <AlternatingRowStyle CssClass="RowAlternateStyleBackGroundColor" />
+                                    <%--<AlternatingRowStyle CssClass="RowAlternateStyleBackGroundColor" />--%>
                                 </asp:GridView>
-                                <div runat="server" id="single" visible="false">
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    Select Item</label>
-                                                <br />
-                                                <asp:DropDownList ID="drpitem" runat="server" CssClass="chzn-select">
-                                                </asp:DropDownList>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    Qty</label>
-                                                <br />
-                                                <asp:TextBox ID="txtqty" runat="server">
-                                                </asp:TextBox>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
+                            </div>
+                            <div runat="server" id="single" visible="false">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <label>
+                                                Select Item</label>
+                                            <br />
+                                            <asp:DropDownList ID="drpitem" runat="server" CssClass="chzn-select">
+                                            </asp:DropDownList>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                Qty</label>
+                                            <br />
+                                            <asp:TextBox ID="txtqty" runat="server">
+                                            </asp:TextBox>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading " style="background-color: #428bca; color: White">
-                                <b>Transfer Item List</b>
-                            </div>
-                            <div class="panel-body">
+                </div>
+                <div class="col-lg-4">
+                    <div class="row panel-custom1">
+                        <div class="panel-header">
+                            <h1 class="page-header">
+                                Transfer Item List</h1>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive panel-grid-left">
                                 <asp:GridView ID="gvqueueitems" runat="server" AutoGenerateColumns="false" Width="100%"
-                                    Font-Names="Calibri" OnRowCommand="gvqueueitems_RowCommand" OnRowDeleting="gvqueueitems_RowDeleting">
-                                    <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                        HorizontalAlign="Center" ForeColor="White" />
+                                    CssClass="table table-striped pos-table" padding="0" spacing="0" border="0" Font-Names="Calibri"
+                                    OnRowCommand="gvqueueitems_RowCommand" OnRowDeleting="gvqueueitems_RowDeleting">
+                                    <%--  <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                        HorizontalAlign="Center" ForeColor="White" />--%>
                                     <Columns>
                                         <asp:TemplateField HeaderText="S.No">
                                             <ItemTemplate>
@@ -614,12 +614,13 @@ color:White;
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Qty">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtQty" runat="server" Width="50px" Text='<%#Eval("Qty") %>' Enabled="true">0</asp:TextBox>
+                                                <asp:TextBox ID="txtQty" runat="server" Width="50px" class="form-control" Text='<%#Eval("Qty") %>'
+                                                    Enabled="true">0</asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Unit">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblom" runat="server" Width="50px" Text='<%#Eval("UOM") %>'></asp:Label>
+                                                <asp:Label ID="lblom" runat="server" Text='<%#Eval("UOM") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField>
@@ -636,11 +637,11 @@ color:White;
                                     </Columns>
                                 </asp:GridView>
                                 <br />
-                                <br />
-                                <asp:GridView ID="GridView2" AutoGenerateColumns="False" ShowFooter="True" Font-Names="Calibri"
-                                    Caption="Raw Materials Details" GridLines="Both" Width="100%" runat="server">
-                                    <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                        HorizontalAlign="Center" ForeColor="White" />
+                                <asp:GridView ID="GridView2" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-striped pos-table"
+                                    padding="0" spacing="0" border="0" Caption="Raw Materials Details" GridLines="Both"
+                                    Width="100%" runat="server">
+                                    <%--<HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                        HorizontalAlign="Center" ForeColor="White" />--%>
                                     <Columns>
                                         <asp:TemplateField HeaderText="S.No">
                                             <ItemTemplate>
@@ -667,7 +668,6 @@ color:White;
                     </div>
                 </div>
             </div>
-            <!-- /.col-lg-6 (nested) -->
         </div>
     </div>
     <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>

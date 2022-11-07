@@ -22,6 +22,11 @@
     <link href="../css/sb-admin-2.css" rel="stylesheet" />
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    	<link href="../css/dashboard.css" rel="stylesheet">
+	<!-- ubi style -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
     <script type="text/javascript">
         function printGrid() {
 

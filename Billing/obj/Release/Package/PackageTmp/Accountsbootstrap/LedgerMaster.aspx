@@ -24,6 +24,7 @@
 
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet"/>
+    <link href="../css/Pos_style.css" rel="stylesheet" />
 
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -41,40 +42,41 @@
 </head>
 <body>
     <usc:Header ID="Header" runat="server" />
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-default">
+        <div class="col-md-12">
+            <div class="col-md-4 col-md-offset-4 ">
+                <div class="row panel-custom1">
                     <%--<div class="panel-heading">
-                        <h2 class="panel-title" style="text-align: center">
+                            <h2 class="panel-title" style="text-align: center">
                             Ledger Creation</h2>
                     </div>--%>
-                     <div class="panel-heading " style="background-color:#428bca; color:White" ><b>Ledger Master Creation</b></div>
+                     <div class="panel-header">
+                      <h1 class="page-header">Add Ledger Master</h1>
+	                </div>
                     <div class="panel-body">
                         <form id="Form1" action="" runat="server">
                         <fieldset id="f1" runat="server">
-                            <div class="form-group">
+                            <div class="list-group">
                                 <label>
                                     Group Head</label>
                                 <asp:DropDownList ID="ddlGroup" runat="server" CssClass="form-control">
                                 </asp:DropDownList>
-                            </div>
-                            <div class="form-group" id="d1" runat="server">
+                           <br />
                                 <label>
                                     Name</label>
                                 <asp:TextBox CssClass="form-control" ID="txtledger" runat="server" placeholder="Name"></asp:TextBox>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="col-md-5">
-                                    <asp:Button class="btn btn-lg btn-success btn-block" ID="btnsave" Width="100px" runat="server"
+                            
+                            <br />
+                                
+                                    <asp:Button class="btn btn-lg btn-primary pos-btn1" ID="btnsave" Width="150px" runat="server"
                                         Text="Save" OnClick="btnsave_Click" />
+                                
+                                
+                                    <asp:Button class="btn btn-lg btn-link" ID="btnexit" Width="100px" runat="server"
+                                        Text="Clear" OnClick="btnexit_Click" />
                                 </div>
-                                <div class="col-md-2"></div>
-                                <div class="col-md-5">
-                                    <asp:Button class="btn btn-lg btn-danger btn-block" ID="btnexit" Width="100px" runat="server"
-                                        Text="Exit" OnClick="btnexit_Click" />
-                                </div>
-                            </div>
+                            
                         </fieldset>
                         <div class="form-group" style="text-align: center">
                         </div>
@@ -89,8 +91,10 @@
                         </form>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
-    </div>
+        </div>
+     
 </body>
 </html>

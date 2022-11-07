@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MinQty.aspx.cs" Inherits="Billing.Accountsbootstrap.MinQty" %>
+﻿ <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MinQty.aspx.cs" Inherits="Billing.Accountsbootstrap.MinQty" %>
 <%@ Register TagPrefix="usc" TagName="Header" Src="~/HeaderMaster/Header.ascx" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -63,14 +63,18 @@
     <usc:Header ID="Header" runat="server" />
      <asp:Label runat="server" ID="lblUser" ForeColor="White" Visible="false" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
-    <br />
-    <div class="panel-heading " style="background-color:#428bca; color:White" ><b>Minimum Qty</b></div>
-    <div class="col-lg-12" align="center">
-    <div class="col-lg-4">
-    <br />
-    <div class="panel-heading " style="background-color:#428bca; color:White" ><b>Minimum Qty Details</b></div>
-    <br />
-    <asp:GridView ID="gvSet" runat="server" AutoGenerateColumns="false" onrowcommand="gv_RowCommand" CssClass="mGrid" OnRowDataBound="gvSet_OnRowDataBound">
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="col-lg-8">
+        <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Minimum Qty Details</h1>
+          <br />
+           <div class="col-lg-12">
+          <div class="row">
+          <div class="table-responsive panel-grid-left">
+          <asp:GridView ID="gvSet" runat="server" AutoGenerateColumns="false" onrowcommand="gv_RowCommand" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"  OnRowDataBound="gvSet_OnRowDataBound">
     <Columns>
      <asp:BoundField DataField="categoryuserid" Visible="false"/>
     <asp:BoundField DataField="Category" HeaderText="Group" />
@@ -79,47 +83,63 @@
        <asp:BoundField DataField="FixQty" HeaderText="Order_Qty" />
       <asp:TemplateField>
       <ItemTemplate>
-      <asp:LinkButton ID="btn" runat="server" CommandName="et" CommandArgument='<%#Eval("categoryuserid") %>'><asp:Image ID="img" runat="server"  width="55px" /></asp:LinkButton>
+      <asp:LinkButton ID="btn" runat="server" CommandName="et" CommandArgument='<%#Eval("categoryuserid") %>'>
+      <asp:Image ID="img" runat="server"  width="55px" />
+      </asp:LinkButton>
       </ItemTemplate>
       </asp:TemplateField>
     </Columns>
     </asp:GridView>
-    </div>
-    <div class="col-lg-2" >
-    </div>
-    <div class="col-lg-4" >
-    <br />
-    <div class="panel-heading " style="background-color:#428bca; color:White" ><b>Minimum Qty Entry</b></div>
-    <div class="form-group">
+          </div>
+          </div>
+	    </div>
+        <br />
+        </div>
+        </div>
+        </div>
+
+  <div class="col-lg-4">
+        <div class="panel panel-custom1">
+		<div class="panel-header">
+				<h1 class="page-header">Add Minimum Qty</h1>
+		</div>
+                <div class="panel-body panel-form-right">
+                <div class="list-group">
+
     <label >Group</label>
     <asp:DropDownList ID="ddlcategory" runat="server" CssClass="form-control" 
             onselectedindexchanged="ddlcategory_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-    </div>
-    <div class="form-group">
+    <br />
+    
     <label >Item</label>
     <asp:DropDownList ID="ddlItems" runat="server" CssClass="form-control"></asp:DropDownList>
-    </div>
-    <div class="form-group">
+    <br />
     <label >Minimun Qty</label>
    <asp:TextBox ID="txtminqty" runat="server" CssClass="form-control"></asp:TextBox>
-    </div>
-    <div class="form-group">
+    <br />
     <label >Order Qty</label>
    <asp:TextBox ID="txtSet" runat="server" CssClass="form-control"></asp:TextBox>
-    </div>
-      <div class="form-group">
-      <asp:Button ID="btnsave" runat="server" CssClass="btn btn-danger" Text="Save" 
-              onclick="btnsave_Click" />
+    <br />
+      <asp:Button ID="btnsave" runat="server" CssClass="btn btn-lg btn-primary pos-btn1" Text="Save" 
+              onclick="btnsave_Click" width="150px"/>
       
-      <asp:Button ID="Button1" runat="server" CssClass="btn btn-success" Text="Cancel" onclick="Button1_Click" 
+      <asp:Button ID="Button1" runat="server" CssClass="btn btn-lg btn-link" Text="Cancel" onclick="Button1_Click" 
                />
     
-      <asp:Button ID="Button2" runat="server" CssClass="btn btn-warning" Text="Exit" onclick="Button2_Click" 
+      <asp:Button ID="Button2" runat="server" CssClass="btn btn-lg btn-link" Text="Clear" onclick="Button2_Click" 
               />
       </div>
-    </div>
     
+                </div>
+                </div>
+                </div>
+                </div>
+    
+ 
     </div>
+    </div>
+    </div>
+   
     </form>
 </body>
 </html>

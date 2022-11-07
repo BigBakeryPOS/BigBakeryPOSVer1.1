@@ -125,34 +125,39 @@
     <form id="f1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+     <div class="container-fluid">
+	<div class="row">
     <div class="col-lg-12">
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Invoice Upload </b>
-                </div>
+    <div class="col-lg-8">
+        <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Invoice Upload</h1>
+	    </div>
+  
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="col-lg-6">
+                       
+                            <div class="col-lg-4">
+                            <div class="form-group has-feedback">
                                 <asp:TextBox CssClass="form-control" ID="txtsearch" runat="server" onkeyup="Search_Gridview(this, 'gv')"
-                                    placeholder="Search Bill No.." MaxLength="50" Style="width: 150px"></asp:TextBox>
+                                    placeholder="Search Bill No.." MaxLength="50"></asp:TextBox>
                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
                                     FilterType="LowercaseLetters, UppercaseLetters,Numbers,Custom" ValidChars=" -"
                                     TargetControlID="txtsearch" />
+                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
                             </div>
-                            <div class="col-lg-6">
-                                <asp:Button ID="btnresret" runat="server" class="btn btn-warning" Text="Reset" OnClick="Btn_Reset"
-                                    Width="150px" /></div>
-                        </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <asp:Button ID="btnresret" runat="server" class="btn btn-secondary" Text="Reset" OnClick="Btn_Reset"
+                                     /></div>
+                       
                         <div class="col-lg-12">
-                            <br />
-                            <div style="height: 392px; overflow: scroll">
-                                <asp:GridView ID="gv" runat="server" DataKeyNames="UploadId" OnRowCommand="edit"
-                                    Width="100%" Font-Names="Calibri" EmptyDataText="Oops! No Activity Performed."
+                            <div class="table-responsive panel-grid-left">
+                                <asp:GridView ID="gv" runat="server" DataKeyNames="UploadId" OnRowCommand="edit" cssClass="table table-striped pos-table"
+                                    Width="100%" padding="0" spacing="0" border="0" EmptyDataText="Oops! No Activity Performed."
                                     AutoGenerateColumns="false">
-                                    <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                        HorizontalAlign="Center" ForeColor="White" />
+                                   <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                        HorizontalAlign="Center" ForeColor="White" />--%>
                                     <Columns>
                                         <asp:BoundField HeaderText="UomID" DataField="UploadId" Visible="false" />
                                         <asp:BoundField HeaderText="Supplier" DataField="ledgername" />
@@ -175,8 +180,11 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btnedit" CommandArgument='<%#Eval("UploadId") %>' CommandName="EditRow"
                                                     runat="server">
-                                                    <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server" width="55px" />
-                                                </asp:LinkButton>
+                                                    <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server" width="55px" visible="false"/>
+                                                    <button type="button" class="btn btn-warning btn-md">
+						                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					                                </button>
+                                              </asp:LinkButton>
                                                 <asp:HiddenField ID="ldgID" runat="server" Value='<%# Bind("UploadId") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -184,7 +192,11 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btndel" CommandArgument='<%#Eval("UploadId") %>' CommandName="Del"
                                                     runat="server">
-                                                    <asp:Image ID="Image1" ImageUrl="~/images/delete.png" runat="server" /></asp:LinkButton>
+                                                    <asp:Image ID="Image1" ImageUrl="~/images/delete.png" runat="server" visible="false"/>
+                                                    <button type="button" class="btn btn-danger btn-md">
+						                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					                                    </button>
+                                                        </asp:LinkButton>
                                                 <asp:ImageButton ID="imgdisable1321" ImageUrl="~/images/delete.png" runat="server"
                                                     Visible="false" Enabled="false" ToolTip="Not Allow To Delete" />
                                                 <ajaxToolkit:ModalPopupExtender ID="lnkDelete_ModalPopupExtender" runat="server"
@@ -202,17 +214,18 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <%--  <blink> <label  style="color:Green; font-size:12px">Please Fill Unit Of Measure </label></blink>--%>
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Create Invoice</b></div>
-                <div class="panel-body">
-                    <div class="list-group">
+        </div>  
+        <div class="col-lg-4">
+         <div class="panel panel-custom1">
+		<div class="panel-header">
+				<h1 class="page-header">Add Invoice</h1>
+		</div>
+                <div class="panel-body panel-form-right">
+                <div class="list-group">
+
                         <asp:TextBox ID="txtinvoiceid" Visible="false" runat="server"></asp:TextBox>
-                        <br />
+                        
                         <label>
                             Invoice Date</label>
                         <asp:TextBox CssClass="form-control" ID="txtinvoicedate" Enabled="true" runat="server"
@@ -234,7 +247,8 @@
                         <asp:TextBox ID="txtinvoiceno" runat="server" CssClass="form-control"></asp:TextBox>
                         <asp:RequiredFieldValidator runat="server" ID="txtinvoiceno1" ControlToValidate="txtinvoiceno"
                             ValidationGroup="val1" ErrorMessage="Please Enter your Invoice No!" Style="color: Red" />
-                        <label>
+                        <br />
+                         <label>
                             Production Branch</label>
                         <asp:DropDownList ID="DrpProductionBranch" runat="server" CssClass="form-control">
                         </asp:DropDownList>
@@ -244,8 +258,8 @@
                         <asp:UpdatePanel ID="UpdatePanel" runat="server">
                             <ContentTemplate>
                                 <asp:FileUpload ID="fp_Upload" runat="server" />
-                                <asp:Button ID="btnUpload123" runat="server" Text="Upload" CssClass="btn btn-primary"
-                                    OnClick="btnUpload_Clickimg" Width="100px" Visible="false" /><asp:Image ID="img_Photo"
+                                <asp:Button ID="btnUpload123" runat="server" Text="Upload" CssClass="btn btn-primary pos-btn1"
+                                    OnClick="btnUpload_Clickimg" Visible="false" /><asp:Image ID="img_Photo"
                                         runat="server" Width="70px" BorderColor="1" />
                                 <asp:Label ID="lblFile_Path" runat="server" Visible="false"></asp:Label>
                             </ContentTemplate>
@@ -253,17 +267,22 @@
                                 <asp:PostBackTrigger ControlID="btnUpload123" />
                             </Triggers>
                         </asp:UpdatePanel>
-                    </div>
-                    <div>
-                        <asp:Button ID="btnSubmit" Style="width: 150px; margin-left: 0px;" runat="server"
-                            class="btn btn-success" Text="Save" OnClick="btnSubmit_Click" />
-                        <asp:Button ID="btnclaear" Style="width: 150px; margin-left: 1px;" runat="server"
-                            class="btn btn-warning" Text="Cancel" OnClick="btncancel_Click" />
+                    <br />
+                        <asp:Button ID="btnSubmit"  width="150px"  runat="server"
+                            class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="btnSubmit_Click" />
+                        <asp:Button ID="btnclaear"  width="150px"  runat="server"
+                            class="btn btn-lg btn-link" Text="Cancel" OnClick="btncancel_Click" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+    </div>
+   
+
+
+
     <div id="divBackground">
     </div>
     <div id="divImage">
@@ -276,7 +295,7 @@
             </tr>
             <tr>
                 <td align="center" valign="bottom">
-                    <input id="btnClose" type="button" value="close" onclick="HideDiv()" />
+                    <input id="btnClose" type="button" value="close" class="btn btn-link" onclick="HideDiv()" />
                 </td>
             </tr>
         </table>

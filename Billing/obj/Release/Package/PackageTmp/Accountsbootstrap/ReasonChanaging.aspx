@@ -74,22 +74,31 @@
     </asp:ScriptManager>
     <asp:UpdatePanel ID="upanel" runat="server" EnableViewState="true">
         <ContentTemplate>
+        <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+        <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Stock Return Reason Changing</h1>
+	    </div>
             <div class="panel panel-body">
-        <div class="panel-heading " style="background-color:#428bca; color:White" ><b>Stock Return Reason Changing</b></div>
-               
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div>
-                            Date
+                    <div class="col-lg-3">
+                       
+                            <label>Date</label>
                             <asp:TextBox ID="txtDate" runat="server" CssClass="form-control"></asp:TextBox>
                             <ajaxToolkit:CalendarExtender ID="cal" runat="server" CssClass="cal_Theme1" TargetControlID="txtDate">
                             </ajaxToolkit:CalendarExtender>
-                        </div>
-                        <div>
-                            <asp:GridView ID="gvCustsales" runat="server" AllowPaging="true" PageSize="100" CssClass="mGrid"
-                                DataKeyNames="RetNo" ShowFooter="true" OnRowDataBound="gvCustsales_RowDataBound"
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="table-responsive panel-grid-left">
+                            <asp:GridView ID="gvCustsales" runat="server" AllowPaging="true" PageSize="100" cssClass="table table-striped pos-table"
+                                DataKeyNames="RetNo" ShowFooter="true" OnRowDataBound="gvCustsales_RowDataBound" padding="0" spacing="0" border="0"
                                 AutoGenerateColumns="false" EmptyDataText="No data found!" ShowHeaderWhenEmpty="True"
                                 OnRowCommand="gvCustsales_RowCommand">
+                                 <PagerStyle cssclass="pos-paging" />
                                 <Columns>
                                     <asp:TemplateField ItemStyle-HorizontalAlign="Left" ItemStyle-Width="30%" HeaderText="RetNo."
                                         HeaderStyle-HorizontalAlign="Center">
@@ -100,8 +109,8 @@
                                             </a>
                                             <%# Eval("RetNo")%>
                                             <div id="dv<%# Eval("RetNo") %>" style="display: none; position: relative;">
-                                                <asp:GridView runat="server" ID="gvLiaLedger" CssClass="mGrid" GridLines="Both" AutoGenerateColumns="false"
-                                                    DataKeyNames="TransRetId" ShowFooter="true">
+                                                <asp:GridView runat="server" ID="gvLiaLedger" cssClass="table table-striped pos-table" GridLines="Both" AutoGenerateColumns="false"
+                                                    DataKeyNames="TransRetId" ShowFooter="true" padding="0" spacing="0" border="0">
                                                     <Columns>
                                                         <asp:BoundField HeaderText="Transid" Visible="false" DataField="TransRetId" />
                                                         <asp:BoundField HeaderText="Product" DataField="Definition" />
@@ -123,20 +132,20 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
-                                <HeaderStyle BackColor="#990000" />
+                               <%-- <HeaderStyle BackColor="#990000" />
                                 <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
-                                    NextPageText="Next" PreviousPageText="Previous" />
+                                    NextPageText="Next" PreviousPageText="Previous" />--%>
                             </asp:GridView>
                         </div>
                     </div>
                 </div>
                 <div id="div" runat="server" style="display:none" >
-                    <div class="col-lg-7">
+                    <div class="col-lg-12">
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>
                                     Reasons</label>
-                                <asp:DropDownList ID="ddlreason" runat="server" CssClass="form-control" Width="150px" AutoPostBack="true" OnSelectedIndexChanged="drpPayment_OnSelectedIndexChanged">
+                                <asp:DropDownList ID="ddlreason" runat="server" CssClass="form-control"  AutoPostBack="true" OnSelectedIndexChanged="drpPayment_OnSelectedIndexChanged">
                                     <%--<asp:ListItem Text="Select" Value="0"></asp:ListItem>
                                     <asp:ListItem Text="DateBar" Value="2"></asp:ListItem>
                                     <asp:ListItem Text="Damage" Value="4"></asp:ListItem>
@@ -159,20 +168,23 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <div class="form-group">
+                            
                                 <label>
                                     Sub Reasons</label>
-                                <asp:DropDownList ID="ddlsubreasons" runat="server" CssClass="form-control" Width="200px">
+                                <asp:DropDownList ID="ddlsubreasons" runat="server" CssClass="form-control" >
                                 </asp:DropDownList>
-                            </div>
+                           
                         </div>
-                        <div class="col-lg-1">
+                        <div class="col-lg-3">
                             <br />
                             <asp:Button ID="btnch" runat="server" Text="Change" OnClick="btnch_Click" />
                         </div>
                     </div>
                 </div>
             </div>
+            </div>
+            </div>
+            
         </ContentTemplate>
     </asp:UpdatePanel>
     </form>

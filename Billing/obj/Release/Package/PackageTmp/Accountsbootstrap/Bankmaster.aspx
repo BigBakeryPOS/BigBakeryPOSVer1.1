@@ -110,22 +110,21 @@
     <form id="Form1" runat="server">
     <asp:UpdatePanel runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-            <div class="col-lg-12" style="">
-                <div>
-                    <div class="panel-body" style="">
-                        <div class="row" style="">
+            <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+               <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Contact Master</h1>
+	    </div>
+                   
                             <asp:ScriptManager ID="ScriptManager1" runat="server">
                             </asp:ScriptManager>
-                            <div class="row" style="">
-                                <div class="col-lg-12">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" style="background-color: #0071BD; color: White; text-align: left">
-                                            Contact Master
-                                        </div>
+                            
                                         <div class="panel-body">
                                             <asp:Label ID="lblerror" runat="server" Style="color: Red"></asp:Label>
-                                            <div class="col-lg-12">
-                                                <div class="col-lg-2">
+                                            <div class="col-lg-3">
+                                           <div class="list-group">
                                                    <%-- <div class="form-group">
                                                         <label>
                                                             Contact Type</label>
@@ -138,15 +137,14 @@
                                                             Code</label>
                                                         <asp:TextBox CssClass="form-control" ID="txtcuscode" runat="server" Enabled="false"></asp:TextBox>
                                                     </div>
-                                                    <div class="form-group">
+                                                   
                                                         <label>
                                                             Bank Name</label>
                                                         <asp:TextBox CssClass="form-control" ID="txtcustomername" MaxLength="50" runat="server"
                                                             Style="text-transform: capitalize"></asp:TextBox>
                                                         <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="reqName" ControlToValidate="txtcustomername"
                                                             ErrorMessage="Please enter Bank name!" Style="color: Red" />
-                                                    </div>
-                                                    <div class="form-group">
+                                                  <br />
                                                         <label>
                                                             Mobile No</label>
                                                         <asp:TextBox CssClass="form-control" ID="txtmobileno" MaxLength="10" Placeholder=""
@@ -158,82 +156,79 @@
                                                         <asp:RegularExpressionValidator runat="server" ID="rexNumber" ValidationGroup="val1"
                                                             ControlToValidate="txtmobileno" ValidationExpression="^[0-9]{10}$" ErrorMessage="Please enter a 10 digit number!"
                                                             Style="color: Red" />
-                                                    </div>
-                                                    <div runat="server" id="disc" visible="false" class="form-group">
+                                                    <br />
+                                                    <div runat="server" id="disc" visible="false" >
                                                         <label>
                                                             Disc %</label>
                                                         <asp:TextBox ID="txtdisc" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
-                                                    <div id="Div1"  visible="true" runat="server">
-                                                        <div class="form-group">
-                                                            <label style="margin-left: -15px">
+                                                  
+
+                                                     
+                                                            <label>
                                                                 Opening Balance</label>
                                                             <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="RequiredFieldValidator2"
                                                                 ControlToValidate="txtOBalance" Text="*" ErrorMessage="Please enter your opening balance amount!"
                                                                 Style="color: Red" />
                                                             <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server"
                                                                 FilterType="Numbers,Custom" ValidChars="." TargetControlID="txtOBalance" />
-                                                            <asp:TextBox CssClass="form-control" ID="txtOBalance" runat="server" Width="140px"
-                                                                MaxLength="8" Style="text-align: right; width: 153px; margin-left: -15px; font-weight: bold">0</asp:TextBox>
-                                                        </div>
-                                                    </div>
-                                                    <div id="Div2" visible="true" runat="server">
-                                                        <div class="form-group">
+                                                            <asp:TextBox CssClass="form-control" ID="txtOBalance" runat="server" 
+                                                                MaxLength="8" >0</asp:TextBox>
+                                                       
+                                                   
+                                                   <br /> <br />
+                                                    
                                                             <label>
                                                                 Choose Type</label>
                                                             <asp:DropDownList ID="ddlCDType" runat="server" class="form-control" Style="font-weight: bold"
-                                                               Width="140px">
+                                                               >
                                                                 <asp:ListItem Text="Credit" Value="Credit Note"></asp:ListItem>
                                                                 <asp:ListItem Text="Debit" Value="Debit Note"></asp:ListItem>
                                                             </asp:DropDownList>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2">
-                                                    <div class="form-group">
-                                                        <label>
+                                                    <br /> <br />
+                                                     <label>
                                                             Land Line No</label>
                                                         <asp:TextBox CssClass="form-control" ID="txtphoneno" MaxLength="15" runat="server"></asp:TextBox>
                                                         <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="phono" ControlToValidate="txtphoneno"
                                                             ErrorMessage="Please enter your Phone No!" Style="color: Red" />
                                                         <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server"
                                                             FilterType="Numbers,Custom" ValidChars=" -," TargetControlID="txtphoneno" />
-                                                    </div>
-                                                    <div class="form-group">
+                                                   <br /> <br />
                                                         <label>
                                                             City</label>
                                                         <asp:TextBox CssClass="form-control" ID="txtcity" MaxLength="30" runat="server" Style="text-transform: capitalize"></asp:TextBox>
                                                         <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="city" ControlToValidate="txtcity"
                                                             ErrorMessage="Please enter your City!" Style="color: Red" />
-                                                    </div>
-                                                    <div class="form-group">
+                                                       
+                                                </div>
+                                                </div>
+                                                 <div class="col-lg-3">
+                                                     <div class="list-group">
+                                                       
+                                                  
                                                         <label>
                                                             Area</label>
                                                         <asp:TextBox CssClass="form-control" ID="txtarea" MaxLength="30" runat="server" Style="text-transform: capitalize"></asp:TextBox>
                                                         <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="area" ControlToValidate="txtarea"
                                                             ErrorMessage="Please enter your Area!" Style="color: Red" />
-                                                    </div>
-                                                    <div class="form-group" id="paymentdays" runat="server" visible="false" >
-                                                        <label>
-                                                            Payment Days</label>
-                                                        <asp:TextBox CssClass="form-control" ID="txtpaymentdays" MaxLength="30" runat="server" >0</asp:TextBox>
-                                                        <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
-                                                            FilterType="Numbers" ValidChars="" TargetControlID="txtpaymentdays" />
-                                                    </div>
-                                                     
-
-                                                </div>
-
-                                                <div class="col-lg-2">
-                                                    <div class="form-group">
+                                                    <br />
+                                                   
+                                            
                                                         <label>
                                                             Address</label>
                                                         <asp:TextBox CssClass="form-control" ID="txtaddress" MaxLength="150" runat="server"
                                                             Style="text-transform: capitalize"></asp:TextBox>
                                                         <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="address" ControlToValidate="txtaddress"
                                                             ErrorMessage="Please enter your Address!" Style="color: Red" />
+                                                    <br />
+                                                     <div  id="paymentdays" runat="server" visible="false" >
+                                                        <label>
+                                                            Payment Days</label>
+                                                        <asp:TextBox CssClass="form-control" ID="txtpaymentdays" MaxLength="30" runat="server" >0</asp:TextBox>
+                                                        <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
+                                                            FilterType="Numbers" ValidChars="" TargetControlID="txtpaymentdays" />
                                                     </div>
-                                                    <div class="form-group">
+                                                    <br />
                                                         <label>
                                                             Pincode</label>
                                                         <asp:TextBox CssClass="form-control" ID="txtpincode" MaxLength="6" runat="server"></asp:TextBox>
@@ -244,10 +239,8 @@
                                                             Style="color: Red" />
                                                         <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server"
                                                             FilterType="Numbers,Custom" ValidChars=" -," TargetControlID="txtpincode" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>
-                                                            E-mail</label>
+                                                    <br />
+                                                        <label>E-mail</label>
                                                         <asp:TextBox CssClass="form-control" ID="txtemail" placeholder="For Ex: test@gmail.com"
                                                             runat="server"></asp:TextBox>
                                                         <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="email" ControlToValidate="txtemail"
@@ -255,38 +248,33 @@
                                                         <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator2" ValidationGroup="val1"
                                                             ControlToValidate="txtemail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
                                                             ErrorMessage="Please enter a correct Email Id!" Style="color: Red" />
-                                                    </div>
-                                                    <div class="form-group">
+                                                      <br />
                                                         <label>
                                                             GST NO</label>
                                                         <asp:TextBox CssClass="form-control" ID="txtgstno" placeholder="Enter GSTIN NO" runat="server"></asp:TextBox>
                                                       <%--  <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="RequiredFieldValidator1"
                                                             ControlToValidate="txtgstno" ErrorMessage="Please enter GST No!" Style="color: Red" />--%>
-                                                    </div>
-                                                   <table style="margin-left: -15pc;" >
-                                                        <tr>
-                                                            <td>
-                                                                <asp:Button ID="btnadd" runat="server" class="btn btn-success" Text="Save" OnClick="Add_Click"
-                                                                    Width="120px" ValidationGroup="val1" />
-                                                            </td>
-                                                            <td>
-                                                                &nbsp&nbsp&nbsp
-                                                            </td>
-                                                            <td>
-                                                                <asp:Button ID="btnexit" runat="server" class="btn btn-warning" Text="Exit" OnClick="Exit_Click"
+                                                <br /><br /> <br />
+                                                                <asp:Button ID="btnadd" runat="server" class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="Add_Click"
+                                                                    Width="150px" ValidationGroup="val1" />
+                                                         
+                                                                <asp:Button ID="btnexit" runat="server" class="btn btn-lg btn-link" Text="Exit" OnClick="Exit_Click"
                                                                     Width="120px" />
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
+                                                           
+                                               </div>
+                                                    </div>
                                                 <div class="col-lg-6">
                                                     <div id="Ingredient" runat="server" visible="false" class="form-group">
                                                         <label>
                                                             Select Ingredient</label>
+                                                            <div class="col-lg-4">
+                                                             <div class="form-group has-feedback">
                                                         <asp:TextBox onkeyup="Search_Gridview(this, 'griditem')" AutoComplete="Off" CssClass="form-control"
                                                             Enabled="true" ID="txtsearch" runat="server" placeholder="Search Item Text"></asp:TextBox>
-                                                        <div style="overflow: scroll; height: 500px" id="Div7" class="form-group" runat="server">
-                                                            <asp:GridView ID="griditem" runat="server" AutoGenerateColumns="false" Width="100%">
+                                                             <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                                            </div></div>
+                                                        <div class="table-responsive panel-grid-left">
+                                                            <asp:GridView ID="griditem" runat="server" AutoGenerateColumns="false" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" Width="100%">
                                                                 <Columns>
                                                                     <asp:TemplateField HeaderText="Allow Item">
                                                                         <ItemTemplate>
@@ -312,12 +300,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+               
                 </div>
+                </div>
+                </div>
+                
             </form>
         </ContentTemplate>
     </asp:UpdatePanel>

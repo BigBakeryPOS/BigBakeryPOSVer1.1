@@ -58,23 +58,21 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <usc:Header ID="Header" runat="server" />
-    <div class="row" style="">
-        <div class="col-lg-12" style="">
-            <h1 class="page-header">
-                Production Stock Details</h1>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <div class="row" style="">
-        <div class="col-lg-12" style="">
-            <div class="panel panel-default" style="">
-                <div class="panel-body" style="">
-                    <div class="row" style="">
-                        <div style="">
+     <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Production Stock Details</h1>
+	    </div>
+
+   
+                <div class="panel-body">
+
                             <form runat="server" id="form1" method="post">
                             <asp:ScriptManager ID="ScriptManager1" runat="server">
                             </asp:ScriptManager>
-                            <div class="form-group" align="center">
+                            
                                 <%--<asp:Button ID="btnsearch" runat="server" class="btn btn-success" Text="Search" Visible="false"
                                     Style="margin-top: 10px;" />
                                 <asp:Button ID="btnrefresh" runat="server" class="btn btn-warning" Text="Reset" Visible="false"
@@ -83,15 +81,18 @@
                                     PostBackUrl="~/Accountsbootstrap/productionstock.aspx" />
                                 <asp:Button ID="Button1" runat="server" class="btn btn-warning" Text="Export to Excel" Visible="false"
                                     Style="margin-top: 10px;" OnClick="btnexp_Click" />--%>
-                            </div>
-                            <div class="table-responsive" align="center">
-                                <table class="table table-bordered table-striped" align="center">
-                                    <tr>
-                                        <td style="">
+                                        <div class="row">
+                                    <div class="col-lg-3">
+                                    <div class="form-group has-feedback">
                                             <asp:TextBox ID="txtSearch" runat="server" onkeyup="Search_Gridview(this, 'gvitemsdetails')"
-                                                CssClass="form-control" Width="200px"></asp:TextBox><br />
+                                                CssClass="form-control"></asp:TextBox>
+                                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         <div class="table-responsive panel-grid-left">
                                             <asp:GridView Caption="Production Stock Details" ID="gvitemsdetails" runat="server"
-                                                ShowFooter="true" AutoGenerateColumns="false" CssClass="mGrid" Width="50%" OnRowDataBound="gvitemsdetails_RowDataBound">
+                                                ShowFooter="true" AutoGenerateColumns="false" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"  OnRowDataBound="gvitemsdetails_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField HeaderText="Category" DataField="Category" />
                                                     <asp:BoundField HeaderText="Product" DataField="Definition" />
@@ -99,21 +100,13 @@
                                                      <asp:BoundField HeaderText="UOM" DataField="UOM" />
                                                 </Columns>
                                             </asp:GridView>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                                      </div>
                             </form>
-                        </div>
-                        <!-- /.col-lg-6 (nested) -->
-                    </div>
-                    <!-- /.row (nested) -->
                 </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
+            
+    </div>
+    </div>
+    </div>
     </div>
 </body>
 </html>

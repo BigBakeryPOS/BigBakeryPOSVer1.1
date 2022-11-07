@@ -11,14 +11,16 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Goods Transfer Store Grid </title>
+    <link rel="Stylesheet" type="text/css" href="../css/date.css" />
+    <link href="../Styles/chosen.css" rel="Stylesheet" />
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <link href="../Styles/style1.css" rel="stylesheet" />
-    <link href="css/mGrid.css" rel="stylesheet" type="text/css" />
     <!-- MetisMenu CSS -->
     <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet" />
+    
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -58,67 +60,72 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <usc:Header ID="Header" runat="server" />
-    <div class="row" style="">
-        <div class="col-lg-12" style="">
-            <div class="panel panel-default" style="">
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Goods Transfer Store Details</b></div>
-                <div class="panel-body" style="">
-                    <div class="row" style="">
-                        <div class="col-lg-12" style="">
+      <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Goods Transfer Store Details</h1>
+	    </div>
+                <div class="panel-body">
+
                             <form runat="server" id="form1" method="post">
                             <asp:ScriptManager ID="ScriptManager1" runat="server">
                             </asp:ScriptManager>
-                            <div class="form-group" style="">
+                           <div class="row">
+                   
                                <%-- <label>
                                     Filter By</label>--%>
-                                <asp:DropDownList ID="ddlBranch" CssClass="form-control" Style="width: 150px;" runat="server" Visible="false">
+                                <asp:DropDownList ID="ddlBranch" CssClass="form-control"  runat="server" Visible="false">
                                     <%--<asp:ListItem Text="Bill No" Value="1"></asp:ListItem>
                                             <asp:ListItem Text="Customer Name" Value="2"></asp:ListItem>
                                             <asp:ListItem Text="Area" Value="3"></asp:ListItem>
                                             <asp:ListItem Text="City" Value="4"></asp:ListItem>--%>
                                 </asp:DropDownList>
-                                
+                                 <div class="col-lg-3">
                                     <label>
                                         Group</label>
                                     <asp:DropDownList ID="ddlcategory" AutoPostBack="true" runat="server" class="form-control"
-                                        Width="150px" OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged">
+                                       OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged">
                                     </asp:DropDownList>
-                                
-                                <asp:Button ID="btnsearch" runat="server" class="btn btn-success" Text="Search" Style="margin-top: 10px;"
-                                    OnClick="btnsearch_Click" />
-                                <asp:Button ID="btnrefresh" runat="server" class="btn btn-warning" Text="Reset" Style="margin-top: 10px;" />
-                                <asp:LinkButton ID="btnPrint" runat="server" onclick="btnPrint_Click"><asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png"  Width="50px" Height="50px"/></asp:LinkButton>
-                            </div>
-                            <div class="row">
-                                <label class="form-control-label">
+                                </div>
+                               
+                            <div class="col-lg-3">
+                                <label>
                                     From Date</label>
-                                <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
-                                <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="yyyy-MM-dd" TargetControlID="txtDate"
+                                <asp:TextBox ID="txtDate" runat="server" class="form-control"></asp:TextBox>
+                                <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="yyyy-MM-dd" TargetControlID="txtDate" Animated="true"
                                     runat="server" CssClass="cal_Theme1">
                                 </ajaxToolkit:CalendarExtender>
-                                <label class="form-control-label">
+                            </div>
+                            <div class="col-lg-3">
+                                <label>
                                     To Date</label>
-                                <asp:TextBox ID="txtToDate" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtToDate" runat="server" class="form-control"></asp:TextBox>
                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="yyyy-MM-dd" TargetControlID="txtToDate"
                                     runat="server" CssClass="cal_Theme1">
                                 </ajaxToolkit:CalendarExtender>
                             </div>
-                            <div class="table-responsive">
-                                <table>
-                                    <tr>
-                                        <td>
+                             <div class="col-lg-3">
+                             <br />
+                                <asp:Button ID="btnsearch" runat="server" class="btn btn-primary pos-btn1" Text="Search" 
+                                    OnClick="btnsearch_Click" />
+                               &nbsp;&nbsp;&nbsp; <asp:Button ID="btnrefresh" runat="server" class="btn btn-secondary" Text="Reset"  />
+                                &nbsp;&nbsp;&nbsp;<asp:LinkButton ID="btnPrint" runat="server"  onclick="btnPrint_Click">
+                                <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png"  Width="50px" Height="50px" Visible="false"/>
+                                <button type="button" class="btn btn-default btn-md">
+						           <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+					            </button>
+                                </asp:LinkButton>
+                            </div>
+                            </div>
+                            <br />
                                             <label>
-                                                <h3>
                                                     Goods Transfer/Damage/Missing Details Report
-                                                </h3>
                                             </label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
+                                            <div class="table-responsive panel-grid-left">
                                             <asp:GridView ID="gvTransfer" runat="server" EmptyDataText="No Record Found" AutoGenerateColumns="false"
-                                                CssClass="" OnRowCommand="gvTransfer_RowCommand">
+                                                cssClass="table table-striped pos-table"  padding="0" spacing="0" border="0" OnRowCommand="gvTransfer_RowCommand">
                                                 <Columns>
                                                     <asp:BoundField HeaderText="DC No" DataField="DC_NO" />
                                                     <asp:BoundField HeaderText="DC_Date" DataField="DC_Date"  DataFormatString="{0:dd/MMM/yyyy}" />
@@ -131,28 +138,21 @@
                                                     <asp:BoundField HeaderText="Damage Qty" DataField="damageQty" />
                                                     <asp:BoundField HeaderText="Missing Qty" DataField="MissingQty" />
                                                 </Columns>
-                                                <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
-                                                <HeaderStyle BackColor="#428bca" ForeColor="White" HorizontalAlign="Center" />
+                                                <%--<FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                                <HeaderStyle BackColor="#428bca" ForeColor="White" HorizontalAlign="Center" />--%>
                                             </asp:GridView>
-                                        </td>
-                                        <td>
-                                            <asp:GridView ID="grid" runat="server" CssClass="mGrid">
+                                       
+                                            <asp:GridView ID="grid" runat="server" padding="0" spacing="0" border="0" cssClass="table table-striped pos-table">
                                             </asp:GridView>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                                       </div>
+                          
                             </form>
-                        </div>
-                        <!-- /.col-lg-6 (nested) -->
-                    </div>
-                    <!-- /.row (nested) -->
+                  
                 </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
+             
+    </div>
+    </div>
+    </div>
     </div>
 </body>
 </html>

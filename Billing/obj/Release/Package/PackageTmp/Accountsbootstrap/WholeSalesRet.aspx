@@ -99,109 +99,103 @@
     <form runat="server" id="form1" method="post">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="row">
-                <div class="panel panel-default">
-                    <div class="panel-heading" style="background-color: #428bca; color: #333333; border-color: #06090c;
-                        color: White">
-                        Whole Sales Return Invoice
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
+        <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Whole Sales Return Invoice</h1>
+	    </div>
+          
+                    
                         <%-- <h1 class="page-header" style="text-align: center; font-size: 20px; font-weight: bold;
                     color: #fe0002; margin-top: 10px">
                     Sales Invoice</h1>--%>
                         <asp:ScriptManager ID="ScriptManager2" runat="server">
                         </asp:ScriptManager>
-                        <div class="col-lg-12">
-                            <div class="panel panel-default">
+                       
                                 <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-lg-1">
-                                            <div class="form-group">
-                                                <asp:Label runat="server" ID="Label3" Style="font-weight: bold">Return No. </asp:Label>
+                                        <div class="col-lg-3">
+                                            
+                                                <asp:Label runat="server" ID="Label3" >Return No </asp:Label>
                                                 <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="RequiredFieldValidator4"
                                                     Text="*" ControlToValidate="txtbillno" ErrorMessage="Please enter Bill NO!" Style="color: Red" />
                                                 <asp:TextBox ID="txtbillno" CssClass="form-control" MaxLength="50" runat="server"
-                                                    Width="100" Enabled="false"></asp:TextBox>
-                                            </div>
+                                                    Enabled="false"></asp:TextBox>
+                                            
                                         </div>
-                                        <div class="col-lg-2">
-                                            <div class="form-group">
-                                                <asp:Label runat="server" ID="Label4" Style="font-weight: bold;">Return Date</asp:Label>
+                                        <div class="col-lg-3">
+                                           
+                                                <asp:Label runat="server" ID="Label4" >Return Date</asp:Label>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ValidationGroup="val1"
                                                     Text="*" ControlToValidate="txtdate" Style="color: Red" ErrorMessage="Enter Bill Date"></asp:RequiredFieldValidator><br />
-                                                <asp:TextBox CssClass="form-control" ID="txtdate" runat="server" Width="180"></asp:TextBox>
+                                                <asp:TextBox CssClass="form-control" ID="txtdate" runat="server" ></asp:TextBox>
                                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="dd/MM/yyyy hh:mm tt"
                                                     TargetControlID="txtdate" runat="server" CssClass="cal_Theme1">
                                                 </ajaxToolkit:CalendarExtender>
-                                            </div>
+                                          
                                         </div>
-                                        <div class="col-lg-2">
-                                            <div class="form-group">
+                                        <div class="col-lg-3">
+                                         
                                                 <label>
-                                                    Customer Name</label><br />
-                                                <asp:DropDownList runat="server" ID="ddlcustomer" CssClass="chzn-select" AutoPostBack="true"
-                                                    Width="150px" OnSelectedIndexChanged="ddlcustomer_OnSelectedIndexChanged">
+                                                    Customer Name</label>
+                                                <asp:DropDownList runat="server" ID="ddlcustomer" CssClass="form-control" AutoPostBack="true"
+                                                   OnSelectedIndexChanged="ddlcustomer_OnSelectedIndexChanged">
                                                 </asp:DropDownList>
-                                            </div>
+                                            
                                         </div>
-                                        <div class="col-lg-2">
-                                            <div class="form-group">
+                                        <div class="col-lg-3">
+                                           
                                                 <label id="Label7" runat="server">
                                                     Mobile No.</label>
-                                                <asp:TextBox CssClass="form-control" ID="txtmbl" runat="server" Enabled="false"></asp:TextBox>
-                                            </div>
+                                                <asp:TextBox CssClass="form-control" ID="txtmbl" runat="server"   Enabled="false"></asp:TextBox>
+                                           
                                         </div>
-                                        <div class="col-lg-2">
-                                        <div style="overflow-y: scroll; width: 13pc; height: 10pc">
-                                                    <asp:TextBox ID="txtreturnserach" runat="server" onkeyup="SearchEmployees(this,'#chkbillno');"
+                                        
+                                        <div class="col-lg-3"><br />
+                                        <div style="overflow-y: scroll;  height: 10pc">
+                                                    <asp:TextBox ID="txtreturnserach" runat="server" onkeyup="SearchEmployees(this,'#chkbillno');" 
                                                         CssClass="form-control"></asp:TextBox>
-                                            <div class="form-group">
+                                           
                                                 <label>
-                                                    WholeSales Nos.</label>
-                                                <asp:CheckBoxList ID="chkbillno" CssClass="chkChoice" AutoPostBack="true" Width="100px" OnSelectedIndexChanged="chkinvnochanged"
+                                                    WholeSales Nos</label>
+                                                <asp:CheckBoxList ID="chkbillno" CssClass="chkChoice" AutoPostBack="true"  OnSelectedIndexChanged="chkinvnochanged"
                                                     RepeatColumns="5" runat="server">
                                                 </asp:CheckBoxList>
-                                            </div>
+                                            
                                             </div>
                                         </div>
-                                        <div class="col-lg-1">
-                                            <div class="form-group">
+                                        <div class="col-lg-3">
+                                         
                                                 <label>
                                                     Sub.Total</label>
-                                                <asp:TextBox ID="txtgrandamount" runat="server" Enabled="false" Style="width: 100px;
-                                                    text-align: right">0</asp:TextBox>
-                                            </div>
+                                                <asp:TextBox ID="txtgrandamount" runat="server" Enabled="false" CssClass="form-control" >0</asp:TextBox>
+                                            
                                         </div>
-                                        <div class="col-lg-1">
-                                            <div class="form-group">
+                                        <div class="col-lg-3">
+                                          
                                                 <label>
                                                     GST
                                                 </label>
-                                                <asp:TextBox ID="txtTaxamt" runat="server" Enabled="false" Style="width: 100px; text-align: right">0</asp:TextBox>
-                                                <asp:TextBox ID="txtdiscamt" runat="server" Enabled="false" Visible="false">0</asp:TextBox>
-                                            </div>
+                                                <asp:TextBox ID="txtTaxamt" runat="server" Enabled="false" CssClass="form-control">0</asp:TextBox>
+                                                <asp:TextBox ID="txtdiscamt" runat="server" Enabled="false" Visible="false" CssClass="form-control">0</asp:TextBox>
+                                           
                                         </div>
-                                        <div class="col-lg-1">
-                                            <div class="form-group">
+                                        <div class="col-lg-3">
+                                          
                                                 <label>
                                                     Grand Total</label>
-                                                <asp:TextBox ID="txtgrandtotal" runat="server" Enabled="false" Style="width: 80px;
-                                                    text-align: right">0</asp:TextBox>
-                                            </div>
+                                                <asp:TextBox ID="txtgrandtotal" runat="server" Enabled="false" CssClass="form-control">0</asp:TextBox>
+                                           
                                         </div>
-                                        <div class="col-lg-1">
-                                        </div>
+                                       
                                     </div>
-                                </div>
-                            </div>
-                        </div>
+                                
+                            
                         <div id="Div1" class="col-lg-12" runat="server" visible="false">
-                            <div>
-                                <div class="col-lg-1">
-                                </div>
-                                <div class="col-lg-8">
-                                    <table id="Table11" border="3" style="width: 300px">
+                            
+                                    <table id="Table11" border="3"  class="table table-hover table-striped pos-table1">
                                         <tr>
                                             <td style="width: 70px">
                                                 <label>
@@ -260,23 +254,13 @@
                                             </td>
                                         </tr>
                                     </table>
-                                </div>
-                                <div class="col-lg-2">
-                                </div>
-                            </div>
+                              
                         </div>
-                        <div class="col-lg-12">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="panel-body">
+                      
                                         <div class="table-responsive">
                                             <asp:Label ID="lblError" runat="server" Style="color: Red"></asp:Label>
-                                            <div class="table-responsive">
-                                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                    <tr>
-                                                        <td colspan="2">
-                                                            <div style="height: 200px; overflow: scroll">
-                                                                <asp:GridView ID="GridView2" AutoGenerateColumns="False" Width="100%" ShowFooter="True" OnRowDataBound="GridView2_OnRowDataBound"
+                                            <div class="table-responsive panel-grid-left">
+                                                                <asp:GridView ID="GridView2" AutoGenerateColumns="False" Width="100%" ShowFooter="True" OnRowDataBound="GridView2_OnRowDataBound" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                                                                     OnRowDeleting="GridView2_RowDeleting" GridLines="Both" runat="server">
                                                                     <Columns>
                                                                         <asp:TemplateField HeaderText="S.No" HeaderStyle-Width="1%" ItemStyle-Width="1%">
@@ -348,9 +332,7 @@
                                                                         <asp:CommandField ShowDeleteButton="True" ButtonType="Button" />
                                                                     </Columns>
                                                                 </asp:GridView>
-                                                            </div>
-                                                        </td>
-                                                        <td>
+                                                      
                                                             <div class="form-group">
                                                                 <label id="Label10" runat="server" style="font-size: large; color: Maroon">
                                                                     Amount</label>
@@ -368,8 +350,7 @@
                                                                     0
                                                                 </label>
                                                             </div>
-                                                        </td>
-                                                    </tr>
+                                                       
                                                     <tr id="Tr1" class="odd gradeX" runat="server" visible="false">
                                                         <td align="right">
                                                             <label style="margin-top: 11px;">
@@ -422,24 +403,28 @@
                                                         <td style="width: 250px">
                                                         </td>
                                                     </tr>
-                                                </table>
+                                                
                                             </div>
                                         </div>
-                                        <div style="text-align: right">
+                                         <div class="row">
+                                        <div class="col-lg-3">
                                             <asp:TextBox ID="txtnarrations" runat="server" placeholder="Please Enter Narrations"
-                                                CssClass="form-control" TextMode="MultiLine" Width="200px"></asp:TextBox>
-                                            <asp:Button ID="btncalc" Text="Calc" runat="server" Width="120px" OnClick="btncalc_OnClick" />
-                                            <asp:Button ID="btnadd" Text="Save" runat="server" class="btn btn-success" ValidationGroup="val1"
-                                                Width="120px" OnClick="btnadd_Click" />
-                                            <asp:Button ID="btnExit" Text="Exit" runat="server" class="btn btn-warning" Width="120px"
+                                                CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+                                        </div>
+                                        <div class="col-lg-3">
+                                      
+                                            <asp:Button ID="btncalc" Text="calc" runat="server" OnClick="btncalc_OnClick" class="btn btn-lg btn-primary pos-btn1" />
+                                            &nbsp;&nbsp;&nbsp;<asp:Button ID="btnadd" Text="Save" runat="server" class="btn btn-lg btn-primary pos-btn1" ValidationGroup="val1"
+                                                OnClick="btnadd_Click" />
+                                            <asp:Button ID="btnExit" Text="Exit" runat="server" class="btn btn-lg btn-link"
                                                 PostBackUrl="~/Accountsbootstrap/WholeSalesReturnGrid.aspx" />
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                   </div>
+                           
+              </div> 
+            </div>
+            </div>
+            </div>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>

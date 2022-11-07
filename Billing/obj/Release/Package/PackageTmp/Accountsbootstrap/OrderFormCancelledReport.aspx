@@ -62,20 +62,18 @@
         <ContentTemplate>
             <asp:ScriptManager ID="ScriptManager1" runat="server">
             </asp:ScriptManager>
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        OrderForm Cancel Report</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
+             <div class="container-fluid">
+	        <div class="row">
+            <div class="col-lg-12">
+             <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">OrderForm Cancel Report</h1>
+	    </div>
+
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-3">
                                         <div runat="server">
                                             <label>
                                                 Select Branch</label>
@@ -83,7 +81,7 @@
                                             </asp:DropDownList>
                                         </div>
                                     </div>
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-3">
                                         <label>
                                             From date</label>
                                         <asp:TextBox runat="server" Visible="false" ID="txtCustomerName">
@@ -95,7 +93,7 @@
                                             runat="server" CssClass="cal_Theme1">
                                         </ajaxToolkit:CalendarExtender>
                                     </div>
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-3">
                                         <label>
                                             To date</label>
                                         <asp:TextBox runat="server" CssClass="form-control" ID="txttodate">
@@ -104,24 +102,23 @@
                                             runat="server" CssClass="cal_Theme1">
                                         </ajaxToolkit:CalendarExtender>
                                     </div>
-                                    <div class="col-lg-2">
-                                        <asp:Button ID="btnall" runat="server" Text="Generate Report" CssClass="btn btn-success"
+                                    <div class="col-lg-3">
+                                    <br />
+                                        <asp:Button ID="btnall" runat="server" Text="Generate Report" CssClass="btn btn-info pos-btn1"
                                             OnClick="btnall_Click" />
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <div>
-                                            <asp:Button ID="btnExport" Text="Export to Excel" Visible="true" runat="server" CssClass="btn btn-success"
-                                                Height="37px" OnClick="btnExport_Click" /></div>
+                                    
+                                       
+                                     &nbsp;&nbsp;&nbsp;       <asp:Button ID="btnExport" Text="Export to Excel" Visible="true" runat="server" CssClass="btn btn-success"
+                                                 OnClick="btnExport_Click" />
                                     </div>
                                 </div>
+                                </div>
                                 <div class="col-lg-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped">
-                                            <tr>
-                                                <td>
+                                    <div class="table-responsive panel-grid-left">
+                                        
                                                     <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
-                                                    <asp:GridView ID="gvOrderForm" runat="server" PageSize="150" CssClass="mGrid" AutoGenerateColumns="false"
-                                                        EmptyDataText="No data found!" ShowHeaderWhenEmpty="True">
+                                                    <asp:GridView ID="gvOrderForm" runat="server" PageSize="150" cssClass="table table-striped pos-table" AutoGenerateColumns="false"
+                                                        EmptyDataText="No data found!" ShowHeaderWhenEmpty="True" padding="0" spacing="0" border="0">
                                                         <Columns>
                                                             <asp:BoundField HeaderText="Branch Name" DataField="branch" />
                                                             <asp:BoundField HeaderText="Customer Name" DataField="CustomerName" />
@@ -138,24 +135,19 @@
                                                             <asp:BoundField HeaderText="BookNo" DataField="BookNo" DataFormatString='{0:0}' />
                                                             <asp:BoundField HeaderText="Cancelled By" DataField="Cancelled" DataFormatString='{0:f}' />
                                                         </Columns>
-                                                        <HeaderStyle BackColor="#990000" />
+                                                       <%-- <HeaderStyle BackColor="#990000" />--%>
                                                     </asp:GridView>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                              
                                     </div>
                                 </div>
                             </div>
                             <!-- /.col-lg-6 (nested) -->
                         </div>
-                        <!-- /.row (nested) -->
-                    </div>
-                    <!-- /.panel-body -->
-                </div>
-                <!-- /.panel -->
-            </div>
-            <!-- /.col-lg-12 -->
-            </div>
+                    
+           </div>
+           </div>
+           </div>
+           </div> 
         </ContentTemplate>
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="gvOrderForm" EventName="" />

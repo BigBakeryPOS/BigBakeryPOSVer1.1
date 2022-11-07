@@ -24,32 +24,13 @@ namespace Billing.Accountsbootstrap
         string BranchType = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
 
             empid = Request.Cookies["userInfo"]["UserID"].ToString();
             sTableName = Request.Cookies["userInfo"]["BranchCode"].ToString();
-            
+
             if (!IsPostBack)
             {
-
-                DataSet dsBranchType = objBs.GetNoBranch();
-                if (dsBranchType.Tables[0].Rows.Count > 0)
-                {
-                     BranchType = dsBranchType.Tables[0].Rows[0]["BranchType"].ToString();
-
-                    DataSet dsbranchCode1 = objBs.getbranchTy(BranchType);
-                    if (dsbranchCode1.Tables[0].Rows.Count > 0)
-                    {
-                        drpRighttype.DataSource = dsbranchCode1;
-                        drpRighttype.DataTextField = "Name";
-                        drpRighttype.DataValueField = "ID";
-                        drpRighttype.DataBind();
-                        //drpRighttype.Items.Insert(0, "Select Type");
-                    }
-
-                }
-                drpRighttype_OnSelectedIndexChanged(sender, e);
-
                 DataSet dsbranchCode = objBs.getbranch();
                 if (dsbranchCode.Tables[0].Rows.Count > 0)
                 {
@@ -78,7 +59,7 @@ namespace Billing.Accountsbootstrap
                 lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
                 lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
 
-               
+
 
 
 
@@ -86,6 +67,40 @@ namespace Billing.Accountsbootstrap
                 int iCusID = Convert.ToInt32(Request.QueryString.Get("iCusID"));
                 if (Convert.ToString(iCusID) != "" && iCusID != null && iCusID != 0)
                 {
+                    #region GetAllroles
+                    DataSet dsmsater = new DataSet();
+                    dsmsater = objBs.GetAllrolls("MasterMenu", "No", 0);
+                    grdmaster.DataSource = dsmsater;
+                    grdmaster.DataBind();
+
+                    DataSet dsOrderFormMenu = new DataSet();
+                    dsOrderFormMenu = objBs.GetAllrolls("OrderFormMenu", "No", 0);
+                    OrderFormMenu.DataSource = dsOrderFormMenu;
+                    OrderFormMenu.DataBind();
+
+                    DataSet dsinventory = new DataSet();
+                    dsinventory = objBs.GetAllrolls("InventoryMenu", "No", 0);
+                    grdinventory.DataSource = dsinventory;
+                    grdinventory.DataBind();
+
+                    DataSet RequestAccept = new DataSet();
+                    RequestAccept = objBs.GetAllrolls("RequestAccept", "No", 0);
+                    grRequestAccept.DataSource = RequestAccept;
+                    grRequestAccept.DataBind();
+
+
+                    DataSet dsreport = new DataSet();
+                    dsreport = objBs.GetAllrolls("Reports", "No", 0);
+                    grdreport.DataSource = dsreport;
+                    grdreport.DataBind();
+
+
+                    DataSet dsdetailedreport = new DataSet();
+                    dsdetailedreport = objBs.GetAllrolls("ReportsAccess", "No", 0);
+                    grddetailedreport.DataSource = dsdetailedreport;
+                    grddetailedreport.DataBind();
+                    #endregion
+
                     DataSet ds1 = objBs.getselectuser(iCusID);
                     if (ds1.Tables[0].Rows.Count > 0)
                     {
@@ -124,9 +139,9 @@ namespace Billing.Accountsbootstrap
                         }
 
                         int idd = Convert.ToInt32(txtUserid.Text);
-                       
+
                         DataSet dsmsater1 = new DataSet();
-                        dsmsater1 = objBs.grtroll("MasterMenu","Yes",idd,"0");
+                        dsmsater1 = objBs.grtroll("MasterMenu", "Yes", idd, "0");
                         for (int vLoop = 0; vLoop < grdmaster.Rows.Count; vLoop++)
                         {
                             Label txtsno = (Label)grdmaster.Rows[vLoop].FindControl("lblDebtorID");
@@ -161,13 +176,13 @@ namespace Billing.Accountsbootstrap
 
 
                         }
-                      //  grdmaster.DataSource = dsmsater1;
-                      //  grdmaster.DataBind();
+                        //  grdmaster.DataSource = dsmsater1;
+                        //  grdmaster.DataBind();
 
                         DataSet dsOrderFormMenu1 = new DataSet();
-                        dsOrderFormMenu1 = objBs.grtroll("OrderFormMenu", "Yes", idd,"0");
-                       // OrderFormMenu.DataSource = dsOrderFormMenu1;
-                      //  OrderFormMenu.DataBind();
+                        dsOrderFormMenu1 = objBs.grtroll("OrderFormMenu", "Yes", idd, "0");
+                        // OrderFormMenu.DataSource = dsOrderFormMenu1;
+                        //  OrderFormMenu.DataBind();
                         for (int vLoop = 0; vLoop < OrderFormMenu.Rows.Count; vLoop++)
                         {
                             Label txtsno = (Label)OrderFormMenu.Rows[vLoop].FindControl("lblDebtorID");
@@ -204,7 +219,7 @@ namespace Billing.Accountsbootstrap
                         }
 
                         DataSet dsinventory1 = new DataSet();
-                        dsinventory1 = objBs.grtroll("InventoryMenu", "Yes", idd ,"0");
+                        dsinventory1 = objBs.grtroll("InventoryMenu", "Yes", idd, "0");
                         for (int vLoop = 0; vLoop < grdinventory.Rows.Count; vLoop++)
                         {
                             Label txtsno = (Label)grdinventory.Rows[vLoop].FindControl("lblDebtorID");
@@ -237,15 +252,15 @@ namespace Billing.Accountsbootstrap
                                 }
                             }
 
-                            
+
                         }
-                       // grdinventory.DataSource = dsinventory1;
+                        // grdinventory.DataSource = dsinventory1;
                         //grdinventory.DataBind();
 
                         DataSet RequestAccept1 = new DataSet();
-                        RequestAccept1 = objBs.grtroll("RequestAccept", "Yes", idd ,"0");
-                       // grRequestAccept.DataSource = RequestAccept1;
-                      //  grRequestAccept.DataBind();
+                        RequestAccept1 = objBs.grtroll("RequestAccept", "Yes", idd, "0");
+                        // grRequestAccept.DataSource = RequestAccept1;
+                        //  grRequestAccept.DataBind();
                         for (int vLoop = 0; vLoop < grRequestAccept.Rows.Count; vLoop++)
                         {
                             Label txtsno = (Label)grRequestAccept.Rows[vLoop].FindControl("lblDebtorID");
@@ -283,9 +298,9 @@ namespace Billing.Accountsbootstrap
 
 
                         DataSet dsreport1 = new DataSet();
-                        dsreport1 = objBs.grtroll("Reports", "Yes", idd ,"0");
-                      //  grdreport.DataSource = dsreport1;
-                      //  grdreport.DataBind();
+                        dsreport1 = objBs.grtroll("Reports", "Yes", idd, "0");
+                        //  grdreport.DataSource = dsreport1;
+                        //  grdreport.DataBind();
                         for (int vLoop = 0; vLoop < grdreport.Rows.Count; vLoop++)
                         {
                             Label txtsno = (Label)grdreport.Rows[vLoop].FindControl("lblDebtorID");
@@ -322,7 +337,7 @@ namespace Billing.Accountsbootstrap
                         }
 
                         DataSet dsdetailedreport1 = new DataSet();
-                        dsdetailedreport1 = objBs.grtroll("ReportsAccess", "Yes", idd ,"0");
+                        dsdetailedreport1 = objBs.grtroll("ReportsAccess", "Yes", idd, "0");
                         //  grdreport.DataSource = dsreport1;
                         //  grdreport.DataBind();
                         for (int vLoop = 0; vLoop < grddetailedreport.Rows.Count; vLoop++)
@@ -362,7 +377,6 @@ namespace Billing.Accountsbootstrap
 
                         #endregion
                     }
-
                 }
 
 
@@ -370,355 +384,597 @@ namespace Billing.Accountsbootstrap
             }
         }
 
-
-        protected void drpRighttype_OnSelectedIndexChanged(object sender, EventArgs e)
+        protected void drplogintype_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            //string Billing = "";
-            //string Production = "";
-
-            //if (drpRighttype.SelectedValue == "1")
-            //{
-            //    Billing = "True";
-            //    Production = "False";
-            //}
-
-            //if (drpRighttype.SelectedValue == "2")
-            //{
-            //    Billing = "False";
-            //    Production = "True";
-            //}
-
+            #region GetAllroles
             DataSet dsmsater = new DataSet();
-            dsmsater = objBs.grtroll("MasterMenu", "No", 0, drpRighttype.SelectedValue);
+            dsmsater = objBs.GetAllrolls("MasterMenu", "No", 0);
             grdmaster.DataSource = dsmsater;
             grdmaster.DataBind();
 
             DataSet dsOrderFormMenu = new DataSet();
-            dsOrderFormMenu = objBs.grtroll("OrderFormMenu", "No", 0, drpRighttype.SelectedValue);
+            dsOrderFormMenu = objBs.GetAllrolls("OrderFormMenu", "No", 0);
             OrderFormMenu.DataSource = dsOrderFormMenu;
             OrderFormMenu.DataBind();
 
             DataSet dsinventory = new DataSet();
-            dsinventory = objBs.grtroll("InventoryMenu", "No", 0, drpRighttype.SelectedValue);
+            dsinventory = objBs.GetAllrolls("InventoryMenu", "No", 0);
             grdinventory.DataSource = dsinventory;
             grdinventory.DataBind();
 
             DataSet RequestAccept = new DataSet();
-            RequestAccept = objBs.grtroll("RequestAccept", "No", 0, drpRighttype.SelectedValue);
+            RequestAccept = objBs.GetAllrolls("RequestAccept", "No", 0);
             grRequestAccept.DataSource = RequestAccept;
             grRequestAccept.DataBind();
 
 
             DataSet dsreport = new DataSet();
-            dsreport = objBs.grtroll("Reports", "No", 0, drpRighttype.SelectedValue);
+            dsreport = objBs.GetAllrolls("Reports", "No", 0);
             grdreport.DataSource = dsreport;
             grdreport.DataBind();
 
 
             DataSet dsdetailedreport = new DataSet();
-            dsdetailedreport = objBs.grtroll("ReportsAccess", "No", 0, drpRighttype.SelectedValue);
+            dsdetailedreport = objBs.GetAllrolls("ReportsAccess", "No", 0);
             grddetailedreport.DataSource = dsdetailedreport;
             grddetailedreport.DataBind();
+            #endregion
 
+            #region Rights Set
 
-            int iCusID = Convert.ToInt32(Request.QueryString.Get("iCusID"));
-            if (Convert.ToString(iCusID) != "" && iCusID != null && iCusID != 0)
+            int idd = Convert.ToInt32(drplogintype.SelectedValue);
+
+            DataSet dsmsater1 = new DataSet();
+            dsmsater1 = objBs.grtroll_LoginType("MasterMenu", "Yes", idd);
+            for (int vLoop = 0; vLoop < grdmaster.Rows.Count; vLoop++)
             {
-                DataSet ds1 = objBs.getselectuser(iCusID);
-                if (ds1.Tables[0].Rows.Count > 0)
+                Label txtsno = (Label)grdmaster.Rows[vLoop].FindControl("lblDebtorID");
+                for (int j = 0; j < dsmsater1.Tables[0].Rows.Count; j++)
                 {
-                    btnadd.Text = "Update";
-                    ddlemployee.Enabled = false;
-                    txtUserid.Text = ds1.Tables[0].Rows[0]["EmpID"].ToString();
-                    txtusername.Text = ds1.Tables[0].Rows[0]["Name"].ToString();
-                    txtmobile.Text = ds1.Tables[0].Rows[0]["Mobile"].ToString();
+                    string roleid = dsmsater1.Tables[0].Rows[j]["roleid"].ToString();
 
-                    txtreportdays.Text = ds1.Tables[0].Rows[0]["ReportDays"].ToString();
-                    drplogintype.SelectedValue = ds1.Tables[0].Rows[0]["Logintype"].ToString();
-                    drpbilltype.SelectedValue = ds1.Tables[0].Rows[0]["BillType"].ToString();
-                    drpbranch.SelectedValue = ds1.Tables[0].Rows[0]["BranchID"].ToString();
-                    drpbranch.Enabled = false;
-                    txtpassword.Attributes.Add("value", ds1.Tables[0].Rows[0]["Code"].ToString());
-                    txtconfirmpasswprd.Attributes.Add("value", ds1.Tables[0].Rows[0]["Code"].ToString());
+                    bool Add = Convert.ToBoolean(dsmsater1.Tables[0].Rows[j]["Visible"]);
+                    bool Read = Convert.ToBoolean(dsmsater1.Tables[0].Rows[j]["Read"]);
+                    bool Edit = Convert.ToBoolean(dsmsater1.Tables[0].Rows[j]["Edit"]);
+                    bool Delete = Convert.ToBoolean(dsmsater1.Tables[0].Rows[j]["Delete"]);
+                    bool Save = Convert.ToBoolean(dsmsater1.Tables[0].Rows[j]["Save"]);
 
-                    txtStoreName.Text = ds1.Tables[0].Rows[0]["StoreName"].ToString();
-                    txtStoreNo.Text = ds1.Tables[0].Rows[0]["Mobile"].ToString();
-                    txtTIN.Text = ds1.Tables[0].Rows[0]["TIN"].ToString();
-                    txtPlace.Text = ds1.Tables[0].Rows[0]["Place"].ToString();
-                    txtAddress.Text = ds1.Tables[0].Rows[0]["Address"].ToString();
-
-
-                    #region Rights Set
-
-                    bool suer = Convert.ToBoolean(ds1.Tables[0].Rows[0]["IsSuperAdmin"]);
-                    if (suer == true)
+                    if (roleid == txtsno.Text)
                     {
-                        chkadminrights.Checked = true;
+
+                        CheckBox chkboxAdd = (CheckBox)grdmaster.Rows[vLoop].FindControl("chkboxAdd");
+
+                        CheckBox chkRead = (CheckBox)grdmaster.Rows[vLoop].FindControl("chkRead");
+                        CheckBox chkEdit = (CheckBox)grdmaster.Rows[vLoop].FindControl("chkEdit");
+                        CheckBox chkDelete = (CheckBox)grdmaster.Rows[vLoop].FindControl("chkDelete");
+                        CheckBox chkSave = (CheckBox)grdmaster.Rows[vLoop].FindControl("chkSave");
+
+                        chkboxAdd.Checked = Add;
+                        chkRead.Checked = Read;
+                        chkEdit.Checked = Edit;
+                        chkDelete.Checked = Delete;
+                        chkSave.Checked = Save;
                     }
-                    else
-                    {
-                        chkadminrights.Checked = false;
-
-                    }
-
-                    int idd = Convert.ToInt32(txtUserid.Text);
-
-                    DataSet dsmsater1 = new DataSet();
-                    dsmsater1 = objBs.grtroll("MasterMenu", "Yes", idd, "0");
-                    for (int vLoop = 0; vLoop < grdmaster.Rows.Count; vLoop++)
-                    {
-                        Label txtsno = (Label)grdmaster.Rows[vLoop].FindControl("lblDebtorID");
-
-                        for (int j = 0; j < dsmsater1.Tables[0].Rows.Count; j++)
-                        {
-                            string roleid = dsmsater1.Tables[0].Rows[j]["roleid"].ToString();
-
-                            bool Add = Convert.ToBoolean(dsmsater1.Tables[0].Rows[j]["Visible"]);
-                            bool Read = Convert.ToBoolean(dsmsater1.Tables[0].Rows[j]["Read"]);
-                            bool Edit = Convert.ToBoolean(dsmsater1.Tables[0].Rows[j]["Edit"]);
-                            bool Delete = Convert.ToBoolean(dsmsater1.Tables[0].Rows[j]["Delete"]);
-                            bool Save = Convert.ToBoolean(dsmsater1.Tables[0].Rows[j]["Save"]);
-
-                            if (roleid == txtsno.Text)
-                            {
-
-                                CheckBox chkboxAdd = (CheckBox)grdmaster.Rows[vLoop].FindControl("chkboxAdd");
-
-                                CheckBox chkRead = (CheckBox)grdmaster.Rows[vLoop].FindControl("chkRead");
-                                CheckBox chkEdit = (CheckBox)grdmaster.Rows[vLoop].FindControl("chkEdit");
-                                CheckBox chkDelete = (CheckBox)grdmaster.Rows[vLoop].FindControl("chkDelete");
-                                CheckBox chkSave = (CheckBox)grdmaster.Rows[vLoop].FindControl("chkSave");
-
-                                chkboxAdd.Checked = Add;
-                                chkRead.Checked = Read;
-                                chkEdit.Checked = Edit;
-                                chkDelete.Checked = Delete;
-                                chkSave.Checked = Save;
-                            }
-                        }
-
-
-                    }
-                    //  grdmaster.DataSource = dsmsater1;
-                    //  grdmaster.DataBind();
-
-                    DataSet dsOrderFormMenu1 = new DataSet();
-                    dsOrderFormMenu1 = objBs.grtroll("OrderFormMenu", "Yes", idd, "0");
-                    // OrderFormMenu.DataSource = dsOrderFormMenu1;
-                    //  OrderFormMenu.DataBind();
-                    for (int vLoop = 0; vLoop < OrderFormMenu.Rows.Count; vLoop++)
-                    {
-                        Label txtsno = (Label)OrderFormMenu.Rows[vLoop].FindControl("lblDebtorID");
-
-                        for (int j = 0; j < dsOrderFormMenu1.Tables[0].Rows.Count; j++)
-                        {
-                            string roleid = dsOrderFormMenu1.Tables[0].Rows[j]["roleid"].ToString();
-
-                            bool Add = Convert.ToBoolean(dsOrderFormMenu1.Tables[0].Rows[j]["Visible"]);
-                            bool Read = Convert.ToBoolean(dsOrderFormMenu1.Tables[0].Rows[j]["Read"]);
-                            bool Edit = Convert.ToBoolean(dsOrderFormMenu1.Tables[0].Rows[j]["Edit"]);
-                            bool Delete = Convert.ToBoolean(dsOrderFormMenu1.Tables[0].Rows[j]["Delete"]);
-                            bool Save = Convert.ToBoolean(dsOrderFormMenu1.Tables[0].Rows[j]["Save"]);
-
-                            if (roleid == txtsno.Text)
-                            {
-
-                                CheckBox chkboxAdd = (CheckBox)OrderFormMenu.Rows[vLoop].FindControl("chkboxAdd");
-
-                                CheckBox chkRead = (CheckBox)OrderFormMenu.Rows[vLoop].FindControl("chkRead");
-                                CheckBox chkEdit = (CheckBox)OrderFormMenu.Rows[vLoop].FindControl("chkEdit");
-                                CheckBox chkDelete = (CheckBox)OrderFormMenu.Rows[vLoop].FindControl("chkDelete");
-                                CheckBox chkSave = (CheckBox)OrderFormMenu.Rows[vLoop].FindControl("chkSave");
-
-                                chkboxAdd.Checked = Add;
-                                chkRead.Checked = Read;
-                                chkEdit.Checked = Edit;
-                                chkDelete.Checked = Delete;
-                                chkSave.Checked = Save;
-                            }
-                        }
-
-
-                    }
-
-                    DataSet dsinventory1 = new DataSet();
-                    dsinventory1 = objBs.grtroll("InventoryMenu", "Yes", idd, "0");
-                    for (int vLoop = 0; vLoop < grdinventory.Rows.Count; vLoop++)
-                    {
-                        Label txtsno = (Label)grdinventory.Rows[vLoop].FindControl("lblDebtorID");
-
-                        for (int j = 0; j < dsinventory1.Tables[0].Rows.Count; j++)
-                        {
-                            string roleid = dsinventory1.Tables[0].Rows[j]["roleid"].ToString();
-
-                            bool Add = Convert.ToBoolean(dsinventory1.Tables[0].Rows[j]["Visible"]);
-                            bool Read = Convert.ToBoolean(dsinventory1.Tables[0].Rows[j]["Read"]);
-                            bool Edit = Convert.ToBoolean(dsinventory1.Tables[0].Rows[j]["Edit"]);
-                            bool Delete = Convert.ToBoolean(dsinventory1.Tables[0].Rows[j]["Delete"]);
-                            bool Save = Convert.ToBoolean(dsinventory1.Tables[0].Rows[j]["Save"]);
-
-                            if (roleid == txtsno.Text)
-                            {
-
-                                CheckBox chkboxAdd = (CheckBox)grdinventory.Rows[vLoop].FindControl("chkboxAdd");
-
-                                CheckBox chkRead = (CheckBox)grdinventory.Rows[vLoop].FindControl("chkRead");
-                                CheckBox chkEdit = (CheckBox)grdinventory.Rows[vLoop].FindControl("chkEdit");
-                                CheckBox chkDelete = (CheckBox)grdinventory.Rows[vLoop].FindControl("chkDelete");
-                                CheckBox chkSave = (CheckBox)grdinventory.Rows[vLoop].FindControl("chkSave");
-
-                                chkboxAdd.Checked = Add;
-                                chkRead.Checked = Read;
-                                chkEdit.Checked = Edit;
-                                chkDelete.Checked = Delete;
-                                chkSave.Checked = Save;
-                            }
-                        }
-
-
-                    }
-                    // grdinventory.DataSource = dsinventory1;
-                    //grdinventory.DataBind();
-
-                    DataSet RequestAccept1 = new DataSet();
-                    RequestAccept1 = objBs.grtroll("RequestAccept", "Yes", idd, "0");
-                    // grRequestAccept.DataSource = RequestAccept1;
-                    //  grRequestAccept.DataBind();
-                    for (int vLoop = 0; vLoop < grRequestAccept.Rows.Count; vLoop++)
-                    {
-                        Label txtsno = (Label)grRequestAccept.Rows[vLoop].FindControl("lblDebtorID");
-
-                        for (int j = 0; j < RequestAccept1.Tables[0].Rows.Count; j++)
-                        {
-                            string roleid = RequestAccept1.Tables[0].Rows[j]["roleid"].ToString();
-
-                            bool Add = Convert.ToBoolean(RequestAccept1.Tables[0].Rows[j]["Visible"]);
-                            bool Read = Convert.ToBoolean(RequestAccept1.Tables[0].Rows[j]["Read"]);
-                            bool Edit = Convert.ToBoolean(RequestAccept1.Tables[0].Rows[j]["Edit"]);
-                            bool Delete = Convert.ToBoolean(RequestAccept1.Tables[0].Rows[j]["Delete"]);
-                            bool Save = Convert.ToBoolean(RequestAccept1.Tables[0].Rows[j]["Save"]);
-
-                            if (roleid == txtsno.Text)
-                            {
-
-                                CheckBox chkboxAdd = (CheckBox)grRequestAccept.Rows[vLoop].FindControl("chkboxAdd");
-
-                                CheckBox chkRead = (CheckBox)grRequestAccept.Rows[vLoop].FindControl("chkRead");
-                                CheckBox chkEdit = (CheckBox)grRequestAccept.Rows[vLoop].FindControl("chkEdit");
-                                CheckBox chkDelete = (CheckBox)grRequestAccept.Rows[vLoop].FindControl("chkDelete");
-                                CheckBox chkSave = (CheckBox)grRequestAccept.Rows[vLoop].FindControl("chkSave");
-
-                                chkboxAdd.Checked = Add;
-                                chkRead.Checked = Read;
-                                chkEdit.Checked = Edit;
-                                chkDelete.Checked = Delete;
-                                chkSave.Checked = Save;
-                            }
-                        }
-
-
-                    }
-
-
-                    DataSet dsreport1 = new DataSet();
-                    dsreport1 = objBs.grtroll("Reports", "Yes", idd, "0");
-                    //  grdreport.DataSource = dsreport1;
-                    //  grdreport.DataBind();
-                    for (int vLoop = 0; vLoop < grdreport.Rows.Count; vLoop++)
-                    {
-                        Label txtsno = (Label)grdreport.Rows[vLoop].FindControl("lblDebtorID");
-
-                        for (int j = 0; j < dsreport1.Tables[0].Rows.Count; j++)
-                        {
-                            string roleid = dsreport1.Tables[0].Rows[j]["roleid"].ToString();
-
-                            bool Add = Convert.ToBoolean(dsreport1.Tables[0].Rows[j]["Visible"]);
-                            bool Read = Convert.ToBoolean(dsreport1.Tables[0].Rows[j]["Read"]);
-                            bool Edit = Convert.ToBoolean(dsreport1.Tables[0].Rows[j]["Edit"]);
-                            bool Delete = Convert.ToBoolean(dsreport1.Tables[0].Rows[j]["Delete"]);
-                            bool Save = Convert.ToBoolean(dsreport1.Tables[0].Rows[j]["Save"]);
-
-                            if (roleid == txtsno.Text)
-                            {
-
-                                CheckBox chkboxAdd = (CheckBox)grdreport.Rows[vLoop].FindControl("chkboxAdd");
-
-                                CheckBox chkRead = (CheckBox)grdreport.Rows[vLoop].FindControl("chkRead");
-                                CheckBox chkEdit = (CheckBox)grdreport.Rows[vLoop].FindControl("chkEdit");
-                                CheckBox chkDelete = (CheckBox)grdreport.Rows[vLoop].FindControl("chkDelete");
-                                CheckBox chkSave = (CheckBox)grdreport.Rows[vLoop].FindControl("chkSave");
-
-                                chkboxAdd.Checked = Add;
-                                chkRead.Checked = Read;
-                                chkEdit.Checked = Edit;
-                                chkDelete.Checked = Delete;
-                                chkSave.Checked = Save;
-                            }
-                        }
-
-
-                    }
-
-                    DataSet dsdetailedreport1 = new DataSet();
-                    dsdetailedreport1 = objBs.grtroll("ReportsAccess", "Yes", idd, "0");
-                    //  grdreport.DataSource = dsreport1;
-                    //  grdreport.DataBind();
-                    for (int vLoop = 0; vLoop < grddetailedreport.Rows.Count; vLoop++)
-                    {
-                        Label txtsno = (Label)grddetailedreport.Rows[vLoop].FindControl("lblDebtorID");
-
-                        for (int j = 0; j < dsdetailedreport1.Tables[0].Rows.Count; j++)
-                        {
-                            string roleid = dsdetailedreport1.Tables[0].Rows[j]["roleid"].ToString();
-
-                            bool Add = Convert.ToBoolean(dsdetailedreport1.Tables[0].Rows[j]["Visible"]);
-                            bool Read = Convert.ToBoolean(dsdetailedreport1.Tables[0].Rows[j]["Read"]);
-                            bool Edit = Convert.ToBoolean(dsdetailedreport1.Tables[0].Rows[j]["Edit"]);
-                            bool Delete = Convert.ToBoolean(dsdetailedreport1.Tables[0].Rows[j]["Delete"]);
-                            bool Save = Convert.ToBoolean(dsdetailedreport1.Tables[0].Rows[j]["Save"]);
-
-                            if (roleid == txtsno.Text)
-                            {
-
-                                CheckBox chkboxAdd = (CheckBox)grddetailedreport.Rows[vLoop].FindControl("chkboxAdd");
-
-                                CheckBox chkRead = (CheckBox)grddetailedreport.Rows[vLoop].FindControl("chkRead");
-                                CheckBox chkEdit = (CheckBox)grddetailedreport.Rows[vLoop].FindControl("chkEdit");
-                                CheckBox chkDelete = (CheckBox)grddetailedreport.Rows[vLoop].FindControl("chkDelete");
-                                CheckBox chkSave = (CheckBox)grddetailedreport.Rows[vLoop].FindControl("chkSave");
-
-                                chkboxAdd.Checked = Add;
-                                chkRead.Checked = Read;
-                                chkEdit.Checked = Edit;
-                                chkDelete.Checked = Delete;
-                                chkSave.Checked = Save;
-                            }
-                        }
-
-
-                    }
-
-                    #endregion
                 }
-
             }
+            //  grdmaster.DataSource = dsmsater1;
+            //  grdmaster.DataBind();
+
+            DataSet dsOrderFormMenu1 = new DataSet();
+            dsOrderFormMenu1 = objBs.grtroll_LoginType("OrderFormMenu", "Yes", idd);
+            // OrderFormMenu.DataSource = dsOrderFormMenu1;
+            //  OrderFormMenu.DataBind();
+            for (int vLoop = 0; vLoop < OrderFormMenu.Rows.Count; vLoop++)
+            {
+                Label txtsno = (Label)OrderFormMenu.Rows[vLoop].FindControl("lblDebtorID");
+                for (int j = 0; j < dsOrderFormMenu1.Tables[0].Rows.Count; j++)
+                {
+                    string roleid = dsOrderFormMenu1.Tables[0].Rows[j]["roleid"].ToString();
+
+                    bool Add = Convert.ToBoolean(dsOrderFormMenu1.Tables[0].Rows[j]["Visible"]);
+                    bool Read = Convert.ToBoolean(dsOrderFormMenu1.Tables[0].Rows[j]["Read"]);
+                    bool Edit = Convert.ToBoolean(dsOrderFormMenu1.Tables[0].Rows[j]["Edit"]);
+                    bool Delete = Convert.ToBoolean(dsOrderFormMenu1.Tables[0].Rows[j]["Delete"]);
+                    bool Save = Convert.ToBoolean(dsOrderFormMenu1.Tables[0].Rows[j]["Save"]);
+
+                    if (roleid == txtsno.Text)
+                    {
+
+                        CheckBox chkboxAdd = (CheckBox)OrderFormMenu.Rows[vLoop].FindControl("chkboxAdd");
+
+                        CheckBox chkRead = (CheckBox)OrderFormMenu.Rows[vLoop].FindControl("chkRead");
+                        CheckBox chkEdit = (CheckBox)OrderFormMenu.Rows[vLoop].FindControl("chkEdit");
+                        CheckBox chkDelete = (CheckBox)OrderFormMenu.Rows[vLoop].FindControl("chkDelete");
+                        CheckBox chkSave = (CheckBox)OrderFormMenu.Rows[vLoop].FindControl("chkSave");
+
+                        chkboxAdd.Checked = Add;
+                        chkRead.Checked = Read;
+                        chkEdit.Checked = Edit;
+                        chkDelete.Checked = Delete;
+                        chkSave.Checked = Save;
+                    }
+                }
+            }
+
+            DataSet dsinventory1 = new DataSet();
+            dsinventory1 = objBs.grtroll_LoginType("InventoryMenu", "Yes", idd);
+            for (int vLoop = 0; vLoop < grdinventory.Rows.Count; vLoop++)
+            {
+                Label txtsno = (Label)grdinventory.Rows[vLoop].FindControl("lblDebtorID");
+                for (int j = 0; j < dsinventory1.Tables[0].Rows.Count; j++)
+                {
+                    string roleid = dsinventory1.Tables[0].Rows[j]["roleid"].ToString();
+
+                    bool Add = Convert.ToBoolean(dsinventory1.Tables[0].Rows[j]["Visible"]);
+                    bool Read = Convert.ToBoolean(dsinventory1.Tables[0].Rows[j]["Read"]);
+                    bool Edit = Convert.ToBoolean(dsinventory1.Tables[0].Rows[j]["Edit"]);
+                    bool Delete = Convert.ToBoolean(dsinventory1.Tables[0].Rows[j]["Delete"]);
+                    bool Save = Convert.ToBoolean(dsinventory1.Tables[0].Rows[j]["Save"]);
+
+                    if (roleid == txtsno.Text)
+                    {
+
+                        CheckBox chkboxAdd = (CheckBox)grdinventory.Rows[vLoop].FindControl("chkboxAdd");
+
+                        CheckBox chkRead = (CheckBox)grdinventory.Rows[vLoop].FindControl("chkRead");
+                        CheckBox chkEdit = (CheckBox)grdinventory.Rows[vLoop].FindControl("chkEdit");
+                        CheckBox chkDelete = (CheckBox)grdinventory.Rows[vLoop].FindControl("chkDelete");
+                        CheckBox chkSave = (CheckBox)grdinventory.Rows[vLoop].FindControl("chkSave");
+
+                        chkboxAdd.Checked = Add;
+                        chkRead.Checked = Read;
+                        chkEdit.Checked = Edit;
+                        chkDelete.Checked = Delete;
+                        chkSave.Checked = Save;
+                    }
+                }
+            }
+            // grdinventory.DataSource = dsinventory1;
+            //grdinventory.DataBind();
+
+            DataSet RequestAccept1 = new DataSet();
+            RequestAccept1 = objBs.grtroll_LoginType("RequestAccept", "Yes", idd);
+            // grRequestAccept.DataSource = RequestAccept1;
+            //  grRequestAccept.DataBind();
+            for (int vLoop = 0; vLoop < grRequestAccept.Rows.Count; vLoop++)
+            {
+                Label txtsno = (Label)grRequestAccept.Rows[vLoop].FindControl("lblDebtorID");
+                for (int j = 0; j < RequestAccept1.Tables[0].Rows.Count; j++)
+                {
+                    string roleid = RequestAccept1.Tables[0].Rows[j]["roleid"].ToString();
+
+                    bool Add = Convert.ToBoolean(RequestAccept1.Tables[0].Rows[j]["Visible"]);
+                    bool Read = Convert.ToBoolean(RequestAccept1.Tables[0].Rows[j]["Read"]);
+                    bool Edit = Convert.ToBoolean(RequestAccept1.Tables[0].Rows[j]["Edit"]);
+                    bool Delete = Convert.ToBoolean(RequestAccept1.Tables[0].Rows[j]["Delete"]);
+                    bool Save = Convert.ToBoolean(RequestAccept1.Tables[0].Rows[j]["Save"]);
+
+                    if (roleid == txtsno.Text)
+                    {
+
+                        CheckBox chkboxAdd = (CheckBox)grRequestAccept.Rows[vLoop].FindControl("chkboxAdd");
+
+                        CheckBox chkRead = (CheckBox)grRequestAccept.Rows[vLoop].FindControl("chkRead");
+                        CheckBox chkEdit = (CheckBox)grRequestAccept.Rows[vLoop].FindControl("chkEdit");
+                        CheckBox chkDelete = (CheckBox)grRequestAccept.Rows[vLoop].FindControl("chkDelete");
+                        CheckBox chkSave = (CheckBox)grRequestAccept.Rows[vLoop].FindControl("chkSave");
+
+                        chkboxAdd.Checked = Add;
+                        chkRead.Checked = Read;
+                        chkEdit.Checked = Edit;
+                        chkDelete.Checked = Delete;
+                        chkSave.Checked = Save;
+                    }
+                }
+            }
+
+
+            DataSet dsreport1 = new DataSet();
+            dsreport1 = objBs.grtroll_LoginType("Reports", "Yes", idd);
+            //  grdreport.DataSource = dsreport1;
+            //  grdreport.DataBind();
+            for (int vLoop = 0; vLoop < grdreport.Rows.Count; vLoop++)
+            {
+                Label txtsno = (Label)grdreport.Rows[vLoop].FindControl("lblDebtorID");
+                for (int j = 0; j < dsreport1.Tables[0].Rows.Count; j++)
+                {
+                    string roleid = dsreport1.Tables[0].Rows[j]["roleid"].ToString();
+
+                    bool Add = Convert.ToBoolean(dsreport1.Tables[0].Rows[j]["Visible"]);
+                    bool Read = Convert.ToBoolean(dsreport1.Tables[0].Rows[j]["Read"]);
+                    bool Edit = Convert.ToBoolean(dsreport1.Tables[0].Rows[j]["Edit"]);
+                    bool Delete = Convert.ToBoolean(dsreport1.Tables[0].Rows[j]["Delete"]);
+                    bool Save = Convert.ToBoolean(dsreport1.Tables[0].Rows[j]["Save"]);
+
+                    if (roleid == txtsno.Text)
+                    {
+
+                        CheckBox chkboxAdd = (CheckBox)grdreport.Rows[vLoop].FindControl("chkboxAdd");
+
+                        CheckBox chkRead = (CheckBox)grdreport.Rows[vLoop].FindControl("chkRead");
+                        CheckBox chkEdit = (CheckBox)grdreport.Rows[vLoop].FindControl("chkEdit");
+                        CheckBox chkDelete = (CheckBox)grdreport.Rows[vLoop].FindControl("chkDelete");
+                        CheckBox chkSave = (CheckBox)grdreport.Rows[vLoop].FindControl("chkSave");
+
+                        chkboxAdd.Checked = Add;
+                        chkRead.Checked = Read;
+                        chkEdit.Checked = Edit;
+                        chkDelete.Checked = Delete;
+                        chkSave.Checked = Save;
+                    }
+                }
+            }
+
+            DataSet dsdetailedreport1 = new DataSet();
+            dsdetailedreport1 = objBs.grtroll_LoginType("ReportsAccess", "Yes", idd);
+            //  grdreport.DataSource = dsreport1;
+            //  grdreport.DataBind();
+            for (int vLoop = 0; vLoop < grddetailedreport.Rows.Count; vLoop++)
+            {
+                Label txtsno = (Label)grddetailedreport.Rows[vLoop].FindControl("lblDebtorID");
+                for (int j = 0; j < dsdetailedreport1.Tables[0].Rows.Count; j++)
+                {
+                    string roleid = dsdetailedreport1.Tables[0].Rows[j]["roleid"].ToString();
+
+                    bool Add = Convert.ToBoolean(dsdetailedreport1.Tables[0].Rows[j]["Visible"]);
+                    bool Read = Convert.ToBoolean(dsdetailedreport1.Tables[0].Rows[j]["Read"]);
+                    bool Edit = Convert.ToBoolean(dsdetailedreport1.Tables[0].Rows[j]["Edit"]);
+                    bool Delete = Convert.ToBoolean(dsdetailedreport1.Tables[0].Rows[j]["Delete"]);
+                    bool Save = Convert.ToBoolean(dsdetailedreport1.Tables[0].Rows[j]["Save"]);
+
+                    if (roleid == txtsno.Text)
+                    {
+
+                        CheckBox chkboxAdd = (CheckBox)grddetailedreport.Rows[vLoop].FindControl("chkboxAdd");
+
+                        CheckBox chkRead = (CheckBox)grddetailedreport.Rows[vLoop].FindControl("chkRead");
+                        CheckBox chkEdit = (CheckBox)grddetailedreport.Rows[vLoop].FindControl("chkEdit");
+                        CheckBox chkDelete = (CheckBox)grddetailedreport.Rows[vLoop].FindControl("chkDelete");
+                        CheckBox chkSave = (CheckBox)grddetailedreport.Rows[vLoop].FindControl("chkSave");
+
+                        chkboxAdd.Checked = Add;
+                        chkRead.Checked = Read;
+                        chkEdit.Checked = Edit;
+                        chkDelete.Checked = Delete;
+                        chkSave.Checked = Save;
+                    }
+                }
+            }
+            #endregion
         }
+        //protected void drpRighttype_OnSelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    DataSet dsmsater = new DataSet();
+        //    dsmsater = objBs.grtroll("MasterMenu", "No", 0, drpRighttype.SelectedValue);
+        //    grdmaster.DataSource = dsmsater;
+        //    grdmaster.DataBind();
+
+        //    DataSet dsOrderFormMenu = new DataSet();
+        //    dsOrderFormMenu = objBs.grtroll("OrderFormMenu", "No", 0, drpRighttype.SelectedValue);
+        //    OrderFormMenu.DataSource = dsOrderFormMenu;
+        //    OrderFormMenu.DataBind();
+
+        //    DataSet dsinventory = new DataSet();
+        //    dsinventory = objBs.grtroll("InventoryMenu", "No", 0, drpRighttype.SelectedValue);
+        //    grdinventory.DataSource = dsinventory;
+        //    grdinventory.DataBind();
+
+        //    DataSet RequestAccept = new DataSet();
+        //    RequestAccept = objBs.grtroll("RequestAccept", "No", 0, drpRighttype.SelectedValue);
+        //    grRequestAccept.DataSource = RequestAccept;
+        //    grRequestAccept.DataBind();
+
+
+        //    DataSet dsreport = new DataSet();
+        //    dsreport = objBs.grtroll("Reports", "No", 0, drpRighttype.SelectedValue);
+        //    grdreport.DataSource = dsreport;
+        //    grdreport.DataBind();
+
+
+        //    DataSet dsdetailedreport = new DataSet();
+        //    dsdetailedreport = objBs.grtroll("ReportsAccess", "No", 0, drpRighttype.SelectedValue);
+        //    grddetailedreport.DataSource = dsdetailedreport;
+        //    grddetailedreport.DataBind();
+
+
+        //    int iCusID = Convert.ToInt32(Request.QueryString.Get("iCusID"));
+        //    if (Convert.ToString(iCusID) != "" && iCusID != null && iCusID != 0)
+        //    {
+        //        DataSet ds1 = objBs.getselectuser(iCusID);
+        //        if (ds1.Tables[0].Rows.Count > 0)
+        //        {
+        //            btnadd.Text = "Update";
+        //            ddlemployee.Enabled = false;
+        //            txtUserid.Text = ds1.Tables[0].Rows[0]["EmpID"].ToString();
+        //            txtusername.Text = ds1.Tables[0].Rows[0]["Name"].ToString();
+        //            txtmobile.Text = ds1.Tables[0].Rows[0]["Mobile"].ToString();
+
+        //            txtreportdays.Text = ds1.Tables[0].Rows[0]["ReportDays"].ToString();
+        //            drplogintype.SelectedValue = ds1.Tables[0].Rows[0]["Logintype"].ToString();
+        //            drpbilltype.SelectedValue = ds1.Tables[0].Rows[0]["BillType"].ToString();
+        //            drpbranch.SelectedValue = ds1.Tables[0].Rows[0]["BranchID"].ToString();
+        //            drpbranch.Enabled = false;
+        //            txtpassword.Attributes.Add("value", ds1.Tables[0].Rows[0]["Code"].ToString());
+        //            txtconfirmpasswprd.Attributes.Add("value", ds1.Tables[0].Rows[0]["Code"].ToString());
+
+        //            txtStoreName.Text = ds1.Tables[0].Rows[0]["StoreName"].ToString();
+        //            txtStoreNo.Text = ds1.Tables[0].Rows[0]["Mobile"].ToString();
+        //            txtTIN.Text = ds1.Tables[0].Rows[0]["TIN"].ToString();
+        //            txtPlace.Text = ds1.Tables[0].Rows[0]["Place"].ToString();
+        //            txtAddress.Text = ds1.Tables[0].Rows[0]["Address"].ToString();
+
+
+        //            #region Rights Set
+
+        //            bool suer = Convert.ToBoolean(ds1.Tables[0].Rows[0]["IsSuperAdmin"]);
+        //            if (suer == true)
+        //            {
+        //                chkadminrights.Checked = true;
+        //            }
+        //            else
+        //            {
+        //                chkadminrights.Checked = false;
+
+        //            }
+
+        //            int idd = Convert.ToInt32(txtUserid.Text);
+
+        //            DataSet dsmsater1 = new DataSet();
+        //            dsmsater1 = objBs.grtroll("MasterMenu", "Yes", idd, "0");
+        //            for (int vLoop = 0; vLoop < grdmaster.Rows.Count; vLoop++)
+        //            {
+        //                Label txtsno = (Label)grdmaster.Rows[vLoop].FindControl("lblDebtorID");
+
+        //                for (int j = 0; j < dsmsater1.Tables[0].Rows.Count; j++)
+        //                {
+        //                    string roleid = dsmsater1.Tables[0].Rows[j]["roleid"].ToString();
+
+        //                    bool Add = Convert.ToBoolean(dsmsater1.Tables[0].Rows[j]["Visible"]);
+        //                    bool Read = Convert.ToBoolean(dsmsater1.Tables[0].Rows[j]["Read"]);
+        //                    bool Edit = Convert.ToBoolean(dsmsater1.Tables[0].Rows[j]["Edit"]);
+        //                    bool Delete = Convert.ToBoolean(dsmsater1.Tables[0].Rows[j]["Delete"]);
+        //                    bool Save = Convert.ToBoolean(dsmsater1.Tables[0].Rows[j]["Save"]);
+
+        //                    if (roleid == txtsno.Text)
+        //                    {
+
+        //                        CheckBox chkboxAdd = (CheckBox)grdmaster.Rows[vLoop].FindControl("chkboxAdd");
+
+        //                        CheckBox chkRead = (CheckBox)grdmaster.Rows[vLoop].FindControl("chkRead");
+        //                        CheckBox chkEdit = (CheckBox)grdmaster.Rows[vLoop].FindControl("chkEdit");
+        //                        CheckBox chkDelete = (CheckBox)grdmaster.Rows[vLoop].FindControl("chkDelete");
+        //                        CheckBox chkSave = (CheckBox)grdmaster.Rows[vLoop].FindControl("chkSave");
+
+        //                        chkboxAdd.Checked = Add;
+        //                        chkRead.Checked = Read;
+        //                        chkEdit.Checked = Edit;
+        //                        chkDelete.Checked = Delete;
+        //                        chkSave.Checked = Save;
+        //                    }
+        //                }
+
+
+        //            }
+        //            //  grdmaster.DataSource = dsmsater1;
+        //            //  grdmaster.DataBind();
+
+        //            DataSet dsOrderFormMenu1 = new DataSet();
+        //            dsOrderFormMenu1 = objBs.grtroll("OrderFormMenu", "Yes", idd, "0");
+        //            // OrderFormMenu.DataSource = dsOrderFormMenu1;
+        //            //  OrderFormMenu.DataBind();
+        //            for (int vLoop = 0; vLoop < OrderFormMenu.Rows.Count; vLoop++)
+        //            {
+        //                Label txtsno = (Label)OrderFormMenu.Rows[vLoop].FindControl("lblDebtorID");
+
+        //                for (int j = 0; j < dsOrderFormMenu1.Tables[0].Rows.Count; j++)
+        //                {
+        //                    string roleid = dsOrderFormMenu1.Tables[0].Rows[j]["roleid"].ToString();
+
+        //                    bool Add = Convert.ToBoolean(dsOrderFormMenu1.Tables[0].Rows[j]["Visible"]);
+        //                    bool Read = Convert.ToBoolean(dsOrderFormMenu1.Tables[0].Rows[j]["Read"]);
+        //                    bool Edit = Convert.ToBoolean(dsOrderFormMenu1.Tables[0].Rows[j]["Edit"]);
+        //                    bool Delete = Convert.ToBoolean(dsOrderFormMenu1.Tables[0].Rows[j]["Delete"]);
+        //                    bool Save = Convert.ToBoolean(dsOrderFormMenu1.Tables[0].Rows[j]["Save"]);
+
+        //                    if (roleid == txtsno.Text)
+        //                    {
+
+        //                        CheckBox chkboxAdd = (CheckBox)OrderFormMenu.Rows[vLoop].FindControl("chkboxAdd");
+
+        //                        CheckBox chkRead = (CheckBox)OrderFormMenu.Rows[vLoop].FindControl("chkRead");
+        //                        CheckBox chkEdit = (CheckBox)OrderFormMenu.Rows[vLoop].FindControl("chkEdit");
+        //                        CheckBox chkDelete = (CheckBox)OrderFormMenu.Rows[vLoop].FindControl("chkDelete");
+        //                        CheckBox chkSave = (CheckBox)OrderFormMenu.Rows[vLoop].FindControl("chkSave");
+
+        //                        chkboxAdd.Checked = Add;
+        //                        chkRead.Checked = Read;
+        //                        chkEdit.Checked = Edit;
+        //                        chkDelete.Checked = Delete;
+        //                        chkSave.Checked = Save;
+        //                    }
+        //                }
+
+
+        //            }
+
+        //            DataSet dsinventory1 = new DataSet();
+        //            dsinventory1 = objBs.grtroll("InventoryMenu", "Yes", idd, "0");
+        //            for (int vLoop = 0; vLoop < grdinventory.Rows.Count; vLoop++)
+        //            {
+        //                Label txtsno = (Label)grdinventory.Rows[vLoop].FindControl("lblDebtorID");
+
+        //                for (int j = 0; j < dsinventory1.Tables[0].Rows.Count; j++)
+        //                {
+        //                    string roleid = dsinventory1.Tables[0].Rows[j]["roleid"].ToString();
+
+        //                    bool Add = Convert.ToBoolean(dsinventory1.Tables[0].Rows[j]["Visible"]);
+        //                    bool Read = Convert.ToBoolean(dsinventory1.Tables[0].Rows[j]["Read"]);
+        //                    bool Edit = Convert.ToBoolean(dsinventory1.Tables[0].Rows[j]["Edit"]);
+        //                    bool Delete = Convert.ToBoolean(dsinventory1.Tables[0].Rows[j]["Delete"]);
+        //                    bool Save = Convert.ToBoolean(dsinventory1.Tables[0].Rows[j]["Save"]);
+
+        //                    if (roleid == txtsno.Text)
+        //                    {
+
+        //                        CheckBox chkboxAdd = (CheckBox)grdinventory.Rows[vLoop].FindControl("chkboxAdd");
+
+        //                        CheckBox chkRead = (CheckBox)grdinventory.Rows[vLoop].FindControl("chkRead");
+        //                        CheckBox chkEdit = (CheckBox)grdinventory.Rows[vLoop].FindControl("chkEdit");
+        //                        CheckBox chkDelete = (CheckBox)grdinventory.Rows[vLoop].FindControl("chkDelete");
+        //                        CheckBox chkSave = (CheckBox)grdinventory.Rows[vLoop].FindControl("chkSave");
+
+        //                        chkboxAdd.Checked = Add;
+        //                        chkRead.Checked = Read;
+        //                        chkEdit.Checked = Edit;
+        //                        chkDelete.Checked = Delete;
+        //                        chkSave.Checked = Save;
+        //                    }
+        //                }
+
+
+        //            }
+        //            // grdinventory.DataSource = dsinventory1;
+        //            //grdinventory.DataBind();
+
+        //            DataSet RequestAccept1 = new DataSet();
+        //            RequestAccept1 = objBs.grtroll("RequestAccept", "Yes", idd, "0");
+        //            // grRequestAccept.DataSource = RequestAccept1;
+        //            //  grRequestAccept.DataBind();
+        //            for (int vLoop = 0; vLoop < grRequestAccept.Rows.Count; vLoop++)
+        //            {
+        //                Label txtsno = (Label)grRequestAccept.Rows[vLoop].FindControl("lblDebtorID");
+
+        //                for (int j = 0; j < RequestAccept1.Tables[0].Rows.Count; j++)
+        //                {
+        //                    string roleid = RequestAccept1.Tables[0].Rows[j]["roleid"].ToString();
+
+        //                    bool Add = Convert.ToBoolean(RequestAccept1.Tables[0].Rows[j]["Visible"]);
+        //                    bool Read = Convert.ToBoolean(RequestAccept1.Tables[0].Rows[j]["Read"]);
+        //                    bool Edit = Convert.ToBoolean(RequestAccept1.Tables[0].Rows[j]["Edit"]);
+        //                    bool Delete = Convert.ToBoolean(RequestAccept1.Tables[0].Rows[j]["Delete"]);
+        //                    bool Save = Convert.ToBoolean(RequestAccept1.Tables[0].Rows[j]["Save"]);
+
+        //                    if (roleid == txtsno.Text)
+        //                    {
+
+        //                        CheckBox chkboxAdd = (CheckBox)grRequestAccept.Rows[vLoop].FindControl("chkboxAdd");
+
+        //                        CheckBox chkRead = (CheckBox)grRequestAccept.Rows[vLoop].FindControl("chkRead");
+        //                        CheckBox chkEdit = (CheckBox)grRequestAccept.Rows[vLoop].FindControl("chkEdit");
+        //                        CheckBox chkDelete = (CheckBox)grRequestAccept.Rows[vLoop].FindControl("chkDelete");
+        //                        CheckBox chkSave = (CheckBox)grRequestAccept.Rows[vLoop].FindControl("chkSave");
+
+        //                        chkboxAdd.Checked = Add;
+        //                        chkRead.Checked = Read;
+        //                        chkEdit.Checked = Edit;
+        //                        chkDelete.Checked = Delete;
+        //                        chkSave.Checked = Save;
+        //                    }
+        //                }
+
+
+        //            }
+
+
+        //            DataSet dsreport1 = new DataSet();
+        //            dsreport1 = objBs.grtroll("Reports", "Yes", idd, "0");
+        //            //  grdreport.DataSource = dsreport1;
+        //            //  grdreport.DataBind();
+        //            for (int vLoop = 0; vLoop < grdreport.Rows.Count; vLoop++)
+        //            {
+        //                Label txtsno = (Label)grdreport.Rows[vLoop].FindControl("lblDebtorID");
+
+        //                for (int j = 0; j < dsreport1.Tables[0].Rows.Count; j++)
+        //                {
+        //                    string roleid = dsreport1.Tables[0].Rows[j]["roleid"].ToString();
+
+        //                    bool Add = Convert.ToBoolean(dsreport1.Tables[0].Rows[j]["Visible"]);
+        //                    bool Read = Convert.ToBoolean(dsreport1.Tables[0].Rows[j]["Read"]);
+        //                    bool Edit = Convert.ToBoolean(dsreport1.Tables[0].Rows[j]["Edit"]);
+        //                    bool Delete = Convert.ToBoolean(dsreport1.Tables[0].Rows[j]["Delete"]);
+        //                    bool Save = Convert.ToBoolean(dsreport1.Tables[0].Rows[j]["Save"]);
+
+        //                    if (roleid == txtsno.Text)
+        //                    {
+
+        //                        CheckBox chkboxAdd = (CheckBox)grdreport.Rows[vLoop].FindControl("chkboxAdd");
+
+        //                        CheckBox chkRead = (CheckBox)grdreport.Rows[vLoop].FindControl("chkRead");
+        //                        CheckBox chkEdit = (CheckBox)grdreport.Rows[vLoop].FindControl("chkEdit");
+        //                        CheckBox chkDelete = (CheckBox)grdreport.Rows[vLoop].FindControl("chkDelete");
+        //                        CheckBox chkSave = (CheckBox)grdreport.Rows[vLoop].FindControl("chkSave");
+
+        //                        chkboxAdd.Checked = Add;
+        //                        chkRead.Checked = Read;
+        //                        chkEdit.Checked = Edit;
+        //                        chkDelete.Checked = Delete;
+        //                        chkSave.Checked = Save;
+        //                    }
+        //                }
+
+
+        //            }
+
+        //            DataSet dsdetailedreport1 = new DataSet();
+        //            dsdetailedreport1 = objBs.grtroll("ReportsAccess", "Yes", idd, "0");
+        //            //  grdreport.DataSource = dsreport1;
+        //            //  grdreport.DataBind();
+        //            for (int vLoop = 0; vLoop < grddetailedreport.Rows.Count; vLoop++)
+        //            {
+        //                Label txtsno = (Label)grddetailedreport.Rows[vLoop].FindControl("lblDebtorID");
+
+        //                for (int j = 0; j < dsdetailedreport1.Tables[0].Rows.Count; j++)
+        //                {
+        //                    string roleid = dsdetailedreport1.Tables[0].Rows[j]["roleid"].ToString();
+
+        //                    bool Add = Convert.ToBoolean(dsdetailedreport1.Tables[0].Rows[j]["Visible"]);
+        //                    bool Read = Convert.ToBoolean(dsdetailedreport1.Tables[0].Rows[j]["Read"]);
+        //                    bool Edit = Convert.ToBoolean(dsdetailedreport1.Tables[0].Rows[j]["Edit"]);
+        //                    bool Delete = Convert.ToBoolean(dsdetailedreport1.Tables[0].Rows[j]["Delete"]);
+        //                    bool Save = Convert.ToBoolean(dsdetailedreport1.Tables[0].Rows[j]["Save"]);
+
+        //                    if (roleid == txtsno.Text)
+        //                    {
+
+        //                        CheckBox chkboxAdd = (CheckBox)grddetailedreport.Rows[vLoop].FindControl("chkboxAdd");
+
+        //                        CheckBox chkRead = (CheckBox)grddetailedreport.Rows[vLoop].FindControl("chkRead");
+        //                        CheckBox chkEdit = (CheckBox)grddetailedreport.Rows[vLoop].FindControl("chkEdit");
+        //                        CheckBox chkDelete = (CheckBox)grddetailedreport.Rows[vLoop].FindControl("chkDelete");
+        //                        CheckBox chkSave = (CheckBox)grddetailedreport.Rows[vLoop].FindControl("chkSave");
+
+        //                        chkboxAdd.Checked = Add;
+        //                        chkRead.Checked = Read;
+        //                        chkEdit.Checked = Edit;
+        //                        chkDelete.Checked = Delete;
+        //                        chkSave.Checked = Save;
+        //                    }
+        //                }
+
+
+        //            }
+
+        //            #endregion
+        //        }
+
+        //    }
+        //}
+
         protected void Add_Click(object sender, EventArgs e)
         {
+            if (drplogintype.SelectedValue == "Select LoginType")
+            {
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Select Login-Type.Thank You!!!.')", true);
+                return;
+            }
+
             string name = txtmobile.Text;
             int Length = name.Length;
             if (Length < 10)
             {
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Enter 10 digits Mobile No.')", true);
                 return;
-            }
-
-
-            if (drplogintype.SelectedValue == "Select LoginType")
-            {
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Select Login-Type.Thank You!!!.')", true);
-                return;
-            }
+            }            
 
             string Mode = Request.QueryString.Get("Mode");
 
@@ -1298,21 +1554,21 @@ namespace Billing.Accountsbootstrap
 
             /////rajaram
 
-            if (chkadminrights.Checked == true)
+            //if (chkadminrights.Checked == true)
+            //{
+            //    superadmin = 1;
+            //}
+            //else
+            //{
+            //    superadmin = 0;
+            //}
+            if (drplogintype.SelectedItem.Text == "")
             {
                 superadmin = 1;
             }
             else
             {
-                if (drpRighttype.SelectedValue == "2")
-                {
-                    superadmin = 2;
-                }
-
-                else
-                {
-                    superadmin = 0;
-                }
+                superadmin = 0;
             }
 
 
@@ -1358,7 +1614,7 @@ namespace Billing.Accountsbootstrap
                         return;
                     }
 
-                    string AllBranchAccess="0";
+                    string AllBranchAccess = "0";
                     if (chkAllbranch.Checked == true)
                         AllBranchAccess = "1";
 
@@ -1377,7 +1633,7 @@ namespace Billing.Accountsbootstrap
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Password and confirm password should not match')", true);
                     return;
                 }
-                DataSet dsuserspass = objBs.updateuserspassword(txtpassword.Text,txtUserid.Text);
+                DataSet dsuserspass = objBs.updateuserspassword(txtpassword.Text, txtUserid.Text);
                 if (dsuserspass.Tables[0].Rows.Count > 0)
                 {
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('This Password already Exists. Please enter a new one')", true);
@@ -1412,7 +1668,7 @@ namespace Billing.Accountsbootstrap
                         return;
                     }
 
-                    string AllBranchAccess="0";
+                    string AllBranchAccess = "0";
                     if (chkAllbranch.Checked == true)
                         AllBranchAccess = "1";
 

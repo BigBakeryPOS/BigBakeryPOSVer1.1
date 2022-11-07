@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-     <link rel="Stylesheet" type="text/css" href="../css/date.css" />
+      <link rel="Stylesheet" type="text/css" href="../css/date.css" />
     <link href="../images/fav.ico" type="image/x-icon" rel="Shortcut Icon" />
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
@@ -31,7 +31,7 @@
     <link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="../css/style.css" rel="stylesheet" type="text/css">
-    <link href="../css/Dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="../css/Pos_style.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="https://use.fontawesome.com/07b0ce5d10.js"></script>
 </head>
 <body>
@@ -44,23 +44,28 @@
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="black" Visible="false" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="black" CssClass="label" Visible="false"> </asp:Label>
-    <!-- begin SIDE NAV USER PANEL -->
-    <div class="col-md-12">
-        <nav class="navbar navbar-inverse top-navbar" id="top-nav">
-     <div id="dash">   
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+      <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Sales and Return Day Report</h1>
+	    </div>
+                <div class="panel-body">
 
-    <div class="row">
+   
      <div class="col-md-12">
          <div class="col-md-3">
-         <asp:RadioButton ID="rbsales" runat="server" Text="Sales" OnCheckedChanged="rbsales_CheckedChanged" AutoPostBack="true" ForeColor="White" />
-         <asp:RadioButton ID="rbstockreturn" runat="server" Text="Stock Return" OnCheckedChanged="rbstockreturn_CheckedChanged" AutoPostBack="true" ForeColor="White" />
+         <br />
+         <asp:RadioButton ID="rbsales" runat="server" Text="Sales" OnCheckedChanged="rbsales_CheckedChanged" AutoPostBack="true"  />
+         <asp:RadioButton ID="rbstockreturn" runat="server" Text="Stock Return" OnCheckedChanged="rbstockreturn_CheckedChanged" AutoPostBack="true"  />
          </div>
-     </div>
-     <div class="col-md-12">
+   
+   
      <div class="col-md-3">
      
-     <label><font color="white"> Select Type : </font></label>
-      <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control" Width="200px" AutoPostBack="true" OnSelectedIndexChanged="ddlType_Change">
+     <label>Select Type : </label>
+      <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlType_Change">
       <asp:ListItem Text="--Select Type--" Selected="True" Value="Select Type"></asp:ListItem>
       <asp:ListItem Text="Highest" Value="Highest"></asp:ListItem>
       <asp:ListItem Text="Lowest" Value="Lowest"></asp:ListItem>
@@ -69,10 +74,10 @@
       </div>
 
 
-      </div>
+   
      </div>
 
-                       <div class="row" style="padding-top:15px">
+                       <div class="row" >
                        <div class="col-lg-12 col-sm-12" >
                         <div class="circle-tile">
                            <a href="#">
@@ -209,18 +214,12 @@
                         
            </div>                                 
      
-    </div><!-- page-wrapper END-->
+  
+   
     </div>
-    <!-- container-1 END-->
-    <div class="col-md-12">
-        <div class="col-md-6">
-            <div class="col-lg-10">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="col-lg-10">
-            </div>
-        </div>
+    </div>
+    </div>
+    </div>
     </div>
     </form>
 

@@ -23,6 +23,10 @@
     <link href="../css/sb-admin-2.css" rel="stylesheet" />
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+     <link href="../css/Pos_style.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -89,33 +93,46 @@ $("[id$=myButtonControlID]").click(function(e) {
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" Visible="false" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="White" Visible="false" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
+     <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
     <form id="form1" runat="server">
+     <div class="panel-header">
+          <h1 class="page-header">Day Close Stock</h1>
+	    </div>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <div class="col-lg-12">
+     <div class="panel-body">
+      
+    <div class="row">
+    <div class="col-lg-2">
         <label>
             Branch</label>
+            <br />
         <asp:Label ID="lblbranch" runat="server" Font-Bold="true" ForeColor="Red"></asp:Label>
-        <div class="col-lg-2" runat="server" visible="true">
-            Stock Closing Name:
-            <asp:TextBox ID="txtnam" runat="server"></asp:TextBox>
         </div>
-        <div class="col-lg-2" runat="server" visible="false">
-            Filter Items:
-            <asp:TextBox ID="txtserch" runat="server" CssClass="form-control" Width="150px" placeholder="Filter Items"
+        <div class="col-lg-3" runat="server" visible="true" >
+           <label> Stock Closing Name</label>
+            <asp:TextBox ID="txtnam" runat="server" class="form-control"></asp:TextBox>
+        </div>
+        <div class="col-lg-3" runat="server" visible="false">
+            <label>Filter Items</label>
+            <asp:TextBox ID="txtserch" runat="server" CssClass="form-control" placeholder="Filter Items"
                 onkeyup="Search_Gridview(this, 'gvDetails')"></asp:TextBox>
         </div>
-        <div class="col-lg-2">
-            Date Selection:
-            <asp:TextBox ID="txttodate" runat="server" CssClass="form-control" Width="150px"
+        <div class="col-lg-3">
+            <label>Date Selection</label>
+            <asp:TextBox ID="txttodate" runat="server" CssClass="form-control" 
                 placeholder="Select Date" AutoPostBack="true" OnTextChanged="txttodate_TextChanged"></asp:TextBox>
             <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="yyyy-MM-dd" TargetControlID="txttodate"
                 runat="server" CssClass="cal_Theme1">
             </ajaxToolkit:CalendarExtender>
         </div>
-        <div class="col-lg-2">
-            <asp:Button ID="btnser" runat="server" Text="Close Day " OnClick="btnser_Click" CssClass="btn btn-danger" />
-            <asp:Button ID="Button2" runat="server" Text="Billing Screen " PostBackUrl="~/Accountsbootstrap/NewButton.aspx"
+        <div class="col-lg-3">
+        <br />
+            <asp:Button ID="btnser" runat="server" Text="Close Day " OnClick="btnser_Click" CssClass="btn btn-primary pos-btn1" />
+            &nbsp;&nbsp;&nbsp;<asp:Button ID="Button2" runat="server" Text="Billing Screen " PostBackUrl="~/Accountsbootstrap/NewButton.aspx"
                 CssClass="btn btn-success" />
             <asp:Button ID="Button1" runat="server" Text="Print" Visible="false" OnClick="Button1_Click"
                 CssClass="btn btn-success" />
@@ -138,6 +155,14 @@ $("[id$=myButtonControlID]").click(function(e) {
             </Columns>
         </asp:GridView>
     </div>
+    </div>
+   
+   
+   
     </form>
+     </div>
+     </div>
+    </div>
+    </div>
 </body>
 </html>

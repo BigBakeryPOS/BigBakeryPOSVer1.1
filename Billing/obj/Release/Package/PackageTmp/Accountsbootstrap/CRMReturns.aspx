@@ -37,10 +37,14 @@
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="black" Visible="false" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="black" CssClass="label" Visible="false"> </asp:Label>
-    <!-- begin SIDE NAV USER PANEL -->
-    <div class="col-md-12">
-        <nav class="navbar navbar-inverse top-navbar" id="top-nav">
-     <div id="dash">   
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">CRM Returns</h1>
+	    </div>
+    <div class="panel-body">
       <%--<div class="row">
      <div class="col-md-12">
       <div class="page-title">
@@ -57,12 +61,11 @@
        </div>
       </div>
      </div> --%>    
-                        <div class="row">
-     <div class="col-md-12">
+                      
      <div class="col-md-3">
      
-     <label><font color="white"> Select Type : </font></label>
-      <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control" Width="200px" AutoPostBack="true" OnSelectedIndexChanged="ddlType_Change">
+     <label>Select Type</label>
+      <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlType_Change">
       <asp:ListItem Text="--Select Type--" Selected=True Value="Select Type"></asp:ListItem>
       <asp:ListItem Text="TopCategoryWise" Value="TopCategoryWise"></asp:ListItem>
       <asp:ListItem Text="LastCategoryWise" Value="LastCategoryWise"></asp:ListItem>
@@ -77,8 +80,8 @@
 
         <div class="col-md-3"  runat="server" visible="false" id="idsstype">
      
-     <label><font color="white"> Select SubType : </font></label>
-      <asp:DropDownList ID="ddlSubType" runat="server" CssClass="form-control" Width="200px" AutoPostBack="true" OnSelectedIndexChanged="ddlSubType_OnSelectedIndexChanged">
+     <label>Select SubType  </label>
+      <asp:DropDownList ID="ddlSubType" runat="server" CssClass="form-control"  AutoPostBack="true" OnSelectedIndexChanged="ddlSubType_OnSelectedIndexChanged">
       <asp:ListItem Text="--Select SubType--" Selected=True Value="Select Type"></asp:ListItem>
       <asp:ListItem Text="TopCategoryWise" Value="TopCategoryWise"></asp:ListItem>
       <asp:ListItem Text="LastCategoryWise" Value="LastCategoryWise"></asp:ListItem>
@@ -88,14 +91,13 @@
       </div>
 
       <div class="col-md-3"  runat="server" visible="false" id="divState">
-      <label><font color="white"> Select State : </font></label>
-      <asp:DropDownList ID="ddlState" CssClass="form-control" runat="server" Width="200px" AutoPostBack="true" OnSelectedIndexChanged="ddlState_Change"></asp:DropDownList>
+      <label> Select State </label>
+      <asp:DropDownList ID="ddlState" CssClass="form-control" runat="server"  AutoPostBack="true" OnSelectedIndexChanged="ddlState_Change"></asp:DropDownList>
       </div>
 
       </div>
-     </div>
-
-                       <div class="row" style="padding-top:15px">
+     
+                       <div class="row">
                        <div class="col-lg-12 col-sm-12" >
                         <div class="circle-tile">
                            <a href="#">
@@ -331,18 +333,9 @@
                         
            </div>                                 
      
-    </div><!-- page-wrapper END-->
     </div>
-    <!-- container-1 END-->
-    <div class="col-md-12">
-        <div class="col-md-6">
-            <div class="col-lg-10">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="col-lg-10">
-            </div>
-        </div>
+    </div>
+    </div>
     </div>
     </form>
     <script type="text/javascript" src="../js/jquery-3.1.1.js"></script>

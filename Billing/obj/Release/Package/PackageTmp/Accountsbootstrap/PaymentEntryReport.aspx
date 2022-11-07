@@ -181,108 +181,86 @@
     <form id="f1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Payment Entry Report</h1>
+	    </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="col-lg-1">
-                </div>
-                <div class="col-lg-1">
-                    <div class="form-group">
+          
+                <div class="col-lg-3">
+                   
                         <label>
                             Type</label>
-                        <asp:DropDownList ID="ddltype" runat="server" CssClass="form-control" Width="110px">
+                        <asp:DropDownList ID="ddltype" runat="server" CssClass="form-control" >
                             <asp:ListItem Text="Summary" Value="1"></asp:ListItem>
                             <asp:ListItem Text="Detailed" Value="2"></asp:ListItem>
                         </asp:DropDownList>
-                    </div>
+                    
                 </div>
-                <div class="col-lg-1">
-                    <label style="color: Black">
+                <div class="col-lg-3">
+                    <label>
                         From Date</label>
-                    <asp:TextBox ID="txtfromdate" CssClass="form-control" runat="server" Width="100px"></asp:TextBox>
+                    <asp:TextBox ID="txtfromdate" CssClass="form-control" runat="server" ></asp:TextBox>
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txtfromdate"
                         Format="dd/MM/yyyy" PopupButtonID="txtfromdate" runat="server" CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
                 </div>
-                <div class="col-lg-1">
-                    <label style="color: Black">
+                <div class="col-lg-3">
+                    <label>
                         To Date</label>
-                    <asp:TextBox ID="txttodate" CssClass="form-control" runat="server" Width="100px"></asp:TextBox>
+                    <asp:TextBox ID="txttodate" CssClass="form-control" runat="server" ></asp:TextBox>
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender3" TargetControlID="txttodate"
                         Format="dd/MM/yyyy" PopupButtonID="txttodate" runat="server" CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
                 </div>
-                <div class="col-lg-2">
-                    <label style="color: Black">
+                <div class="col-lg-3">
+                    <label>
                         Supplier
                     </label>
-                    <asp:DropDownList runat="server" ID="ddlsupplier" CssClass="form-control" Width="210px">
+                    <asp:DropDownList runat="server" ID="ddlsupplier" CssClass="form-control">
                     </asp:DropDownList>
                 </div>
-                <div class="col-lg-1">
-                    <div class="form-group">
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    
                         <label>
                             PayMode</label>
-                        <asp:DropDownList ID="ddlpay" runat="server" CssClass="form-control" Width="100px">
+                        <asp:DropDownList ID="ddlpay" runat="server" CssClass="form-control">
                         </asp:DropDownList>
-                    </div>
+                    
                 </div>
-                <div class="col-lg-1">
-                    <div class="form-group">
+                <div class="col-lg-3">
+                   
                         <br />
-                        <asp:Button ID="btnsearch" runat="server" class="btn btn-success" Text="View Report"
+                        <asp:Button ID="btnsearch" runat="server" class="btn btn-primary pos-btn1" Text="View Report"
                             OnClick="btnsearch_OnClick" />
+                   
+           
+                        &nbsp;&nbsp;<asp:Button ID="btn" runat="server" Text="Print" Visible="true" CssClass="btn btn-secondary"
+                            OnClientClick="Denomination123()" />
+               
+                        &nbsp;&nbsp;<asp:Button ID="btnExcel" runat="server" Text="Export To Excel" Visible="true" CssClass="btn btn-success"
+                            OnClick="btnExcel_Click" />
                     </div>
-                </div>
-                <div class="col-lg-1">
-                    <div class="form-group">
-                        <br />
-                        <asp:Button ID="btn" runat="server" Text="Print" Visible="true" CssClass="btn btn-warning"
-                            OnClientClick="Denomination123()" Width="100px" />
-                    </div>
-                </div>
-                <div class="col-lg-1">
-                    <div class="form-group">
-                        <br />
-                        <asp:Button ID="btnExcel" runat="server" Text="Export To Excel" Visible="true" CssClass="btn btn-info"
-                            OnClick="btnExcel_Click" Width="106px" />
-                    </div>
-                </div>
-                <div class="col-lg-1">
-                </div>
-            </div>
+              
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-lg-2">
-                        <asp:TextBox placeholder="Search Text" ID="txtsearchmobile" Style="height: 28px;"
+
+                        <asp:TextBox placeholder="Search Text" ID="txtsearchmobile" 
                             runat="server" CssClass="form-control" MaxLength="25" Visible="false" onkeyup="Search_Gridview(this, 'gv')"></asp:TextBox>
                         <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtendername" runat="server"
                             FilterType="LowercaseLetters, UppercaseLetters,Custom,Numbers" ValidChars=" ._/-"
                             TargetControlID="txtsearchmobile" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12" style="margin-top: 10px">
-                        <div class="col-lg-9">
-                        </div>
-                        <div class="col-lg-16">
-                        </div>
-                        <div class="col-lg-2">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+     
         <div id="IDValues" runat="server">
-            <div class="col-lg-12">
-                <div class="col-lg-2">
-                </div>
-                <div class="col-lg-8">
-                    <asp:GridView ID="gvreceiptamt" EmptyDataText="Oops! No Activity Performed." CssClass="mGrid"
+     <div class="table-responsive panel-grid-left">
+                    <asp:GridView ID="gvreceiptamt" EmptyDataText="Oops! No Activity Performed." cssClass="table table-striped pos-table"
                          Caption="Customer Payment Details" OnRowDataBound="gvreceiptamt_OnRowDataBound"
-                        runat="server" AutoGenerateColumns="false" ShowFooter="true">
+                        runat="server" AutoGenerateColumns="false" ShowFooter="true" padding="0" spacing="0" border="0">
                         <Columns>
                             <asp:TemplateField HeaderText="S.No">
                                 <ItemTemplate>
@@ -307,16 +285,22 @@
                                 <ItemTemplate>
                                     <asp:LinkButton ID="btnprint" runat="server" CommandArgument='<%#Eval("PaymentID") %>'
                                         CommandName="print">
-                                        <asp:Image ID="print" runat="server" ImageAlign="Middle" ImageUrl="~/images/print (1).png" width="55px" /></asp:LinkButton>
+                                        <asp:Image ID="print" runat="server" ImageAlign="Middle" ImageUrl="~/images/print (1).png" width="55px" Visible="false" />
+                                        <button type="button" class="btn btn-default btn-md">
+						                                <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+					                                </button>
+                                                    </asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
-                </div>
-                <div class="col-lg-2">
-                </div>
-            </div>
+            
         </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

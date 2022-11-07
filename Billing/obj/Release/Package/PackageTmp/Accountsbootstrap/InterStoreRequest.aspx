@@ -207,41 +207,48 @@ color:White;
     <form id="Form1" runat="server">
      <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Inter Store Stock Request</b> : Entry Date:<asp:Label ID="lblentrydatetime" runat="server" ></asp:Label></div>
+ <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Inter Store Stock Request</h1>
+	    </div>
                 <div class="panel-body">
-                    <div class="row">
+                   
                         <asp:ScriptManager ID="ScriptManager1" runat="server">
                         </asp:ScriptManager>
+                         <div class="row">
                         <div class="col-lg-12">
+                         Entry Date:<asp:Label ID="lblentrydatetime" runat="server" ></asp:Label>
+                         </div>
+                         <br />
                             <div align="left" style="display: none">
                                 <blink> <label  style="color:Green; font-size:12px">Need to Fill as Per Your daily Stock Request.Once Fill not Allow To change So Be careFull To fill this Request!!!. </label></blink>
                             </div>
-                            <div class="col-lg-1">
+
+                            <div class="col-lg-3">
                                 <label>
                                     Req.No</label>
                                 <asp:TextBox ID="txtpono" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 <label>
                                    Req. Date
                                 </label>
-                                <asp:TextBox ID="txtpodate" runat="server" CssClass="form-control" Width="200px"></asp:TextBox>
+                                <asp:TextBox ID="txtpodate" runat="server" CssClass="form-control"></asp:TextBox>
                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtpodate"
                                     Format="dd/MM/yyyy" PopupButtonID="txtnewexpiredDate" EnabledOnClient="true"
                                     runat="server" CssClass="cal_Theme1">
                                 </ajaxToolkit:CalendarExtender>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 <label>
                                     Order By
                                 </label>
                                 <asp:TextBox ID="txtOrderBy" runat="server" placeholder="Mention Employee Name" CssClass="form-control"></asp:TextBox>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 <label>
                                     Category
                                 </label>
@@ -249,45 +256,40 @@ color:White;
                                     AutoPostBack="true" OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 <label>
                                     Search Item
                                 </label>
                                 <asp:TextBox ID="TextBox10" runat="server" onkeyup="Search_Gridview(this, 'gvitems')"
-                                    CssClass="form-control" Width="200px"></asp:TextBox><br />
+                                    CssClass="form-control"></asp:TextBox><br />
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 <label>
                                     From Prod
                                 </label>
                                 <asp:DropDownList ID="drpfrombranch" Enabled="false" runat="server" CssClass="form-control" ></asp:DropDownList>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 <label>
                                     To Prod 
                                 </label>
                                 <asp:DropDownList ID="drptobranch" runat="server" CssClass="form-control" ></asp:DropDownList>
                             </div>
-                            <div class="col-lg-1">
-                                <br />
+                            <div class="col-lg-3">
+                            <br />
                                 <asp:Button ID="btnaddqueue" runat="server" Text="Add to Queue" OnClick="btnaddqueue_OnClick"
-                                    CssClass="btn btn-danger" />
-                            </div>
-                            <div class="col-lg-2">
-                                <br />
-                                
-                                <asp:Button ID="btnsave"  runat="server" Text="Send Request" CssClass="btn btn-success"
+                                    CssClass="btn btn-info pos-btn1" />
+                                &nbsp;<asp:Button ID="btnsave"  runat="server" Text="Send Request" CssClass="btn btn-success"
                                     OnClick="btnsave_Click" OnClientClick="ClientSideClick(this)" UseSubmitBehavior="false" />
-                                <asp:Button ID="btnexit" runat="server" Text="Exit" CssClass="btn btn-warning" OnClick="btnexit_Click" />
+                               &nbsp; <asp:Button ID="btnexit" runat="server" Text="Exit" CssClass="btn btn-warning" OnClick="btnexit_Click" />
                             </div>
                         </div>
-                        <div class="col-lg-12">
+                        <div class="row">
                             <div class="col-lg-6">
                             <label id="lblcap" runat="server" >Selected Category Items</label>
-                                <div id="divid" runat="server" style="height: 370px; overflow-x: auto;">
-                                    <asp:GridView ID="gvitems" runat="server" AutoGenerateColumns="false" Font-Names="Calibri"  Width="100%"
-                                        >
-                                        <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> 
+                                <div id="divid" class="table-responsive panel-grid-left">
+                                    <asp:GridView ID="gvitems" runat="server" AutoGenerateColumns="false" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"  Width="100%">
+                                        <%--<HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> --%>
                                         <Columns>
                                             <asp:TemplateField HeaderText="Category">
                                                 <ItemTemplate>
@@ -320,19 +322,19 @@ color:White;
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
-                                         <RowStyle CssClass="RowStyleBackGroundColor" ForeColor="Black" />
+                                       <RowStyle CssClass="RowStyleBackGroundColor" ForeColor="Black" />
                                         <AlternatingRowStyle CssClass="RowAlternateStyleBackGroundColor" />
-                                        <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                        <%--  <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                                       <%--  <HeaderStyle BackColor="#428bca" ForeColor="White" HorizontalAlign="Center" />--%>
                                     </asp:GridView>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                             <label id="Label1" runat="server" >Selected Requested Item List</label>
-                                <div id="div1" runat="server" style="height: 370px; overflow-x: auto;">
-                                    <asp:GridView ID="gvqueueitems" runat="server" AutoGenerateColumns="false" Width="100%" Font-Names="Calibri" OnRowCommand="gvqueueitems_RowCommand"
+                                <div id="div1" runat="server" class="table-responsive panel-grid-left">
+                                    <asp:GridView ID="gvqueueitems" runat="server" AutoGenerateColumns="false" Width="100%" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" OnRowCommand="gvqueueitems_RowCommand"
                                         OnRowDeleting="gvqueueitems_RowDeleting">
-                                        <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> 
+                                        <%--<HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" />--%> 
                                         <Columns>
                                             <asp:TemplateField HeaderText="Category">
                                                 <ItemTemplate>
@@ -383,15 +385,10 @@ color:White;
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- /.row (nested) -->
-        </div>
-        <!-- /.panel-body -->
     </div>
-    <!-- /.panel -->
     </div>
-    <!-- /.col-lg-12 -->
     </div>
+   
     <div>
         <asp:GridView ID="gvUserInfo" runat="server">
             <HeaderStyle BackColor="#df5015" Font-Bold="true" ForeColor="White" />

@@ -58,51 +58,62 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <usc:Header ID="Header" runat="server" />
-    <div class="row" style="">
-        <div class="col-lg-12" style="">
-            <div class="panel panel-default" style="">
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Store Goods Transfer Details</b></div>
-                <div class="panel-body" style="">
-                    <div class="row" style="">
-                        <div class="col-lg-12" style="">
+     <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+      <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Store Goods Transfer Details</h1>
+	    </div>
+
+                <div class="panel-body">
+                  
                             <form runat="server" id="form1" method="post">
                             <asp:ScriptManager ID="ScriptManager1" runat="server">
                             </asp:ScriptManager>
-                            <div class="form-group" style="">
+                            <div class="row">
+                            <div class="col-lg-3">
                                 <label>
                                     Filter By</label>
-                                <asp:DropDownList ID="ddlBranch" CssClass="form-control" Style="width: 150px;" runat="server">
+                                <asp:DropDownList ID="ddlBranch" CssClass="form-control" runat="server">
                                     <%--<asp:ListItem Text="Bill No" Value="1"></asp:ListItem>
                                             <asp:ListItem Text="Customer Name" Value="2"></asp:ListItem>
                                             <asp:ListItem Text="Area" Value="3"></asp:ListItem>
                                             <asp:ListItem Text="City" Value="4"></asp:ListItem>--%>
                                 </asp:DropDownList>
-                                <asp:Button ID="btnsearch" runat="server" class="btn btn-success" Text="Search" Style="margin-top: 10px;"
-                                    OnClick="btnsearch_Click" />
-                                <asp:Button ID="btnrefresh" runat="server" class="btn btn-warning" Text="Reset" Style="margin-top: 10px;" />
                             </div>
-                            <div class="row">
-                                <label class="form-control-label">
+                            
+                            <div class="col-lg-3">
+                                <label>
                                     From Date</label>
-                                <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtDate" runat="server" class="form-control"></asp:TextBox>
                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="yyyy-MM-dd" TargetControlID="txtDate"
                                     runat="server" CssClass="cal_Theme1">
                                 </ajaxToolkit:CalendarExtender>
-                                <label class="form-control-label">
+                            </div>
+                            <div class="col-lg-3">
+                                <label>
                                     To Date</label>
-                                <asp:TextBox ID="txtToDate" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtToDate" runat="server" class="form-control"></asp:TextBox>
                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="yyyy-MM-dd" TargetControlID="txtToDate"
                                     runat="server" CssClass="cal_Theme1">
                                 </ajaxToolkit:CalendarExtender>
                             </div>
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
-                                    <tr>
-                                        <td style="">
-                                            <asp:GridView ID="gvGoodTransFer" runat="server" AllowPaging="true" PageSize="5"
-                                                AutoGenerateColumns="false" CssClass="" OnRowCommand="gvGoodTransFer_RowCommand">
-                                                <PagerSettings Mode="Numeric" />
+                            <div class="col-lg-3">
+                            <br />
+                                <asp:Button ID="btnsearch" runat="server" class="btn btn-primary pos-btn1" Text="Search" 
+                                    OnClick="btnsearch_Click" />
+                               &nbsp;&nbsp;&nbsp; <asp:Button ID="btnrefresh" runat="server" class="btn btn-secondary" Text="Reset"  />
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-lg-6">
+                        <div class="table-responsive panel-grid-left">
+                            
+                                            <asp:GridView ID="gvGoodTransFer" runat="server" AllowPaging="true" PageSize="5" cssClass="table table-striped pos-table"
+                                                AutoGenerateColumns="false"  OnRowCommand="gvGoodTransFer_RowCommand" padding="0" spacing="0" border="0">
+                                               <%-- <PagerSettings Mode="Numeric" />--%>
+                                                <PagerStyle CssClass="pos-paging" />
                                                 <Columns>
                                                     <%--<asp:BoundField HeaderText="Customer ID" DataField="CustomerID" />--%>
                                                     <asp:BoundField HeaderText="DC NO" DataField="DC_NO" />
@@ -116,50 +127,49 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btndelete" runat="server" CommandArgument='<%#Eval("Dc_No") %>'
                                                                 CommandName="Transfer" OnClientClick="alertMessage()">
-                                                                <asp:Image ID="dlt" runat="server" ImageAlign="Middle" ImageUrl="~/images/transfer.jpg"
-                                                                    Width="30px" Height="30px" /></asp:LinkButton>
+                                                                <asp:Image ID="dlt" runat="server" ImageAlign="Middle" ImageUrl="~/images/transfer.jpg" Visible="false"
+                                                                    Width="30px" Height="30px" />
+                                                                    <button type="button" class="btn btn-danger btn-md">
+						                                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					                                                </button>
+                                                                    </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="View Detail" Visible="false">
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btnprint" runat="server" CommandArgument='<%#Eval("Dc_No") %>'
                                                                 CommandName="view">
-                                                                <asp:Image ID="print" runat="server" ImageAlign="Middle" ImageUrl="~/images/info_button.png" /></asp:LinkButton>
+                                                                <asp:Image ID="print" runat="server" ImageAlign="Middle" ImageUrl="~/images/info_button.png" Visible="false" />
+                                                                <button type="button" class="btn btn-primary btn-md">
+						                                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+					                                            </button>
+                                                                </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                 </Columns>
-                                                <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-                                                <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                                                <%--<FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                                                <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                                             </asp:GridView>
-                                        </td>
-                                        <td style="">
-                                            <asp:GridView ID="gvDetails" runat="server" CssClass="myGridStyle" AutoGenerateColumns="false">
+                                       
+                                            <asp:GridView ID="gvDetails" runat="server" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" AutoGenerateColumns="false">
                                                 <Columns>
                                                     <asp:BoundField HeaderText="Item" DataField="Category" />
                                                     <asp:BoundField HeaderText="Category" DataField="Definition" />
                                                     <asp:BoundField HeaderText="Qty" DataField="Qty" />
                                                     <asp:BoundField HeaderText="RequestNO" DataField="RequestNO" />
                                                 </Columns>
-                                                <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
-                                                <HeaderStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                                <%--<FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                                <HeaderStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                                             </asp:GridView>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <table>
-                                    <tr>
-                                        <td>
+                                </div>
+                                </div>
+                            <div class="col-lg-6">
+                        <div class="table-responsive panel-grid-left">
                                             <label>
-                                                <h3>
                                                     Goods Transfer Details
-                                                </h3>
                                             </label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
                                             <asp:GridView ID="gvTransfer" runat="server" EmptyDataText="No Record Found" AutoGenerateColumns="false"
-                                                CssClass="" OnRowCommand="gvTransfer_RowCommand">
+                                                cssClass="table table-striped pos-table" OnRowCommand="gvTransfer_RowCommand" padding="0" spacing="0" border="0">
                                                 <Columns>
                                                     <asp:BoundField HeaderText="DC No" DataField="DC_NO" />
                                                     <asp:BoundField HeaderText="DC_Date" DataField="DC_Date" />
@@ -188,18 +198,14 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                 </Columns>
-                                                <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
-                                                <HeaderStyle BackColor="#428bca" ForeColor="White" HorizontalAlign="Center" />
+                                               <%-- <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                                <HeaderStyle BackColor="#428bca" ForeColor="White" HorizontalAlign="Center" />--%>
                                             </asp:GridView>
-                                        </td>
-                                        <td width="10%" valign="top">
-                                        </td>
-                                        <td valign="top">
-                                            <asp:GridView ID="grid" runat="server" CssClass="mGrid">
+                                 
+                                            <asp:GridView ID="grid" runat="server" padding="0" spacing="0" border="0" cssClass="table table-striped pos-table">
                                             </asp:GridView>
-                                        </td>
-                                    </tr>
-                                </table>
+                                       
+                            </div>
                             </div>
                             </form>
                         </div>
@@ -207,11 +213,10 @@
                     </div>
                     <!-- /.row (nested) -->
                 </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
+
+    </div>
+    </div>
+    </div>
     </div>
 </body>
 </html>

@@ -63,6 +63,7 @@
     <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet" />
+    <link href="../css/Pos_style.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <style type="text/css"> 
@@ -86,52 +87,65 @@
     </asp:ScriptManager>
    
       
+            <div class="container-fluid">
+            <div class="row">
             <div class="col-lg-12">
-                  <div class="col-lg-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading " style="background-color: #428bca; color: White">
-                        <b>UOM Master</b></div>
+                  <div class="col-lg-8">
+                <div class="row panel-custom1">
+                    <div class="panel-header">
+                      <h1 class="page-header">UOM Master</h1>
+	                </div>
                     <div class="panel-body">
                      
                         <div class="row">
-                            <div class="col-lg-12">
-                              
-                          
-                             
-                                <div class="col-lg-6">
-                                    <asp:TextBox CssClass="form-control" ID="txtsearch" runat="server" onkeyup="Search_Gridview(this, 'gv')"
+                            
+                                <div class="col-lg-4">
+                                <div class="form-group has-feedback">
+                                <asp:TextBox CssClass="form-control" ID="txtsearch" runat="server" onkeyup="Search_Gridview(this, 'gv')"
+                                    placeholder="Search UOM.." MaxLength="50"></asp:TextBox>
+									 <span class="glyphicon glyphicon-search form-control-feedback"></span>
+							    </div>
+                                </div>
+                                    <%--<asp:TextBox CssClass="form-control" ID="txtsearch" runat="server" onkeyup="Search_Gridview(this, 'gv')"
                                         placeholder="Search UOM.." MaxLength="50" Style="width: 150px"></asp:TextBox>
                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
                                         FilterType="LowercaseLetters, UppercaseLetters,Numbers,Custom" ValidChars=" -"
-                                        TargetControlID="txtsearch" />
-                                </div>
-                                <div class="col-lg-6">
-                                    <asp:Button ID="btnresret" runat="server" class="btn btn-warning" Text="Reset" OnClick="Btn_Reset"
-                                        Width="150px" /></div>
-                            </div>
+                                        TargetControlID="txtsearch" />--%>
+                                
+                                <div class="col-lg-8 text-left">
+                                    <asp:Button ID="btnresret" runat="server" class="btn btn-secondary" Text="Reset" OnClick="Btn_Reset"
+                                        Width="150px" />
+                                 </div>
+
                       
-                          <div class="col-lg-12"><br /> 
-                                    <div style="height: 392px; overflow: scroll">
-                                        <asp:GridView ID="gv" runat="server"  DataKeyNames="UOMID" OnRowCommand="edit" Width="100%" Font-Names="Calibri"
-                                            EmptyDataText="Oops! No Activity Performed." AutoGenerateColumns="false">
-                                            <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" />       
+                          <div class="col-lg-12">
+                                    <div class="table-responsive panel-grid-left">
+
+                                        <asp:GridView ID="gv" runat="server"  DataKeyNames="UOMID" OnRowCommand="edit" cssClass="table table-striped pos-table" Width="100%" 
+                                            EmptyDataText="Oops! No Activity Performed."   AllowPaging="false" AutoGenerateColumns="false" padding="0" spacing="0" border="0">
+                                           <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" />       --%>
                                             <Columns>
                                                 <asp:BoundField HeaderText="UomID" DataField="uomid" Visible="false" />
                                                 <asp:BoundField HeaderText="UOM" DataField="UOM" />
-                                                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Edit" Visible="true" HeaderStyle-Font-Names="Calibri">
+                                                <asp:TemplateField  HeaderText="Edit" ItemStyle-Width="60px" Visible="true">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="btnedit" CommandArgument='<%#Eval("UOMID") %>' CommandName="EditRow"
+                                                        <asp:LinkButton ID="btnedit" CommandArgument='<%#Eval("UOMID") %>' CommandName="EditRow" cssclass="btn btn-warning btn-md"
                                                             runat="server">
-                                                            <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server" width="55px"/>
+                                                            <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server" width="55px" Visible="false"/>
+                                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                                         </asp:LinkButton>
                                                         <asp:HiddenField ID="ldgID" runat="server" Value='<%# Bind("UOMID") %>' />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Delete">
+                                                <asp:TemplateField HeaderText="Delete" ItemStyle-Width="60px">
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="btndel" CommandArgument='<%#Eval("UOMID") %>' CommandName="Del"
-                                                            runat="server">
-                                                            <asp:Image ID="Image1" ImageUrl="~/images/delete.png" runat="server" /></asp:LinkButton>
+                                                            runat="server" >
+                                                            <asp:Image ID="Image1" ImageUrl="~/images/delete.png" runat="server" visible="false"/>
+                                                            <button type="button" class="btn btn-danger btn-md">
+												            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+												            </button>
+                                                            </asp:LinkButton>
                                                         <asp:ImageButton ID="imgdisable1321" ImageUrl="~/images/delete.png" runat="server"
                                                             Visible="false" Enabled="false" ToolTip="Not Allow To Delete" />
                                                         <ajaxToolkit:ModalPopupExtender ID="lnkDelete_ModalPopupExtender" runat="server"
@@ -148,20 +162,22 @@
                                     </div>
                                     
                                  </div>
-                                </div>       </div></div></div>
-                                <div class="col-lg-6">
-                                    <div class="panel panel-default">
+                                </div>      
+                                 </div>
+                                 </div>
+                                 </div>
+                                <div class="col-lg-4">
+                                    <div class="row panel-custom1">
                                       <%--  <blink> <label  style="color:Green; font-size:12px">Please Fill Unit Of Measure </label></blink>--%>
-                                        <div class="panel-heading " style="background-color: #428bca; color: White">
-                                            <b>Create UOM</b></div>
-                                        <div class="panel-body">
+                                        <div class="panel-header">
+				                                <h1 class="page-header">Add UOM</h1>
+		                                </div>
+                                        <div class="panel-body panel-form-right">
                                             <div class="list-group">
                                                 <asp:TextBox ID="txtid" Visible="false" runat="server"></asp:TextBox>
-                                                <br />
-                                                <label>
-                                                    Unit Of Measure</label>
+                                                <label>Unit Of Measure</label>
                                                 <asp:TextBox placeholder="Enter Unit Of Measure" ID="txtuom" runat="server" CssClass="form-control"
-                                                    Width="200px" ></asp:TextBox>
+                                                   ></asp:TextBox>
                                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtendername" runat="server"
                                                     FilterType="LowercaseLetters, UppercaseLetters,Custom,Numbers" ValidChars=" ./\!@#$%^&*,-"
                                                     TargetControlID="txtuom" />
@@ -171,23 +187,23 @@
                                                     <asp:ListItem Text="No" Value="No"></asp:ListItem>
                                                 </asp:DropDownList>
                                                 <div id="showtxt" runat="server" visible="false">
-                                                    <label>
-                                                        Edit Narrations</label>
+                                                    <label>Edit Narrations</label>
                                                     <asp:TextBox placeholder="Enter Narrations" ID="txtnarration" runat="server" CssClass="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <div>
                                                 <asp:Button ID="btnSubmit" Style="width: 150px; margin-left: 0px;" runat="server"
-                                                    class="btn btn-success" Text="Save" OnClick="btnSubmit_Click" />
+                                                    class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="btnSubmit_Click" />
                                                 <asp:Button ID="btnclaear" Style="width: 150px; margin-left: 1px;" runat="server"
-                                                    class="btn btn-warning" Text="Cancel" OnClick="btncancel_Click" />
+                                                    class="btn btn-lg btn-link" Text="Clear" OnClick="btncancel_Click" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                            
                 </div>
-           
+                </div>
+                </div>
       
 
     </form>

@@ -111,28 +111,31 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <usc:Header ID="Header" runat="server" />
-    <div class="row" style="">
-        <div class="col-lg-12" style="">
-            <div class="panel panel-default" style="">
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Semi Stock Request From Branchs</b></div>
-                <div style="" class="panel-body">
+     <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Semi Stock Request From Branchs</h1>
+	    </div>
+
+                <div class="panel-body">
                     <form runat="server" id="form1" method="post">
-                    <div class="row" style="">
+                    
                         <asp:ScriptManager ID="scriptmanager" runat="server">
                         </asp:ScriptManager>
-                        <div class="col-lg-12">
-                            <div class="col-lg-2">
+                        <div class="row">
+                        <div class="col-lg-6">
+                            <div class="col-lg-6">
                                 <label>
                                     Select Date
                                 </label>
-                                <asp:TextBox ID="txtDate" runat="server" Width="150px" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtDate" runat="server" CssClass="form-control"></asp:TextBox>
                                 <ajaxToolkit:CalendarExtender ID="calanderextendert" runat="server" Animated="true"
                                     Format="dd/MM/yyyy" TargetControlID="txtDate" CssClass="cal_Theme1">
                                 </ajaxToolkit:CalendarExtender>
                             </div>
-                            <div class="col-lg-2">
-                                <div class="form-group">
+                            <div class="col-lg-6">
                                     <label>
                                         Select Round
                                     </label>
@@ -142,17 +145,17 @@
                                     </asp:DropDownList>
                                     <asp:Label ID="fulltime" runat="server" BackColor="Red" Font-Bold="true" ForeColor="White"
                                         Visible="true"></asp:Label>
-                                </div>
+                               
                             </div>
-                            <div class="col-lg-2">
-                                <div class="form-group">
+                            <div class="col-lg-6">
+                             
                                     <label>
                                         Select Branch</label>
                                     <asp:DropDownList ID="drpstorelist" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
-                                </div>
+                              
                             </div>
-                            <div id="Div1" runat="server" visible="false" class="col-lg-2">
+                            <div id="Div1" runat="server" visible="false" class="col-lg-6">
                                 <label>
                                     TO Time</label>
                                 <asp:DropDownList ID="ddlTimeTo" CssClass="form-control" runat="server">
@@ -160,43 +163,48 @@
                                 <asp:Label ID="totime" runat="server" BackColor="Red" Font-Bold="true" ForeColor="White"
                                     Visible="false"></asp:Label>
                             </div>
-                            <div class="col-lg-1">
-                                <asp:Button ID="btnsearch" runat="server" class="btn btn-warning" Text="Search" OnClick="btnsearch_Click" />
+                            <div class="col-lg-6">
+                            <br />
+                                <asp:Button ID="btnsearch" runat="server" class="btn btn-info pos-btn1" Text="Search" OnClick="btnsearch_Click" />
                             </div>
-                            <div class="col-lg-2">
-                                <asp:Button ID="btnsearchqty" runat="server" class="btn btn-success" Text="Get All Branches Qty"
+                        </div>
+                       
+                        <div class="col-lg-6">
+                            <div class="col-lg-6"><br />
+                                <asp:Button ID="btnsearchqty" runat="server" class="btn btn-info pos-btn1" Text="Get All Branches Qty"
                                     OnClick="btnsearchqty_OnClick" />
                                 <br />
                                 <br />
-                                <asp:Button ID="Button1" runat="server" class="btn btn-default" Text="Print" OnClientClick="printdata()" />
-                                <asp:Button ID="Button4" runat="server" class="btn btn-default" Text="Export-Excel"
+                                <asp:Button ID="Button1" runat="server" class="btn btn-secondary" Text="Print" OnClientClick="printdata()" />
+                                <asp:Button ID="Button4" runat="server" class="btn btn-success" Text="Export-Excel"
                                     OnClick="btnexport_click" />
                             </div>
-                            <div class="col-lg-1">
-                            </div>
-                            <div class="col-lg-2">
-                                <asp:Button ID="Button2" runat="server" class="btn btn-success" Text="Get All Branches Qty DC"
+                           
+                            <div class="col-lg-6"><br />
+                                <asp:Button ID="Button2" runat="server" class="btn btn-info pos-btn1" Text="Get All Branches Qty DC"
                                     OnClick="btnsearchqtyDC_OnClick" />
                                 <br />
                                 <br />
-                                <asp:Button ID="Button3" runat="server" class="btn btn-default" Text="Print" OnClientClick="printdataDC()" />
-                                <asp:Button ID="Button5" runat="server" class="btn btn-default" Text="Export-Excel DC"
+                                <asp:Button ID="Button3" runat="server" class="btn btn-secondary" Text="Print" OnClientClick="printdataDC()" />
+                                <asp:Button ID="Button5" runat="server" class="btn btn-success" Text="Export-Excel DC"
                                     OnClick="btnexportDC_click" />
                             </div>
                         </div>
-                        <div class="col-lg-12" style="">
-                            <br />
-                            <div class="col-lg-8" style="">
-                                <asp:GridView ID="gvPurchaseEntry" runat="server" AllowPaging="true" PageSize="20"
-                                    Font-Names="Calibri" AutoGenerateColumns="false" EmptyDataText="Sorry No request Found!!!"
+                        <br />
+                        <div class="col-lg-12">
+                            <div class="col-lg-6">
+                            <div class="table-responsive panel-grid-left">
+                                <asp:GridView ID="gvPurchaseEntry" runat="server" AllowPaging="true" PageSize="20" cssClass="table table-striped pos-table"
+                                    Font-Names="Calibri" AutoGenerateColumns="false" EmptyDataText="Sorry No request Found!!!"  padding="0" spacing="0" border="0"
                                     OnRowCommand="gvPurchaseEntry_RowCommand" OnRowDataBound="gvPurchaseEntry_RowDataBound">
-                                    <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                  <%--  <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
                                         HorizontalAlign="Center" ForeColor="White" />
-                                    <PagerSettings Mode="Numeric" />
+                                    <PagerSettings Mode="Numeric" />--%>
+                                     <PagerStyle CssClass="pos-paging" />
                                     <Columns>
                                         <asp:BoundField HeaderText="Production Name" DataField="Production_To" />
-                                        <asp:BoundField HeaderText="Request Date" DataField="RequestDate" ItemStyle-Width="250px" />
-                                        <asp:BoundField HeaderText="Request Time" DataField="RequestEntryTime" ItemStyle-Width="250px" />
+                                        <asp:BoundField HeaderText="Request Date" DataField="RequestDate"  />
+                                        <asp:BoundField HeaderText="Request Time" DataField="RequestEntryTime"  />
                                         <asp:BoundField HeaderText="Status " Visible="false" DataField="Status" />
                                         <asp:BoundField HeaderText="Prod.RequestNO" DataField="RequestNO" />
                                         <asp:BoundField HeaderText="Request From" DataField="Branch" />
@@ -206,42 +214,53 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btndelete" runat="server" CommandArgument='<%#Eval("RequestNO")+";"+Eval("Branch")+";"+Eval("branchno") %>'
                                                     CommandName="Accept" OnClientClick="alertMessage()">
-                                                    <asp:Image ID="dlt" runat="server" Width="20px" Height="20px" ImageAlign="Middle"
-                                                        ImageUrl="~/images/yes.png" /></asp:LinkButton>
+                                                    <asp:Image ID="dlt" runat="server" Width="20px" Height="20px" ImageAlign="Middle" Visible="false"
+                                                        ImageUrl="~/images/yes.png" />
+                                                        <button type="button" class="btn btn-success btn-md">
+						                                    <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					                                    </button></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="View Detail">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btnprint" runat="server" CommandArgument='<%#Eval("RequestNO")+";"+Eval("Branch")+";"+Eval("RequestDate")+";"+Eval("branchno") %>'
                                                     CommandName="view">
-                                                    <asp:Image ID="print" runat="server" ImageAlign="Middle" ImageUrl="~/images/info_button.png" /></asp:LinkButton>
+                                                    <asp:Image ID="print" runat="server" ImageAlign="Middle" ImageUrl="~/images/info_button.png" Visible="false" />
+                                                    <button type="button" class="btn btn-primary btn-md">
+						                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+					                                </button></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Export">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btngridPrint" runat="server" CommandArgument='<%#Eval("RequestNO")+";"+Eval("Branch")+";"+Eval("RequestDate")+";"+Eval("branchno") %>'
                                                     CommandName="Export">
-                                                    <asp:Image ID="print1" runat="server" ImageAlign="Middle" ImageUrl="../images/xcel.png"
-                                                        Width="50px" Height="50px" /></asp:LinkButton>
+                                                    <asp:Image ID="print1" runat="server" ImageAlign="Middle" ImageUrl="../images/xcel.png" Visible="false"
+                                                        Width="50px" Height="50px" />
+                                                         <button type="button" class="btn btn-success btn-md">
+						                                    <span class="glyphicon glyphicon-export" aria-hidden="true"></span>
+					                                    </button></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Previous Transfer" Visible="false">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="btnPrevious" runat="server" Text="P" Font-Bold="true" Font-Size="Larger"
+                                                <asp:LinkButton ID="btnPrevious" runat="server" Text="P" Font-Bold="true" Font-Size="Larger" 
                                                     CommandName="Previous"></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
-                                    <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                   <%-- <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                                 </asp:GridView>
                             </div>
-                            <div class="col-lg-4" style="">
+                            </div>
+                            <div class="col-lg-6">
+                            <div class="table-responsive panel-grid-left">
                                 <div id="PRINTID" runat="server">
-                                    <asp:GridView ID="gvbranchqty" runat="server" AutoGenerateColumns="false" Font-Names="Calibri"
+                                    <asp:GridView ID="gvbranchqty" runat="server" AutoGenerateColumns="false"  padding="0" spacing="0" border="0" cssClass="table table-striped pos-table"
                                         OnRowCreated="gvbranchqty_RowCreated" OnRowDataBound="gvbranchqty_RowDataBound"
                                         Font-Size="15px">
-                                        <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                            HorizontalAlign="Center" ForeColor="White" />
+                                       <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                            HorizontalAlign="Center" ForeColor="White" />--%>
                                         <Columns>
                                             <asp:BoundField HeaderText="Category" DataField="Category" />
                                             <asp:BoundField HeaderText="Item" DataField="Definition" />
@@ -254,14 +273,14 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
-                                        <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                      <%--  <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                                     </asp:GridView>
                                 </div>
                                 <div id="PRINTIDRec" runat="server">
                                     <asp:GridView ID="Griddc" runat="server" AutoGenerateColumns="false" Font-Names="Calibri"
-                                        OnRowCreated="Griddc_RowCreated" OnRowDataBound="Griddc_RowDataBound" Font-Size="15px">
-                                        <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                            HorizontalAlign="Center" ForeColor="White" />
+                                        OnRowCreated="Griddc_RowCreated" OnRowDataBound="Griddc_RowDataBound" cssClass="table table-striped pos-table"  padding="0" spacing="0" border="0">
+                                       <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                            HorizontalAlign="Center" ForeColor="White" />--%>
                                         <Columns>
                                             <asp:BoundField HeaderText="Category" DataField="Category" />
                                             <asp:BoundField HeaderText="Item" DataField="Definition" />
@@ -275,22 +294,23 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
-                                        <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                       <%-- <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                                     </asp:GridView>
                                 </div>
-                                <asp:GridView ID="gvDetails" runat="server" OnRowDataBound="gvdetails_bound" AutoGenerateColumns="false"
+                                <asp:GridView ID="gvDetails" runat="server" OnRowDataBound="gvdetails_bound" AutoGenerateColumns="false" padding="0" spacing="0" border="0" cssClass="table table-striped pos-table"
                                     Font-Names="Calibri">
-                                    <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                        HorizontalAlign="Center" ForeColor="White" />
+                                    <%--<HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                        HorizontalAlign="Center" ForeColor="White" />--%>
                                     <Columns>
                                         <asp:BoundField HeaderText="Category" DataField="SemiCategory" />
                                         <asp:BoundField HeaderText="Item" DataField="SemiIngredientName" />
                                         <asp:BoundField HeaderText="Order Qty" DataField="Order_Qty" />
                                         <asp:BoundField HeaderText="Received Qty" DataField="Received_Qty" />
                                     </Columns>
-                                    <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                  <%--  <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                                 </asp:GridView>
                             </div>
+                            
                         </div>
                     </div>
                     <div>
@@ -302,10 +322,13 @@
                         <asp:GridView ID="gvGrid" runat="server" Width="100%" CssClass="mGrid">
                         </asp:GridView>
                     </div>
+                    </div>
                     </form>
                 </div>
-            </div>
-        </div>
+     
+    </div>
+    </div>
+    </div>
     </div>
 </body>
 </html>

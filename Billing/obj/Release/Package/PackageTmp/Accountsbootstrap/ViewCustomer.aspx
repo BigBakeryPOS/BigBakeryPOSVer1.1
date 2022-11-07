@@ -64,6 +64,7 @@
     <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet" />
+    <link href="../css/Pos_style.css" rel="stylesheet" />
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <style type="text/css"> 
@@ -134,6 +135,9 @@
             }
         }    
     </script>
+    <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
+        <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
+        <script type="text/javascript">            $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
 </head>
 <body style="">
     <asp:Label runat="server" Visible="false" ID="lblWelcome" ForeColor="White" CssClass="label">Welcome : </asp:Label>
@@ -143,18 +147,28 @@
     <form runat="server" id="form1">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <div class="row" style="">
+    <div class="container-fluid">
+	<div class="row">
         <div class="col-lg-12">
-            <div class="panel panel-default">
+            <div class="row panel-custom1">
             <%--<div class="panel-heading " style="background-color: #428bca; color: White">
                         <b>Contact Details</b></div>--%>
-                <div class="panel-heading" style="background-color: #0071BD;  color: White;
-                    text-align: left">
-                    Contact Details
-                </div>
+                 <div class="panel-header">
+                  <h1 class="page-header">Contact Master
+                  <span class="pull-right">
+                  <asp:LinkButton ID="Button1" runat="server" OnClick="Add_Click"
+                                   >
+                                                <button type="button" class="btn btn-primary btn-md pos-btn1">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD
+			</button>
+                                             </asp:LinkButton>
+                  
+                </span>
+                </h1>
+	            </div>
                 <div class="panel-body">
                     <%--<div class="row" style="">--%>
-                        <div class="col-lg-12">
+                        <div class="row">
                             <div class="col-lg-2" runat="server" visible="false">
                                 <asp:DropDownList CssClass="form-control" ID="ddlfilter" Style="width: 120px;" runat="server">
                                     <asp:ListItem Text="Name" Value="1"></asp:ListItem>
@@ -163,9 +177,12 @@
                                 </asp:DropDownList>
                             </div>
                             <div class="col-lg-2">
+                            <div class="form-group has-feedback">
                                 <asp:TextBox CssClass="form-control" Enabled="true" Text="Search Name.." ID="txtsearch"
-                                    runat="server" onkeyup="Search_Gridview(this, 'gvcust')" Style="width: 150px;"></asp:TextBox>
+                                    runat="server" onkeyup="Search_Gridview(this, 'gvcust')" ></asp:TextBox>
+                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
                                 <asp:Label ID="lblerror" runat="server" Style="color: Red"></asp:Label>
+                            </div>
                             </div>
                             <div class="col-lg-2" runat="server" visible="false">
                                 <div class="form-group">
@@ -174,21 +191,17 @@
                                 </div>
                             </div>
                             <div class="col-lg-2">
-                                <asp:Button ID="btnrefresh" runat="server" class="btn btn-warning" Text="Reset" OnClick="refresh_Click"
+                                <asp:Button ID="btnrefresh" runat="server" class="btn btn-secondary" Text="Reset" OnClick="refresh_Click"
                                     Width="150px" />
                             </div>
-                            <div class="col-lg-2">
-                                <asp:Button ID="btnadd" runat="server" class="btn btn-success" Text="Add" OnClick="Add_Click"
-                                    Width="150px" />
-                            </div>
-                        </div>
+                            
+                        
                   <%--  </div>--%>
                     <div class="col-lg-12">
-                        <br />
-                        <div style="height: 392px; overflow: scroll">
-                            <asp:GridView ID="gvcust" runat="server" AutoGenerateColumns="false" OnRowCommand="gvcust_RowCommand" DataKeyNames="LedgerID"  Font-Names="Calibri"
-                                Width="100%" OnRowDataBound="gvcust_OnRowDataBound">
-                                 <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> 
+                <div class="table-responsive panel-grid-left">
+                            <asp:GridView ID="gvcust" runat="server" AutoGenerateColumns="false" OnRowCommand="gvcust_RowCommand" cssClass="table table-striped pos-table" DataKeyNames="LedgerID"  
+                                Width="100%" OnRowDataBound="gvcust_OnRowDataBound" padding="0" spacing="0" border="0">
+                                <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px" HorizontalAlign="Center" ForeColor="White" /> --%>
                                 <%-- <HeaderStyle BackColor="#990000" />--%>
                                 <%--  <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
                                                         NextPageText="Next" PreviousPageText="Previous" />--%>
@@ -200,9 +213,11 @@
                                     <asp:BoundField HeaderText="Email" DataField="Email" />
                                     <asp:TemplateField HeaderText="Edit">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="btnedit" runat="server" CommandArgument='<%#Eval("LedgerID") %>'
+                                            <asp:LinkButton ID="btnedit" runat="server" cssclass="btn btn-warning btn-md" CommandArgument='<%#Eval("LedgerID") %>'
                                                 CommandName="edite">
-                                                <asp:Image ID="img" runat="server" ImageUrl="~/images/edit.png" width="55px"/></asp:LinkButton>
+                                                <asp:Image ID="img" runat="server" ImageUrl="~/images/edit.png" width="55px" Visible="false"/>
+                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                </asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField Visible="false" HeaderText="Delete">
@@ -226,11 +241,11 @@
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
-        <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
-        <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
-        <script type="text/javascript">            $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
+        
+    </div>
     </div>
     <asp:Panel class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none"
         runat="server">

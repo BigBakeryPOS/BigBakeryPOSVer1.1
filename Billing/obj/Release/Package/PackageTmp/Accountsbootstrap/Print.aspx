@@ -200,9 +200,7 @@
                                     HeaderStyle-HorizontalAlign="Center" />
                                 <asp:BoundField HeaderText="Amount" DataField="Amount" DataFormatString="{0:N2}"
                                     ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Center" />
-                                <asp:BoundField HeaderText="S" DataField="gs" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right"
-                                    HeaderStyle-HorizontalAlign="Center" />
-                                <asp:BoundField HeaderText="C" DataField="gs" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right"
+                                <asp:BoundField HeaderText="GST %" DataField="gs"  ItemStyle-HorizontalAlign="Right"
                                     HeaderStyle-HorizontalAlign="Center" />
                             </Columns>
                         </asp:GridView>
@@ -313,12 +311,20 @@
                         </asp:GridView>
                     </td>
                 </tr>
-                <tr>
+                <tr runat="server" visible="false" >
                     <td align="center" style="font-size: small">
                         <label>
                             Kindly Refrigerate Our Fresh Cream products</label><br />
                         <label>
                             HAPPENING PLACE</label>
+                    </td>
+                </tr>
+                 <tr id="Tr4" runat="server" visible="true">
+                    <td colspan="2" align="center">
+                        <img width="50px"  height="70px" src="../images/Hand.png" style="margin-left: 0px; display:none;" />
+                        <asp:Label ID="Label6" runat="server" Font-Bold="true" Text="THANK YOU VISIT AGAIN"
+                            Font-Size="15px"></asp:Label>
+                        <img width="50px"  height="70px" src="../images/Hand.png" style="margin-left: 0px; display:none;" />
                     </td>
                 </tr>
                 <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label"> </asp:Label>

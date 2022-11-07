@@ -150,37 +150,43 @@
         ID="val1" ShowMessageBox="true" ShowSummary="false" />
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <div class="col-lg-10 col-lg-offset-1">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="text-align: center; font-size: large">
-                RawMaterials Details</div>
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Raw Material Details</h1>
+	    </div>
+
             <div class="panel-body">
+             <div class="row">
                 <div class="col-lg-12">
-                    <div class="col-lg-2">
-                        <div class="form-group ">
+                <div class="row">
+                    <div class="col-lg-3">
+                      
                             <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="phono" ControlToValidate="txtsearch"
                                 ErrorMessage="Please enter your searching Data!" Text="*" Style="color: White" />
                             <asp:TextBox CssClass="form-control" Enabled="true" ID="txtsearch" runat="server"
-                                placeholder="Search Text" Style="width: 150px;"></asp:TextBox>
+                                placeholder="Search Text"></asp:TextBox>
                             <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
                                 FilterType="LowercaseLetters, UppercaseLetters,Numbers,Custom" ValidChars=" "
                                 TargetControlID="txtsearch" />
-                        </div>
+                       
                     </div>
-                    <div class="col-lg-2">
-                        <div class="form-group ">
+                    <div class="col-lg-3">
+                        
                             <label>
                                 From date</label>
                             <asp:TextBox runat="server" ID="txtfromdate" CssClass="form-control" AutoPostBack="true"
                                 OnTextChanged="txtfromdate_TextChanged"> 
                             </asp:TextBox>
                             <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtfromdate"
-                                Format="dd/MM/yyyy" runat="server">
+                                Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
                             </ajaxToolkit:CalendarExtender>
-                        </div>
+                      
                     </div>
-                    <div class="col-lg-2">
-                        <div class="form-group ">
+                    <div class="col-lg-3">
+                        
                             <label>
                                 To date</label>
                             <asp:TextBox runat="server" ID="txttodate" CssClass="form-control" AutoPostBack="true"
@@ -189,32 +195,36 @@
                             <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txttodate"
                                 Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
                             </ajaxToolkit:CalendarExtender>
-                        </div>
+                       
                     </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
+                    <div class="col-lg-3">
+                       
                             <label>
-                                Suppler</label>
-                            <asp:DropDownList CssClass="chzn-select" ID="ddlsuplier" Width="150px" AutoPostBack="true"
-                                OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged" MaxLength="150" runat="server">
+                                Supplier</label>
+                            <asp:DropDownList CssClass="form-control" ID="ddlsuplier"  AutoPostBack="true"
+                                OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged"  runat="server">
                             </asp:DropDownList>
-                        </div>
+                       
                     </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
+                    </div>
+                    <br />
+                    <div class="row">
+                    <div class="col-lg-3">
+                       
                             <label>
                                 RawMaterials</label>
-                            <asp:DropDownList CssClass="chzn-select" ID="ddlraw" Width="150px" AutoPostBack="true"
+                            <asp:DropDownList CssClass="form-control" ID="ddlraw" AutoPostBack="true"
                                 OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged" MaxLength="150" runat="server">
                             </asp:DropDownList>
-                        </div>
+                       
                     </div>
-                   <div class="col-lg-1">
-                        <div class="form-group">
+                   <div class="col-lg-3">
+                       
                             <br />
-                            <asp:Button ID="btnPrint" runat="server" CssClass="btn btn-danger" Width="110px"
-                                Text="Print" OnClick="btnPrintFromCodeBehind_Click" />
-                        </div>
+                            <asp:Button ID="btnPrint" runat="server" CssClass="btn btn-info pos-btn1" 
+                                Text="Print" OnClick="btnPrintFromCodeBehind_Click" width="100px"/>
+                               &nbsp;&nbsp;&nbsp;  <asp:Button ID="btnpdf" runat="server" Text="PDF" CssClass="btn btn-info" OnClick="btnpdf_Click" width="100px" />
+
                     </div>
                     <div id="Div2" class="col-lg-1" runat="server" visible="false">
                         <div class="form-group">
@@ -223,22 +233,23 @@
                                 OnClick="btnExport_Click" />
                         </div>
                     </div>
-                    <div class="col-lg-1">
-                        <br />
-                        <asp:Button ID="btnpdf" runat="server" Text="PDF" CssClass="btn btn-info" OnClick="btnpdf_Click"
-                            Width="110px" />
-                    </div>
+                    
                 </div>
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div id="Div1" runat="server" style="overflow: auto; height: 350px">
-                                <asp:GridView ID="BankGrid" runat="server" CssClass="mGrid" Width="100%" AllowSorting="true"
+                </div>
+                </div>
+                <br />
+                        <div class="row">
+
+                        <div class="col-lg-12">
+                     
+                            <div id="Div1" runat="server" class="table-responsive panel-grid-left">
+                                <asp:GridView ID="BankGrid" runat="server" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" Width="100%" AllowSorting="true"
                                     EmptyDataText="No Records Found" AutoGenerateColumns="false">
-                                    <HeaderStyle BackColor="#3366FF" />
+                                    <PagerStyle cssclass="pos-paging" />
+                                   <%-- <HeaderStyle BackColor="#3366FF" />
                                     <EmptyDataRowStyle HorizontalAlign="Center" BackColor="#59d3b4" ForeColor="Black" />
                                     <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
-                                        NextPageText="Next" PreviousPageText="Previous" />
+                                        NextPageText="Next" PreviousPageText="Previous" />--%>
                                     <Columns>
                                         <asp:BoundField HeaderText="IngredientName" DataField="IngredientName" />
                                         <asp:BoundField HeaderText="SupplierName" DataField="CustomerName" HeaderStyle-HorizontalAlign="Center" />
@@ -248,21 +259,19 @@
                                         <asp:BoundField HeaderText="Rate" DataField="Rate" DataFormatString='{0:f}' />
                                         <asp:BoundField HeaderText="Payment" DataField="Paymentmode" />
                                     </Columns>
-                                    <FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-                                    <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                                    <%--<FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                                    <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                                 </asp:GridView>
                             </div>
-                        </div>
-                        <!-- /.col-lg-6 (nested) -->
-                    </div>
-                    <!-- /.row (nested) -->
-                </div>
+                      </div>
+                      </div>
+                      
             </div>
-        </div>
+       
         <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
         <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
         <script type="text/javascript">            $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
-    </div>
+  
     <asp:Panel class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none"
         runat="server">
         <div class="popup_Container">
@@ -283,6 +292,10 @@
             </div>
         </div>
     </asp:Panel>
+    </div>
+    </div>
+    </div>
+    </div>
     </form>
 </body>
 </html>

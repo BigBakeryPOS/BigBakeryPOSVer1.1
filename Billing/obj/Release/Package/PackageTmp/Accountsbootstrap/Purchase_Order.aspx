@@ -56,52 +56,46 @@
     </asp:ScriptManager>
     <asp:UpdatePanel ID="update" runat="server">
         <ContentTemplate>
-            <div class="row">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        Purchase Order Entry
-                    </div>
+         <div class="container-fluid">
+	    <div class="row">
+        <div class="col-lg-12">
+        <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Purchase Order Entry</h1>
+	    </div>
+                   
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-12">
-                                <div class="col-lg-2">
+                           
+                                <div class="col-lg-3">
                                     <label>
-                                        Purchase Order Type :</label>
-                                </div>
-                                <div class="col-lg-4">
+                                        Purchase Order Type </label>
+                               
                                     <asp:RadioButtonList ID="rbdpurchasetype" runat="server" RepeatColumns="2" AutoPostBack="true"
                                         OnSelectedIndexChanged="rbdpurchasetype_OnSelectedIndexChanged">
                                         <asp:ListItem Text="Local Purchase" Value="1"></asp:ListItem>
                                         <asp:ListItem Text="Inter-State Purchase" Value="2"></asp:ListItem>
                                     </asp:RadioButtonList>
                                 </div>
-                                <div class="col-lg-2">
-                                    <div id="shwedit" runat="server" visible="false">
-                                        <label>
-                                            Edit Narrations :</label>
+
+                                    <div id="shwedit" runat="server" visible="false" class="col-lg-3">
+                                        <label>Edit Narrations</label>
                                         <asp:TextBox CssClass="form-control" ID="txteditnarrations" runat="server"></asp:TextBox>
                                     </div>
-                                </div>
-                                <div class="col-lg-2">
-                                </div>
-                                <div class="col-lg-2">
-                                    <label>
-                                    </label>
+
+                                
                                     <label id="lblpurchase" runat="server" visible="false">
                                     </label>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
+                               
+                            
                                 <div class="col-lg-3">
-                                    <label>
-                                        Order No</label>
+                                    <label>Order No</label>
                                     <asp:TextBox Visible="false" CssClass="form-control" ID="txtbillno" placeholder="Enter Order No"
                                         runat="server" Enabled="false"></asp:TextBox>
                                     <asp:TextBox CssClass="form-control" ID="txtdcno" placeholder="Enter Order No" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-3">
-                                    <label>
-                                        Order Date</label>
+                                    <label>Order Date</label>
                                     <asp:TextBox CssClass="form-control" ID="txtsdate1" Enabled="true" runat="server"
                                         TabIndex="1" placeholder="Select Date"></asp:TextBox>
                                     <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="dd/MM/yyyy" TargetControlID="txtsdate1"
@@ -130,144 +124,134 @@
                                 </asp:DropDownList>
                                 <asp:TextBox CssClass="form-control" ID="txtcheque" placeholder="Enter Bill No" runat="server"
                                     Visible="false"></asp:TextBox>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
+                                    
+                                    
+                              <div class="col-lg-12">
                         <%--  <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" CssClass="chzn-container"
                                                         GridLines="None" OnRowDataBound="GridView2_RowDataBound" OnRowDeleting="GridView2_RowDeleting"
                                                         ShowFooter="True" Width="100%">--%>
-                        <asp:Panel ID="Panel1" runat="server" Height="360" ScrollBars="Both" Width="100%">
-                            <asp:GridView ID="gvcustomerorder" runat="server" AutoGenerateColumns="False" OnRowDeleting="grvStudentDetails_RowDeleting"
+                        <asp:Panel ID="Panel1" runat="server" >
+                        <div class="table-responsive panel-grid-left">
+                            <asp:GridView ID="gvcustomerorder" runat="server" AutoGenerateColumns="False" OnRowDeleting="grvStudentDetails_RowDeleting" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                                 Font-Names="Calibri" OnRowDataBound="gvcustomerorder_RowDataBound">
                                 <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
                                     Height="30px" Font-Names="arial" Font-Size="Medium" HorizontalAlign="Center" />       --%>
-                                <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                               <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
                                     HorizontalAlign="Center" ForeColor="White" />
-                                <RowStyle Height="3px" />
+                                <RowStyle Height="3px" />--%>
                                 <Columns>
                                     <%--   <asp:TemplateField HeaderText="SNo" ItemStyle-HorizontalAlign="Center">--%>
-                                    <asp:TemplateField ControlStyle-Width="100%" HeaderStyle-ForeColor="white" HeaderStyle-Width="5%"
-                                        ItemStyle-HorizontalAlign="Center" HeaderText="S.No" ItemStyle-Width="6%">
+                                    <asp:TemplateField   HeaderText="S.No" >
                                         <ItemTemplate>
                                             <asp:TextBox Width="50px" Style="text-align: left" class="form-control" TabIndex="4"
-                                                Height="25px" ID="txtsno" runat="server">1</asp:TextBox>
+                                               ID="txtsno" runat="server">1</asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Ingredients" HeaderStyle-Width="450px" HeaderStyle-ForeColor="white"
-                                        ItemStyle-Height="30px">
+                                    <asp:TemplateField HeaderText="Ingredients">
                                         <ItemTemplate>
-                                            <asp:DropDownList ID="ddlDef" CssClass="chzn-select" runat="server" TabIndex="5"
-                                                Height="25px" Width="100%" AutoPostBack="true" OnSelectedIndexChanged="ddlDef_OnSelectedIndexChanged">
+                                            <asp:DropDownList ID="ddlDef" CssClass="form-control" runat="server" TabIndex="5"
+                                                 Width="200px" AutoPostBack="true" OnSelectedIndexChanged="ddlDef_OnSelectedIndexChanged">
                                             </asp:DropDownList>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Units" ControlStyle-Width="10%" HeaderStyle-Width="100px"
-                                        HeaderStyle-ForeColor="white" ItemStyle-HorizontalAlign="Left">
+                                    <asp:TemplateField HeaderText="Units">
                                         <ItemTemplate>
                                             <asp:DropDownList ID="ddlunits" Visible="false" CssClass="form-control" runat="server"
                                                 Height="25px">
                                             </asp:DropDownList>
-                                            <asp:Label ID="lblunits" Width="130px" runat="server"></asp:Label>
+                                            <asp:Label ID="lblunits"  runat="server"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Primary Unit" 
-                                        HeaderStyle-ForeColor="white" >
+                                    <asp:TemplateField HeaderText="Primary Unit" >
                                         <ItemTemplate>
-                                            <asp:DropDownList ID="ddlprimaryunits" Width="100%"  CssClass="chzn-select" runat="server" OnSelectedIndexChanged="drpprimary_unit" AutoPostBack="true"
-                                                Height="25px">
+                                            <asp:DropDownList ID="ddlprimaryunits" Width="200px"  CssClass="form-control" runat="server" OnSelectedIndexChanged="drpprimary_unit" AutoPostBack="true"
+                                               >
                                             </asp:DropDownList>
                                             <asp:Label ID="lblprimaryvalue" runat="server" ></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="SubCatID" ItemStyle-CssClass="Hide" HeaderStyle-CssClass="Hide"
-                                        HeaderStyle-ForeColor="white">
+                                    <asp:TemplateField HeaderText="SubCatID">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblDescriptionID" runat="server" CssClass="LabelText" Height="25px"></asp:Label>
+                                            <asp:Label ID="lblDescriptionID" runat="server" CssClass="LabelText" ></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Quantity" HeaderStyle-Width="50px" HeaderStyle-ForeColor="white">
+                                    <asp:TemplateField HeaderText="Quantity" >
                                         <ItemTemplate>
-                                            <asp:TextBox class="form-control" Width="121px" OnTextChanged="txtdefQty_TextChanged"
-                                                Height="25px" AutoPostBack="true" ID="txtQty" runat="server" MaxLength="10">0</asp:TextBox>
+                                            <asp:TextBox class="form-control" OnTextChanged="txtdefQty_TextChanged"
+                                                AutoPostBack="true" ID="txtQty" runat="server" MaxLength="10">0</asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="GST%" ItemStyle-HorizontalAlign="Left" HeaderStyle-Width="50px"
-                                        HeaderStyle-ForeColor="white">
+                                    <asp:TemplateField HeaderText="GST%" >
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtBillNo" runat="server" CssClass="form-control" Width="81px" AutoPostBack="true"
-                                                Height="25px" OnTextChanged="txtBillNo_TextChanged">0</asp:TextBox>
+                                            <asp:TextBox ID="txtBillNo" runat="server" CssClass="form-control" Width="50px" AutoPostBack="true"
+                                                OnTextChanged="txtBillNo_TextChanged">0</asp:TextBox>
                                         </ItemTemplate>
-                                        <FooterStyle HorizontalAlign="Right" />
+                                        <%--<FooterStyle HorizontalAlign="Right" />
                                         <FooterTemplate>
-                                        </FooterTemplate>
+                                        </FooterTemplate>--%>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Rate" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="50px"
-                                        HeaderStyle-ForeColor="white">
+                                    <asp:TemplateField HeaderText="Rate" >
                                         <ItemTemplate>
-                                            <asp:TextBox Width="121px" Style="text-align: right" placeholder="Enter Rate" class="form-control"
-                                                Height="25px" ID="txtRate" runat="server" OnTextChanged="txtdefCatID_TextChanged"
+                                            <asp:TextBox Width="100px"  placeholder="Enter Rate" class="form-control"
+                                                ID="txtRate" runat="server" OnTextChanged="txtdefCatID_TextChanged"
                                                 AutoPostBack="true" MaxLength="10">0</asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Amount" ItemStyle-HorizontalAlign="left" HeaderStyle-Width="150px"
-                                        HeaderStyle-ForeColor="white">
+                                    <asp:TemplateField HeaderText="Amount" >
                                         <ItemTemplate>
-                                            <asp:TextBox Width="150px" Style="text-align: right" Enabled="false" class="form-control"
-                                                Height="25px" ID="txtAmount" runat="server" MaxLength="50">0</asp:TextBox>
+                                            <asp:TextBox Width="100px"  Enabled="false" class="form-control"
+                                                 ID="txtAmount" runat="server" MaxLength="50">0</asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                     <asp:TemplateField HeaderText="Purchase Qty" ItemStyle-HorizontalAlign="left" HeaderStyle-Width="150px"
-                                        HeaderStyle-ForeColor="white">
+                                     <asp:TemplateField HeaderText="Purchase Qty">
                                         <ItemTemplate>
-                                            <asp:TextBox Width="150px" Style="text-align: right" Enabled="false" class="form-control"
-                                                Height="25px" ID="txtpqty" runat="server" MaxLength="50">0</asp:TextBox>
+                                            <asp:TextBox Width="100px"  Enabled="false" class="form-control"
+                                                ID="txtpqty" runat="server" MaxLength="50">0</asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField ControlStyle-Width="100%" HeaderStyle-ForeColor="white" HeaderText="Expired Date"
-                                        Visible="false" HeaderStyle-Width="250px">
+                                    <asp:TemplateField  HeaderText="Expired Date"
+                                        Visible="false" >
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtexpireddate" runat="server" Enabled="true" Height="25px" Width="250px"></asp:TextBox>
+                                            <asp:TextBox ID="txtexpireddate" runat="server" Enabled="true"  Width="250px"></asp:TextBox>
                                             <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txtexpireddate"
                                                 PopupButtonID="txtexpireddate" EnabledOnClient="true" Format="dd/MM/yyyy" runat="server"
                                                 CssClass="cal_Theme1">
                                             </ajaxToolkit:CalendarExtender>
                                         </ItemTemplate>
-                                        <FooterStyle HorizontalAlign="Right" />
+                                       <%-- <FooterStyle HorizontalAlign="Right" />
                                         <FooterTemplate>
-                                        </FooterTemplate>
+                                        </FooterTemplate>--%>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Supplier" ItemStyle-HorizontalAlign="Left" Visible="false"
-                                        HeaderStyle-ForeColor="white">
+                                    <asp:TemplateField HeaderText="Supplier" >
                                         <ItemTemplate>
-                                            <asp:DropDownList ID="ddSupplier" class="chzn-select" runat="server" AutoPostBack="true"
-                                                Height="25px">
+                                            <asp:DropDownList ID="ddSupplier" class="form-control" runat="server" AutoPostBack="true"  Width="200px">
                                             </asp:DropDownList>
                                             <asp:TextBox ID="txtsupplier" runat="server" placeholder="Enter SupplierName" CssClass="form-control"
                                                 Visible="false"></asp:TextBox>
                                         </ItemTemplate>
-                                        <FooterStyle HorizontalAlign="Right" />
+                                        <%--<FooterStyle HorizontalAlign="Right" />
                                         <FooterTemplate>
-                                        </FooterTemplate>
+                                        </FooterTemplate>--%>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="payMode" ItemStyle-HorizontalAlign="Left" Visible="false"
-                                        HeaderStyle-ForeColor="white">
+                                    <asp:TemplateField HeaderText="payMode"  >
                                         <ItemTemplate>
-                                            <asp:DropDownList ID="ddlPay" CssClass="form-control" runat="server" Height="25px">
+                                            <asp:DropDownList ID="ddlPay" CssClass="form-control" runat="server" Width="200px" >
                                                 <asp:ListItem Value="Select Payment Mode">Select Payment Mode</asp:ListItem>
                                                 <asp:ListItem Value="Cash">Cash</asp:ListItem>
                                                 <asp:ListItem Value="Credit">Credit</asp:ListItem>
                                                 <asp:ListItem Value="Cheque">Cheque</asp:ListItem>
                                             </asp:DropDownList>
                                         </ItemTemplate>
-                                        <FooterStyle HorizontalAlign="Right" />
+                                       <%-- <FooterStyle HorizontalAlign="Right" />
                                         <FooterTemplate>
-                                        </FooterTemplate>
+                                        </FooterTemplate>--%>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderStyle-Width="60px">
+                                    <asp:TemplateField HeaderText="Add">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="add" runat="server" OnClick="btnnew_Click">
-                                                <asp:Image ID="img" Width="20px" runat="server" ImageUrl="~/images/edit_add.png" /></asp:LinkButton>
+                                            <asp:LinkButton ID="add" runat="server" OnClick="btnnew_Click" cssclass="btn btn-primary pos-btn1">
+                                                <asp:Image ID="img" Width="20px" runat="server" ImageUrl="~/images/edit_add.png" visible="false"/>
+                                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                                </asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="ID" Visible="false">
@@ -279,83 +263,47 @@
                                         DeleteImageUrl="~/images/delete.png" />
                                 </Columns>
                             </asp:GridView>
+                        </div>
                         </asp:Panel>
+                        </div>
+                        <div class="row">
                         <div class="col-lg-12">
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 <label>
                                     SubTotal</label>
-                                <asp:TextBox ID="txtSubTotal" Enabled="false" runat="server" Style="text-align: right"
-                                    Width="130px" CssClass="form-control">0</asp:TextBox></div>
-                            <div class="col-lg-2">
+                                <asp:TextBox ID="txtSubTotal" Enabled="false" runat="server" CssClass="form-control">0</asp:TextBox></div>
+                            <div class="col-lg-3">
                                 <label>
                                     CGST</label>
-                                <asp:TextBox ID="txtcgst" runat="server" CssClass="form-control" Width="130px" Enabled="false"
-                                    AutoPostBack="true" Style="text-align: right">0</asp:TextBox></div>
-                            <div class="col-lg-2">
+                                <asp:TextBox ID="txtcgst" runat="server" CssClass="form-control"  Enabled="false"
+                                    AutoPostBack="true" >0</asp:TextBox></div>
+                            <div class="col-lg-3">
                                 <label>
                                     SGST</label>
-                                <asp:TextBox ID="txtsgst" runat="server" CssClass="form-control" Width="130px" Enabled="false"
-                                    AutoPostBack="true" Style="text-align: right">0</asp:TextBox></div>
-                            <div class="col-lg-2">
+                                <asp:TextBox ID="txtsgst" runat="server" CssClass="form-control"  Enabled="false"
+                                    AutoPostBack="true">0</asp:TextBox></div>
+                            <div class="col-lg-3">
                                 <label>
                                     IGST</label>
-                                <asp:TextBox ID="txtigst" runat="server" CssClass="form-control" Width="130px" Enabled="false"
-                                    AutoPostBack="true" Style="text-align: right">0</asp:TextBox></div>
-                            <div class="col-lg-2">
+                                <asp:TextBox ID="txtigst" runat="server" CssClass="form-control"  Enabled="false"
+                                    AutoPostBack="true" >0</asp:TextBox></div>
+                            <div class="col-lg-3">
                                 <label>
                                     Total</label>
-                                <asp:TextBox ID="txttotal" runat="server" Enabled="false" Style="text-align: right"
-                                    Width="130px" CssClass="form-control">0</asp:TextBox></div>
-                            <div class="col-lg-2">
+                                <asp:TextBox ID="txttotal" runat="server" Enabled="false" 
+                                    CssClass="form-control">0</asp:TextBox></div>
+                            <div class="col-lg-3">
                                 <br />
-                                <asp:Button ID="Button1" runat="server" CssClass=" btn btn btn-success" Text="Save"
+                                <asp:Button ID="Button1" runat="server" CssClass=" btn btn-lg btn-primary pos-btn1" width="150px" Text="Save"
                                     OnClientClick="SetTarget();" OnClick="btnSave_Click" />
-                                <asp:Button ID="Button2" runat="server" CssClass=" btn btn btn-danger" Text="Exit"
+                                <asp:Button ID="Button2" runat="server" CssClass=" btn btn-lg btn-link" Text="Exit"
                                     PostBackUrl="~/Accountsbootstrap/Purchase_OrderGrid.aspx" /></div>
                         </div>
-                        <table width="45%">
-                            <tr runat="server" visible="false">
-                                <td align="right">
-                                </td>
-                                <td align="right">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right">
-                                </td>
-                                <td align="right">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="center">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
                                     <asp:Label ID="lblError" runat="server"></asp:Label>
-                                </td>
-                            </tr>
-                        </table>
+                        </div>
+                        <div class="row">
                         <asp:Panel ID="pnlContents" runat="server">
-                            <div id="div1" style="background-color: ">
+                            <div id="div1" >
                                 <table width="265px" id="tblPrint" runat="server" visible="false">
                                     <tr>
                                         <td align="center" style="font-size: small">
@@ -416,10 +364,15 @@
                                 </table>
                             </div>
                         </asp:Panel>
+                        </div>
+                            </div>
                     </div>
-                </div>
-            </div>
-            </div>
+                    
+                
+          </div>
+          </div>
+          </div>
+          </div> 
             <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
             <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
             <script src="../Scripts/jquery.min.js" type="text/javascript"></script>

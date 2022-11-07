@@ -100,27 +100,29 @@
     <form id="Form1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+     <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-body" style="">
+            <div class="row panel-custom1">
+            <div class="panel-header">
+          <h1 class="page-header">Stock Detailed Report</h1>
+	    </div>
+                <div class="panel-body">
                     <div class="row">
-                        <div class="col-lg-10" align="left" >
+                        
                            
-                                <h2>
-                                    Stock Detailed Report</h2>
                                 <div class="form-group" id="admin" runat="server">
                                     <legend>Filter By Branch</legend>
                                     <asp:DropDownList CssClass="form-control" ID="ddlBranch" runat="server" AutoPostBack="true">
                                     </asp:DropDownList>
                                 </div>
-                             </div>
+                           
                              
-                            <div class="col-lg-12" style=" margin-top:10px">
-                                <div class="col-lg-1">
-                                    <label style=" color:#428bca">
-                                        Date</label>
-                                    <asp:TextBox runat="server" ID="txtFrom" Width="104px" CssClass="form-control"  >
+                           
+                                <div class="col-lg-3">
+                                    <label>
+                                        DATE</label>
+                                    <asp:TextBox runat="server" ID="txtFrom"  CssClass="form-control"  >
                                     </asp:TextBox>
                                     <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtFrom"
                                         ErrorMessage="Please Select valid Date Thank You!!!" Type="Date">
@@ -129,8 +131,8 @@
                                         runat="server" CssClass="cal_Theme1">
                                     </ajaxToolkit:CalendarExtender>
                                 </div>
-                                <div class="col-lg-1">
-                                    <label style=" color:#428bca">
+                                <div class="col-lg-3">
+                                    <label>
                                         TYPE
                                     </label>
                                     <asp:DropDownList ID="ddlstcktype" runat="server" CssClass="form-control">
@@ -140,8 +142,8 @@
                                         <asp:ListItem Text="Nil" Value="3"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
-                                <div class="col-lg-2">
-                                    <label style=" color:#428bca">
+                                <div class="col-lg-3">
+                                    <label>
                                         STOCK TYPE
                                     </label>
                                     <asp:DropDownList ID="ddlclosingstocktype" runat="server" CssClass="form-control"
@@ -151,8 +153,8 @@
                                         <asp:ListItem Text="WithOut 0" Value="2"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
-                                <div class="col-lg-2">
-                                    <label style=" color:#428bca">
+                                <div class="col-lg-3">
+                                    <label>
                                         DISPLAY TYPE
                                     </label>
                                     <asp:DropDownList ID="ddldisplaytype" runat="server" CssClass="form-control"  >
@@ -161,122 +163,107 @@
                                         <asp:ListItem Text="Only Value" Value="2"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
+                                </div>
+                                 <div class="row">
                                 <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label style=" color:#428bca">
-                                            Category</label>
-                                        <asp:CheckBox ID="chkAll" Text="Select All" runat="server" style=" color:#428bca" />
-                                        <div style="overflow-y: scroll; width: 250px; height: 150px">
-                                            <div class="panel panel-default" style="width: 300px">
+                                   
+                                        <label>
+                                            CATEGORY</label>
+                                       
+                                        <div style="overflow-y: scroll; height: 150px">
+                                            <div class="panel panel-default" >
+                                             <asp:CheckBox ID="chkAll" Text="Select All" runat="server" />
                                                 <asp:CheckBoxList ID="chkcategorylist" runat="server" RepeatColumns="1" RepeatDirection="Horizontal"
                                                     CssClass="chkChoice1" Width="19pc">
                                                 </asp:CheckBoxList>
                                             </div>
                                         </div>
                                         <asp:Label ID="lblsuberror" runat="server" Style="color: Red"></asp:Label>
-                                    </div>
+                                    
                                 </div>
-                                <div class="col-lg-1">
-                                    <asp:Button ID="Button1" runat="server" class="btn btn-success" style="background-color: #428bca" Text="Generate Report" 
+                                <div class="col-lg-6">
+                                <br />
+
+                                    <asp:Button ID="Button1" runat="server" class="btn btn-success pos-btn1" Text="Generate Report" 
                                         OnClick="Button1_Click" />
-                                </div>
-                                <div class="col-lg-1">
-                                    <asp:Button ID="Button2" runat="server"  style="    margin-left: 39px;" class="btn btn-warning" Text="Print"  
+
+                                    &nbsp;&nbsp;&nbsp;<asp:Button ID="Button2" runat="server"  class="btn btn-secondary" Text="Print" width="100px"
                                         OnClick="Button2_Click" />
-                                </div>
-                                <div class="col-lg-1">
-                                    <asp:Button ID="Button3" runat="server" CssClass="btn btn-info"  Text="Export Excel"
+                            
+                                    &nbsp;&nbsp;&nbsp;<asp:Button ID="Button3" runat="server" CssClass="btn btn-success"  Text="Export To Excel"
                                         OnClick="Button3_Click" />
                                 </div>
-                            </div>
+                           
                         </div>
-                        <div class="row" align="center">
-                            <div class="col-lg-12">
-                                <div id="div2" runat="server">
-                                    <table width="100%" id="tbl">
-                                        <tr>
-                                            <td>
-                                            </td>
-                                        </tr>
-                                        <tr valign="top">
-                                            <td colspan="4" align="left">
+                        
+                           
+                                <div id="div2" runat="server" class="table-responsive panel-grid-left">
+                                   
                                                 <label id="caption" runat="server" visible="true">
                                                 </label>
-                                                <asp:GridView ID="GVStockAlert" Width="100%" HeaderStyle-Height="40px"  runat="server" CssClass="" AutoGenerateColumns="false"
-                                                    EmptyDataText="No Records Found" Caption="Stock Detailed Report">
+                                                <asp:GridView ID="GVStockAlert" runat="server" cssClass="table table-striped pos-table" AutoGenerateColumns="false"
+                                                    EmptyDataText="No Records Found" Caption="Stock Detailed Report" padding="0" spacing="0" border="0">
                                                     <Columns>
                                                         <asp:BoundField HeaderText="Group" DataField="group" />
                                                         <asp:BoundField HeaderText="Item" DataField="Item" />
                                                         <asp:TemplateField HeaderText="OP-STOCK">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblopstock" BackColor="green" Font-Size="25px" ForeColor="White" Font-Bold="true"
+                                                                <asp:Label ID="lblopstock" 
                                                                     runat="server" Text='<%# String.IsNullOrEmpty(Eval("OpeningStock").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("OpeningStock").ToString())) %>'></asp:Label>
                                                                 <br />
-                                                                <asp:Label ID="lblopstockrate" BackColor="yellow" Font-Size="20px" ForeColor="black"
+                                                                <asp:Label ID="lblopstockrate" 
                                                                     Font-Bold="true" runat="server" Text='<%#Eval("OpeningStockRate")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="GRN-STOCK">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblgrnstock" BackColor="green" Font-Size="25px" ForeColor="White"
-                                                                    Font-Bold="true" runat="server" Text='<%# String.IsNullOrEmpty(Eval("GRNQty").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("GRNQty").ToString())) %>'></asp:Label>
+                                                                <asp:Label ID="lblgrnstock"  runat="server" Text='<%# String.IsNullOrEmpty(Eval("GRNQty").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("GRNQty").ToString())) %>'></asp:Label>
                                                                 <br />
-                                                                <asp:Label ID="lblgrnstockrate" BackColor="yellow" Font-Size="20px" ForeColor="black"
-                                                                    Font-Bold="true" runat="server" Text='<%#Eval("GRNQtyRate")%>'></asp:Label>
+                                                                <asp:Label ID="lblgrnstockrate"  runat="server" Text='<%#Eval("GRNQtyRate")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="GRN-STOCK/P">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblgrnstockP" BackColor="green" Font-Size="25px" ForeColor="White"
-                                                                    Font-Bold="true" runat="server" Text='<%# String.IsNullOrEmpty(Eval("GRNQtyP").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("GRNQtyP").ToString())) %>'></asp:Label>
+                                                                <asp:Label ID="lblgrnstockP"  runat="server" Text='<%# String.IsNullOrEmpty(Eval("GRNQtyP").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("GRNQtyP").ToString())) %>'></asp:Label>
                                                                 <br />
-                                                                <asp:Label ID="lblgrnstockrateP" BackColor="yellow" Font-Size="20px" ForeColor="black"
-                                                                    Font-Bold="true" runat="server" Text='<%#Eval("GRNQtyRateP")%>'></asp:Label>
+                                                                <asp:Label ID="lblgrnstockrateP"  runat="server" Text='<%#Eval("GRNQtyRateP")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="GRN-STOCK/M">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblgrnstockM" BackColor="green" Font-Size="25px" ForeColor="White"
-                                                                    Font-Bold="true" runat="server" Text='<%# String.IsNullOrEmpty(Eval("GRNQtyM").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("GRNQtyM").ToString())) %>'></asp:Label>
+                                                                <asp:Label ID="lblgrnstockM"  runat="server" Text='<%# String.IsNullOrEmpty(Eval("GRNQtyM").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("GRNQtyM").ToString())) %>'></asp:Label>
                                                                 <br />
-                                                                <asp:Label ID="lblgrnstockrateM" BackColor="yellow" Font-Size="20px" ForeColor="black"
-                                                                    Font-Bold="true" runat="server" Text='<%#Eval("GRNQtyRateM")%>'></asp:Label>
+                                                                <asp:Label ID="lblgrnstockrateM" runat="server" Text='<%#Eval("GRNQtyRateM")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="SALE-STOCK">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblsalestock" BackColor="green" Font-Size="25px" ForeColor="White"
-                                                                    Font-Bold="true" runat="server" Text='<%# String.IsNullOrEmpty(Eval("SalesQty").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("SalesQty").ToString())) %>'></asp:Label>
+                                                                <asp:Label ID="lblsalestock"  runat="server" Text='<%# String.IsNullOrEmpty(Eval("SalesQty").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("SalesQty").ToString())) %>'></asp:Label>
                                                                 <br />
-                                                                <asp:Label ID="lblsalestockrate" BackColor="yellow" Font-Size="20px" ForeColor="black"
-                                                                    Font-Bold="true" runat="server" Text='<%#Eval("SalesQtyRate")%>'></asp:Label>
+                                                                <asp:Label ID="lblsalestockrate"  runat="server" Text='<%#Eval("SalesQtyRate")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="RETURN-STOCK">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblreturnstock" BackColor="green" Font-Size="25px" ForeColor="White"
-                                                                    Font-Bold="true" runat="server" Text='<%# String.IsNullOrEmpty(Eval("Return").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("Return").ToString())) %>'></asp:Label>
+                                                                <asp:Label ID="lblreturnstock"  runat="server" Text='<%# String.IsNullOrEmpty(Eval("Return").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("Return").ToString())) %>'></asp:Label>
                                                                 <br />
-                                                                <asp:Label ID="lblreturnstockrate" BackColor="yellow" Font-Size="20px" ForeColor="black"
-                                                                    Font-Bold="true" runat="server" Text='<%#Eval("ReturnRate")%>'></asp:Label>
+                                                                <asp:Label ID="lblreturnstockrate"  runat="server" Text='<%#Eval("ReturnRate")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="CLOSING-STOCK">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblavlstock" BackColor="red" Font-Size="25px" ForeColor="White" Font-Bold="true"
+                                                                <asp:Label ID="lblavlstock"
                                                                     runat="server" Text='<%# String.IsNullOrEmpty(Eval("Available_Qty").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("Available_Qty").ToString())) %>'></asp:Label>
                                                                 <br />
-                                                                <asp:Label ID="lblavlstockrate" BackColor="yellow" Font-Size="20px" ForeColor="black"
-                                                                    Font-Bold="true" runat="server" Text='<%#Eval("Available_QtyRate")%>'></asp:Label>
+                                                                <asp:Label ID="lblavlstockrate" runat="server" Text='<%#Eval("Available_QtyRate")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="STOCK +/-">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblstockPM" BackColor="red" Font-Size="25px" ForeColor="White" Font-Bold="true"
+                                                                <asp:Label ID="lblstockPM" 
                                                                     runat="server" Text='<%# String.IsNullOrEmpty(Eval("StockPM").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("StockPM").ToString())) %>'></asp:Label>
                                                                 <br />
-                                                                <asp:Label ID="lblstockratePM" BackColor="yellow" Font-Size="20px" ForeColor="black"
-                                                                    Font-Bold="true" runat="server" Text='<%#Eval("StockRatePM")%>'></asp:Label>
+                                                                <asp:Label ID="lblstockratePM" runat="server" Text='<%#Eval("StockRatePM")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <%-- <asp:TemplateField HeaderText="Closing-STOCK"  >
@@ -292,18 +279,15 @@
                                                     <asp:BoundField HeaderText="(CURRENT)AVL.Qty" DataField="Avlqty" DataFormatString="{0:###,##0}" />
                                                     <asp:BoundField HeaderText="Stock +/-" DataField="Stock" DataFormatString="{0:###,##0}" />--%>
                                                     </Columns>
-                                                    <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                                        HorizontalAlign="Center" ForeColor="White" />
+                                                    <%--<HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                                        HorizontalAlign="Center" ForeColor="White" />--%>
                                                 </asp:GridView>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
+                                
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </form>
 </body>

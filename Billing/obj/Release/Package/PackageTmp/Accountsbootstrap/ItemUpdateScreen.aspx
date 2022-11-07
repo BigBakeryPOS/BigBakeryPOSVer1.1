@@ -19,7 +19,7 @@
     <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet" />
-    <!-- Custom Fonts -->
+    <link href="../css/Pos_style.css" rel="stylesheet" />
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -69,7 +69,7 @@
           }
 
     </script>
-    <style type="text/css">
+    <%--<style type="text/css">
         
         .RowStyleBackGroundColor
 {
@@ -96,7 +96,7 @@ font-size:xx-large;
 color:White;
 
 }
-        </style>
+        </style>--%>
 </head>
 <body style="">
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
@@ -104,29 +104,32 @@ color:White;
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <usc:Header ID="Header" runat="server" />
     <br />
-    <div class="col-lg-12">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="text-align: center; font-size: large">
-                Item Update
-            </div>
-            <div class="panel-body" style="">
-                <div class="row" style="">
-                    <div style="">
-                        <form runat="server" id="form1" method="post">
+     <form runat="server" id="form1" method="post">
                         <asp:ScriptManager ID="ScriptManager1" runat="server">
                         </asp:ScriptManager>
-                        <div class="col-lg-12">
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+        <div class="row panel-custom1">
+            <div class="panel-header">
+          <h1 class="page-header">Item Update</h1>
+	    </div>
+            <div class="panel-body">
+                
+                  
+                   <div class="row">    
+                        
                             <div class="col-lg-3">
                                 <label>
                                     Select Category</label>
                                 <asp:DropDownList ID="ddlcategory" CssClass="form-control" OnSelectedIndexChanged="catergory_changed"
-                                    AutoPostBack="true" runat="server" Style="width: 273px;">
+                                    AutoPostBack="true" runat="server" >
                                 </asp:DropDownList>
                             </div>
                             <div class="col-lg-3">
                                 <label>
                                     Is Active</label>
-                                <asp:DropDownList ID="drpisactive" OnSelectedIndexChanged="active_indexchnaged" AutoPostBack="true" CssClass="form-control" runat="server" Style="width: 273px;">
+                                <asp:DropDownList ID="drpisactive" OnSelectedIndexChanged="active_indexchnaged" AutoPostBack="true" CssClass="form-control" runat="server">
                                     <asp:ListItem Text="Active" Value="0"  Selected="True"></asp:ListItem>
                                     <asp:ListItem Text="IsActive" Value="1"></asp:ListItem>
                                 </asp:DropDownList>
@@ -134,19 +137,17 @@ color:White;
                             <div class="col-lg-3">
                                 <label>
                                     Overall Search only on Item </label>
-                                <asp:TextBox ID="txtoverallitem" runat="server" CssClass="form-control" OnTextChanged="overall_itemsearch" AutoPostBack="true" ></asp:TextBox>
+                                <asp:TextBox ID="txtoverallitem" runat="server" CssClass="form-control" OnTextChanged="overall_itemsearch"  AutoPostBack="true" ></asp:TextBox>
                             </div>
-                        </div>
-                        <br />
-                        <br />
-                        <div class="col-lg-12">
-                            <div class="col-lg-1">
-                            </div>
-                            <div class="col-lg-12">
+                           </div>
+                           <div class="row"> 
+                           <div class="col-lg-12">
                             <asp:UpdatePanel ID="updpanel" runat="server" UpdateMode="Conditional" >
                             <ContentTemplate>
-                                <asp:GridView ID="gvproatkDetails" runat="server" OnRowDataBound="gvcustomerorder_RowDataBound" AutoGenerateColumns="false" CssClass="mGrid"
-                                    Width="100%" EmptyDataText="No Record Found">
+                            
+                            <div class="table-responsive panel-grid-left">
+                                <asp:GridView ID="gvproatkDetails" runat="server" OnRowDataBound="gvcustomerorder_RowDataBound" AutoGenerateColumns="false" cssClass="table table-striped pos-table"
+                                    Width="100%" EmptyDataText="No Record Found" padding="0" spacing="0" border="0">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Item Name">
                                             <ItemTemplate>
@@ -213,29 +214,27 @@ color:White;
                                         
                                         <asp:TemplateField>
                                         <ItemTemplate>
-                                        <asp:Button ID="btnupdate" runat="server" Text="Update" OnClick="btnupdate_click" />
+                                        <asp:Button ID="btnupdate" runat="server" Text="Update" class=" btn btn-primary btn-md pos-btn1" OnClick="btnupdate_click" />
                                         </ItemTemplate>
                                         </asp:TemplateField>
 
                                     </Columns>
-                                    <RowStyle CssClass="RowStyleBackGroundColor" ForeColor="Black" />
- <AlternatingRowStyle CssClass="RowAlternateStyleBackGroundColor" />
+                                    <%--<RowStyle CssClass="RowStyleBackGroundColor" ForeColor="Black" />
+ <AlternatingRowStyle CssClass="RowAlternateStyleBackGroundColor" />--%>
                                 </asp:GridView>
+                              </div>
+                              </div>
                                 </ContentTemplate>
                                 </asp:UpdatePanel>
-                            </div>
-                            <div class="col-lg-1">
-                            </div>
+                            
+                          </div> 
+                         </div>
                         </div>
-                      
-                        </form>
-                    </div>
-                    <!-- /.col-lg-6 (nested) -->
-                </div>
-                <!-- /.row (nested) -->
-            </div>
-            <!-- /.panel-body -->
-        </div>
-    </div>
+                         </div>
+                         </div>
+                            </div>
+                            </div>
+                 
+    </form>
 </body>
 </html>

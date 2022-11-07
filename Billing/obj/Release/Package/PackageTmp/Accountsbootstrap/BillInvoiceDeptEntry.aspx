@@ -264,22 +264,19 @@
     <form runat="server" id="form1" method="post">
     <%--    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
     <ContentTemplate>     --%>
-    <div class="col-lg-12" style="">
-        <div class="panel panel-default" style="">
-            <div class="panel-heading " style="background-color: #428bca; color: White">
-                <b>Bill Invoice Entry</b></div>
-            <div class="panel-body" style="">
-                <div class="row" style="">
-                    <div class="col-lg-3" style="">
-                    </div>
-                </div>
-                <div class="row" style="">
-                    <div class="col-lg-12" style="">
-                        <div class="panel-body" style="height: 68px">
-                            <div style="">
-                                <div class="row" style="">
-                                    <div class="col-lg-2" style="">
-                                        <div class="form-group" style="">
+
+
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Bill Invoice Entry</h1>
+	    </div>
+  
+            <div class="panel-body">
+                                <div class="row" >
+                                    <div class="col-lg-3">
                                             <label>
                                                 Select Department
                                             </label>
@@ -287,35 +284,40 @@
                                                 AutoPostBack="true">
                                             </asp:DropDownList>
                                         </div>
-                                        <div class="form-group" style="">
+                                        <div class="col-lg-3">
                                             <label>
                                                 Customer Details</label>
                                             <asp:TextBox ID="txtcustomerdetails" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                         <div class="col-lg-3">
                                             <label>
                                                 Address</label>
-                                            <asp:TextBox ID="txtaddress" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txtaddress" runat="server" height="35px" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
                                         </div>
-                                        <div runat="server" visible="false" class="form-group" style="">
-                                            <asp:Label runat="server" ID="Label3"><label>Tally/Full BillNo</label></asp:Label>
-                                            <asp:TextBox ID="txtfullbillno" runat="server" CssClass="form-control" Width="200px"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2" style="">
-                                        <div class="form-group" style="">
+                                        <div class="col-lg-3">
                                             <asp:Label runat="server" ID="lblDcNo"><label>Invoice No.</label></asp:Label>
-                                            <asp:TextBox ID="txtDCNo" Width="150px" runat="server" CssClass="form-control" onkeypress="return NumberOnly()"
+                                            <asp:TextBox ID="txtDCNo"  runat="server" CssClass="form-control" onkeypress="return NumberOnly()"
                                                 Enabled="false"></asp:TextBox>
                                             <asp:TextBox ID="txtcompanyname" Visible="false" runat="server" CssClass="form-control"></asp:TextBox>
                                         </div>
-                                        <div class="form-group">
+                                        </div>
+                                         <div class="row" >
+                                       <div class="col-lg-3">
                                             <asp:Label runat="server" ID="lblDCDate"><label>Invoice Date</label></asp:Label>
-                                            <asp:TextBox ID="txtDCDate" runat="server" CssClass="form-control" Width="150px"></asp:TextBox>
+                                            <asp:TextBox ID="txtDCDate" runat="server" CssClass="form-control" ></asp:TextBox>
                                             <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txtDCDate"
                                                 Format="dd/MM/yyyy" Enabled="false" runat="server" CssClass="cal_Theme1">
                                             </ajaxToolkit:CalendarExtender>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-2" style="">
+                                       
+                                        <div runat="server" visible="false" class="form-group" style="">
+                                            <asp:Label runat="server" ID="Label3"><label>Tally/Full BillNo</label></asp:Label>
+                                            <asp:TextBox ID="txtfullbillno" runat="server" CssClass="form-control" ></asp:TextBox>
+                                        </div>
+                                    
+                                   
+                                    
+                                    
                                         <%-- <div class="form-group">
                                             <asp:Label runat="server" ID="Label1"><label>GRN Date</label></asp:Label>
                                             <asp:TextBox ID="txtgrndate" runat="server" CssClass="form-control" Width="150px"
@@ -324,12 +326,12 @@
                                                 Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
                                             </ajaxToolkit:CalendarExtender>
                                         </div>--%>
-                                        <div class="form-group">
+                                        <div class="col-lg-3">
                                             <label>
                                                 Prepared By</label>
-                                            <asp:TextBox ID="txtAccepted" runat="server" CssClass="form-control" Width="150px"></asp:TextBox>
+                                            <asp:TextBox ID="txtAccepted" runat="server" CssClass="form-control" ></asp:TextBox>
                                         </div>
-                                    </div>
+                                   
                                     <%--   <div class="col-lg-1">
                                         <div class="form-group">
                                             <label>
@@ -342,6 +344,15 @@
                                             Select Request NO</label>
                                         <asp:TextBox ID="txtsearching" runat="server" onkeyup="SearchEmployees(this,'#chkpono');"
                                             placeholder="Search PO Nos." CssClass="form-control"></asp:TextBox>
+                                    </div>
+                                     <div class="col-lg-3">
+                                     <br />
+                                        <asp:Button ID="btnprocess" runat="server" Text="Process" cssClass="btn btn-primary pos-btn1" OnClick="Process_Click" />
+                                    </div>
+                                    
+                                    </div>
+                                    <div class="row">
+                                   <div class="col-lg-3">
                                         <div style="overflow-y: scroll; height: 130px">
                                             <div class="form-group">
                                                 <asp:CheckBoxList ID="chkpono" AutoPostBack="false" CssClass="chkChoice" RepeatColumns="4"
@@ -349,22 +360,13 @@
                                                 </asp:CheckBoxList>
                                             </div>
                                         </div>
-                                        <asp:Button ID="btnprocess" runat="server" Text="Process" OnClick="Process_Click" />
                                     </div>
                                 </div>
                                 <asp:ScriptManager ID="ScriptManager1" runat="server">
                                 </asp:ScriptManager>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="col-lg-12">
-                            <div class="panel panel-default" style="">
-                                <div class="panel-heading " style="background-color: #428bca; color: White">
-                                    <b>Item Details</b></div>
-                                <div class="panel-body" style="">
+               <br />
+                <label>Item Details</label>
+                <div class="table-responsive panel-grid-left">
                                     <asp:GridView ID="gridsummary" AutoGenerateColumns="False" ShowFooter="True" CssClass="chzn-container"
                                         GridLines="Both" Width="80%" runat="server">
                                         <Columns>
@@ -439,47 +441,39 @@
                                             </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
-                                    <asp:Label ID="lblError" runat="server" Style="color: Red"></asp:Label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+                                    <asp:Label ID="lblError" runat="server" Style="color: Red"></asp:Label>
+                              
+                
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="col-lg-1">
+                        <div class="col-lg-3">
                             <label>
                                 CGST
                             </label>
-                            <asp:TextBox CssClass="form-control" ID="txtcgst" runat="server" Enabled="false"
-                                Width="110px">0</asp:TextBox>
+                            <asp:TextBox CssClass="form-control" ID="txtcgst" runat="server" Enabled="false">0</asp:TextBox>
                         </div>
-                        <div class="col-lg-1">
+                      <div class="col-lg-3">
                             <label>
                                 SGST</label>
-                            <asp:TextBox CssClass="form-control" ID="txtsgst" runat="server" Enabled="false"
-                                Width="110px">0</asp:TextBox>
+                            <asp:TextBox CssClass="form-control" ID="txtsgst" runat="server" Enabled="false">0</asp:TextBox>
                         </div>
-                        <div class="col-lg-1">
+                       <div class="col-lg-3">
                             <label>
                                 IGST</label>
-                            <asp:TextBox CssClass="form-control" ID="txtigst" runat="server" Enabled="false"
-                                Width="110px">0</asp:TextBox>
+                            <asp:TextBox CssClass="form-control" ID="txtigst" runat="server" Enabled="false">0</asp:TextBox>
                         </div>
-                        <div class="col-lg-1">
+                       <div class="col-lg-3">
                             <label>
                                 Grand Total</label>
-                            <asp:TextBox ID="txtgrandtotal" runat="server" CssClass="form-control" Enabled="false"
-                                Width="110px">0</asp:TextBox>
+                            <asp:TextBox ID="txtgrandtotal" runat="server" CssClass="form-control" Enabled="false">0</asp:TextBox>
                         </div>
-                        <div class="col-lg-1">
+                        <div class="col-lg-3">
                             <label>
                                 Round Off</label>
-                            <asp:TextBox ID="txtroundoff" runat="server" CssClass="form-control" Enabled="false"
-                                Style="width: 110px; text-align: right">0</asp:TextBox>
+                            <asp:TextBox ID="txtroundoff" runat="server" CssClass="form-control" Enabled="false">0</asp:TextBox>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="form-group">
+                        <div class="col-lg-3">
+                           
                                 <label>
                                     Narration</label>
                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender22" runat="server"
@@ -487,28 +481,23 @@
                                     TargetControlID="txtNarration" />
                                 <asp:TextBox CssClass="form-control" ID="txtNarration" runat="server" placeholder="Enter Narration"
                                     TextMode="MultiLine"></asp:TextBox>
-                            </div>
+                           
                         </div>
-                        <div class="col-lg-1">
+                        <div class="col-lg-3">
                             <br />
-                            <asp:Button ID="btnSave" runat="server" class="btn btn-success" Text="Save" Width="100px"
+                            <asp:Button ID="btnSave" runat="server" class="btn btn-lg btn-primary pos-btn1" Text="Save" Width="150px"
                                 OnClick="Save_click" />
-                        </div>
-                        <div class="col-lg-1">
-                            <br />
-                            <asp:Button ID="btnexit" runat="server" class="btn btn-danger" Text="Exit" Width="100px"
+                       
+                            <asp:Button ID="btnexit" runat="server" class="btn btn-lg btn-link" Text="Exit" Width="100px"
                                 PostBackUrl="~/Accountsbootstrap/BillInvoiceGrid.aspx" />
                         </div>
-                        <div class="col-lg-1">
-                        </div>
+                        
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-lg-6 (nested) -->
-    </div>
-    <!-- /.row (nested) -->
+
+   </div>
+   </div>
+   </div>
+  
     </form>
 </body>
 </html>

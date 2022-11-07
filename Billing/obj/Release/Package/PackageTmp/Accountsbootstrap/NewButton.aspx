@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Sales </title>
+    <title>POS Sales </title>
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <link href="../Styles/style1.css" rel="stylesheet" />
@@ -49,37 +49,23 @@
 
        
     </script>
-    <style type="text/css">
-        .styled-button-101
-        {
-            border-radius: 15px;
-            moz-border-radius: 15px;
-            webkit-border-radius: 15px; /*adjust height and width*/
-            height: 50px;
-            width: 200px; /*change border colour*/
-            border: 1px #245ec6 solid;
-        }
-        
-        .styled-button-105
-        {
-            background: #5CCD00;
-            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#5CCD00', endColorstr='#4AA400',GradientType=0);
-            padding: 10px 15px;
-            color: #fff;
-            font-family: 'Helvetica Neue' ,sans-serif;
-            font-size: 12px;
-            font-weight: bolder;
-            border-radius: 5px;
-            -moz-border-radius: 5px;
-            -webkit-border-radius: 5px;
-            border: 1px solid #459A00;
-            white-space: normal;
-            width: 150px;
-        }
-        .style1
-        {
-            height: 39px;
-        }
+    
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+    .autocomplete_completionListElement {
+        list-style: none;
+        cursor: pointer;
+        padding:0; margin:0;
+        box-shadow: #007aff80 0 5px 20px;
+        max-height: 400px;
+        overflow: auto;
+    }
+    .autocomplete_completionListElement li {
+        padding: 10px !important;
+    }
+
     </style>
 </head>
 <body>
@@ -88,130 +74,179 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="black" Visible="false" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="black" CssClass="label" Visible="false"> </asp:Label>
     <form id="form1" runat="server">
-    <div>
-        <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional" EnableViewState="true">
-            <ContentTemplate>
-                <asp:Label runat="server" ID="lbltempsalesid" Visible="false"></asp:Label>
-                <asp:Label ID="lblmargin" Visible="false" runat="server"></asp:Label>
-                <asp:Label ID="lblmargintax" Visible="false" runat="server"></asp:Label>
-                <asp:Label ID="lblpaygate" Visible="false" runat="server"></asp:Label>
-                <asp:Label ID="lblpaymodesic" runat="server" Visible="false"></asp:Label>
-                <asp:Label ID="lblordercount" Visible="false" runat="server"></asp:Label>
-                <asp:Label ID="lblordertype" Visible="false" runat="server"></asp:Label>
-                <asp:ScriptManager ID="ScriptManager1" runat="server">
-                </asp:ScriptManager>
-                <table width="100%" border="0">
-                    <tr>
-                        <td valign="top" style="width: 15%">
-                            <div style="overflow: scroll; height: 40pc">
-                                <%-- <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional" >
-                            <ContentTemplate>--%>
-                                <asp:GridView ID="GridView1" BorderStyle="None" runat="server" AutoGenerateColumns="false"
-                                    ShowHeader="false" BorderColor="White" OnRowCommand="GridView1_RowCommand">
+    <div class="clearfix"></div>
+    <div class="container-fluid">
+        <div class="row panel panel-custom1">
+            <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional" EnableViewState="true">
+                <ContentTemplate>
+                    <asp:Label runat="server" ID="lbltempsalesid" Visible="false"></asp:Label>
+                    <asp:Label ID="lblmargin" Visible="false" runat="server"></asp:Label>
+                    <asp:Label ID="lblmargintax" Visible="false" runat="server"></asp:Label>
+                    <asp:Label ID="lblpaygate" Visible="false" runat="server"></asp:Label>
+                    <asp:Label ID="lblpaymodesic" runat="server" Visible="false"></asp:Label>
+                    <asp:Label ID="lblordercount" Visible="false" runat="server"></asp:Label>
+                    <asp:Label ID="lblordertype" Visible="false" runat="server"></asp:Label>
+                    <asp:Label ID="lblqtytype" Visible="false" runat="server" Text="N" ></asp:Label>
+                     <asp:Label ID="lblattednercheck" Visible="false" runat="server" Text="Y" ></asp:Label>
+                    <asp:ScriptManager ID="ScriptManager1" runat="server">
+                    </asp:ScriptManager>
+
+
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-3 pos-bill-left">
+                        <asp:GridView ID="GridView1"  runat="server" AutoGenerateColumns="false"  BorderWidth="0px" cssClass="table table-condensed table-borderless"
+                                    ShowHeader="false"  OnRowCommand="GridView1_RowCommand">
                                     <Columns>
                                         <asp:TemplateField>
                                             <ItemTemplate>
-                                                <asp:Button ID="Button1" runat="server" Font-Bold="true" Height="30px" Width="150px"
+                                                <asp:Button ID="Button1" runat="server" Font-Bold="true"  
                                                     Text='<%#Eval("PrintCategory")%>' CommandArgument='<%#Eval("CategoryID") %>'
-                                                    CssClass="btn btn-primary" ForeColor="White"  OnClick="Button1_Click" />
+                                                    CssClass="btn btn-link" ForeColor="White" OnClick="Button1_Click" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
-                                <%-- </ContentTemplate>
-                                </asp:UpdatePanel>--%>
-                            </div>
-                        </td>
-                        <td valign="top" width="45%">
-                            <div style="overflow: scroll; height: 40pc">
-                                <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional">
-                                    <ContentTemplate>
-                                        <table width="100%" >
-                                            <tr style="color: steelblue;">
-                                                <td  valign="top" style="width: 5%" >
-                                                    <label>
-                                                        Sl.No</label>
-                                                    <asp:TextBox ID="txtmanualslno" runat="server" Width="80%" Text="1"></asp:TextBox>
-                                                </td>
-                                                <td  valign="top" style="width: 30%">
-                                                    <label>
-                                                        Select Item</label><br />
-                                                    <asp:DropDownList ID="drpitemsearch" runat="server" CssClass="chzn-select" Width="368px"  >
+
+                        
+                    </div>
+                    <div class="col-sm-9 pos-bill-middle">
+                       
+                            <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <table width="100%" style="margin-top: 8px;">
+                                        <tr style="color: steelblue;">
+                                            <td valign="top" style="width: 5%">
+                                                <label>
+                                                    #</label>
+                                                <asp:TextBox ID="txtmanualslno" runat="server" Width="80%" CssClass="form-control" Text="1"></asp:TextBox>
+                                            </td>
+                                            <td valign="top" style="width: 30%">
+                                                <label>
+                                                    Select Item</label><br />
+                                                <div runat="server" visible="false" id="divdrop">
+                                                    <asp:DropDownList ID="drpitemsearch" runat="server" CssClass="chzn-select" Width="368px">
                                                     </asp:DropDownList>
-                                                     <asp:TextBox ID="txtbrcode" runat="server" CssClass="form-control" Width="368px"  OnTextChanged="barchnaged_text" AutoPostBack="true" ></asp:TextBox>
-                                                </td>
-                                                <td  valign="top" style="width: 15%">
-                                                    <label>
-                                                        Qty</label>
-                                                    <asp:TextBox ID="txtmanualqty" runat="server" CssClass="form-control" OnTextChanged="Qty_chnaged"
+                                                    <asp:TextBox ID="txtbrcode" runat="server" CssClass="form-control" Width="368px"
+                                                        placeholder="For Weight Machine Barcode Scan" OnTextChanged="barchnaged_text"
                                                         AutoPostBack="true"></asp:TextBox>
-                                                    <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
-                                                        FilterType="Numbers" ValidChars="" TargetControlID="txtmanualqty" />
+                                                </div>
+                                                <div runat="server" visible="false" id="divscript">
+                                                    <asp:UpdatePanel ID="upcus" runat="server" UpdateMode="Conditional">
+                                                        <ContentTemplate>
+                                                            <asp:TextBox ID="txtCusName1" runat="server" Font-Bold="true" Font-Size="Larger" Style="width: 415px; text-transform: uppercase;"
+                                                                Height="33px" placeholder="Enter Item Name" AutoPostBack="true" OnTextChanged="LedgerIdbinding"></asp:TextBox>
+                                                            <ajaxToolkit:AutoCompleteExtender ID="TextBox1_AutoCompleteExtender" runat="server"
+                                                                CompletionListCssClass="autocomplete_completionListElement" DelimiterCharacters=""
+                                                                Enabled="True" ServiceMethod="GetListofCustomer" MinimumPrefixLength="1" EnableCaching="true"
+                                                                ServicePath="" TargetControlID="txtCusName1">
+                                                            </ajaxToolkit:AutoCompleteExtender>
+                                                            <%--<asp:Label ID="NlblCategory" runat="server" Text='<%#Eval("Category") %>'></asp:Label>
+                                                            <asp:HiddenField ID="NhideCategoryID" runat="server" Value='<%#Eval("CategoryID") %>' />
+                                                            <asp:HiddenField ID="NhideCategoryUserID" runat="server" Value='<%#Eval("CategoryUserID") %>' />
+                                                            <asp:HiddenField ID="NhideUOMID" runat="server" Value='<%#Eval("UOMID") %>' />
+                                                            <asp:HiddenField ID="NhdRate" runat="server" Value='<%#Eval("Rate") %>' />
+                                                            <asp:HiddenField ID="NhdGST" runat="server" Value='<%#Eval("GST") %>' />
+                                                            <asp:Label ID="NlblDefinition" runat="server" Text='<%#Eval("Definition") %>'></asp:Label>
+                                                            <asp:Label ID="Nlblrate" runat="server" Text='<%#Eval("MRP") %>'></asp:Label>
+                                                            <asp:Label ID="Nlbqty" runat="server" Width="50px" Text='<%#Eval("Qty") %>'></asp:Label>
+                                                            <asp:Label ID="Nlblom" runat="server" Width="50px" Text='<%#Eval("UOM") %>'></asp:Label>--%>
+                                                            <asp:Label ID="Nlblstockid" runat="server" Width="50px" Text='<%#Eval("stockid") %>'></asp:Label>
+                                                            <asp:Label ID="Nlblcattype" runat="server" Width="50px" Text='<%#Eval("cattype") %>'></asp:Label>
+                                                            <%--<asp:Label ID="NlblAvailable_QTY" runat="server" Width="50px" Text='<%#Eval("Available_QTY") %>'></asp:Label>
+                                                            <asp:Label ID="Nlblcomboo" runat="server" Width="50px" Text='<%#Eval("comboo") %>'></asp:Label>
+                                                            --%>
+                                                        </ContentTemplate>
+                                                        <Triggers>
+                                                            <asp:AsyncPostBackTrigger ControlID="txtCusName1" EventName="TextChanged" />
+                                                        </Triggers>
+                                                    </asp:UpdatePanel>
+                                                </div>
+                                            </td>
+                                            <td valign="top" style="width: 15%">
+                                                <label>
+                                                    Qty</label>
+                                                <asp:TextBox ID="txtmanualqty" runat="server" CssClass="form-control" OnTextChanged="Qty_chnaged"
+                                                    AutoPostBack="true"></asp:TextBox>
+                                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
+                                                    FilterType="Numbers,Custom" ValidChars="." TargetControlID="txtmanualqty" />
+                                            </td>
+                                        </tr>
+                                        </table>
+                                        <table style="margin-top: 10px;">
+                                            <tr>
+                                                <td align="left" valign="top" style="width: 15%">
+                                                    <asp:GridView ID="GridView2" runat="server" Width="100%" ShowHeader="false" GridLines="None"
+                                                        BorderColor="White" AutoGenerateColumns="false" 
+                                                        OnRowDataBound="GridView2_RowDataBound">
+                                                        <Columns>
+                                                            <asp:TemplateField>
+                                                                <ItemTemplate>
+                                                                    <asp:Button ID="Button2"  Font-Bold="true" runat="server"
+                                                                        Text='<%#Eval("Definition")%>' CommandArgument='<%#Eval("CategoryUserID") +","+ Eval("cattype")%>'
+                                                                         cssClass="btn btn-link btn-bill-item"
+                                                                        OnClick="Button2_Click" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                        </Columns>
+                                                    </asp:GridView>
+                                                </td>
+                                                <td valign="top" style="width: 15%">
+                                                    <asp:GridView ID="GridView3" runat="server" Width="100%" ShowHeader="false" GridLines="None"
+                                                        BorderColor="White" AutoGenerateColumns="false"  
+                                                        OnRowDataBound="GridView3_RowDataBound">
+                                                        <Columns>
+                                                            <asp:TemplateField>
+                                                                <ItemTemplate>
+                                                                    <asp:Button ID="Button2" runat="server" CssClass="btn btn-link btn-bill-item" Font-Bold="true"
+                                                                        Text='<%#Eval("Definition")%>' CommandArgument='<%#Eval("CategoryUserID")+","+ Eval("cattype")%>'
+                                                                         
+                                                                        OnClick="Button2_Click" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                        </Columns>
+                                                    </asp:GridView>
+                                                </td>
+                                                <td valign="top" style="width: 15%">
+                                                    <asp:GridView ID="GridView4" OnRowDataBound="GridView4_RowDataBound" GridLines="None"
+                                                        runat="server" Width="100%" ShowHeader="false" BorderColor="White" AutoGenerateColumns="false" >
+                                                        <Columns>
+                                                            <asp:TemplateField ItemStyle-Wrap="true">
+                                                                <ItemTemplate>
+                                                                    <asp:Button ID="Button2" runat="server" CssClass="btn btn-link btn-bill-item" Font-Bold="true"
+                                                                        Text='<%#Eval("Definition")%>' CommandArgument='<%#Eval("CategoryUserID") +","+ Eval("cattype")%>'
+                                                                        
+                                                                        OnClick="Button2_Click" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                        </Columns>
+                                                    </asp:GridView>
                                                 </td>
                                             </tr>
-                                            <table style="    margin-top: 10px;">
-                                                <tr>
-                                                    <td align="left" valign="top" style="width: 15%">
-                                                        <asp:GridView ID="GridView2" runat="server" Width="100%" ShowHeader="false" GridLines="None"
-                                                            BorderColor="White" AutoGenerateColumns="false" Style="overflow: auto; height: 50px"
-                                                            OnRowDataBound="GridView2_RowDataBound">
-                                                            <Columns>
-                                                                <asp:TemplateField>
-                                                                    <ItemTemplate>
-                                                                        <asp:Button ID="Button2" CssClass="styled-button-101" Font-Bold="true" runat="server"
-                                                                            Text='<%#Eval("Definition")%>' CommandArgument='<%#Eval("CategoryUserID") +","+ Eval("cattype")%>'
-                                                                            Font-Size="14px" BackColor="steelblue" ForeColor="white" style="margin-bottom: 3px;" OnClick="Button2_Click" />
-                                                                    </ItemTemplate>
-                                                                </asp:TemplateField>
-                                                            </Columns>
-                                                        </asp:GridView>
-                                                    </td>
-                                                    <td valign="top" style="width: 15%">
-                                                        <asp:GridView ID="GridView3" runat="server" Width="100%" ShowHeader="false" GridLines="None"
-                                                            BorderColor="White" AutoGenerateColumns="false" Style="overflow: auto; height: 50px"
-                                                            OnRowDataBound="GridView3_RowDataBound">
-                                                            <Columns>
-                                                                <asp:TemplateField>
-                                                                    <ItemTemplate>
-                                                                        <asp:Button ID="Button2" runat="server" CssClass="styled-button-101" Font-Bold="true"
-                                                                            Text='<%#Eval("Definition")%>' CommandArgument='<%#Eval("CategoryUserID")+","+ Eval("cattype")%>'
-                                                                            Font-Size="14px" BackColor="steelblue" ForeColor="white" style="margin-bottom: 3px;" OnClick="Button2_Click" />
-                                                                    </ItemTemplate>
-                                                                </asp:TemplateField>
-                                                            </Columns>
-                                                        </asp:GridView>
-                                                    </td>
-                                                    <td valign="top" style="width: 15%">
-                                                        <asp:GridView ID="GridView4" OnRowDataBound="GridView4_RowDataBound" GridLines="None"
-                                                            runat="server" Width="100%" ShowHeader="false" BorderColor="White" AutoGenerateColumns="false"
-                                                            Style="overflow: auto; height: 50px">
-                                                            <Columns>
-                                                                <asp:TemplateField ItemStyle-Wrap="true">
-                                                                    <ItemTemplate>
-                                                                        <asp:Button ID="Button2" runat="server" CssClass="styled-button-101" Font-Bold="true"
-                                                                            Text='<%#Eval("Definition")%>' CommandArgument='<%#Eval("CategoryUserID") +","+ Eval("cattype")%>'
-                                                                            Font-Size="14px" BackColor="steelblue" ForeColor="white" style="margin-bottom: 3px;" OnClick="Button2_Click" />
-                                                                    </ItemTemplate>
-                                                                </asp:TemplateField>
-                                                            </Columns>
-                                                        </asp:GridView>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>
-                            </div>
-                        </td>
-                        <td valign="top" style="width: 40%">
-                            <div>
-                                <asp:UpdatePanel ID="UpdatePanel4" runat="server" UpdateMode="Conditional">
+                                        </table>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        
+                    </div>
+                    
+
+                </div>
+            </div>
+            <div class="col-sm-6 pos-bill-right">
+                <asp:UpdatePanel ID="UpdatePanel4" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
-                                        <table>
-                                            <tr style="color: steelblue;">
-                                                <td width="20%">
+                                        <table class="table table-condensed">
+                                            <tr>
+                                                <td>
                                                     <label>
                                                         Bill/Kot No</label>
-                                                    <asp:TextBox ID="txtBillNo" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
+                                                    <asp:TextBox ID="txtBillNo" CssClass="form-control" runat="server" Visible="false"
+                                                        Enabled="false"></asp:TextBox>
+                                                    <asp:TextBox ID="txtfullbillno" CssClass="form-control" runat="server"  Visible="false" Enabled="false"></asp:TextBox>
+                                                    <asp:TextBox ID="txtbillcode" CssClass="form-control" runat="server" Enabled="false"
+                                                        Visible="false"></asp:TextBox>
+                                                    <asp:TextBox ID="txtdailybillno" CssClass="form-control" runat="server" Enabled="false"
+                                                        Visible="false"></asp:TextBox>
                                                 </td>
                                                 <td>
                                                     <label>
@@ -234,7 +269,7 @@
                                                     <asp:Label ID="lblattenderpassword" runat="server" Visible="false"></asp:Label>
                                                     <asp:Label ID="lbldiscid" runat="server" Visible="false"></asp:Label>
                                                 </td>
-                                                <td width="25%">
+                                                <td>
                                                     <label>
                                                         Payment Mode</label>
                                                     <asp:DropDownList Width="100%" ID="drpPayment" runat="server" OnSelectedIndexChanged="drppayment_selectedindex"
@@ -252,20 +287,45 @@
                                             <asp:ListItem Text="Staff Consumption" Value="12" Enabled="true"></asp:ListItem>--%>
                                                     </asp:DropDownList>
                                                 </td>
-                                            </tr>
-                                            <tr style="color: steelblue;">
                                                 <td>
                                                     <label>
-                                                        Mobile Number</label>
+                                                        Mobile #</label>
                                                     <asp:TextBox ID="txtmobile" runat="server" CssClass="form-control" AutoPostBack="true"
                                                         MaxLength="10" placeholder="Mobile No" OnTextChanged="txtmobile_TextChanged">    </asp:TextBox>
                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
                                                         FilterType="Numbers,Custom" ValidChars=" -," TargetControlID="txtmobile" />
                                                 </td>
+                                                
+                                            </tr>
+                                            <tr>
                                                 <td>
                                                     <label>
                                                         Customer Name</label>
                                                     <asp:TextBox ID="txtCustomerName" runat="server" CssClass="form-control" placeholder="Customer Name"></asp:TextBox>
+                                                </td>
+                                                <td>
+                                                    <label>
+                                                        Attender Name</label>
+                                                    <asp:DropDownList ID="drpattendername" runat="server" MaxLength="10" CssClass="form-control">
+                                                    </asp:DropDownList>
+                                                </td>
+                                                <td>
+                                                    <label>
+                                                        Online Amount</label>
+                                                    <asp:TextBox ID="txtonlineamount" runat="server" CssClass="form-control" Enabled="false"
+                                                        OnTextChanged="onlineamount_chnaged" AutoPostBack="true">0</asp:TextBox>
+                                                    <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server"
+                                                        FilterType="Numbers,Custom" ValidChars="." TargetControlID="txtonlineamount" />
+                                                </td>
+                                                <td>
+                                                    <label>
+                                                        GST/Tax NO</label>
+                                                    <asp:TextBox ID="txtgstno" runat="server" CssClass="form-control"></asp:TextBox>
+                                                </td>
+                                                <td runat="server" id="chkgivenby" visible="false">
+                                                    <label>
+                                                        Given By</label>
+                                                    <asp:TextBox ID="txtgiven" runat="server" Width="80%" CssClass="form-control"></asp:TextBox>
                                                 </td>
                                                 <td runat="server" id="Chkbills" visible="false">
                                                     <label>
@@ -273,11 +333,6 @@
                                                     <asp:TextBox ID="txtorderno" runat="server" Width="80%" CssClass="form-control"></asp:TextBox>
                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server"
                                                         FilterType="LowercaseLetters,uppercaseletters,Numbers" ValidChars="" TargetControlID="txtorderno" />
-                                                </td>
-                                                <td runat="server" id="chkgivenby" visible="false">
-                                                    <label>
-                                                        Given By</label>
-                                                    <asp:TextBox ID="txtgiven" runat="server" Width="80%" CssClass="form-control"></asp:TextBox>
                                                 </td>
                                                 <td runat="server" visible="false">
                                                     <label>
@@ -290,39 +345,9 @@
                                                         <asp:ListItem Value="Mr Sudarshan " Text="Mr Sudarshan"></asp:ListItem>
                                                     </asp:DropDownList>
                                                 </td>
-                                                <td>
-                                                    <label>
-                                                        Amount</label><br />
-                                                    <label id="lbldisplay" runat="server" style="font-size: x-large; color: Blue">
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                            <tr style="color: steelblue;">
-                                                <td>
-                                                    <label>
-                                                        Attender Name</label>
-                                                    <asp:DropDownList ID="drpattendername" runat="server" MaxLength="10" CssClass="form-control">
-                                                    </asp:DropDownList>
-                                                </td>
-                                                <td style="    width: 117px;">
-                                                    <label>
-                                                        Online Amount</label>
-                                                    <asp:TextBox ID="txtonlineamount" runat="server" CssClass="form-control" Enabled="false"
-                                                        OnTextChanged="onlineamount_chnaged" AutoPostBack="true">0</asp:TextBox>
-                                                    <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server"
-                                                        FilterType="Numbers,Custom" ValidChars="." TargetControlID="txtonlineamount" />
-                                                </td>
-                                                 
-
-                                                 <td>
-                                                    <label>
-                                                        Total Qty</label>
-                                                  <asp:TextBox ID="txttotqty" Font-Bold="true" ForeColor="Red" Visible="true"  style="    width: 197px;" Enabled="false" Font-Size="20px" runat="server"></asp:TextBox>
-                                                </td>
-
                                                  
                                             </tr>
-                                            <tr style="display: none;color: steelblue;">
+                                            <tr style="display: none;">
                                                 <td>
                                                     <label>
                                                         Attender Name</label>
@@ -345,11 +370,11 @@
                                                 </td>
                                             </tr>
                                         </table>
-                                        <div style="width: 100%; height: 20pc; overflow: scroll">
+                                        <div style="width: 100%; height: 300px; overflow: auto">
                                             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
-                                                    <asp:GridView ID="gvlist" runat="server" AutoGenerateColumns="false" Width="100%"
-                                                        HeaderStyle-BackColor="#428bca" HeaderStyle-ForeColor="White" OnRowCommand="gvlist_RowCommand"
+                                                    <asp:GridView ID="gvlist" runat="server" cssClass="table table-condensed table-hover table-pos-bill" AutoGenerateColumns="false" Width="100%"
+                                                        HeaderStyle-BackColor="#d8d8d8" HeaderStyle-ForeColor="Black" OnRowCommand="gvlist_RowCommand" BorderWidth="0"
                                                         OnRowDataBound="gvlist_RowDataBound">
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Cat.Type" ItemStyle-Width="10">
@@ -405,21 +430,25 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderStyle-Width="12%" HeaderText="Rate" ItemStyle-Font-Size="Smaller">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox ID="Rate" Width="100%" Text='<%#Eval("Rate") %>' Enabled="false" runat="server"></asp:TextBox>
+                                                                    <asp:Label ID="lblmrp" runat="server" Text='<%#Eval("mrp") %>' Visible="true"></asp:Label>
+                                                                    <asp:TextBox ID="Rate" Width="100%" Text='<%#Eval("Rate") %>' Visible="false" Enabled="false"
+                                                                        runat="server"></asp:TextBox>
                                                                     <asp:TextBox ID="txtrate" Visible="false" Width="100%" Text='<%#Eval("OriRate") %>'
                                                                         Enabled="false" runat="server"></asp:TextBox>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderStyle-Width="15%" HeaderText="Amount" ItemStyle-Font-Size="Smaller">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox ID="Amount" Width="100%" Text='<%#Eval("Amount") %>' Style="text-align: right"
+                                                                    <asp:TextBox ID="Amount" Width="100%" Text='<%#Eval("Amount") %>' Visible="false"
+                                                                        Style="text-align: right; font-weight: bold;" runat="server" Enabled="false"></asp:TextBox>
+                                                                    <asp:TextBox ID="mrpamount" Width="100%" Text='<%#Eval("mrpAmount") %>' Style="text-align: right; font-weight: bold;"
                                                                         runat="server" Enabled="false"></asp:TextBox>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField>
                                                                 <ItemTemplate>
                                                                     <asp:ImageButton ID="imgminus" runat="server" ToolTip="Less Item" CommandName="minus"
-                                                                        CommandArgument='<%# ((GridViewRow) Container).RowIndex %>' Height="21px" Width="22px"
+                                                                        CommandArgument='<%# ((GridViewRow) Container).RowIndex %>' Height="21px" Width="42px"
                                                                         ImageUrl="~/images/Minusnew.png" />
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
@@ -433,7 +462,7 @@
                                                         </Columns>
                                                     </asp:GridView>
                                                     <asp:GridView ID="gvlst" runat="server" AutoGenerateColumns="false" Visible="true"
-                                                        Width="100%" GridLines="Both" HeaderStyle-BackColor="Black" HeaderStyle-ForeColor="Wheat">
+                                                        Width="100%" GridLines="Both" HeaderStyle-BackColor="Black">
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Cat.Type" ItemStyle-Width="10">
                                                                 <ItemTemplate>
@@ -450,9 +479,52 @@
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>
                                         </div>
-                                        <table width="100%" align="right" id="TaxView" runat="server" class="table-bordered" visible="false" style="background-color: White;color: steelblue;">
+                                        <div class="row pos-total">
+                                            <div class="col-md-6">
+                                                <label style="color: #000;">
+                                                    Total Qty: </label>
+                                                    <asp:TextBox ID="txttotqty"  Visible="true" Style="width: 100px; background:transparent; border:0;"
+                                                    Enabled="false" Font-Size="20px" runat="server"></asp:TextBox>
+                                            </div>
+                                            <div class="col-md-6 text-right">
+                                                <label style="color: #000;">
+                                                    Amount: </label> 
+                                                <label id="lbldisplay" runat="server">
+                                                </label>
+                                                <asp:Label ID="lblcurrency" runat="server" ></asp:Label>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-right" style="padding: 5px 20px; background-color: #f2f2f2;">
+                                            
+                                                    <asp:Button ID="btnPrint" runat="server" CssClass="btn pos-btn1 btn-sm" width="80px"
+                                                    UseSubmitBehavior="false" OnClientClick="this.disabled=true;" OnClick="btnPrint_Click"
+                                                    Text="Print" />
+                                            
+                                                <asp:Button ID="btnReset" runat="server" CssClass="btn pos-btn1 btn-sm " width="80px"
+                                                    Text="Reset" OnClick="btnReset_Click" />
+                                            
+                                                <asp:Button ID="btnCancel" runat="server" CssClass="btn pos-btn1 btn-sm"  width="80px"
+                                                    Text="Cancel" OnClick="btnCancel_Click" />
+                                            
+                                                <asp:Button ID="Button5" runat="server" CssClass="btn pos-btn1 btn-sm" 
+                                                    Visible="true" Text="Hold Bill" OnClick="btnhold_check" />
+                                            
+                                                <asp:Button ID="Button4" runat="server" CssClass="btn pos-btn1 btn-sm"   Text="Smry.Bills" Visible="false"
+                                                    PostBackUrl="~/Accountsbootstrap/Home_Page.aspx" />
+                                            
+                                                <asp:Button ID="btnView" runat="server" CssClass="btn pos-btn1 btn-sm"  OnClick="btnView_Onclick"
+                                                    Text="Tax Detail View" />
+                                            
+                                                <asp:Button ID="btnTaxClose" runat="server" CssClass="btn pos-btn1 btn-sm" Visible="false"
+                                                    Width="120px" OnClick="btnTaxClose_Onclick" Text="Tax Detail Close" />
+    
+                                            </div>
+                                        </div>
+                                        <table width="100%" align="right" id="TaxView" runat="server" class="table table-condensed"
+                                            visible="false" style="background-color: White; color: steelblue;">
                                             <tr id="trsub" runat="server">
-                                                
                                                 <td width="50px">
                                                     <label>
                                                         Item - Total</label>
@@ -463,12 +535,12 @@
                                                 </td>
                                             </tr>
                                             <tr id="tr17" runat="server">
-                                                <td width="50px" >
+                                                <td width="50px">
                                                     <label id="IDCgst" runat="server">
                                                         CGST:</label>
                                                     <asp:Label ID="lblcgst" runat="server" Width="50px">0</asp:Label>
                                                 </td>
-                                                <td width="50px" >
+                                                <td width="50px">
                                                     <label id="IDSgst" runat="server">
                                                         SGST:</label>
                                                     <asp:Label ID="lblsgst" runat="server" Width="50px">0</asp:Label>
@@ -1176,46 +1248,24 @@
                                             </tbody>
                                         </table>
                                         <table>
-                                            <tr>
-                                                <td>
-                                                    <asp:Button ID="btnPrint" runat="server" CssClass="btn btn-success" Width="100px"
-                                                        UseSubmitBehavior="false" OnClientClick="this.disabled=true;" OnClick="btnPrint_Click"
-                                                        Text="Print" />
-                                                </td>
-                                                <td>
-                                                    <asp:Button ID="btnReset" runat="server" CssClass="btn btn-warning " Width="100px"
-                                                        Text="Reset" OnClick="btnReset_Click" />
-                                                </td>
-                                                <td>
-                                                    <asp:Button ID="btnCancel" runat="server" CssClass="btn btn-danger" Width="100px"
-                                                        Text="Cancel" OnClick="btnCancel_Click" />
-                                                </td>
-                                                <td>
-                                                    <asp:Button ID="Button5" runat="server" CssClass="btn btn-primary" Width="120px"
-                                                        Visible="true" Text="Hold Bill" OnClick="btnhold_check" />
-                                                </td>
-                                                <td>
-                                                    <asp:Button ID="Button4" runat="server" CssClass="btn btn-info" Width="120px" Text="Smry.Bills"
-                                                        PostBackUrl="~/Accountsbootstrap/Home_Page.aspx" />
-                                                </td>
-
-                                                 <td>
-                                                    <asp:Button ID="btnView" runat="server" CssClass="btn btn-info" Width="120px" OnClick="btnView_Onclick" Text="Tax Detail View" />
-                                                </td>
-
-                                                 <td>
-                                                    <asp:Button ID="btnTaxClose" runat="server" CssClass="btn btn-info" Visible="false" Width="120px" OnClick="btnTaxClose_Onclick" Text="Tax Detail Close" />
-                                                </td>
-
-                                            </tr>
+                                             
+                                             <tr>
+                                             <td>
+                                             <label>Delivery Address</label>
+                                             <asp:CheckBox ID="chkdelivery" runat="server" OnCheckedChanged="Delivery_checked" AutoPostBack="true" />
+                                             <br/>
+                                             <asp:TextBox ID="txtaddress" runat="server" TextMode="MultiLine" Visible="false" ></asp:TextBox>
+                                             </td>
+                                             </tr>
                                         </table>
                                         <table>
                                             <tr>
-                                                <td valign="top" style="width: 15%;margin-top: -18px;">
+                                                <td valign="top" style="width: 15%; margin-top: -18px;">
                                                     <label>
                                                         Hold Bill's</label>
-                                                    <asp:DataList ID="Holdbill" runat="server" CssClass="SlidingBox" Height="100px"  style="margin-top: -18px" ScrollBars="auto"
-                                                        RepeatColumns="5" RepeatDirection="Horizontal" RepeatLayout="Table" Width="50%">
+                                                    <asp:DataList ID="Holdbill" runat="server" CssClass="SlidingBox" Height="100px" Style="margin-top: -18px"
+                                                        ScrollBars="auto" RepeatColumns="5" RepeatDirection="Horizontal" RepeatLayout="Table"
+                                                        Width="50%">
                                                         <ItemTemplate>
                                                             <asp:Button ID="Button1" runat="server" Font-Bold="true" Height="40px" Width="10pc"
                                                                 Text='<%#Eval("BillNo")+"-"+ Eval("SalesTypeOrderNo")+"-"+ Eval("Attendername")%>'
@@ -1242,28 +1292,30 @@
                                         </table>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <script src="Scripts/jquery.min.js" type="text/javascript"></script>
-                <script src="Scripts/chosen.jquery.js" type="text/javascript"></script>
-                <script src="Scripts/jquery.min.js" type="text/javascript"></script>
-                <script src="Scripts/chosen.jquery.js" type="text/javascript"></script>
-                <script type="text/javascript">                    $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
-            </ContentTemplate>
-        </asp:UpdatePanel>
-        <asp:UpdateProgress ID="prgLoadingStatus" runat="server" DynamicLayout="true">
-            <ProgressTemplate>
-                <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0;
-                    right: 0; left: 0; z-index: 9999999; opacity: 0.7;">
-                    <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="../images/Preloader_10.gif"
-                        AlternateText="Loading  Please wait..." ToolTip="Loading  Please wait..." Style="padding: 10px;
-                        position: fixed; top: 45%; left: 50%;" />
-                </div>
-            </ProgressTemplate>
-        </asp:UpdateProgress>
+            </div>
+
+
+            <script src="Scripts/jquery.min.js" type="text/javascript"></script>
+            <script src="Scripts/chosen.jquery.js" type="text/javascript"></script>
+            <script src="Scripts/jquery.min.js" type="text/javascript"></script>
+            <script src="Scripts/chosen.jquery.js" type="text/javascript"></script>
+            <script type="text/javascript">                    $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    <asp:UpdateProgress ID="prgLoadingStatus" runat="server" DynamicLayout="true">
+        <ProgressTemplate>
+            <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0;
+                right: 0; left: 0; z-index: 9999999; opacity: 0.7;">
+                <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="../images/Preloader_10.gif"
+                    AlternateText="Loading  Please wait..." ToolTip="Loading  Please wait..." Style="padding: 10px;
+                    position: fixed; top: 45%; left: 50%;" />
+            </div>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
+        </div>
+
     </div>
+    
     <asp:Panel Width="30%" class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none;
         background: #fffbd6" runat="server">
         <div class="popup_Container">
@@ -1292,6 +1344,7 @@
             </div>
         </div>
     </asp:Panel>
+    <link href="../css/billingstyle.css" rel="stylesheet" />
     </form>
 </body>
 </html>

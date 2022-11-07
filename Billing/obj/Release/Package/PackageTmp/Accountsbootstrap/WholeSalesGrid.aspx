@@ -92,30 +92,38 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <usc:Header ID="Header" runat="server" />
-    <div class="row">
-        <!-- /.col-lg-12 -->
-    </div>
-    <div class="row" align="center">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading" style="background-color: #0071BD; color: White">
-                    Whole Sales Details
-                </div>
+    <form runat="server" id="form1" method="post">
+     <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Whole Sales Details
+          <span class="pull-right">
+          <asp:LinkButton ID="addbutton" runat="server" PostBackUrl="~/Accountsbootstrap/WholeSales.aspx">
+          <button type="button" class="btn btn-primary btn-md pos-btn1">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD
+			</button>
+          </asp:LinkButton>
+                </span>
+                </h1>
+	    </div>
+
                 <div class="panel-body">
-                    <div class="row">
-                        <div>
-                            <form runat="server" id="form1" method="post">
+                   
+                      
+                            
                             <asp:UpdatePanel ID="updatepanel" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
                                     <asp:ScriptManager ID="script" runat="server" EnablePartialRendering="true">
                                     </asp:ScriptManager>
-                                    <div class="form-group">
+                                     <div class="row">
                                         <div class="col-lg-12" runat="server" visible="false">
                                             <div class="col-lg-3">
                                                 <div class="form-group">
                                                     <label>
                                                         Cusromer Name</label><br />
-                                                    <asp:DropDownList runat="server" ID="ddlcustomer" CssClass="chzn-select" Width="150px">
+                                                    <asp:DropDownList runat="server" ID="ddlcustomer" CssClass="form-control">
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
@@ -133,23 +141,21 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12">
-                                            <div class="col-lg-2">
-                                            </div>
-                                            <div class="col-lg-1">
+                                  
+                                            <div class="col-lg-3">
                                                 <label>
                                                     From Date</label>
                                                 <asp:TextBox CssClass="form-control" ID="txtFDate" runat="server" MaxLength="50"
-                                                    Style="width: 110px;"></asp:TextBox>
+                                                    ></asp:TextBox>
                                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="dd/MM/yyyy" TargetControlID="txtFDate"
                                                     runat="server" CssClass="cal_Theme1">
                                                 </ajaxToolkit:CalendarExtender>
                                             </div>
-                                            <div class="col-lg-1">
+                                            <div class="col-lg-3">
                                                 <label>
                                                     To Date</label>
                                                 <asp:TextBox CssClass="form-control" ID="txtTDate" runat="server" MaxLength="50"
-                                                    Style="width: 110px;"></asp:TextBox>
+                                                    ></asp:TextBox>
                                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="dd/MM/yyyy" TargetControlID="txtTDate"
                                                     runat="server" CssClass="cal_Theme1">
                                                 </ajaxToolkit:CalendarExtender>
@@ -157,43 +163,32 @@
                                             <div class="col-lg-2">
                                                 <label>
                                                     Select Customer</label>
-                                                <asp:DropDownList CssClass="form-control" ID="ddlCus" Style="width: 250px;" runat="server">
+                                                <asp:DropDownList CssClass="form-control" ID="ddlCus" runat="server">
                                                 </asp:DropDownList>
                                             </div>
-                                            <div class="col-lg-1">
-                                                <br />
-                                                <div class="form-group">
-                                                    <asp:Button ID="btnSearchNew" runat="server" class="btn btn-success" Text="Search"
-                                                        Width="110px" OnClick="btnSearchNew_Click" />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-1">
-                                                <br />
-                                                <div class="form-group">
-                                                    <asp:Button ID="btnresret" runat="server" Width="110px" class="btn btn-warning" Text="Reset"
-                                                        OnClick="btnReset_Click" />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-1">
-                                                <br />
-                                                <div class="form-group">
-                                                    <asp:Button ID="btnadd" runat="server" class="btn btn-info" Text="Add" Width="110px"
-                                                        PostBackUrl="~/Accountsbootstrap/WholeSales.aspx" />
-                                                </div>
-                                            </div>
                                             <div class="col-lg-3">
+                                                <br />
+                                       
+                                                    <asp:Button ID="btnSearchNew" runat="server" class="btn btn-primary pos-btn1" Text="Search"
+                                                        OnClick="btnSearchNew_Click" />
+                                           
+                                              
+                                                    &nbsp;&nbsp;&nbsp;<asp:Button ID="btnresret" runat="server" class="btn btn-secondary" Text="Reset"
+                                                        OnClick="btnReset_Click" />
+                                              
+                                             
+                                                
                                             </div>
-                                        </div>
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
+                                        </div>   
+                                       <div class="row">
                                         <div class="col-lg-12">
+                                        <div class="table-responsive panel-grid-left">
                                             <asp:GridView ID="gvsales" align="center" EmptyDataText="No Records Found" runat="server"
                                                 ShowFooter="true" AllowPaging="false" PageSize="50" AutoGenerateColumns="false"
-                                                CssClass="mGrid" OnRowDataBound="gridview_OnRowDataBound" OnRowCommand="gvsales_RowCommand">
-                                                <HeaderStyle BackColor="#990000" />
-                                                <PagerSettings FirstPageText="1" Mode="Numeric" />
+                                                cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" OnRowDataBound="gridview_OnRowDataBound" OnRowCommand="gvsales_RowCommand">
+                                               <PagerStyle CssClass="pos-paging" />
+                                               <%-- <HeaderStyle BackColor="#990000" />
+                                                <PagerSettings FirstPageText="1" Mode="Numeric" />--%>
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="SNo">
                                                         <ItemTemplate>
@@ -223,7 +218,11 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btndelete" runat="server" CommandArgument='<%#Eval("SalesID") %>'
                                                                 CommandName="cancel">
-                                                                <asp:Image ID="dlt" runat="server" ImageAlign="Middle" ImageUrl="~/images/cancel-circle.png" /></asp:LinkButton>
+                                                                <asp:Image ID="dlt" runat="server" ImageAlign="Middle" ImageUrl="~/images/cancel-circle.png" visible="false"/>
+                                                                <button type="button" class="btn btn-danger btn-md">
+						                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					                                            </button>
+                                                                </asp:LinkButton>
                                                             <ajaxToolkit:ModalPopupExtender ID="lnkDelete_ModalPopupExtender" runat="server"
                                                                 CancelControlID="ButtonDeleteCancel" OkControlID="ButtonDeleleOkay" TargetControlID="btndelete"
                                                                 PopupControlID="DivDeleteConfirmation" BackgroundCssClass="ModalPopupBG">
@@ -237,14 +236,22 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btnview" runat="server" CommandArgument='<%#Eval("SalesID") %>'
                                                                 CommandName="view">
-                                                                <asp:Image ID="vie" runat="server" ImageAlign="Middle" ImageUrl="~/images/info_button.png" width="55px"/></asp:LinkButton>
+                                                                <asp:Image ID="vie" runat="server" ImageAlign="Middle" ImageUrl="~/images/info_button.png" visible="false" width="55px"/>
+                                                              <button type="button" class="btn btn-danger btn-md">
+						                                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+					                                            </button>
+                                                                </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Edit">
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btnedit" ForeColor="White" CommandArgument='<%#Eval("SalesID") %>'
                                                                 CommandName="Editt" runat="server">
-                                                                <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server" width="55px"/></asp:LinkButton>
+                                                                <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server" width="55px" Visible="false" />
+                                                                <button type="button" class="btn btn-warning btn-md">
+						                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					                                            </button>
+                                                                </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
@@ -260,21 +267,29 @@
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btnprint" runat="server" CommandArgument='<%#Eval("SalesID") %>'
                                                                 CommandName="print">
-                                                                <asp:Image ID="print" runat="server" ImageAlign="Middle" ImageUrl="~/images/print (1).png" width="55px"/></asp:LinkButton>
+                                                                <asp:Image ID="print" runat="server" ImageAlign="Middle" ImageUrl="~/images/print (1).png" width="55px" Visible="false"/>
+                                                                <button type="button" class="btn btn-warning btn-md">
+						                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					                                            </button>
+                                                                </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="DC Print">
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btndcprint" runat="server" CommandArgument='<%#Eval("SalesID") %>'
                                                                 CommandName="dcprint">
-                                                                <asp:Image ID="dcprint" runat="server" ImageAlign="Middle" ImageUrl="~/images/print (1).png" width="55px" /></asp:LinkButton>
+                                                                <asp:Image ID="dcprint" runat="server" ImageAlign="Middle" ImageUrl="~/images/print (1).png" width="55px" visible="false"/>\
+                                                                <button type="button" class="btn btn-default btn-md">
+						                                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+					                                            </button>
+                                                                </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                 </Columns>
-                                                <FooterStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />
-                                                <HeaderStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />
+                                                <%--<FooterStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />
+                                                <HeaderStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />--%>
                                             </asp:GridView>
-                                            <asp:GridView ID="gvCustsales" runat="server" CssClass="mGrid" DataKeyNames="BillNo"
+                                            <asp:GridView ID="gvCustsales" runat="server" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" DataKeyNames="BillNo"
                                                 ShowFooter="true" EmptyDataText="No Records Found" AutoGenerateColumns="false"
                                                 ShowHeaderWhenEmpty="True">
                                                 <Columns>
@@ -287,7 +302,7 @@
                                                             </a>
                                                             <%# Eval("BillNo") %>
                                                             <div id="dv<%# Eval("BillNo") %>" style="display: none; position: relative;">
-                                                                <asp:GridView runat="server" ID="gvLiaLedger" CssClass="mGrid" GridLines="Both" AutoGenerateColumns="false"
+                                                                <asp:GridView runat="server" ID="gvLiaLedger" cssClass="table table-striped pos-table" GridLines="Both" padding="0" spacing="0" border="0" AutoGenerateColumns="false"
                                                                     DataKeyNames="SalesID" ShowFooter="true">
                                                                     <Columns>
                                                                         <asp:BoundField HeaderText="Transid" Visible="false" DataField="SalesID" />
@@ -318,11 +333,12 @@
                                                     <asp:BoundField HeaderText="Tax-Amount" DataField="Tax" DataFormatString='{0:f}' />
                                                     <asp:BoundField HeaderText="Total Amount" DataField="Total" DataFormatString='{0:f}' />
                                                 </Columns>
-                                                <HeaderStyle BackColor="#990000" />
+                                                <%--<HeaderStyle BackColor="#990000" />
                                                 <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
                                                     NextPageText="Next" PreviousPageText="Previous" />
-                                                <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                                                <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                                             </asp:GridView>
+                                        </div>
                                         </div>
                                     </div>
                                 </ContentTemplate>
@@ -355,17 +371,14 @@
                                     </div>
                                 </div>
                             </asp:Panel>
-                            </form>
-                        </div>
-                        <!-- /.col-lg-6 (nested) -->
+                           
                     </div>
-                    <!-- /.row (nested) -->
                 </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
+             
     </div>
+    </div>
+    </div>
+    </div>
+     </form>
 </body>
 </html>

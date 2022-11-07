@@ -46,15 +46,20 @@
 </head>
 <body>
     <usc:Header ID="Header" runat="server" />
-    <div class="row">
-        <div>
+    
+        <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
             <form id="Form2" runat="server" role="form">
-            <div class="col-lg-12" style="margin-top: 6px">
-                <div class="col-lg-2">
-                    <h1 class="page-header" style="text-align: center; color: #fe0002; font-size: 15px">
-                        Cash Account Report</h1>
-                </div>
-                <div class="col-lg-2">
+                 
+        <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Cash Account Report</h1>
+	    </div>
+              <div class="panel-body">
+                        <div class="row">
+                
+                <div class="col-lg-3">
                     <div class="form-group">
                         <label>
                             From Date</label>
@@ -66,7 +71,7 @@
                     <asp:ScriptManager ID="ScriptManager1" runat="server">
                     </asp:ScriptManager>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-3">
                     <div class="form-group">
                         <label>
                             To Date</label>
@@ -76,7 +81,7 @@
                         Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-3">
                     <div class="form-group">
                         <label>
                             Select Company</label>
@@ -89,37 +94,32 @@
                         </asp:DropDownList>
                     </div>
                 </div>
-                <div class="form-group;col-lg-2">
-                    <asp:Button ID="btnreport" runat="server" class="btn btn-info" Text="Generate Report"
-                        Style="width: 160px; margin-top: 28px; margin-left: 20px" OnClick="btnreport_Click" />
+                <br />
+                <div class="col-lg-3">
+                    <asp:Button ID="btnreport" runat="server" class="btn btn-info pos-btn1" Text="Generate Report"
+                        OnClick="btnreport_Click" />
+                        &nbsp;&nbsp;&nbsp;<asp:button id="btnprint" runat="server" cssclass="btn btn-secondary" text="Print"
+                            width="100px" onclientclick="javascript:CallPrint('bill');" xmlns:asp="#unknown" />
                 </div>
-            </div>
-            <!-- /.col-lg-12 -->
-        </div>
-        <!-- /.row -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div align="right">
-                        <asp:button id="btnprint" runat="server" cssclass="btn btn-block center-block" text="Print"
-                            width="125px" onclientclick="javascript:CallPrint('bill');" xmlns:asp="#unknown" />
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div>
-                                <div class="row">
-                                    <!-- /.col-lg-12 -->
-                                </div>
-                                <!-- /.row -->
-                                <div class="row" id="idt" visible="false" runat="server">
-                                    <div class="col-lg-12" id="bill">
-                                        <asp:ValidationSummary runat="server" HeaderText="Validation Messages" ValidationGroup="val1"
+          
+         
+          
+       
+                     
+                       
+                          <div class="col-lg-12" id="bill">
+                          <asp:ValidationSummary runat="server" HeaderText="Validation Messages" ValidationGroup="val1"
                                             ID="val1" ShowMessageBox="true" ShowSummary="false" />
                                         <h2 align="center">
-                                            <asp:Label ID="lblMessage" Style="color: Blue;" runat="server"></asp:Label></h2>
-                                        <div class="panel panel-default">
+                                            <asp:Label ID="lblMessage" Style="color: #007aff;" runat="server"></asp:Label></h2>
+                               <div class="table-responsive panel-grid-left">
+                                <div class="row" id="idt" visible="false" runat="server">
+                                   
+                                    
+                                        
+                                        
                                             <!-- /.panel-heading -->
-                                            <table id="Table1" runat="server" style="border: 1px solid Grey; height: 15px; background-color: #59d3b4;
+                                           <%-- <table id="Table1" runat="server" style="border: 1px solid Grey; height: 15px; background-color: #59d3b4;
                                                 text-transform: uppercase" width="100%">
                                                 <tr>
                                                     <td align="center" style="font-size: small1; width: 70px">
@@ -138,30 +138,30 @@
                                                         Debit
                                                     </td>
                                                     <td align="center" style="font-size: small">
-                                                        Credit
+                                                        Debit
                                                     </td>
                                                 </tr>
-                                            </table>
-                                            <div align="center">
-                                                <asp:GridView runat="server" ID="gvCash" Width="100%" BorderWidth="1" GridLines="Both"
-                                                    AutoGenerateColumns="false" CssClass="myGridStyle1" ShowFooter="true" AllowPrintPaging="true"
+                                            </table>--%>
+                                           
+                                                <asp:GridView runat="server" ID="gvCash" Width="100%"  cssClass="table table-striped pos-table"
+                                                    AutoGenerateColumns="false"  ShowFooter="true" AllowPrintPaging="true" padding="0" spacing="0" border="0"
                                                     OnRowDataBound="gvCash_RowDataBound">
                                                     <Columns>
-                                                        <asp:BoundField DataField="Date" ItemStyle-Width="7%" ItemStyle-HorizontalAlign="Center"
+                                                        <asp:BoundField DataField="Date" ItemStyle-Width="100px" HeaderText="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date"
                                                             DataFormatString="{0:dd/MM/yyyy}" />
-                                                        <asp:BoundField DataField="Particulars" HeaderStyle-HorizontalAlign="Center" ItemStyle-Width="30%" />
-                                                        <asp:BoundField DataField="Type" HeaderStyle-HorizontalAlign="Center" ItemStyle-Width="12%" />
-                                                        <asp:BoundField DataField="Narration" HeaderStyle-HorizontalAlign="Center" ItemStyle-Width="28%" />
-                                                        <asp:BoundField DataField="BranchCode" Visible="false" />
-                                                        <asp:BoundField DataField="Debit" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right"
-                                                            DataFormatString="{0:f2}" ItemStyle-HorizontalAlign="Right" />
-                                                        <asp:BoundField DataField="Credit" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right"
-                                                            DataFormatString="{0:f2}" ItemStyle-HorizontalAlign="Right" />
+                                                        <asp:BoundField DataField="Particulars"  HeaderText="Ledger Name" ItemStyle-Width="100px" />
+                                                        <asp:BoundField DataField="Type"  HeaderText="Voucher Type" ItemStyle-Width="100px" />
+                                                        <asp:BoundField DataField="Narration"  HeaderText="Narration" ItemStyle-Width="100px" />
+                                                        <asp:BoundField DataField="BranchCode" HeaderText="BranchCode" Visible="false" />
+                                                        <asp:BoundField DataField="Debit" HeaderText="Debit" ItemStyle-Width="60px"
+                                                            DataFormatString="{0:f2}" />
+                                                        <asp:BoundField DataField="Credit" HeaderText="Debit" ItemStyle-Width="60px"
+                                                            DataFormatString="{0:f2}"  />
                                                     </Columns>
                                                     <PagerTemplate>
                                                     </PagerTemplate>
                                                 </asp:GridView>
-                                            </div>
+                                            
                                             <br />
                                             <table style="width: 100%">
                                                 <tr runat="server" visible="false">
@@ -200,27 +200,19 @@
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <%--<button type="submit" class="btn btn-danger">Doc Print</button>--%>
-                                            <!-- /.table-responsive -->
-                                            <!-- /.col-lg-6 (nested) -->
+                                           
                                         </div>
-                                        <!-- /.row (nested) -->
+                                      
                                     </div>
-                                    <!-- /.panel-body -->
-                                    <!-- /.panel -->
+                                    
                                 </div>
-                                <!-- /.col-lg-12 -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        </form>
-                        <!-- /#page-wrapper -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                               
+     </div>
+   </div>
     </form>
+    </div>
+    </div>
+    </div>
     <!-- jQuery -->
 </body>
 </html>

@@ -98,50 +98,64 @@
                     <form id="Form1" runat="server">
                     <asp:scriptmanager id="ScriptManager1" runat="server">
 </asp:scriptmanager>
-  
-                             <div class="col-lg-12">
-               <div class="col-lg-6">
-                    <div class="panel panel-default">
-                         <div class="panel-heading " style="background-color:#428bca; color:White" ><b>Store Item Setting Details</b></div>
+  <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+                            
+               <div class="col-lg-8">
+               <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Store Item Setting</h1>
+	    </div>
+                    
                         <div class="panel-body" >
                             <div class="row">
                            <asp:Label ID="lblempname" runat="server" Visible="false" ></asp:Label>
-                                <div   class="col-lg-12">
-                                     
-                                                  <div   class="col-lg-6">
-                                            <asp:TextBox CssClass="form-control" placeholder="Search Details.. " ID="txtsearch" onkeyup="Search_Gridview(this, 'gridview')"  runat="server" MaxLength="50"  Width="150px"></asp:TextBox>
-                                            <asp:Label ID="lblerror" runat="server" style="color:Red"></asp:Label>
-
+                               
+                                                  <div   class="col-lg-4">
+                                                  <div class="form-group has-feedback">
+                                            <asp:TextBox CssClass="form-control" placeholder="Search Details.. " ID="txtsearch" onkeyup="Search_Gridview(this, 'gridview')"  runat="server" MaxLength="50"  ></asp:TextBox>
+                                             <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                             <asp:Label ID="lblerror" runat="server" style="color:Red"></asp:Label>
+                                             </div>
                                             </div>
                                              
-                                               <div   class="col-lg-6">
-                                                <asp:Button ID="btnresret" runat="server" class="btn btn-warning" Text="Reset" onclick="Btn_Reset" Width="150px"/></div>
-                                        </div>
-                                         </div>
-                                          
-									
-                                <div style="height:350px; overflow:scroll"><br />
-                                <asp:GridView ID="gridview" runat="server" UseAccessibleHeader="true"  CssClass="mGrid"
+                                               <div class="col-lg-8">
+                                                <asp:Button ID="btnresret" runat="server" class="btn btn-secondary" Text="Reset" onclick="Btn_Reset" Width="150px"/>
+                                                </div>
+                                        
+                                      <div class="col-lg-12">   
+									<div class="table-responsive panel-grid-left">
+                                
+                                <asp:GridView ID="gridview" runat="server" UseAccessibleHeader="true"   cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                                         AllowPaging="false" 
                                         AutoGenerateColumns="false"  AllowSorting="true"
                                         onrowcommand="gvcat_RowCommand" onsorting="gridview_Sorting" OnRowDataBound="gridview_OnRowDataBound" OnRowEditing="gridview_RowEditing">
                                
-                                 <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" NextPageText="Next" PreviousPageText="Previous" />
+                                 <%--<PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" NextPageText="Next" PreviousPageText="Previous" />--%>
                                 <Columns>
                                 
                                     
                                     <asp:BoundField HeaderText="Ingrident Name" DataField="IngredientName"    />
                                     <asp:BoundField HeaderText="Branch Item Name" DataField="Printitem"    />
                                     <asp:BoundField HeaderText="Is Active" DataField="IsActive"    />
-                               <asp:TemplateField HeaderText="Edit"    >
+                               <asp:TemplateField HeaderText="Edit"  ItemStyle-Width="60px"  >
      <ItemTemplate>
-     <asp:LinkButton ID="btnedit"  ForeColor="White"  CommandArgument='<%#Eval("StoreSettingid") %>' CommandName="Edit" runat="server"> <asp:Image ID="imdedit"  ImageUrl="~/images/edit.png" runat="server"  width="55px"/></asp:LinkButton>
+     <asp:LinkButton ID="btnedit"  ForeColor="White"  CommandArgument='<%#Eval("StoreSettingid") %>' cssclass="btn btn-warning btn-md" CommandName="Edit" runat="server">
+      <asp:Image ID="imdedit"  ImageUrl="~/images/edit.png" runat="server"  width="55px" Visible="false"/>
+      <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+      </asp:LinkButton>
                                  </ItemTemplate>
      </asp:TemplateField>
-          <asp:TemplateField HeaderText="Delete"   >
+          <asp:TemplateField HeaderText="Delete"  ItemStyle-Width="60px" >
      <ItemTemplate  >
     
-     <asp:LinkButton ID="btndel"   CommandArgument='<%#Eval("StoreSettingid") %>' CommandName="Del" runat="server"> <asp:Image ID="Image1"  ImageUrl="~/images/delete.png" runat="server" /></asp:LinkButton>
+     <asp:LinkButton ID="btndel"   CommandArgument='<%#Eval("StoreSettingid") %>' CommandName="Del" runat="server">
+      <asp:Image ID="Image1"  ImageUrl="~/images/delete.png" runat="server" Visible="false" />
+       <button type="button" class="btn btn-danger btn-md">
+												<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+												</button>
+                                                </asp:LinkButton>
 
      <asp:ImageButton ID="imgdisable1321" ImageUrl="~/images/delete.png" runat="server" Visible="false"
                                                                                     Enabled="false" ToolTip="Not Allow To Delete" />
@@ -159,56 +173,61 @@
                                  </ItemTemplate>
      </asp:TemplateField> 
     </Columns>
-                                </asp:GridView></div>
+                                </asp:GridView>
+                                </div>
+                                </div>
                             </div>
+                           
 </div>      
-</div>        
-                      <div class="col-lg-6">
-                                     <div class="panel panel-default">
-                                   <%--   <blink> <label  style="color:Green; font-size:12px">Need To Add Branch Setting For Daily Stock Request Process.Please Fill CareFull!!!.Thank You!!!</label></blink>--%>
-               <div class="panel-heading " style="background-color:#428bca; color:White" ><b>Store Item Setting Create</b></div>
-                <div class="panel-body">
-                  <div class="col-lg-12" >
+</div>
+   </div>
+                      <div class="col-lg-4">
+                      <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Add Store Item Setting</h1>
+	    </div>
+                <div class="panel-body panel-form-right">
+                  <div class="list-group">
                   <div id="UPD" runat="server" visible="false" >
-                         <blink> <label  style="color:Red; font-size:16px">If you Edit This Store Ing. Setting It Will Affect Your Branch's Stock So Be CareFull,Now this Screen on TRACKING!!! <img src="../images/tenor.gif" width="3%" /></label>
+                         <blink> <label>If you Edit This Store Ing. Setting It Will Affect Your Branch's Stock So Be CareFull,Now this Screen on TRACKING!!! 
+                         <img src="../images/tenor.gif" width="3%" /></label>
                           </blink>
                          </div>
-                            <div class="form-group">
+                            
                                 <asp:TextBox CssClass="form-control" ID="txtstoresettingid" runat="server" Visible="false"></asp:TextBox>
-                            </div>
-                            <div class="form-group">
+                          
                                 <label>
                                    Store Ing.Item</label>
-                               
                                <asp:DropDownList ID="drpstoreitem" runat="server" CssClass="form-control" ></asp:DropDownList>
-                            </div>
-
-                            <div class="form-group">
+                           <br />
                                 <label>
                                    Branch Item </label>
-                               
                                <asp:DropDownList ID="drpbranchitem" runat="server" CssClass="form-control" ></asp:DropDownList>
-                            </div>
-
-                             <div class="form-group">
+                          <br />
                                 <label>
                                    Is Active </label>
                                <asp:DropDownList ID="drpisactive" runat="server" CssClass="form-control" >
                                <asp:ListItem Text="Yes" Value="Yes" ></asp:ListItem>
                                <asp:ListItem Text="No" Value="No" ></asp:ListItem>
                                </asp:DropDownList>
-                            </div>
+                            <br />
 
-                            <asp:Button ID="btnSave" runat="server" class="btn btn-success" Text="Save" OnClick="btnSave_Click"
+                            <asp:Button ID="btnSave" runat="server" class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="btnSave_Click"
                                 ValidationGroup="val1" AccessKey="s" Width="150px" />
                             <label>
                             </label>
-                            <asp:Button ID="btnexit" runat="server" class="btn btn-warning" Text="Exit" OnClick="Exit_Click" Width="150px" />
+                            <asp:Button ID="btnexit" runat="server" class="btn btn-lg btn-link" Text="Clear" OnClick="Exit_Click" Width="150px" />
                             
                             </div>
-                            </div></div>
-                                    </div>
-                                    </div>
+                            </div>
+                            </div>
+                           </div>
+                                    
+    </div>
+    </div>
+    </div>
+   
+
                                 <asp:panel class="popupConfirmation" id="DivDeleteConfirmation" 
 	style="display: none" runat="server">
     <div class="popup_Container">

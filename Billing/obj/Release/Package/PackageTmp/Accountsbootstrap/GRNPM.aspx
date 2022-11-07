@@ -13,11 +13,16 @@
     <meta name="author" content="" />
     <title>GRN (+)(-)</title>
     <!-- Bootstrap Core CSS -->
+    <link rel="Stylesheet" type="text/css" href="../css/date.css" />
+    <link href="../Styles/chosen.css" rel="Stylesheet" />
+    <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Styles/style1.css" rel="stylesheet" />
     <!-- MetisMenu CSS -->
     <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet" />
+    
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
@@ -72,27 +77,25 @@
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" Visible="false" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="White" Visible="false" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">
-                GRN (+)(-)</h1>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-body" style="">
+     <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+                <div class="panel-body">
                     <div class="row">
                         <form id="Form1" runat="server">
                         <asp:ScriptManager ID="script" runat="server">
                         </asp:ScriptManager>
                         <asp:UpdatePanel ID="upanel" runat="server">
                             <ContentTemplate>
-                                <div class="col-lg-12">
-                                    <div class="col-lg-3">
-                                        <asp:TextBox ID="txtgrnno" runat="server" Enabled="false" class="form-control" Width="150px"></asp:TextBox>
+                                
+                                <div class="col-lg-4">
+                                 <div class="panel panel-custom1">
+		                            <div class="panel-header">
+				                            <h1 class="page-header">GRN (+)(-)</h1>
+		                            </div>
+                               <div class="panel-body panel-form-right">
+                                <div class="list-group">
+                                        <asp:TextBox ID="txtgrnno" runat="server" Enabled="false" class="form-control" ></asp:TextBox>
                                         <div id="admin" runat="server" visible="false" class="form-group">
                                             <label>
                                                 Store</label>
@@ -107,47 +110,51 @@
                                                 <asp:ListItem Text="Purasawalkam" Value="co7"></asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
-                                        <div class="form-group">
+                                       <br />
+                                         
                                             <label>
                                                 Name</label>
-                                            <asp:TextBox ID="txtname" runat="server" class="form-control" Width="150px"></asp:TextBox>
-                                        </div>
-                                        <div class="form-group">
+                                            <asp:TextBox ID="txtname" runat="server" class="form-control" ></asp:TextBox>
+                                       <br />
+                                         
                                             <label>
                                                 Category</label>
                                             <asp:DropDownList ID="ddlcategory" AutoPostBack="true" runat="server" class="form-control"
-                                                Width="150px" OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged">
+                                                 OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged">
                                             </asp:DropDownList>
-                                        </div>
-                                        <div class="form-group">
+                                        
+                                         <br />
                                             <label>
                                                 Sub Category</label>
-                                            <asp:DropDownList ID="ddlSubCategory" runat="server" class="form-control" Width="150px"
+                                            <asp:DropDownList ID="ddlSubCategory" runat="server" class="form-control" 
                                                 OnSelectedIndexChanged="ddlSubCategory_SelectedIndexChanged" AutoPostBack="true">
                                             </asp:DropDownList>
                                             <asp:Label ID="lblsuberror" runat="server" Style="color: Red"></asp:Label>
-                                        </div>
+                                       
+                                        <br />
                                          <label>
-                                           Avaliable Qty</label>
-                                        <div class="form-group">
+                                           Avaliable Qty</label><br />
+
                                             <asp:Label ID="lblavastock" runat="server" ></asp:Label>
-                                        </div>
+                                        <br /><br />
                                         <label>
                                             Quantity</label>
-                                        <div class="form-group">
-                                            <asp:TextBox class="form-control" ID="txtQty" MaxLength="10" Width="150px" runat="server"></asp:TextBox>
-                                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1"
+                                       
+                                            <asp:TextBox class="form-control" ID="txtQty" MaxLength="10"  runat="server"></asp:TextBox>
+<%--                                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" 
     ControlToValidate="txtQty" runat="server"
-    ErrorMessage="Only Numbers allowed"
-    ValidationExpression="\d+">
-</asp:RegularExpressionValidator>
-                                        </div>
+    ErrorMessage="Only Numbers allowed" 
+    ValidationExpression="\d+.">
+</asp:RegularExpressionValidator>--%>
+                                        <br />
                                         <label>
                                             sign</label>
-                                            <asp:RadioButtonList ID="radbtnlist" runat="server" >
+                                            <asp:RadioButtonList ID="radbtnlist" runat="server" RepeatColumns="2" >
                                             <asp:ListItem Text="+" Value="+" Selected="true" ></asp:ListItem>
                                             <asp:ListItem Text="-" Value="-" ></asp:ListItem>
                                             </asp:RadioButtonList>
+                                            <asp:Label ID="lblerror" runat="server" Style="color: Red"></asp:Label>
+                                         <br />   
                                         <div id="AdminPurchaseRate" runat="server" class="Hide">
                                             <label>
                                                 Purchase unit Price</label>
@@ -174,13 +181,25 @@
                                                 Minimum Quantity for Stock alert</label>
                                             <asp:TextBox CssClass="form-control" ID="txtminimum" runat="server">0</asp:TextBox>
                                         </div>
-                                        <asp:Label ID="lblerror" runat="server" Style="color: Red"></asp:Label>
-                                        <asp:Button ID="btnAdd" runat="server" class="btn btn-success" Text="Save" OnClick="btnAdd_Click" />
-                                        <asp:Button ID="btnExit" runat="server" class="btn btn-warning" Text="Exit" OnClick="btnExit_Click" />
+                                       
+                                        <asp:Button ID="btnAdd" runat="server" class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="btnAdd_Click" width="150px"/>
+                                        <asp:Button ID="btnExit" runat="server" class="btn btn-lg btn-link" Text="Exit" OnClick="btnExit_Click" />
+                                   
                                     </div>
-                                    <div class="col-lg-1">
+                                    </div>
+                                    </div>
+                                    </div>
+                                   
+                                     <div class="col-lg-8">
+                                        <div class="row panel-custom1">
+                                        <div class="panel-header">
+                                          <h1 class="page-header">GRN (+)(-) Details</h1>
+	                                    </div>
+                                        <div class="panel-body">
+                                    <div class="row">
+                                    <div class="col-lg-4">
                                         <div class="form-group">
-                                            <asp:TextBox CssClass="form-control" ID="txttodate" runat="server" Style="width: 120px"
+                                            <asp:TextBox CssClass="form-control" ID="txttodate" runat="server" 
                                                 Text="--Select Date--"></asp:TextBox>
                                             <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="RequiredFieldValidator1"
                                                 ControlToValidate="txttodate" ErrorMessage="Please enter To Date!" Text="" Style="color: White" />
@@ -189,19 +208,23 @@
                                             </ajaxtoolkit:calendarextender>
                                         </div>
                                     </div>
-                                    <div class="col-lg-2">
-                                        <asp:Button ID="btnsearch" runat="server" class="btn btn-success" Text="Search" OnClick="btnsearch_Click" />
-                                        <asp:Button ID="btnprint" runat="server" class="btn btn-warning" Text="Print" OnClick="btnprint_Click" />
+                                    <div class="col-lg-4">
+                                        <asp:Button ID="btnsearch" runat="server" class="btn btn-info pos-btn1"  Text="Search" OnClick="btnsearch_Click" width="100px"/>
+                                        &nbsp;&nbsp;&nbsp;<asp:Button ID="btnprint" runat="server" class="btn btn-secondary" Text="Print" OnClick="btnprint_Click" width="100px" />
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <asp:DropDownList ID="ddldaygrn" runat="server" class="form-control" Width="150px"
+                                  
+                                  <div class="col-lg-4">
+                                            <asp:DropDownList ID="ddldaygrn" runat="server" class="form-control" 
                                                 OnSelectedIndexChanged="ddldaygrn_SelectedIndexChanged" AutoPostBack="true">
                                             </asp:DropDownList>
-                                            <div>
-                                                <asp:GridView ID="gvdaygrn" CssClass="mGrid" runat="server" Width="100%" AutoGenerateColumns="false"
+                                            </div>
+                                             
+                                            
+                                            <div class="col-lg-12">
+                                            <div class="table-responsive panel-grid-left">
+                                                <asp:GridView ID="gvdaygrn" cssClass="table table-striped pos-table" runat="server" Width="100%" AutoGenerateColumns="false" padding="0" spacing="0" border="0"
                                                     OnRowCommand="gvPurchaseEntry_RowCommand">
-                                                    <HeaderStyle BackColor="#990000" />
+                                                    <%--<HeaderStyle BackColor="#990000" />--%>
                                                     <Columns>
                                                         <asp:BoundField HeaderText="id" DataField="id" Visible="false" />
                                                         <asp:BoundField HeaderText="GRNNo" DataField="GRNNo" Visible="false"/>
@@ -219,12 +242,13 @@
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                     </Columns>
-                                                    <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
-                                                    <HeaderStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                                    <%--<FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                                    <HeaderStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                                                 </asp:GridView>
-                                                <asp:GridView ID="GridView1" CssClass="mGrid" runat="server" Width="100%" AutoGenerateColumns="false"
+                                                
+                                                <asp:GridView ID="GridView1"  runat="server" Width="100%" AutoGenerateColumns="false" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                                                     Visible="true">
-                                                    <HeaderStyle BackColor="#990000" />
+                                                    <%--<HeaderStyle BackColor="#990000" />--%>
                                                     <Columns>
                                                         <asp:BoundField HeaderText="GRNNo" DataField="GRNNo" Visible="false"/>
                                                         <asp:BoundField HeaderText="ToDayGRNNo" DataField="DayGRNmp" />
@@ -235,32 +259,25 @@
                                                         <asp:BoundField HeaderText="Category" DataField="Category" />
                                                         <asp:BoundField HeaderText="Definition" DataField="Definition" />
                                                     </Columns>
-                                                    <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
-                                                    <HeaderStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                                    <%--<FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                                    <HeaderStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                                                 </asp:GridView>
+                                            </div> 
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-1">
-                                </div>
+                                    </div>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                         <!-- /.col-lg-6 (nested) -->
                         </form>
-                        <!-- /.col-lg-6 (nested) -->
-                        <!-- /.col-lg-6 (nested) -->
                     </div>
-                    <!-- /.row (nested) -->
                 </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
+               
     </div>
-    <!-- /.row -->
-    <!-- /#page-wrapper -->
-    <!-- jQuery -->
+    </div>
+    </div>
+    
 </body>
 </html>

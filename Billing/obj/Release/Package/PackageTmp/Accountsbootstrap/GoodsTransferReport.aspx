@@ -59,18 +59,22 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <usc:Header ID="Header" runat="server" />
-    <div class="row" style="">
-        <div class="col-lg-12" style="">
-            <div class="panel panel-default" style="">
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Goods Transfer Details</b></div>
-                <div class="panel-body" style="">
-                    <div class="row" style="">
-                        <div class="col-lg-12" style="">
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Goods Transfer Details</h1>
+	    </div>
+
+                <div class="panel-body">
+                    <div class="row">
                             <form runat="server" id="form1" method="post">
                             <asp:ScriptManager ID="ScriptManager1" runat="server">
                             </asp:ScriptManager>
-                            <div class="form-group" style="">
+                            
+                        <div class="col-lg-12">
+                        <div class="row">
                                <%-- <label>
                                     Filter By</label>--%>
                                 <asp:DropDownList ID="ddlBranch" CssClass="form-control" Style="width: 150px;" runat="server" Visible="false">
@@ -79,47 +83,52 @@
                                             <asp:ListItem Text="Area" Value="3"></asp:ListItem>
                                             <asp:ListItem Text="City" Value="4"></asp:ListItem>--%>
                                 </asp:DropDownList>
-                                
+                                <div class="col-lg-3">
                                     <label>
                                         Group</label>
                                     <asp:DropDownList ID="ddlcategory" AutoPostBack="true" runat="server" class="form-control"
-                                        Width="150px" OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged">
+                                         OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged">
                                     </asp:DropDownList>
+                                </div>
                                 
-                                <asp:Button ID="btnsearch" runat="server" class="btn btn-success" Text="Search" Style="margin-top: 10px;"
-                                    OnClick="btnsearch_Click" />
-                                <asp:Button ID="btnrefresh" runat="server" class="btn btn-warning" Text="Reset" Style="margin-top: 10px;" />
-                                <asp:LinkButton ID="btnPrint" runat="server" onclick="btnPrint_Click"><asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png"  Width="50px" Height="50px"/></asp:LinkButton>
-                            </div>
-                            <div class="row">
-                                <label class="form-control-label">
+                            <div class="col-lg-3">
+                                <label>
                                     From Date</label>
-                                <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtDate" class="form-control" runat="server"></asp:TextBox>
                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="yyyy-MM-dd" TargetControlID="txtDate"
                                     runat="server" CssClass="cal_Theme1">
                                 </ajaxToolkit:CalendarExtender>
-                                <label class="form-control-label">
+                                </div>
+                                <div class="col-lg-3">
+                                <label>
                                     To Date</label>
-                                <asp:TextBox ID="txtToDate" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtToDate" class="form-control" runat="server"></asp:TextBox>
                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="yyyy-MM-dd" TargetControlID="txtToDate"
                                     runat="server" CssClass="cal_Theme1">
                                 </ajaxToolkit:CalendarExtender>
                             </div>
-                            <div class="table-responsive">
-                                <table>
-                                    <tr>
-                                        <td>
+                            <div class="col-lg-3">
+                            <br />
+                                <asp:Button ID="btnsearch" runat="server" class="btn btn-info pos-btn1" Text="Search" 
+                                    OnClick="btnsearch_Click" />
+                              &nbsp;&nbsp;&nbsp;  <asp:Button ID="btnrefresh" runat="server" class="btn btn-secondary" Text="Reset"  />
+                                &nbsp;&nbsp;&nbsp; <asp:Button ID="button1" runat="server" class="btn btn-secondary" Text="Print"  onclick="btnPrint_Click"/>
+                                <asp:LinkButton ID="btnPrint" runat="server" onclick="btnPrint_Click" Visible="false">
+                                <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png"  Width="50px" Height="50px"/>
+                                </asp:LinkButton>
+                            </div>
+                            </div>
+                            </div>
+                         
+                            
+                        <div class="col-lg-12">
+                            <br />
                                             <label>
-                                                <h3>
                                                     Goods Transfer/Damage/Missing Details Report
-                                                </h3>
                                             </label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
+                                       <div class="table-responsive panel-grid-left">
                                             <asp:GridView ID="gvTransfer" runat="server" EmptyDataText="No Record Found" AutoGenerateColumns="false"
-                                                CssClass="" OnRowCommand="gvTransfer_RowCommand">
+                                                cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" OnRowCommand="gvTransfer_RowCommand">
                                                 <Columns>
                                                     <asp:BoundField HeaderText="DC No" DataField="DC_NO" />
                                                     <asp:BoundField HeaderText="DC_Date" DataField="DC_Date" />
@@ -135,25 +144,20 @@
                                                 <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
                                                 <HeaderStyle BackColor="#428bca" ForeColor="White" HorizontalAlign="Center" />
                                             </asp:GridView>
-                                        </td>
-                                        <td>
+                                      
                                             <asp:GridView ID="grid" runat="server" CssClass="mGrid">
                                             </asp:GridView>
-                                        </td>
-                                    </tr>
-                                </table>
+                                        
                             </div>
+                            </div>
+                            
                             </form>
+                            </div>
                         </div>
-                        <!-- /.col-lg-6 (nested) -->
-                    </div>
-                    <!-- /.row (nested) -->
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
+                      
+    </div>
+    </div>
+    </div>
     </div>
 </body>
 </html>

@@ -123,28 +123,31 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label">Welcome: </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <form runat="server" id="form1">
-    <div class="row">
+
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <div class="col-lg-12" style="margin-top: 6px">
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>User Master</b></div>
-                <div class="panel-body">
-                    <div class="panel panel-default">
+      <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">  
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">User Master
+          <span class="pull-right">
+          <asp:LinkButton ID="btnadd1" runat="server" PostBackUrl="~/Accountsbootstrap/usercreate.aspx">
+                <button type="button" class="btn btn-primary btn-md pos-btn1">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD
+			</button>
+           </asp:LinkButton>
+                </span>
+           </h1>
+	    </div>
+
+
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
-                                    <tr>
-                                        <td>
-                                            <asp:Button ID="btnadd" runat="server" class="btn btn-danger" Text="Add New" PostBackUrl="~/Accountsbootstrap/usercreate.aspx" />
-                                        </td>
-                                    </tr>
+                               
+                                            
+                                      
                                     <tr runat="server" visible="false">
                                         <td>
                                             <div>
@@ -166,27 +169,30 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <asp:GridView ID="gvcust" EmptyDataText="No records Found" runat="server" CssClass="mGrid"
-                                                AutoGenerateColumns="false" OnRowCommand="gvcust_RowCommand" Width="85%">
+                                    <div class="table-responsive panel-grid-left">
+                                            <asp:GridView ID="gvcust" EmptyDataText="No records Found" runat="server" cssClass="table table-striped pos-table"
+                                                AutoGenerateColumns="false" OnRowCommand="gvcust_RowCommand" padding="0" spacing="0" border="0" >
                                                 <Columns>
                                                     <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="login_id" Visible="false">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lbllogin_id" runat="server" CommandArgument='<%#Eval("EmpID") %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:BoundField HeaderText="User Name" DataField="Name" ItemStyle-HorizontalAlign="Center" />
-                                                    <asp:BoundField HeaderText="Mobile No." DataField="Mobile" ItemStyle-HorizontalAlign="Center" />
-                                                    <asp:BoundField HeaderText="User Bill Type" DataField="BillType" ItemStyle-HorizontalAlign="Center" />
-                                                    <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Edit">
+                                                    <asp:BoundField HeaderText="User Name" DataField="Name"/>
+                                                    <asp:BoundField HeaderText="Mobile No." DataField="Mobile"  />
+                                                    <asp:BoundField HeaderText="User Bill Type" DataField="BillType"  />
+                                                    <asp:TemplateField  HeaderText="Edit">
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btnedit" runat="server" CommandArgument='<%#Eval("EmpID") %>'
                                                                 CommandName="edit">
-                                                                <asp:Image ID="img" runat="server" ImageUrl="~/images/edit.png"  width="55px" /></asp:LinkButton>
+                                                                <asp:Image ID="img" runat="server" ImageUrl="~/images/edit.png"  width="55px" Visible="false" />
+                                                                <button type="button" class="btn btn-warning btn-md">
+						                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					                                </button>
+                                                    </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Delete" Visible="false">
+                                                    <asp:TemplateField  HeaderText="Delete" Visible="false">
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btndelete" runat="server" CommandArgument='<%#Eval("EmpID") %>'
                                                                 CommandName="delete" OnClientClick="alertMessage()">
@@ -205,24 +211,19 @@
                                                     </asp:TemplateField>
                                                 </Columns>
                                             </asp:GridView>
-                                        </td>
-                                    </tr>
-                                </table>
+                                     </div>   
                             </div>
                         </div>
-                    </div>
-                </div>
-                <!-- /.col-lg-6 (nested) -->
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
+                    
+             
+    </div>
+    </div>
+    </div>
     </div>
     <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
     <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
     <script type="text/javascript">        $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
-    </div>
+
     <asp:Panel class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none"
         runat="server">
         <div class="popup_Container">

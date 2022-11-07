@@ -47,25 +47,24 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
    
-    <!-- /.row -->
-  
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-            <div class="panel-heading " style="background-color:#428bca; color:White" ><b>Sales Conversion Entry</b></div>
-                <div class="panel-body">
-                    <div class="row">
+    <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+     <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Sales Conversion Entry</h1>
+	    </div>
+
                         <form id="Form1" runat="server">
                         <asp:UpdatePanel ID="Updatepanel1" runat="server">
                         <ContentTemplate>
-                        
-                       
                         <asp:ScriptManager ID="scriptmanager" runat="server">
                         </asp:ScriptManager>
-                        <div class="col-lg-12" align="center">
-                         <div class="col-lg-2">
-                        </div>
-                        <div class="col-lg-3" style="background-color:#86c3d1">
-                            <div class="form-group">
+
+                        <div class="col-lg-12">
+                         
+                        <div class="col-lg-3">
+                            <div class="list-group">
                                 <label>
                                    Order Date</label>
                                 <asp:TextBox CssClass="form-control" ID="txtorderdate" 
@@ -75,8 +74,7 @@
                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txtorderdate" runat="server" Format="dd/MM/yyyy"
                                     CssClass="cal_Theme1">
                                 </ajaxToolkit:CalendarExtender>
-                            </div>
-                            <div class="form-group">
+                            <br />
                                 <label>
                                     Order.No</label>
                                 <asp:DropDownList ID="ddlorderno"  AutoPostBack="true" CssClass="form-control" 
@@ -84,37 +82,34 @@
                                     onselectedindexchanged="ddlorderno_SelectedIndexChanged">
                                 
                                 </asp:DropDownList>
-                            </div>
-                            <div class="form-group">
+                            <br />
                             <label>Paymode Type:</label>
+                            <br />
                             <asp:Label ID="orderpay" runat="server" ></asp:Label>
-                            </div>
-                            <div class="form-group">
+                           <br />
                                 <label>
                                     Amount</label>
                                 <asp:TextBox CssClass="form-control" Enabled="false" ID="txtOrderAmt" 
                                     runat="server"></asp:TextBox>
-                            </div>
-                            <div class="form-group">
+                            <br />
                                 <label>
                                     Conversion type</label>
-                                <asp:RadioButtonList ID="RadioButtonList1" runat="server">
+                                <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatColumns="3">
                                    
                                       <asp:ListItem Text="Card" Value="4"></asp:ListItem>
                                       <asp:ListItem Text="Cash" Value="1"></asp:ListItem>
                                       <asp:ListItem Text="Bank" Value="11"></asp:ListItem>
                                
                                 </asp:RadioButtonList>
-                            </div>
-                            <asp:Button ID="Button1" runat="server" class="btn btn-success" Text="Save" 
+                            <br />
+                            <asp:Button ID="Button1" runat="server" class="btn btn-lg btn-primary pos-btn1" Text="Save" 
                                 onclick="Button1_Click" />
-                            <asp:Button ID="Button2" class="btn btn-warning" runat="server" Text="Reset" 
+                            <asp:Button ID="Button2" class="btn btn-lg btn-link" runat="server" Text="Reset" 
                                 onclick="Button2_Click" />
                         </div>
-                        <div class="col-lg-2">
                         </div>
-                        <div class="col-lg-3" style="background-color:#ffcb98">
-                            <div class="form-group">
+                        <div class="col-lg-3" >
+                            <div class="list-group">
                                 <label>
                                     Date</label>
                                 <asp:TextBox CssClass="form-control" ID="txtdate" OnTextChanged="txtdate_textchanged"
@@ -123,39 +118,34 @@
                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtdate" runat="server" Format="dd/MM/yyyy"
                                     CssClass="cal_Theme1">
                                 </ajaxToolkit:CalendarExtender>
-                            </div>
-                            <div class="form-group">
+                           <br />
                                 <label>
                                     Bill.No</label>
                                 <asp:DropDownList ID="ddlbillno" OnSelectedIndexChanged="ddlbillno_selcted" AutoPostBack="true" CssClass="form-control" Width="100%" runat="server">
                                 
                                 </asp:DropDownList>
-                            </div>
-                            <div class="form-group">
-                            <label>Paymode Type:</label>
+                            <br />
+                            <label>Paymode Type:</label><br />
                             <asp:Label ID="paylabel" runat="server" ></asp:Label>
-                            </div>
-                            <div class="form-group">
+                           <br />
                                 <label>
                                     Amount</label>
                                 <asp:TextBox CssClass="form-control" Enabled="false" ID="txtamount" runat="server">
                                 </asp:TextBox>
-                            </div>
-                            <div class="form-group">
+                            <br />
                                 <label>
                                     Conversion type</label>
-                                <asp:RadioButtonList ID="checkconversion" runat="server">
+                                <asp:RadioButtonList ID="checkconversion" runat="server" RepeatColumns="3">
                                    
                                       <asp:ListItem Text="Card" Value="4"></asp:ListItem>
                                       <asp:ListItem Text="Cash" Value="1"></asp:ListItem>
                                       <asp:ListItem Text="Bank" Value="11"></asp:ListItem>
                                
                                 </asp:RadioButtonList>
-                            </div>
-                            <asp:Button ID="btnsave" runat="server" class="btn btn-success" Text="Save" OnClick="btnsave_Click" />
-                            <asp:Button ID="btnreset" class="btn btn-warning" runat="server" Text="Reset" OnClick="btnreset_Click"/>
+                            <br />
+                            <asp:Button ID="btnsave" runat="server" class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="btnsave_Click" />
+                            <asp:Button ID="btnreset" class="btn btn-lg btn-link" runat="server" Text="Reset" OnClick="btnreset_Click"/>
                         </div>
-                         <div class="col-lg-2">
                         </div>
                         </div>
                         
@@ -163,19 +153,10 @@
                          </ContentTemplate>
                         </asp:UpdatePanel>
                         </form>
-                        <!-- /.col-lg-6 (nested) -->
-                        <!-- /.col-lg-6 (nested) -->
-                    </div>
-                    <!-- /.row (nested) -->
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
-   
-    <!-- /.row -->
-    <!-- /#page-wrapper -->
-    <!-- jQuery -->
+        
+     </div>
+     </div>
+     </div>
+     </div>  
 </body>
 </html>

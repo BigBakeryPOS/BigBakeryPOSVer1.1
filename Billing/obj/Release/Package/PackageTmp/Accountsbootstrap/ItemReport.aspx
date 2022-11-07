@@ -89,107 +89,103 @@
 
                     <form id="Form1" runat="server">
                      <asp:scriptmanager id="ScriptManager1" runat="server">
-</asp:scriptmanager>
-                    <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Item Report</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-         <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        
+        </asp:scriptmanager>
+
+        <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+                   <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Item Report</h1>
+	    </div>
+        
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-12">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                          
-			<label>Filter By :</label>
-				
-				
-											
-                                           <asp:DropDownList runat="server" ID="ddlcategory" CssClass="form-control"  style="width: 120px">
+                                 <div class="col-lg-3">
+			                        <label>Filter By :</label>
+                                           <asp:DropDownList runat="server" ID="ddlcategory" CssClass="form-control">
                                       <asp:ListItem Text="Select by" Value="0"></asp:ListItem>
                                       <asp:ListItem Text="Category" Value="1"></asp:ListItem>
                                       <asp:ListItem Text="Description" Value="2"></asp:ListItem>
                                       <asp:ListItem Text="S.No" Value="3"></asp:ListItem>
                                           </asp:DropDownList>
-                                           <asp:TextBox CssClass="form-control" ID="txtdescription" runat="server" MaxLength="50" style="width: 150px;margin-left: 130px;margin-top: -35px;" ></asp:TextBox>
-                                        <asp:Label ID="lblerror" runat="server" style="color:Red"></asp:Label><br />
+                                          </div>
+                                          <div class="col-lg-3">
+                                          <br />
+                                           <asp:TextBox CssClass="form-control" ID="txtdescription" runat="server" MaxLength="50" ></asp:TextBox>
+                                        <asp:Label ID="lblerror" runat="server" ></asp:Label><br />
                                         </div>
                                         
-                                        <div class="form-group">
-                                            
-                                            
-                                         <asp:Button ID="Button1" runat="server" class="btn btn-success" Text="Search" 
-                                                style="margin-top:10px; " onclick="Button1_Click"     />
-                                                <asp:Button ID="Button2" runat="server" class="btn btn-warning" 
-                                                Text="Reset" style="margin-top:8px;" onclick="Button2_Click" />
                                         
-                                        </div>
+                                           <div class="col-lg-6">  
+                                           <br />
+                                         <asp:Button ID="Button1" runat="server" class="btn btn-info pos-btn1" Text="Search" 
+                                               onclick="Button1_Click"     />
+                                               &nbsp;&nbsp; <asp:Button ID="Button2" runat="server" class="btn btn-secondary" 
+                                                Text="Reset" onclick="Button2_Click" />
+                                     </div>
                                         
-                                      
-                                         <div style="color: Green; font-weight: bold">
-            <br />
-           
-        </div>
-										<div class="table-responsive" >
-                                        
-                                <table class="table table-bordered table-striped">
-                                <tr>
-                                <td>
-                                <asp:GridView ID="gvcategory" runat="server" CssClass="myGridStyle"   
-                                        AutoGenerateColumns="false" onrowcommand="gvcategory_RowCommand">
+                                       </div>
+                                       <div class="row">
+                                      <div class="col-md-6">
+									<div class="table-responsive panel-grid-left">
+                                    
+                                <asp:GridView ID="gvcategory" runat="server" cssClass="table table-striped pos-table"   
+                                        AutoGenerateColumns="false" onrowcommand="gvcategory_RowCommand" padding="0" spacing="0" border="0">
                                 <Columns>
                                 <asp:BoundField HeaderText="Category" DataField="category" />
                                 <asp:TemplateField HeaderText="View Details">
                                 <ItemTemplate>
-     <asp:LinkButton ID="btnedit" runat="server" CommandArgument='<%#Eval("category") %>' CommandName="view"><asp:Image ID="img" runat="server" ImageUrl="~/images/info_button.png" /></asp:LinkButton>
+     <asp:LinkButton ID="btnedit" runat="server" CommandArgument='<%#Eval("category") %>' CommandName="view">
+     <asp:Image ID="img" runat="server" ImageUrl="~/images/info_button.png" visible="false"/>
+                                            <button type="button" class="btn btn-primary btn-md">
+						                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+					                            </button>
+                                                </asp:LinkButton>
       
      </ItemTemplate>
                                 </asp:TemplateField>
                                 </Columns>
                                 </asp:GridView>
-
-                                </td>
-                                <td colspan="4" align="left">
-                                <asp:GridView ID="gridview" Visible="false" runat="server" AllowPaging="true" PageSize="10"   Width="100%" 
+                                </div>
+                             </div>
+                             <div class="col-md-6">
+									<div class="table-responsive panel-grid-left">
+                                    
+                                <asp:GridView ID="gridview" Visible="false" runat="server" AllowPaging="true" PageSize="10"   
                                          AutoGenerateColumns="false"  
-                                        AllowSorting="true" CssClass="myGridStyle"  
+                                        AllowSorting="true" cssClass="table table-striped pos-table"  padding="0" spacing="0" border="0"
                                         onsorting="gridview_Sorting" 
                                         onpageindexchanging="gridview_PageIndexChanging" >
-                                       
-                                 <HeaderStyle BackColor="#3366FF" />
-                                <PagerSettings FirstPageText="1" Mode="Numeric" />
+                                     <PagerStyle cssclass="pos-paging" />  
+                                <%-- <HeaderStyle BackColor="#3366FF" />
+                                <PagerSettings FirstPageText="1" Mode="Numeric" />--%>
                                 <Columns>
                                 <asp:BoundField HeaderText="Category User ID" DataField="CategoryuserID"  Visible="false"/>
                                 
                                     <asp:BoundField HeaderText="Category ID" DataField="CategoryID" Visible="false" SortExpression="Category ID" />
-                                    <asp:BoundField HeaderText="Category" DataField="category" SortExpression="category" />
-                                    <asp:BoundField HeaderText="Item" DataField="Definition"  SortExpression="Definition" />
+                                    <asp:BoundField HeaderText="Category" DataField="category"  />
+                                    <asp:BoundField HeaderText="Item" DataField="Definition"   />
                                       <asp:BoundField HeaderText="Serial" DataField="Serial" />
                                     <asp:BoundField HeaderText="Serial No" DataField="Serial_No" />
                                       <asp:BoundField HeaderText="Size" DataField="Size" />
                                      <asp:BoundField HeaderText="Description" DataField="CategoryuserID"  SortExpression="Definition" Visible="false" />
                              
-    </Columns><FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-   <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+    </Columns><%--<FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+   <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                                 </asp:GridView>
-                                </td>
-                                </tr>
-                                
-                                </table>
-                                
+                               </div>
                                 </div>
-									 </div>	
+									
 									</div>
-                                    </div></div></div></div>	
-                               
-                                 </div>
-                                <asp:panel class="popupConfirmation" id="DivDeleteConfirmation" 
-	style="display: none" runat="server">
+                                   
+                                    </div>
+                                
+           </div>
+           </div>
+           </div>
+           </div>                     
+        <asp:panel class="popupConfirmation" id="DivDeleteConfirmation" style="display: none" runat="server">
     <div class="popup_Container">
         <div class="popup_Titlebar" id="PopupHeader">
             <div class="TitlebarLeft">

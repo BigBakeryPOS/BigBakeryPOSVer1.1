@@ -19,6 +19,7 @@
     <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet" />
+
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
    <!-- Bootstrap Core CSS -->
@@ -65,7 +66,7 @@
 
     </script>
 
-      <style type="text/css">
+      <%--<style type="text/css">
         .button {
     background-color: #785a39;
     border: 1px;
@@ -174,19 +175,10 @@
         border: 1px solid #5C5C5C;
     }
     
-    .myfont
-{
-font-family: Calibri;
-font-size: 17px;
-font-style: normal;
-font-variant: normal;
-font-weight: 400;
-line-height: 18.7px;
-
-}
     
     
-</style>
+    
+</style>--%>
 
    <script type="text/javascript">
 
@@ -194,38 +186,36 @@ line-height: 18.7px;
            alert('Are You Sure, You want to cancel This Customer sales!');
        }
     </script>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
     
 </head> 
-<body  >
+<body>
              <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label"   Visible="false">  </asp:Label>
              <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label"  Visible="false"> </asp:Label>
              <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
    <usc:Header ID="Header" runat="server" />
-
-    <div class="col-lg-12">
-        
-            <div class="panel panel-default">
-<%--            <blink> <label  style="color:Green; font-size:12px">Please Fill Item Name and Relevant Information. Note: Please Enter Rate Without Tax Because it's Tax Inclusive </label></blink>--%>
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Table Details</b>  </div>
-                <div class="panel-body">
-   
-
-
-          <div class="row" align="center"  >
-                <div class="col-lg-12"  >
-                    <div class="panel panel-default"  >
-                        
-                        <div class="panel-body"  >
-                          
+   <div class="clearfix"></div>
+   <div class="container-fluid">
+       <div class="row panel panel-custom1">
+        <div class="panel-heading">
+            <h3 class="panel-title">Table Details</h3>
+        </div>
+        <div class="panel-body panel-full-scroll">
+            <div class="row">
+                <div class="col-lg-12 text-center"  >
+                                               
                                     <form runat="server" id="form1" method="post">
-                                     <asp:Button ID="btnclear" runat="server" Text="Print Clear" OnClick="btlprintClear" BackColor="#993333" class="btn btn-success"   />
-                                      <div>
-                    <label>Billing Type</label>
-                    <asp:RadioButtonList ID="radtypestatus" runat="server" RepeatColumns="2" RepeatDirection="Horizontal"  >
+                                     <asp:Button ID="btnclear" runat="server" Text="Print Clear" OnClick="btlprintClear"  class="btn btn-md btn-success"   />
+                <div class="row">
+                    <div class="col-md-12" style="padding: 20px 0;">
+                    <label>Billing Type: </label>
+                    <asp:RadioButtonList ID="radtypestatus" runat="server" RepeatColumns="2" RepeatDirection="Horizontal" RepeatLayout="Flow" >
                     <asp:ListItem Text="Billing" Value="1" Selected="True" ></asp:ListItem>
                     <asp:ListItem Text="Cancel" Value="2" ></asp:ListItem></asp:RadioButtonList>
                     </div>
+                </div>
                                     <asp:UpdatePanel ID="updatepanel" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
                                       <asp:ScriptManager ID="script" runat="server"  EnablePartialRendering="true"></asp:ScriptManager>
@@ -245,16 +235,14 @@ line-height: 18.7px;
                                         <div class="col-lg-12">
                                         <div class="col-lg-12">
                                         <div style="background-color:#ffffff" align="center">
-                                    <asp:DataList ID="datkot" runat="server" CssClass="table"   ScrollBars="auto" Caption="LIST OF TABLES"
-                                        RepeatColumns="4" RepeatDirection="Horizontal" RepeatLayout="Table" 
-                                        Width="100%"   Height="100%">
+                                    <asp:DataList ID="datkot" runat="server" CssClass="table"   ScrollBars="auto"  
+                                        RepeatColumns="4" RepeatDirection="Horizontal" RepeatLayout="Table" Width="100%" ItemStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
-                                            <asp:Button ID="Button2" Font-Bold="true" Style="white-space: normal" runat="server"
-                                                Width="100px" Text='<%#Eval("Tablename")%>' CommandName='<%#Eval("Tablename")%>' CssClass="btn"
-                                                CommandArgument='<%#Eval("TableId") %>  ' Font-Size="14px" Height="40px"
-                                                BackColor="#428bca" ForeColor="White" OnClick="Button2_Click" />
+                                            <asp:Button ID="Button2" Font-Bold="true" style="white-space: normal" runat="server"
+                                                Width="100px" Text='<%#Eval("Tablename")%>' CommandName='<%#Eval("Tablename")%>' CssClass="btn btn-lg pos-btn1"
+                                                CommandArgument='<%#Eval("TableId") %>  '  OnClick="Button2_Click" />
                                                 
-                                        </ItemTemplate>
+                                        </ItemTemplate> 
                                     </asp:DataList>
                                 </div>
                                         </div>
@@ -492,20 +480,20 @@ line-height: 18.7px;
 
                                    
                                     </form>
-                                </div>
-                                
-                                <!-- /.col-lg-6 (nested) -->
-                            </div>
+                                 
+                             
                             <!-- /.row (nested) -->
-                        </div>
+                </div>
                         <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    </div>
-                    </div>
-                    </div>
-                    
-          
+            </div>
+        
+        
+        </div>
+
+
+        </div>  
+    
+     </div>     
 
 
 </body>

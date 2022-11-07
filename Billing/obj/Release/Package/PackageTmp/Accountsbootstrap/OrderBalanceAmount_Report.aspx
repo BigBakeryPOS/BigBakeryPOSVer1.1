@@ -200,34 +200,30 @@
 <body>
     <form id="form1" runat="server">
     <usc:Header ID="Header" runat="server" />
-    <div class="panel-body">
-        <div class="row" align="center">
-            .
-            <div class="col-lg-10" align="center" style="margin-left: 40px">
-                <div class="col-lg-12" style="margin-top: 6px">
-                    <h1 class="page-header" style="text-align: center; color: #fe0002; font-size: 20px;
-                        font-weight: bold">
-                        Order Balance Report</h1>
-                </div>
-                <div align="center" style="margin-top: 40px; margin-left: -80px">
-                    <div class="col-lg-12">
-                        <div class="col-lg-12">
+     <div class="container-fluid">
+	<div class="row">
+    <div class="col-lg-12">
+    <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Order Balance Report</h1>
+	    </div>
+        <div class="panel-body">
+                    <div class="row">
                             <div class="col-lg-3">
                                 <label>
                                     Select date</label>
                                 <asp:TextBox runat="server" Visible="false" ID="txtCustomerName">
                                 </asp:TextBox>
-                                <asp:TextBox runat="server" ID="txtfromdate" CssClass="form-control" Width="100px"
+                                <asp:TextBox runat="server" ID="txtfromdate" CssClass="form-control" 
                                     AutoPostBack="true" OnTextChanged="txttodate_TextChanged">
                                 </asp:TextBox>
                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="yyyy-MM-dd" TargetControlID="txtfromdate"
                                     runat="server" CssClass="cal_Theme1">
                                 </ajaxToolkit:CalendarExtender>
-                                <asp:Button ID="btnser" runat="server" Text="Generate Report" CssClass="btn btn-success"
-                                    Visible="true" OnClick="btnser_Click" />
                                 <asp:ScriptManager ID="scr1" runat="server">
                                 </asp:ScriptManager>
                             </div>
+                            
                             <div class="col-lg-3">
                                 <div id="Div1" runat="server">
                                     <label>
@@ -236,12 +232,16 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
-                        </div>
+                       <div class="col-lg-3">
+                       <br />
+                            <asp:Button ID="btnser" runat="server" Text="Generate Report" CssClass="btn btn-success pos-btn1"
+                                    Visible="true" OnClick="btnser_Click" />
+                            </div>
                         <div class="col-lg-12">
-                            <div>
+                            <div class="table-responsive panel-grid-left">
                                 <asp:GridView ID="gvReport" EmptyDataText="Sorry!! No Records Found" GridLines="Both"
-                                    CellPadding="4" ForeColor="#333333" runat="server" AutoGenerateColumns="false"
-                                    ShowFooter="True" OnRowDataBound="gvreport_RowDataBound" Font-Size="Small">
+                                   cssClass="table table-striped pos-table" runat="server" AutoGenerateColumns="false"
+                                    ShowFooter="True" OnRowDataBound="gvreport_RowDataBound" Font-Size="Small"  padding="0" spacing="0" border="0">
                                     <Columns>
                                         <asp:TemplateField HeaderText="S No.">
                                             <ItemTemplate>
@@ -253,29 +253,31 @@
                                         <asp:BoundField HeaderText="ORDER NO" DataField="OrderNo" SortExpression="OrderNo" />
                                         <asp:BoundField HeaderText="CUSTOMER NAME" DataField="CustomerName" SortExpression="CustomerName" />
                                         <asp:BoundField HeaderText="TOTAL AMOUNT" DataField="Total" SortExpression="Total"
-                                            DataFormatString="{0:###,##0.00}" ItemStyle-HorizontalAlign="Right" />
+                                            DataFormatString="{0:###,##0.00}" />
                                         <asp:BoundField HeaderText="ADVANCE" DataField="Advance" SortExpression="Advance"
-                                            DataFormatString="{0:###,##0.00}" ItemStyle-HorizontalAlign="Right" />
+                                            DataFormatString="{0:###,##0.00}" />
                                         <asp:BoundField HeaderText="BALANCE" DataField="Balance" SortExpression="Balance"
-                                            DataFormatString="{0:###,##0.00}" ItemStyle-HorizontalAlign="Right" />
+                                            DataFormatString="{0:###,##0.00}"  />
                                     </Columns>
-                                    <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+                                   <%-- <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
                                     <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" HorizontalAlign="Right" />
-                                    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" Font-Names="Comic Sans MS" />
+                                    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" Font-Names="Comic Sans MS" />--%>
                                 </asp:GridView>
-                                <br />
-                                <br />
-                                <br />
                                 <div class="col-lg-12" id="divtot" runat="server" visible="false">
                                     Total balance Amount
                                     <asp:Label ID="Lbltotal" runat="server" Font-Bold="true"></asp:Label>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                   
+               
+          </div>
+          </div>
+        
+    </div>
+    </div>
+    </div>
+    </div>
     </form>
 </body>
 </html>

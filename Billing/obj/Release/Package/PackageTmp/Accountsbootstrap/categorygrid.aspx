@@ -73,6 +73,7 @@
     <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet" />
+    <link href="../css/Pos_style.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -90,40 +91,51 @@
     <form id="Form1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+    <div class="container-fluid">
+	<div class="row">
     <div class="col-lg-12">
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Category Details</b></div>
+        <div class="col-lg-8">
+            <div class="row panel-custom1">
+               <div class="panel-header">
+          <h1 class="page-header">Master Category</h1>
+	    </div>
                 <div class="panel-body">
-                    <div class="col-lg-12">
-                        <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-4">
+                        <div class="form-group has-feedback">
                             <asp:TextBox CssClass="form-control" ID="txtsearch" placeholder="Search Category.."
-                                onkeyup="Search_Gridview(this, 'gridview')" runat="server" MaxLength="50" Width="150px"></asp:TextBox>
+                                onkeyup="Search_Gridview(this, 'gridview')" runat="server" MaxLength="50">
+                                </asp:TextBox>
+                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
                             <asp:Label ID="lblerror" runat="server" Style="color: Red"></asp:Label>
+                          </div>
                         </div>
-                        <div class="col-lg-6">
-                            <asp:Button ID="btnresret" runat="server" class="btn btn-warning" Text="Reset" OnClick="Btn_Reset"
-                                Width="100px" />
+                        <div class="col-lg-3">
+                            <asp:Button ID="btnresret" runat="server" class="btn btn-secondary" Text="Reset" OnClick="Btn_Reset"
+                                Width="150px" />
                             <%-- <asp:DropDownList ID="drptype" runat="server" Visible="false" CssClass="form-control" >
                                         <asp:ListItem Text="Fetching Old/New Category" Value="1" Selected="True" ></asp:ListItem>
                                         <asp:ListItem Text="Fetching New Category" Value="2" ></asp:ListItem>
                                         </asp:DropDownList>--%>
-                            <asp:Button ID="btnaddmargin" runat="server" class="btn btn-warning" Text="Fetching Margin"
-                                OnClick="Margin_Click" Width="110px" />
+                        </div>
+
+                        <div class="col-lg-3">
+                            <asp:Button ID="btnaddmargin" runat="server" class="btn btn-info pos-btn1" Text="Fetching Margin"
+                                OnClick="Margin_Click" Width="150px" />
                             <asp:Button ID="Button1" runat="server" class="btn btn-warning" Text="Sync.category"
-                                OnClick="btnsyncclick_OnClick" Visible="false" Width="150px" /></div>
-                    </div>
+                                OnClick="btnsyncclick_OnClick" Visible="false" Width="150px" />
+                                
+                       </div>
+                    
                     <div class="col-lg-12">
-                        <br />
-                        <div style="height: 350px; overflow: scroll">
-                            <asp:GridView ID="gridview" runat="server" AllowPaging="false" AutoGenerateColumns="false"
-                                Width="100%" Font-Names="Calibri" AllowSorting="true" OnRowCommand="gvcat_RowCommand"
-                                OnSorting="gridview_Sorting" OnRowDataBound="gridview_OnRowDataBound" OnRowEditing="gridview_RowEditing">
-                                <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
+                         <div class="table-responsive panel-grid-left">
+                            <asp:GridView ID="gridview" runat="server" AllowPaging="false" AutoGenerateColumns="false" cssClass="table table-striped pos-table"
+                                 AllowSorting="true" OnRowCommand="gvcat_RowCommand"
+                                OnSorting="gridview_Sorting" OnRowDataBound="gridview_OnRowDataBound" OnRowEditing="gridview_RowEditing" padding="0" spacing="0" border="0">
+                                <%--<PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
                                     NextPageText="Next" PreviousPageText="Previous" />
                                 <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                    HorizontalAlign="Center" ForeColor="White" />
+                                    HorizontalAlign="Center" ForeColor="White" />--%>
                                 <Columns>
                                     <asp:BoundField HeaderText="Category Name" DataField="category" />
                                     <asp:BoundField HeaderText="Print Category Name" DataField="Printcategory" />
@@ -135,18 +147,22 @@
                                              
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Edit">
+                                    <asp:TemplateField HeaderText="Edit" ItemStyle-Width="60px">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="btnedit" ForeColor="White" CommandArgument='<%#Eval("CategoryID") %>'
-                                                CommandName="Edit" runat="server">
-                                                <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server" Width="55px" /></asp:LinkButton>
+                                                CommandName="Edit" cssclass="btn btn-warning btn-md" runat="server">
+                                                <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server" Width="55px" visible="false"/>
+                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                </asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Delete">
+                                    <asp:TemplateField HeaderText="Delete" ItemStyle-Width="60px">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="btndel" CommandArgument='<%#Eval("CategoryID") %>' CommandName="Del"
+                                            <asp:LinkButton ID="btndel" CommandArgument='<%#Eval("CategoryID") %>' CommandName="Del" cssclass="btn btn-danger btn-md"
                                                 runat="server">
-                                                <asp:Image ID="Image1" ImageUrl="~/images/delete.png" runat="server" /></asp:LinkButton>
+                                                <asp:Image ID="Image1" ImageUrl="~/images/delete.png" runat="server" visible="false"/>
+                                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                                </asp:LinkButton>
                                             <asp:ImageButton ID="imgdisable1321" ImageUrl="~/images/delete.png" runat="server"
                                                 Visible="false" Enabled="false" ToolTip="Not Allow To Delete" />
                                             <ajaxToolkit:ModalPopupExtender ID="lnkDelete_ModalPopupExtender" runat="server"
@@ -163,87 +179,75 @@
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <blink> <label  style="color:Green; font-size:12px">Need To Add Category Name and Code</label></blink>
-                <div class="panel-heading " style="background-color: #428bca; color: White">
-                    <b>Category/Group Create</b></div>
-                <div class="panel-body">
-                    <div class="col-lg-12">
-                        <div class="col-lg-7">
-                            <div class="form-group">
+        
+        <div class="col-lg-4">
+            <div class="panel panel-custom1">
+                <div class="panel-header">
+				<h1 class="page-header">Add Category/ Group</h1>
+		        </div>
+                <center><blink> <label  style="color:#007aff">Need To Add Category Name and Code</label></blink></center>
+                    <div class="panel-body panel-form-right">
+                          <div class="list-group">
                                 <asp:TextBox CssClass="form-control" ID="txtcategoryId" runat="server" Visible="false"></asp:TextBox>
-                            </div>
-                            <div class="form-group">
-                                <label>
-                                    Category/Group Name</label>
-                                <asp:ListBox Visible="false" Style="height: 100px" runat="server" DataValueField="CategoryID"
+                            
+                                <label>Category/Group Name</label>
+                                <asp:ListBox Visible="false"  runat="server" DataValueField="CategoryID"
                                     ID="listcategory" CssClass="form-control" AutoPostBack="true"></asp:ListBox>
                                 <asp:TextBox CssClass="form-control" ID="txtcategory" runat="server" placeholder="To Add New Category"
-                                    Style="text-transform: capitalize" Width="200px"></asp:TextBox>
+                                    Style="text-transform: capitalize"></asp:TextBox>
                                 <asp:RequiredFieldValidator runat="server" ID="txtcat" ControlToValidate="txtcategory"
                                     ValidationGroup="val1" ErrorMessage="Please enter your Category!" Style="color: Red" />
-                            </div>
-                            <div class="form-group">
-                                <label>
-                                    Category/Group Code</label>
-                                <asp:TextBox CssClass="form-control" ID="txtcatcode" runat="server" placeholder="Enter Category Code"
-                                    Width="200px"></asp:TextBox>
+                            <br />
+                                <label>Category/Group Code</label>
+                                <asp:TextBox CssClass="form-control" ID="txtcatcode" runat="server" placeholder="Enter Category Code"></asp:TextBox>
                                 <asp:RequiredFieldValidator runat="server" ID="rvcatcode" ControlToValidate="txtcatcode"
                                     ValidationGroup="val1" ErrorMessage="Please enter your Category!" Style="color: Red" />
                                 <label id="lblCatID" visible="false" runat="server">
                                 </label>
-                            </div>
-                            <div class="form-group">
+                            <br />
                                 <label>
                                     Print Category/Group Name</label>
                                 <asp:TextBox CssClass="form-control" ID="txtprintcat" runat="server" placeholder="To Add New Print Category"
-                                    Style="text-transform: capitalize" Width="200px"></asp:TextBox>
+                                    Style="text-transform: capitalize"></asp:TextBox>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtprintcat"
                                     ValidationGroup="val1" ErrorMessage="Please enter your Category!" Style="color: Red" />
-                            </div>
-                            <div class="form-group">
+                            <br />
                                 <label>
                                     Production/Icing</label>
-                                <asp:RadioButtonList ID="rdbtype" runat="server" RepeatColumns="2" Width="150px">
+                                <asp:RadioButtonList ID="rdbtype" runat="server" RepeatColumns="2">
                                     <asp:ListItem Text="Production" Value="P"></asp:ListItem>
                                     <asp:ListItem Text="Icing" Value="I"></asp:ListItem>
                                 </asp:RadioButtonList>
-                            </div>
-                            <div class="form-group">
-                                <label>
-                                    Show Request</label>
-                                <asp:CheckBox ID="chkrequestcateory" runat="server" />
-                            </div>
-                            <div class="form-group">
-                                <label>
-                                    Show Production</label>
-                                <asp:CheckBox ID="chkproductioncategory" runat="server" />
-                            </div>
-                            <div class="form-group">
-                                <label>
-                                    Show Manual GRN</label>
-                                <asp:CheckBox ID="chkmanualgrn" runat="server" />
-                            </div>
-                            <div class="form-group">
-                                <label>
-                                    Category Type</label>
+                            <br />
+                                <asp:CheckBox ID="chkrequestcateory" runat="server" Width="20px" />
+                                <label>Show Request</label>
+                                <br />
+                                 <asp:CheckBox ID="chkproductioncategory" runat="server" Width="20px"/>
+                                <label>Show Production</label>
+                                <br />
+                                <asp:CheckBox ID="chkmanualgrn" runat="server" Width="20px" />
+                                <label>Show Manual GRN</label>
+                                
+                            <br /><br />
+                                <label>Category Type</label>
                                 <asp:DropDownList ID="drpcattype" runat="server" CssClass="form-control">
                                     <asp:ListItem Text="Normal Category" Value="N" Selected="True"></asp:ListItem>
                                     <asp:ListItem Text="Combo Category" Value="C"></asp:ListItem>
                                     <asp:ListItem Text="Happy Hours Category" Value="H"></asp:ListItem>
                                 </asp:DropDownList>
-                            </div>
-                            <div>
+                          
+                            <br />
                                 <label>
                                     Image Upload</label>
                                 <asp:UpdatePanel ID="UpdatePanel" runat="server">
                                     <ContentTemplate>
-                                        <asp:FileUpload ID="fp_Upload" runat="server" />
-                                        <asp:Button ID="btnUpload123" runat="server" Text="Upload" CssClass="btn btn-primary"
-                                            OnClick="btnUpload_Clickimg" Width="100px" /><asp:Image ID="img_Photo" runat="server"
+                                        <asp:FileUpload ID="fp_Upload" runat="server" style="display:inline" width="55%"/>
+                                        <asp:Button ID="btnUpload123" runat="server" Text="Upload" CssClass="btn btn-info pos-btn1 "
+                                            OnClick="btnUpload_Clickimg"  />
+                                            <asp:Image ID="img_Photo" runat="server"
                                                 Width="5pc" BorderColor="1" />
                                         <asp:Label ID="lblFile_Path" runat="server" Visible="false"></asp:Label>
                                     </ContentTemplate>
@@ -252,44 +256,46 @@
                                     </Triggers>
                                 </asp:UpdatePanel>
                                 <br />
+                             
+
                             </div>
-                            <asp:Button ID="btnSave" runat="server" class="btn btn-success" Text="Save" OnClick="btnSave_Click"
-                                ValidationGroup="val1" AccessKey="s" Width="110px" />
-                            <label>
-                            </label>
-                            <asp:Button ID="btnexit" runat="server" class="btn btn-warning" Text="Exit" OnClick="Exit_Click"
-                                Width="110px" />
-                        </div>
-                        <div class="col-lg-3">
-                            <asp:GridView ID="gvbranch" runat="server" AutoGenerateColumns="false" Font-Names="Calibri"
-                                AllowSorting="true">
-                                <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                    HorizontalAlign="Center" ForeColor="White" />
+
+
+                            <asp:GridView ID="gvbranch" runat="server" AutoGenerateColumns="false" AllowSorting="true" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" >
+                                <%--<HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                    HorizontalAlign="Center" ForeColor="White" />--%>
                                 <Columns>
 
-                                   
-
-                                    <asp:TemplateField HeaderText="Edit">
+                                   <asp:TemplateField HeaderText="Branch" ItemStyle-Width="300px">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblBranch" Text='<%#Eval("BranchName") %>' runat="server" Width="80px"></asp:Label>
+                                            <asp:Label ID="lblBranch" Text='<%#Eval("BranchName") %>' runat="server"></asp:Label>
                                             <asp:HiddenField ID="hidBranchId" runat="server" Value='<%#Eval("BranchId") %>' />
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Margin">
+                                    <asp:TemplateField HeaderText="Margin" ItemStyle-Width="300px">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtmargin" Text='<%#Eval("Margin") %>' runat="server" Width="100px"
-                                                MaxLength="3">0</asp:TextBox>
+                                            <asp:TextBox ID="txtmargin" Text='<%#Eval("Margin") %>' runat="server" >0</asp:TextBox>
                                             <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server"
                                                 FilterType="Numbers,Custom" ValidChars="." TargetControlID="txtmargin" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
+
+                                   
                                 </Columns>
                             </asp:GridView>
-                        </div>
+                            <asp:Button ID="btnSave" runat="server" class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="btnSave_Click"
+                                ValidationGroup="val1" AccessKey="s" Width="150px" />
+                            <label>
+                            </label>
+                            <asp:Button ID="btnexit" runat="server" class="btn btn-lg btn-link" Text="Clear" OnClick="Exit_Click"
+                                Width="110px" />
+
+                            
                     </div>
-                </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <asp:Panel class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none"
         runat="server">
