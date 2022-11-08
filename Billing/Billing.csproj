@@ -139,6 +139,8 @@
     <Content Include="Accountsbootstrap\AUTHOR.txt" />
     <Content Include="Accountsbootstrap\Auto.aspx" />
     <Content Include="Accountsbootstrap\Bankmaster.aspx" />
+    <Content Include="Accountsbootstrap\BCashReceipt.aspx" />
+    <Content Include="Accountsbootstrap\BCashReceipts.aspx" />
     <Content Include="Accountsbootstrap\BillingButton.aspx" />
     <Content Include="Accountsbootstrap\BillInvoiceDeptEntry.aspx" />
     <Content Include="Accountsbootstrap\BillInvoiceDeptGrid.aspx" />
@@ -155,6 +157,7 @@
     <Content Include="Accountsbootstrap\CashAccount.aspx" />
     <Content Include="Accountsbootstrap\CashReceipt.aspx" />
     <Content Include="Accountsbootstrap\CashReceipts.aspx" />
+    <Content Include="Accountsbootstrap\CashReceiptsGrid.aspx" />
     <Content Include="Accountsbootstrap\CashReceiptsReport.aspx" />
     <Content Include="Accountsbootstrap\categorygrid.aspx" />
     <Content Include="Accountsbootstrap\categorymaster.aspx" />
@@ -1009,6 +1012,20 @@
     <Compile Include="Accountsbootstrap\Bankmaster.aspx.designer.cs">
       <DependentUpon>Bankmaster.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accountsbootstrap\BCashReceipt.aspx.cs">
+      <DependentUpon>BCashReceipt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\BCashReceipt.aspx.designer.cs">
+      <DependentUpon>BCashReceipt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\BCashReceipts.aspx.cs">
+      <DependentUpon>BCashReceipts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\BCashReceipts.aspx.designer.cs">
+      <DependentUpon>BCashReceipts.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accountsbootstrap\BillingButton.aspx.cs">
       <DependentUpon>BillingButton.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1113,6 +1130,13 @@
     </Compile>
     <Compile Include="Accountsbootstrap\CashReceipts.aspx.designer.cs">
       <DependentUpon>CashReceipts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\CashReceiptsGrid.aspx.cs">
+      <DependentUpon>CashReceiptsGrid.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\CashReceiptsGrid.aspx.designer.cs">
+      <DependentUpon>CashReceiptsGrid.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\CashReceiptsReport.aspx.cs">
       <DependentUpon>CashReceiptsReport.aspx</DependentUpon>
