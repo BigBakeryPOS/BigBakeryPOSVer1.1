@@ -477,8 +477,15 @@ namespace Billing.Accountsbootstrap
 
                 }
                 // CHECK User NAME
+<<<<<<< HEAD
                 string str = txtusername.Text.Replace(" ", String.Empty);
                 if (ddlCustomerType.SelectedValue == "17")
+=======
+                string str = txtcustomername.Text.Replace(" ", String.Empty);
+
+                DataSet dchkcontactname = objBs.chkEmployeeUsername_Edit(str, txtcuscode.Text);
+                if (dchkcontactname.Tables[0].Rows.Count > 0)
+>>>>>>> 7dad703fa8665153a4c95715dc35a1a29ada4ea7
                 {
                     DataSet dchkcontactname = objBs.chkEmployeeUsername_Edit(str, txtcuscode.Text);
                     if (dchkcontactname.Tables[0].Rows.Count > 0)

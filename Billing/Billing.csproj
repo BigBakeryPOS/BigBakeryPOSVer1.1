@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -21,6 +22,11 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -139,6 +145,8 @@
     <Content Include="Accountsbootstrap\AUTHOR.txt" />
     <Content Include="Accountsbootstrap\Auto.aspx" />
     <Content Include="Accountsbootstrap\Bankmaster.aspx" />
+    <Content Include="Accountsbootstrap\BCashReceipt.aspx" />
+    <Content Include="Accountsbootstrap\BCashReceipts.aspx" />
     <Content Include="Accountsbootstrap\BillingButton.aspx" />
     <Content Include="Accountsbootstrap\BillInvoiceDeptEntry.aspx" />
     <Content Include="Accountsbootstrap\BillInvoiceDeptGrid.aspx" />
@@ -155,6 +163,7 @@
     <Content Include="Accountsbootstrap\CashAccount.aspx" />
     <Content Include="Accountsbootstrap\CashReceipt.aspx" />
     <Content Include="Accountsbootstrap\CashReceipts.aspx" />
+    <Content Include="Accountsbootstrap\CashReceiptsGrid.aspx" />
     <Content Include="Accountsbootstrap\CashReceiptsReport.aspx" />
     <Content Include="Accountsbootstrap\categorygrid.aspx" />
     <Content Include="Accountsbootstrap\categorymaster.aspx" />
@@ -1009,6 +1018,20 @@
     <Compile Include="Accountsbootstrap\Bankmaster.aspx.designer.cs">
       <DependentUpon>Bankmaster.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accountsbootstrap\BCashReceipt.aspx.cs">
+      <DependentUpon>BCashReceipt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\BCashReceipt.aspx.designer.cs">
+      <DependentUpon>BCashReceipt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\BCashReceipts.aspx.cs">
+      <DependentUpon>BCashReceipts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\BCashReceipts.aspx.designer.cs">
+      <DependentUpon>BCashReceipts.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accountsbootstrap\BillingButton.aspx.cs">
       <DependentUpon>BillingButton.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1113,6 +1136,13 @@
     </Compile>
     <Compile Include="Accountsbootstrap\CashReceipts.aspx.designer.cs">
       <DependentUpon>CashReceipts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\CashReceiptsGrid.aspx.cs">
+      <DependentUpon>CashReceiptsGrid.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\CashReceiptsGrid.aspx.designer.cs">
+      <DependentUpon>CashReceiptsGrid.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\CashReceiptsReport.aspx.cs">
       <DependentUpon>CashReceiptsReport.aspx</DependentUpon>
@@ -4269,8 +4299,13 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
