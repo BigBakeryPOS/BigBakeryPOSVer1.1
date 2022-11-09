@@ -91,7 +91,7 @@ namespace Billing.Accountsbootstrap
                         btnadd.Text = "Update";
 
                         txtUserid.Text = ds1.Tables[0].Rows[0]["RoleID"].ToString();
-
+                        drplogintype.Enabled = false;
                         drplogintype.SelectedValue = ds1.Tables[0].Rows[0]["LogintypeID"].ToString();
 
                         #region Rights Set
@@ -901,6 +901,15 @@ namespace Billing.Accountsbootstrap
 
             if (btnadd.Text == "Save")
             {
+                if (drplogintype.SelectedValue != "Select LoginType")
+                {
+                    //DataSet ds = objBs.dsCheckRole_LoginType(drplogintype.SelectedValue);
+                    //if (ds.Tables[0].Rows.Count > 0)
+                    //{
+                    //    ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Select Login-Type.Thank You!!!.')", true);
+                    //    return;
+                    //}
+                }
                 #region                                   
                 int iStatus = objBs.insertRolewithaccess(drplogintype.SelectedValue, ds, Convert.ToInt32(empid));
                 Response.Redirect("../Accountsbootstrap/UserRoleGrid.aspx");

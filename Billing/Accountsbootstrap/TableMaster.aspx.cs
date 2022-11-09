@@ -23,7 +23,15 @@ namespace Billing.Accountsbootstrap
             superadmin = Session["IsSuperAdmin"].ToString();
             sTableName = Session["User"].ToString();
 
-            if (!IsPostBack)
+            DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "tablemaster");
+            if (dacess1.Tables[0].Rows.Count > 0)
+            {
+                if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["read"]) == false)
+                {
+                    Response.Redirect("Login_branch.aspx");
+                }
+            }
+                if (!IsPostBack)
             {
                 ViewState["SortExpr"] = Sort_Direction;
 
@@ -102,7 +110,7 @@ namespace Billing.Accountsbootstrap
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         btnSave.Text = "Update";
-
+                        btnSave.Visible = true;
                         txttableid.Text = ds.Tables[0].Rows[0]["tableid"].ToString();
                         txttablename.Text = ds.Tables[0].Rows[0]["tablename"].ToString();
                         txtnoofchair.Text = ds.Tables[0].Rows[0]["No_of_Chairs"].ToString();

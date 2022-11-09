@@ -573,7 +573,7 @@ namespace Billing.Accountsbootstrap
                 }
 
                 // CHECK User NAME
-                string str = txtusername.Text.Replace(" ", String.Empty);
+                string str = txtcustomername.Text.Replace(" ", String.Empty);
 
                 DataSet dchkcontactname = objBs.chkEmployeeUsername_Edit(str, txtcuscode.Text);
                 if (dchkcontactname.Tables[0].Rows.Count > 0)

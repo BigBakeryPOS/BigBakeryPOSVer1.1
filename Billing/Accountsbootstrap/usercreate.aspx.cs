@@ -59,11 +59,6 @@ namespace Billing.Accountsbootstrap
                 lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
                 lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
 
-
-
-
-
-
                 int iCusID = Convert.ToInt32(Request.QueryString.Get("iCusID"));
                 if (Convert.ToString(iCusID) != "" && iCusID != null && iCusID != 0)
                 {

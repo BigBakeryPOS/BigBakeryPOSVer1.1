@@ -32988,8 +32988,8 @@ namespace BusinessLayer
         public DataSet chkEmployeeUsername_Edit(string sUsername, string ledgerid)
         {
             DataSet ds = new DataSet();
-            // string sqry = "select * from tblledger where username='" + sUsername + "' and ledgerid<>'" + ledgerid + "'";
-            string sqry = "select * from tblledger where ledgerid<>'" + ledgerid + "'";
+             string sqry = "select * from tblledger where ledgername='" + sUsername + "' and ledgerid<>'" + ledgerid + "'";
+            //string sqry = "select * from tblledger where ledgerid<>'" + ledgerid + "'";
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
         }
@@ -37045,6 +37045,14 @@ namespace BusinessLayer
         #endregion
 
         #region Role
+        public DataSet dsCheckRole_LoginType(string LoginTypeID)
+        {
+            DataSet ds = new DataSet();
+            string sQry = "select * from tblRole where LoginTypeID='" + LoginTypeID + "'";
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
         public int insertRolewithaccess(string LoginTypeID, DataSet role, int emppid)
         {
             int iSuccess = 0;
