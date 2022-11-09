@@ -32,15 +32,12 @@ namespace Billing.Accountsbootstrap
                 {
                     griditem.DataSource = dsIngridents;
                     griditem.DataBind();
-
                     for (int vLoop = 0; vLoop < griditem.Rows.Count; vLoop++)
                     {
                         TextBox txtRate = (TextBox)griditem.Rows[vLoop].FindControl("txtRate");
                         txtRate.Enabled = false;
                     }
                 }
-
-
                 divcode.Visible = false;
                 DataSet dsContact = objBs.GetCustomerType();
                 if (dsContact.Tables[0].Rows.Count > 0)
@@ -51,7 +48,6 @@ namespace Billing.Accountsbootstrap
                     ddlCustomerType.DataBind();
                     ddlCustomerType.Items.Insert(0, "Select Contact Type");
                 }
-
                 string iCusID = Request.QueryString.Get("iCusID");
                 
                 srch.Text = Request.QueryString.Get("id");
@@ -65,7 +61,6 @@ namespace Billing.Accountsbootstrap
                     head2.InnerHtml = "Customer Master";
                     ddlCustomerType.SelectedValue = "1";
                 }
-
                 else if (srch.Text == "2")
                 {
                     head1.InnerHtml = "Dealer Master";
@@ -109,6 +104,7 @@ namespace Billing.Accountsbootstrap
 
                 txtcuscode.Text = ds.Tables[0].Rows[0][0].ToString();
 
+                Change_customer();
 
                 if (iCusID != "" || iCusID != null)
                 {
@@ -258,100 +254,7 @@ namespace Billing.Accountsbootstrap
         }
         protected void customertype_chnaged(object sender, EventArgs e)
         {
-
-            if (ddlCustomerType.SelectedValue == "1")
-            {
-                disc.Visible = true;
-                txtdisc.Focus();
-            }
-            //else
-            //{
-            //    disc.Visible = false;
-            //    txtpincode.Focus();
-            //}
-
-            else if (ddlCustomerType.SelectedValue == "6")
-            {
-                DataSet dsIngridents = objBs.getIngridentsforsup();
-                if (dsIngridents.Tables[0].Rows.Count > 0)
-                {
-                    griditem.DataSource = dsIngridents;
-                    griditem.DataBind();
-                }
-
-                for (int vLoop = 0; vLoop < griditem.Rows.Count; vLoop++)
-                {
-                    TextBox txtRate = (TextBox)griditem.Rows[vLoop].FindControl("txtRate");
-                    txtRate.Visible = false;
-
-                    TextBox txtitemprintname = (TextBox)griditem.Rows[vLoop].FindControl("txtitemprintname");
-                    txtitemprintname.Visible = true;
-                }
-
-
-                Ingredient.Visible = true;
-                paymentdays.Visible = true;
-                // chkIngredient.Focus();
-            }
-            //else
-            //{
-            //    Ingredient.Visible = false;
-            //    paymentdays.Visible = false;
-            //    txtpaymentdays.Text = "0";
-            //  //  chkIngredient.Focus();
-            //}
-
-            else if (ddlCustomerType.SelectedValue == "2")
-            {
-
-                DataSet dsIngridents = objBs.getIngridentsfordealer();
-                if (dsIngridents.Tables[0].Rows.Count > 0)
-                {
-                    griditem.DataSource = dsIngridents;
-                    griditem.DataBind();
-                }
-
-                for (int vLoop = 0; vLoop < griditem.Rows.Count; vLoop++)
-                {
-
-                    TextBox txtitemprintname = (TextBox)griditem.Rows[vLoop].FindControl("txtitemprintname");
-                    txtitemprintname.Visible = false;
-                }
-
-
-                Ingredient.Visible = true;
-                paymentdays.Visible = true;
-                // chkIngredient.Focus();
-            }
-
-            else
-            {
-                Ingredient.Visible = false;
-                paymentdays.Visible = false;
-                txtpaymentdays.Text = "0";
-                //  chkIngredient.Focus();
-
-            }
-
-            if (ddlCustomerType.SelectedValue == "17")
-            {
-                divuser.Visible = true;
-                divpwd.Visible = true;
-                divbranch.Visible = true;
-            }
-            else
-            {
-
-                divuser.Visible = false;
-                divpwd.Visible = false;
-                divbranch.Visible = false;
-
-                txtusername.Text = "";
-                txtpassword.Text = "";
-                ddlbranch.SelectedValue = "Select Branch";
-            }
-
-
+            Change_customer();
         }
 
 
@@ -419,16 +322,17 @@ namespace Billing.Accountsbootstrap
                         return;
                     }
 
-                    // CHECK User NAME
-                    str = txtusername.Text.Replace(" ", String.Empty);
-                    dchkcontactname = objBs.chkEmployeeUsername(str);
-                    if (dchkcontactname.Tables[0].Rows.Count > 0)
+                    // CHECK User NAME of icing
+                    if (ddlCustomerType.SelectedValue == "17")
                     {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('UserName Already Exists.Thank you!!!.');", true);
-                        return;
+                        str = txtusername.Text.Replace(" ", String.Empty);
+                        dchkcontactname = objBs.chkEmployeeUsername(str);
+                        if (dchkcontactname.Tables[0].Rows.Count > 0)
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('UserName Already Exists.Thank you!!!.');", true);
+                            return;
+                        }
                     }
-
-
                 }
                 #endregion
 
@@ -436,6 +340,7 @@ namespace Billing.Accountsbootstrap
                 if (ds.Tables[0].Rows.Count != 0)
                 {
                     lblerror.Text = "Email id or Mobile Number  already exists";
+                    return;
                 }
                 else
                 {
@@ -571,141 +476,207 @@ namespace Billing.Accountsbootstrap
 
 
                 }
-
                 // CHECK User NAME
                 string str = txtusername.Text.Replace(" ", String.Empty);
-
-                DataSet dchkcontactname = objBs.chkEmployeeUsername_Edit(str, txtcuscode.Text);
-                if (dchkcontactname.Tables[0].Rows.Count > 0)
+                if (ddlCustomerType.SelectedValue == "17")
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('UserName Already Exists.Thank you!!!.');", true);
-                    return;
+                    DataSet dchkcontactname = objBs.chkEmployeeUsername_Edit(str, txtcuscode.Text);
+                    if (dchkcontactname.Tables[0].Rows.Count > 0)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('UserName Already Exists.Thank you!!!.');", true);
+                        return;
+                    }
                 }
-
+                int GroupId = 0; string custype = "";
+                if (ddlCustomerType.SelectedValue == "1") // For Customer
+                {
+                    GroupId = 1;
+                    custype = "R";
+                }
+                else if (ddlCustomerType.SelectedValue == "2")//For Dealer
+                {
+                    GroupId = 1;
+                    custype = "F";
+                }
+                else if (ddlCustomerType.SelectedValue == "3")//For Manufacturer
+                {
+                    GroupId = 1;
+                    custype = "M";
+                }
+                else if (ddlCustomerType.SelectedValue == "5")//For Franchise
+                {
+                    GroupId = 1;
+                    custype = "Fr";
+                }
+                else if (ddlCustomerType.SelectedValue == "6") //For Supplier
+                {
+                    GroupId = 2;
+                    custype = "R";
+                }
+                else if (ddlCustomerType.SelectedValue == "16")//For Icing employee
+                {
+                    GroupId = 1;
+                    custype = "R";
+                }
+                else if (ddlCustomerType.SelectedValue == "17")//For Icing employee
+                {
+                    GroupId = 1;
+                    custype = "R";
+                }
+                else if (ddlCustomerType.SelectedValue == "1017")//For Icing employee
+                {
+                    GroupId = 1;
+                    custype = "R";
+                }
+                int branchid;
+                if (ddlbranch.SelectedValue == "Select Branch")
+                    branchid = 0;
+                else
+                    branchid = Convert.ToInt32(ddlbranch.SelectedValue);
+                int iStatus = 0;
+                if (ddlCDType.SelectedValue == "Credit Note")
+                {
+                    string Credite = txtOBalance.Text;
+                    iStatus = objBs.updatecontact(txtcuscode.Text, txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble(Credite), Convert.ToDouble("0"), ddlCDType.SelectedValue);
+                }
                 else
                 {
+                    string Debit = txtOBalance.Text;
+                    iStatus = objBs.updatecontact(txtcuscode.Text, txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble("0"), Convert.ToDouble(Debit), ddlCDType.SelectedValue);
+                }
 
-                    int GroupId = 0; string custype = "";
-                    if (ddlCustomerType.SelectedValue == "1") // For Customer
+                for (int ii = 0; ii < griditem.Rows.Count; ii++)
+                {
+                    Label lblitemid = (Label)griditem.Rows[ii].FindControl("lblitemid");
+                    CheckBox chkitem = (CheckBox)griditem.Rows[ii].FindControl("chkitem");
+                    if (chkitem.Checked == true)
                     {
-                        GroupId = 1;
-                        custype = "R";
-                    }
-                    else if (ddlCustomerType.SelectedValue == "2")//For Dealer
-                    {
-                        GroupId = 1;
-                        custype = "F";
-                    }
-                    else if (ddlCustomerType.SelectedValue == "3")//For Manufacturer
-                    {
-                        GroupId = 1;
-                        custype = "M";
-                    }
-                    else if (ddlCustomerType.SelectedValue == "5")//For Franchise
-                    {
-                        GroupId = 1;
-                        custype = "Fr";
-                    }
-                    else if (ddlCustomerType.SelectedValue == "6") //For Supplier
-                    {
-                        GroupId = 2;
-                        custype = "R";
-                    }
-                    else if (ddlCustomerType.SelectedValue == "16")//For Icing employee
-                    {
-                        GroupId = 1;
-                        custype = "R";
-                    }
+                        Label lblitemname = (Label)griditem.Rows[ii].FindControl("lblitemname");
 
-                    else if (ddlCustomerType.SelectedValue == "17")//For Icing employee
-                    {
-                        GroupId = 1;
-                        custype = "R";
-                    }
-
-                    else if (ddlCustomerType.SelectedValue == "1017")//For Icing employee
-                    {
-                        GroupId = 1;
-                        custype = "R";
-                    }
-                    int branchid;
-                    if (ddlbranch.SelectedValue == "Select Branch")
-                        branchid = 0;
-                    else
-                        branchid = Convert.ToInt32(ddlbranch.SelectedValue);
-
-                    int iStatus = 0;
-                    if (ddlCDType.SelectedValue == "Credit Note")
-                    {
-                        string Credite = txtOBalance.Text;
-                        iStatus = objBs.updatecontact(txtcuscode.Text, txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble(Credite), Convert.ToDouble("0"), ddlCDType.SelectedValue);
-                    }
-                    else
-                    {
-                        string Debit = txtOBalance.Text;
-                        iStatus = objBs.updatecontact(txtcuscode.Text, txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble("0"), Convert.ToDouble(Debit), ddlCDType.SelectedValue);
-                    }
-
-                    //foreach (ListItem item in chkIngredient.Items)
-                    //{
-                    //    if (item.Selected)
-                    //    {
-                    //        int LedgerIngredient = objBs.InsertLedgerIngredient(Convert.ToInt32(txtcuscode.Text), Convert.ToInt32(item.Value),"Bitemname");
-                    //    }
-                    //}
-
-                    for (int ii = 0; ii < griditem.Rows.Count; ii++)
-                    {
-                        Label lblitemid = (Label)griditem.Rows[ii].FindControl("lblitemid");
-                        CheckBox chkitem = (CheckBox)griditem.Rows[ii].FindControl("chkitem");
-                        if (chkitem.Checked == true)
+                        TextBox txtitemprintname = (TextBox)griditem.Rows[ii].FindControl("txtitemprintname");
+                        if (txtitemprintname.Text == "")
                         {
-                            Label lblitemname = (Label)griditem.Rows[ii].FindControl("lblitemname");
-
-                            TextBox txtitemprintname = (TextBox)griditem.Rows[ii].FindControl("txtitemprintname");
-                            if (txtitemprintname.Text == "")
-                            {
-                                txtitemprintname.Text = "----";
-                            }
+                            txtitemprintname.Text = "----";
+                        }
 
 
-                            TextBox txtrate = (TextBox)griditem.Rows[ii].FindControl("txtRate");
-                            if (txtrate.Text == "")
-                            {
-                                txtrate.Text = "0";
-                            }
+                        TextBox txtrate = (TextBox)griditem.Rows[ii].FindControl("txtRate");
+                        if (txtrate.Text == "")
+                        {
+                            txtrate.Text = "0";
+                        }
 
 
-                            if (ddlCustomerType.SelectedValue == "6")
-                            {
-                                int LedgerIngredient = objBs.InsertLedgerIngredient1(Convert.ToInt32(txtcuscode.Text), Convert.ToInt32(lblitemid.Text), txtitemprintname.Text, custype, Convert.ToDecimal(txtrate.Text));
-
-                            }
-                            else
-                            {
-                                int LedgerIngredient = objBs.InsertLedgerIngredient1(Convert.ToInt32(txtcuscode.Text), Convert.ToInt32(lblitemid.Text), lblitemname.Text, custype, Convert.ToDecimal(txtrate.Text));
-
-                            }
-
+                        if (ddlCustomerType.SelectedValue == "6")
+                        {
+                            int LedgerIngredient = objBs.InsertLedgerIngredient1(Convert.ToInt32(txtcuscode.Text), Convert.ToInt32(lblitemid.Text), txtitemprintname.Text, custype, Convert.ToDecimal(txtrate.Text));
 
                         }
-                    }
+                        else
+                        {
+                            int LedgerIngredient = objBs.InsertLedgerIngredient1(Convert.ToInt32(txtcuscode.Text), Convert.ToInt32(lblitemid.Text), lblitemname.Text, custype, Convert.ToDecimal(txtrate.Text));
 
+                        }
+
+
+                    }
                 }
+
+            }
+            if (MasterType == "Employee")
+                {
+                    Response.Redirect("../Accountsbootstrap/EmployeeMaster.aspx");
+                }
+                else
+                {
+                    Response.Redirect("../Accountsbootstrap/viewcustomer.aspx?id=" + srch.Text);
+                }
+          
+        }
+            public void Change_customer()
+        {
+            disc.Visible = false;
+            if (ddlCustomerType.SelectedValue == "1")  
+            {
+                disc.Visible = true;
+                txtdisc.Focus();
+            }
+            //else
+            //{
+            //    disc.Visible = false;
+            //    txtpincode.Focus();
+            //}
+
+            else if (ddlCustomerType.SelectedValue == "6")
+            {
+                DataSet dsIngridents = objBs.getIngridentsforsup();
+                if (dsIngridents.Tables[0].Rows.Count > 0)
+                {
+                    griditem.DataSource = dsIngridents;
+                    griditem.DataBind();
+                }
+                for (int vLoop = 0; vLoop < griditem.Rows.Count; vLoop++)
+                {
+                    TextBox txtRate = (TextBox)griditem.Rows[vLoop].FindControl("txtRate");
+                    txtRate.Visible = false;
+
+                    TextBox txtitemprintname = (TextBox)griditem.Rows[vLoop].FindControl("txtitemprintname");
+                    txtitemprintname.Visible = true;
+                }
+                Ingredient.Visible = true;
+                paymentdays.Visible = true;
+                // chkIngredient.Focus();
+            }
+            //else
+            //{
+            //    Ingredient.Visible = false;
+            //    paymentdays.Visible = false;
+            //    txtpaymentdays.Text = "0";
+            //  //  chkIngredient.Focus();
+            //}
+
+            else if (ddlCustomerType.SelectedValue == "2")
+            {
+                DataSet dsIngridents = objBs.getIngridentsfordealer();
+                if (dsIngridents.Tables[0].Rows.Count > 0)
+                {
+                    griditem.DataSource = dsIngridents;
+                    griditem.DataBind();
+                }
+                for (int vLoop = 0; vLoop < griditem.Rows.Count; vLoop++)
+                {
+                    TextBox txtitemprintname = (TextBox)griditem.Rows[vLoop].FindControl("txtitemprintname");
+                    txtitemprintname.Visible = false;
+                }
+                Ingredient.Visible = true;
+                paymentdays.Visible = true;
             }
 
-
-            if (MasterType == "Employee")
+            else
             {
-                Response.Redirect("../Accountsbootstrap/EmployeeMaster.aspx");
+                Ingredient.Visible = false;
+                paymentdays.Visible = false;
+                txtpaymentdays.Text = "0";
+            }
+
+            if (ddlCustomerType.SelectedValue == "17")
+            {
+                divuser.Visible = true;
+                divpwd.Visible = true;
+                divbranch.Visible = true;
             }
             else
             {
-                Response.Redirect("../Accountsbootstrap/viewcustomer.aspx?id="+srch.Text);
+                divuser.Visible = false;
+                divpwd.Visible = false;
+                divbranch.Visible = false;
+                txtusername.Text = "";
+                txtpassword.Text = "";
+                ddlbranch.SelectedValue = "Select Branch";
             }
+
+
         }
-
-
         protected void Exit_Click(object sender, EventArgs e)
         {
             string MasterType = Request.QueryString.Get("MasterType");

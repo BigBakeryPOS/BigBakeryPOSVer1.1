@@ -50,7 +50,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Customer Details</title>
+    <title runat="server" id="title1">Customer Details</title>
 
     <link rel="Stylesheet" type="text/css" href="../Styles/AjaxPopUp.css" />
     <script language="javascript" type="text/javascript" src="../js/Validation.js"></script>

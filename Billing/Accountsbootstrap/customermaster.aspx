@@ -124,7 +124,7 @@
 	            </div>
                     <div class="panel-body panel-form-right" >
                                <div class="list-group">
-                                            <asp:Label ID="lblerror" runat="server" ></asp:Label>
+                                            <asp:Label ID="lblerror" runat="server" ForeColor="#CC0000" ></asp:Label>
                                                 
                                                     <div >
                                                         <label>Contact Type</label>
