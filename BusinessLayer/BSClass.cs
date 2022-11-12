@@ -21196,22 +21196,22 @@ namespace BusinessLayer
             string sQry1 = "Update tblProductionQty_" + sTableName + " set Prod_Qty=Prod_Qty-" + Qty + " where DescriptionId=" + Item + " ";
             i = dbObj.InlineExecuteNonQuery(sQry1);
 
+              //  i = dbObj.InlineExecuteNonQuery(sQry1);
             //if (logintype == "5")
             //{
             //    string sQry1 = "Update tblProductionQty_" + sTableName + " set Prod_Qty=Prod_Qty-" + Qty + " where DescriptionId=" + Item + " ";
-            //    i = dbObj.InlineExecuteNonQuery(sQry1);
-
+            //   i = dbObj.InlineExecuteNonQuery(sQry1);
+            //
             //}
             //else if (logintype == "3" || logintype == "6")
             //{
             //    string sQry1 = "Update tblStock_" + sTableName + " set Available_QTY=Available_QTY-" + Qty + " where SubCategoryID=" + Item + " ";
-            //    i = dbObj.InlineExecuteNonQuery(sQry1);
-
-            //    string AuditQty = "Insert into TblAuditQty_" + sTableName + "(Screen,Qty,RefId,Sign,Itemid,stockid)VAlues('Whole Sales','" + Qty + "','0','-','" + Item + "','0')";
-            //    i = dbObj.InlineExecuteNonQuery(AuditQty);
-
+            //
+            ////    string AuditQty = "Insert into TblAuditQty_" + sTableName + "(Screen,Qty,RefId,Sign,Itemid,stockid)VAlues('Whole Sales','" + Qty + "','0','-','" + Item + "','0')";
+            ////    i = dbObj.InlineExecuteNonQuery(AuditQty);
+            //
             //}
-
+            //
             //if (orderno != "0")
             //{
             //    if (Type == "O")
@@ -32990,8 +32990,12 @@ namespace BusinessLayer
         public DataSet chkEmployeeUsername_Edit(string sUsername, string ledgerid)
         {
             DataSet ds = new DataSet();
-            // string sqry = "select * from tblledger where username='" + sUsername + "' and ledgerid<>'" + ledgerid + "'";
-            string sqry = "select * from tblledger where ledgerid<>'" + ledgerid + "'";
+<<<<<<< HEAD
+            string sqry = "select * from tblledger where username='" + sUsername + "' and ledgerid<>'" + ledgerid + "'";
+=======
+             string sqry = "select * from tblledger where ledgername='" + sUsername + "' and ledgerid<>'" + ledgerid + "'";
+>>>>>>> 7dad703fa8665153a4c95715dc35a1a29ada4ea7
+            //string sqry = "select * from tblledger where ledgerid<>'" + ledgerid + "'";
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
         }
@@ -37047,6 +37051,14 @@ namespace BusinessLayer
         #endregion
 
         #region Role
+        public DataSet dsCheckRole_LoginType(string LoginTypeID)
+        {
+            DataSet ds = new DataSet();
+            string sQry = "select * from tblRole where LoginTypeID='" + LoginTypeID + "'";
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
         public int insertRolewithaccess(string LoginTypeID, DataSet role, int emppid)
         {
             int iSuccess = 0;
