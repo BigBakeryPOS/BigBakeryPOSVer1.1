@@ -418,6 +418,7 @@
     <Content Include="Accountsbootstrap\SalesandReturn_Report.aspx" />
     <Content Include="Accountsbootstrap\SalesKOTPrint.aspx" />
     <Content Include="Accountsbootstrap\SalesLiveKitchenPrint.aspx" />
+    <Content Include="Accountsbootstrap\SalespaymodeMaster.aspx" />
     <Content Include="Accountsbootstrap\SalesPrintType2.aspx" />
     <Content Include="Accountsbootstrap\SalesRegReport.aspx" />
     <Content Include="Accountsbootstrap\SalesSummaryReport.aspx" />
@@ -3083,6 +3084,13 @@
     </Compile>
     <Compile Include="Accountsbootstrap\SalesLiveKitchenPrint.aspx.designer.cs">
       <DependentUpon>SalesLiveKitchenPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\SalespaymodeMaster.aspx.cs">
+      <DependentUpon>SalespaymodeMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\SalespaymodeMaster.aspx.designer.cs">
+      <DependentUpon>SalespaymodeMaster.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\SalesPrint.aspx.cs">
       <DependentUpon>SalesPrint.aspx</DependentUpon>

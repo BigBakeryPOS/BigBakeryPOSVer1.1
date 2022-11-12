@@ -17894,7 +17894,8 @@ namespace BusinessLayer
         public DataSet GetSalesType()
         {
             DataSet ds = new DataSet();
-            string qr = "select * from tblsalestype where IsActive='Yes'";
+            // string qr = "select * from tblsalestype where IsActive='Yes'";
+            string qr = "select a.*, isnull(b.BilltypeName,'NIL') as name from tblsalestype as a left join tblbilltype as b on b.Billtype=a.billtype where a.IsActive='Yes'";
             ds = dbObj.InlineExecuteDataSet(qr);
             return ds;
         }
@@ -27623,6 +27624,7 @@ namespace BusinessLayer
 
         public int insertcombo(string comboname, string amount, string categoryid)
         {
+
             int save = 0;
             string sQry = "Insert into tblCombo(ComboName,TotalRate,CategoryId)Values('" + comboname + "','" + amount + "','" + categoryid + "')";
             save = dbObj.InlineExecuteNonQuery(sQry);
@@ -37316,6 +37318,82 @@ namespace BusinessLayer
             return save;
 
         }
+        #endregion
+
+        #region Sales payment Mode Master
+        public DataSet getsalespaymentmode()
+        {
+            DataSet ds = new DataSet();
+            // string qr = "select * from tblsalestype where IsActive='Yes'";
+            string qr = "select * from tblsalespaymode where IsActive='Yes'";
+            ds = dbObj.InlineExecuteDataSet(qr);
+            return ds;
+        }
+
+        public DataSet checksalespaymentmode(string PaymentType)
+        {
+            DataSet ds = new DataSet();
+            string qr = "select * from tblsalespaymode where PayMode='" + PaymentType + "'";
+            ds = dbObj.InlineExecuteDataSet(qr);
+            return ds;
+        }
+
+
+        public int insert_Salespaymentmode(string payment,string OrderWise,string isDiscountbill)
+        {
+            int i = 0;
+            int value = 0;
+            DataSet getmaxno = new DataSet();
+            // getmax nmber
+
+            string sqr = "Select max(isnull(value+1,1)) as value from tblsalespaymode";
+            getmaxno = dbObj.InlineExecuteDataSet(sqr);
+
+            if (getmaxno.Tables[0].Rows.Count > 0)
+            {
+                value = Convert.ToInt32(getmaxno.Tables[0].Rows[0]["value"]);
+
+                string sqry = "insert into tblsalespaymode (PayMode,Value,Branch,BranchCode,OrderWise,Discount,Isactive) " +
+                    " values('" + payment + "',"+ value + ",'0','All','"+OrderWise+"','"+isDiscountbill+"','Yes')";
+                i = dbObj.InlineExecuteNonQuery(sqry);
+            }
+            return i;
+        }
+
+
+        public int deletesalespaymentmodetype(int ID)
+        {
+            int i = 0;
+            string sqry = "Update tblsalespaymode set IsActive='NO' where PayModeId=" + ID + " ";
+            i = dbObj.InlineExecuteNonQuery(sqry);
+            return i;
+        }
+
+        public DataSet EditSalespaymentmodeType(int id, int userid)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select * from tblsalespaymode  where  PayModeId=" + id + "";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+
+        public DataSet searchSalespaymentmodeforupdate(string paymenttype, int id)
+        {
+            DataSet ds = new DataSet();
+            string qr = "select * from tblsalespaymode where PayMode='" + paymenttype + "' and PayModeId <>" + id + " ";
+            ds = dbObj.InlineExecuteDataSet(qr);
+            return ds;
+        }
+
+        public int update_salespaymode(string payment, string OrderWise, string isDiscountbill,string isactive,string paymodeid)
+        {
+            int i = 0;
+            string sqry = "update tblsalespaymode set PayMode='" + payment + "',OrderWise='"+OrderWise+"',Isactive='" + isactive + "' where PayModeId=" + paymodeid + "";
+            i = dbObj.InlineExecuteNonQuery(sqry);
+            return i;
+        }
+
+
         #endregion
     }
 
