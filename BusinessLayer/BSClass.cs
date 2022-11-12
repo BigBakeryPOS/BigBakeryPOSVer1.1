@@ -32990,11 +32990,10 @@ namespace BusinessLayer
         public DataSet chkEmployeeUsername_Edit(string sUsername, string ledgerid)
         {
             DataSet ds = new DataSet();
-<<<<<<< HEAD
+
             string sqry = "select * from tblledger where username='" + sUsername + "' and ledgerid<>'" + ledgerid + "'";
-=======
-             string sqry = "select * from tblledger where ledgername='" + sUsername + "' and ledgerid<>'" + ledgerid + "'";
->>>>>>> 7dad703fa8665153a4c95715dc35a1a29ada4ea7
+
+           //  string sqry = "select * from tblledger where ledgername='" + sUsername + "' and ledgerid<>'" + ledgerid + "'";>>>>>>> 7dad703fa8665153a4c95715dc35a1a29ada4ea7
             //string sqry = "select * from tblledger where ledgerid<>'" + ledgerid + "'";
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
