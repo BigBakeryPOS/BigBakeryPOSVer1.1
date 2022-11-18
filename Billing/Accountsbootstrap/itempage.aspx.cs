@@ -335,7 +335,7 @@ namespace Billing.Accountsbootstrap
                 DataSet ds = objBs.Get_CategoryCode(Convert.ToInt32(ddlcategory.SelectedValue));
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    //txtdescription.Text = ds.Tables[0].Rows[0][0].ToString();
+                    txtdescription.Text = ds.Tables[0].Rows[0][0].ToString();
                     txtcatdescription.Text = ds.Tables[0].Rows[0][0].ToString();
                     txtdescription.Focus();
                 }
