@@ -30,3 +30,9 @@ D:\BigPOSGITCode\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.csproj.Assem
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.csproj.CoreCompileInputs.cache
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.dll
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.pdb
+C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\bin\Release\DataLayer.dll
+C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\bin\Release\DataLayer.pdb
+C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.csproj.AssemblyReference.cache
+C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.csproj.CoreCompileInputs.cache
+C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.dll
+C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.pdb

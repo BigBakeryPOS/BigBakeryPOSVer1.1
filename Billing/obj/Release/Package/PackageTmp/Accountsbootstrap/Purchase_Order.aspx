@@ -66,8 +66,14 @@
                    
                     <div class="panel-body">
                         <div class="row">
-                           
-                                <div class="col-lg-3">
+                            <div class="col-lg-3">
+                                    <label>
+                                        Supplier</label>
+                                    <asp:DropDownList ID="ddlsuplier" runat="server" TabIndex="2" CssClass="form-control"
+                                        AutoPostBack="true" OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-lg-3" runat="server" visible="false">
                                     <label>
                                         Purchase Order Type </label>
                                
@@ -78,10 +84,7 @@
                                     </asp:RadioButtonList>
                                 </div>
 
-                                    <div id="shwedit" runat="server" visible="false" class="col-lg-3">
-                                        <label>Edit Narrations</label>
-                                        <asp:TextBox CssClass="form-control" ID="txteditnarrations" runat="server"></asp:TextBox>
-                                    </div>
+                                  
 
                                 
                                     <label id="lblpurchase" runat="server" visible="false">
@@ -102,23 +105,21 @@
                                         runat="server" CssClass="cal_Theme1">
                                     </ajaxToolkit:CalendarExtender>
                                 </div>
-                                <div class="col-lg-3">
-                                    <label>
-                                        Supplier</label>
-                                    <asp:DropDownList ID="ddlsuplier" runat="server" TabIndex="2" CssClass="form-control"
-                                        AutoPostBack="true" OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged">
-                                    </asp:DropDownList>
-                                </div>
+                               
                                 <div class="col-lg-3">
                                     <label>
                                         Paymode</label>
                                     <asp:DropDownList ID="ddlpaymode" runat="server" AutoPostBack="true" TabIndex="3"
                                         CssClass="form-control" OnSelectedIndexChanged="ddlpaymode_OnSelectedIndexChanged">
-                                        <asp:ListItem Text="Select Payment" Value="0" Enabled="true"></asp:ListItem>
+                                       <%-- <asp:ListItem Text="Select Payment" Value="0" Enabled="true"></asp:ListItem>--%>
                                         <asp:ListItem Text="Cash" Value="1"></asp:ListItem>
-                                        <asp:ListItem Text="Credit" Value="2" Enabled="true"></asp:ListItem>
+                                        <asp:ListItem Text="Credit" Value="2" Enabled="true" Selected="True"> </asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
+                              <div id="shwedit" runat="server" visible="false" class="col-lg-3">
+                                        <label>Edit Narrations</label>
+                                        <asp:TextBox CssClass="form-control" ID="txteditnarrations" runat="server"></asp:TextBox>
+                                    </div>
                                 <asp:DropDownList ID="ddlbank" runat="server" AutoPostBack="true" CssClass="form-control"
                                     Visible="false">
                                 </asp:DropDownList>
@@ -222,7 +223,7 @@
                                         <FooterTemplate>
                                         </FooterTemplate>--%>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Supplier" >
+                                    <asp:TemplateField HeaderText="Supplier" Visible="false" >
                                         <ItemTemplate>
                                             <asp:DropDownList ID="ddSupplier" class="form-control" runat="server" AutoPostBack="true"  Width="200px">
                                             </asp:DropDownList>
@@ -233,7 +234,7 @@
                                         <FooterTemplate>
                                         </FooterTemplate>--%>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="payMode"  >
+                                    <asp:TemplateField HeaderText="payMode"  Visible="false" >
                                         <ItemTemplate>
                                             <asp:DropDownList ID="ddlPay" CssClass="form-control" runat="server" Width="200px" >
                                                 <asp:ListItem Value="Select Payment Mode">Select Payment Mode</asp:ListItem>
