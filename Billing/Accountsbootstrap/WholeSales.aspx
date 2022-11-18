@@ -28,7 +28,6 @@
     <script type="text/javascript">
         function Confirm(myButton) {
 
-
             // Client side validation
             if (typeof (Page_ClientValidate) == 'function') {
                 if (Page_ClientValidate() == false)

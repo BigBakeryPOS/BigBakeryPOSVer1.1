@@ -22,7 +22,6 @@ namespace Billing.Accountsbootstrap
         protected void Page_Load(object sender, EventArgs e)
         {
             superadmin = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
-
             lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             Empid = Request.Cookies["userInfo"]["Empid"].ToString();
@@ -30,17 +29,32 @@ namespace Billing.Accountsbootstrap
             srch.Text = ID;
             if (!IsPostBack)
             {
-                
                 if (srch.Text == "1")
+                {
                     head1.InnerHtml = "Customer Master";
+                    title1.InnerText = "Customer Details";
+                    //Page.Title=
+                }
                 else if (srch.Text == "2")
+                {
                     head1.InnerHtml = "Dealer Master";
+                    title1.InnerText = "Dealer Details";
+                }
                 else if (srch.Text == "3")
+                {
                     head1.InnerHtml = "Supplier Master";
+                    title1.InnerText = "Supplier Details";
+                }
                 else if (srch.Text == "4")
+                {
                     head1.InnerHtml = "icing Employee Master";
+                    title1.InnerText = "icing Employee Details";
+                }
                 else
+                {
                     head1.InnerHtml = "dispatch Employee Master";
+                    title1.InnerText = "dispatch Employee Details";
+                }
                 DataSet ds = objBs.getcustomer(srch.Text);
                 gvcust.DataSource = ds;
                 gvcust.DataBind();

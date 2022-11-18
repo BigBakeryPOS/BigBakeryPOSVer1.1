@@ -126,6 +126,7 @@ namespace DataLayer
                 using (SqlConnection dbConnection = new SqlConnection(connnectionString))
                 {
                     // SqlCommand dbCommand = GetDbCommand(dbConnection);
+                    //dbConnection.BeginTransaction();
                     SqlCommand dbCommand = new SqlCommand(sQry, dbConnection);
                     //dbCommand.CommandText = sQry;
                     dbCommand.CommandTimeout = 0;

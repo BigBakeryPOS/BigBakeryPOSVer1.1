@@ -119,12 +119,14 @@
                                                 <Columns>
                                                     <asp:BoundField DataField="SalesTypeID" HeaderText="ID" ItemStyle-CssClass="hide"
                                                         HeaderStyle-CssClass="hide" />
+
+                                                    <asp:BoundField DataField="name" HeaderText="Bill Type" ItemStyle-HorizontalAlign="left" />
                                                     <asp:BoundField DataField="PaymentType" HeaderText="Payment Type" ItemStyle-HorizontalAlign="left" />
-                                                    <asp:BoundField DataField="Margin" HeaderText="Margin" ItemStyle-HorizontalAlign="left" />
-                                                    <asp:BoundField DataField="GST" Visible="true" HeaderText="GST" ItemStyle-HorizontalAlign="left" />
-                                                    <asp:BoundField DataField="PaymentGatway" HeaderText="Payment Gatway" ItemStyle-HorizontalAlign="center"
+                                                    <asp:BoundField DataField="Margin" Visible="false" HeaderText="Margin" ItemStyle-HorizontalAlign="left" />
+                                                    <asp:BoundField DataField="GST" Visible="false" HeaderText="GST" ItemStyle-HorizontalAlign="left" />
+                                                    <asp:BoundField DataField="PaymentGatway" Visible="false" HeaderText="Payment Gatway" ItemStyle-HorizontalAlign="center"
                                                         HeaderStyle-HorizontalAlign="center" />
-                                                    <asp:BoundField DataField="Total" HeaderText="Total" ItemStyle-HorizontalAlign="left" />
+                                                    <asp:BoundField DataField="Total" HeaderText="Total" Visible="false" ItemStyle-HorizontalAlign="left" />
                                                     <asp:BoundField DataField="IsActive" HeaderText="IsActive" ItemStyle-HorizontalAlign="left" />
                                                     <asp:TemplateField HeaderText="Edit" ItemStyle-Width="60px">
                                                         <ItemTemplate>
@@ -245,8 +247,10 @@
                                         <label>Disc Percentage</label>
                                         <asp:DropDownList ID="drpdiscpper" runat="server" CssClass="form-control"></asp:DropDownList>
                                     </div>
-                                    <label>Payment Mode Selection</label>
-                                    <asp:CheckBoxList ID="chkpaylist" runat="server" RepeatColumns="4"></asp:CheckBoxList>
+                                    <div id="div1" runat="server" visible="false">
+                                        <label>Payment Mode Selection</label>
+                                        <asp:CheckBoxList ID="chkpaylist" runat="server" RepeatColumns="4"></asp:CheckBoxList>
+                                    </div>
                                 </div>
                                 <asp:Button ID="btnSubmit" Style="width: 150px;" runat="server"
                                     class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="btnadd_Click" />
