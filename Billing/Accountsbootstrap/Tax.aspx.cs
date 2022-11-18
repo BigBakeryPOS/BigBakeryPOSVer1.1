@@ -27,8 +27,14 @@ namespace Billing.Accountsbootstrap
 
             lblUser.Text = Session["UserName"].ToString();
             lblUserID.Text = Session["UserID"].ToString();
-
-
+            DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "tax");
+            if (dacess1.Tables[0].Rows.Count > 0)
+            {
+                if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                {
+                    Response.Redirect("Login_branch.aspx");
+                }
+            }
             if (!IsPostBack)
             {
 

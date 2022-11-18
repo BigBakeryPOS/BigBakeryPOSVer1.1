@@ -34,6 +34,14 @@ namespace Billing.Accountsbootstrap
             //    ((LinkButton)e.Row.FindControl("imdedit")).Enabled = false;
             //}
             //  Label myLabel = this.FindControl("lblscreenname") as Label;
+            DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "category");
+            if (dacess1.Tables[0].Rows.Count > 0)
+            {
+                if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                {
+                    Response.Redirect("Login_branch.aspx");
+                }
+            }
             if (!IsPostBack)
             {
 

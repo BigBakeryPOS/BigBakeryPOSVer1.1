@@ -14,6 +14,7 @@ namespace Billing.Accountsbootstrap
         BSClass objbs = new BSClass();
         string sTableName = "";
         double GETVALUE = 0.00;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
           
@@ -22,6 +23,14 @@ namespace Billing.Accountsbootstrap
             else
                 Response.Redirect("Login_Branch.aspx");
 
+            DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "combo");
+            if (dacess1.Tables[0].Rows.Count > 0)
+            {
+                if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                {
+                    Response.Redirect("Login_branch.aspx");
+                }
+            }
             if (!IsPostBack)
             {
                 DataSet get_types = objbs.get_category("C");
