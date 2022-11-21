@@ -1010,7 +1010,7 @@ namespace Billing.Accountsbootstrap
                         GroupId = 6;
                     }
 
-                    int LedgerId = kbs.insertcontact(Convert.ToInt32(lblUserID.Text), txtsupplier.Text, txtmobileno.Text, "0", "", txtaddress.Text, txtcity.Text, "0", "test@gmail.com", Convert.ToInt32(6), GroupId, "0", txtgstno.Text,"0","","",0,0,0,"Credit Note");
+                    int LedgerId = kbs.insertcontact(Convert.ToInt32(lblUserID.Text), txtsupplier.Text, txtmobileno.Text, "0", "", txtaddress.Text, txtcity.Text, "0", "test@gmail.com", Convert.ToInt32(6), GroupId, "0", txtgstno.Text,"0","","",0,0,0,"Credit Note", "Inner");
 
                     Supplier = LedgerId;
 

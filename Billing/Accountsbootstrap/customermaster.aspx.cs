@@ -133,7 +133,7 @@ namespace Billing.Accountsbootstrap
                         txtdisc.Text = ds1.Tables[0].Rows[0]["Disc"].ToString();
                         txtgstno.Text = ds1.Tables[0].Rows[0]["Gstno"].ToString();
                         txtpaymentdays.Text = ds1.Tables[0].Rows[0]["paymentdays"].ToString();
-
+                        drpProvince.SelectedValue = ds1.Tables[0].Rows[0]["Province"].ToString();
 
                         txtusername.Text = ds1.Tables[0].Rows[0]["UserName"].ToString();
                         txtpassword.Text = ds1.Tables[0].Rows[0]["Password"].ToString();
@@ -406,12 +406,12 @@ namespace Billing.Accountsbootstrap
                     if (ddlCDType.SelectedValue == "Credit Note")
                     {
                         string Credite = txtOBalance.Text;
-                        LedgerId = objBs.insertcontact(Convert.ToInt32(lblUserID.Text), txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble(Credite), Convert.ToDouble("0"), ddlCDType.SelectedValue);
+                        LedgerId = objBs.insertcontact(Convert.ToInt32(lblUserID.Text), txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble(Credite), Convert.ToDouble("0"), ddlCDType.SelectedValue, drpProvince.SelectedValue);
                     }
                     else
                     {
                         string Debit = txtOBalance.Text;
-                        LedgerId = objBs.insertcontact(Convert.ToInt32(lblUserID.Text), txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble("0"), Convert.ToDouble(Debit), ddlCDType.SelectedValue);
+                        LedgerId = objBs.insertcontact(Convert.ToInt32(lblUserID.Text), txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble("0"), Convert.ToDouble(Debit), ddlCDType.SelectedValue, drpProvince.SelectedValue);
                     }
                     for (int ii = 0; ii < griditem.Rows.Count; ii++)
                     {
@@ -546,12 +546,12 @@ namespace Billing.Accountsbootstrap
                 if (ddlCDType.SelectedValue == "Credit Note")
                 {
                     string Credite = txtOBalance.Text;
-                    iStatus = objBs.updatecontact(txtcuscode.Text, txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble(Credite), Convert.ToDouble("0"), ddlCDType.SelectedValue);
+                    iStatus = objBs.updatecontact(txtcuscode.Text, txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble(Credite), Convert.ToDouble("0"), ddlCDType.SelectedValue,drpProvince.SelectedValue);
                 }
                 else
                 {
                     string Debit = txtOBalance.Text;
-                    iStatus = objBs.updatecontact(txtcuscode.Text, txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble("0"), Convert.ToDouble(Debit), ddlCDType.SelectedValue);
+                    iStatus = objBs.updatecontact(txtcuscode.Text, txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble("0"), Convert.ToDouble(Debit), ddlCDType.SelectedValue,drpProvince.SelectedValue);
                 }
 
                 for (int ii = 0; ii < griditem.Rows.Count; ii++)

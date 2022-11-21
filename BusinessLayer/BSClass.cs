@@ -17622,18 +17622,18 @@ namespace BusinessLayer
         }
 
 
-        public int insertcontact(int UserID, string CustomerName, string MobileNo, string PhoneNo, string Area, string Address, string City, string Pincode, string Email, int iContactTypeid, int GroupId, string disc, string gstno, string paymentdays, string username, string password, int branchid, double opbalancecridit, double opbalancDebit, string contactType)
+        public int insertcontact(int UserID, string CustomerName, string MobileNo, string PhoneNo, string Area, string Address, string City, string Pincode, string Email, int iContactTypeid, int GroupId, string disc, string gstno, string paymentdays, string username, string password, int branchid, double opbalancecridit, double opbalancDebit, string contactType,string Province)
         {
             int iSuccess = 0;
 
-            string sQry1 = "insert into tblledger(LedgerName, MobileNo, PhoneNo,  Area,Address, City, Pincode, Email,ContactTypeID,IsActive,GroupId,Disc,Gstno,paymentdays,username,password,branchid,Open_Credit,Open_Depit,Type)values ('" + CustomerName + "','" + MobileNo + "','" + PhoneNo + "','" + Area + "','" + Address + "','" + City + "','" + Pincode + "','" + Email + "'," + iContactTypeid + ",'Yes'," + GroupId + ",'" + disc + "','" + gstno + "','" + paymentdays + "','" + username + "','" + password + "'," + branchid + "," + opbalancecridit + "," + opbalancDebit + ",'" + contactType + "')";
+            string sQry1 = "insert into tblledger(LedgerName, MobileNo, PhoneNo,  Area,Address, City, Pincode, Email,ContactTypeID,IsActive,GroupId,Disc,Gstno,paymentdays,username,password,branchid,Open_Credit,Open_Depit,Type,Province)values ('" + CustomerName + "','" + MobileNo + "','" + PhoneNo + "','" + Area + "','" + Address + "','" + City + "','" + Pincode + "','" + Email + "'," + iContactTypeid + ",'Yes'," + GroupId + ",'" + disc + "','" + gstno + "','" + paymentdays + "','" + username + "','" + password + "'," + branchid + "," + opbalancecridit + "," + opbalancDebit + ",'" + contactType + "','" + Province + "')";
             iSuccess = dbObj.InlineExecuteNonQuery(sQry1);
 
             DataSet ds = new DataSet();
             string sqry = "select isnull(max(Ledgerid),1) as Ledgerid from tblledger ";
             ds = dbObj.InlineExecuteDataSet(sqry);
 
-            string sQry2 = "insert into tblCustomer(CustomerName, MobileNo, PhoneNo,  Area,Address, City, Pincode, Email,ContactTypeID,IsActive,LedgerId,disc,Gstno,username,password,branchid)values ('" + CustomerName + "','" + MobileNo + "','" + PhoneNo + "','" + Area + "','" + Address + "','" + City + "','" + Pincode + "','" + Email + "'," + iContactTypeid + ",'Yes','" + ds.Tables[0].Rows[0]["LedgerId"].ToString() + "','" + disc + "','" + gstno + "','" + username + "','" + password + "'," + branchid + ")";
+            string sQry2 = "insert into tblCustomer(CustomerName, MobileNo, PhoneNo,  Area,Address, City, Pincode, Email,ContactTypeID,IsActive,LedgerId,disc,Gstno,username,password,branchid,Province)values ('" + CustomerName + "','" + MobileNo + "','" + PhoneNo + "','" + Area + "','" + Address + "','" + City + "','" + Pincode + "','" + Email + "'," + iContactTypeid + ",'Yes','" + ds.Tables[0].Rows[0]["LedgerId"].ToString() + "','" + disc + "','" + gstno + "','" + username + "','" + password + "'," + branchid + ",'" + Province + "')";
             iSuccess = dbObj.InlineExecuteNonQuery(sQry2);
 
 
@@ -17713,17 +17713,17 @@ namespace BusinessLayer
         }
 
 
-        public int updatecontact(string Ledgerid, string customername, string MobileNo, string PhoneNo, string Area, string Address, string City, string Pincode, string Email, int iContactType, int GroupId, string disc, string gstno, string paymentdays, string username, string passwor, int branchid, double opbalancecridit, double opbalancDebit, string contactType)
+        public int updatecontact(string Ledgerid, string customername, string MobileNo, string PhoneNo, string Area, string Address, string City, string Pincode, string Email, int iContactType, int GroupId, string disc, string gstno, string paymentdays, string username, string passwor, int branchid, double opbalancecridit, double opbalancDebit, string contactType,string Province)
         {
             int iSucess = 0;
             string customerid = "0";
             ////string[] branchid = sUser.Split('_');
             ////string branchid1 = branchid[0].ToString();
 
-            string sQry1 = "update tblledger set paymentdays='" + paymentdays + "',Gstno='" + gstno + "',disc='" + disc + "',LedgerName='" + customername + "',MobileNo='" + MobileNo + "',PhoneNo='" + PhoneNo + "',Area='" + Area + "',Address='" + Address + "',City='" + City + "',Pincode='" + Pincode + "',Email='" + Email + "',ContactTypeID='" + iContactType + "',GroupId=" + GroupId + ",UserName='" + username + "',Password='" + passwor + "',BranchId=" + branchid + ",Open_Credit=" + opbalancecridit + ",Open_Depit=" + opbalancDebit + ",Type='" + contactType + "' where Ledgerid='" + Ledgerid + "'";
+            string sQry1 = "update tblledger set paymentdays='" + paymentdays + "',Gstno='" + gstno + "',disc='" + disc + "',LedgerName='" + customername + "',MobileNo='" + MobileNo + "',PhoneNo='" + PhoneNo + "',Area='" + Area + "',Address='" + Address + "',City='" + City + "',Pincode='" + Pincode + "',Email='" + Email + "',ContactTypeID='" + iContactType + "',GroupId=" + GroupId + ",UserName='" + username + "',Password='" + passwor + "',BranchId=" + branchid + ",Open_Credit=" + opbalancecridit + ",Open_Depit=" + opbalancDebit + ",Type='" + contactType + "',Province='" + Province + "' where Ledgerid='" + Ledgerid + "'";
             iSucess = dbObj.InlineExecuteNonQuery(sQry1);
 
-            string sQry2 = "update tblcustomer set Gstno='" + gstno + "', disc='" + disc + "', customername='" + customername + "',MobileNo='" + MobileNo + "',PhoneNo='" + PhoneNo + "',Area='" + Area + "',Address='" + Address + "',City='" + City + "',Pincode='" + Pincode + "',Email='" + Email + "',ContactTypeID='" + iContactType + "',UserName='" + username + "',Password='" + passwor + "',BranchId=" + branchid + " where Ledgerid='" + Ledgerid + "'";
+            string sQry2 = "update tblcustomer set Gstno='" + gstno + "', disc='" + disc + "', customername='" + customername + "',MobileNo='" + MobileNo + "',PhoneNo='" + PhoneNo + "',Area='" + Area + "',Address='" + Address + "',City='" + City + "',Pincode='" + Pincode + "',Email='" + Email + "',ContactTypeID='" + iContactType + "',UserName='" + username + "',Password='" + passwor + "',BranchId=" + branchid + ",Province='" + Province + "' where Ledgerid='" + Ledgerid + "'";
             iSucess = dbObj.InlineExecuteNonQuery(sQry2);
 
             string sQry3 = "Delete from tblLedgerIngredient where Ledgerid='" + Ledgerid + "'";
