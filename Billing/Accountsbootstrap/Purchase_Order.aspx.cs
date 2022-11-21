@@ -1588,6 +1588,23 @@ namespace Billing.Accountsbootstrap
             else
             {
                 FirstGridViewRow();
+
+                DataSet dss = kbs.getsupplierdetais(ddlsuplier.SelectedValue);
+                if (dss.Tables[0].Rows.Count > 0)
+                {
+                    if (dss.Tables[0].Rows[0]["Province"].ToString() == "Inner" || dss.Tables[0].Rows[0]["Province"].ToString() == "")
+                    {
+                        rbdpurchasetype.SelectedValue = "1";
+                    }
+                    else
+                    {
+                        rbdpurchasetype.SelectedValue = "2";
+                    }                    
+                }
+                else
+                {
+                    rbdpurchasetype.SelectedValue = "1";
+                }
             }
         }
 

@@ -23,6 +23,16 @@ namespace Billing.Accountsbootstrap
             superadmin = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
 
+
+            DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "onlineorderentry");
+            if (dacess1.Tables[0].Rows.Count > 0)
+            {
+                if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                {
+                    Response.Redirect("Login_branch.aspx");
+                }
+            }
+
             if (!IsPostBack)
             {
                 ViewState["SortExpr"] = Sort_Direction;

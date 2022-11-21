@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -26,7 +27,7 @@ namespace Billing.Accountsbootstrap
             DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "tablemaster");
             if (dacess1.Tables[0].Rows.Count > 0)
             {
-                if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["read"]) == false)
+                if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
                 {
                     Response.Redirect("Login_branch.aspx");
                 }

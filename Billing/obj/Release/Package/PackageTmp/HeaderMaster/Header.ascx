@@ -346,8 +346,7 @@
                     <li id="tablemaster" runat="server" visible="false"><a href="../Accountsbootstrap/TableMaster.aspx">
                         Table Master</a></li>
                         <li id="variablemaster" runat="server" visible="true"><a href="../Accountsbootstrap/VariableExpenseMaster.aspx">
-                        Variable Expense Master</a></li>
-                        
+                        Fixed Expense Master</a></li>
                     <li id="attender" runat="server" visible="false"><a href="../Accountsbootstrap/AttenderMaster.aspx">
                         Attender Master</a></li>
                     <li id="IBSM" runat="server" visible="false"><a href="../Accountsbootstrap/InterBranchSetting.aspx">
@@ -376,6 +375,9 @@
                         Quick Item Update</a></li>
                     <li id="saletypemaster" runat="server" visible="false"><a href="../Accountsbootstrap/SalesType.aspx">
                         Sales Type Master</a></li>
+                    <li id="Li12" runat="server" visible="true"><a href="../Accountsbootstrap/SalespaymodeMaster.aspx">
+                        Sales PaymentMode Master</a></li>
+                    
                     <li id="Ingcategory" runat="server" visible="false"><a href="../Accountsbootstrap/ProdCategoryGrid.aspx">
                         Ingridients Category Master</a></li>
                     <li id="Online" runat="server" visible="false"><a href="../Accountsbootstrap/OnlineMaster.aspx">

@@ -41,8 +41,11 @@ namespace Billing.Accountsbootstrap
                 txtDate.Text = DateTime.Today.ToString("dd/MM/yyy");
 
                 // Get Store Details From Production
+                
+               // DateTime sDate = DateTime.ParseExact(txtDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-                DateTime sDate = DateTime.ParseExact(txtDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime sDate = DateTime.ParseExact(DateTime.Now.ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                txtDate.Text = sDate.ToString("dd/MM/yyyy");
 
                 DataSet dsbranch = objbs.getbranchsettingFilling(sCode);
                 if (dsbranch.Tables[0].Rows.Count > 0)
@@ -101,6 +104,7 @@ namespace Billing.Accountsbootstrap
                 DataSet ds = objbs.RequestDetprodStore(Breqno, Branch, sCode);
                 gvDetails.DataSource = ds;
                 gvDetails.DataBind();
+               
                 //  gvDetails.Caption = Branch+""+"Store"+"-"+"Order Details";
                 gvDetails.Caption = "Store Stock Request from " + Branch + " Store On " + ReportDate;
             }
@@ -398,7 +402,8 @@ namespace Billing.Accountsbootstrap
 
                     GridViewRow row = new GridViewRow(0, 0, DataControlRowType.DataRow, DataControlRowState.Insert);
                     TableCell cell = new TableCell();
-                    cell.Text = "Branch Name : " + DataBinder.Eval(e.Row.DataItem, "brancharea").ToString();
+                    cell.Text = "Branch Name : " + DataBinder.Eval(e.Row.DataItem, "brancharea").ToString(); 
+                  
                     cell.ColumnSpan = 4;
                     cell.CssClass = "GroupHeaderStyle";
                     row.Cells.Add(cell);
