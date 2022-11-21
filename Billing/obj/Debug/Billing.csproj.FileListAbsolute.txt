@@ -1332,10 +1332,6 @@ C:\Users\ADMIN\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug\Bi
 C:\Users\ADMIN\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.CopyComplete
 C:\Users\ADMIN\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.dll
 C:\Users\ADMIN\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.pdb
-D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.AssemblyReference.cache
-D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\obj\Debug\UChat.Global.resources
-D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.GenerateResource.cache
-D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.CoreCompileInputs.cache
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\bin\Billing.dll.config
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\bin\Billing.dll
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\bin\Billing.pdb
@@ -1351,6 +1347,10 @@ D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\bin\CommonLayer.pdb
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\bin\DataLayer.pdb
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\bin\Microsoft.Office.Interop.Excel.xml
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\bin\Office.xml
+D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.AssemblyReference.cache
+D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\obj\Debug\UChat.Global.resources
+D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.GenerateResource.cache
+D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.CoreCompileInputs.cache
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.CopyComplete
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.dll
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.pdb

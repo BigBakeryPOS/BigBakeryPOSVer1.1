@@ -72,7 +72,24 @@
               alert('Are You Sure, You want to cancel This Customer sales!');
           }
     </script>
+     <script type="text/javascript">
+        function ClientSideClick(myButton) {
+            // Client side validation
+            if (typeof (Page_ClientValidate) == 'function') {
+                if (Page_ClientValidate() == false)
+                { return false; }
+            }
 
+            //make sure the button is not of type "submit" but "button"
+            if (myButton.getAttribute('type') == 'button') {
+                // disable the button
+                myButton.disabled = true;
+                myButton.className = "btn-inactive";
+                myButton.value = "processing...";
+            }
+            return true;
+        }
+     </script>
 </head>
 <body>
             <form runat="server" id="form1" method="post">
@@ -82,12 +99,12 @@
                     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
           <div class="container-fluid">
 	<div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-8">
     <div class="row">
                  <div class="row panel-custom1">
         <div class="panel-header">
-          <h1 class="page-header">Payment Details
-           <span class="pull-right">
+          <h1 class="page-header">Expense Details
+           <span class="pull-right" style="display:none" >
           <asp:LinkButton ID="btnadd1" runat="server" onclick="btnadd_Click">
              <button type="button" class="btn btn-primary btn-md pos-btn1">
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD
@@ -212,6 +229,81 @@
                         </div>
                </div>       
             </div>
+         <div class="col-lg-4">
+                             <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Expense Entry
+         
+                </h1>
+	    </div>
+                        <div class="panel-body">
+             <div class="row">
+                      
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                               
+                                <div class="col-lg-12">
+                                   
+                                        <label>
+                                            Date</label>
+                                        <asp:TextBox CssClass="form-control" ID="txtdate" Text="--Select Date--" runat="server"></asp:TextBox>
+                                        <asp:Label ID="lbldateError" runat="server" ForeColor="Red"></asp:Label>
+                                        <ajaxToolkit:CalendarExtender ID="CalendarExtender3" Format="dd/MM/yyyy" TargetControlID="txtdate"
+                                            runat="server" CssClass="cal_Theme1">
+                                        </ajaxToolkit:CalendarExtender>
+                                    </div>
+                                    <div class=" col-lg-12"><br />
+                                        <label>
+                                            Account Name</label>
+                                        <asp:DropDownList ID="ddlLedger" CssClass="form-control" Width="100%" runat="server">
+                                        </asp:DropDownList>
+                                    </div>
+                                <div class="col-lg-12"><br />
+                                        <label>
+                                            Amount</label>
+                                        <asp:TextBox CssClass="form-control" ID="txtamount" runat="server"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="please enter Amount" ValidationGroup="val1"
+                                            ForeColor="Red" ControlToValidate="txtamount"></asp:RequiredFieldValidator>
+                                    </div>
+                                    <div class=" col-lg-12">
+                                        <label>
+                                            Description(Any)</label>
+                                        <asp:TextBox CssClass="form-control" ID="txtdescrip" runat="server" TextMode="MultiLine">
+                                        </asp:TextBox>
+                                    </div>
+                                    
+                                    <div class="form-group" id="orderno" runat="server" visible="false">
+                                        <label>
+                                            Order Form No</label>
+                                        <asp:TextBox CssClass="form-control" ID="txtNo" runat="server" placeholder="Enter Orderform No"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="please enter Orderform No"
+                                            ForeColor="Red" ControlToValidate="txtNo"></asp:RequiredFieldValidator>
+                                        <label>
+                                            Pay Mode</label>
+                                        <asp:DropDownList ID="ddPaymode" runat="server" CssClass="form-control">
+                                            <asp:ListItem Value="Cash"></asp:ListItem>
+                                            <asp:ListItem Value="card"></asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                    <div class="col-lg-12" align="center"><br />
+                                        <asp:Button ID="btnsave" runat="server" OnClientClick="ClientSideClick(this)" UseSubmitBehavior="false" ValidationGroup="val1" width="150px"
+                                            class="btn btn-md btn-primary pos-btn1" Text="Save" OnClick="btnsave_Click" />
+                                       
+                                        <asp:RadioButton ID="order" runat="server" Text="Order" Visible="false" AutoPostBack="true"
+                                            OnCheckedChanged="order_CheckedChanged" />
+                                    </div>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                        
+                        <!-- /.col-lg-6 (nested) -->
+                        <!-- /.col-lg-6 (nested) -->
+                    </div>
+
+                            </div>
+                                 </div>
+             </div>
             </div>
             </div>
                 </form>

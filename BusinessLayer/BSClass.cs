@@ -26054,7 +26054,7 @@ namespace BusinessLayer
         public DataSet RawmatlSenttoProduction(string scode)
         {
             DataSet ds = new DataSet();
-            string paygird = "  select distinct d.IngreCategory,a.IngridID, a.IngredientName,sum(isnull(b.Qty,0 )) as Qty,c.uom,c.uomid,isnull(b.rate,'0') as rate from tblIngridents a inner join tblIngridentscategory as d on d.ingcatid=a.IngCatID "
+            string paygird = "  select distinct d.IngreCategory,a.IngridID, a.IngredientName,sum(isnull(b.Qty,0 )) as Qty,c.uom,c.uomid,isnull(round(b.rate,2),'0') as rate  from tblIngridents a inner join tblIngridentscategory as d on d.ingcatid=a.IngCatID "
   + " LEFT OUTER JOIN tblRawMatlStock_" + scode + " b ON  a.IngridID=b.IngredientID inner join tbluom as c on c.uomid=a.units group by d.IngreCategory,a.IngridID, a.IngredientName,c.uom,c.uomid,b.rate order by Qty desc";
             ds = dbObj.InlineExecuteDataSet(paygird);
             return ds;

@@ -4,8 +4,8 @@
 	
 }
 .pos-navbar.navbar-inverse .navbar-collapse, .pos-navbar.navbar-inverse .navbar-form, .pos-navbar.navbar-inverse, .pos-navbar {
-	background-color: #007AFF;
-	box-shadow: #007aff80 0 5px 20px;
+	background-color: #376091;
+	box-shadow: #30537880 0 5px 20px;
 }
 .navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-brand {
 	color: #fff;
@@ -83,7 +83,7 @@ color: #253238;
 .pos-title1, .pos-title2 {
 	font-weight: bold;
 	font-size: 16px;
-	color: #007aff;
+	color: #376091;
 	margin-top: -10px;
 	text-transform: uppercase;
 }
@@ -170,13 +170,14 @@ ul.pos-orders-list li:before {
 	padding: 10px;
 	text-align: center;
 	min-height: 48px;
+	font-size: 2em;
 }
 
 .pos-nav li span {
 	text-transform: uppercase;
 	font-weight: bold;
 	font-size: 12px;
-	color: #007aff;
+	color: #376091;
 	opacity: 0.5;
 	text-align: center;
 	display: block;
@@ -189,14 +190,14 @@ ul.pos-orders-list li:before {
 }
 .pos-nav.nav>li>a:focus, .pos-nav.nav>li>a:hover {
 	background-color: #fff;
-	border-bottom-color: #007aff; 
+	border-bottom-color: #376091; 
 }
 .pos-nav.nav>li>a:focus >span, .pos-nav.nav>li>a:hover >span {
-	color: #007aff;
+	color: #376091;
 	opacity: 1;
 }
 .pos-btn1 {
-	background-color: #007aff;
+	background-color: #376091;
 	border-radius: 5px;
 	border: 0;
 	color: #fff;
@@ -204,7 +205,7 @@ ul.pos-orders-list li:before {
 	transition: .5s;
 }
 .pos-btn1:hover {
-	background-color: #54A5FF;
+	background-color: #37609199;
 
 }
 .pos-empty {
@@ -245,7 +246,7 @@ body.loginpage {
 	text-transform: uppercase;
 }
 .pos-color {
-	color: #007AFF;
+	color: #376091;
 }
 .form-signin {
   max-width: 460px;
@@ -265,7 +266,7 @@ body.loginpage {
 .margin-y-xl { margin: 0 3em; }
 
 .form-signin h3 {
-	color: #007AFF;
+	color: #376091;
 	text-transform: uppercase;
 	font-weight: bold;
 	margin: 0 0 10px 0;
@@ -338,27 +339,27 @@ body.loginpage {
 
 /* Exisitng top  menu */
 #cssmenu {
-    background-color: #007AFF !important;
-    box-shadow: #007aff80 0 5px 20px;
+    background-color: #376091;
+    box-shadow: #37609180 0 5px 20px;
     z-index: 99999;
 }
 
 #cssmenu ul ul li a {
-   background-color: #007AFF !important;
+   background-color: #376091;
    border-radius: 8px;
 }
 #cssmenu ul ul li a {
-  color: #fff !important;
+  color: #fff;
   height: 45px;
-  box-shadow:  #007aff80 0 5px 20px;
+  box-shadow:  #37609180 0 5px 20px;
 
 }
 #cssmenu > ul > li > a {
-  color: #fff !important;
+  color: #fff;
 }
 #cssmenu ul ul li:hover > a, #cssmenu ul ul li a:hover {
- background-color: #fff !important;
- color: #007AFF !important;
+ background-color: #fff;
+ color: #376091;
  
 }
 /* Exisitng top  menu */
@@ -383,16 +384,16 @@ input[type="checkbox"]+label {
 	border-radius:10%;
 	background-color:#F4F9FB;
 	padding:5px 10px 5px 10px;	
-	color:#007aff;
+	color:#376091;
 	text-decoration:none;
 	margin: 2px;
 }
 .pos-paging a:hover {
-	background-color:#007aff;
+	background-color:#376091;
 	color:#fff;
 }
 .pos-paging span {
-	background-color:#007aff;
+	background-color:#376091;
 	color:#fff;
 	margin: 2px;
 	border-radius:10%;
