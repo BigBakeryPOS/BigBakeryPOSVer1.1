@@ -150,11 +150,7 @@
                                                     runat="server"></asp:TextBox>
                                                 <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="mobno" ControlToValidate="txtmobileno"
                                                     ErrorMessage="Please enter your Mobile No!" Style="color: Red" /><br />
-                                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
-                                                    FilterType="Numbers,Custom" ValidChars=" -," TargetControlID="txtmobileno" />
-                                                <asp:RegularExpressionValidator runat="server" ID="rexNumber" ValidationGroup="val1"
-                                                    ControlToValidate="txtmobileno" ValidationExpression="^[0-9]{10}$" ErrorMessage="Please enter a 10 digit number!"
-                                                    Style="color: Red" />
+                                               
                                             </div>
                                              <div>
                                                 <label>
@@ -193,6 +189,13 @@
                                             <div id="divcode" runat="server" visible="false">
                                                 <label>Code</label>
                                                 <asp:TextBox CssClass="form-control" ID="txtcuscode" runat="server" Enabled="true"></asp:TextBox>
+
+                                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
+                                                    FilterType="Numbers,Custom" ValidChars=" -," TargetControlID="txtmobileno" />
+                                                <asp:RegularExpressionValidator runat="server" ID="rexNumber" ValidationGroup="val1"
+                                                    ControlToValidate="txtmobileno" ValidationExpression="^[0-9]{10}$" ErrorMessage="Please enter a 10 digit number!"
+                                                    Style="color: Red" />
+
                                             </div>
                                             <div runat="server" visible="false">
                                                 <label>

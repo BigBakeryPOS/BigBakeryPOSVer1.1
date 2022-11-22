@@ -16,11 +16,11 @@ namespace Billing.Accountsbootstrap
     public partial class SemiRawSetting : System.Web.UI.Page
     {
         BSClass objBs = new BSClass();
-        string idEdit = "";
+        string idEdit = "", idView="", Type="";
         string qtysetting = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           // this.btnPreview1.Click += new System.EventHandler(this.Add_Click);
             qtysetting = Request.Cookies["userInfo"]["Qtysetting"].ToString();
             //////DataSet ds = objBs.item1();
             //////if (ds.Tables[0].Rows.Count > 0)
@@ -37,8 +37,11 @@ namespace Billing.Accountsbootstrap
             //////}
 
             idEdit = Request.QueryString.Get("ID");
+            idView = Request.QueryString.Get("ID");
+            Type = Request.QueryString.Get("Type");
             if (!IsPostBack)
             {
+                d1.Visible = true;
                 lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
                 lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
                 DataSet dsCategory = objBs.semirawsetting();
@@ -67,47 +70,81 @@ namespace Billing.Accountsbootstrap
                     gridsemiitem.DataBind();
                 }
 
-
-                if (idEdit != "" || idEdit != null)
+                if (Type == "Edit")
                 {
-                    DataSet dget = objBs.getrawsettingid(idEdit);
-                    if (dget.Tables[0].Rows.Count > 0)
+                    if (idEdit != "" || idEdit != null)
                     {
-                        listitem.Visible = true;
-                        lblsettingname.Text = dget.Tables[0].Rows[0]["definition"].ToString();
-                        lblqty.Text = dget.Tables[0].Rows[0]["totalqty"].ToString();
-                        txtprepareqty.Text = dget.Tables[0].Rows[0]["totalqty"].ToString();
-                        drpitem.SelectedValue = dget.Tables[0].Rows[0]["categoryuserid"].ToString();
-                        txtproductionhours.Text = dget.Tables[0].Rows[0]["prodhours"].ToString();
-                        drpitem.Enabled = false;
-                        gridview1.DataSource = dget.Tables[0];
-                        gridview1.DataBind();
-
-                        for (int i = 0; i < gridsemiitem.Rows.Count; i++)
+                        d1.Visible = true;
+                        DataSet dget = objBs.getrawsettingid(idEdit);
+                        if (dget.Tables[0].Rows.Count > 0)
                         {
+                            idView = null;
+                           // listitem.Visible = true;
+                            lblsettingname.Text = dget.Tables[0].Rows[0]["definition"].ToString();
+                            lblqty.Text = dget.Tables[0].Rows[0]["totalqty"].ToString();
+                            txtprepareqty.Text = dget.Tables[0].Rows[0]["totalqty"].ToString();
+                            drpitem.SelectedValue = dget.Tables[0].Rows[0]["categoryuserid"].ToString();
+                            txtproductionhours.Text = dget.Tables[0].Rows[0]["prodhours"].ToString();
+                            drpitem.Enabled = false;
+                            gridview1.DataSource = dget.Tables[0];
+                            gridview1.DataBind();
 
-                            Label subcatID = (Label)gridsemiitem.Rows[i].FindControl("lblsemiitemid");
-                            TextBox txtrecqty = (TextBox)gridsemiitem.Rows[i].FindControl("txtrecqty");
-                            CheckBox chklist = (CheckBox)gridsemiitem.Rows[i].FindControl("chklist");
-
-                            for (int j = 0; j < dget.Tables[0].Rows.Count; j++)
+                            for (int i = 0; i < gridsemiitem.Rows.Count; i++)
                             {
-                                string Semiitemid = dget.Tables[0].Rows[j]["Semiitemid"].ToString();
-                                string recqty = Convert.ToDouble(dget.Tables[0].Rows[j]["RecQty"]).ToString("0.00");
-                                if (subcatID.Text == Semiitemid)
+
+                                Label subcatID = (Label)gridsemiitem.Rows[i].FindControl("lblsemiitemid");
+                                TextBox txtrecqty = (TextBox)gridsemiitem.Rows[i].FindControl("txtrecqty");
+                                CheckBox chklist = (CheckBox)gridsemiitem.Rows[i].FindControl("chklist");
+
+                                for (int j = 0; j < dget.Tables[0].Rows.Count; j++)
                                 {
-                                    txtrecqty.Text = recqty;
-                                    chklist.Checked = true;
-                                    break;
+                                    string Semiitemid = dget.Tables[0].Rows[j]["Semiitemid"].ToString();
+                                    string recqty = Convert.ToDouble(dget.Tables[0].Rows[j]["RecQty"]).ToString("0.00");
+                                    if (subcatID.Text == Semiitemid)
+                                    {
+                                        txtrecqty.Text = recqty;
+                                        chklist.Checked = true;
+                                        break;
+                                    }
                                 }
                             }
+                            btnadd.Text = "Change";
                         }
-                        btnadd.Text = "Change";
+                        else
+                        {
+                            listitem.Visible = false;
+                        }
                     }
-                    else
+                }
+                else if (Type == "View")
+                {
+                    if (idView != "" || idView != null)
                     {
-                        listitem.Visible = false;
+                        d1.Visible = false;
+                        DataSet dget = objBs.getrawsettingid(idEdit);
+                        if (dget.Tables[0].Rows.Count > 0)
+                        {
+                            listitem.Visible = true;
+                            lblsettingname.Text = dget.Tables[0].Rows[0]["definition"].ToString();
+                            lblqty.Text = dget.Tables[0].Rows[0]["totalqty"].ToString();
+                            txtprepareqty.Text = dget.Tables[0].Rows[0]["totalqty"].ToString();
+                            drpitem.SelectedValue = dget.Tables[0].Rows[0]["categoryuserid"].ToString();
+                            txtproductionhours.Text = dget.Tables[0].Rows[0]["prodhours"].ToString();
+                            drpitem.Enabled = false;
+                            gridview1.DataSource = dget.Tables[0];
+                            gridview1.DataBind();
+
+
+                        }
+                        else
+                        {
+                            listitem.Visible = false;
+                        }
                     }
+                }
+                else
+                {
+                    d1.Visible = true;
                 }
 
 
@@ -152,9 +189,92 @@ namespace Billing.Accountsbootstrap
                 if (e.CommandArgument.ToString() != "")
                 {
                     idEdit = e.CommandArgument.ToString();
-                    Response.Redirect("SemiRawsetting.aspx?ID=" + e.CommandArgument.ToString());
+                    Response.Redirect("SemiRawsetting.aspx?ID=" + e.CommandArgument.ToString() + "&Type=Edit");
                 }
             }
+            else if (e.CommandName == "view")
+            {
+
+                if (e.CommandArgument.ToString() != "")
+                {
+                    idEdit = e.CommandArgument.ToString();
+                    Response.Redirect("SemiRawsetting.aspx?ID=" + e.CommandArgument.ToString() +"&Type=View");
+                }
+            }
+
+        }
+        protected void Check_Click(object sender, EventArgs e)
+        {
+            DataTable dtCheck = new DataTable();
+            DataColumn dc;
+            DataRow dr;
+
+            dc = new DataColumn();
+            dc.ColumnName="Itemname";
+            dtCheck.Columns.Add(dc);
+
+            dc = new DataColumn();
+            dc.ColumnName = "Qty";
+            dtCheck.Columns.Add(dc);
+
+            for (int i = 0; i < gridsemiitem.Rows.Count; i++)
+            {
+                dr = dtCheck.NewRow();
+                Label subcatID = (Label)gridsemiitem.Rows[i].FindControl("Label1");
+                TextBox txtrecqty = (TextBox)gridsemiitem.Rows[i].FindControl("txtrecqty");
+                CheckBox chklist = (CheckBox)gridsemiitem.Rows[i].FindControl("chklist");
+
+                if (chklist.Checked == true)
+                {
+                    dr["Itemname"]=subcatID.Text;
+                      dr["Qty"] = txtrecqty.Text;
+                    dtCheck.Rows.Add(dr);
+                }
+              
+            }
+            gvCheck.DataSource = dtCheck;
+            gvCheck.DataBind();
+           // UpdatePanela.Update();
+            UpdatePanel2.Update();
+            lnkDelete_ModalPopupExtender.Show();
+
+        }
+        protected void btnPreview_Click(object sender, EventArgs e)
+        {
+            DataTable dtCheck = new DataTable();
+            DataColumn dc;
+            DataRow dr;
+
+            dc = new DataColumn();
+            dc.ColumnName = "Itemname";
+            dtCheck.Columns.Add(dc);
+
+            dc = new DataColumn();
+            dc.ColumnName = "Qty";
+            dtCheck.Columns.Add(dc);
+
+            for (int i = 0; i < gridsemiitem.Rows.Count; i++)
+            {
+                dr = dtCheck.NewRow();
+                Label subcatID = (Label)gridsemiitem.Rows[i].FindControl("Label1");
+                TextBox txtrecqty = (TextBox)gridsemiitem.Rows[i].FindControl("txtrecqty");
+                CheckBox chklist = (CheckBox)gridsemiitem.Rows[i].FindControl("chklist");
+
+                if (chklist.Checked == true)
+                {
+                    dr["Itemname"] = subcatID.Text;
+                    dr["Qty"] = txtrecqty.Text;
+                    dtCheck.Rows.Add(dr);
+                }
+
+            }
+
+            gvCheck.DataSource = dtCheck;
+            gvCheck.DataBind();
+            UpdatePanel2.Update();
+            lnkDelete_ModalPopupExtender.Show();
+
+
 
         }
         protected void Add_Click(object sender, EventArgs e)
@@ -222,6 +342,10 @@ namespace Billing.Accountsbootstrap
 
         }
 
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SemiRawSetting.aspx");
+        }
 
         protected void Async_Upload_File(object sender, EventArgs e)
         {
@@ -351,7 +475,7 @@ namespace Billing.Accountsbootstrap
                         }
 
 
-                    #endregion
+                        #endregion
                     }
                 }
 

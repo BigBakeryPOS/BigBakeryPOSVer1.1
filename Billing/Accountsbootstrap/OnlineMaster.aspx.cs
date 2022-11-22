@@ -29,7 +29,7 @@ namespace Billing.Accountsbootstrap
             {
                 if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
                 {
-                    Response.Redirect("Login_branch.aspx");
+                  //  Response.Redirect("Login_branch.aspx");
                 }
             }
 

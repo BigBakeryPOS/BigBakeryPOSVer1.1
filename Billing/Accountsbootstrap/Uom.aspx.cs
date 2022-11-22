@@ -63,7 +63,7 @@ namespace Billing.Accountsbootstrap
         {
             if (txtuom.Text == "")
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Please Enter Unit Of Measure.Thank You!!!');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Please Enter Unit Of Measure');", true);
                 return;
             }
             if (btnSubmit.Text == "Save")
@@ -74,7 +74,7 @@ namespace Billing.Accountsbootstrap
                     if (dsCategory.Tables[0].Rows.Count > 0)
                     {
 
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('These UOM has already Exists. please enter a new one');", true);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('UOM Entered Already Exist. Create Another');", true);
                         return;
 
 

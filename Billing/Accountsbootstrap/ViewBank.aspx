@@ -148,7 +148,7 @@
         <div class="col-lg-12">
             <div class="row panel-custom1">
            <div class="panel-header">
-          <h1 class="page-header">Contact Details
+          <h1 class="page-header">Bank Details
            <span class="pull-right">
           <asp:LinkButton ID="btnadd1" runat="server" onclick="Add_Click">
                         <button type="button" class="btn btn-primary btn-md pos-btn1">

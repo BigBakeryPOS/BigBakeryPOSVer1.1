@@ -487,5 +487,10 @@ namespace Billing.Accountsbootstrap
         {
 
         }
+
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ItemUpdateScreen.aspx");
+        }
     }
 }
