@@ -507,7 +507,7 @@ namespace Billing.Accountsbootstrap
             else if (radentrytype.SelectedValue == "2")
             {
                 ddlrequestno.Enabled = true;
-
+                ddlrequestno_OnSelectedIndexChanged(sender, e);
                 lblgridheading.Text = "Raw Materials Details";
                 GridView2.Visible = true;
                 gvqueueitems.Visible = false;

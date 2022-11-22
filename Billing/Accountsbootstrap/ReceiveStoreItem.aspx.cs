@@ -126,6 +126,12 @@ namespace Billing.Accountsbootstrap
 
                     #endregion
                 }
+                DataSet dDcsreqNo = objbs.getreceiveRawMaterialdetails(sCode, ddlrequestno.SelectedValue);
+                if (dDcsreqNo.Tables[0].Rows.Count > 0)
+                {
+                    gvRawRequest.DataSource = dDcsreqNo;
+                    gvRawRequest.DataBind();
+                }
                 //else
                 //{
                 //    gvRawRequest.DataSource = null;

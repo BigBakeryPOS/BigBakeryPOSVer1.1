@@ -375,7 +375,14 @@ namespace Billing.Accountsbootstrap
 
 
             if (chkrequestcateory.Checked == true)
+            {
                 request = "1";
+                chkproductioncategory.Checked = true;
+            }
+            else
+            {
+                chkproductioncategory.Checked = false;
+            }
 
             if (chkproductioncategory.Checked == true)
                 production = "1";

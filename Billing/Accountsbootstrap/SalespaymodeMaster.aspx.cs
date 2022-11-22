@@ -433,8 +433,19 @@ namespace Billing.Accountsbootstrap
             else
             {
 
-                int delete = kbs.deletesalespaymentmodetype(Convert.ToInt32(idEdit));
-                Response.Redirect("SalespaymodeMaster.aspx");
+                // check used or not
+
+                DataSet getcheckpaymode = objBs.checkpaymodechecking(e.CommandArgument.ToString());
+                if (getcheckpaymode.Tables[0].Rows.Count > 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Not Allow to Delete This Paymode.this is used in SalesType Master.thank You!!!.');", true);
+                    return;
+                }
+                else
+                {
+                    int delete = kbs.deletesalespaymentmodetype(Convert.ToInt32(idEdit));
+                    Response.Redirect("SalespaymodeMaster.aspx");
+                }
             }
 
 

@@ -556,10 +556,12 @@
                         Inter Production Stock Received</a> </li>
                 </ul>
             </li>
-            <li id="Payments" visible="false" runat="server" class='has-sub'><a href="javascript:;" style="color: White">
-                Payments </a>
+            <li id="Payments" visible="true" runat="server" class='has-sub'><a href="javascript:;" style="color: White">
+                Receipts </a>
                 <ul>
-                    <li id="CustomerSalesReceipts" runat="server" visible="false"><a href="../Accountsbootstrap/CashReceipts.aspx">
+                    <li id="CustomerSalesReceipts" runat="server" visible="true"><a href="../Accountsbootstrap/CashReceipts.aspx">
+                        Dealer Sales Receipts</a></li>
+                    <li id="Li13" runat="server" visible="true"><a href="../Accountsbootstrap/CashReceiptsGrid.aspx">
                         Customer Sales Receipts</a></li>
                 </ul>
             </li>

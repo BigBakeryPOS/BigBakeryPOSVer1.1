@@ -259,7 +259,7 @@ namespace Billing.Accountsbootstrap
 
                                     double toto = Qty1 + Qty2 + Qty3 + Qty4 + Qty5;
 
-                                    if (toto == 0 || toto == 0.00)
+                                    if (toto == 0 || toto == 0.00 || toto == 0.0)
                                     {
                                         dr["Total"] = "0";
                                     }
