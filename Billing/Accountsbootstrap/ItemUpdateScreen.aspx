@@ -128,17 +128,21 @@ color:White;
                             </div>
                             <div class="col-lg-3">
                                 <label>
-                                    Is Active</label>
+                                    Active Status</label>
                                 <asp:DropDownList ID="drpisactive" OnSelectedIndexChanged="active_indexchnaged" AutoPostBack="true" CssClass="form-control" runat="server">
                                     <asp:ListItem Text="Active" Value="0"  Selected="True"></asp:ListItem>
-                                    <asp:ListItem Text="IsActive" Value="1"></asp:ListItem>
+                                    <asp:ListItem Text="Inactive" Value="1"></asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                             <div class="col-lg-3">
                                 <label>
                                     Overall Search only on Item </label>
-                                <asp:TextBox ID="txtoverallitem" runat="server" CssClass="form-control" OnTextChanged="overall_itemsearch"  AutoPostBack="true" ></asp:TextBox>
+                                <asp:TextBox ID="txtoverallitem" runat="server" placeholder="Search Item name & Press Enter" CssClass="form-control" OnTextChanged="overall_itemsearch"  AutoPostBack="true" ></asp:TextBox>
+  
                             </div>
+                       <div class="col-lg-3"><br />
+                                <asp:Button ID="btnReset" Text="Reset" CssClass="btn secondary"  runat="server" OnClick="btnReset_Click"   />
+                           </div>
                            </div>
                            <div class="row"> 
                            <div class="col-lg-12">
@@ -151,14 +155,14 @@ color:White;
                                     <Columns>
                                         <asp:TemplateField HeaderText="Item Name">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblitemname" runat="server" Text='<%# Eval("definition")%>' CssClass="form-control"></asp:Label>
+                                                <asp:Label ID="lblitemname" runat="server" Text='<%# Eval("definition")%>' CssClass="form-control" Enabled="false"></asp:Label>
                                                 <asp:TextBox ID="txtitemname" onBlur="ResetColor()" onFocus="ChangeColor()" runat="server" Text='<%# Eval("definition")%>' CssClass="form-control"></asp:TextBox>
                                                 <asp:Label ID="lblitemid" Visible="false" Text='<%# Eval("itemid")%>' runat="server" CssClass="form-control"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                          <asp:TemplateField HeaderText="Print Item Name">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblprintitemname" runat="server" Text='<%# Eval("printitem")%>' CssClass="form-control"></asp:Label>
+                                                <asp:Label ID="lblprintitemname" runat="server" Text='<%# Eval("printitem")%>' CssClass="form-control" Enabled="false"></asp:Label>
                                                 <asp:TextBox ID="txtprintitemname" onBlur="ResetColor()" onFocus="ChangeColor()" runat="server" Text='<%# Eval("printitem")%>' CssClass="form-control"></asp:TextBox>
                                                 
                                             </ItemTemplate>
@@ -166,7 +170,7 @@ color:White;
                                         <asp:BoundField DataField="serial" HeaderText="Serial No" />
                                         <asp:TemplateField HeaderText="Tax">
                                             <ItemTemplate>
-                                                <asp:Label ID="lbltax" runat="server" Text='<%# Eval("tax")%>' CssClass="form-control"></asp:Label>
+                                                <asp:Label ID="lbltax" runat="server" Text='<%# Eval("tax")%>' CssClass="form-control" Enabled="false"></asp:Label>
                                                 <asp:Label ID="lbltaxid" runat="server" Text='<%# Eval("taxval")%>' Visible="false" ></asp:Label>
                                                 <asp:DropDownList CssClass="form-control" ID="ddltax" runat="server">
                                                   
@@ -175,27 +179,27 @@ color:White;
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Rate">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblrate" runat="server" Text='<%# Eval("Rate")%>' CssClass="form-control"></asp:Label>
+                                                <asp:Label ID="lblrate" runat="server" Text='<%# Eval("Rate")%>' CssClass="form-control" Enabled="false"></asp:Label>
                                                 <asp:TextBox ID="txtrate" onBlur="ResetColor()" onFocus="ChangeColor()" runat="server" Text='<%# Eval("Rate")%>' CssClass="form-control"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="HSN Code">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblHSNcode" runat="server" Text='<%# Eval("HSNcode")%>' CssClass="form-control"></asp:Label>
+                                                <asp:Label ID="lblHSNcode" runat="server" Text='<%# Eval("HSNcode")%>' CssClass="form-control" Enabled="false"></asp:Label>
                                                 <asp:TextBox ID="txtHSNcode" onBlur="ResetColor()" onFocus="ChangeColor()" runat="server" Text='<%# Eval("HSNcode")%>' CssClass="form-control"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                          <asp:TemplateField HeaderText="UOM">
                                             <ItemTemplate>
-                                                <asp:Label ID="lbluom" runat="server" Text='<%# Eval("name")%>' CssClass="form-control"></asp:Label>
+                                                <asp:Label ID="lbluom" runat="server" Text='<%# Eval("name")%>' CssClass="form-control" Enabled="false"></asp:Label>
                                                 <asp:Label ID="lbluomid" runat="server" Text='<%# Eval("unit")%>' Visible="false"></asp:Label>
                                                 <asp:DropDownList ID="drpuom" runat="server" CssClass="form-control" ></asp:DropDownList>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Is Active">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblisactive" runat="server" Text='<%# Eval("IsActive")%>' CssClass="form-control"></asp:Label>
+                                                <asp:Label ID="lblisactive" runat="server" Text='<%# Eval("IsActive")%>' CssClass="form-control" Enabled="false"></asp:Label>
                                                 <asp:DropDownList ID="drpisactive" runat="server" CssClass="form-control" >
                                                 <asp:ListItem Value="0" Text="Active" ></asp:ListItem>
                                                 <asp:ListItem Value="1" Text="In-Active" ></asp:ListItem>
@@ -204,7 +208,7 @@ color:White;
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Display Online">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblDisplayOnline" runat="server" Text='<%# Eval("DisplayOnline")%>' CssClass="form-control"></asp:Label>
+                                                <asp:Label ID="lblDisplayOnline" runat="server" Text='<%# Eval("DisplayOnline")%>' CssClass="form-control" Enabled="false"></asp:Label>
                                                 <asp:DropDownList ID="drpdispalyonline" runat="server" CssClass="form-control" >
                                                 <asp:ListItem Value="Y" Text="Yes" ></asp:ListItem>
                                                 <asp:ListItem Value="N" Text="No" ></asp:ListItem>

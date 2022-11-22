@@ -296,7 +296,7 @@ namespace Billing.Accountsbootstrap
                 if (dsCategory.Tables[0].Rows.Count > 0)
                 {
 
-                    lblerror.Text = "This Inter Branch Setting has already Exists please enter a new one";
+                    lblerror.Text = "Setting for this Branch Exists. Select Another Branch";
 
                 }
                 else

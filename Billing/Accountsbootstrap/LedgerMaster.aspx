@@ -39,6 +39,31 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link href="../images/fav.ico" type="image/x-icon" rel="Shortcut Icon" />
+       <script type="text/javascript">
+        function Search_Gridview(strKey, strGV) {
+
+
+            var strData = strKey.value.toLowerCase().split(" ");
+
+            var tblData = document.getElementById(strGV);
+
+            var rowData;
+            for (var i = 1; i < tblData.rows.length; i++) {
+                rowData = tblData.rows[i].innerHTML;
+                var styleDisplay = 'none';
+                for (var j = 0; j < strData.length; j++) {
+                    if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+
+                        styleDisplay = '';
+                    else {
+                        styleDisplay = 'none';
+                        break;
+                    }
+                }
+                tblData.rows[i].style.display = styleDisplay;
+            }
+        }    
+       </script>
 </head>
 <body>
     <usc:Header ID="Header" runat="server" />
@@ -55,6 +80,7 @@
                       <h1 class="page-header">Add Ledger Master</h1>
 	                </div>
                     <div class="panel-body">
+
                         <form id="Form1" action="" runat="server">
                         <fieldset id="f1" runat="server">
                             <div class="list-group">

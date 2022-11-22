@@ -25,8 +25,52 @@ namespace Billing.Accountsbootstrap
             gvledgrid.DataSource = dLedger;
             gvledgrid.DataBind();
             }
-        }
 
+            #region LedgerMerging
+            if (!IsPostBack)
+            {
+                string sLedID = Request.QueryString.Get("iLedID");
+                if (sLedID != null)
+                {
+                    DataSet dsLedger = objbs.SelectLedger(sLedID);
+                    if (dsLedger.Tables[0].Rows.Count > 0)
+                    {
+                        txtledger.Text = dsLedger.Tables[0].Rows[0]["LedgerName"].ToString();
+                    }
+                }
+
+                DataSet dGroup = objbs.GetGroup();
+
+                ddlGroup.DataTextField = "GroupName";
+                ddlGroup.DataValueField = "GroupID";
+                ddlGroup.DataSource = dGroup.Tables[0];
+                ddlGroup.DataBind();
+                ddlGroup.Items.Insert(0, "Select group");
+                ddlGroup.SelectedIndex = 3;
+                ddlGroup.Enabled = false;
+            }
+            #endregion
+        }
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            DataSet dLedger = objbs.LedgerGrid();
+            gvledgrid.DataSource = dLedger;
+            gvledgrid.DataBind();
+        }
+        protected void btnsave_Click(object sender, EventArgs e)
+        {
+            string sLedID = Request.QueryString.Get("iLedID");
+            if (sLedID != null)
+            {
+                int i = objbs.ledgercr(txtledger.Text, sLedID);
+            }
+            else
+            {
+                int i = objbs.ledgercr(txtledger.Text, Convert.ToInt32(ddlGroup.SelectedValue));
+            }
+            Response.Redirect("LedgerMasterGrid.aspx");
+
+        }
         protected void btnnew_Click(object sender, EventArgs e)
         {
             Response.Redirect("LedgerMaster.aspx");

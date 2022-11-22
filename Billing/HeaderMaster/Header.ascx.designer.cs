@@ -123,15 +123,6 @@ namespace Billing.HeaderMaster
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tablemaster;
 
         /// <summary>
-        /// variablemaster control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl variablemaster;
-
-        /// <summary>
         /// attender control.
         /// </summary>
         /// <remarks>
@@ -258,15 +249,6 @@ namespace Billing.HeaderMaster
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl saletypemaster;
 
         /// <summary>
-        /// Li12 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li12;
-
-        /// <summary>
         /// Ingcategory control.
         /// </summary>
         /// <remarks>
@@ -364,6 +346,15 @@ namespace Billing.HeaderMaster
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li11;
+
+        /// <summary>
+        /// Customer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Customer1;
 
         /// <summary>
         /// Bank control.
@@ -1212,15 +1203,6 @@ namespace Billing.HeaderMaster
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Reports;
 
         /// <summary>
-        /// Li10 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li10;
-
-        /// <summary>
         /// DayCloseReport control.
         /// </summary>
         /// <remarks>
@@ -1309,24 +1291,6 @@ namespace Billing.HeaderMaster
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl SalesSummaryReport;
-
-        /// <summary>
-        /// Li3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li3;
-
-        /// <summary>
-        /// A39 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor A39;
 
         /// <summary>
         /// OrderFormReport control.
@@ -2425,15 +2389,6 @@ namespace Billing.HeaderMaster
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl onlineentryreport;
-
-        /// <summary>
-        /// Li114 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li114;
 
         /// <summary>
         /// AddUsers control.

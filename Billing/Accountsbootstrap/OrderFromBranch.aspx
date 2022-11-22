@@ -179,14 +179,14 @@
                                     <PagerSettings Mode="Numeric" />--%>
                                     <PagerStyle CssClass="pos-paging" />
                                     <Columns>
-                                        <asp:BoundField HeaderText="Production Name" DataField="Production_To" />
-                                        <asp:BoundField HeaderText="Request Date" DataField="RequestDate"  />
-                                        <asp:BoundField HeaderText="Request Time" DataField="RequestEntryTime"  />
+                                        <asp:BoundField HeaderText="Prod." DataField="Production_To" />
+                                        <asp:BoundField HeaderText="Prod Req Date" DataField="RequestDate" DataFormatString="{0:dd/MM/yyyy}" />
+                                        <asp:BoundField HeaderText="Prod Req Time" DataField="RequestEntryTime"  />
                                         <asp:BoundField HeaderText="Status " Visible="false" DataField="Status" />
-                                        <asp:BoundField HeaderText="Prod.RequestNO" DataField="RequestNO" />
-                                        <asp:BoundField HeaderText="Request From" DataField="Branch" />
-                                        <asp:BoundField HeaderText="Branch Request No" DataField="branchno" />
-                                        <asp:BoundField HeaderText="Request By" DataField="RequestBy" />
+                                        <asp:BoundField HeaderText="Req. no" DataField="RequestNO" />
+                                        <asp:BoundField HeaderText="Branch" DataField="Branch" />
+                                        <asp:BoundField HeaderText="Br Req No" DataField="branchno" />
+                                        <asp:BoundField HeaderText="Req By" DataField="RequestBy" />
                                         <asp:TemplateField HeaderText="Accept & Transfer">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btndelete" runat="server" CommandArgument='<%#Eval("RequestNO")+";"+Eval("Branch")+";"+Eval("branchno")+";"+Eval("RequestDate") %>'

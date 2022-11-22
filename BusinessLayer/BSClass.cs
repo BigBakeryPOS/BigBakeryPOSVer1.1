@@ -901,7 +901,7 @@ namespace BusinessLayer
         public DataSet LedgerGrid()
         {
             DataSet ds = new DataSet();
-            string sQry = "select * from tblLedger";
+            string sQry = "select * from tblLedger order by ledgerid desc";
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
         }
@@ -21858,6 +21858,7 @@ namespace BusinessLayer
 
         public DataSet ShowRequestRawDetails(string Stable, string TansStable, int RequestNo, string requesttype)
         {
+            /* ts.ItemId was showing error in view grid, its changed to ts.rawItemId*/
             DataSet ds = new DataSet();
             string sqry = string.Empty;
             if (requesttype == "IW")
@@ -21867,13 +21868,13 @@ namespace BusinessLayer
             else if (requesttype == "RW")
             {
                 sqry = "select s.RequestNo,RequestDate,Prepared,c.IngreCategory as Category,cu.IngredientName as Definition,Qty,u.UOM as Unit  from " + Stable + " s  inner join  " + TansStable + " ts on  ts.RequestID=s.RequestNo  " +
-                    " inner join tblIngridents cu on cu.IngridID=ts.ItemId inner join tblIngridentsCategory c on c.IngCatID=cu.IngCatID " +
+                    " inner join tblIngridents cu on cu.IngridID=ts.rawItemId inner join tblIngridentsCategory c on c.IngCatID=cu.IngCatID " +
                     " inner join tblUOM u on u.UOMID=cu.Units  where s.RequestNo=" + RequestNo + "";
             }
             else if (requesttype == "")
             {
                 sqry = "select s.RequestNo,RequestDate,Prepared,c.IngreCategory as Category,cu.IngredientName as Definition,Qty,u.UOM as Unit  from " + Stable + " s  inner join  " + TansStable + " ts on  ts.RequestID=s.RequestNo  " +
-                    " inner join tblIngridents cu on cu.IngridID=ts.ItemId inner join tblIngridentsCategory c on c.IngCatID=cu.IngCatID " +
+                    " inner join tblIngridents cu on cu.IngridID=ts.rawItemId inner join tblIngridentsCategory c on c.IngCatID=cu.IngCatID " +
                     " inner join tblUOM u on u.UOMID=cu.Units  where s.RequestNo=" + RequestNo + "";
             }
             ds = dbObj.InlineExecuteDataSet(sqry);
@@ -36995,7 +36996,7 @@ namespace BusinessLayer
         public DataSet getvariableexpense()
         {
             DataSet ds = new DataSet();
-            string qr = "select a.*,b.branchname from tblvariableexpense as a inner join tblbranch as b on b.BranchId=a.Branchid";
+            string qr = "select a.*,b.branchname from tblvariableexpense as a inner join tblbranch as b on b.BranchId=a.Branchid order by variableid desc";
             ds = dbObj.InlineExecuteDataSet(qr);
             return ds;
         }

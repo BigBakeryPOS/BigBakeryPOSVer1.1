@@ -5,53 +5,13 @@
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../Menu/Styles/styles.css" />
-    <script src="../Menu/Scripts/script.js"></script>
-    <%-- <link href="../Menu/css/sb-admin-2.css" rel="stylesheet" type="text/css" />--%>
-    <!-- MetisMenu CSS -->
-    <link href="../Menu/css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet" />
-    <link href="../Menu/css/sb-admin-2.css" rel="stylesheet" />
+    
     <link href="../Menu/Styles/styles.css" rel="stylesheet" type="text/css" />
     <!-- Custom Fonts -->
     <link href="../Menu/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet"
         type="text/css" />
     <title>POS Billing BigbBiz Solutions</title>
-    <%-- <script>
-        $(document).ready(function () {
-
-            $("#hide").click(function () {
-                $("#divv1").hide();
-
-                $("#show").show();
-                $("#hide").hide();
-            });
-            $("#show").click(function () {
-                $("#show").hide();
-                $("#hide").show();
-                $("#divv1").fadeIn(0);
-                $("#divv1").hide();
-
-            });
-
-        });
-    </script>--%>
-    <%--<script type="text/javascript">
-        function changecolors() {
-            var t = setInterval('change()', 1000);
-        }
-
-        function change() {
-
-
-            var color = document.getElementById("show").style.background;
-
-            if (color == "black") {
-                document.getElementById("show").style.background = "Red";
-            } else {
-                document.getElementById("show").style.background = "black";
-            }
-        } 
-    </script>--%>
+   
     <script src="../js/toastrmin.js" type="text/javascript"></script>
     <script src="../js/toastr.js" type="text/javascript"></script>
     <link href="../css/toastr.css" rel="stylesheet" type="text/css" />
@@ -197,16 +157,6 @@
         }
         
     </script>
-    <%--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600'
-        rel='stylesheet' type='text/css' />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"
-        type="text/css" />
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>--%>
     <style>
         .modal-header, h4, .close
         {
@@ -247,12 +197,11 @@
        }
       </style>
        <link rel="preconnect" href="https://fonts.googleapis.com">
-
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
      <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
-     <link href="../css/Pos_style.css" rel="stylesheet" />
+     <link href="../css/pos_style.css" rel="stylesheet" />
 </head>
-    <div style="background-color: #6c7079">
+    <div>
         <%-- <asp:Panel ID="Panel1" runat="server">
         <div id="myModal" class="modal">
             <div class="modal-dialog">
@@ -315,7 +264,7 @@
             </tr>
         </table>
     </div>
-    <div id='cssmenu' style="background-color: darkblue; height: 47px">
+    <div id='cssmenu'>
         <ul>
             <marquee direction="right"> <asp:Label ID="lblmessege" runat="server" ForeColor="White" Font-Bold="false" ></asp:Label></marquee>
             <li><a href="../Accountsbootstrap/HomePage.aspx">
@@ -346,8 +295,6 @@
                         Notification Alert</a></li>
                     <li id="tablemaster" runat="server" visible="false"><a href="../Accountsbootstrap/TableMaster.aspx">
                         Table Master</a></li>
-                        <li id="variablemaster" runat="server" visible="true"><a href="../Accountsbootstrap/VariableExpenseMaster.aspx">
-                        Fixed Expense Master</a></li>
                     <li id="attender" runat="server" visible="false"><a href="../Accountsbootstrap/AttenderMaster.aspx">
                         Attender Master</a></li>
                     <li id="IBSM" runat="server" visible="false"><a href="../Accountsbootstrap/InterBranchSetting.aspx">
@@ -376,9 +323,6 @@
                         Quick Item Update</a></li>
                     <li id="saletypemaster" runat="server" visible="false"><a href="../Accountsbootstrap/SalesType.aspx">
                         Sales Type Master</a></li>
-                    <li id="Li12" runat="server" visible="true"><a href="../Accountsbootstrap/SalespaymodeMaster.aspx">
-                        Sales PaymentMode Master</a></li>
-                    
                     <li id="Ingcategory" runat="server" visible="false"><a href="../Accountsbootstrap/ProdCategoryGrid.aspx">
                         Ingridients Category Master</a></li>
                     <li id="Online" runat="server" visible="false"><a href="../Accountsbootstrap/OnlineMaster.aspx">
@@ -387,7 +331,7 @@
                         Branch-Production Setting</a></li>
                     <li id="Ingridients" runat="server" visible="false"><a href="../Accountsbootstrap/Ingridients.aspx">
                         Ingridients Master</a></li>
-                        <li id="Customer" runat="server" class='has-sub' visible="false"><a id="A50" runat="server" href="javascript:;">
+                     <li id="Customer" runat="server" class='has-sub' visible="false"><a id="A50" runat="server" href="javascript:;">
                             Contact Master</a>
                             <ul>
                                 <li id="CustMast" runat="server" visible="true"><a runat="server" href="../Accountsbootstrap/viewcustomer.aspx?id=1">
@@ -403,6 +347,8 @@
 
                             </ul>
                         </li>
+                   <!-- <li id="Customer1" runat="server" visible="false"><a href="../Accountsbootstrap/viewcustomer.aspx">
+                        Contact Master</a></li>-->
                     <li id="Bank" runat="server" visible="false"><a href="../Accountsbootstrap/viewbank.aspx">
                         Bank Master</a></li>
                     <li id="employee" runat="server" visible="false"><a href="../Accountsbootstrap/EmployeeMaster.aspx">
@@ -600,8 +546,6 @@
             <li id="Reports" runat="server" visible="false" class='has-sub'><a href="javascript:;" style="color: White">
                 Reports <b></b></a>
                 <ul>
-                 <li id="Li10" runat="server" visible="true"><a href="../Accountsbootstrap/dashboardtemplate.aspx">
-                New Dashboard Template</a></li>
                     <li id="DayCloseReport" class='has-sub' runat="server" visible="false"><a id="A25" href="javascript:;"
                         runat="server">day Close Report</a>
                         <ul>
@@ -617,10 +561,6 @@
                                 runat="server">Tax Report</a></li>
                             <li id="SalesSummaryReport" runat="server" visible="false"><a href="../Accountsbootstrap/SalesSummaryReport.aspx"
                                 runat="server">Daily Summary Report</a></li>
-                                <li id="Li3" runat="server" visible="true"><a id="A39" href="../Accountsbootstrap/BranchCostingReport.aspx"
-                                runat="server">Branch Costing Report</a></li>
-
-                                
                         </ul>
                     </li>
                     <li id="OrderFormReport" class='has-sub' runat="server" visible="false"><a id="A24" href="javascript:;"
@@ -717,7 +657,7 @@
                                 Stock Detailed Report </a></li>
                             <li id="StockAuditReport" runat="server" visible="false"><a href="../Accountsbootstrap/StockAuditReport.aspx">
                                 Stock Audit Report </a></li>
-                            <li id="StockReturned" runat="server" visible="false"><a href="javascript:;">Stock Returned </a>
+                            <li id="StockReturned" class='has-sub' runat="server" visible="false"><a href="javascript:;">Stock Returned </a>
                                 <ul>
                                     <li id="StockReturnedRep" runat="server" visible="false"><a href="../Accountsbootstrap/StockReturnReport.aspx">
                                         Stock Returned Report </a></li>
@@ -848,11 +788,8 @@
                 style="color: White" href="javascript:;">Add Online Bill Entry</a></li>
             <li id="onlineentryreport" runat="server" visible="false"><a href="../Accountsbootstrap/OnlineEntryReport.aspx"
                 style="color: White">Online Entry Report</a></li>
-             <li id="Li114" runat="server" visible="true"><a href="../Accountsbootstrap/UserRoleGrid.aspx"
-                style="color: White">Add Roles</a></li>
             <li id="AddUsers" runat="server" visible="false"><a href="../Accountsbootstrap/UserGrid.aspx"
                 style="color: White">Add Users</a></li>
-            
             <li id="Synchronization" runat="server" visible="false"><a href="../Accountsbootstrap/Synchronization.aspx"
                 style="color: White">Sync.</a></li>
             <li id="Li2" runat="server" visible="false"><a href="../Accountsbootstrap/OnlineOrderScreen.aspx"
@@ -874,13 +811,11 @@
             <li id="chnagepassword" runat="server" visible="false"><a href="../Accountsbootstrap/ChangePassword.aspx"
                 style="color: White">Change Password</a></li>
             <li><a href="../Accountsbootstrap/login1.aspx" style="color: White">Sign Out</a></li>
-            <li><a href="javascript:;" style="padding: 11px; background: #54a6ff;">
-                <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label">Welcome : </asp:Label>
-                <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label" Style="font-size: 12px;
-                    text-decoration: blink; border-color: Gray" Visible="true"> </asp:Label><br />
-                <asp:Label runat="server" ID="Label2" ForeColor="White" CssClass="label">: </asp:Label>
-                <asp:Label runat="server" ID="lblstore" ForeColor="White" Style="font-size: 12px;
-                    text-decoration: blink; border-color: Gray" Visible="true"> </asp:Label></a>
+            <li><a href="javascript:;" style="padding: 15px 0;">
+                <asp:Label runat="server" ID="lblWelcome" CssClass="label">Welcome : </asp:Label>
+                <asp:Label runat="server" ID="lblUser" CssClass="label" Visible="true"> </asp:Label><br />
+                <asp:Label runat="server" ID="Label2" CssClass="label">: </asp:Label>
+                <asp:Label runat="server" ID="lblstore" CssClass="label" Visible="true"> </asp:Label></a>
             </li>
             <li>
                 <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false  "> </asp:Label><br />
@@ -907,91 +842,5 @@
         </div>
     </div>
 	
-	<script>
-	   (function($) {
-
-  $.fn.menumaker = function(options) {
-      
-      var cssmenu = $(this), settings = $.extend({
-        title: "Menu",
-        format: "dropdown",
-        sticky: false
-      }, options);
-
-      return this.each(function() {
-        cssmenu.prepend('<div id="menu-button">' + settings.title + '</div>');
-        $(this).find("#menu-button").on('click', function(){
-          $(this).toggleClass('menu-opened');
-          var mainmenu = $(this).next('ul');
-          if (mainmenu.hasClass('open')) { 
-            mainmenu.hide().removeClass('open');
-          }
-          else {
-            mainmenu.show().addClass('open');
-            if (settings.format === "dropdown") {
-              mainmenu.find('ul').show();
-            }
-          }
-        });
-
-        cssmenu.find('li ul').parent().addClass('has-sub');
-
-        multiTg = function() {
-          cssmenu.find(".has-sub").prepend('<span class="submenu-button"></span>')
-              .on("click", function () {
-                var submenuButton = $(this).find("span:first");
-                submenuButton.toggleClass('submenu-opened');
-                if (submenuButton.siblings('ul').hasClass('open')) {
-                    submenuButton.siblings('ul').removeClass('open').hide();
-                } else {
-                    submenuButton.siblings('ul').addClass('open').show();
-                };
-              });
-
-          /*
-          cssmenu.find('.submenu-button').on('click', function() {
-            $(this).toggleClass('submenu-opened');
-            if ($(this).siblings('ul').hasClass('open')) {
-              $(this).siblings('ul').removeClass('open').hide();
-            }
-            else {
-              $(this).siblings('ul').addClass('open').show();
-            }
-          });
-          */
-        };
-
-        if (settings.format === 'multitoggle') multiTg();
-        else cssmenu.addClass('dropdown');
-
-        if (settings.sticky === true) cssmenu.css('position', 'fixed');
-
-        resizeFix = function() {
-          if ($( window ).width() > 768) {
-            cssmenu.find('ul').show();
-          }
-
-          if ($(window).width() <= 768) {
-            cssmenu.find('ul').hide().removeClass('open');
-          }
-        };
-        resizeFix();
-        return $(window).on('resize', resizeFix);
-
-      });
-  };
-})(jQuery);
-
-(function($){
-$(document).ready(function(){
-
-$("#cssmenu").menumaker({
-   title: "Menu",
-   format: "multitoggle"
-});
-
-});
-})(jQuery);
-	</script>
-	
 </html>
+

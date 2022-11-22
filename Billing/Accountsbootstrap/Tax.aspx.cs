@@ -69,7 +69,7 @@ namespace Billing.Accountsbootstrap
         {
             if (txtTax.Text == "")
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Please Enter Tax.Thank You!!!');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Please Enter Tax');", true);
                 return;
             }
             if (btnSubmit.Text == "Save")
@@ -80,7 +80,7 @@ namespace Billing.Accountsbootstrap
                     if (dsCategory.Tables[0].Rows.Count > 0)
                     {
 
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('These Tax has already Exists. please enter a new one');", true);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Tax Entered Already Exist. Create Another');", true);
                         return;
 
 
