@@ -96,7 +96,7 @@
                             <div class="col-lg-3">
                                 <br />
                                 <div class="form-group has-feedback">
-                                    <asp:TextBox ID="txtSearch" placeholder="Search Table.." MaxLength="50" CssClass="form-control"
+                                    <asp:TextBox ID="txtSearch" placeholder="Search here" MaxLength="50" CssClass="form-control"
                                         runat="server" onkeyup="Search_Gridview(this, 'gvtransfer')"></asp:TextBox>
                                     <span class="glyphicon glyphicon-search form-control-feedback"></span>
                                 </div>
@@ -156,7 +156,7 @@
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtrate" runat="server" CssClass="form-control"></asp:TextBox>
                                                     <asp:Label ID="lblbrate" ToolTip="Current Rate" Font-Bold="true" ForeColor="Red"
-                                                        Font-Size="X-Large" runat="server" Text='<%#Eval("rate") %>'></asp:Label>
+                                                        Font-Size="Medium" runat="server" Text='<%#Eval("rate") %>'></asp:Label>
                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtenderd2" runat="server"
                                                         FilterType="Numbers,Custom" ValidChars="." TargetControlID="txtrate" />
                                                 </ItemTemplate>

@@ -293,6 +293,17 @@
                                         </Columns>
                                       <%--  <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                                     </asp:GridView>
+                                 <asp:GridView ID="gvDetails" runat="server" AutoGenerateColumns="false" Font-Names="Calibri"  cssClass="table table-striped pos-table">
+                                    <%--<HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                        HorizontalAlign="Center" ForeColor="White" />--%>
+                                    <Columns>
+                                        <asp:BoundField HeaderText="Item" DataField="IngreCategory" />
+                                        <asp:BoundField HeaderText="Category" DataField="IngredientName" />
+                                        <asp:BoundField HeaderText="Qty" DataField="Order_Qty" />
+                                    </Columns>
+                                  <%--   <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
+                                    <%-- <HeaderStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
+                                </asp:GridView>
                                 </div>
                                 <div id="PRINTIDRec" runat="server">
                                     <asp:GridView ID="Griddc" runat="server" AutoGenerateColumns="false" cssClass="table table-striped pos-table"
@@ -317,21 +328,12 @@
                                 </div>
                                 </div>
                              </div>
+                             <div class="col-lg-12">
+                                
                         </div>
                         </div>
-                        <div class="col-lg-12">
-                                <asp:GridView ID="gvDetails" runat="server" AutoGenerateColumns="false" Font-Names="Calibri">
-                                    <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                        HorizontalAlign="Center" ForeColor="White" />
-                                    <Columns>
-                                        <asp:BoundField HeaderText="Item" DataField="IngreCategory" />
-                                        <asp:BoundField HeaderText="Category" DataField="IngredientName" />
-                                        <asp:BoundField HeaderText="Qty" DataField="Order_Qty" />
-                                    </Columns>
-                                    <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
-                                    <%-- <HeaderStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
-                                </asp:GridView>
                         </div>
+                        
                    </div>
                     <div>
                         <asp:LinkButton ID="link" runat="server" Text="Print" OnClientClick=" printGrid()"
