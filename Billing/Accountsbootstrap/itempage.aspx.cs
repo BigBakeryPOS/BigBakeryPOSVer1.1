@@ -9,6 +9,7 @@ using System.Data;
 using System.Text;
 using System.IO;
 using System.Data.OleDb;
+using DocumentFormat.OpenXml.Vml;
 
 namespace Billing.Accountsbootstrap
 {
@@ -165,7 +166,9 @@ namespace Billing.Accountsbootstrap
                             drpratetype.SelectedValue = ds.Tables[0].Rows[0]["ratetype"].ToString();
                             txtBarcode.Text = ds.Tables[0].Rows[0]["barcode"].ToString();
                             txtDetails.Text = ds.Tables[0].Rows[0]["Description"].ToString();
-                                //Description
+                            radbnsalestype.SelectedValue = ds.Tables[0].Rows[0]["Qtytype"].ToString();
+
+                            //Description
                             mrp_calculation(sender, e);
 
                             string sValue = ds.Tables[0].Rows[0]["isChecked"].ToString();
@@ -206,7 +209,7 @@ namespace Billing.Accountsbootstrap
                             raddisplay.SelectedValue = ds.Tables[0].Rows[0]["DisplayOnline"].ToString();
                             lblFile_Path.Text = ds.Tables[0].Rows[0]["ImageUpload"].ToString();
                             img_Photo.ImageUrl = ds.Tables[0].Rows[0]["ImageUpload"].ToString();
-                            
+
 
                             DataSet dgetcategorybranch = objBs.getcategorybranchforid(lblitemid.Text);
                             if (dgetcategorybranch.Tables[0].Rows.Count > 0)
@@ -251,6 +254,7 @@ namespace Billing.Accountsbootstrap
 
         protected void mrp_calculation(object sender, EventArgs e)
         {
+            const int places = 3;
             double beforeamount = 0;
             double mrp = 0;
             double tax = 0;
@@ -269,6 +273,8 @@ namespace Billing.Accountsbootstrap
                 mrp = Convert.ToDouble(txtMRPPrice.Text);
                 tax = Convert.ToDouble(ddltax.SelectedItem.Text);
                 bA = (mrp / (100 + tax)) * 100;
+                // var multiplier = (decimal)Math.Pow(10, places);
+                //  decimal result = Math.Truncate( Convert.ToDecimal(bA) * multiplier) / multiplier;
                 txtRate.Text = bA.ToString("0.00");
                 txtMRPPrice.Enabled = true;
             }
@@ -284,7 +290,11 @@ namespace Billing.Accountsbootstrap
 
                 double total = mrp + totalrate;
 
-                txtMRPPrice.Text = Convert.ToDouble(total).ToString("f2");
+                //    double result = Math.Truncate(total * 10.000) / 10.000;
+                var multiplier = (decimal)Math.Pow(10, places);
+                decimal result = Math.Truncate(Convert.ToDecimal(total) * multiplier) / multiplier;
+
+                txtMRPPrice.Text = result.ToString();// Convert.ToDouble(total).ToString("f2");
             }
 
 
@@ -292,6 +302,7 @@ namespace Billing.Accountsbootstrap
 
         protected void MRPPrice1_OnTextChanged(object sender, EventArgs e)
         {
+            const int places = 3;
             //double mrp = Convert.ToDouble(txtMRPPrice.Text);
 
             //double tax = Convert.ToDouble(ddltax.SelectedItem.Text);
@@ -311,7 +322,10 @@ namespace Billing.Accountsbootstrap
             double tax = Convert.ToDouble(ddltax.SelectedItem.Text);
             double bA = (mrp / (100 + tax)) * 100;
 
-            txtRate.Text = bA.ToString("0.00");
+            // double result = Math.Truncate(bA * 10.000) / 10.000;
+            var multiplier = (decimal)Math.Pow(10, places);
+            decimal result = Math.Truncate(Convert.ToDecimal(bA) * multiplier) / multiplier;
+            txtRate.Text = result.ToString();
 
         }
 
@@ -320,7 +334,7 @@ namespace Billing.Accountsbootstrap
 
             if (fp_Upload.HasFile)
             {
-                string fileName = Path.GetFileName(fp_Upload.PostedFile.FileName);
+                string fileName = System.IO.Path.GetFileName(fp_Upload.PostedFile.FileName);
                 fp_Upload.PostedFile.SaveAs(Server.MapPath("~/Files/") + fileName);
                 lblFile_Path.Text = "Files/" + fp_Upload.PostedFile.FileName;
                 img_Photo.ImageUrl = "Files/" + fp_Upload.PostedFile.FileName;
@@ -365,8 +379,8 @@ namespace Billing.Accountsbootstrap
                     #region
                     string datett = DateTime.Now.ToString();
                     string dtaa = Convert.ToDateTime(datett).ToString("dd-MM-yyyy-hh-mm-ss");
-                    string fileName = Path.GetFileName(FileUpload1.PostedFile.FileName) + dtaa;
-                    string fileExtension = Path.GetExtension(FileUpload1.PostedFile.FileName);
+                    string fileName = System.IO.Path.GetFileName(FileUpload1.PostedFile.FileName) + dtaa;
+                    string fileExtension = System.IO.Path.GetExtension(FileUpload1.PostedFile.FileName);
                     string fileLocation = Server.MapPath("~/App_Data/" + fileName);
                     FileUpload1.SaveAs(fileLocation);
                     if (fileExtension == ".xls")
@@ -570,7 +584,7 @@ namespace Billing.Accountsbootstrap
                         }
                         else
                         {
-                            int iStatus = objBs.InsertitemforAll(categoryid, Item, Convert.ToDouble(Rate), Convert.ToDouble(Tax), TaxId, UOMid, Empcode, Minimumstock, HSNCode, Foodtype, SerialNo,"","","","");
+                            int iStatus = objBs.InsertitemforAll(categoryid, Item, Convert.ToDouble(Rate), Convert.ToDouble(Tax), TaxId, UOMid, Empcode, Minimumstock, HSNCode, Foodtype, SerialNo, "", "", "", "");
 
                             DataSet dss = objBs.GetItemID();
 
@@ -695,7 +709,7 @@ namespace Billing.Accountsbootstrap
                         string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority +
    Request.ApplicationPath.TrimEnd('/') + "/";
 
-                        string Pagepath = baseUrl+lblFile_Path.Text;
+                        string Pagepath = baseUrl + lblFile_Path.Text;
 
                         int iStatus = 0;
                         if (sTableName == "admin")
@@ -703,7 +717,7 @@ namespace Billing.Accountsbootstrap
 
 
                             //iStatus = objBs.insertcategory(Convert.ToInt32(ddlcategory.SelectedValue), txtcatdescription.Text, txtdescription.Text, txtSerialNo.Text, txtSerial.Text, txtSize.Text, Convert.ToInt32(1), Convert.ToDouble(ddltax.SelectedItem.Text), Convert.ToDouble(txtRate.Text), "Rate", ddltax.SelectedItem.Text, Convert.ToInt32(ddltax.SelectedValue), Convert.ToInt32(ddluom.SelectedValue), Empcode);
-                            iStatus = objBs.insertitem(Convert.ToInt32(ddlcategory.SelectedValue), txtcatdescription.Text, txtdescription.Text, txtSerial.Text, ddltax.SelectedValue, (txtRate.Text), (ddluom.SelectedValue), txtminumumstock.Text, raddisplay.SelectedValue, lblFile_Path.Text, Empcode, ddltax.SelectedItem.Text, ddluom.SelectedItem.Text, txtprintitemname.Text, drpfoodtype.SelectedValue, txtHSNCode.Text, txtMRPPrice.Text, txtBarcode.Text, txtDetails.Text, Pagepath, drpratetype.SelectedValue);
+                            iStatus = objBs.insertitem(Convert.ToInt32(ddlcategory.SelectedValue), txtcatdescription.Text, txtdescription.Text, txtSerial.Text, ddltax.SelectedValue, (txtRate.Text), (ddluom.SelectedValue), txtminumumstock.Text, raddisplay.SelectedValue, lblFile_Path.Text, Empcode, ddltax.SelectedItem.Text, ddluom.SelectedItem.Text, txtprintitemname.Text, drpfoodtype.SelectedValue, txtHSNCode.Text, txtMRPPrice.Text, txtBarcode.Text, txtDetails.Text, Pagepath, drpratetype.SelectedValue, radbnsalestype.SelectedValue);
                             int ibrachinsert = objBs.insertbranchitem(ndstt);
                             int isubcatinsert = objBs.insertsubcategoryitem(ndstt1);
 
@@ -719,7 +733,7 @@ namespace Billing.Accountsbootstrap
                         else
                         {
                             //iStatus = objBs.insertcategory(Convert.ToInt32(ddlcategory.SelectedValue), txtcatdescription.Text, txtdescription.Text, txtSerialNo.Text, txtSerial.Text, txtSize.Text, Convert.ToInt32(1), Convert.ToDouble(ddltax.SelectedItem.Text), Convert.ToDouble(txtRate.Text), "Rate", ddltax.SelectedItem.Text, Convert.ToInt32(ddltax.SelectedValue), Convert.ToInt32(ddluom.SelectedValue), Empcode);
-                            iStatus = objBs.insertitem(Convert.ToInt32(ddlcategory.SelectedValue), txtcatdescription.Text, txtdescription.Text, txtSerial.Text, ddltax.SelectedValue, (txtRate.Text), (ddluom.SelectedValue), txtminumumstock.Text, raddisplay.SelectedValue, lblFile_Path.Text, Empcode, ddltax.SelectedItem.Text, ddluom.SelectedItem.Text, txtprintitemname.Text, drpfoodtype.SelectedValue, txtHSNCode.Text, txtMRPPrice.Text, txtBarcode.Text, txtDetails.Text, Pagepath,drpratetype.SelectedValue);
+                            iStatus = objBs.insertitem(Convert.ToInt32(ddlcategory.SelectedValue), txtcatdescription.Text, txtdescription.Text, txtSerial.Text, ddltax.SelectedValue, (txtRate.Text), (ddluom.SelectedValue), txtminumumstock.Text, raddisplay.SelectedValue, lblFile_Path.Text, Empcode, ddltax.SelectedItem.Text, ddluom.SelectedItem.Text, txtprintitemname.Text, drpfoodtype.SelectedValue, txtHSNCode.Text, txtMRPPrice.Text, txtBarcode.Text, txtDetails.Text, Pagepath, drpratetype.SelectedValue, radbnsalestype.SelectedValue);
                             int ibrachinsert = objBs.insertbranchitem(ndstt);
                             int isubcatinsert = objBs.insertsubcategoryitem(ndstt1);
 
@@ -765,14 +779,14 @@ namespace Billing.Accountsbootstrap
                     //  cust = Request.QueryString.Get("cust");
                     if (sTableName == "admin")
                     {
-                        objBs.updateitementry(txtcatdescription.Text, txtdescription.Text, cust, txtSerial.Text, ddltax.SelectedValue, ddltax.SelectedItem.Text, Convert.ToDouble(txtRate.Text), ddluom.SelectedValue, ddluom.SelectedItem.Text, txtminumumstock.Text, raddisplay.SelectedValue, lblFile_Path.Text, Empcode, txtprintitemname.Text, drpfoodtype.SelectedValue, superadmin, ddlcategory.SelectedValue, lblitemid.Text, txtHSNCode.Text, txtMRPPrice.Text, txtBarcode.Text, txtDetails.Text, Pagepath,drpratetype.SelectedValue);
+                        objBs.updateitementry(txtcatdescription.Text, txtdescription.Text, cust, txtSerial.Text, ddltax.SelectedValue, ddltax.SelectedItem.Text, Convert.ToDouble(txtRate.Text), ddluom.SelectedValue, ddluom.SelectedItem.Text, txtminumumstock.Text, raddisplay.SelectedValue, lblFile_Path.Text, Empcode, txtprintitemname.Text, drpfoodtype.SelectedValue, superadmin, ddlcategory.SelectedValue, lblitemid.Text, txtHSNCode.Text, txtMRPPrice.Text, txtBarcode.Text, txtDetails.Text, Pagepath, drpratetype.SelectedValue, radbnsalestype.SelectedValue);
                         int ibrachinsert = objBs.updatebranchitem(ndstt, cust);
                         int isubcatinsert = objBs.Updatesubcategoryitem(ndstt1, cust);
                     }
                     else
                     {
                         ///objBs.updateitementry(txtcatdescription.Text, txtdescription.Text, cust, txtSerialNo.Text, txtSerial.Text, txtSize.Text, Convert.ToInt32(sValue), Convert.ToDouble(ddltax.SelectedItem.Text), Convert.ToDouble(txtRate.Text), "Rate", ddltax.SelectedItem.Text, Convert.ToInt32(ddltax.SelectedValue), Convert.ToInt32(ddluom.SelectedValue), Empcode);
-                        objBs.updateitementry(txtcatdescription.Text, txtdescription.Text, cust, txtSerial.Text, ddltax.SelectedValue, ddltax.SelectedItem.Text, Convert.ToDouble(txtRate.Text), ddluom.SelectedValue, ddluom.SelectedItem.Text, txtminumumstock.Text, raddisplay.SelectedValue, lblFile_Path.Text, Empcode, txtprintitemname.Text, drpfoodtype.SelectedValue, superadmin, ddlcategory.SelectedValue, lblitemid.Text, txtHSNCode.Text, txtMRPPrice.Text, txtBarcode.Text, txtDetails.Text, Pagepath, drpratetype.SelectedValue);
+                        objBs.updateitementry(txtcatdescription.Text, txtdescription.Text, cust, txtSerial.Text, ddltax.SelectedValue, ddltax.SelectedItem.Text, Convert.ToDouble(txtRate.Text), ddluom.SelectedValue, ddluom.SelectedItem.Text, txtminumumstock.Text, raddisplay.SelectedValue, lblFile_Path.Text, Empcode, txtprintitemname.Text, drpfoodtype.SelectedValue, superadmin, ddlcategory.SelectedValue, lblitemid.Text, txtHSNCode.Text, txtMRPPrice.Text, txtBarcode.Text, txtDetails.Text, Pagepath, drpratetype.SelectedValue, radbnsalestype.SelectedValue);
                         int ibrachinsert = objBs.updatebranchitem(ndstt, cust);
                         int isubcatinsert = objBs.Updatesubcategoryitem(ndstt1, cust);
                     }

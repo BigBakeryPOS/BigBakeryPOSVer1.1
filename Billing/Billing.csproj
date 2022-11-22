@@ -296,6 +296,13 @@
     <Content Include="Accountsbootstrap\Home_Page.aspx" />
     <Content Include="Accountsbootstrap\HTMLPage1.htm" />
     <Content Include="Accountsbootstrap\HTMLTODAY.htm" />
+    <Content Include="Accountsbootstrap\i-b-sales.png" />
+    <Content Include="Accountsbootstrap\i-bill.png" />
+    <Content Include="Accountsbootstrap\i-delivery.png" />
+    <Content Include="Accountsbootstrap\i-order.png" />
+    <Content Include="Accountsbootstrap\i-product.png" />
+    <Content Include="Accountsbootstrap\i-report.png" />
+    <Content Include="Accountsbootstrap\i-stock.png" />
     <Content Include="Accountsbootstrap\img\arrow.png" />
     <Content Include="Accountsbootstrap\img\bg.png" />
     <Content Include="Accountsbootstrap\Index.aspx" />
@@ -360,6 +367,7 @@
     <Content Include="Accountsbootstrap\NewButton.aspx" />
     <Content Include="Accountsbootstrap\NewDashboard.aspx" />
     <Content Include="Accountsbootstrap\Newpos.aspx" />
+    <Content Include="Accountsbootstrap\NewPosbill.aspx" />
     <Content Include="Accountsbootstrap\NewTaxReport.aspx" />
     <Content Include="Accountsbootstrap\NotificationPage.aspx" />
     <Content Include="Accountsbootstrap\Offer.aspx" />
@@ -502,6 +510,7 @@
     <Content Include="css\Pos_style.css" />
     <Content Include="css\SMSBg.jpg" />
     <Content Include="css\toastr.css" />
+    <Content Include="HeaderMaster\NewHeader.ascx" />
     <Content Include="images\add.jpg" />
     <Content Include="images\preview.jpg" />
     <Content Include="images\preview2.jpg" />
@@ -2328,6 +2337,13 @@
     <Compile Include="Accountsbootstrap\Newpos.aspx.designer.cs">
       <DependentUpon>Newpos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accountsbootstrap\NewPosbill.aspx.cs">
+      <DependentUpon>NewPosbill.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\NewPosbill.aspx.designer.cs">
+      <DependentUpon>NewPosbill.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accountsbootstrap\NewTaxReport.aspx.cs">
       <DependentUpon>NewTaxReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3866,6 +3882,13 @@
     </Compile>
     <Compile Include="HeaderMaster\DealerMenu.ascx.designer.cs">
       <DependentUpon>DealerMenu.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="HeaderMaster\NewHeader.ascx.cs">
+      <DependentUpon>NewHeader.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HeaderMaster\NewHeader.ascx.designer.cs">
+      <DependentUpon>NewHeader.ascx</DependentUpon>
     </Compile>
     <Compile Include="HeaderMaster\Header.ascx.cs">
       <DependentUpon>Header.ascx</DependentUpon>
