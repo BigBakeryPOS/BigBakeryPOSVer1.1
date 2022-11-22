@@ -92,6 +92,12 @@ namespace Billing.Accountsbootstrap
 
                         ddlsuplier.SelectedValue = dagent.Tables[0].Rows[0]["Supplier"].ToString();
 
+                        DataSet dsupplier = kbs.getsupplierdetais(ddlsuplier.SelectedValue);
+                        if (dsupplier.Tables[0].Rows.Count > 0)
+                        {
+                            txtaddress.Text = dsupplier.Tables[0].Rows[0]["address"].ToString() + "," + dsupplier.Tables[0].Rows[0]["area"].ToString() + "," + dsupplier.Tables[0].Rows[0]["city"].ToString() + "," + dsupplier.Tables[0].Rows[0]["pincode"].ToString();
+                        }
+
                         ddlpaymode.SelectedValue = dagent.Tables[0].Rows[0]["Paymode"].ToString();
 
                         if (dagent.Tables[0].Rows[0]["Paymode"].ToString() == "1")
@@ -1587,6 +1593,13 @@ namespace Billing.Accountsbootstrap
             }
             else
             {
+                DataSet dsupplier = kbs.getsupplierdetais(ddlsuplier.SelectedValue);
+                if (dsupplier.Tables[0].Rows.Count > 0)
+                {
+                    txtaddress.Text = dsupplier.Tables[0].Rows[0]["address"].ToString() + "," + dsupplier.Tables[0].Rows[0]["area"].ToString() + "," + dsupplier.Tables[0].Rows[0]["city"].ToString() + "," + dsupplier.Tables[0].Rows[0]["pincode"].ToString();
+                }
+
+
                 FirstGridViewRow();
 
                 DataSet dss = kbs.getsupplierdetais(ddlsuplier.SelectedValue);

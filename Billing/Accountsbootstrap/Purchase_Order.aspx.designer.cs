@@ -105,6 +105,15 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblpurchase;
 
         /// <summary>
+        /// txtaddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtaddress;
+
+        /// <summary>
         /// txtbillno control.
         /// </summary>
         /// <remarks>

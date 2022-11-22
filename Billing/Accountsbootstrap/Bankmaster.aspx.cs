@@ -201,7 +201,7 @@ namespace Billing.Accountsbootstrap
                 DataSet dchkcontactname = objBs.chkconatctname(str);
                 if (dchkcontactname.Tables[0].Rows.Count > 0)
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Supplier Name Already Exists.Thank you!!!.');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Bank Name Already Exists.Thank you!!!.');", true);
                     return;
                 }
 

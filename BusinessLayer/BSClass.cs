@@ -37413,6 +37413,32 @@ namespace BusinessLayer
 
 
         #endregion
+
+        #region PurchaseInvoiceNEW
+        public DataSet GetIngredientsName(int id)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select * from tblIngridents where  IngridID=" + id + " ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+
+        public DataSet GetUOMName(int IngridID)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select b.uom,b.uomid from tblIngridents a inner join tbluom b on a.Units = b.UOMID where a.IngridID =" + IngridID + "";            
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+
+        public DataSet GetPrimaryUOMName(int PrimaryUOMID)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select * from tblprimaryuom where PrimaryUOMID=" + PrimaryUOMID + " ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+        #endregion
     }
 
 
