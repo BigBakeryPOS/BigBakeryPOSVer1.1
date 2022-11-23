@@ -29,7 +29,7 @@ namespace Billing.Accountsbootstrap
             {
                 if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
                 {
-                    Response.Redirect("Login_branch.aspx");
+                   // Response.Redirect("Login_branch.aspx"); This is alway auto log out
                 }
             }
             if (!IsPostBack)
@@ -40,7 +40,7 @@ namespace Billing.Accountsbootstrap
                 if (dsbranchCode.Tables[0].Rows.Count > 0)
                 {
                     drpbranch.DataSource = dsbranchCode;
-                    drpbranch.DataTextField = "BranchArea";
+                    drpbranch.DataTextField = "BranchName";
                     drpbranch.DataValueField = "branchid";
                     drpbranch.DataBind();
                     drpbranch.Items.Insert(0, "Select Branch");

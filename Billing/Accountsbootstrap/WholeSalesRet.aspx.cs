@@ -15,6 +15,7 @@ namespace Billing.Accountsbootstrap
     {
         BSClass objbs = new BSClass();
         string sTableName = "";
+        string Logintypeid = "";
 
         double Qty = 0; double Rate = 0; double Tax = 0; double TaxAmount = 0; double Amount = 0; double STotal = 0;
         protected void Page_Load(object sender, EventArgs e)
@@ -24,6 +25,7 @@ namespace Billing.Accountsbootstrap
             lblUser.Text = Session["UserName"].ToString();
             lblUserID.Text = Session["UserID"].ToString();
             sTableName = Session["User"].ToString();
+            Logintypeid = Session["LoginTypeId"].ToString();
 
             if (!IsPostBack)
             {
@@ -280,7 +282,7 @@ namespace Billing.Accountsbootstrap
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 var drpItem = (DropDownList)e.Row.FindControl("drpItem");
-                dst = objbs.selectitemsgrid_wholesales(sTableName);
+                dst = objbs.selectitemsgrid_wholesales(sTableName,Logintypeid);
                 drpItem.DataSource = dst;
                 drpItem.DataTextField = "Definition";
                 drpItem.DataValueField = "CategoryUserID";
@@ -568,7 +570,7 @@ namespace Billing.Accountsbootstrap
 
                     TextBox txtid = (TextBox)GridView2.Rows[vLoop].FindControl("txtid");
 
-                    int transsales = objbs.inserttranswholesalesret(sTableName, salesid, Convert.ToInt32(drpItem.SelectedValue), Convert.ToDouble(txtQty.Text), Convert.ToDouble(txtRate.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtTaxamount.Text), Convert.ToDouble(txtAmount.Text), Convert.ToInt32(txtid.Text));
+                    int transsales = objbs.inserttranswholesalesret(sTableName, salesid, Convert.ToInt32(drpItem.SelectedValue), Convert.ToDouble(txtQty.Text), Convert.ToDouble(txtRate.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtTaxamount.Text), Convert.ToDouble(txtAmount.Text), Convert.ToInt32(txtid.Text),Logintypeid);
                 }
 
                 string yourUrl = "WholeSalesReturnPrint.aspx?ISalesId=" + salesid;

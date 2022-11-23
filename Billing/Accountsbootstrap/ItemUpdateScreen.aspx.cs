@@ -23,6 +23,7 @@ namespace Billing.Accountsbootstrap
         string sCode = "";
         string sTableName = "";
         string superadmin = "";
+        string ratesetting = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
@@ -30,14 +31,7 @@ namespace Billing.Accountsbootstrap
             sCode = Request.Cookies["userInfo"]["BranchCode"].ToString();
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
             superadmin = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
-            DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "salestypemaster");
-            if (dacess1.Tables[0].Rows.Count > 0)
-            {
-                if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
-                {
-                    Response.Redirect("Login_branch.aspx");
-                }
-            }
+            ratesetting = Request.Cookies["userInfo"]["Ratesetting"].ToString();
 
             if (!IsPostBack)
             {
@@ -58,6 +52,119 @@ namespace Billing.Accountsbootstrap
 
 
         }
+
+        //protected void mrp_calculation(object sender, EventArgs e)
+        //{
+        //    double beforeamount = 0;
+        //    double mrp = 0;
+        //    double tax = 0;
+        //    double bA = 0;
+        //    txtMRPPrice.Enabled = false;
+        //    txtRate.Enabled = false;
+        //    if (txtMRPPrice.Text == "")
+        //        txtMRPPrice.Text = "0";
+
+        //    if (txtRate.Text == "")
+        //        txtRate.Text = "0";
+
+        //    if (drpratetype.SelectedValue == "1")
+        //    {
+
+        //        mrp = Convert.ToDouble(txtMRPPrice.Text);
+        //        tax = Convert.ToDouble(ddltax.SelectedItem.Text);
+        //        bA = (mrp / (100 + tax)) * 100;
+        //        txtRate.Text = bA.ToString("0.00");
+        //        txtMRPPrice.Enabled = true;
+        //    }
+        //    else if (drpratetype.SelectedValue == "2")
+        //    {
+        //        //  txtRate.Text = txtmrp.Text ;
+        //        txtRate.Enabled = true;
+        //        mrp = Convert.ToDouble(txtRate.Text);
+
+        //        tax = Convert.ToDouble(ddltax.SelectedItem.Text);
+
+        //        double totalrate = (mrp * tax) / 100;
+
+        //        double total = mrp + totalrate;
+
+        //        txtMRPPrice.Text = Convert.ToDouble(total).ToString("f2");
+        //    }
+
+
+        //}
+
+        protected void Rate_changed(object sender, EventArgs e)
+        {
+            double beforeamount = 0;
+            double mrp = 0;
+            double tax = 0;
+            double bA = 0;
+
+            TextBox ddl = (TextBox)sender;
+            GridViewRow row = (GridViewRow)ddl.NamingContainer;
+
+            TextBox txtitemname = (TextBox)row.FindControl("txtitemname");
+
+            TextBox txtprintitemname = (TextBox)row.FindControl("txtprintitemname");
+
+            TextBox txtHSNcode = (TextBox)row.FindControl("txtHSNcode");
+
+            Label lblitemid = (Label)row.FindControl("lblitemid");
+
+            DropDownList ddltax = (DropDownList)row.FindControl("ddltax");
+            TextBox txtrate = (TextBox)row.FindControl("txtrate");
+            TextBox txtmrprate = (TextBox)row.FindControl("txtmrprate");
+            DropDownList drpuom = (DropDownList)row.FindControl("drpuom");
+            DropDownList drpisactivee = (DropDownList)row.FindControl("drpisactive");
+            DropDownList drpdispalyonline = (DropDownList)row.FindControl("drpdispalyonline");
+
+
+            txtrate.Enabled = true;
+            mrp = Convert.ToDouble(txtrate.Text);
+
+            tax = Convert.ToDouble(ddltax.SelectedItem.Text);
+
+            double totalrate = (mrp * tax) / 100;
+
+            double total = mrp + totalrate;
+
+            txtmrprate.Text = Convert.ToDouble(total).ToString("" + ratesetting + "");
+
+        }
+
+        protected void MRP_changed(object sender, EventArgs e)
+        {
+
+            double beforeamount = 0;
+            double mrp = 0;
+            double tax = 0;
+            double bA = 0;
+
+            TextBox ddl = (TextBox)sender;
+            GridViewRow row = (GridViewRow)ddl.NamingContainer;
+
+            TextBox txtitemname = (TextBox)row.FindControl("txtitemname");
+
+            TextBox txtprintitemname = (TextBox)row.FindControl("txtprintitemname");
+
+            TextBox txtHSNcode = (TextBox)row.FindControl("txtHSNcode");
+
+            Label lblitemid = (Label)row.FindControl("lblitemid");
+
+            DropDownList ddltax = (DropDownList)row.FindControl("ddltax");
+            TextBox txtrate = (TextBox)row.FindControl("txtrate");
+            TextBox txtmrprate = (TextBox)row.FindControl("txtmrprate");
+            DropDownList drpuom = (DropDownList)row.FindControl("drpuom");
+            DropDownList drpisactivee = (DropDownList)row.FindControl("drpisactive");
+            DropDownList drpdispalyonline = (DropDownList)row.FindControl("drpdispalyonline");
+
+            mrp = Convert.ToDouble(txtmrprate.Text);
+            tax = Convert.ToDouble(ddltax.SelectedItem.Text);
+            bA = (mrp / (100 + tax)) * 100;
+            txtrate.Text = bA.ToString("" + ratesetting + "");
+        }
+
 
         protected void overall_itemsearch(object sender, EventArgs e)
         {
@@ -132,6 +239,7 @@ namespace Billing.Accountsbootstrap
 
             DropDownList ddltax = (DropDownList)row.FindControl("ddltax");
             TextBox txtrate = (TextBox)row.FindControl("txtrate");
+            TextBox txtmrprate = (TextBox)row.FindControl("txtmrprate");
             DropDownList drpuom = (DropDownList)row.FindControl("drpuom");
             DropDownList drpisactivee = (DropDownList)row.FindControl("drpisactive");
             DropDownList drpdispalyonline = (DropDownList)row.FindControl("drpdispalyonline");
@@ -145,7 +253,7 @@ namespace Billing.Accountsbootstrap
                 actuive = "No";
             }
 
-            int isucess = objbs.updatecategoryitemquick(txtitemname.Text, ddltax.SelectedValue, ddltax.SelectedItem.Text, txtrate.Text, drpuom.SelectedValue, lblitemid.Text, txtprintitemname.Text, txtHSNcode.Text, drpisactivee.SelectedValue, actuive, superadmin, drpuom.SelectedItem.Text, drpdispalyonline.SelectedValue);
+            int isucess = objbs.updatecategoryitemquick(txtitemname.Text, ddltax.SelectedValue, ddltax.SelectedItem.Text, txtrate.Text, drpuom.SelectedValue, lblitemid.Text, txtprintitemname.Text, txtHSNcode.Text, drpisactivee.SelectedValue, actuive, superadmin, drpuom.SelectedItem.Text, drpdispalyonline.SelectedValue,txtmrprate.Text);
 
             if (txtoverallitem.Text != "")
             {
@@ -378,6 +486,11 @@ namespace Billing.Accountsbootstrap
         protected void btnexp_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ItemUpdateScreen.aspx");
         }
     }
 }

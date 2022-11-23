@@ -57,7 +57,31 @@
     <![endif]-->
     <link href="../images/fav.ico" type="image/x-icon" rel="Shortcut Icon" />
 
+     <script type="text/javascript">
+        function Search_Gridview(strKey, strGV) {
 
+
+            var strData = strKey.value.toLowerCase().split(" ");
+
+            var tblData = document.getElementById(strGV);
+
+            var rowData;
+            for (var i = 1; i < tblData.rows.length; i++) {
+                rowData = tblData.rows[i].innerHTML;
+                var styleDisplay = 'none';
+                for (var j = 0; j < strData.length; j++) {
+                    if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+
+                        styleDisplay = '';
+                    else {
+                        styleDisplay = 'none';
+                        break;
+                    }
+                }
+                tblData.rows[i].style.display = styleDisplay;
+            }
+        }    
+     </script>
 
 </head>
 <body>
@@ -80,10 +104,14 @@
             
         <!-- /.row -->  
           <div class="container-fluid">
+               
+               <div class="col-lg-12">
+
+                         <div class="col-lg-8">
 	   <div class="row panel-custom1">
         <div class="panel-header">
-          <h1 class="page-header">Ledger Master
-           <span class="pull-right">
+          <h1 class="page-header">Variable Expense List 
+           <span class="pull-right" style="display:none">
           <asp:LinkButton ID="Button1" runat="server" onclick="btnnew_Click">
                                                 <button type="button" class="btn btn-primary btn-md pos-btn1">
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD
@@ -95,10 +123,22 @@
 	    </div>          
                     
                         <div class="panel-body">
-                      
-                        
+                             <div class="col-lg-12">
+                        <div class="col-lg-8">
+                                    <div class="form-group has-feedback">
+                                        <asp:TextBox ID="txtname" runat="server" placeholder="Search Variable Expense.." onkeyup="Search_Gridview(this, 'gvledgrid')"
+                                            CssClass="form-control"></asp:TextBox>
+                                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <asp:Button ID="btnReset" runat="server" Width="150px" class="btn btn-secondary"
+                                        Text="Reset" OnClick="btnReset_Click" />
+                                </div>
+                                 </div>
+                             <div class="col-lg-12">
                             <div class="table-responsive panel-grid-left">
-                            <asp:GridView ID="gvledgrid" runat="server"  AllowPaging="true" PageSize="10"
+                            <asp:GridView ID="gvledgrid" runat="server"  AllowPaging="false" PageSize="10"
                                         AutoGenerateColumns="false"   AllowSorting="true"  CssClass="table table-striped pos-table" 
                                         onrowcommand="gvledgrid_RowCommand" onpageindexchanging="Page_Change"  OnRowDataBound="gvledgrid_OnRowDataBound" padding="0" spacing="0" border="0">
                                  
@@ -134,15 +174,44 @@
    <%-- <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                                 </asp:GridView>
-                             
+                             </div>
          
         
         </div>
+                          
         </div>
+            </div> </div>
         <!-- /#page-wrapper -->
-		</div>
+		
+                         <div class="col-lg-4">
+	   <div class="row panel-custom1">
+        <div class="panel-header">
+          <h1 class="page-header">Create Variable Expense
+   
+          </h1>
+	    </div>          
+                    
+                        <div class="panel-body">
+                             <div class="list-group">
+                                <label>
+                                    Group Head</label>
+                                <asp:DropDownList ID="ddlGroup" runat="server" CssClass="form-control">
+                                </asp:DropDownList>
+                           <br />
+                                <label>
+                                    Name</label>
+                                <asp:TextBox CssClass="form-control" ID="txtledger" runat="server" placeholder="Name"></asp:TextBox>
+                            
+                            <br />
+                                
+                                    <asp:Button class="btn btn-lg btn-primary pos-btn1" ID="btnsave" Width="150px" runat="server"
+                                        Text="Save" OnClick="btnsave_Click" />
+                                
+                                
+                                   
+                                </div>
         </div>
-       
+       </div></div></div>
         </ContentTemplate>
 </asp:UpdatePanel>
 </form>

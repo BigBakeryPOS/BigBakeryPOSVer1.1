@@ -16,14 +16,18 @@
     <table width="100%" border="1">
         <tr>
             <td align="center">
-                BLAACKFOREST BAKERY<br />
-                2/232,MALLIGAI CROSS STREET,<br />
-                GOMATHIPURAM 2ND MAIN,<br />
-                MADURAI 625020 TAMILNADU,<br />
-                Ph : +91 452 4393091/ +91 9842279837
+                <asp:Label ID="lblstore" runat="server" Style="font-weight: bold; font-size: x-large"
+                    Visible="true"></asp:Label>
                 <br />
-                E-mail id: info@blaackforest.com Web : www.blaackforest.com<br />
-                TIN NO : 123456
+                <asp:Label ID="lblAddres" runat="server" Style="font-size: x-large;" Visible="true"></asp:Label><br />
+                <asp:Label ID="lblmobilename" runat="server" Visible="false" Text="Tel No."></asp:Label>
+                <asp:Label ID="lblmobilename1" runat="server" Visible="true" Text="Mobile No."></asp:Label>
+                <asp:Label ID="lblstoreno" runat="server" Style="font-size: x-large"></asp:Label>
+                <br />
+                <div id="lblgstdetails" runat="server" visible="true">
+                    <asp:Label ID="Label1" runat="server" Style="font-size: x-large">GSTIN:</asp:Label>
+                    <asp:Label ID="lbltin" runat="server" Style="font-size: x-large"></asp:Label>
+                </div>
             </td>
         </tr>
         <tr>
@@ -122,7 +126,8 @@
                     <tr>
                         <td align="right">
                             <h2>
-                                for<b> BLAACKFOREST BAKERY</b></h2>
+                                for<b> <asp:Label ID="lblbsign" runat="server" Style="font-weight: bold; font-size: x-large"
+                    Visible="true"></asp:Label></b></h2>
                         </td>
                     </tr>
                 </table>

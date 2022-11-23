@@ -76,7 +76,7 @@ namespace Billing.Accountsbootstrap
 
                 }
                 DataSet dss = new DataSet();
-                dss = objbs.getcustomer();
+                dss = objbs.getgridforcustsale();
                 if (dss.Tables[0].Rows.Count > 0)
                 {
                     ddlcustomer.DataSource = dss.Tables[0];

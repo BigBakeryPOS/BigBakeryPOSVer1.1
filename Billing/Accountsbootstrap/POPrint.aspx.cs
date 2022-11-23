@@ -27,6 +27,24 @@ namespace Billing
 
             sTableName = Request.Cookies["userInfo"]["BranchCode"].ToString();
 
+            DataSet getfranchisee1 = objBs.getfarnchiseename_new(sTableName);
+            if (getfranchisee1.Tables[0].Rows.Count > 0)
+            {
+                lblstore.Text = getfranchisee1.Tables[0].Rows[0]["BranchName"].ToString();
+                lblbsign.Text = getfranchisee1.Tables[0].Rows[0]["BranchName"].ToString();
+                lblAddres.Text = getfranchisee1.Tables[0].Rows[0]["Address"].ToString();
+                lblstoreno.Text = getfranchisee1.Tables[0].Rows[0]["Mobileno"].ToString();
+                lbltin.Text = getfranchisee1.Tables[0].Rows[0]["GSTIN"].ToString();
+            }
+            else
+            {
+                lblstore.Text = "----";
+                lblAddres.Text = "----";
+                lblstoreno.Text = "----";
+                lbltin.Text = "----";
+                lblbsign.Text = "----";
+            }
+
             if (iPo != null)
             {
                 if (Type == "Order")

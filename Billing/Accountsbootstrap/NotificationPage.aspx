@@ -59,7 +59,39 @@
      <div class="container-fluid">
 	<div class="row">
     <div class="col-lg-12">
-   
+    <div id="Div1" runat="server" class="col-lg-8">
+              <div class="row panel-custom1">
+                    <div class="panel-header">
+                      <h1 class="page-header">Notification List</h1>
+	                </div>
+                <div class="panel-body">
+                <div class="col-lg-12">
+                        <div class="table-responsive panel-grid-left">
+                            <asp:GridView ID="gvip" runat="server" AutoGenerateColumns="false" cssClass="table table-striped pos-table" OnRowCommand="gvcat_RowCommand" padding="0" spacing="0" border="0"  >
+                                <Columns>
+                                <asp:BoundField DataField="MessageTitle" HeaderText="Messgae Title" />
+                                <asp:BoundField DataField="MessageContent" HeaderText="Messgae Content" />
+                                <asp:BoundField DataField="Fromdate" HeaderText="From date" />
+                                <asp:BoundField DataField="Todate" HeaderText="To date" />
+                                <asp:BoundField DataField="IsActive" HeaderText="Is Active" />
+                                 <asp:TemplateField Visible="true" ItemStyle-HorizontalAlign="Center" HeaderText="Edit">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="btnedit" CommandArgument='<%#Eval("messageid") %>' CommandName="Edits" cssclass="btn btn-warning btn-md"
+                                                            runat="server">
+                                                            <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server" Visible="false" />
+                                                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                            </asp:LinkButton>
+                                                        <%--<asp:LinkButton ID="btnedit" runat="server"  Text="edit"  CommandArgument='<%#Eval("categoryid") %>' CommandName="edit"></asp:LinkButton>--%>
+                                                        <asp:HiddenField ID="ldgID" runat="server" Value='<%# Bind("messageid") %>' />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
+              </div>
+              </div>         
+            </div>
+           </div>
+           </div>
          <div class="col-lg-4">
         <div class="panel panel-custom1">
 		<div class="panel-header">
@@ -133,39 +165,7 @@
                 </div>
                 </div>
                 </div>
-            <div id="Div1" runat="server" class="col-lg-8">
-              <div class="row panel-custom1">
-                    <div class="panel-header">
-                      <h1 class="page-header">Notification List</h1>
-	                </div>
-                <div class="panel-body">
-                <div class="col-lg-12">
-                        <div class="table-responsive panel-grid-left">
-                            <asp:GridView ID="gvip" runat="server" AutoGenerateColumns="false" cssClass="table table-striped pos-table" OnRowCommand="gvcat_RowCommand" padding="0" spacing="0" border="0"  >
-                                <Columns>
-                                <asp:BoundField DataField="MessageTitle" HeaderText="Messgae Title" />
-                                <asp:BoundField DataField="MessageContent" HeaderText="Messgae Content" />
-                                <asp:BoundField DataField="Fromdate" HeaderText="From date" />
-                                <asp:BoundField DataField="Todate" HeaderText="To date" />
-                                <asp:BoundField DataField="IsActive" HeaderText="Is Active" />
-                                 <asp:TemplateField Visible="true" ItemStyle-HorizontalAlign="Center" HeaderText="Edit">
-                                                    <ItemTemplate>
-                                                        <asp:LinkButton ID="btnedit" CommandArgument='<%#Eval("messageid") %>' CommandName="Edits" cssclass="btn btn-warning btn-md"
-                                                            runat="server">
-                                                            <asp:Image ID="imdedit" ImageUrl="~/images/edit.png" runat="server" Visible="false" />
-                                                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                                            </asp:LinkButton>
-                                                        <%--<asp:LinkButton ID="btnedit" runat="server"  Text="edit"  CommandArgument='<%#Eval("categoryid") %>' CommandName="edit"></asp:LinkButton>--%>
-                                                        <asp:HiddenField ID="ldgID" runat="server" Value='<%# Bind("messageid") %>' />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                </Columns>
-                            </asp:GridView>
-              </div>
-              </div>         
-            </div>
-           </div>
-           </div>
+           
             
         
     

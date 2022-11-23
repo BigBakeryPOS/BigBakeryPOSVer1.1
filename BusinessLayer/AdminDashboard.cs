@@ -355,7 +355,7 @@ namespace BusinessLayer
             else
             {
 
-                Today = " select count(*) as Cancel from tblorder_" + tbl + " where isCancel=0 and convert(date,orderdate)=convert(date,getdate())";
+                Today = " select count(*) as Cancel from tblorder_" + tbl + " where isCancel=1 and convert(date,orderdate)=convert(date,getdate())";
             }
             dCust = dbObj.InlineExecuteDataSet(Today);
 
