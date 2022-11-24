@@ -88,7 +88,15 @@ namespace Billing.Accountsbootstrap
                         {
                             chknormalbill.Checked = false;
                         }
-                        if (dget.Tables[0].Rows[0]["Isdiscount"].ToString().Trim() == "Y")
+                        if (dget.Tables[0].Rows[0]["Isbillwisedisc"].ToString().Trim() == "Y")
+                        {
+                            chkdiscbillwise.Checked = true;
+                        }
+                        else
+                        {
+                            chkdiscbillwise.Checked = false;
+                        }
+                            if (dget.Tables[0].Rows[0]["Isdiscount"].ToString().Trim() == "Y")
                         {
                             chkdiscountchk.Checked = true;
                             divchk.Visible = true;
@@ -209,7 +217,7 @@ namespace Billing.Accountsbootstrap
 
         protected void chk_discountcnaged1(object sender, EventArgs e)
         {
-            if (chkoveralldiscount.Checked == true)
+            if (chkdiscbillwise.Checked == true)
             {
                 chkdiscountchk.Checked = false;
             }
@@ -222,12 +230,12 @@ namespace Billing.Accountsbootstrap
 
             if (chkdiscountchk.Checked == true)
             {
-                chkoveralldiscount.Checked = false;
+                chkdiscbillwise.Checked = false;
             }
 
 
             divchk.Visible = false;
-            if (chkoveralldiscount.Checked == true)
+            if (chkdiscountchk.Checked == true)
             {
                 divchk.Visible = true;
                 DataSet getAttender = objBs.getdiscattender("2");
@@ -336,6 +344,7 @@ namespace Billing.Accountsbootstrap
             string isnormalbill = string.Empty;
             string isDiscountbill = string.Empty;
             string isinclusiverate = string.Empty;
+            string isbillwisediscount = string.Empty;
 
 
             int attenderid = 0;
@@ -393,7 +402,17 @@ namespace Billing.Accountsbootstrap
 
 
             }
-            if (chkoveralldiscount.Checked == true)
+
+            if(chkdiscbillwise.Checked == true)
+            {
+                isbillwisediscount = "Y";
+            }
+            else
+            {
+                isbillwisediscount = "N";
+            }
+
+            if (chkdiscountchk.Checked == true)
             {
                 isDiscountbill = "Y";
 
@@ -468,7 +487,7 @@ namespace Billing.Accountsbootstrap
 
 
 
-                        int insert = kbs.insert_SalesType(txtpaytype.Text, txtmargin.Text, txtGST.Text, txtPayGatway.Text, txtTotal.Text, "YES", isnormalbill, isDiscountbill, isinclusiverate, txtordercount.Text, drpordertype.SelectedValue, attenderid, attednerpassword, discountid, discvalue, drpbilltype.SelectedValue);
+                        int insert = kbs.insert_SalesType(txtpaytype.Text, txtmargin.Text, txtGST.Text, txtPayGatway.Text, txtTotal.Text, "YES", isnormalbill, isDiscountbill, isinclusiverate, txtordercount.Text, drpordertype.SelectedValue, attenderid, attednerpassword, discountid, discvalue, drpbilltype.SelectedValue,isbillwisediscount);
 
                         foreach (ListItem listItem in chkpaylist.Items)
                         {
@@ -496,7 +515,7 @@ namespace Billing.Accountsbootstrap
 
                     }
 
-                    int insert = kbs.insert_SalesType(txtpaytype.Text, txtmargin.Text, txtGST.Text, txtPayGatway.Text, txtTotal.Text, "YES", isnormalbill, isDiscountbill, isinclusiverate, txtordercount.Text, drpordertype.SelectedValue, attenderid, attednerpassword, discountid, discvalue,drpbilltype.SelectedValue);
+                    int insert = kbs.insert_SalesType(txtpaytype.Text, txtmargin.Text, txtGST.Text, txtPayGatway.Text, txtTotal.Text, "YES", isnormalbill, isDiscountbill, isinclusiverate, txtordercount.Text, drpordertype.SelectedValue, attenderid, attednerpassword, discountid, discvalue,drpbilltype.SelectedValue, isbillwisediscount);
 
                     foreach (ListItem listItem in chkpaylist.Items)
                     {
@@ -542,7 +561,7 @@ namespace Billing.Accountsbootstrap
                         int idelete = objBs.Ideletetranssalestype(idEdit);
 
 
-                        int update = kbs.update_salestype(txtpaytype.Text, txtmargin.Text, txtGST.Text, txtPayGatway.Text, txtTotal.Text, ddIsActive.SelectedItem.Text, Convert.ToInt32(idEdit), isnormalbill, isDiscountbill, isinclusiverate, txtordercount.Text, drpordertype.SelectedValue, attenderid, attednerpassword, discountid, discvalue,drpbilltype.SelectedValue);
+                        int update = kbs.update_salestype(txtpaytype.Text, txtmargin.Text, txtGST.Text, txtPayGatway.Text, txtTotal.Text, ddIsActive.SelectedItem.Text, Convert.ToInt32(idEdit), isnormalbill, isDiscountbill, isinclusiverate, txtordercount.Text, drpordertype.SelectedValue, attenderid, attednerpassword, discountid, discvalue,drpbilltype.SelectedValue, isbillwisediscount);
 
                         foreach (ListItem listItem in chkpaylist.Items)
                         {

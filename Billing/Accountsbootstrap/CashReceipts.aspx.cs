@@ -404,7 +404,9 @@ namespace Billing.Accountsbootstrap
                 DateTime billldate = DateTime.ParseExact(txtBillDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 DateTime chequedate = DateTime.ParseExact(txtchequedate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-               int ReceiptID = objbs.insertreceipt(sTableName, billldate, chequedate, ddlcustomer.SelectedValue, Convert.ToDouble(txtAmount.Text), BankName, ChequeNo, Convert.ToInt32(ddlPayMode.SelectedValue), Bank, Convert.ToDouble(txtCloseDiscount.Text), Convert.ToInt32(userid));
+                string ReceiptType = "WholeSales";
+
+               int ReceiptID = objbs.insertreceipts(sTableName, billldate, chequedate, ddlcustomer.SelectedValue, Convert.ToDouble(txtAmount.Text), BankName, ChequeNo, Convert.ToInt32(ddlPayMode.SelectedValue), Bank, Convert.ToDouble(txtCloseDiscount.Text), Convert.ToInt32(userid),ReceiptType);
 
                 for (int vLoop = 0; vLoop < gv.Rows.Count; vLoop++)
                 {
@@ -486,7 +488,7 @@ namespace Billing.Accountsbootstrap
             DateTime sFrom = DateTime.ParseExact(txtfromdate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             DateTime sTo = DateTime.ParseExact(txttodate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-            DataSet ds = objbs.getreceiptrecord(sTableName, ddlcustomerrep.SelectedValue, sFrom, sTo, ddlpay.SelectedValue);
+            DataSet ds = objbs.getreceiptrecord(sTableName, ddlcustomerrep.SelectedValue, sFrom, sTo, ddlpay.SelectedValue, lblreceipttype.Text);
             
             if (ds.Tables[0].Rows.Count > 0)
             {
@@ -533,7 +535,7 @@ namespace Billing.Accountsbootstrap
             DateTime sFrom = DateTime.ParseExact(txtfromdate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             DateTime sTo = DateTime.ParseExact(txttodate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-            DataSet ds = objbs.getreceiptrecord(sTableName, ddlcustomerrep.SelectedValue, sFrom, sTo, ddlpay.SelectedValue);
+            DataSet ds = objbs.getreceiptrecord(sTableName, ddlcustomerrep.SelectedValue, sFrom, sTo, ddlpay.SelectedValue, lblreceipttype.Text);
            
             if (ds.Tables[0].Rows.Count > 0)
             {

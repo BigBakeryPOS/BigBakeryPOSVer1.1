@@ -48,7 +48,7 @@ namespace Billing.Accountsbootstrap
                 if (drpdpown.Tables[0].Rows.Count > 0)
                 {
                     ddlrequestno.DataSource = drpdpown;
-                    ddlrequestno.DataTextField = "RequestNo";
+                    ddlrequestno.DataTextField = "name";
                     ddlrequestno.DataValueField = "RequestNo";
                     ddlrequestno.DataBind();
                     ddlrequestno.Items.Insert(0, "Select AcceptedNo");

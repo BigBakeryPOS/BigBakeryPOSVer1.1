@@ -339,28 +339,38 @@ body.loginpage {
 
 /* Exisitng top  menu */
 #cssmenu {
-    background-color: #376091;
+    background-color: #376091 !important;
     box-shadow: #37609180 0 5px 20px;
     z-index: 99999;
 }
 
 #cssmenu ul ul li a {
-   background-color: #376091;
-   border-radius: 8px;
-}
-#cssmenu ul ul li a {
-  color: #fff;
-  height: 45px;
-  box-shadow:  #37609180 0 5px 20px;
+	width: auto;
+	background-color: #376091 !important;
+	color: #fff !important;
+	padding-right: 30px;
+	box-shadow:  #37609180 0 5px 20px;
 
 }
 #cssmenu > ul > li > a {
-  color: #fff;
+	color: #fff !important;
+	height: 50px;
 }
 #cssmenu ul ul li:hover > a, #cssmenu ul ul li a:hover {
- background-color: #fff;
- color: #376091;
- 
+	background-color: #fff !important;
+	color: #376091 !important;
+}
+#cssmenu ul ul li:last-child > a, #cssmenu ul ul li.last-item > a {
+	border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+#cssmenu ul ul li:first-child > a, #cssmenu ul ul li.first-item > a {
+  border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+#cssmenu li:hover > ul > li {
+	height: auto;
+	white-space: nowrap;
 }
 /* Exisitng top  menu */
 

@@ -217,17 +217,18 @@
                             <br />
                                 <label>
                                     Production/Icing</label>
-                                <asp:RadioButtonList ID="rdbtype" runat="server" RepeatColumns="2">
+                                <asp:RadioButtonList ID="rdbtype" runat="server" RepeatColumns="3">
                                     <asp:ListItem Text="Production" Value="P"></asp:ListItem>
                                     <asp:ListItem Text="Icing" Value="I"></asp:ListItem>
+                                    <asp:ListItem Text="Store Item" Value="S"></asp:ListItem>
                                 </asp:RadioButtonList>
                             <br />
                                 <asp:CheckBox ID="chkrequestcateory" runat="server" Width="20px" />
-                                <label>Show Request</label>
+                                <label>Show Request/Production</label>
                                 <br />
-                                 <asp:CheckBox ID="chkproductioncategory" runat="server" Width="20px"/>
-                                <label>Show Production</label>
-                                <br />
+                                 <asp:CheckBox ID="chkproductioncategory" Visible="false" runat="server" Width="20px"/>
+<%--                                <label>Show Production</label>
+                                <br />--%>
                                 <asp:CheckBox ID="chkmanualgrn" runat="server" Width="20px" />
                                 <label>Show Manual GRN</label>
                                 

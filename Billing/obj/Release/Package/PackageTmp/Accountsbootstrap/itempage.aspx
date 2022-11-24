@@ -154,7 +154,7 @@
                         </div>
 
 
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="list-group">
 
                                 <label>Select Category</label>
@@ -189,14 +189,14 @@
                                 <asp:TextBox CssClass="form-control" ID="txtHSNCode" runat="server" MaxLength="150"></asp:TextBox>
                                 <br />
                                 <label>Qty Type</label>
-                                <asp:RadioButtonList ID="radbnsalestype" runat="server" RepeatColumns="3"  >
+                                <asp:RadioButtonList ID="radbnsalestype" runat="server" RepeatColumns="3">
                                     <asp:ListItem Text="Each" Selected="True" Value="E"></asp:ListItem>
                                     <asp:ListItem Text="Decimal Value" Value="D"></asp:ListItem>
                                 </asp:RadioButtonList>
                                 <%--<button type="submit" class="btn btn-success" onclick="Add_Click">Add</button>--%>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="list-group">
                                 <asp:TextBox CssClass="form-control" ID="txtSerialNo" runat="server" Visible="false"
                                     MaxLength="150">0</asp:TextBox>
@@ -253,7 +253,7 @@
                         </div>
 
 
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="list-group">
                                 <label>
                                     Display Online
@@ -320,6 +320,21 @@
                                         </Triggers>
                                     </asp:UpdatePanel>
                                     <asp:GridView ID="GridView2" runat="server">
+                                        <Columns>
+                                           <asp:TemplateField HeaderText="Rate Name">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblCategory" runat="server" Text='<%#Eval("Category") %>'></asp:Label>
+                                                            <asp:HiddenField ID="hideCategoryID" runat="server" Value='<%#Eval("CategoryID") %>' />
+                                                            <asp:HiddenField ID="hideCategoryUserID" runat="server" Value='<%#Eval("CategoryUserID") %>' />
+                                                            <asp:HiddenField ID="hideUOMID" runat="server" Value='<%#Eval("UOMID") %>' />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Enter Rate">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtrate" runat="server" CssClass="form-control" ></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                        </Columns>
                                     </asp:GridView>
                                 </div>
                                 <br />
@@ -328,6 +343,23 @@
 
 
 
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label>
+                                    Enter Rate Setting
+                                </label>
+                                <div class="table-responsive panel-grid-left">
+
+                                    <asp:GridView ID="gridratesetting" runat="server" AllowPaging="false" Width="100%" AutoGenerateColumns="false"
+                                        CssClass="table table-striped pos-table" EmptyDataText="No Records Found" AllowSorting="true" 
+                                         padding="0" spacing="0" border="0">
+                                        <Columns>
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
                             </div>
                         </div>
                         <!-- /.col-lg-6 (nested) -->

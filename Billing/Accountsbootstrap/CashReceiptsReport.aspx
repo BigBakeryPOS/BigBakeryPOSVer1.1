@@ -193,7 +193,7 @@
 	    </div>
         <div class="panel-body">
             <div class="row">
-              
+              <asp:Label ID="lblreceipttype" runat="server" Text="WholeSales" Visible="false" ></asp:Label>
                     <div class="col-lg-3">
 
                             <label>
