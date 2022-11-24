@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="mainserver-Web.config Connection String" description="mainserver Connection String used in web.config by the application to access the database." defaultValue="server=server;uid=sa;password=P@ss123;database=BIGPROD_22_TEST" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\intel\\source\\repos\\bid\\BigBakeryPOSVer1\.1\\Billing\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='mainserver']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\ADMIN\\source\\repos\\BigBakeryPOS\\BigBakeryPOSVer1\.1\\Billing\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='mainserver']/@connectionString" />
   </parameter>
   <parameter name="Server-Web.config Connection String" description="Server Connection String used in web.config by the application to access the database." defaultValue="server=server;uid=sa;password=P@ss123;database=BIGPROD_22_TEST" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\intel\\source\\repos\\bid\\BigBakeryPOSVer1\.1\\Billing\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Server']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\ADMIN\\source\\repos\\BigBakeryPOS\\BigBakeryPOSVer1\.1\\Billing\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Server']/@connectionString" />
   </parameter>
   <parameter name="Acess-Web.config Connection String" description="Acess Connection String used in web.config by the application to access the database." defaultValue="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\BigdBiz\Inventry.accdb;Persist Security Info=True;Jet OLEDB:Database Password=12345" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\intel\\source\\repos\\bid\\BigBakeryPOSVer1\.1\\Billing\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Acess']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\ADMIN\\source\\repos\\BigBakeryPOS\\BigBakeryPOSVer1\.1\\Billing\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Acess']/@connectionString" />
   </parameter>
 </parameters>

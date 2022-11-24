@@ -57,6 +57,7 @@
         <asp:Label ID="lblPCGST" runat="server" Visible="false" Text="Y" ></asp:Label>
         <asp:Label ID="lblpaymodeshown" runat="server" Visible="false" Text="Y" ></asp:Label>
         <asp:Label ID="lblattendershown" runat="server" Visible="false" Text="Y" ></asp:Label>
+        <asp:Label ID="lblownplusfrancheese" runat="server" Visible="false" Text="Y" ></asp:Label>
         
             <table width="500px" style="font-size: x-large; font-family: Monospace;">
                 <tr>
@@ -64,7 +65,7 @@
                         <asp:Label ID="l2" runat="server" Style="font-weight: bolder; font-size: x-large"
                             Visible="false">INVOICE</asp:Label>
                         <div id="idimglog" runat="server" visible="true">
-                            <asp:Image ID="log" src='<%#Eval("Image")%>' Style="width: 20pc; margin-left: 0px;"
+                            <asp:Image ID="log" src='<%#Eval("Image")%>' Style="width: 10pc; margin-left: 0px;"
                                 runat="server" />
                             <br />
                         </div>
@@ -77,7 +78,7 @@
                             Visible="false"></asp:Label>
                         <br />
                         <div id="idFranchisee" runat="server" visible="false">
-                            <asp:Label ID="Label3" runat="server" Style="font-size: x-large">(Franchisee:
+                            <asp:Label ID="Label3" runat="server" Style="font-size: x-large">(
                                 <asp:Label ID="lblfranchise" runat="server"></asp:Label>)</asp:Label>
                             <%--<asp:Label ID="Label2" runat="server" Style="font-size: large">Keestu Mithai</asp:Label>--%>
                             <br />

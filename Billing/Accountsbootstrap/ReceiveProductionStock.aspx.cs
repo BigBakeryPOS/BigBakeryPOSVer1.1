@@ -317,7 +317,7 @@ namespace Billing.Accountsbootstrap
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvqueueitems.Rows[rowIndex];
                 TextBox txtQty = (TextBox)gvqueueitems.Rows[rowIndex].Cells[4].FindControl("txtQty");
-                txtQty.Text = Convert.ToInt32(Convert.ToDouble(txtQty.Text) + 1).ToString();
+                txtQty.Text = Convert.ToDouble(Convert.ToDouble(txtQty.Text) + 1).ToString();
             }
 
             if (e.CommandName == "minus")
@@ -328,7 +328,7 @@ namespace Billing.Accountsbootstrap
 
                 if (Convert.ToInt32(txtQty.Text) > 0)
                 {
-                    txtQty.Text = Convert.ToInt32(Convert.ToDouble(txtQty.Text) - 1).ToString();
+                    txtQty.Text = Convert.ToDouble(Convert.ToDouble(txtQty.Text) - 1).ToString();
                 }
                 else
                 {
@@ -928,7 +928,7 @@ namespace Billing.Accountsbootstrap
                     //if (txtfrozenqty.Text == "")
                     //    txtfrozenqty.Text = "0";
 
-                    double ttlqty = (Convert.ToInt32(txtreadyqty.Text));
+                    double ttlqty = (Convert.ToDouble(txtreadyqty.Text));
 
                     DataSet dsrawitems = objbs.Getwantrawnewbyjothi(Convert.ToInt32(productid.Value), Convert.ToDouble(ttlqty), sCode);
                     if (dsrawitems.Tables[0].Rows.Count > 0)
@@ -1252,7 +1252,7 @@ namespace Billing.Accountsbootstrap
                         //if (txtfrozenqty.Text == "")
                         //    txtfrozenqty.Text = "0";
 
-                        double ttlqty = (Convert.ToInt32(txtreadyqty.Text));
+                        double ttlqty = (Convert.ToDouble(txtreadyqty.Text));
 
                         DataSet dsrawitems = objbs.Getwantrawnewbyjothi(Convert.ToInt32(productid.Value), Convert.ToDouble(ttlqty), sCode);
                         if (dsrawitems.Tables[0].Rows.Count > 0)

@@ -49,6 +49,8 @@ namespace Billing.Accountsbootstrap
             ratesetting = Request.Cookies["userInfo"]["Ratesetting"].ToString();
             qtysetting = Request.Cookies["userInfo"]["Qtysetting"].ToString();
 
+            lblbooknocheck.Text = Request.Cookies["userInfo"]["OrderBookcheck"].ToString();
+
             CalendarExtender1.SelectedDate = DateTime.Today;
             //CalendarExtender1.EndDate = DateTime.Today.AddMonths(1);
             //CalendarExtender2.StartDate = DateTime.Today;

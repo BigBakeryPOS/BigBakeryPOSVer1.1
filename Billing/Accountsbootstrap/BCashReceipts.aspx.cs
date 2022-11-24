@@ -38,11 +38,11 @@ namespace Billing.Accountsbootstrap
 
                 #region
 
-                DataSet dscustomer = objbs.getcustomers();
+                DataSet dscustomer = objbs.getcustomersLoadonlyCreditBills(sTableName);
                 if (dscustomer.Tables[0].Rows.Count > 0)
                 {
                     ddlcustomer.DataSource = dscustomer.Tables[0];
-                    ddlcustomer.DataTextField = "CustomerName";
+                    ddlcustomer.DataTextField = "nmm";
                     ddlcustomer.DataValueField = "CustomerID";
                     ddlcustomer.DataBind();
                     ddlcustomer.Items.Insert(0, "Select Customer");
@@ -73,6 +73,7 @@ namespace Billing.Accountsbootstrap
 
             }
 
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$('.chzn-select').chosen(); $('.chzn-select-deselect').chosen({ allow_single_deselect: true });", true);
         }
 
         protected void ddlPayMode_OnSelectedIndexChanged(object sender, EventArgs e)

@@ -421,7 +421,19 @@ namespace Billing.Accountsbootstrap
                         userInfo["RoundoffSetting"] = getbranch.Tables[0].Rows[0]["RoundoffSetting"].ToString();
                         Session["RoundoffSetting"] = getbranch.Tables[0].Rows[0]["RoundoffSetting"].ToString();
 
-                        
+                        userInfo["QtyFillSetting"] = getbranch.Tables[0].Rows[0]["QtyFillSetting"].ToString();
+                        Session["QtyFillSetting"] = getbranch.Tables[0].Rows[0]["QtyFillSetting"].ToString();
+
+                        userInfo["Posattendercheck"] = getbranch.Tables[0].Rows[0]["Posattendercheck"].ToString();
+                        Session["Posattendercheck"] = getbranch.Tables[0].Rows[0]["Posattendercheck"].ToString();
+
+                        userInfo["posPrintsetting"] = getbranch.Tables[0].Rows[0]["posPrintsetting"].ToString();
+                        Session["posPrintsetting"] = getbranch.Tables[0].Rows[0]["posPrintsetting"].ToString();
+
+                        userInfo["OrderBookcheck"] = getbranch.Tables[0].Rows[0]["OrderBookcheck"].ToString();
+                        Session["OrderBookcheck"] = getbranch.Tables[0].Rows[0]["OrderBookcheck"].ToString();
+
+
 
                     }
                     else
@@ -489,6 +501,19 @@ namespace Billing.Accountsbootstrap
 
                         userInfo["RoundoffSetting"] = "WG";
                         Session["RoundoffSetting"] = "WG";
+
+
+                        userInfo["QtyFillSetting"] = "Y";
+                        Session["QtyFillSetting"] = "Y";
+
+                        userInfo["Posattendercheck"] = "N";
+                        Session["Posattendercheck"] = "N";
+
+                        userInfo["posPrintsetting"] = "1";
+                        Session["posPrintsetting"] = "1";
+
+                        userInfo["OrderBookcheck"] = "N";
+                        Session["OrderBookcheck"] = "N";
 
 
                     }

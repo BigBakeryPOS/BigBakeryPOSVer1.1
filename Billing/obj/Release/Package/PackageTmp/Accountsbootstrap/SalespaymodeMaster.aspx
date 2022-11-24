@@ -173,11 +173,11 @@
                             </div>
                             <div class="panel-body panel-form-right">
                                 <div class="list-group">
-                                    <asp:Label ID="lblpaymentnameid" runat="server" Visible="false" ></asp:Label>
+                                    <asp:Label ID="lblpaymentnameid" runat="server" Visible="false"></asp:Label>
                                     <label>Payment Name</label>
                                     <asp:TextBox ID="txtpaymentname" runat="server" placeholder="Enter Payment Name" CssClass="form-control"></asp:TextBox>
 
-                                   <%-- <br />
+                                    <%-- <br />
                                     <label>Is Discount</label>
                                     <asp:CheckBox ID="chkdiscountchk" runat="server" OnCheckedChanged="chk_discountcnaged1" AutoPostBack="true" Width="20px" />
 

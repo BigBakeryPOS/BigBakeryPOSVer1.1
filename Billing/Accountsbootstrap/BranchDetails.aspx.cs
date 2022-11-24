@@ -36,8 +36,8 @@ namespace Billing.Accountsbootstrap
                     lblcurversion.Text = drpversion.SelectedItem.Text;
                 }
 
-                
-               
+
+
 
                 string iCusID = Request.QueryString.Get("iBranch");
                 if (iCusID != "" || iCusID != null)
@@ -53,7 +53,7 @@ namespace Billing.Accountsbootstrap
                         //drpversion.Items.Insert(0, "Select Item");
                     }
 
-                    
+
 
                     DataSet ds1 = objBs.getbranchdetails(iCusID);
                     if (ds1.Tables[0].Rows.Count > 0)
@@ -67,8 +67,8 @@ namespace Billing.Accountsbootstrap
                         txtgstin.Text = ds1.Tables[0].Rows[0]["GSTIN"].ToString();
 
                         txtbranchid.Text = iCusID;
-                       // lblloginid.Text = ds1.Tables[0].Rows[0]["UserID"].ToString();
-                       
+                        // lblloginid.Text = ds1.Tables[0].Rows[0]["UserID"].ToString();
+
                         txtcustomername.Text = ds1.Tables[0].Rows[0]["ContactName"].ToString();
                         txtphoneno.Text = ds1.Tables[0].Rows[0]["LandLine"].ToString();
                         txtcountry.Text = ds1.Tables[0].Rows[0]["Country"].ToString();
@@ -106,7 +106,7 @@ namespace Billing.Accountsbootstrap
                         txtUsername.Text = ds1.Tables[0].Rows[0]["Username"].ToString();
                         txtPassword.Text = ds1.Tables[0].Rows[0]["Password"].ToString();
 
-                       // txtcurrency.Text = ds1.Tables[0].Rows[0]["Currency"].ToString();
+                        // txtcurrency.Text = ds1.Tables[0].Rows[0]["Currency"].ToString();
 
                         //Other Details
                         txtbillgenerateCode.Text = ds1.Tables[0].Rows[0]["BillCode"].ToString();
@@ -121,6 +121,14 @@ namespace Billing.Accountsbootstrap
                         drpqtysetting.SelectedValue = ds1.Tables[0].Rows[0]["Qtysetting"].ToString();
                         drppossalessetting.SelectedValue = ds1.Tables[0].Rows[0]["possalessetting"].ToString();
                         drproundoffsetting.SelectedValue = ds1.Tables[0].Rows[0]["RoundoffSetting"].ToString();
+
+
+
+                        drpautoqtysetting.SelectedValue = ds1.Tables[0].Rows[0]["QtyFillSetting"].ToString();
+                        drpattednercheck.SelectedValue = ds1.Tables[0].Rows[0]["Posattendercheck"].ToString();
+                        drpprintbillsetting.SelectedValue = ds1.Tables[0].Rows[0]["posPrintsetting"].ToString();
+                        drporderbooknocheck.SelectedValue = ds1.Tables[0].Rows[0]["OrderBookcheck"].ToString();
+
 
                         if (drpversion.SelectedItem.Text == lblcurversion.Text)
                         {
@@ -151,7 +159,7 @@ namespace Billing.Accountsbootstrap
         //    else
         //    {
         //        txtFranchisename.Enabled = true;
-                
+
         //    }
         //}
 
@@ -161,12 +169,12 @@ namespace Billing.Accountsbootstrap
             string BranchType = "";
             if (drpbranchtype.SelectedValue == "O")
             {
-                 BranchType = "0";
+                BranchType = "0";
             }
 
             if (drpbranchtype.SelectedValue == "P")
             {
-                 BranchType = "2";
+                BranchType = "2";
             }
 
             if (lblFile_Path.Text == "" || lblFile_Path.Text == null)
@@ -179,7 +187,7 @@ namespace Billing.Accountsbootstrap
             }
             if (btnadd.Text == "Save")
             {
-                int iStatus = objBs.Insertbranch(txtbranchname.Text, txtcustomername.Text, txtcountry.Text, txtstate.Text, txtcity.Text, txtaddress.Text, txtmobileno.Text, txtphoneno.Text, txtemail.Text, txtcurrency.Text, txtbranchcode.Text, txtbrancharea.Text, txtgstin.Text, lblloginid.Text, txtpincode.Text, txtpemail.Text, txtiemail.Text, txtoemail.Text, drpbranchtype.SelectedValue, txtFranchisename.Text, drponlineenabeld.SelectedValue, drpproductiontype.SelectedValue, drpprintautoclose.SelectedValue, drporderonlinesync.SelectedValue, txtfssaino.Text, drponlinepos.SelectedValue, Rdltype.SelectedValue, RdlStocktype.SelectedValue, Imagepath, BranchType, txtUsername.Text, txtPassword.Text, txtbillgenerateCode.Text, drpbillsetting.SelectedValue, drptaxsplitup.SelectedValue, drpprintlogo.SelectedValue, drpversion.SelectedValue,drptaxsetting.SelectedValue,drpratesetting.SelectedValue,drpqtysetting.SelectedValue,drppossalessetting.SelectedValue,drproundoffsetting.SelectedValue);
+                int iStatus = objBs.Insertbranch(txtbranchname.Text, txtcustomername.Text, txtcountry.Text, txtstate.Text, txtcity.Text, txtaddress.Text, txtmobileno.Text, txtphoneno.Text, txtemail.Text, txtcurrency.Text, txtbranchcode.Text, txtbrancharea.Text, txtgstin.Text, lblloginid.Text, txtpincode.Text, txtpemail.Text, txtiemail.Text, txtoemail.Text, drpbranchtype.SelectedValue, txtFranchisename.Text, drponlineenabeld.SelectedValue, drpproductiontype.SelectedValue, drpprintautoclose.SelectedValue, drporderonlinesync.SelectedValue, txtfssaino.Text, drponlinepos.SelectedValue, Rdltype.SelectedValue, RdlStocktype.SelectedValue, Imagepath, BranchType, txtUsername.Text, txtPassword.Text, txtbillgenerateCode.Text, drpbillsetting.SelectedValue, drptaxsplitup.SelectedValue, drpprintlogo.SelectedValue, drpversion.SelectedValue, drptaxsetting.SelectedValue, drpratesetting.SelectedValue, drpqtysetting.SelectedValue, drppossalessetting.SelectedValue, drproundoffsetting.SelectedValue, drpautoqtysetting.SelectedValue, drpattednercheck.SelectedValue, drpprintbillsetting.SelectedValue, drporderbooknocheck.SelectedValue);
                 Response.Redirect("../Accountsbootstrap/BranchGrid.aspx");
             }
 
@@ -188,9 +196,9 @@ namespace Billing.Accountsbootstrap
                 string iCusID = Request.QueryString.Get("iBranch");
 
                 //string BranchId,string BranchName,string ContactName,string Country,string State,string City,string Address,string MobileNo,string LandLine,string Email,string Currency,string BranchCode,string BranchArea,string GSTIN,string loginid
-               // int iStatus = objBs.Updatebranch(iCusID, txtbranchname.Text, txtcustomername.Text, txtcountry.Text, txtstate.Text, txtcity.Text, txtaddress.Text, txtmobileno.Text, txtphoneno.Text, txtemail.Text, txtcurrency.Text, txtbranchcode.Text, txtbrancharea.Text, txtgstin.Text, lblloginid.Text,txtpincode.Text);
-                int iStatus = objBs.Updatebranch(iCusID, txtbranchname.Text, txtcustomername.Text, txtcountry.Text, txtstate.Text, txtcity.Text, txtaddress.Text, txtmobileno.Text, txtphoneno.Text, txtemail.Text, txtcurrency.Text, txtbranchcode.Text, txtbrancharea.Text, txtgstin.Text, lblloginid.Text, txtpincode.Text, txtpemail.Text, txtiemail.Text, txtoemail.Text, drpbranchtype.SelectedValue, txtFranchisename.Text, drponlineenabeld.SelectedValue, drpproductiontype.SelectedValue, drpprintautoclose.SelectedValue, drporderonlinesync.SelectedValue, txtfssaino.Text, drponlinepos.SelectedValue, Rdltype.SelectedValue, RdlStocktype.SelectedValue, Imagepath, txtUsername.Text, txtPassword.Text, txtbillgenerateCode.Text, drpbillsetting.SelectedValue, drptaxsplitup.SelectedValue, drpprintlogo.SelectedValue, drpversion.SelectedValue, drptaxsetting.SelectedValue, drpratesetting.SelectedValue, drpqtysetting.SelectedValue, drppossalessetting.SelectedValue, drproundoffsetting.SelectedValue, drpsdispatch.SelectedValue);
-                Response.Redirect("../Accountsbootstrap/BranchGrid.aspx");
+                // int iStatus = objBs.Updatebranch(iCusID, txtbranchname.Text, txtcustomername.Text, txtcountry.Text, txtstate.Text, txtcity.Text, txtaddress.Text, txtmobileno.Text, txtphoneno.Text, txtemail.Text, txtcurrency.Text, txtbranchcode.Text, txtbrancharea.Text, txtgstin.Text, lblloginid.Text,txtpincode.Text);
+                int iStatus = objBs.Updatebranch(iCusID, txtbranchname.Text, txtcustomername.Text, txtcountry.Text, txtstate.Text, txtcity.Text, txtaddress.Text, txtmobileno.Text, txtphoneno.Text, txtemail.Text, txtcurrency.Text, txtbranchcode.Text, txtbrancharea.Text, txtgstin.Text, lblloginid.Text, txtpincode.Text, txtpemail.Text, txtiemail.Text, txtoemail.Text, drpbranchtype.SelectedValue, txtFranchisename.Text, drponlineenabeld.SelectedValue, drpproductiontype.SelectedValue, drpprintautoclose.SelectedValue, drporderonlinesync.SelectedValue, txtfssaino.Text, drponlinepos.SelectedValue, Rdltype.SelectedValue, RdlStocktype.SelectedValue, Imagepath, txtUsername.Text, txtPassword.Text, txtbillgenerateCode.Text, drpbillsetting.SelectedValue, drptaxsplitup.SelectedValue, drpprintlogo.SelectedValue, drpversion.SelectedValue, drptaxsetting.SelectedValue, drpratesetting.SelectedValue, drpqtysetting.SelectedValue, drppossalessetting.SelectedValue, drproundoffsetting.SelectedValue, drpsdispatch.SelectedValue, drpautoqtysetting.SelectedValue, drpattednercheck.SelectedValue, drpprintbillsetting.SelectedValue, drporderbooknocheck.SelectedValue);
+                Response.Redirect("../Accountsbootstrap/login_branch.aspx");
             }
 
             //string Mode = Request.QueryString.Get("Mode");

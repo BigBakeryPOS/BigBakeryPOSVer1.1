@@ -105,6 +105,15 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.TextBox txtpaymentname;
 
         /// <summary>
+        /// chkdiscountchk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkdiscountchk;
+
+        /// <summary>
         /// txtorderwise control.
         /// </summary>
         /// <remarks>
@@ -112,6 +121,15 @@ namespace Billing.Accountsbootstrap
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtorderwise;
+
+        /// <summary>
+        /// drpothershown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList drpothershown;
 
         /// <summary>
         /// ddIsActive control.

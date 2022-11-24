@@ -101,11 +101,11 @@ namespace Billing.Accountsbootstrap
             DataSet ds = new DataSet();
             if (ddltype.SelectedValue == "1")
             {
-                 ds = objbs.getreceiptrecord(sTableName, ddlcustomerrep.SelectedValue, sFrom, sTo, ddlpay.SelectedValue);
+                 ds = objbs.getreceiptrecord(sTableName, ddlcustomerrep.SelectedValue, sFrom, sTo, ddlpay.SelectedValue, lblreceipttype.Text);
             }
             else
             {
-                 ds = objbs.getreceiptrecorddetail(sTableName, ddlcustomerrep.SelectedValue, sFrom, sTo, ddlpay.SelectedValue);
+                 ds = objbs.getreceiptrecorddetail(sTableName, ddlcustomerrep.SelectedValue, sFrom, sTo, ddlpay.SelectedValue, lblreceipttype.Text);
             }
             if (ds.Tables[0].Rows.Count > 0)
             {
@@ -145,11 +145,11 @@ namespace Billing.Accountsbootstrap
             DataSet ds = new DataSet();
             if (ddltype.SelectedValue == "1")
             {
-                 ds = objbs.getreceiptrecord(sTableName, ddlcustomerrep.SelectedValue, sFrom, sTo, ddlpay.SelectedValue);
+                 ds = objbs.getreceiptrecord(sTableName, ddlcustomerrep.SelectedValue, sFrom, sTo, ddlpay.SelectedValue, lblreceipttype.Text);
             }
             else
             {
-                ds = objbs.getreceiptrecorddetail(sTableName, ddlcustomerrep.SelectedValue, sFrom, sTo, ddlpay.SelectedValue);
+                ds = objbs.getreceiptrecorddetail(sTableName, ddlcustomerrep.SelectedValue, sFrom, sTo, ddlpay.SelectedValue, lblreceipttype.Text);
             }
 
            

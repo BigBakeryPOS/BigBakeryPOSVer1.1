@@ -34,6 +34,7 @@ namespace Billing.Accountsbootstrap
                     {
                         txtpaymentname.Text = dget.Tables[0].Rows[0]["PayMode"].ToString();
                         txtorderwise.Text = dget.Tables[0].Rows[0]["OrderWise"].ToString();
+                        drpothershown.SelectedValue = dget.Tables[0].Rows[0]["others"].ToString();
                         //txtGST.Text = dget.Tables[0].Rows[0]["GST"].ToString();
                         //txtPayGatway.Text = dget.Tables[0].Rows[0]["PaymentGatway"].ToString();
                         //txtTotal.Text = dget.Tables[0].Rows[0]["Total"].ToString();
@@ -320,11 +321,11 @@ namespace Billing.Accountsbootstrap
             //    isinclusiverate = "N";
             //}
 
-            //if (chkdiscountchk.Checked == true)
-            //{
-            //    isDiscountbill = "Y";
-            //}
-            //else
+            if (chkdiscountchk.Checked == true)
+            {
+                isDiscountbill = "Y";
+            }
+            else
             {
                 isDiscountbill = "N";
             }
@@ -345,7 +346,7 @@ namespace Billing.Accountsbootstrap
                     else
                     {
 
-                        int insert = kbs.insert_Salespaymentmode(txtpaymentname.Text, txtorderwise.Text, isDiscountbill);
+                        int insert = kbs.insert_Salespaymentmode(txtpaymentname.Text, txtorderwise.Text, isDiscountbill, drpothershown.SelectedValue);
 
 
                         Response.Redirect("../Accountsbootstrap/Salespaymodemaster.aspx");
@@ -354,7 +355,7 @@ namespace Billing.Accountsbootstrap
                 else
                 {
 
-                    int insert = kbs.insert_Salespaymentmode(txtpaymentname.Text, txtorderwise.Text, isDiscountbill);
+                    int insert = kbs.insert_Salespaymentmode(txtpaymentname.Text, txtorderwise.Text, isDiscountbill, drpothershown.SelectedValue);
 
 
                     Response.Redirect("../Accountsbootstrap/Salespaymodemaster.aspx");
@@ -392,7 +393,7 @@ namespace Billing.Accountsbootstrap
                       //  int idelete = objBs.Ideletetranssalestype(idEdit);
 
 
-                        int update = kbs.update_salespaymode(txtpaymentname.Text,txtorderwise.Text,isDiscountbill,ddIsActive.SelectedValue,idEdit);
+                        int update = kbs.update_salespaymode(txtpaymentname.Text,txtorderwise.Text,isDiscountbill,ddIsActive.SelectedValue,idEdit, drpothershown.SelectedValue);
 
                         //foreach (ListItem listItem in chkpaylist.Items)
                         //{

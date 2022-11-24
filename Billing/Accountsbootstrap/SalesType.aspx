@@ -219,13 +219,13 @@
                                     <label>Is Normal Bill</label>
                                     <asp:CheckBox ID="chknormalbill" runat="server" Width="20px" />
                                     <label>Is Overall Discount</label>
-                                    <asp:CheckBox ID="chkoveralldiscount" runat="server"
+                                    <asp:CheckBox ID="chkdiscountchk" runat="server"
                                         OnCheckedChanged="chk_discountcnaged" AutoPostBack="true" Width="20px" />
 
 
 
                                     <label>Is Discount</label>
-                                    <asp:CheckBox ID="chkdiscountchk" runat="server" OnCheckedChanged="chk_discountcnaged1" AutoPostBack="true" Width="20px" />
+                                    <asp:CheckBox ID="chkdiscbillwise" runat="server" OnCheckedChanged="chk_discountcnaged1" AutoPostBack="true" Width="20px" />
 
                                     <br />
 
