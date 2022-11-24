@@ -898,7 +898,36 @@ namespace Billing.HeaderMaster
 
                                     }
 
-
+                                    if (screen == "LedgerReportNEW")
+                                    {
+                                        Reports.Visible = true;
+                                        AccountsReport.Visible = true;
+                                        LedgerReportNEW.Visible = true;
+                                    }
+                                    if (screen == "DaybookNEW")
+                                    {
+                                        Reports.Visible = true;
+                                        AccountsReport.Visible = true;
+                                        DaybookNEW.Visible = true;
+                                    }
+                                    if (screen == "CashAccount")
+                                    {
+                                        Reports.Visible = true;
+                                        AccountsReport.Visible = true;
+                                        CashAccount.Visible = true;
+                                    }
+                                    if (screen == "BankStatementReport")
+                                    {
+                                        Reports.Visible = true;
+                                        AccountsReport.Visible = true;
+                                        BankStatementReport.Visible = true;
+                                    }
+                                    if (screen == "TrialBalance")
+                                    {
+                                        Reports.Visible = true;
+                                        AccountsReport.Visible = true;
+                                        TrialBalance.Visible = true;
+                                    }
                                     if (screen == "transferreportsstore")
                                     {
                                         Reports.Visible = true;
@@ -1299,15 +1328,35 @@ namespace Billing.HeaderMaster
                                         MasterMenu.Visible = true;
                                         Ingridients.Visible = true;
                                     }
-                                    if (screen == "Customer")
+                                    if (screen == "CustMast")
                                     {
                                         MasterMenu.Visible = true;
                                         Customer.Visible = true;
-                                        CustMast.Visible = true;
-                                        DealMast.Visible = true;
-                                        SupMast.Visible = true;
-                                        EmpMast.Visible = true;
-                                        Li11.Visible = true;
+                                        CustMast.Visible = true;                                       
+                                    }
+                                    if (screen == "DealMast")
+                                    {
+                                        MasterMenu.Visible = true;
+                                        Customer.Visible = true;
+                                        DealMast.Visible = true;                                       
+                                    }
+                                    if(screen == "SupMast")
+                                    {
+                                        MasterMenu.Visible = true;
+                                        Customer.Visible = true;
+                                        SupMast.Visible = true;                                       
+                                    }
+                                    if(screen == "EmpMast")
+                                    {
+                                        MasterMenu.Visible = true;
+                                        Customer.Visible = true;
+                                        EmpMast.Visible = true;                                        
+                                    }
+                                    if(screen == "DisMast")
+                                    {
+                                        MasterMenu.Visible = true;
+                                        Customer.Visible = true;
+                                        DisMast.Visible = true;
                                     }
                                     if (screen == "employee")
                                     {
@@ -1385,6 +1434,12 @@ namespace Billing.HeaderMaster
                                     if (screen == "CustomerSalesReceipts")
                                     {
                                         CustomerSalesReceipts.Visible = true;
+                                        Payments.Visible = true;
+                                    }
+
+                                    if (screen == "CusSalesReceipts")
+                                    {
+                                        CusSalesReceipts.Visible = true;
                                         Payments.Visible = true;
                                     }
 
@@ -2080,7 +2135,36 @@ namespace Billing.HeaderMaster
                                         goodstransferstore.Visible = true;
 
                                     }
-
+                                    if (screen == "LedgerReportNEW")
+                                    {
+                                        Reports.Visible = true;
+                                        AccountsReport.Visible = true;
+                                        LedgerReportNEW.Visible = true;
+                                    }
+                                    if (screen == "DaybookNEW")
+                                    {
+                                        Reports.Visible = true;
+                                        AccountsReport.Visible = true;
+                                        DaybookNEW.Visible = true;
+                                    }
+                                    if (screen == "CashAccount")
+                                    {
+                                        Reports.Visible = true;
+                                        AccountsReport.Visible = true;
+                                        CashAccount.Visible = true;
+                                    }
+                                    if (screen == "BankStatementReport")
+                                    {
+                                        Reports.Visible = true;
+                                        AccountsReport.Visible = true;
+                                        BankStatementReport.Visible = true;
+                                    }
+                                    if (screen == "TrialBalance")
+                                    {
+                                        Reports.Visible = true;
+                                        AccountsReport.Visible = true;
+                                        TrialBalance.Visible = true;
+                                    }
 
                                     if (screen == "transferreportsstore")
                                     {
@@ -2472,14 +2556,35 @@ namespace Billing.HeaderMaster
                                     MasterMenu.Visible = true;
                                     Ingridients.Visible = true;
                                 }
-                                if (screen == "Customer")
+                                if (screen == "CustMast")
                                 {
                                     MasterMenu.Visible = true;
                                     Customer.Visible = true;
                                     CustMast.Visible = true;
+                                }
+                                if (screen == "DealMast")
+                                {
+                                    MasterMenu.Visible = true;
+                                    Customer.Visible = true;
                                     DealMast.Visible = true;
+                                }
+                                if (screen == "SupMast")
+                                {
+                                    MasterMenu.Visible = true;
+                                    Customer.Visible = true;
                                     SupMast.Visible = true;
+                                }
+                                if (screen == "EmpMast")
+                                {
+                                    MasterMenu.Visible = true;
+                                    Customer.Visible = true;
                                     EmpMast.Visible = true;
+                                }
+                                if (screen == "DisMast")
+                                {
+                                    MasterMenu.Visible = true;
+                                    Customer.Visible = true;
+                                    DisMast.Visible = true;
                                 }
                                 if (screen == "employee")
                                 {
@@ -2556,6 +2661,12 @@ namespace Billing.HeaderMaster
                                 if (screen == "CustomerSalesReceipts")
                                 {
                                     CustomerSalesReceipts.Visible = true;
+                                    Payments.Visible = true;
+                                }
+
+                                if (screen == "CusSalesReceipts")
+                                {
+                                    CusSalesReceipts.Visible = true;
                                     Payments.Visible = true;
                                 }
 
@@ -3270,7 +3381,36 @@ namespace Billing.HeaderMaster
                                     goodstransferstore.Visible = true;
 
                                 }
-
+                                if (screen == "LedgerReportNEW")
+                                {
+                                    Reports.Visible = true;
+                                    AccountsReport.Visible = true;
+                                    LedgerReportNEW.Visible = true;
+                                }
+                                if (screen == "DaybookNEW")
+                                {
+                                    Reports.Visible = true;
+                                    AccountsReport.Visible = true;
+                                    DaybookNEW.Visible = true;
+                                }
+                                if (screen == "CashAccount")
+                                {
+                                    Reports.Visible = true;
+                                    AccountsReport.Visible = true;
+                                    CashAccount.Visible = true;
+                                }
+                                if (screen == "BankStatementReport")
+                                {
+                                    Reports.Visible = true;
+                                    AccountsReport.Visible = true;
+                                    BankStatementReport.Visible = true;
+                                }
+                                if (screen == "TrialBalance")
+                                {
+                                    Reports.Visible = true;
+                                    AccountsReport.Visible = true;
+                                    TrialBalance.Visible = true;
+                                }
 
                                 if (screen == "transferreportsstore")
                                 {
@@ -3658,14 +3798,35 @@ namespace Billing.HeaderMaster
                                 MasterMenu.Visible = true;
                                 Ingridients.Visible = true;
                             }
-                            if (screen == "Customer")
+                            if (screen == "CustMast")
                             {
                                 MasterMenu.Visible = true;
                                 Customer.Visible = true;
                                 CustMast.Visible = true;
+                            }
+                            if (screen == "DealMast")
+                            {
+                                MasterMenu.Visible = true;
+                                Customer.Visible = true;
                                 DealMast.Visible = true;
+                            }
+                            if (screen == "SupMast")
+                            {
+                                MasterMenu.Visible = true;
+                                Customer.Visible = true;
                                 SupMast.Visible = true;
+                            }
+                            if (screen == "EmpMast")
+                            {
+                                MasterMenu.Visible = true;
+                                Customer.Visible = true;
                                 EmpMast.Visible = true;
+                            }
+                            if (screen == "DisMast")
+                            {
+                                MasterMenu.Visible = true;
+                                Customer.Visible = true;
+                                DisMast.Visible = true;
                             }
                             if (screen == "employee")
                             {
@@ -3745,6 +3906,11 @@ namespace Billing.HeaderMaster
                                 Payments.Visible = true;
                             }
 
+                            if (screen == "CusSalesReceipts")
+                            {
+                                CusSalesReceipts.Visible = true;
+                                Payments.Visible = true;
+                            }
                             #endregion
 
                             #region InventoryMenu
@@ -4457,6 +4623,36 @@ namespace Billing.HeaderMaster
                                 ProductionReport.Visible = true;
                                 goodstransferstore.Visible = true;
 
+                            }
+                            if (screen == "LedgerReportNEW")
+                            {
+                                Reports.Visible = true;
+                                AccountsReport.Visible = true;
+                                LedgerReportNEW.Visible = true;
+                            }
+                            if (screen == "DaybookNEW")
+                            {
+                                Reports.Visible = true;
+                                AccountsReport.Visible = true;
+                                DaybookNEW.Visible = true;
+                            }
+                            if (screen == "CashAccount")
+                            {
+                                Reports.Visible = true;
+                                AccountsReport.Visible = true;
+                                CashAccount.Visible = true;
+                            }
+                            if (screen == "BankStatementReport")
+                            {
+                                Reports.Visible = true;
+                                AccountsReport.Visible = true;
+                                BankStatementReport.Visible = true;
+                            }
+                            if (screen == "TrialBalance")
+                            {
+                                Reports.Visible = true;
+                                AccountsReport.Visible = true;
+                                TrialBalance.Visible = true;
                             }
 
 

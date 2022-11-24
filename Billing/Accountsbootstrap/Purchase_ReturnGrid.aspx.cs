@@ -28,7 +28,46 @@ namespace Billing.Accountsbootstrap
 
             if (!IsPostBack)
             {
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "PurRtn");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
 
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "PurRtn");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        addbtn.Visible = true;
+                    }
+                    else
+                    {
+                        addbtn.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        BankGrid.Columns[7].Visible = true;
+                    }
+                    else
+                    {
+                        BankGrid.Columns[7].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        BankGrid.Columns[8].Visible = true;
+                    }
+                    else
+                    {
+                        BankGrid.Columns[8].Visible = false;
+                    }
+                }
                 DataSet dsCustomer = objBs.SupplierList11();
                 if (dsCustomer.Tables[0].Rows.Count > 0)
                 {

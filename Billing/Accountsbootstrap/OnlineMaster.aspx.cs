@@ -24,17 +24,51 @@ namespace Billing.Accountsbootstrap
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
 
 
-            DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "onlineorderentry");
-            if (dacess1.Tables[0].Rows.Count > 0)
-            {
-                if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
-                {
-                  //  Response.Redirect("Login_branch.aspx");
-                }
-            }
+           
 
             if (!IsPostBack)
             {
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Online");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Online");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnSave.Visible = true;
+                    }
+                    else
+                    {
+                        btnSave.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gridview.Columns[2].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[2].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        gridview.Columns[3].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[3].Visible = false;
+                    }
+                }
+
                 ViewState["SortExpr"] = Sort_Direction;
 
                 DataSet dsgrid = objBs.gridonlinemaster();
@@ -93,7 +127,7 @@ namespace Billing.Accountsbootstrap
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         btnSave.Text = "Update";
-
+                        btnSave.Visible = true;
                         txtonlineId.Text = ds.Tables[0].Rows[0]["OnlineNo"].ToString();
                         txtonline.Text = ds.Tables[0].Rows[0]["OnlineMaster"].ToString();
                         radbtnonlinetype.SelectedValue = ds.Tables[0].Rows[0]["Onlinetype"].ToString();

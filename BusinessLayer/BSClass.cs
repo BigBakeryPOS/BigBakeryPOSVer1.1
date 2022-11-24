@@ -29685,12 +29685,12 @@ namespace BusinessLayer
             {
                 if (CustomerID == "All")
                 {
-                    string sQry = "select distinct PaymentType,COUNT(tr.Paymentid) as BillNo,COUNT(tr.Paymentid) as DCNO,r.PaymentDate as BillDate,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,r.NetAmount,p.PayMode,'' as Narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo from tblPayment_" + sTableName + " r inner join tblTransPayment_" + sTableName + " tr on r.PaymentID=tr.PaymentID inner join tblLedger c on c.LedgerID=r.CustomerID inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID where r.PaymentDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' group by PaymentType,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,r.NetAmount,p.PayMode,ChequeNo,r.CloseDiscount order by PaymentNo desc";
+                    string sQry = "select distinct PaymentType,COUNT(tr.Paymentid) as BillNo,COUNT(tr.Paymentid) as DCNO,r.PaymentDate as BillDate,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,r.NetAmount,p.PayMode,'' as Narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo from tblPayment_" + sTableName + " r inner join tblTransPayment_" + sTableName + " tr on r.PaymentID=tr.PaymentID inner join tblLedger c on c.LedgerID=r.CustomerID inner join tblPaymode p on p.PayModeId=r.Payment_ID where r.PaymentDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' group by PaymentType,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,r.NetAmount,p.PayMode,ChequeNo,r.CloseDiscount order by PaymentNo desc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
                 else
                 {
-                    string sQry = "select distinct  PaymentType,COUNT(tr.Paymentid) as  BillNo,COUNT(tr.Paymentid) as DCNO,r.PaymentDate as BillDate,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,r.NetAmount,p.PayMode,'' as Narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo from tblPayment_" + sTableName + " r inner join tblTransPayment_" + sTableName + " tr on r.PaymentID=tr.PaymentID inner join tblLedger c on c.LedgerID=r.CustomerID  inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID  where r.PaymentDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and r.CustomerID=" + CustomerID + " group by PaymentType,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,r.NetAmount,p.PayMode,ChequeNo,r.CloseDiscount order by PaymentNo desc";
+                    string sQry = "select distinct  PaymentType,COUNT(tr.Paymentid) as  BillNo,COUNT(tr.Paymentid) as DCNO,r.PaymentDate as BillDate,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,r.NetAmount,p.PayMode,'' as Narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo from tblPayment_" + sTableName + " r inner join tblTransPayment_" + sTableName + " tr on r.PaymentID=tr.PaymentID inner join tblLedger c on c.LedgerID=r.CustomerID  inner join tblPaymode p on p.PayModeId=r.Payment_ID  where r.PaymentDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and r.CustomerID=" + CustomerID + " group by PaymentType,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,r.NetAmount,p.PayMode,ChequeNo,r.CloseDiscount order by PaymentNo desc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
             }
@@ -29698,12 +29698,12 @@ namespace BusinessLayer
             {
                 if (CustomerID == "All")
                 {
-                    string sQry = "select distinct  PaymentType,COUNT(tr.Paymentid) as  BillNo,COUNT(tr.Paymentid) as DCNO,r.PaymentDate as BillDate,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,r.NetAmount,p.PayMode,'' as Narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo from tblPayment_" + sTableName + " r inner join tblTransPayment_" + sTableName + " tr on r.PaymentID=tr.PaymentID inner join tblLedger c on c.LedgerID=r.CustomerID  inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID where r.PaymentDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and Payment_ID=" + Pay + " group by PaymentType,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,r.NetAmount,p.PayMode,ChequeNo,r.CloseDiscount order by PaymentNo desc";
+                    string sQry = "select distinct  PaymentType,COUNT(tr.Paymentid) as  BillNo,COUNT(tr.Paymentid) as DCNO,r.PaymentDate as BillDate,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,r.NetAmount,p.PayMode,'' as Narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo from tblPayment_" + sTableName + " r inner join tblTransPayment_" + sTableName + " tr on r.PaymentID=tr.PaymentID inner join tblLedger c on c.LedgerID=r.CustomerID  inner join tblPaymode p on p.PayModeId=r.Payment_ID where r.PaymentDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and Payment_ID=" + Pay + " group by PaymentType,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,r.NetAmount,p.PayMode,ChequeNo,r.CloseDiscount order by PaymentNo desc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
                 else
                 {
-                    string sQry = "select distinct  PaymentType,COUNT(tr.Paymentid) as BillNo,COUNT(tr.Paymentid) as DCNO,r.PaymentDate as BillDate,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,r.NetAmount,p.PayMode,'' as Narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo from tblPayment_" + sTableName + " r inner join tblTransPayment_" + sTableName + " tr on r.PaymentID=tr.PaymentID inner join tblLedger c on c.LedgerID=r.CustomerID  inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID  where r.PaymentDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and r.CustomerID=" + CustomerID + "  and Payment_ID=" + Pay + " group by PaymentType,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,r.NetAmount,p.PayMode,ChequeNo,r.CloseDiscount order by PaymentNo desc";
+                    string sQry = "select distinct  PaymentType,COUNT(tr.Paymentid) as BillNo,COUNT(tr.Paymentid) as DCNO,r.PaymentDate as BillDate,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,r.NetAmount,p.PayMode,'' as Narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo from tblPayment_" + sTableName + " r inner join tblTransPayment_" + sTableName + " tr on r.PaymentID=tr.PaymentID inner join tblLedger c on c.LedgerID=r.CustomerID  inner join tblPaymode p on p.PayModeId=r.Payment_ID  where r.PaymentDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and r.CustomerID=" + CustomerID + "  and Payment_ID=" + Pay + " group by PaymentType,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,r.NetAmount,p.PayMode,ChequeNo,r.CloseDiscount order by PaymentNo desc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
 
@@ -29718,12 +29718,12 @@ namespace BusinessLayer
             {
                 if (CustomerID == "All")
                 {
-                    string sQry = "select PaymentType,w.BillNo,w.BillDate,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,tr.Amount as NetAmount,p.PayMode,tr.narration,case isnull(r.ChequeNo,0) when  '0' then '-' else r.ChequeNo end as ChequeNo  from tblPayment_" + sTableName + " r inner join tblTransPayment_" + sTableName + " tr on r.PaymentID=tr.PaymentID inner join tblLedger c on c.LedgerID=r.CustomerID inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID  inner join tblkitchenPurchase_" + sTableName + " w on w.purchaseID=tr.BillNo where r.PaymentDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' ";
+                    string sQry = "select PaymentType,w.BillNo,w.BillDate,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,tr.Amount as NetAmount,p.PayMode,tr.narration,case isnull(r.ChequeNo,0) when  '0' then '-' else r.ChequeNo end as ChequeNo  from tblPayment_" + sTableName + " r inner join tblTransPayment_" + sTableName + " tr on r.PaymentID=tr.PaymentID inner join tblLedger c on c.LedgerID=r.CustomerID inner join tblPaymode p on p.PayModeId=r.Payment_ID  inner join tblkitchenPurchase_" + sTableName + " w on w.purchaseID=tr.BillNo where r.PaymentDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' ";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
                 else
                 {
-                    string sQry = "select PaymentType,w.BillNo,w.BillDate,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,tr.Amount as NetAmount,p.PayMode,tr.narration,case isnull(r.ChequeNo,0) when  '0' then '-' else r.ChequeNo end as ChequeNo  from tblPayment_" + sTableName + " r inner join tblTransPayment_" + sTableName + " tr on r.PaymentID=tr.PaymentID inner join tblLedger c on c.LedgerID=r.CustomerID  inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID   inner join tblkitchenPurchase_" + sTableName + " w on w.purchaseID=tr.BillNo where r.PaymentDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and r.CustomerID=" + CustomerID + "";
+                    string sQry = "select PaymentType,w.BillNo,w.BillDate,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,tr.Amount as NetAmount,p.PayMode,tr.narration,case isnull(r.ChequeNo,0) when  '0' then '-' else r.ChequeNo end as ChequeNo  from tblPayment_" + sTableName + " r inner join tblTransPayment_" + sTableName + " tr on r.PaymentID=tr.PaymentID inner join tblLedger c on c.LedgerID=r.CustomerID  inner join tblPaymode p on p.PayModeId=r.Payment_ID   inner join tblkitchenPurchase_" + sTableName + " w on w.purchaseID=tr.BillNo where r.PaymentDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and r.CustomerID=" + CustomerID + "";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
             }
@@ -29731,12 +29731,12 @@ namespace BusinessLayer
             {
                 if (CustomerID == "All")
                 {
-                    string sQry = "select PaymentType,w.BillNo,w.BillDate,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,tr.Amount as NetAmount,p.PayMode,tr.narration,case isnull(r.ChequeNo,0) when  '0' then '-' else r.ChequeNo end as ChequeNo  from tblPayment_" + sTableName + " r inner join tblTransPayment_" + sTableName + " tr on r.PaymentID=tr.PaymentID inner join tblLedger c on c.LedgerID=r.CustomerID  inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID  inner join tblkitchenPurchase_" + sTableName + " w on w.purchaseID=tr.BillNo where r.PaymentDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and Payment_ID=" + Pay + " ";
+                    string sQry = "select PaymentType,w.BillNo,w.BillDate,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,tr.Amount as NetAmount,p.PayMode,tr.narration,case isnull(r.ChequeNo,0) when  '0' then '-' else r.ChequeNo end as ChequeNo  from tblPayment_" + sTableName + " r inner join tblTransPayment_" + sTableName + " tr on r.PaymentID=tr.PaymentID inner join tblLedger c on c.LedgerID=r.CustomerID  inner join tblPaymode p on p.PayModeId=r.Payment_ID  inner join tblkitchenPurchase_" + sTableName + " w on w.purchaseID=tr.BillNo where r.PaymentDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and Payment_ID=" + Pay + " ";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
                 else
                 {
-                    string sQry = "select PaymentType,w.BillNo,w.BillDate,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,tr.Amount as NetAmount,p.PayMode,tr.narration,case isnull(r.ChequeNo,0) when  '0' then '-' else r.ChequeNo end as ChequeNo  from tblPayment_" + sTableName + " r inner join tblTransPayment_" + sTableName + " tr on r.PaymentID=tr.PaymentID inner join tblLedger c on c.LedgerID=r.CustomerID  inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID   inner join tblkitchenPurchase_" + sTableName + " w on w.purchaseID=tr.BillNo where r.PaymentDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and r.CustomerID=" + CustomerID + "  and Payment_ID=" + Pay + "";
+                    string sQry = "select PaymentType,w.BillNo,w.BillDate,r.PaymentID,r.PaymentNo,r.PaymentDate,c.LedgerName,tr.Amount as NetAmount,p.PayMode,tr.narration,case isnull(r.ChequeNo,0) when  '0' then '-' else r.ChequeNo end as ChequeNo  from tblPayment_" + sTableName + " r inner join tblTransPayment_" + sTableName + " tr on r.PaymentID=tr.PaymentID inner join tblLedger c on c.LedgerID=r.CustomerID  inner join tblPaymode p on p.PayModeId=r.Payment_ID   inner join tblkitchenPurchase_" + sTableName + " w on w.purchaseID=tr.BillNo where r.PaymentDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and r.CustomerID=" + CustomerID + "  and Payment_ID=" + Pay + "";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
 
@@ -37549,6 +37549,16 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
             string sqry = "select * from tblprimaryuom where PrimaryUOMID=" + PrimaryUOMID + " ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+        #endregion
+
+        #region OthersPaymode
+        public DataSet GetOthersPaymode()
+        {
+            DataSet ds = new DataSet();          
+            string sqry = "select * from tblsalespaymode where others='Y' ";
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
         }

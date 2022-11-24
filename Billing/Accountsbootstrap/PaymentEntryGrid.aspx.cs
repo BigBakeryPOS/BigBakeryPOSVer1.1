@@ -27,6 +27,47 @@ namespace Billing.Accountsbootstrap
 
             if (!IsPostBack)
             {
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "SupplierPaymentEntry");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "SupplierPaymentEntry");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        Button1.Visible = true;
+                    }
+                    else
+                    {
+                        Button1.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        // gridledger.Columns[8].Visible = true;
+                    }
+                    else
+                    {
+                        // gridledger.Columns[8].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        //gridledger.Columns[5].Visible = true;
+                    }
+                    else
+                    {
+                        //gridledger.Columns[5].Visible = false;
+                    }
+                }
+
                 DataSet ds = objBs.GetPayment(sTableName);
                 gvsales.DataSource = ds;
                 gvsales.DataBind();

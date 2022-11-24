@@ -33,7 +33,47 @@ namespace Billing.Accountsbootstrap
             if (!IsPostBack)
             {
                 DataSet ds1 = objbs.getrecptnumber(sTableName);
-              
+
+                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "CustomerSalesReceipts");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "CustomerSalesReceipts");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnSubmit.Visible = true;
+                    }
+                    else
+                    {
+                        btnSubmit.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        // gridledger.Columns[8].Visible = true;
+                    }
+                    else
+                    {
+                        // gridledger.Columns[8].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        //gridledger.Columns[5].Visible = true;
+                    }
+                    else
+                    {
+                        //gridledger.Columns[5].Visible = false;
+                    }
+                }
 
                 txtBillNo.Text = ds1.Tables[0].Rows[0]["ReceiptNo"].ToString();
                 txtBillDate.Text = DateTime.Now.ToString("dd/MM/yyyy");

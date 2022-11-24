@@ -26,6 +26,47 @@ namespace Billing.Accountsbootstrap
             Empid = Request.Cookies["userInfo"]["Empid"].ToString();
             if (!IsPostBack)
             {
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Bank");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Bank");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnadd1.Visible = true;
+                    }
+                    else
+                    {
+                        btnadd1.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gvcust.Columns[4].Visible = true;
+                    }
+                    else
+                    {
+                        gvcust.Columns[4].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        gvcust.Columns[5].Visible = true;
+                    }
+                    else
+                    {
+                        gvcust.Columns[5].Visible = false;
+                    }
+                }
+
 
                 DataSet ds = objBs.getbank("4");
                 gvcust.DataSource = ds;

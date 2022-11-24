@@ -334,15 +334,15 @@
                      <li id="Customer" runat="server" class='has-sub' visible="false"><a id="A50" runat="server" href="javascript:;">
                             Contact Master</a>
                             <ul>
-                                <li id="CustMast" runat="server" visible="true"><a runat="server" href="../Accountsbootstrap/viewcustomer.aspx?id=1">
+                                <li id="CustMast" runat="server" visible="false"><a runat="server" href="../Accountsbootstrap/viewcustomer.aspx?id=1">
                                     Customer Master</a></li>
-                                <li id="DealMast" runat="server" visible="true"><a runat="server" href="../Accountsbootstrap/viewcustomer.aspx?id=2">
+                                <li id="DealMast" runat="server" visible="false"><a runat="server" href="../Accountsbootstrap/viewcustomer.aspx?id=2">
                                     Dealer Master</a></li>
-                                <li id="SupMast" runat="server" visible="true"><a runat="server" href="../Accountsbootstrap/viewcustomer.aspx?id=3">
+                                <li id="SupMast" runat="server" visible="false"><a runat="server" href="../Accountsbootstrap/viewcustomer.aspx?id=3">
                                     Supplier Master</a></li>
-                                <li id="EmpMast" runat="server" visible="true"><a runat="server" href="../Accountsbootstrap/viewcustomer.aspx?id=4">
+                                <li id="EmpMast" runat="server" visible="false"><a runat="server" href="../Accountsbootstrap/viewcustomer.aspx?id=4">
                                     Icing Employee Master</a></li>
-                                <li id="Li11" runat="server" visible="true"><a runat="server" href="../Accountsbootstrap/viewcustomer.aspx?id=5">
+                                <li id="DisMast" runat="server" visible="false"><a runat="server" href="../Accountsbootstrap/viewcustomer.aspx?id=5">
                                     Dispatch Employee Master</a></li>
 
                             </ul>
@@ -505,9 +505,9 @@
             <li id="Payments" visible="true" runat="server" class='has-sub'><a href="javascript:;" style="color: White">
                 Receipts </a>
                 <ul>
-                    <li id="CustomerSalesReceipts" runat="server" visible="true"><a href="../Accountsbootstrap/CashReceipts.aspx">
+                    <li id="CustomerSalesReceipts" runat="server" visible="false"><a href="../Accountsbootstrap/CashReceipts.aspx">
                         Dealer Sales Receipts</a></li>
-                    <li id="Li13" runat="server" visible="true"><a href="../Accountsbootstrap/CashReceiptsGrid.aspx">
+                    <li id="CusSalesReceipts" runat="server" visible="false"><a href="../Accountsbootstrap/CashReceiptsGrid.aspx">
                         Customer Sales Receipts</a></li>
                 </ul>
             </li>
@@ -768,19 +768,19 @@
                     </li>
                     <li id="billfrom" runat="server" visible="false"><a href="javascript:;" style="color: Silver"></a>
                     </li>
-                    <li id="Li5" class='has-sub' runat="server"><a id="A33" runat="server" href="javascript:;">Accounts Report</a>
+                    <li id="AccountsReport" class='has-sub' runat="server" visible="false"><a id="A33" runat="server" href="javascript:;">Accounts Report</a>
                         <ul>
-                            <li id="Li6" runat="server" visible="true"><a id="A34" href="../Accountsbootstrap/LedgerReportNEW.aspx"
+                            <li id="LedgerReportNEW" runat="server" visible="false"><a id="A34" href="../Accountsbootstrap/LedgerReportNEW.aspx"
                                 runat="server">Ledger Report</a></li>
-                            <li id="Li533" runat="server" visible="true"><a id="A20222" href="../Accountsbootstrap/DaybookNEW.aspx"
+                            <li id="DaybookNEW" runat="server" visible="false"><a id="A20222" href="../Accountsbootstrap/DaybookNEW.aspx"
                                 runat="server">Daybook Report</a></li>
-                            <li id="Li7" runat="server" visible="true"><a id="A35" href="../Accountsbootstrap/CashAccount.aspx"
+                            <li id="CashAccount" runat="server" visible="false"><a id="A35" href="../Accountsbootstrap/CashAccount.aspx"
                                 runat="server">Cash Account Report</a></li>
                             <%--    <li id="Li7" runat="server" visible="true"><a id="A22" href=""
                                 runat="server">Receipt Report</a></li>--%>
-                            <li id="Li8" runat="server" visible="true"><a id="A36" href="../Accountsbootstrap/Statement.aspx"
+                            <li id="BankStatementReport" runat="server" visible="false"><a id="A36" href="../Accountsbootstrap/Statement.aspx"
                                 runat="server">Bank Statement Report</a></li>
-                            <li id="Li9" runat="server" visible="true"><a id="A37" href="../Accountsbootstrap/traildatewise.aspx"
+                            <li id="TrialBalance" runat="server" visible="false"><a id="A37" href="../Accountsbootstrap/traildatewise.aspx"
                                 runat="server">Trial Balance Report</a></li>
                         </ul>
                     </li>

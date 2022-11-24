@@ -27,6 +27,47 @@ namespace Billing.Accountsbootstrap
             //gvip.DataBind();
             if (!IsPostBack)
             {
+                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "notificationmsg");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "notificationmsg");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnadd.Visible = true;
+                    }
+                    else
+                    {
+                        btnadd.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gvip.Columns[5].Visible = true;
+                    }
+                    else
+                    {
+                        gvip.Columns[5].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                       // gv.Columns[3].Visible = true;
+                    }
+                    else
+                    {
+                        //gv.Columns[3].Visible = false;
+                    }
+                }
+
                 BindTime();
 
                 DataSet dsbranch = objbs.getbranch();
@@ -167,7 +208,7 @@ namespace Billing.Accountsbootstrap
                     fromtime.Visible = true;
                     totime.Visible = true;
                     btnadd.Text = "Update";
-
+                    btnadd.Visible = false;
                     lblmessgaeid.Text = ds.Tables[0].Rows[0]["MessageId"].ToString();
                     txtmsgtitle.Text = ds.Tables[0].Rows[0]["MessageTitle"].ToString();
                     txtmessagecontent.Text = ds.Tables[0].Rows[0]["MessageContent"].ToString();

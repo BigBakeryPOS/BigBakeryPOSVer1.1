@@ -27,6 +27,48 @@ namespace Billing.Accountsbootstrap
             {
                 ViewState["SortExpr"] = Sort_Direction;
 
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "IBSM");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "IBSM");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnSave.Visible = true;
+                    }
+                    else
+                    {
+                        btnSave.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gridview.Columns[2].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[2].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        gridview.Columns[3].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[3].Visible = false;
+                    }
+                }
+
+
                 DataSet dsgrid = objBs.gridinterbranchsetting();
                 gridview.DataSource = dsgrid;
                 gridview.DataBind();
@@ -130,7 +172,7 @@ namespace Billing.Accountsbootstrap
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         btnSave.Text = "Update";
-
+                        btnSave.Visible = true;
                         drpstorebranch.SelectedValue = ds.Tables[0].Rows[0]["Branchid"].ToString();
 
                         for (int i = 0; i < chkinterbranch.Items.Count; i++)
