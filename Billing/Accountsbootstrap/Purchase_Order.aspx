@@ -115,8 +115,8 @@
                                     <asp:DropDownList ID="ddlpaymode" runat="server" AutoPostBack="true" TabIndex="3"
                                         CssClass="form-control" OnSelectedIndexChanged="ddlpaymode_OnSelectedIndexChanged">
                                        <%-- <asp:ListItem Text="Select Payment" Value="0" Enabled="true"></asp:ListItem>--%>
-                                       <%-- <asp:ListItem Text="Cash" Value="1"></asp:ListItem>
-                                        <asp:ListItem Text="Credit" Value="2" Enabled="true" Selected="True"> </asp:ListItem>--%>
+                                        <asp:ListItem Text="Cash" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="Credit" Value="2" Enabled="true" Selected="True"> </asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                               <div id="shwedit" runat="server" visible="false" class="col-lg-3">

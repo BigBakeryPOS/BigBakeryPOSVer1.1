@@ -601,6 +601,11 @@ color:White;
                                                 <asp:HiddenField ID="hideUOMID" runat="server" Value='<%#Eval("UOMID") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>
+                                         <asp:TemplateField HeaderText="Serial No">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblserial" runat="server"  Text='<%#Eval("serial") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Item">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblDefinition" runat="server" Text='<%#Eval("Definition") %>'></asp:Label>

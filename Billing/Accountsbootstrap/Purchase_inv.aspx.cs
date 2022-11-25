@@ -78,15 +78,15 @@ namespace Billing.Accountsbootstrap
                     drpPO.DataBind();
                     drpPO.Items.Insert(0, "Select Purchase OrderNo");
                 }
-                DataSet Paymode = kbs.GetOthersPaymode();
-                if (Paymode.Tables[0].Rows.Count > 0)
-                {
-                    ddlpaymode.DataSource = Paymode.Tables[0];
-                    ddlpaymode.DataTextField = "Paymode";
-                    ddlpaymode.DataValueField = "Value";
-                    ddlpaymode.DataBind();
-                    ddlpaymode.Items.Insert(0, "Select Paymode");
-                }
+                //DataSet Paymode = kbs.GetOthersPaymode();
+                //if (Paymode.Tables[0].Rows.Count > 0)
+                //{
+                //    ddlpaymode.DataSource = Paymode.Tables[0];
+                //    ddlpaymode.DataTextField = "Paymode";
+                //    ddlpaymode.DataValueField = "Value";
+                //    ddlpaymode.DataBind();
+                //    ddlpaymode.Items.Insert(0, "Select Paymode");
+                //}
 
                 
 

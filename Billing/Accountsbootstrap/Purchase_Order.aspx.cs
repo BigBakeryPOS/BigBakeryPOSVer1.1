@@ -66,15 +66,15 @@ namespace Billing.Accountsbootstrap
                     ddlbank.DataBind();
                     ddlbank.Items.Insert(0, "Select Bank");
                 }
-                DataSet Paymode = kbs.GetOthersPaymode();
-                if (Paymode.Tables[0].Rows.Count > 0)
-                {
-                    ddlpaymode.DataSource = Paymode.Tables[0];
-                    ddlpaymode.DataTextField = "Paymode";
-                    ddlpaymode.DataValueField = "Value";
-                    ddlpaymode.DataBind();
-                    ddlpaymode.Items.Insert(0, "Select Paymode");
-                }
+                //DataSet Paymode = kbs.GetOthersPaymode();
+                //if (Paymode.Tables[0].Rows.Count > 0)
+                //{
+                //    ddlpaymode.DataSource = Paymode.Tables[0];
+                //    ddlpaymode.DataTextField = "Paymode";
+                //    ddlpaymode.DataValueField = "Value";
+                //    ddlpaymode.DataBind();
+                //    ddlpaymode.Items.Insert(0, "Select Paymode");
+                //}
 
                 DataSet dNo = kbs.orderentryno(sTableName);
                 txtbillno.Text = dNo.Tables[0].Rows[0]["billno"].ToString();
