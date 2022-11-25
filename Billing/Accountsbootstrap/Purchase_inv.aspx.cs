@@ -78,17 +78,17 @@ namespace Billing.Accountsbootstrap
                     drpPO.DataBind();
                     drpPO.Items.Insert(0, "Select Purchase OrderNo");
                 }
-                //DataSet Paymode = kbs.GetOthersPaymode();
-                //if (Paymode.Tables[0].Rows.Count > 0)
-                //{
-                //    ddlpaymode.DataSource = Paymode.Tables[0];
-                //    ddlpaymode.DataTextField = "Paymode";
-                //    ddlpaymode.DataValueField = "Value";
-                //    ddlpaymode.DataBind();
-                //    ddlpaymode.Items.Insert(0, "Select Paymode");
-                //}
+                DataSet Paymode = kbs.GetOthersPaymode();
+                if (Paymode.Tables[0].Rows.Count > 0)
+                {
+                    ddlpaymode.DataSource = Paymode.Tables[0];
+                    ddlpaymode.DataTextField = "Paymode";
+                    ddlpaymode.DataValueField = "Value";
+                    ddlpaymode.DataBind();
+                    ddlpaymode.Items.Insert(0, "Select Paymode");
+                }
 
-                
+
 
                 DataSet dNo = kbs.entryno(sTableName);
                 txtbillno.Text = dNo.Tables[0].Rows[0]["billno"].ToString();
@@ -1584,7 +1584,7 @@ namespace Billing.Accountsbootstrap
                 {
                     #region
 
-                    if (ddlpaymode.SelectedValue == "1" || ddlpaymode.SelectedValue == "2")
+                    if (ddlpaymode.SelectedValue == "1" || ddlpaymode.SelectedValue == "2" || ddlpaymode.SelectedValue == "18")
                     {
                         bank = 0;
                         chequeno = "000000";
@@ -1608,7 +1608,7 @@ namespace Billing.Accountsbootstrap
                     }
 
                     int CreditorID1 = 0;
-                    if (ddlpaymode.SelectedValue == "2") //Credit
+                    if (ddlpaymode.SelectedValue == "2" || ddlpaymode.SelectedValue == "18") //Credit
                     {
                         CreditorID1 = Convert.ToInt32(Supplier);
                     }
@@ -1768,7 +1768,7 @@ namespace Billing.Accountsbootstrap
 
 
                     int CreditorID1 = 0;
-                    if (ddlpaymode.SelectedValue == "2") //Credit
+                    if (ddlpaymode.SelectedValue == "2" || ddlpaymode.SelectedValue == "18") //Credit
                     {
                         CreditorID1 = Convert.ToInt32(ddlsuplier.SelectedValue);
                     }
@@ -3296,16 +3296,41 @@ namespace Billing.Accountsbootstrap
 
                     ddlpaymode.SelectedValue = dagent.Tables[0].Rows[0]["Paymode"].ToString();
 
-                    if (dagent.Tables[0].Rows[0]["Paymode"].ToString() == "1")
-                    {
-                        ddlbank.Enabled = false;
-                        txtcheque.Enabled = false;
-                    }
-                    else
+                    if (dagent.Tables[0].Rows[0]["Paymode"].ToString() == "4" || dagent.Tables[0].Rows[0]["Paymode"].ToString() == "11" || dagent.Tables[0].Rows[0]["Paymode"].ToString() == "15" || dagent.Tables[0].Rows[0]["Paymode"].ToString() == "19")
                     {
                         ddlbank.Enabled = true;
                         txtcheque.Enabled = true;
+                        ddlbank.Visible = true;
+                        txtcheque.Visible = true;
+                        lblbank.Visible = true;
+                        lblChq.Visible = true;
+                        ddlbank.SelectedValue = dagent.Tables[0].Rows[0]["Bank"].ToString();
+                        txtcheque.Text = dagent.Tables[0].Rows[0]["ChequeNo"].ToString();
                     }
+                    else
+                    {
+                        ddlbank.Enabled = false;
+                        txtcheque.Enabled = false;
+
+                        ddlbank.Visible = false;
+                        txtcheque.Visible = false;
+
+                        lblbank.Visible = false;
+                        lblChq.Visible = false;
+                       // ddlbank.SelectedValue = "0";
+                       // txtcheque.Text = "";
+                    }
+                   
+                    //if (dagent.Tables[0].Rows[0]["Paymode"].ToString() == "1")
+                    //{
+                    //    ddlbank.Enabled = false;
+                    //    txtcheque.Enabled = false;
+                    //}
+                    //else
+                    //{
+                    //    ddlbank.Enabled = true;
+                    //    txtcheque.Enabled = true;
+                    //}
 
                     if (dagent.Tables[0].Rows[0]["Province"].ToString() == "Inner")
                     {
@@ -3653,15 +3678,25 @@ namespace Billing.Accountsbootstrap
 
         protected void ddlpaymode_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlpaymode.SelectedValue == "1" || ddlpaymode.SelectedValue == "2")
-            {
-                ddlbank.Enabled = false;
-                txtcheque.Enabled = false;
-            }
-            else
+            if (ddlpaymode.SelectedValue == "4" || ddlpaymode.SelectedValue == "11" || ddlpaymode.SelectedValue == "15" || ddlpaymode.SelectedValue == "19")
             {
                 ddlbank.Enabled = true;
                 txtcheque.Enabled = true;
+                ddlbank.Visible = true;
+                txtcheque.Visible = true;
+                lblbank.Visible = true;
+                lblChq.Visible = true;
+            }
+            else
+            {
+                ddlbank.Enabled = false;
+                txtcheque.Enabled = false;
+
+                ddlbank.Visible = false;
+                txtcheque.Visible = false;
+
+                lblbank.Visible = false;
+                lblChq.Visible = false;
             }
             ddlpaymode.Focus();
         }

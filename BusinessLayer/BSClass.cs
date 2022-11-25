@@ -18437,7 +18437,7 @@ namespace BusinessLayer
         public DataSet getpurchaseMaster(string Table)
         {
             DataSet ds = new DataSet();
-            string sQry = " select Top 10 c.ledgername as CustomerName,kp.*,case kp.Paymode when 1 then 'Cash' when 2 then 'Credit' else 'Cheque' end as PaymentMode from  tblkitchenPurchase_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier order by kp.BillNo desc";
+            string sQry = " select Top 10 c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode from  tblkitchenPurchase_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsalespaymode sp on kp.Paymode=sp.value order by kp.BillNo desc";
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
         }
@@ -18454,7 +18454,8 @@ namespace BusinessLayer
         public DataSet getpurchaseOrderMaster(string Table)
         {
             DataSet ds = new DataSet();
-            string sQry = " select c.ledgername as CustomerName,kp.*,case kp.Paymode when 1 then 'Cash' when 2 then 'Credit' else 'Cheque' end as PaymentMode from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier order by kp.OrderNo desc";
+            //string sQry = " select c.ledgername as CustomerName,kp.*,case kp.Paymode when 1 then 'Cash' when 2 then 'Credit' else 'Cheque' end as PaymentMode from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier order by kp.OrderNo desc";
+            string sQry = " select c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsalespaymode sp on kp.Paymode=sp.value order by kp.OrderNo desc";
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
         }
@@ -18813,12 +18814,12 @@ namespace BusinessLayer
             DataSet ds = new DataSet();
             if (Supplier == "All")
             {
-                string sQry = " select c.ledgername as CustomerName,kp.*,case kp.Paymode when 1 then 'Cash' when 2 then 'Credit' else 'Cheque' end as PaymentMode from  tblkitchenPurchase_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier where  CAST(kp.BillDate AS DATE) >= '" + Convert.ToDateTime(from).ToString("yyyy/MM/dd") + "'  AND CAST(kp.BillDate AS DATE) <= '" + Convert.ToDateTime(to).ToString("yyyy/MM/dd") + "' order by kp.BillNo desc";
+                string sQry = " select c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode from  tblkitchenPurchase_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier inner join tblsalespaymode sp on kp.Paymode=sp.value where  CAST(kp.BillDate AS DATE) >= '" + Convert.ToDateTime(from).ToString("yyyy/MM/dd") + "'  AND CAST(kp.BillDate AS DATE) <= '" + Convert.ToDateTime(to).ToString("yyyy/MM/dd") + "' order by kp.BillNo desc";
                 ds = dbObj.InlineExecuteDataSet(sQry);
             }
             else
             {
-                string sQry = " select c.ledgername as CustomerName,kp.*,case kp.Paymode when 1 then 'Cash' when 2 then 'Credit' else 'Cheque' end as PaymentMode from  tblkitchenPurchase_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier where Supplier=" + Supplier + "  and CAST(kp.BillDate AS DATE) >= '" + Convert.ToDateTime(from).ToString("yyyy/MM/dd") + "'  AND CAST(kp.BillDate AS DATE) <= '" + Convert.ToDateTime(to).ToString("yyyy/MM/dd") + "' order by kp.BillNo desc";
+                string sQry = " select c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode from  tblkitchenPurchase_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier inner join tblsalespaymode sp on kp.Paymode=sp.value where Supplier=" + Supplier + "  and CAST(kp.BillDate AS DATE) >= '" + Convert.ToDateTime(from).ToString("yyyy/MM/dd") + "'  AND CAST(kp.BillDate AS DATE) <= '" + Convert.ToDateTime(to).ToString("yyyy/MM/dd") + "' order by kp.BillNo desc";
                 ds = dbObj.InlineExecuteDataSet(sQry);
             }
             return ds;
@@ -18829,12 +18830,12 @@ namespace BusinessLayer
             DataSet ds = new DataSet();
             if (Supplier == "All")
             {
-                string sQry = " select c.ledgername as CustomerName,kp.*,case kp.Paymode when 1 then 'Cash' when 2 then 'Credit' else 'Cheque' end as PaymentMode from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier where  CAST(kp.OrderDate AS DATE) >= '" + Convert.ToDateTime(from).ToString("yyyy/MM/dd") + "'  AND CAST(kp.OrderDate AS DATE) <= '" + Convert.ToDateTime(to).ToString("yyyy/MM/dd") + "' order by kp.OrderNo desc";
+                string sQry = " select c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode  from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier inner join tblsalespaymode sp on kp.Paymode=sp.value where  CAST(kp.OrderDate AS DATE) >= '" + Convert.ToDateTime(from).ToString("yyyy/MM/dd") + "'  AND CAST(kp.OrderDate AS DATE) <= '" + Convert.ToDateTime(to).ToString("yyyy/MM/dd") + "' order by kp.OrderNo desc";
                 ds = dbObj.InlineExecuteDataSet(sQry);
             }
             else
             {
-                string sQry = " select c.ledgername as CustomerName,kp.*,case kp.Paymode when 1 then 'Cash' when 2 then 'Credit' else 'Cheque' end as PaymentMode from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier where Supplier=" + Supplier + "  and CAST(kp.OrderDate AS DATE) >= '" + Convert.ToDateTime(from).ToString("yyyy/MM/dd") + "'  AND CAST(kp.OrderDate AS DATE) <= '" + Convert.ToDateTime(to).ToString("yyyy/MM/dd") + "' order by kp.OrderNo desc";
+                string sQry = " select c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode  from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier inner join tblsalespaymode sp on kp.Paymode=sp.value where Supplier=" + Supplier + "  and CAST(kp.OrderDate AS DATE) >= '" + Convert.ToDateTime(from).ToString("yyyy/MM/dd") + "'  AND CAST(kp.OrderDate AS DATE) <= '" + Convert.ToDateTime(to).ToString("yyyy/MM/dd") + "' order by kp.OrderNo desc";
                 ds = dbObj.InlineExecuteDataSet(sQry);
             }
             return ds;
@@ -22783,7 +22784,7 @@ namespace BusinessLayer
         public DataSet GetPoprint(string Table, int OrderNo)
         {
             DataSet ds = new DataSet();
-            string sQuery = "select * from tblkitchenPurchaseorder_" + Table + "  p inner join tblLedger l on l.LedgerID=p.supplier inner join tblPaymode  m on m.paymodeid=p.Paymode where p.OrderNo=" + OrderNo + "";
+            string sQuery = "select * from tblkitchenPurchaseorder_" + Table + "  p inner join tblLedger l on l.LedgerID=p.supplier inner join tblsalespaymode  m on m.value=p.Paymode where p.OrderNo=" + OrderNo + "";
             ds = dbObj.InlineExecuteDataSet(sQuery);
             return ds;
         }
@@ -22801,7 +22802,7 @@ namespace BusinessLayer
         public DataSet GetPurchaseprint(string Table, int purchaseID)
         {
             DataSet ds = new DataSet();
-            string sQuery = "select * from tblkitchenPurchase_" + Table + "  p inner join tblLedger l on l.LedgerID=p.supplier inner join tblPaymode  m on m.paymodeid=p.Paymode where p.purchaseID=" + purchaseID + "";
+            string sQuery = "select * from tblkitchenPurchase_" + Table + "  p inner join tblLedger l on l.LedgerID=p.supplier inner join tblsalespaymode  m on m.value=p.Paymode where p.purchaseID=" + purchaseID + "";
             ds = dbObj.InlineExecuteDataSet(sQuery);
             return ds;
         }

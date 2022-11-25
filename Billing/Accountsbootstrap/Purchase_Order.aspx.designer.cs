@@ -177,6 +177,15 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.TextBox txteditnarrations;
 
         /// <summary>
+        /// lblbank control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblbank;
+
+        /// <summary>
         /// ddlbank control.
         /// </summary>
         /// <remarks>
@@ -184,6 +193,15 @@ namespace Billing.Accountsbootstrap
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlbank;
+
+        /// <summary>
+        /// lblChq control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblChq;
 
         /// <summary>
         /// txtcheque control.
