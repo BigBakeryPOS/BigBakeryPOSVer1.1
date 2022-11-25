@@ -28,7 +28,12 @@ namespace Billing.Accountsbootstrap
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             sTablename = Request.Cookies["userInfo"]["BranchCode"].ToString();
             scode = Request.Cookies["userInfo"]["BranchCode"].ToString();
-
+            #region Dashboard Table
+            DataSet ds = new DataSet();
+            ds = objbs.Top10SupplierOutstanding();
+            gvSupplier.DataSource = ds.Tables[0];
+            gvSupplier.DataBind();
+            #endregion
 
             DataSet dmovivation = objbs.getmotivation();
             if (dmovivation.Tables[0].Rows.Count > 0)

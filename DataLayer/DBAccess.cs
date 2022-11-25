@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Configuration;
 
+
 namespace DataLayer
 {
     public class DBAccess
     {
-
+       
         #region Identifiers Declaration ---------------------------
         private IDataReader iDataReader;
         private Dictionary<string, string> sqlParamValues;
@@ -316,6 +317,7 @@ namespace DataLayer
             catch (Exception ex)
             {
                 throw ex;
+
             }
             return dataSet;
         }
@@ -341,11 +343,53 @@ namespace DataLayer
             }
             catch (Exception ex)
             {
-               throw ex;
+              // throw ex;
+              //  this.LogError(ex);
             }
+
             return recordsAffected;
         }
+        public int InlineExecuteNonQuery1(string sQry, string sourceBS)
+        {
+            int recordsAffected = 0;
+            try
+            {
+                using (SqlConnection dbConnection = new SqlConnection(connnectionString))
+                {
+                    SqlCommand dbCommand = new SqlCommand(sQry, dbConnection);
+                    dbCommand.CommandTimeout = 0;
+                    dbConnection.Open();
+                    recordsAffected = dbCommand.ExecuteNonQuery();
+                    dbConnection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                // throw ex;
+                this.LogError(ex, sourceBS);
+            }
 
+            return recordsAffected;
+        }
+        private void LogError(Exception ex, string source1)
+        {
+            int recordsAffected = 0;
+            string Logtime = DateTime.Now.ToString("dd/MM/yyyy");
+            string LogMsg = ex.Message.ToString();
+            string LogStack = ex.StackTrace.ToString();
+            string LogSource = ex.Source.ToString();
+            string LogBSSource = source1;
+            string LogTargetSite = ex.TargetSite.ToString().ToString();
+            string sQry = "insert into tblErrorLog(LogTime,LogMsg,LogStack,LogSource,LogTargetSite) values ('" + Logtime + "','" + LogMsg + "','" + LogStack + "','" + LogSource + "','" + LogTargetSite + "')";
+            using (SqlConnection dbConnection = new SqlConnection(connnectionString))
+            {
+                SqlCommand dbCommand = new SqlCommand(sQry, dbConnection);
+                dbCommand.CommandTimeout = 0;
+                dbConnection.Open();
+                recordsAffected = dbCommand.ExecuteNonQuery();
+                dbConnection.Close();
+            }
+        }
         public int InlineExecuteNonQueryServer(string sQry)
         {
             int recordsAffected = 0;

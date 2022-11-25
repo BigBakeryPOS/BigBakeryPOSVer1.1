@@ -127,3 +127,4 @@ C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\obj\Release\Billing.c
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\obj\Release\Billing.csproj.CopyComplete
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\obj\Release\Billing.dll
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\obj\Release\Billing.pdb
+D:\BigPOSGITCode\BigBakeryPOSVer1.1\Billing\bin\Billing.dll.config

@@ -16673,7 +16673,7 @@ namespace BusinessLayer
 
         }
 
-        public int InsertOnline(string onlinename, string onlinetype)
+        public int InsertOnline(string onlinename, int onlinetype)
         {
             int iSuccess = 0;
 
@@ -37439,6 +37439,30 @@ namespace BusinessLayer
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
         }
+        #endregion
+
+
+
+        public int InsertErrorLog(string Logtime,string LogMsg,string LogStack, string LogSource, string LogTargetSite)
+        {
+            int iSuccess = 0;
+
+                string sQry = "insert into tblErrorLog(LogTime,LogMsg,LogStack,LogSource,LogTargetSite) values ('"+ Logtime +"','"+LogMsg+"','"+LogStack+"','"+LogSource+"','"+LogTargetSite+"')";
+                iSuccess = dbObj.InlineExecuteNonQuery1(sQry,"InsertErrorLog");
+            
+            return iSuccess;
+
+        }
+        #region Dashboard
+       
+        public DataSet Top10SupplierOutstanding()
+        {
+            DataSet ds = new DataSet();
+            string qr = "select top 10 c.LedgerName as CustomerName,c.MobileNo, round((sum(isnull(roundoff,0)) - (sum(isnull(ReceiptAmount,0))+sum(ReturnAmount))),0) as Balance, case w.PayMode when '1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_prod w inner join tblLedger c on c.LedgerID=w.supplier where w.PayMode= 2  and (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0 group by c.LedgerName,c.MobileNo,PayMode order by round((sum(isnull(roundoff,0)) - (sum(isnull(ReceiptAmount,0))+sum(ReturnAmount))),0) desc";
+            ds = dbObj.InlineExecuteDataSet(qr);
+            return ds;
+        }
+
         #endregion
     }
 

@@ -678,7 +678,8 @@ namespace Billing.Accountsbootstrap
 
         protected void btngenerate_OnClick(object sender, EventArgs e)
         {
-            for (int vLoop = 0; vLoop < gvRawRequest.Rows.Count; vLoop++)
+          
+                for (int vLoop = 0; vLoop < gvRawRequest.Rows.Count; vLoop++)
             {
                 #region
 
@@ -928,7 +929,7 @@ namespace Billing.Accountsbootstrap
                     //if (txtfrozenqty.Text == "")
                     //    txtfrozenqty.Text = "0";
 
-                    double ttlqty = (Convert.ToInt32(txtreadyqty.Text));
+                    double ttlqty = (Convert.ToDouble(txtreadyqty.Text)); //Changes by priya for receipe execute
 
                     DataSet dsrawitems = objbs.Getwantrawnewbyjothi(Convert.ToInt32(productid.Value), Convert.ToDouble(ttlqty), sCode);
                     if (dsrawitems.Tables[0].Rows.Count > 0)
@@ -1252,7 +1253,7 @@ namespace Billing.Accountsbootstrap
                         //if (txtfrozenqty.Text == "")
                         //    txtfrozenqty.Text = "0";
 
-                        double ttlqty = (Convert.ToInt32(txtreadyqty.Text));
+                        double ttlqty = (Convert.ToDouble(txtreadyqty.Text)); //Changes by Priya for checking receipe execute
 
                         DataSet dsrawitems = objbs.Getwantrawnewbyjothi(Convert.ToInt32(productid.Value), Convert.ToDouble(ttlqty), sCode);
                         if (dsrawitems.Tables[0].Rows.Count > 0)
