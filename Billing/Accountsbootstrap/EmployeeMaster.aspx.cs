@@ -19,15 +19,59 @@ namespace Billing.Accountsbootstrap
         BSClass objBs = new BSClass();
         protected void Page_Load(object sender, EventArgs e)
         {
-            superadmin = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
-
-            lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
-            lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             if (!IsPostBack)
             {
-                DataSet ds = objBs.getallempandsupp("1017,17");
-                gvcust.DataSource = ds;
-                gvcust.DataBind();
+                superadmin = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
+
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "employee");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "employee");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        button.Visible = true;
+                    }
+                    else
+                    {
+                        button.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gvcust.Columns[7].Visible = true;
+                    }
+                    else
+                    {
+                        gvcust.Columns[7].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        gvcust.Columns[8].Visible = true;
+                    }
+                    else
+                    {
+                        gvcust.Columns[8].Visible = false;
+                    }
+                }
+
+                lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
+                lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
+                if (!IsPostBack)
+                {
+                    DataSet ds = objBs.getallempandsupp("1017,17");
+                    gvcust.DataSource = ds;
+                    gvcust.DataBind();
+                }
             }
         }
         protected void Add_Click(object sender, EventArgs e)

@@ -120,7 +120,7 @@
                                                     <asp:BoundField DataField="SalesTypeID" HeaderText="ID" ItemStyle-CssClass="hide"
                                                         HeaderStyle-CssClass="hide" />
 
-                                                    <asp:BoundField DataField="name" HeaderText="Bill Type" ItemStyle-HorizontalAlign="left" />
+                                                    <asp:BoundField DataField="BilltypeName" HeaderText="Bill Type" ItemStyle-HorizontalAlign="left" />
                                                     <asp:BoundField DataField="PaymentType" HeaderText="Payment Type" ItemStyle-HorizontalAlign="left" />
                                                     <asp:BoundField DataField="Margin" Visible="false" HeaderText="Margin" ItemStyle-HorizontalAlign="left" />
                                                     <asp:BoundField DataField="GST" Visible="false" HeaderText="GST" ItemStyle-HorizontalAlign="left" />
@@ -219,13 +219,13 @@
                                     <label>Is Normal Bill</label>
                                     <asp:CheckBox ID="chknormalbill" runat="server" Width="20px" />
                                     <label>Is Overall Discount</label>
-                                    <asp:CheckBox ID="chkoveralldiscount" runat="server"
+                                    <asp:CheckBox ID="chkdiscountchk" runat="server"
                                         OnCheckedChanged="chk_discountcnaged" AutoPostBack="true" Width="20px" />
 
 
 
                                     <label>Is Discount</label>
-                                    <asp:CheckBox ID="chkdiscountchk" runat="server" OnCheckedChanged="chk_discountcnaged1" AutoPostBack="true" Width="20px" />
+                                    <asp:CheckBox ID="chkdiscbillwise" runat="server" OnCheckedChanged="chk_discountcnaged1" AutoPostBack="true" Width="20px" />
 
                                     <br />
 
@@ -247,7 +247,7 @@
                                         <label>Disc Percentage</label>
                                         <asp:DropDownList ID="drpdiscpper" runat="server" CssClass="form-control"></asp:DropDownList>
                                     </div>
-                                    <div id="div1" runat="server" visible="false">
+                                    <div id="div1" runat="server" visible="true">
                                         <label>Payment Mode Selection</label>
                                         <asp:CheckBoxList ID="chkpaylist" runat="server" RepeatColumns="4"></asp:CheckBoxList>
                                     </div>

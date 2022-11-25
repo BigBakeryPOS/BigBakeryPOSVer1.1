@@ -230,8 +230,22 @@ namespace Billing.Accountsbootstrap
 
                                     //drNew["TaxAmount"] = dr["TaxAmount"];
                                     //drNew["Amount"] = dr["Amount"];
+                                    DataSet dsitem1 = objbs.selectitemsval_wholesales(sTableName, Convert.ToInt32(dr["Item"].ToString()), Logintypeid, Convert.ToInt16(ddlcustomer.SelectedValue));
+                                    if (dsitem1.Tables[0].Rows.Count > 0)
+                                    {
+                                        drNew["Stock"] = Convert.ToDouble(dsitem1.Tables[0].Rows[0]["Available_QTY"]).ToString("f2");
+                                    }
+                                    //    if (Logintypeid == "3")
+                                    //{
+                                    //    drNew["Stock"] = dr["Prod_Qty"];
+                                    //}
+                                    //else
+                                    //{
+                                    //    drNew["Stock"] = dr["Prod_Qty"];
+                                    //}
 
-                                    drNew["Stock"] = dr["Prod_Qty"];
+
+                                    
 
                                     drNew["PackType"] = dr["PackType"];
                                     drNew["MRP"] = dr["MRP"] ;
@@ -1136,7 +1150,7 @@ namespace Billing.Accountsbootstrap
             if (txtDeliverCharge.Text == "")
                 txtDeliverCharge.Text = "0";
 
-            DateTime date = DateTime.ParseExact(txtdate.Text, "dd-MM-yyyy hh:mm tt", CultureInfo.InvariantCulture);
+            DateTime date = DateTime.ParseExact(txtdate.Text, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
 
             if (btnadd.Text == "Save")
             {
@@ -1172,7 +1186,7 @@ namespace Billing.Accountsbootstrap
 
                     if (Convert.ToDouble(txtSQty.Text) > 0)
                     {
-                        int transsales = objbs.inserttranswholesales(sTableName, salesid, Convert.ToInt32(drpItem.SelectedValue), Convert.ToDouble(txtSQty.Text), Convert.ToDouble(txtRate.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtTaxamount.Text), Convert.ToDouble(txtAmount.Text), Convert.ToDouble(txttdiscper.Text), Convert.ToDouble(txttdiscamt.Text), Convert.ToDouble(txtDeliverCharge.Text), "", txtorderno.Text, hdtype.Value, Logintypeid, Convert.ToInt32(drpPackType.SelectedValue), Convert.ToDouble(txtMRP.Text));
+                        int transsales = objbs.inserttranswholesales(sTableName, salesid, Convert.ToInt32(drpItem.SelectedValue), Convert.ToDouble(txtSQty.Text), Convert.ToDouble(txtRate.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtTaxamount.Text), Convert.ToDouble(txtAmount.Text), Convert.ToDouble(txttdiscper.Text), Convert.ToDouble(txttdiscamt.Text), Convert.ToDouble(txtDeliverCharge.Text), "", txtorderno.Text, hdtype.Value, Logintypeid, Convert.ToInt32(drpPackType.SelectedValue), Convert.ToDouble(txtMRP.Text),Logintypeid);
                     }
                 }
 
@@ -1222,7 +1236,7 @@ namespace Billing.Accountsbootstrap
                         if (Amount != "")
                         {
                             double qty = Convert.ToDouble(dsTransSaless.Tables[0].Rows[i]["Qty"].ToString());
-                            int update = objbs.updateSalesStock1(qty, Convert.ToInt32(ddldef), "tblproductionqty_" + sTableName);
+                            int update = objbs.updateSalesStock1(qty, Convert.ToInt32(ddldef),  sTableName,Logintypeid);
 
                             if (txtorderno.Text == "")
                                 txtorderno.Text = "0";
@@ -1256,7 +1270,7 @@ namespace Billing.Accountsbootstrap
 
                     if (Convert.ToDouble(txtSQty.Text) > 0)
                     {
-                        int transsales = objbs.inserttranswholesales(sTableName, salesid, Convert.ToInt32(drpItem.SelectedValue), Convert.ToDouble(txtSQty.Text), Convert.ToDouble(txtRate.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtTaxamount.Text), Convert.ToDouble(txtAmount.Text), Convert.ToDouble(txttdiscper.Text), Convert.ToDouble(txttdiscamt.Text), Convert.ToDouble(txtDeliverCharge.Text), "", txtorderno.Text, hdtype.Value, Logintypeid, Convert.ToInt32(drpPackType.SelectedValue), Convert.ToDouble(txtMRP.Text));
+                        int transsales = objbs.inserttranswholesales(sTableName, salesid, Convert.ToInt32(drpItem.SelectedValue), Convert.ToDouble(txtSQty.Text), Convert.ToDouble(txtRate.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtTaxamount.Text), Convert.ToDouble(txtAmount.Text), Convert.ToDouble(txttdiscper.Text), Convert.ToDouble(txttdiscamt.Text), Convert.ToDouble(txtDeliverCharge.Text), "", txtorderno.Text, hdtype.Value, Logintypeid, Convert.ToInt32(drpPackType.SelectedValue), Convert.ToDouble(txtMRP.Text),Logintypeid);
                     }
                 }
 

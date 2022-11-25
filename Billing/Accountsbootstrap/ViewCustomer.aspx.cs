@@ -34,26 +34,226 @@ namespace Billing.Accountsbootstrap
                     head1.InnerHtml = "Customer Master";
                     title1.InnerText = "Customer Details";
                     //Page.Title=
+                    DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "CustMast");
+                    if (dacess1.Tables[0].Rows.Count > 0)
+                    {
+                        if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                        {
+                            Response.Redirect("Login_branch.aspx");
+                        }
+                    }
+
+                    DataSet dacess = new DataSet();
+                    dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "CustMast");
+                    if (dacess.Tables[0].Rows.Count > 0)
+                    {
+                        if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                        {
+                            Button1.Visible = true;
+                        }
+                        else
+                        {
+                             Button1.Visible = false;
+                        }
+
+                        if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                        {
+                            gvcust.Columns[5].Visible = true;
+                        }
+                        else
+                        {
+                            gvcust.Columns[5].Visible = false;
+                        }
+
+                        if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                        {
+                            gvcust.Columns[6].Visible = true;
+                        }
+                        else
+                        {
+                            gvcust.Columns[6].Visible = false;
+                        }
+                    }
                 }
                 else if (srch.Text == "2")
                 {
                     head1.InnerHtml = "Dealer Master";
                     title1.InnerText = "Dealer Details";
+                    DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "DealMast");
+                    if (dacess1.Tables[0].Rows.Count > 0)
+                    {
+                        if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                        {
+                            Response.Redirect("Login_branch.aspx");
+                        }
+                    }
+
+                    DataSet dacess = new DataSet();
+                    dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "DealMast");
+                    if (dacess.Tables[0].Rows.Count > 0)
+                    {
+                        if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                        {
+                            Button1.Visible = true;
+                        }
+                        else
+                        {
+                            Button1.Visible = false;
+                        }
+
+                        if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                        {
+                            gvcust.Columns[5].Visible = true;
+                        }
+                        else
+                        {
+                            gvcust.Columns[5].Visible = false;
+                        }
+
+                        if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                        {
+                            gvcust.Columns[6].Visible = true;
+                        }
+                        else
+                        {
+                            gvcust.Columns[6].Visible = false;
+                        }
+                    }
                 }
                 else if (srch.Text == "3")
                 {
                     head1.InnerHtml = "Supplier Master";
                     title1.InnerText = "Supplier Details";
+                    DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "SupMast");
+                    if (dacess1.Tables[0].Rows.Count > 0)
+                    {
+                        if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                        {
+                            Response.Redirect("Login_branch.aspx");
+                        }
+                    }
+
+                    DataSet dacess = new DataSet();
+                    dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "SupMast");
+                    if (dacess.Tables[0].Rows.Count > 0)
+                    {
+                        if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                        {
+                            Button1.Visible = true;
+                        }
+                        else
+                        {
+                            Button1.Visible = false;
+                        }
+
+                        if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                        {
+                            gvcust.Columns[5].Visible = true;
+                        }
+                        else
+                        {
+                            gvcust.Columns[5].Visible = false;
+                        }
+
+                        if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                        {
+                            gvcust.Columns[6].Visible = true;
+                        }
+                        else
+                        {
+                            gvcust.Columns[6].Visible = false;
+                        }
+                    }
                 }
                 else if (srch.Text == "4")
                 {
                     head1.InnerHtml = "icing Employee Master";
                     title1.InnerText = "icing Employee Details";
+                    DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "EmpMast");
+                    if (dacess1.Tables[0].Rows.Count > 0)
+                    {
+                        if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                        {
+                            Response.Redirect("Login_branch.aspx");
+                        }
+                    }
+
+                    DataSet dacess = new DataSet();
+                    dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "EmpMast");
+                    if (dacess.Tables[0].Rows.Count > 0)
+                    {
+                        if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                        {
+                            Button1.Visible = true;
+                        }
+                        else
+                        {
+                            Button1.Visible = false;
+                        }
+
+                        if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                        {
+                            gvcust.Columns[5].Visible = true;
+                        }
+                        else
+                        {
+                            gvcust.Columns[5].Visible = false;
+                        }
+
+                        if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                        {
+                            gvcust.Columns[6].Visible = true;
+                        }
+                        else
+                        {
+                            gvcust.Columns[6].Visible = false;
+                        }
+                    }
                 }
                 else
                 {
                     head1.InnerHtml = "dispatch Employee Master";
                     title1.InnerText = "dispatch Employee Details";
+                    DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "DisMast");
+                    if (dacess1.Tables[0].Rows.Count > 0)
+                    {
+                        if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                        {
+                            Response.Redirect("Login_branch.aspx");
+                        }
+                    }
+
+                    DataSet dacess = new DataSet();
+                    dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "DisMast");
+                    if (dacess.Tables[0].Rows.Count > 0)
+                    {
+                        if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                        {
+                            Button1.Visible = true;
+                        }
+                        else
+                        {
+                            Button1.Visible = false;
+                        }
+
+                        if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                        {
+                            gvcust.Columns[5].Visible = true;
+                        }
+                        else
+                        {
+                            gvcust.Columns[5].Visible = false;
+                        }
+
+                        if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                        {
+                            gvcust.Columns[6].Visible = true;
+                        }
+                        else
+                        {
+                            gvcust.Columns[6].Visible = false;
+                        }
+                    }
                 }
                 DataSet ds = objBs.getcustomer(srch.Text);
                 gvcust.DataSource = ds;

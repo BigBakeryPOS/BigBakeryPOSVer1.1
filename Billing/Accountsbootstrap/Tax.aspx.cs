@@ -27,16 +27,51 @@ namespace Billing.Accountsbootstrap
 
             lblUser.Text = Session["UserName"].ToString();
             lblUserID.Text = Session["UserID"].ToString();
-            DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "tax");
-            if (dacess1.Tables[0].Rows.Count > 0)
-            {
-                if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
-                {
-                    Response.Redirect("Login_branch.aspx");
-                }
-            }
+           
             if (!IsPostBack)
             {
+
+                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "TAX");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "TAX");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnSubmit.Visible = true;
+                    }
+                    else
+                    {
+                        btnSubmit.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gv.Columns[2].Visible = true;
+                    }
+                    else
+                    {
+                        gv.Columns[2].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        gv.Columns[3].Visible = true;
+                    }
+                    else
+                    {
+                        gv.Columns[3].Visible = false;
+                    }
+                }
+
 
                 txtTax.Text = "";
 
@@ -169,6 +204,7 @@ namespace Billing.Accountsbootstrap
                         txtTax.Text = dedit.Tables[0].Rows[0]["TaxName"].ToString();
                         txtid.Text = dedit.Tables[0].Rows[0]["TAxid"].ToString();
                         btnSubmit.Text = "Update";
+                        btnSubmit.Visible = true;
                     }
 
                 }

@@ -173,19 +173,21 @@
                             </div>
                             <div class="panel-body panel-form-right">
                                 <div class="list-group">
-                                    <asp:Label ID="lblpaymentnameid" runat="server" Visible="false" ></asp:Label>
+                                    <asp:Label ID="lblpaymentnameid" runat="server" Visible="false"></asp:Label>
                                     <label>Payment Name</label>
                                     <asp:TextBox ID="txtpaymentname" runat="server" placeholder="Enter Payment Name" CssClass="form-control"></asp:TextBox>
-
-                                   <%-- <br />
+                                    <br />
                                     <label>Is Discount</label>
                                     <asp:CheckBox ID="chkdiscountchk" runat="server" OnCheckedChanged="chk_discountcnaged1" AutoPostBack="true" Width="20px" />
-
-                                    <br />--%>
-
                                     <br />
                                     <label>Order Wise</label>
                                     <asp:TextBox ID="txtorderwise" runat="server" placeholder="Enter Order Wise" CssClass="form-control" Text="0" Enabled="true"></asp:TextBox>
+                                    <br />
+                                    <label>Shown Receipt/Payment Screen</label>
+                                    <asp:DropDownList ID="drpothershown" runat="server" CssClass="form-control">
+                                        <asp:ListItem Text="YES" Value="Y" Selected="True"></asp:ListItem>
+                                        <asp:ListItem Text="NO" Value="N"></asp:ListItem>
+                                    </asp:DropDownList>
                                     <br />
                                     <label>IsActive</label>
                                     <asp:DropDownList ID="ddIsActive" runat="server" CssClass="form-control">

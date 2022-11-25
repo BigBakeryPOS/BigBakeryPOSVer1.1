@@ -28,6 +28,46 @@ namespace Billing.Accountsbootstrap
             IsSuperAdmin = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
             if (!IsPostBack)
             {
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Mbranch");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Mbranch");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnadd.Visible = true;
+                    }
+                    else
+                    {
+                        btnadd.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gvcust.Columns[9].Visible = true;
+                    }
+                    else
+                    {
+                        gvcust.Columns[9].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        gvcust.Columns[10].Visible = true;
+                    }
+                    else
+                    {
+                        gvcust.Columns[10].Visible = false;
+                    }
+                }
 
                 if (IsSuperAdmin == "1")
                 {

@@ -30,8 +30,49 @@ namespace Billing.Accountsbootstrap
 
             if (!IsPostBack)
             {
+                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "vehiclemaster");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
 
-               txtvehicleno.Text = "";
+                DataSet dacess = new DataSet();
+                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "vehiclemaster");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnSubmit.Visible = true;
+                    }
+                    else
+                    {
+                        btnSubmit.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gv.Columns[5].Visible = true;
+                    }
+                    else
+                    {
+                        gv.Columns[5].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        gv.Columns[6].Visible = true;
+                    }
+                    else
+                    {
+                        gv.Columns[6].Visible = false;
+                    }
+                }
+
+
+                txtvehicleno.Text = "";
 
                ds = objbs.GET_vehicle();
                 gv.DataSource = ds;
@@ -164,6 +205,7 @@ namespace Billing.Accountsbootstrap
                         ddlIsActive.SelectedValue = dedit.Tables[0].Rows[0]["IsActive"].ToString();
 
                         btnSubmit.Text = "Update";
+                        btnSubmit.Visible = true;
                     }
 
                 }

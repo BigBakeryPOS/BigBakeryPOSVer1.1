@@ -584,6 +584,25 @@ namespace Billing.Accountsbootstrap
                 //Control ctrl = (Control)Session["ctrl"];
                 //PrintWebControl(ctrl);
 
+                string KOTPrint = Request.QueryString.Get("KOTPrint");
+                if (KOTPrint != null)
+                {
+                    KOTPrint = Request.QueryString.Get("KOTPrint").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+                    if (KOTPrint == "True")
+                    {
+                        DataSet ds1 = objBs.PrintingSalesLiveKitchen1(iD, sTableName, type.ToString());
+                        if (ds1.Tables[0].Rows.Count > 0)
+                        {
+
+                            string yourUrl1 = "SalesLiveKitchenPrint.aspx?Mode=Sales&iSalesID=" + iD + "&type=" + type.ToString() + "&Store=" + sStore;
+
+                            //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow2", "window.open('" + yourUrl1 + "');", true);
+
+                        }
+                    }
+                }
+
             }
 
             else

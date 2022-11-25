@@ -305,6 +305,26 @@ namespace Billing
                 // string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + e.CommandArgument.ToString();
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow", "window.open('" + yourUrl + "');", true);
             }
+            else if (e.CommandName == "kotprint")
+            {
+
+                string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
+                string billno = commandArgs[0];
+                string salestypeid = commandArgs[1];
+
+
+                DataSet ds1 = objBs.PrintingSalesLiveKitchen1(Convert.ToInt32(billno), sTableName, salestypeid);
+                if (ds1.Tables[0].Rows.Count > 0)
+                {
+
+                    string yourUrl1 = "SalesLiveKitchenPrint.aspx?Mode=Sales&iSalesID=" + billno + "&Type=" + salestypeid.ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString();
+
+
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow2", "window.open('" + yourUrl1 + "');", true);
+
+                }
+
+            }
         }
 
         protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)

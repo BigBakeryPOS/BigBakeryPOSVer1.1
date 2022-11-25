@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Fixed Expense Master</title>
+    <title>Fixed Expense Master Grid </title>
     <link rel="Stylesheet" type="text/css" href="../Styles/AjaxPopUp.css" />
     <script language="javascript" type="text/javascript" src="../js/Validation.js"></script>
     <link href="css/mGrid.css" rel="stylesheet" type="text/css" />
@@ -97,7 +97,7 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group has-feedback">
-                                        <asp:TextBox ID="txtname" runat="server" placeholder="Search Fixed Expense.." onkeyup="Search_Gridview(this, 'Ingredientdrid')"
+                                        <asp:TextBox ID="txtname" runat="server" placeholder="Search Variable Name.." onkeyup="Search_Gridview(this, 'Ingredientdrid')"
                                             CssClass="form-control"></asp:TextBox>
                                         <span class="glyphicon glyphicon-search form-control-feedback"></span>
                                     </div>
@@ -167,7 +167,7 @@
                         <%--           <blink> <label  style="color:Green; font-size:12px">Please Fill Ingredient Details  </label></blink>--%>
                         <div class="panel-header">
                             <h1 class="page-header">
-                                Create Fixed Expense</h1>
+                                Add Fixed Expense</h1>
                         </div>
                         <div class="panel-body panel-form-right">
                             <div class="list-group">
@@ -177,7 +177,7 @@
                                 </asp:DropDownList>
                                 <br />
                                 <label>
-                                    Fixed Expense Name</label>
+                                    Variable Name</label>
                                 <asp:TextBox ID="txtvariablename" runat="server" placeholder="Enter Variable Expense Name"
                                     CssClass="form-control"></asp:TextBox>
                                 <br />

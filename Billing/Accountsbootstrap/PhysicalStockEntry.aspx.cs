@@ -32,7 +32,48 @@ namespace Billing.Accountsbootstrap
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             if (!IsPostBack)
             {
-               // string[] Shopnames = ConfigurationManager.AppSettings["Production1"].ToString().Split(',');
+                DataSet dacess1 = ks.getuseraccessscreen(Session["EmpId"].ToString(), "oprawentry");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = ks.getuseraccessscreen(Session["EmpId"].ToString(), "oprawentry");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnsend.Visible = true;
+                    }
+                    else
+                    {
+                        btnsend.Visible = false;
+                    }
+
+                    //if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    //{
+                    //    BankGrid.Columns[7].Visible = true;
+                    //}
+                    //else
+                    //{
+                    //    BankGrid.Columns[7].Visible = false;
+                    //}
+
+                    //if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    //{
+                    //    BankGrid.Columns[8].Visible = true;
+                    //}
+                    //else
+                    //{
+                    //    BankGrid.Columns[8].Visible = false;
+                    //}
+                }
+
+                // string[] Shopnames = ConfigurationManager.AppSettings["Production1"].ToString().Split(',');
 
                 DataSet ds = ks.RawmatlSenttoProduction(sCode);
 

@@ -196,6 +196,23 @@ namespace Billing.Accountsbootstrap
                 idFranchisee.Visible = false;
             }
 
+            if (lblownplusfrancheese.Text == "Y")
+            {
+
+                DataSet getfranchisee1 = objBs.getfarnchiseename_new(sTableName);
+                if (getfranchisee1.Tables[0].Rows.Count > 0)
+                {
+                    idFranchisee.Visible = true;
+                    lblfranchise.Text = getfranchisee1.Tables[0].Rows[0]["FranchiseeName"].ToString();
+                }
+                else
+                {
+                    idFranchisee.Visible = false;
+                }
+            }
+
+
+
             int iD = Convert.ToInt32(Request.QueryString.Get("iSalesID"));
             string type = (Request.QueryString.Get("Type")).ToString();
             int NewiD = Convert.ToInt32(Request.QueryString.Get("NewiSalesID"));
@@ -658,6 +675,25 @@ namespace Billing.Accountsbootstrap
                 //Session["ctrl"] = pnlContents;
                 //Control ctrl = (Control)Session["ctrl"];
                 //PrintWebControl(ctrl);
+
+                string KOTPrint = Request.QueryString.Get("KOTPrint");
+                if (KOTPrint != null)
+                {
+                    KOTPrint = Request.QueryString.Get("KOTPrint").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+                    if (KOTPrint == "True")
+                    {
+                        DataSet ds1 = objBs.PrintingSalesLiveKitchen1(iD, sTableName, type.ToString());
+                        if (ds1.Tables[0].Rows.Count > 0)
+                        {
+
+                            string yourUrl1 = "SalesLiveKitchenPrint.aspx?Mode=Sales&iSalesID=" + iD + "&type=" + type.ToString() + "&Store=" + sStore;
+
+                            //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow2", "window.open('" + yourUrl1 + "');", true);
+
+                        }
+                    }
+                }
 
             }
 

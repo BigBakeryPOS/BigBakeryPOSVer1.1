@@ -33,7 +33,47 @@ namespace Billing.Accountsbootstrap
             if (!IsPostBack)
             {
                 DataSet ds1 = objbs.getrecptnumber(sTableName);
-              
+
+                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "CustomerSalesReceipts");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "CustomerSalesReceipts");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnSubmit.Visible = true;
+                    }
+                    else
+                    {
+                        btnSubmit.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        // gridledger.Columns[8].Visible = true;
+                    }
+                    else
+                    {
+                        // gridledger.Columns[8].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        //gridledger.Columns[5].Visible = true;
+                    }
+                    else
+                    {
+                        //gridledger.Columns[5].Visible = false;
+                    }
+                }
 
                 txtBillNo.Text = ds1.Tables[0].Rows[0]["ReceiptNo"].ToString();
                 txtBillDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
@@ -76,7 +116,7 @@ namespace Billing.Accountsbootstrap
 
                 }
                 DataSet dss = new DataSet();
-                dss = objbs.getcustomer();
+                dss = objbs.getgridforcustsale();
                 if (dss.Tables[0].Rows.Count > 0)
                 {
                     ddlcustomer.DataSource = dss.Tables[0];
@@ -404,7 +444,9 @@ namespace Billing.Accountsbootstrap
                 DateTime billldate = DateTime.ParseExact(txtBillDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 DateTime chequedate = DateTime.ParseExact(txtchequedate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-               int ReceiptID = objbs.insertreceipt(sTableName, billldate, chequedate, ddlcustomer.SelectedValue, Convert.ToDouble(txtAmount.Text), BankName, ChequeNo, Convert.ToInt32(ddlPayMode.SelectedValue), Bank, Convert.ToDouble(txtCloseDiscount.Text), Convert.ToInt32(userid));
+                string ReceiptType = "WholeSales";
+
+               int ReceiptID = objbs.insertreceipts(sTableName, billldate, chequedate, ddlcustomer.SelectedValue, Convert.ToDouble(txtAmount.Text), BankName, ChequeNo, Convert.ToInt32(ddlPayMode.SelectedValue), Bank, Convert.ToDouble(txtCloseDiscount.Text), Convert.ToInt32(userid),ReceiptType);
 
                 for (int vLoop = 0; vLoop < gv.Rows.Count; vLoop++)
                 {
@@ -486,7 +528,7 @@ namespace Billing.Accountsbootstrap
             DateTime sFrom = DateTime.ParseExact(txtfromdate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             DateTime sTo = DateTime.ParseExact(txttodate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-            DataSet ds = objbs.getreceiptrecord(sTableName, ddlcustomerrep.SelectedValue, sFrom, sTo, ddlpay.SelectedValue);
+            DataSet ds = objbs.getreceiptrecord(sTableName, ddlcustomerrep.SelectedValue, sFrom, sTo, ddlpay.SelectedValue, lblreceipttype.Text);
             
             if (ds.Tables[0].Rows.Count > 0)
             {
@@ -533,7 +575,7 @@ namespace Billing.Accountsbootstrap
             DateTime sFrom = DateTime.ParseExact(txtfromdate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             DateTime sTo = DateTime.ParseExact(txttodate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-            DataSet ds = objbs.getreceiptrecord(sTableName, ddlcustomerrep.SelectedValue, sFrom, sTo, ddlpay.SelectedValue);
+            DataSet ds = objbs.getreceiptrecord(sTableName, ddlcustomerrep.SelectedValue, sFrom, sTo, ddlpay.SelectedValue, lblreceipttype.Text);
            
             if (ds.Tables[0].Rows.Count > 0)
             {

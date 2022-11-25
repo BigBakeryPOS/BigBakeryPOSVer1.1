@@ -21,7 +21,49 @@ namespace Billing.Accountsbootstrap
             superadmin = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
              if (!IsPostBack)
             {
-            DataSet dLedger = objbs.LedgerGrid();
+
+                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "Ledger");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "Ledger");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnsave.Visible = true;
+                    }
+                    else
+                    {
+                        btnsave.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gvledgrid.Columns[1].Visible = true;
+                    }
+                    else
+                    {
+                        gvledgrid.Columns[1].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        gvledgrid.Columns[2].Visible = true;
+                    }
+                    else
+                    {
+                        gvledgrid.Columns[2].Visible = false;
+                    }
+                }
+
+                DataSet dLedger = objbs.LedgerGrid();
             gvledgrid.DataSource = dLedger;
             gvledgrid.DataBind();
             }
@@ -36,6 +78,7 @@ namespace Billing.Accountsbootstrap
                     if (dsLedger.Tables[0].Rows.Count > 0)
                     {
                         txtledger.Text = dsLedger.Tables[0].Rows[0]["LedgerName"].ToString();
+                        btnsave.Visible = true;
                     }
                 }
 

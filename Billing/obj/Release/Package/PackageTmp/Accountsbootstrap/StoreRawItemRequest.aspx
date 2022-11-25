@@ -314,7 +314,7 @@
                 <div class="col-lg-3">
                 <asp:RadioButtonList ID="radbtnlist" runat="server" RepeatColumns="4" OnSelectedIndexChanged="goodsentrytype"
                     AutoPostBack="true">
-                    <%--<asp:ListItem Text="Against Request" Value="1" ></asp:ListItem>--%>
+                    <asp:ListItem Text="Against Request From Production" Value="1" ></asp:ListItem>
                     <%--<asp:ListItem Text="Accept Request" Value="2"></asp:ListItem>--%>
                     <asp:ListItem Text="Direct Transfer" Value="2"></asp:ListItem>
                     <asp:ListItem Text="Against Demand" Selected="True" Value="3"></asp:ListItem>
@@ -539,7 +539,7 @@
                                 </asp:GridView>
                             </div>
                             
-                    <div runat="server" visible="false" class="col-lg-4">
+                    <div runat="server" visible="true" class="col-lg-4">
                         <asp:GridView ID="gvRawRequest" runat="server" AutoGenerateColumns="false" Width="100%" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
                             Font-Names="Calibri" AllowSorting="true" Caption="Item Details">
                            <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"

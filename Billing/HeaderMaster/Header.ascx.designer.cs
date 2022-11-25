@@ -339,13 +339,13 @@ namespace Billing.HeaderMaster
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl EmpMast;
 
         /// <summary>
-        /// Li11 control.
+        /// DisMast control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li11;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisMast;
 
         /// <summary>
         /// Customer1 control.
@@ -1012,6 +1012,15 @@ namespace Billing.HeaderMaster
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl CustomerSalesReceipts;
+
+        /// <summary>
+        /// CusSalesReceipts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CusSalesReceipts;
 
         /// <summary>
         /// semiprodmenu control.
@@ -2265,13 +2274,13 @@ namespace Billing.HeaderMaster
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl billfrom;
 
         /// <summary>
-        /// Li5 control.
+        /// AccountsReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li5;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AccountsReport;
 
         /// <summary>
         /// A33 control.
@@ -2283,13 +2292,13 @@ namespace Billing.HeaderMaster
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A33;
 
         /// <summary>
-        /// Li6 control.
+        /// LedgerReportNEW control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li6;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LedgerReportNEW;
 
         /// <summary>
         /// A34 control.
@@ -2301,13 +2310,13 @@ namespace Billing.HeaderMaster
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A34;
 
         /// <summary>
-        /// Li533 control.
+        /// DaybookNEW control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li533;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DaybookNEW;
 
         /// <summary>
         /// A20222 control.
@@ -2319,13 +2328,13 @@ namespace Billing.HeaderMaster
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A20222;
 
         /// <summary>
-        /// Li7 control.
+        /// CashAccount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li7;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CashAccount;
 
         /// <summary>
         /// A35 control.
@@ -2337,13 +2346,13 @@ namespace Billing.HeaderMaster
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A35;
 
         /// <summary>
-        /// Li8 control.
+        /// BankStatementReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li8;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl BankStatementReport;
 
         /// <summary>
         /// A36 control.
@@ -2355,13 +2364,13 @@ namespace Billing.HeaderMaster
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A36;
 
         /// <summary>
-        /// Li9 control.
+        /// TrialBalance control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li9;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TrialBalance;
 
         /// <summary>
         /// A37 control.

@@ -17,12 +17,57 @@ namespace Billing.Accountsbootstrap
         string sCode = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
-            lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
-            sCode = Request.Cookies["userInfo"]["BranchCode"].ToString();
-            DataSet ds = objbs.interReqGridstore(lblUserID.Text, sCode);
-            gvPurchaseEntry.DataSource = ds;
-            gvPurchaseEntry.DataBind();
+            if (!IsPostBack)
+            {
+                lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
+                lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
+                sCode = Request.Cookies["userInfo"]["BranchCode"].ToString();
+
+                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "ISSR");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "ISSR");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        Button1.Visible = true;
+                    }
+                    else
+                    {
+                        Button1.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        // gridledger.Columns[8].Visible = true;
+                    }
+                    else
+                    {
+                        // gridledger.Columns[8].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        //gridledger.Columns[5].Visible = true;
+                    }
+                    else
+                    {
+                        //gridledger.Columns[5].Visible = false;
+                    }
+                }
+
+                DataSet ds = objbs.interReqGridstore(lblUserID.Text, sCode);
+                gvPurchaseEntry.DataSource = ds;
+                gvPurchaseEntry.DataBind();
+            }
         }
 
         protected void btnadd_Click(object sender, EventArgs e)
