@@ -512,6 +512,7 @@
     <Content Include="css\toastr.css" />
     <Content Include="HeaderMaster\NewHeader.ascx" />
     <Content Include="images\add.jpg" />
+    <Content Include="images\posmulti.png" />
     <Content Include="images\preview.jpg" />
     <Content Include="images\preview2.jpg" />
     <Content Include="images\preview3.jpg" />
