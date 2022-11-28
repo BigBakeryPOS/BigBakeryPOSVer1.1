@@ -38,6 +38,47 @@ namespace Billing.Accountsbootstrap
                 lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
                 lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
 
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "STSIS");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "STSIS");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnSave.Visible = true;
+                    }
+                    else
+                    {
+                        btnSave.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gridview.Columns[3].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[3].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        gridview.Columns[4].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[4].Visible = false;
+                    }
+                }
+
                 DataSet dsbranch = objBs.gridloadingingitem();
                 if (dsbranch.Tables[0].Rows.Count > 0)
                 {
@@ -59,8 +100,6 @@ namespace Billing.Accountsbootstrap
                     drpbranchitem.Items.Insert(0, "Select Item");
 
                 }
-
-               
             }
         }
 
@@ -121,7 +160,7 @@ namespace Billing.Accountsbootstrap
                     {
                         btnSave.Text = "Update";
                         UPD.Visible = true;
-
+                        btnSave.Visible = true;
                         drpstoreitem.SelectedValue = ds.Tables[0].Rows[0]["Ingid"].ToString();
                         drpbranchitem.SelectedValue = ds.Tables[0].Rows[0]["Categoryuserid"].ToString();
                         txtstoresettingid.Text = ds.Tables[0].Rows[0]["StoreSettingId"].ToString();

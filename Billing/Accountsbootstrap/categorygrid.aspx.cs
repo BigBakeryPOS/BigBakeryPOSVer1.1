@@ -34,18 +34,50 @@ namespace Billing.Accountsbootstrap
             //    ((LinkButton)e.Row.FindControl("imdedit")).Enabled = false;
             //}
             //  Label myLabel = this.FindControl("lblscreenname") as Label;
-            DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "category");
-            if (dacess1.Tables[0].Rows.Count > 0)
-            {
-                if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
-                {
-                    Response.Redirect("Login_branch.aspx");
-                }
-            }
+            
             if (!IsPostBack)
             {
 
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Category");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
 
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Category");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnSave.Visible = true;
+                    }
+                    else
+                    {
+                        btnSave.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gridview.Columns[4].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[4].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        gridview.Columns[5].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[5].Visible = false;
+                    }
+                }
                 DataSet dsgvbranch = objBs.getallbranch();
                 gvbranch.DataSource = dsgvbranch;
                 gvbranch.DataBind();

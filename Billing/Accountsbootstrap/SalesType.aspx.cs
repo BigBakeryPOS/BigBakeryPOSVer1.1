@@ -26,7 +26,46 @@ namespace Billing.Accountsbootstrap
             if (!IsPostBack)
             {
 
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "saletypemaster");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
 
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "saletypemaster");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnSubmit.Visible = true;
+                    }
+                    else
+                    {
+                        btnSubmit.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        Ingredientdrid.Columns[8].Visible = true;
+                    }
+                    else
+                    {
+                        Ingredientdrid.Columns[8].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        Ingredientdrid.Columns[9].Visible = true;
+                    }
+                    else
+                    {
+                        Ingredientdrid.Columns[9].Visible = false;
+                    }
+                }
                 DataSet paymode = objBs.Paymodevalues(sTableName);
                 if (paymode.Tables[0].Rows.Count > 0)
                 {
@@ -159,7 +198,7 @@ namespace Billing.Accountsbootstrap
 
 
                         btnSubmit.Text = "Update";
-
+                        btnSubmit.Visible = true;
                         DataSet dsize = objBs.EditSalesmodeType(Convert.ToInt32(idEdit));
 
                         if ((dsize.Tables[0].Rows.Count > 0))

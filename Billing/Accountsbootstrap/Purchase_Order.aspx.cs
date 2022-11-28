@@ -66,6 +66,15 @@ namespace Billing.Accountsbootstrap
                     ddlbank.DataBind();
                     ddlbank.Items.Insert(0, "Select Bank");
                 }
+                DataSet Paymode = kbs.GetOthersPaymode();
+                if (Paymode.Tables[0].Rows.Count > 0)
+                {
+                    ddlpaymode.DataSource = Paymode.Tables[0];
+                    ddlpaymode.DataTextField = "Paymode";
+                    ddlpaymode.DataValueField = "Value";
+                    ddlpaymode.DataBind();
+                    ddlpaymode.Items.Insert(0, "Select Paymode");
+                }
 
                 DataSet dNo = kbs.orderentryno(sTableName);
                 txtbillno.Text = dNo.Tables[0].Rows[0]["billno"].ToString();
@@ -99,17 +108,17 @@ namespace Billing.Accountsbootstrap
                         }
 
                         ddlpaymode.SelectedValue = dagent.Tables[0].Rows[0]["Paymode"].ToString();
-
-                        if (dagent.Tables[0].Rows[0]["Paymode"].ToString() == "1")
-                        {
-                            ddlbank.Enabled = false;
-                            txtcheque.Enabled = false;
-                        }
-                        else
-                        {
-                            ddlbank.Enabled = true;
-                            txtcheque.Enabled = true;
-                        }
+                        ddlpaymode_OnSelectedIndexChanged(sender, e);
+                        //if (dagent.Tables[0].Rows[0]["Paymode"].ToString() == "1")
+                        //{
+                        //    ddlbank.Enabled = false;
+                        //    txtcheque.Enabled = false;
+                        //}
+                        //else
+                        //{
+                        //    ddlbank.Enabled = true;
+                        //    txtcheque.Enabled = true;
+                        //}
                         txtdcno.Enabled = false;
 
                         txtSubTotal.Text = dagent.Tables[0].Rows[0]["SubTotal"].ToString();
@@ -732,7 +741,7 @@ namespace Billing.Accountsbootstrap
                 ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Please Select Supplier');", true);
                 return;
             }
-            if (ddlpaymode.SelectedValue == "0")
+            if (ddlpaymode.SelectedValue == "Select Paymode")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Please Select Payment');", true);
                 return;
@@ -750,7 +759,7 @@ namespace Billing.Accountsbootstrap
                 {
                     #region
 
-                    if (ddlpaymode.SelectedValue == "1" || ddlpaymode.SelectedValue == "2")
+                    if (ddlpaymode.SelectedValue == "1" || ddlpaymode.SelectedValue == "2" || ddlpaymode.SelectedValue == "18")
                     {
                         bank = 0;
                         chequeno = "000000";
@@ -774,7 +783,7 @@ namespace Billing.Accountsbootstrap
                     }
 
                     int CreditorID1 = 0;
-                    if (ddlpaymode.SelectedValue == "2") //Credit
+                    if (ddlpaymode.SelectedValue == "2" || ddlpaymode.SelectedValue == "18") //Credit
                     {
                         CreditorID1 = Convert.ToInt32(ddlsuplier.SelectedValue);
                     }
@@ -1466,38 +1475,152 @@ namespace Billing.Accountsbootstrap
 
         protected void ddlpaymode_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlpaymode.SelectedValue == "1" || ddlpaymode.SelectedValue == "2")
-            {
-                ddlbank.Enabled = false;
-                txtcheque.Enabled = false;
-            }
-            else
+            if (ddlpaymode.SelectedValue == "4" || ddlpaymode.SelectedValue == "11" || ddlpaymode.SelectedValue == "15" || ddlpaymode.SelectedValue == "19")
             {
                 ddlbank.Enabled = true;
                 txtcheque.Enabled = true;
+                ddlbank.Visible = true;
+                txtcheque.Visible = true;
+                lblbank.Visible = true;
+                lblChq.Visible = true;
+            }
+            else
+            {
+                ddlbank.Enabled = false;
+                txtcheque.Enabled = false;
+
+                ddlbank.Visible = false;
+                txtcheque.Visible = false;
+
+                lblbank.Visible = false;
+                lblChq.Visible = false;
             }
             ddlpaymode.Focus();
         }
 
         protected void drpprimary_unit(object sender, EventArgs e)
         {
+            decimal samt = 0;
             DropDownList ddl = (DropDownList)sender;
             GridViewRow row = (GridViewRow)ddl.NamingContainer;
             DropDownList ddlprimaryunits = (DropDownList)row.FindControl("ddlprimaryunits");
             Label lblprimaryvalue = (Label)row.FindControl("lblprimaryvalue");
+
+            TextBox Qty = (TextBox)row.FindControl("txtQty");
+
+            TextBox Rate = (TextBox)row.FindControl("txtRate");
+            TextBox Amount = (TextBox)row.FindControl("txtAmount");
+            TextBox txttax = (TextBox)row.FindControl("txtBillNo");           
+            TextBox PQty = (TextBox)row.FindControl("txtPQty");
+
             if (ddlprimaryunits.SelectedValue != "Select PrimaryUom")
             {
                 DataSet dss = kbs.getPrimaryUNITSvalue(ddlprimaryunits.SelectedValue);
                 if (dss.Tables[0].Rows.Count > 0)
                 {
                     lblprimaryvalue.Text = Convert.ToDouble(dss.Tables[0].Rows[0]["Primaryvalue"]).ToString("0.00");
+
+                    decimal dAmount = 0;
+
+                    decimal Pqty = 0;
+
+
+                    decimal tax = 0;
+
+                    lblError.Visible = false;
+                    Button1.Enabled = true;
+                    if (Qty.Text.Trim() != "")
+                    {
+                        decimal dQty = Convert.ToDecimal(Qty.Text);
+                        decimal DRate = Convert.ToDecimal(Rate.Text);
+                        dAmount = dQty * DRate;
+
+                        Pqty = dQty * Convert.ToDecimal(lblprimaryvalue.Text);
+
+                        tax = ((dAmount * Convert.ToDecimal(txttax.Text)) / 100);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Please Enter Rate');", true);
+                    }
+
+                    decimal amttax = dAmount + tax;
+
+                    PQty.Text = Pqty.ToString("f2");
+                    Amount.Text = amttax.ToString("f2");
+                    decimal dAmt = 0; decimal dTotal = 0;
+
+                    decimal ttltax = 0;
+                    for (int i = 0; i < gvcustomerorder.Rows.Count; i++)
+                    {
+                        decimal tax1 = 0;
+
+                        TextBox txtsno = (TextBox)gvcustomerorder.Rows[i].FindControl("txtsno");
+
+                        txtsno.Text = (i + 1).ToString();
+
+                        TextBox tAmount = (TextBox)gvcustomerorder.Rows[i].FindControl("txtAmount");
+                        if (tAmount.Text != "")
+                        {
+                            dAmt += Convert.ToDecimal(tAmount.Text);
+                        }
+
+                        TextBox txtQty = (TextBox)gvcustomerorder.Rows[i].FindControl("txtQty");
+                        TextBox txtRate = (TextBox)gvcustomerorder.Rows[i].FindControl("txtRate");
+                        TextBox txtBillNo = (TextBox)gvcustomerorder.Rows[i].FindControl("txtBillNo");
+
+
+                        Label lblprimaryvaluep = (Label)gvcustomerorder.Rows[i].FindControl("lblprimaryvalue");
+                        TextBox txtPQty = (TextBox)gvcustomerorder.Rows[i].FindControl("txtPQty");
+
+                        if (txtQty.Text == "")
+                        {
+                            return;
+                        }
+                        if (txtRate.Text == "")
+                        {
+                            return;
+                        }
+                        if (txtBillNo.Text == "")
+                        {
+                            return;
+                        }
+
+
+                        decimal dAmount1 = Convert.ToDecimal(txtQty.Text) * Convert.ToDecimal(txtRate.Text);
+
+                        samt += Convert.ToDecimal(txtQty.Text) * Convert.ToDecimal(txtRate.Text);
+
+                        tax1 = ((dAmount1 * Convert.ToDecimal(txtBillNo.Text)) / 100);
+
+                        ttltax = ttltax + tax1;
+
+                    }
+                    dTotal = dAmt;
+                    txtSubTotal.Text = samt.ToString("f2");
+                    txttotal.Text = dTotal.ToString("f2");
+                    // txtTax.Text = ttltax.ToString("f2");
+                    if (rbdpurchasetype.SelectedValue == "1")
+                    {
+                        txtcgst.Text = string.Format("{0:N2}", Convert.ToDouble(ttltax) / 2);
+                        txtsgst.Text = string.Format("{0:N2}", Convert.ToDouble(ttltax) / 2);
+                        txtigst.Text = "0.00";
+                    }
+                    else
+                    {
+                        txtcgst.Text = "0.00";
+                        txtsgst.Text = "0.00";
+                        txtigst.Text = ttltax.ToString("f2");
+                    }
+                   
                 }
             }
             else
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Please Select Valid Primary UOM.Thank You!!!.');", true);
                 return;
-            }
+            }           
+
         }
         protected void ddlDef_OnSelectedIndexChanged(object sender, EventArgs e)
         {

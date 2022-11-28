@@ -31,13 +31,52 @@ namespace Billing.Accountsbootstrap
            
             if (!IsPostBack)
             {
-               
-                txtuom.Text = "";
+                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "UOM");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
 
+                DataSet dacess = new DataSet();
+                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "UOM");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnSubmit.Visible = true;
+                    }
+                    else
+                    {
+                        btnSubmit.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gv.Columns[2].Visible = true;
+                    }
+                    else
+                    {
+                        gv.Columns[2].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        gv.Columns[3].Visible = true;
+                    }
+                    else
+                    {
+                        gv.Columns[3].Visible = false;
+                    }
+                }
+
+
+                txtuom.Text = "";
                 ds = objbs.UNITS();
                 gv.DataSource = ds;
                 gv.DataBind();
-
             }
 
 
@@ -126,17 +165,13 @@ namespace Billing.Accountsbootstrap
                 }
 
             }
-
-
-
-
-
         }
 
 
         protected void btncancel_Click(object sender, EventArgs e)
         {
             clearall();
+            Response.Redirect("Uom.aspx");
         }
         private void clearall()
         {
@@ -158,11 +193,10 @@ namespace Billing.Accountsbootstrap
                     dedit = objbs.editumo(Convert.ToInt32(e.CommandArgument));
                     if (dedit.Tables[0].Rows.Count > 0)
                     {
-
-
                         txtuom.Text = dedit.Tables[0].Rows[0]["UOM"].ToString();
                         txtid.Text = dedit.Tables[0].Rows[0]["Uomid"].ToString();
                         btnSubmit.Text = "Update";
+                        btnSubmit.Visible = true;
                     }
 
                 }

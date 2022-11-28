@@ -41,6 +41,47 @@ namespace Billing.Accountsbootstrap
             Type = Request.QueryString.Get("Type");
             if (!IsPostBack)
             {
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "SemiRaw");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "SemiRaw");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnadd.Visible = true;
+                    }
+                    else
+                    {
+                        btnadd.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gridview.Columns[2].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[2].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        gridview.Columns[3].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[3].Visible = false;
+                    }
+                }
+
                 d1.Visible = true;
                 lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
                 lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
@@ -109,6 +150,7 @@ namespace Billing.Accountsbootstrap
                                 }
                             }
                             btnadd.Text = "Change";
+                            btnadd.Visible = true;
                         }
                         else
                         {

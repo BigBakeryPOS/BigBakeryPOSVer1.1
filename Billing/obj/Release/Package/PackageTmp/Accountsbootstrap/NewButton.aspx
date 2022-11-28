@@ -87,10 +87,10 @@
                         <asp:Label ID="lblpaymodesic" runat="server" Visible="false"></asp:Label>
                         <asp:Label ID="lblordercount" Visible="false" runat="server"></asp:Label>
                         <asp:Label ID="lblordertype" Visible="false" runat="server"></asp:Label>
-                        <asp:Label ID="lblqtytype" Visible="false" runat="server" Text="N"></asp:Label>
-                        <asp:Label ID="lblattednercheck" Visible="false" runat="server" Text="Y"></asp:Label>
-                        <asp:CheckBox ID="chkkot" runat="server" Text="false"  CssClass="form-control"></asp:CheckBox>
-                        <asp:Label ID="lblprintcount" runat="server" Text="2" Visible="false" ></asp:Label>
+                        <asp:Label ID="lblqtytype" Visible="false" runat="server" Text="Y"></asp:Label>
+                        <asp:Label ID="lblattednercheck" Visible="false" runat="server" Text="N"></asp:Label>
+                        <asp:CheckBox ID="chkkot" runat="server" Visible="false" Checked="false" CssClass="form-control"></asp:CheckBox>
+                        <asp:Label ID="lblprintcount" runat="server" Text="2" Visible="false"></asp:Label>
                         <asp:ScriptManager ID="ScriptManager1" runat="server">
                         </asp:ScriptManager>
 
@@ -137,7 +137,7 @@
                                                         <div runat="server" visible="false" id="divscript">
                                                             <asp:UpdatePanel ID="upcus" runat="server" UpdateMode="Conditional">
                                                                 <ContentTemplate>
-                                                                    <asp:TextBox ID="txtCusName1" runat="server" Font-Bold="true" Font-Size="Larger" Style="width: 415px; text-transform: uppercase;"
+                                                                    <asp:TextBox ID="txtCusName1" runat="server" Font-Bold="true" Font-Size="Larger" Style="width: 350px; text-transform: uppercase;"
                                                                         Height="33px" placeholder="Enter Item Name" AutoPostBack="true" OnTextChanged="LedgerIdbinding"></asp:TextBox>
                                                                     <ajaxToolkit:AutoCompleteExtender ID="TextBox1_AutoCompleteExtender" runat="server"
                                                                         CompletionListCssClass="autocomplete_completionListElement" DelimiterCharacters=""
@@ -594,6 +594,7 @@
                                                 <label>
                                                     Disc.Chk</label>
                                                 <asp:Label ID="isdiscchk" runat="server" Visible="false"></asp:Label>
+                                                <asp:Label ID="isdiscchkwithbill" runat="server" Visible="false"></asp:Label>
                                                 <asp:CheckBox ID="chkdisc" runat="server" OnCheckedChanged="disc_checkedchanged"
                                                     AutoPostBack="true" />
                                                 <asp:TextBox ID="txtdiscotp" runat="server" placeholder="Enter OTP" Enabled="false"

@@ -131,9 +131,9 @@
                                                 Paymode</label>
                                             <asp:DropDownList ID="ddlpaymode" runat="server" AutoPostBack="true" TabIndex="3"
                                                 CssClass="form-control" OnSelectedIndexChanged="ddlpaymode_OnSelectedIndexChanged">
-                                                <asp:ListItem Text="Select Payment" Value="0" Enabled="true"></asp:ListItem>
+                                              <%--  <asp:ListItem Text="Select Payment" Value="0" Enabled="true"></asp:ListItem>
                                                 <asp:ListItem Text="Cash" Value="1"></asp:ListItem>
-                                                <asp:ListItem Text="Credit" Value="2" Enabled="true"></asp:ListItem>
+                                                <asp:ListItem Text="Credit" Value="2" Enabled="true"></asp:ListItem>--%>
                                             </asp:DropDownList>
                                         </div>
 
@@ -189,13 +189,18 @@
                                         </div>
                                     </div>
                                     <br />
-                                    <div class="row">
-                                        <asp:DropDownList ID="ddlbank" runat="server" AutoPostBack="true" CssClass="form-control"
-                                            Visible="false">
-                                        </asp:DropDownList>
-                                        <asp:TextBox CssClass="form-control" ID="txtcheque" placeholder="Enter Bill No" runat="server"
-                                            Visible="false"></asp:TextBox>
-                                    </div>
+                                   <div class="col-lg-2">
+                                             <label id="lblbank" runat="server">Select Bank</label>
+                                            <asp:DropDownList ID="ddlbank" runat="server" AutoPostBack="true" CssClass="form-control"
+                                                Visible="false">
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="col-lg-2">
+                                             <label id="lblChq" runat="server">Enter Cheque/Card no</label>
+                                            <asp:TextBox CssClass="form-control" ID="txtcheque" placeholder="Enter Cheque/Card no" runat="server"
+                                                Visible="false"></asp:TextBox>
+
+                                        </div>
                                 </div>
 
                                 <div class="col-lg-12">

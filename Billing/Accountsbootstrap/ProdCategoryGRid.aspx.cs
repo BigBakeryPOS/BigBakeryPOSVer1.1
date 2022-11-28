@@ -31,6 +31,49 @@ namespace Billing.Accountsbootstrap
 
             if (!IsPostBack)
             {
+
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Ingcategory");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Ingcategory");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnSave.Visible = true;
+                    }
+                    else
+                    {
+                        btnSave.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gridview.Columns[2].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[2].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        gridview.Columns[3].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[3].Visible = false;
+                    }
+                }
+
+
                 ViewState["SortExpr"] = Sort_Direction;
 
                 DataSet dsgrid = objBs.gridIngridentcategory();
@@ -76,6 +119,7 @@ namespace Billing.Accountsbootstrap
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         btnSave.Text = "Update";
+                        btnSave.Visible = true;
                         txtcategoryId.Text = ds.Tables[0].Rows[0]["IngCatID"].ToString();
                         txtcategory.Text = ds.Tables[0].Rows[0]["IngreCategory"].ToString();
                         drpisactive.SelectedValue = ds.Tables[0].Rows[0]["IsActive"].ToString();

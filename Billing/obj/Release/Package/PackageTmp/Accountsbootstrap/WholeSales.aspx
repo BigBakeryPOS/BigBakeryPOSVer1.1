@@ -71,8 +71,10 @@
     <div class="col-lg-12">
     <div class="row panel-custom1">
         <div class="panel-header">
-          <h1 class="page-header">Whole Sales Invoice</h1>
-	    </div>
+         <h1 class="page-header">Whole Sales Invoice</h1></div>
+              
+             
+	    
                     <div class="panel-body">
                                     <div class="row">
                                        
@@ -86,15 +88,14 @@
                                                 </asp:RadioButtonList>
                                             </div>
                                        
-                         
-                                        <div class="col-lg-3 form-inline">
+                         <div class="col-lg-2 form-inline">
                                             
                                                 <label>
                                                     Bill No</label><br>
                                                 <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="RequiredFieldValidator4"
                                                     Text="*" ControlToValidate="txtbillno" ErrorMessage="Please enter Bill NO!" Style="color: Red" />
                                                 <asp:Label ID="lblPrefix" runat="server" Font-Bold="true" Font-Size="Larger" Text="BF / "></asp:Label>
-                                                <asp:TextBox Width="100px" ID="txtbillno" class="form-control" AutoPostBack="true" runat="server"></asp:TextBox>
+                                                <asp:TextBox Width="50px" Enabled="false" ID="txtbillno" class="form-control" AutoPostBack="true" runat="server"></asp:TextBox>
                                                 <%--  <asp:Label ID="yearss" runat="server" Font-Bold="true" Font-Size="Larger" Text="/2020"></asp:Label>--%>
                                                 <asp:Label ID="yearss" runat="server" Font-Bold="true" Font-Size="Larger" Text=" / 21-22"></asp:Label>
 
@@ -103,16 +104,17 @@
                                                     TargetControlID="txtbillno" ValidChars="" FilterType="Numbers" />
 
                                             </div>
+                                       
                                             <%--<br />--%>
                                         
                                         <div id="Div3" class="form-group" runat="server" visible="false">
                                             <asp:Button ID="btnrefresh" runat="server" Text="Refresh Items" OnClick="btnrefresh_OnClick" />
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-2">
                                                 <asp:Label runat="server" ID="Label4" Style="font-weight: bold;">Bill Date</asp:Label>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ValidationGroup="val1"
                                                     Text="*" ControlToValidate="txtdate" Style="color: Red" ErrorMessage="Enter Bill Date"></asp:RequiredFieldValidator><br />
-                                                <asp:TextBox CssClass="form-control" ID="txtdate" runat="server"></asp:TextBox>
+                                                <asp:TextBox CssClass="form-control" ID="txtdate" runat="server" Enabled="false"></asp:TextBox>
                                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="dd/MM/yyyy hh:mm tt"
                                                     TargetControlID="txtdate" runat="server" CssClass="cal_Theme1">
                                                 </ajaxToolkit:CalendarExtender>
@@ -127,7 +129,7 @@
                                                 </asp:RadioButtonList>
                                             </div>
                                         
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-1">
                                             
                                                 <asp:Label runat="server" ID="Label155" Style="font-weight: bold">DC.No. </asp:Label>
                                                 <asp:TextBox ID="txtdcno" CssClass="form-control" MaxLength="50" runat="server"></asp:TextBox>
@@ -135,10 +137,7 @@
                                                     TargetControlID="txtdcno" ValidChars="" FilterType="Numbers" />
                                             
                                         </div>
-                                    </div>
-                                        <br />
-                                        <div class="row">
-                                        <div class="col-lg-3">
+                                          <div class="col-lg-1">
                                             
                                                 <asp:Label runat="server" ID="Label5" Style="font-weight: bold">Order No. </asp:Label>
                                                 <asp:TextBox ID="txtorderno" CssClass="form-control" MaxLength="50" runat="server"
@@ -147,6 +146,10 @@
                                                     TargetControlID="txtorderno" ValidChars="" FilterType="Numbers" />
                                             
                                         </div>
+                                    </div>
+                                        <br />
+                                        <div class="row">
+                                      
                                         <div class="col-lg-3">
                                          
                                                 <label>

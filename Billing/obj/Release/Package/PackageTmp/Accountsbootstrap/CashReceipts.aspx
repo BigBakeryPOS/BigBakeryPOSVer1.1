@@ -334,7 +334,7 @@
                             <asp:button id="btnsearch" runat="server" class="btn btn-primary pos-btn1" text="Search" onclick="btnsearch_OnClick" />
                             <asp:label id="lblPrint" runat="server"></asp:label>
                             
-                           
+                           <asp:Label ID="lblreceipttype" runat="server" Text="WholeSales" Visible="false" ></asp:Label>
                             &nbsp;&nbsp;&nbsp;<asp:button id="btn" runat="server" text="Print" visible="true" cssclass="btn btn-secondary"
                                 onclientclick="Denomination123()" />
                      

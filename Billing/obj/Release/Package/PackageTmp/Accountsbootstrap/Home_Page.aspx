@@ -76,25 +76,95 @@
       </style>
 </head>
 <body style="">
-    <usc:Header ID="Header" runat="server" />
+    <usc:Header ID="Header" runat="server" />  
     <form id="form1" runat="server">
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" Visible="false" CssClass="label">Welcome : </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="White" Visible="false" CssClass="label">Welcome: </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
-            <asp:ScriptManager ID="ScriptManager1" runat="server">
-            </asp:ScriptManager>
-            <div style="margin-top: 110px">
+             <div style="margin-top: 0px">
              <div align="center">
-             <h2><blink><label style="color:Red" >Welcome To <label id="Company" runat="server"></label></label></blink></h2>
-             <div style="margin-top: 110px">
+             <h2><label style="color:Red" >Welcome To <label id="Company" runat="server"></label></label></h2>
+             <div style="margin-top: 0px">
              <h2>
              <asp:Label ID="lblmotivation" Visible="false" runat="server" Font-Bold="true" Font-Names="Calibri"  ></asp:Label>
              </h2>
              </div>
              </div>
             </div>
+<div id="wrapper">
+            <!-- /.row -->
+            <div class="col-lg-12 col-md-12">                
+                <div class="col-lg-4">
+                    <div class="panel panel-custom1">
+                         <div class="panel panel-header">
+                             <span style="font-palette:light; font-family:Calibri; font-size:medium; color:grey">
+                                   <b>   Supplier Outstanding :   Rs.50,000</b> </span>
+                                        
+                             </div>
+                       
+                                <div class="panel-body">
+                                    <asp:GridView ID="gvSupplier" runat="server" AutoGenerateColumns="false" CssClass="table table-pos-bill table-bordered table-responsive table-striped">
+<Columns>
+    <asp:BoundField HeaderText="Supplier Name" DataField="CustomerName" />
+    <asp:BoundField HeaderText="Mobile No" DataField="MobileNo" />
+     <asp:BoundField HeaderText="Outstanding" DataField="Balance" />
+         <asp:BoundField HeaderText="Pay Mode" DataField="PayType" Visible="false"/>
+</Columns>
+
+
+                                    </asp:GridView>
+                                   
+
+                                </div>
+                            </div>
+                      
+
+            </div>
+            </div>
+            <div class="row" style="padding-left: 20px; padding: 20px; display: none">
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-line-chart" style="font-size: 100px"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div id="IDTodaySales" runat="server">
+                                        <h3>
+                                           Rs.500000 Today's Sales:
+                                            <asp:Label ID="Label35" runat="server" Text="0"></asp:Label>
+                                        </h3>
+                                    </div>
+                                    <div id="IDTodaySalesCount" runat="server">
+                                        <h3>
+                                            Today's Sales:
+                                            <asp:Label ID="lblSalesCount" runat="server" Text="0"></asp:Label>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="CustomerSalesReport.aspx">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span> <span class="pull-right"><i class="fa fa-arrow-circle-right">
+                                </i></span>
+                                <div class="clearfix">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                
+            
+        </div>
+           
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <asp:ScriptManager ID="ScriptManager1" runat="server">
+            </asp:ScriptManager>
+      
             <div runat="server" visible="false" style="margin-top: 10px">
                 <div>
                     <div>
@@ -565,6 +635,9 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
+
+  
+
     </form>
    
 

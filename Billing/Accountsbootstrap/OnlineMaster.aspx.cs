@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,6 +8,7 @@ using System.Web.UI.WebControls;
 using BusinessLayer;
 using System.Data;
 using System.Text;
+using System.Diagnostics;
 
 namespace Billing.Accountsbootstrap
 {
@@ -24,17 +26,51 @@ namespace Billing.Accountsbootstrap
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
 
 
-            DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "onlineorderentry");
-            if (dacess1.Tables[0].Rows.Count > 0)
-            {
-                if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
-                {
-                  //  Response.Redirect("Login_branch.aspx");
-                }
-            }
+           
 
             if (!IsPostBack)
             {
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Online");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Online");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnSave.Visible = true;
+                    }
+                    else
+                    {
+                        btnSave.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gridview.Columns[2].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[2].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        gridview.Columns[3].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[3].Visible = false;
+                    }
+                }
+
                 ViewState["SortExpr"] = Sort_Direction;
 
                 DataSet dsgrid = objBs.gridonlinemaster();
@@ -93,7 +129,7 @@ namespace Billing.Accountsbootstrap
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         btnSave.Text = "Update";
-
+                        btnSave.Visible = true;
                         txtonlineId.Text = ds.Tables[0].Rows[0]["OnlineNo"].ToString();
                         txtonline.Text = ds.Tables[0].Rows[0]["OnlineMaster"].ToString();
                         radbtnonlinetype.SelectedValue = ds.Tables[0].Rows[0]["Onlinetype"].ToString();
@@ -227,32 +263,54 @@ namespace Billing.Accountsbootstrap
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-
-            if (btnSave.Text == "Save")
+            try
             {
-                DataSet dsCategory = objBs.Duplicateonlinecheck(txtonline.Text);
-                if (dsCategory.Tables[0].Rows.Count > 0)
+                if (btnSave.Text == "Save")
                 {
+                    DataSet dsCategory = objBs.Duplicateonlinecheck(txtonline.Text);
+                    if (dsCategory.Tables[0].Rows.Count > 0)
+                    {
 
-                    lblerror.Text = "This Online Name has already Exists please enter a new one";
+                        lblerror.Text = "This Online Name has already Exists please enter a new one";
 
+                    }
+                    else
+                    {
+                        int iStatus = objBs.InsertOnline(txtonline.Text, Convert.ToString(radbtnonlinetype.SelectedValue));
+                        Response.Redirect("../Accountsbootstrap/OnlineMaster.aspx");
+                    }
                 }
+
                 else
                 {
-                    int iStatus = objBs.InsertOnline(txtonline.Text,radbtnonlinetype.SelectedValue);
-                    Response.Redirect("../Accountsbootstrap/OnlineMaster.aspx");
+
+
+                    objBs.updateonline(Convert.ToInt32(txtonlineId.Text), txtonline.Text, radbtnonlinetype.SelectedValue);
+                    Response.Redirect("OnlineMaster.aspx");
                 }
             }
-
-            else
+            catch (Exception ex)
             {
+              
+               // this.LogError(ex, Path.GetFileName(Request.Path).ToString() );
 
-
-                objBs.updateonline(Convert.ToInt32(txtonlineId.Text), txtonline.Text,radbtnonlinetype.SelectedValue);
-                Response.Redirect("OnlineMaster.aspx");
             }
         }
+        private void LogError(Exception ex, string page)
+        {
+            string Logtime = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt");
+            string LogMsg = ex.Message.ToString();
+           string LogStack= ex.StackTrace.ToString();
+            string LogSource = ex.Source.ToString();
+            string LogTargetSite = page;//ex.TargetSite.ToString().ToString();
+            var st = new StackTrace(ex, true);
+            // Get the top stack frame
+            var frame = st.GetFrame(0);
+            // Get the line number from the stack frame
+            var line = frame.GetFileLineNumber();
 
+            int iSuccess = objBs.InsertErrorLog(Logtime, LogMsg, LogStack, LogSource, LogTargetSite);
+        }
         protected void gridview_RowEditing(object sender, GridViewEditEventArgs e)
         {
 

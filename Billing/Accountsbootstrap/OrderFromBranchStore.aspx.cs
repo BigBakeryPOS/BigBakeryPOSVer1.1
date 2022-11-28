@@ -57,6 +57,47 @@ namespace Billing.Accountsbootstrap
                     drpstorelist.Items.Insert(0, "All");
                 }
 
+                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "storestockreceive");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "storestockreceive");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        Button1.Visible = true;
+                    }
+                    else
+                    {
+                        Button1.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        // gridledger.Columns[8].Visible = true;
+                    }
+                    else
+                    {
+                        // gridledger.Columns[8].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        //gridledger.Columns[5].Visible = true;
+                    }
+                    else
+                    {
+                        //gridledger.Columns[5].Visible = false;
+                    }
+                }
+
                 DataSet ds = objbs.getbranchbyproductionStore(sCode, sDate);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
