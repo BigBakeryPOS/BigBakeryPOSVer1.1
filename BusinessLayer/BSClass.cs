@@ -8703,13 +8703,13 @@ namespace BusinessLayer
             string sqry = "";
             if (Mode == "Order")
             {
-                sqry = "select '0' as  ComboId,d.gst/2 as cg, d.gst/2 as sg,*,b.Qty as Quantity,b.Rate as Unitprice,(a.total - a.advance) as gndtot from tblorder_" + sTable + " a,tblTransorder_" + sTable + " b,tblcategory c,tblCategoryUser d,tblCustomer e where a.BillNo=b.BillNo and c.categoryid=d.CategoryID and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and a.CustomerID=e.CustomerID and a.OrderNo=" + ID + "";
+                sqry = "select (d.mrp * (cast(b.Qty as float))) as amo,cast(d.gst as nvarchar)+' % '  as gst,d.printitem+' / '+d.hsncode as printite,'0' as  ComboId,d.gst/2 as cg, d.gst/2 as sg,*,b.Qty as Quantity,b.Rate as Unitprice,(a.total - a.advance) as gndtot from tblorder_" + sTable + " a,tblTransorder_" + sTable + " b,tblcategory c,tblCategoryUser d,tblCustomer e where a.BillNo=b.BillNo and c.categoryid=d.CategoryID and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and a.CustomerID=e.CustomerID and a.OrderNo=" + ID + "";
 
             }
 
             else
             {
-                sqry = "select d.gst/2 as cg, d.gst/2 as sg,e.CustomerName,e.MobileNo,a.BillNo,a.orderdate,a.NetAmount,a.Advance,a.Total,b.Rate,c.category,d.Definition,SUM(b.Amount) as Amount,SUM(b.Qty) as Quantity,a.CashPaid,a.Balance,a.Tax   from tblorder_" + sTable + "  a,tblTransorder_" + sTable + " b,tblcategory c,tblCategoryUser d,tblCustomer e where a.BillNo=b.BillNo and c.categoryid=d.CategoryID and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and a.CustomerID=e.CustomerID and a.BillNo=" + ID + " group by e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.Tax,a.Biller,a.attender,d.gst ";
+                sqry = "select (d.mrp * (cast(b.Qty as float))) as amo,cast(d.gst as nvarchar)+' % '  as gst,d.printitem+' / '+d.hsncode as printite,d.gst/2 as cg, d.gst/2 as sg,e.CustomerName,e.MobileNo,a.BillNo,a.orderdate,a.NetAmount,a.Advance,a.Total,b.Rate,c.category,d.Definition,SUM(b.Amount) as Amount,SUM(b.Qty) as Quantity,a.CashPaid,a.Balance,a.Tax   from tblorder_" + sTable + "  a,tblTransorder_" + sTable + " b,tblcategory c,tblCategoryUser d,tblCustomer e where a.BillNo=b.BillNo and c.categoryid=d.CategoryID and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and a.CustomerID=e.CustomerID and a.BillNo=" + ID + " group by e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.Tax,a.Biller,a.attender,d.gst ";
             }
 
             ds = dbObj.InlineExecuteDataSet(sqry);
@@ -9424,6 +9424,42 @@ namespace BusinessLayer
             {
                 string SQRY = "  select '" + sTableName + "' as bnch,sum(s.total)as Total, sp.paymode as  SalesType,'' as paymenttype  from tblsales_" + sTableName + " as  s inner join tblsalespaymode as sp on sp.value=s.ipaymode " +
                              " where cast (billdate as Date)>='" + FromDate + "' and cast (billdate as Date)<='" + Todate + "'  and cancelstatus='No' group by paymode,VALUE ORDER BY VALUE asc ";
+                ds = dbObj.InlineExecuteDataSet(SQRY);
+            }
+
+            return ds;
+        }
+
+        public DataSet sales_distributionFromTodate_paymentflow(string FromDate, string Todate, string sTableName, string radbutton)
+        {
+            DataSet ds = new DataSet();
+
+            if (radbutton == "0")
+            {
+                //  string sqry = "select sum(total)as Total, sp.paymode as  SalesType  from tblsales_" + sTableName + " as  s inner join tblsalespaymode as sp on sp.value=s.ipaymode where cast (billdate as Date)='" + Date + "'  and cancelstatus='No' group by paymode ";
+                //string SQRY = "  select '" + sTableName + "' as bnch, sum(s.total)as Total, sp.paymode as  SalesType,st.paymenttype  from tblsales_" + sTableName + " as  s inner join tblsalespaymode as sp on sp.value=s.ipaymode " +
+                //              " inner join tblsalestype as st on st.SalesTypeID=s.salestype " +
+                //             " where cast (billdate as Date)>='" + FromDate + "' and cast (billdate as Date)<='" + Todate + "'  and cancelstatus='No' group by paymode,st.paymenttype,VALUE ORDER BY VALUE asc ";
+                string SQRY = " select '" + sTableName + "' as bnch, sum(ts.amount)as Total, sp.paymode as  SalesType,st.paymenttype  " +
+                    " from tblsales_" + sTableName + " as  s inner join tbltranssalesAmount_" + sTableName + " as ts on ts.salesid=s.salesid " +
+                    " inner join tblsalespaymode as sp on sp.value=ts.paymode    inner join tblsalestype as st on st.SalesTypeID=ts.salestypeid " +
+                    " where cast (ts.billdate as Date)>='" + FromDate + "' and cast (ts.billdate as Date)<='" + Todate + "'  and cancelstatus='No' " +
+                    " group by ts.paymode,st.paymenttype,VALUE,sp.paymode ORDER BY VALUE asc ";
+
+
+                ds = dbObj.InlineExecuteDataSet(SQRY);
+            }
+            else
+            {
+                //string SQRY = "  select '" + sTableName + "' as bnch,sum(s.total)as Total, sp.paymode as  SalesType,'' as paymenttype  from tblsales_" + sTableName + " as  s inner join tblsalespaymode as sp on sp.value=s.ipaymode " +
+                //             " where cast (billdate as Date)>='" + FromDate + "' and cast (billdate as Date)<='" + Todate + "'  and cancelstatus='No' group by paymode,VALUE ORDER BY VALUE asc ";
+
+                string SQRY = "select '" + sTableName + "' as bnch,sum(ts.Amount)as Total, sp.paymode as  SalesType,'' as paymenttype   " +
+                    " from tblsales_" + sTableName + " as  s inner join tbltranssalesAmount_" + sTableName + " as ts on ts.salesid=s.salesid " +
+                    " inner join tblsalespaymode as sp on sp.value=ts.paymode  " +
+                    " where cast (ts.billdate as Date)>='" + FromDate + "' and cast (ts.billdate as Date)<='" + Todate + "'  and cancelstatus='No' " +
+                    " group by sp.paymode,VALUE ORDER BY VALUE asc ";
+
                 ds = dbObj.InlineExecuteDataSet(SQRY);
             }
 
@@ -37621,6 +37657,59 @@ namespace BusinessLayer
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
         }
+        #endregion
+
+        #region ORDER UOM
+        public DataSet Get_salespaymode()
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select * from tblsalespaymode where others='Y' and isactive='Yes'";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+
+        #endregion
+
+        #region MULTIPAYMENT
+        public DataSet getsales_payment(string sTable, string salesid)
+        {
+            DataSet ds = new DataSet();
+            string sQry = "select * from tblsales_" + sTable + " where salesid='" + salesid + "'";
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
+        public DataSet getsales_transamount(string sTable, string salesid)
+        {
+            DataSet ds = new DataSet();
+            string sQry = "select a.*,b.paymode as mode from tbltranssalesAmount_" + sTable + " as a inner join tblsalespaymode as b on b.value=a.paymode where a.salesid='" + salesid + "'";
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
+        public int iupdatesales(string stable,string ipaymode,string salesid,string billno)
+        {
+            int i = 0;
+            string sqry = "update tblsales_" + stable + " set ipaymode='"+ipaymode+"' where salesid='" + salesid + "' and billno='"+billno+"'";
+            i = dbObj.InlineExecuteNonQuery(sqry);
+
+            string idelete = "delete from tbltranssalesAmount_" + stable + " where salesid='" + salesid + "' and billno='" + billno + "'";
+            i = dbObj.InlineExecuteNonQuery(idelete);
+            return i;
+        }
+
+        public int iupdatetranssalesamount(string stable, string salesuniqueid, string billno1, string BillDate,string salestype, string iPayMode, string Total, string BillerId,string attender1,string PayMode, string currencytype)
+        {
+            int i = 0;
+            string strans = "Insert into " + stable + "(Salesid,Billno,Billdate,SalesTypeid,paymode,Amount,BillerId,Attenderid, " +
+              " SalesPaymodeid,Currency)values('" + salesuniqueid + "','" + billno1 + "','" + BillDate + "' " +
+              " ,'" + salestype + "','" + iPayMode + "','" + Total + "','" + BillerId + "','" + attender1 + "','" + PayMode + "','" + currencytype + "')";
+
+            i = dbObj.InlineExecuteNonQuery(strans);
+
+            return i;
+        }
+
         #endregion
     }
 
