@@ -276,7 +276,7 @@ namespace Billing.Accountsbootstrap
                     }
                     else
                     {
-                        int iStatus = objBs.InsertOnline(txtonline.Text, Convert.ToInt32(radbtnonlinetype.SelectedValue));
+                        int iStatus = objBs.InsertOnline(txtonline.Text, Convert.ToString(radbtnonlinetype.SelectedValue));
                         Response.Redirect("../Accountsbootstrap/OnlineMaster.aspx");
                     }
                 }
