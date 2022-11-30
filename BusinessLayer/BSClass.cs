@@ -18181,7 +18181,7 @@ namespace BusinessLayer
             int save = 0;
             int TransNo = 0;
             DataSet ds1 = new DataSet();
-            string qy1 = "select Daybookid from tblkitchenPurchase_" + Table + " where  PurchaseID='" + iSalesID + "' ";
+            string qy1 = "select Daybookid from tblkitchenPurchase_" + Table + " where  Billno='" + iSalesID + "' ";
             ds1 = dbObj.InlineExecuteDataSet(qy1);
 
             if (ds1.Tables[0].Rows.Count > 0)
@@ -18196,7 +18196,7 @@ namespace BusinessLayer
             string Date = DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
             DateTime date1 = DateTime.ParseExact(Date, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
 
-            string sQry = "update tblkitchenPurchase_" + Table + " set RoundOff=" + roundoff + ",DCNo='" + dcno + "',CGST='" + cgst + "',SGST='" + sgst + "',IGST='" + igst + "',Subtotal=" + Subtotal + ",Tax=" + Tax + ",Total=" + Total + ",Supplier=" + Supplier + ",Paymode=" + Paymode + ",Bank=" + Bank + ",ChequeNo='" + Shequeno + "',EditUserID=" + EditUserID + ",EditDate='" + Convert.ToDateTime(date1).ToString("yyyy/MM/dd hh:mm tt") + "',EditNarration=isnull(EditNarration,'')+'@'+'" + EditNarration + "',Province='" + province + "',DiscountAmount=" + DiscountAmount + ",FreightCharge=" + FreightCharge + ",FreightChargeTax=" + FreightChargeTax + ",FreightChargeTaxId=" + FreightChargeTaxId + ",FreightChargeTaxValue=" + FreightChargeTaxValue + " where PurchaseID=" + iSalesID + "";
+            string sQry = "update tblkitchenPurchase_" + Table + " set RoundOff=" + roundoff + ",DCNo='" + dcno + "',CGST='" + cgst + "',SGST='" + sgst + "',IGST='" + igst + "',Subtotal=" + Subtotal + ",Tax=" + Tax + ",Total=" + Total + ",Supplier=" + Supplier + ",Paymode=" + Paymode + ",Bank=" + Bank + ",ChequeNo='" + Shequeno + "',EditUserID=" + EditUserID + ",EditDate='" + Convert.ToDateTime(date1).ToString("yyyy/MM/dd hh:mm tt") + "',EditNarration=isnull(EditNarration,'')+'@'+'" + EditNarration + "',Province='" + province + "',DiscountAmount=" + DiscountAmount + ",FreightCharge=" + FreightCharge + ",FreightChargeTax=" + FreightChargeTax + ",FreightChargeTaxId=" + FreightChargeTaxId + ",FreightChargeTaxValue=" + FreightChargeTaxValue + " where billno=" + iSalesID + "";
             save = dbObj.InlineExecuteNonQuery(sQry);
             DataSet ds = new DataSet();
             return save;
@@ -18342,7 +18342,7 @@ namespace BusinessLayer
 
 
             DateTime ExpiryDate1;
-            if (ExpiryDate == "" || ExpiryDate == "0")
+            if (ExpiryDate == "" || ExpiryDate == "0" || ExpiryDate == "01/01/1900 12:00:00 AM")
             {
                 ExpiryDate1 = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture);
             }
@@ -18383,18 +18383,17 @@ namespace BusinessLayer
             }
             else
             {
-                Query = "insert into tblRawMatlStock_" + Table + " (IngredientID,Qty,UserID,idDelete,units,Rate)values(" + IngredientID + "," + PUqty + "," + userid + ",0,'" + Units + "'," + Rate + ") ";
+                Query = "insert into tblRawMatlStock_" + Table + " (IngredientID,Qty,UserID,idDelete,units,Rate)values(" + IngredientID + "," + PUqty + "," + userid + ",0,'" + Units + "'," + Rate + " ";
             }
 
             stock = dbObj.InlineExecuteNonQuery(Query);
 
             // insert stock - expiry date  
-            string sQry11 = "insert into tblRawMatlStockExp_" + Table + " (IngredientID,Qty,ExpiredDate,PurchaseID)values(" + IngredientID + "," + PUqty + ",'" + ExpiryDate1.ToString("yyyy-MM-dd") + "'," + PurchaseID + ") ";
+            string sQry11 = "insert into tblRawMatlStockExp_" + Table + " (IngredientID,Qty,ExpiredDate,PurchaseID)values(" + IngredientID + "," + PUqty + ",'" + ExpiryDate1.ToString("yyyy-MM-dd") + "'," + PurchaseID + " ";
             save = dbObj.InlineExecuteNonQuery(sQry11);
 
             return save;
         }
-
         public int getduplisttrans123(string iSalesID, string Table)
         {
             int stock = 0;
@@ -37750,6 +37749,15 @@ namespace BusinessLayer
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
         }
+
+        public DataSet GetOthersPaymode_Payment(string Paymode)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select * from tblsalespaymode where others='Y' and paymodeid not in (" + Paymode + " ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+
         #endregion
 
         public int InsertErrorLog(string Logtime, string LogMsg, string LogStack, string LogSource, string LogTargetSite)
@@ -37765,14 +37773,112 @@ namespace BusinessLayer
 
         #region Dashboard
 
-        public DataSet Top10SupplierOutstanding()
+        public DataSet Top10SupplierOutstanding(string stablename)
         {
             DataSet ds = new DataSet();
-            string qr = "select top 10 c.LedgerName as CustomerName,c.MobileNo, round((sum(isnull(roundoff, 0)) -(sum(isnull(ReceiptAmount, 0)) + sum(ReturnAmount))),0) as Balance, case w.PayMode when'1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_prod w inner join tblLedger c on c.LedgerID = w.supplier where w.PayMode = 2  and(isnull(roundoff, 0) - (isnull(ReceiptAmount, 0) + ReturnAmount)) > 0 group by c.LedgerName,c.MobileNo,PayMode order by round((sum(isnull(roundoff,0)) -(sum(isnull(ReceiptAmount, 0)) + sum(ReturnAmount))),0) desc";
+            string qr = "select top 10 c.LedgerName as CustomerName,c.MobileNo, round((sum(isnull(roundoff, 0)) -(sum(isnull(ReceiptAmount, 0)) + sum(ReturnAmount))),0) as Balance, case w.PayMode when'1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_" + stablename + " w inner join tblLedger c on c.LedgerID = w.supplier where w.PayMode = 18  and(isnull(roundoff, 0) - (isnull(ReceiptAmount, 0) + ReturnAmount)) > 0 group by c.LedgerName,c.MobileNo,PayMode order by round((sum(isnull(roundoff,0)) -(sum(isnull(ReceiptAmount, 0)) + sum(ReturnAmount))),0) desc";
             ds = dbObj.InlineExecuteDataSet(qr);
             return ds;
         }
 
+        public DataSet TodayRawMaterialTransAmounttoProduction(DateTime dtFrom, string stablename)
+        {
+            DataSet ds = new DataSet();
+            string qr = "select isnull(sum(s.Rate),0) as AvgRate  from tblAcceptRawMaterials_" + stablename + " as a inner join " +
+                " tbltransAcceptRawItem_" + stablename + " as b on b.requestid=a.requestno  inner join tblIngridents as c on b.rawitemid=c.IngridID " +
+                " inner join tblRawMatlStock_" + stablename + " s on s.IngredientID=b.rawitemid  inner join tbluom as d on d.uomid=c.Units inner join tblIngridentsCategory ic on ic.IngCatID=c.IngCatID " +
+                " where (a.RequestDate >='" + Convert.ToDateTime(dtFrom).ToString("yyyy-MM-dd") + "' AND a.RequestDate <='" + Convert.ToDateTime(dtFrom).ToString("yyyy-MM-dd") + "')";
+            ds = dbObj.InlineExecuteDataSet(qr);
+            return ds;
+        }
+
+        public DataSet TodayRawMaterialTransAmounttoBranch(DateTime dtFrom, string stablename)
+        {
+            DataSet ds = new DataSet();
+            string qr = "select isnull(sum(b.Received_Qty* e.rate),0) as amt from tblGoodTransferstore_" + stablename + " a, tbltransGoodsTransferstore_" + stablename + " b, " +
+                " tblingridentscategory c, tblingridents d ,tblRawMatlStock_" + stablename + " e where a.DC_NO=b.DC_No and d.IngCatID= c.IngCatID  and b.DescriptionId= d.IngridID " +
+                " and b.DescriptionId= e.IngredientID and a.BranchCode= b.BranchCode " +
+                " and (a.DC_date >='" + Convert.ToDateTime(dtFrom).ToString("yyyy-MM-dd") + "' AND a.DC_date <='" + Convert.ToDateTime(dtFrom).ToString("yyyy-MM-dd") + "')";
+            ds = dbObj.InlineExecuteDataSet(qr);
+            return ds;
+        }
+
+        public DataSet GetCurrentStockValue(string stablename)
+        {
+            DataSet ds = new DataSet();
+            string qr = "select isnull(sum(s.Qty*s.rate),0) as Amount from tblIngridents i inner join tblRawMatlStock_" + stablename + " s on s.IngredientID=i.IngridID inner join tblIngridentscategory as b on b.ingcatid=i.ingcatid  inner join tblUOM u on u.UOMID=i.Units where s.qty >0";
+            ds = dbObj.InlineExecuteDataSet(qr);
+            return ds;
+        }
+
+        public DataSet TodayExpenseAmount(DateTime dtFrom, string stablename)
+        {
+            DataSet ds = new DataSet();
+            string qr = "select isnull(sum(a.Amount),0) as Amount from tblPaymentEntry_" + stablename + " a where " +
+                " (a.Date >='" + Convert.ToDateTime(dtFrom).ToString("yyyy-MM-dd") + "' AND a.Date <='" + Convert.ToDateTime(dtFrom).ToString("yyyy-MM-dd") + "')";
+            ds = dbObj.InlineExecuteDataSet(qr);
+            return ds;
+        }
+        #endregion
+
+        #region PurchaseEdit
+        public DataSet getduplist_Purchaseedit(string iSalesID, string Table)
+        {
+            DataSet ds = new DataSet();
+            string qr = "select * from tblkitchenPurchase_" + Table + " where Billno='" + iSalesID + "'";
+            ds = dbObj.InlineExecuteDataSet(qr);
+            return ds;
+        }
+
+        public DataSet getduplisttrans_purchaseedit(string iSalesID, string Table)
+        {
+            DataSet ds = new DataSet();
+            //////string qr = "select * from tbltranskitchenPurchase_" + Table + " where Purchaseid='" + iSalesID + "'";
+            string qr = "select i.Units,tp.* from tbltranskitchenPurchase_" + Table + " tp inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblkitchenPurchase_" + Table + " c on c.purchaseid = tp.purchaseid where c.purchaseid='" + iSalesID + "'";
+            ds = dbObj.InlineExecuteDataSet(qr);
+            return ds;
+        }
+
+
+        public DataSet GetSupplierIngredient_PId(string loadallitem, string IngridID)
+        {
+            DataSet ds = new DataSet();
+
+            DataSet dss = new DataSet();
+            string qr = string.Empty;
+            int cnt = 0;
+            string sqry = string.Empty;
+
+            if (loadallitem == "2")
+            {
+
+                if (cnt > 0)
+                {
+                    qr = "select b.ingrecategory+' - '+i.ingredientname as IngredientName,b.ingrecategory+' - '+li.BIngredientName as BIngredientName,* from tblLedgerIngredient li inner join  tblIngridents i on i.IngridID=li.IngredientId inner join tblIngridentscategory as b on b.ingcatid=i.ingcatid inner join tblUOM u on u.UOMID=i.Units where i.IsActive='Yes' and IngridID=" + IngridID + " ";
+                    ds = dbObj.InlineExecuteDataSet(qr);
+                }
+                else
+                {
+                    qr = "select b.ingrecategory+' - '+i.ingredientname as IngredientName,*,'' as BIngredientName from  tblIngridents as i inner join tblIngridentscategory as b on b.ingcatid=i.ingcatid  inner join tblUOM u on u.UOMID=i.Units where i.IsActive='Yes' and IngridID=" + IngridID + " ";
+                    ds = dbObj.InlineExecuteDataSet(qr);
+                }
+            }
+            else
+            {
+                qr = "select b.ingrecategory+' - '+i.ingredientname as IngredientName,*,'' as BIngredientName from  tblIngridents as i inner join tblIngridentscategory as b on b.ingcatid=i.ingcatid  inner join tblUOM u on u.UOMID=i.Units where i.IsActive='Yes' and IngridID=" + IngridID + " ";
+                ds = dbObj.InlineExecuteDataSet(qr);
+            }
+            return ds;
+        }
+
+
+        public int getduplisttransdeletePur(string iSalesID, string Table)
+        {
+            int isucess = 0;
+            string qr = "Delete  from tbltranskitchenPurchase_" + Table + " where Purchaseid='" + iSalesID + "'";
+            isucess = dbObj.InlineExecuteNonQuery(qr);
+            return isucess;
+        }
         #endregion
     }
 
