@@ -137,6 +137,27 @@
             alert('Are You Sure, You want to cancel This Customer sales!');
         }
     </script>
+
+    <style>
+        .chkChoice input
+        {
+            margin-left: -30px;
+        }
+        .chkChoice td
+        {
+            padding-left: 45px;
+        }
+        
+        .chkChoice1 input
+        {
+            margin-left: -20px;
+        }
+        .chkChoice1 td
+        {
+            padding-left: 40px;
+        }
+    </style>
+
 </head>
 <body>
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label" Visible="false">  </asp:Label>
@@ -144,63 +165,67 @@
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <usc:Header ID="Header" runat="server" />
     <div class="container-fluid">
-	<div class="row">
-    <div class="col-lg-12">
-    <div class="row panel-custom1">
-        <div class="panel-header">
-          <h1 class="page-header">Bill Setting Details - Sales List</h1>
-	    </div>
-                   <div class="panel-body">
-                                        
-                            <form runat="server" id="form1" method="post">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row panel-custom1">
+                    <div class="panel-header">
+                        <h1 class="page-header">Bill Setting Details - Sales List</h1>
+                    </div>
+
+                    <div class="panel-body">
+
+                        <form runat="server" id="form1" method="post">
+
                             <asp:UpdatePanel ID="updatepanel" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
                                     <asp:ScriptManager ID="script" runat="server" EnablePartialRendering="true">
                                     </asp:ScriptManager>
-                                 <div class="row">
-                                      <div class="col-lg-12">
-                                    <div class="col-lg-3">
-                                        <label>
-                                            Select Date</label>
-                                        <asp:TextBox ID="txtFromDate"  runat="server" CssClass="form-control center-block"></asp:TextBox>
-                                        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="dd/MM/yyyy" TargetControlID="txtFromDate"
-                                            runat="server" CssClass="cal_Theme1">
-                                        </ajaxToolkit:CalendarExtender>
+
+                                    <asp:Label ID="lblmulticheck" runat="server" Visible="false" Text="20"></asp:Label>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="col-lg-3">
+                                                <label>
+                                                    Select Date</label>
+                                                <asp:TextBox ID="txtFromDate" runat="server" CssClass="form-control center-block"></asp:TextBox>
+                                                <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="dd/MM/yyyy" TargetControlID="txtFromDate"
+                                                    runat="server" CssClass="cal_Theme1">
+                                                </ajaxToolkit:CalendarExtender>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <br />
+                                                <asp:Button ID="btnsearch" runat="server" class="btn btn-secondary" Text="Refresh"
+                                                    OnClick="Search_Click" />
+                                                &nbsp;&nbsp;&nbsp;<asp:Button ID="btnbillprocess" runat="server" class="btn btn-success pos-btn1" Text="Process Bill's"
+                                                    OnClick="process_Click" />
+                                            </div>
+                                            <div id="Div2" runat="server" visible="false">
+                                                <label>
+                                                    Select All</label>
+                                                <asp:RadioButtonList ID="allradselect" RepeatColumns="2" RepeatDirection="Horizontal"
+                                                    runat="server" OnSelectedIndexChanged="radselect_All" AutoPostBack="true">
+                                                    <asp:ListItem Text="Cash" Value="1"></asp:ListItem>
+                                                    <asp:ListItem Text="Card" Value="4"></asp:ListItem>
+                                                </asp:RadioButtonList>
+                                            </div>
                                         </div>
-                                        <div class="col-lg-3">
-                                        <br />
-                                        <asp:Button ID="btnsearch" runat="server" class="btn btn-secondary" Text="Refresh"
-                                            OnClick="Search_Click"/>
-                                        &nbsp;&nbsp;&nbsp;<asp:Button ID="btnbillprocess" runat="server" class="btn btn-success pos-btn1" Text="Process Bill's"
-                                            OnClick="process_Click" />
                                     </div>
-                                    <div id="Div2" runat="server" visible="false">
-                                        <label>
-                                            Select All</label>
-                                        <asp:RadioButtonList ID="allradselect" RepeatColumns="2" RepeatDirection="Horizontal"
-                                            runat="server" OnSelectedIndexChanged="radselect_All" AutoPostBack="true">
-                                            <asp:ListItem Text="Cash" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="Card" Value="4"></asp:ListItem>
-                                        </asp:RadioButtonList>
-                                    </div>
-                                    </div>
-                                   </div> 
-                                   <br />
-                                   <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="col-lg-4">
-                                                    
-                                                        <label>
-                                                            Enter Billno</label>
-                                                        <asp:TextBox ID="txtAutoName" runat="server" CssClass="form-control" Width="200px" OnTextChanged="Bill_chnage" AutoPostBack="true"
-                                                            placeholder="Enter Billno and Press Tab" onkeyup="Search_Gridview(this, 'gvsales')"></asp:TextBox>
-                                                    
-                                                    <div class="table-responsive panel-grid-left">
-                                                    <asp:GridView ID="gvsales" align="center" runat="server" AllowPaging="false" PageSize="25" cssClass="table table-striped pos-table"
-                                                        AutoGenerateColumns="false" padding="0" spacing="0" border="0" EmptyDataText="No Records Found">
-                                                       <%-- <HeaderStyle BackColor="#990000" />
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="col-lg-6">
+
+                                                <label>
+                                                    Enter Billno</label>
+                                                <asp:TextBox ID="txtAutoName" runat="server" CssClass="form-control" Width="200px" OnTextChanged="Bill_chnage" AutoPostBack="true"
+                                                    placeholder="Enter Billno and Press Tab" onkeyup="Search_Gridview(this, 'gvsales')"></asp:TextBox>
+
+                                                <div class="table-responsive panel-grid-left">
+                                                    <asp:GridView ID="gvsales" align="center" runat="server" DataKeyNames="salesid,salestype" AllowPaging="false" PageSize="25" CssClass="table table-striped pos-table"
+                                                        AutoGenerateColumns="false" OnRowCommand="gvsales_RowCommand" OnRowDataBound="gvsales_RowDataBound" padding="0" spacing="0" border="0" EmptyDataText="No Records Found">
+                                                        <%-- <HeaderStyle BackColor="#990000" />
                                                         <PagerSettings FirstPageText="1" Mode="Numeric" />--%>
-                                                         <PagerStyle cssclass="pos-paging" />
+                                                        <PagerStyle CssClass="pos-paging" />
                                                         <Columns>
                                                             <%--<asp:BoundField HeaderText="Customer ID" DataField="CustomerID" />--%>
                                                             <asp:BoundField HeaderText="Bill No" DataField="BillNo" />
@@ -208,6 +233,7 @@
                                                             <asp:TemplateField Visible="false">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblsalesid" runat="server" Text='<%#Eval("SalesID")  %>' Style="display: none"></asp:Label>
+                                                                    <asp:Label ID="lblipaymode" runat="server" Text='<%#Eval("ipaymode")  %>' Style="display: none"></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:BoundField HeaderText="SalesID" DataField="SalesID" Visible="false" />
@@ -215,31 +241,48 @@
                                                             <asp:BoundField HeaderText="Payment Type" DataField="Payment_Mode" DataFormatString="{0:f}" />
                                                             <asp:TemplateField HeaderText="Sales Type">
                                                                 <ItemTemplate>
-                                                                    <asp:RadioButtonList ID="lblradtype" RepeatColumns="1" width="100px"
+                                                                    <asp:RadioButtonList ID="lblradtype" CssClass="chkChoice1" RepeatColumns="3" Width="100px"
                                                                         runat="server">
                                                                         <asp:ListItem Text="Cash" Value="1"></asp:ListItem>
                                                                         <asp:ListItem Text="Card" Value="4"></asp:ListItem>
                                                                         <asp:ListItem Text="Paytm" Value="10"></asp:ListItem>
                                                                         <asp:ListItem Text="Bharatpe" Value="17"></asp:ListItem>
+                                                                        <%--<asp:ListItem Text="Multipayment" Value="20"></asp:ListItem>--%>
                                                                     </asp:RadioButtonList>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Multi Payment">
+                                                                <ItemTemplate>
+                                                                    <asp:LinkButton ID="btndelete" runat="server" CommandArgument='<%#Eval("SalesID") +","+Eval("BillNo") +", "+ Eval("NetAmount").ToString() %>'
+                                                                        CommandName="Mpayment" Visible="true">
+                                                                        <asp:Image ID="dlt" runat="server" ImageAlign="Middle" ImageUrl="~/images/posmulti.png" Width="37px" />
+                                                                    </asp:LinkButton>
+                                                                    <%--  <ajaxToolkit:ModalPopupExtender ID="lnkDelete_ModalPopupExtender" runat="server"
+                                                                        CancelControlID="ButtonDeleteCancel" OkControlID="ButtonDeleleOkay" TargetControlID="btndelete"
+                                                                        PopupControlID="DivDeleteConfirmation" BackgroundCssClass="ModalPopupBG">
+                                                                    </ajaxToolkit:ModalPopupExtender>
+                                                                    <ajaxToolkit:ConfirmButtonExtender ID="lnkDelete_ConfirmButtonExtender" runat="server"
+                                                                        TargetControlID="btndelete" Enabled="True" DisplayModalPopupID="lnkDelete_ModalPopupExtender">
+                                                                    </ajaxToolkit:ConfirmButtonExtender>--%>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
                                                         </Columns>
-                                                       <%-- <FooterStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />
+                                                        <%-- <FooterStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />
                                                         <HeaderStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />--%>
                                                     </asp:GridView>
                                                 </div>
-                                                </div>
-                                                <div class="col-lg-4">
-                                                        <br /><br />
-                                                        <label>Cash Bill's</label>
-                                                        <br />
-                                                         <div class="table-responsive panel-grid-left">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <br />
+                                                <br />
+                                                <label>Cash Bill's</label>
+                                                <br />
+                                                <div class="table-responsive panel-grid-left">
                                                     <asp:GridView ID="gridcash" align="center" runat="server" AllowPaging="false" PageSize="25"
-                                                        AutoGenerateColumns="false" cssClass="table table-striped pos-table" EmptyDataText="No Records Found"  padding="0" spacing="0" border="0">
-                                                         <%--<HeaderStyle BackColor="#990000" />
+                                                        AutoGenerateColumns="false" CssClass="table table-striped pos-table" EmptyDataText="No Records Found" padding="0" spacing="0" border="0">
+                                                        <%--<HeaderStyle BackColor="#990000" />
                                                        <PagerSettings FirstPageText="1" Mode="Numeric" />--%>
-                                                         <PagerStyle cssclass="pos-paging" />
+                                                        <PagerStyle CssClass="pos-paging" />
                                                         <Columns>
                                                             <%--<asp:BoundField HeaderText="Customer ID" DataField="CustomerID" />--%>
                                                             <asp:BoundField HeaderText="Bill No" DataField="BillNo" />
@@ -252,13 +295,15 @@
                                                         <HeaderStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />
                                                     </asp:GridView>
                                                 </div>
-                                                </div>
-                                                <div class="col-lg-4">
-                                                        <br /><br /> <label>Card Bill's</label><br />
-                                                         <div class="table-responsive panel-grid-left">
-                                                    <asp:GridView ID="gridcard" align="center" runat="server" AllowPaging="false" PageSize="25" cssClass="table table-striped pos-table"
-                                                        AutoGenerateColumns="false" EmptyDataText="No Records Found"  padding="0" spacing="0" border="0">
-                                                       <%-- <HeaderStyle BackColor="#990000" />
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <br />
+                                                <br />
+                                                <label>Card Bill's</label><br />
+                                                <div class="table-responsive panel-grid-left">
+                                                    <asp:GridView ID="gridcard" align="center" runat="server" AllowPaging="false" PageSize="25" CssClass="table table-striped pos-table"
+                                                        AutoGenerateColumns="false" EmptyDataText="No Records Found" padding="0" spacing="0" border="0">
+                                                        <%-- <HeaderStyle BackColor="#990000" />
                                                         <PagerSettings FirstPageText="1" Mode="Numeric" />--%>
                                                         <Columns>
                                                             <%--<asp:BoundField HeaderText="Customer ID" DataField="CustomerID" />--%>
@@ -272,39 +317,83 @@
                                                         <HeaderStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />
                                                     </asp:GridView>
                                                 </div>
-                                                </div>
-                                      </div> 
-                                       </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
-                            <asp:Panel Width="30%" class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none;
-                                background: #fffbd6" runat="server">
+                            <asp:LinkButton Text="" ID="lnkFake" runat="server"></asp:LinkButton>
+                            <ajaxToolkit:ModalPopupExtender ID="mpe" runat="server" PopupControlID="pnlPopup"
+                                TargetControlID="lnkFake" CancelControlID="btnClose" BackgroundCssClass="modalBackground">
+                            </ajaxToolkit:ModalPopupExtender>
+                            <asp:Panel Width="30%" class="popupConfirmation" ID="pnlPopup" Style="display: none; background: #fffbd6"
+                                runat="server">
                                 <div class="popup_Container">
                                     <div class="popup_Titlebar" id="PopupHeader">
                                         <div align="center" style="color: Red" class="TitlebarLeft">
-                                            Warning Message!!!</div>
+                                            Payment Details 
+                                        </div>
                                         <div class="TitlebarRight" onclick="$get('ButtonDeleteCancel').click();">
                                         </div>
                                     </div>
                                     <div align="center" style="color: Red" class="popup_Body">
-                                        <asp:TextBox ID="txtRef" runat="server" placeholder="Enter Reference BillNo"></asp:TextBox>
-                                        <p>
-                                            Are you sure want to Cancel this Bill?
-                                        </p>
+                                        <br />
+                                        <label>Last Payment Details</label>
+                                        <br />
+                                        <asp:GridView ID="GridView1" runat="server"  AutoGenerateColumns="false">
+                                            <Columns>
+                                                <asp:BoundField HeaderText="Payment Name" DataField="mode" />
+                                                <asp:BoundField HeaderText="Amount" DataField="Amount" />
+                                            </Columns>
+                                        </asp:GridView>
+                                        <br />
+
+                                        <b>
+                                            <asp:Label ID="lblsalesid" runat="server" Text="0" Visible="false"></asp:Label>
+                                          Billno -  <asp:Label ID="lbllbillno" runat="server"></asp:Label>
+                                            :Total -
+                                        <asp:Label ID="lblamount" runat="server"></asp:Label>
+                                        </b>
+                                        <asp:GridView ID="gvpayment" runat="server" OnRowDeleting="gridorder_RowDeleting" AutoGenerateColumns="false"
+                                            OnRowDataBound="gridorder_RowDataBound">
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Payment">
+                                                    <ItemTemplate>
+                                                        <asp:DropDownList ID="drppayment" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Amount">
+                                                    <ItemTemplate>
+                                                        <asp:TextBox ID="txtamount" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField>
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="add" runat="server" OnClick="btnnew_Click">
+                                                            <asp:Image ID="img" Width="20px" runat="server" ImageUrl="~/images/edit_add.png" Visible="false" />
+                                                            <button type="button" class="btn btn-primary pos-btn1">
+                                                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                                            </button>
+                                                        </asp:LinkButton>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:CommandField ShowDeleteButton="True" ButtonType="Button" />
+                                            </Columns>
+                                        </asp:GridView>
                                     </div>
                                     <div align="center" class="popup_Buttons">
-                                        <input id="ButtonDeleleOkay" type="button" value="Yes" />
-                                        <input id="ButtonDeleteCancel" type="button" value="No" />
+                                        <asp:Button ID="btnyes" OnClick="Yes_click" runat="server" Text="Yes" CssClass="button" />
+                                        <asp:Button ID="btnClose" runat="server" Text="No" CssClass="button" />
                                     </div>
                                 </div>
                             </asp:Panel>
-                            </form>
-                
-                  </div>
-         
-    </div>
-    </div>
-    </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

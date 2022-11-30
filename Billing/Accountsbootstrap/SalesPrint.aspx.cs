@@ -760,7 +760,8 @@ namespace Billing.Accountsbootstrap
                     //}
 
                     //lblGrand.Text = string.Format("{0:N2}", n);
-                    lblRound.Text = Convert.ToDecimal(ds.Tables[0].Rows[0]["roundoff"]).ToString("" + ratesetting + "");
+                    //lblRound.Text = Convert.ToDecimal(ds.Tables[0].Rows[0]["roundoff"]).ToString("" + ratesetting + "");
+                    lblRound.Text = Convert.ToString(0);
                     lblcgst.Text = Convert.ToDecimal(ds.Tables[0].Rows[0]["CGST"]).ToString("" + ratesetting + "");
                     lblsgst.Text = Convert.ToDecimal(ds.Tables[0].Rows[0]["SGST"]).ToString("" + ratesetting + "");
                     lblTotalTax.Text = Convert.ToDecimal(ds.Tables[0].Rows[0]["Tax"]).ToString("" + ratesetting + "");

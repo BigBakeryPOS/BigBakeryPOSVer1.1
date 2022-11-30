@@ -287,7 +287,7 @@ namespace Billing.Accountsbootstrap
 
                 double totcreditsales = 0;
 
-                DataSet creditsales = objbs.sales_distribution(date.Text, sTableName, "'9'");
+                DataSet creditsales = objbs.sales_distribution(date.Text, sTableName, "'18'");
                 gvcredit.DataSource = creditsales.Tables[0];
                 gvcredit.DataBind();
 
@@ -1719,7 +1719,7 @@ namespace Billing.Accountsbootstrap
 
             double totcreditsales = 0;
 
-            DataSet creditsales = objbs.sales_distribution(date.Text, sTableName, "'9'");
+            DataSet creditsales = objbs.sales_distribution(date.Text, sTableName, "'18'");
             gvcredit.DataSource = creditsales.Tables[0];
             gvcredit.DataBind();
 

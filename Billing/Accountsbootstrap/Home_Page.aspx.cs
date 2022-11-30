@@ -12,6 +12,9 @@ using System.Text;
 using System.Drawing;
 using System.IO;
 using System.Net.Mail;
+using System.Globalization;
+using System.Security.Cryptography;
+
 namespace Billing.Accountsbootstrap
 {
     public partial class Home_Page : System.Web.UI.Page
@@ -19,7 +22,7 @@ namespace Billing.Accountsbootstrap
         BSClass objbs = new BSClass();
         decimal total, tmp = 0, cash = 0, credit = 0, card = 0, compli = 0, sales, gross, cash_handover = 0, Closing_cash = 0, net_sales = 0, tot_grosssales = 0, OP_cash = 0, gross_main = 0;
         string sTablename = "";
-        string scode="";
+        string scode = "";
 
         public static Label lbl;
         protected void Page_Load(object sender, EventArgs e)
@@ -28,11 +31,108 @@ namespace Billing.Accountsbootstrap
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             sTablename = Request.Cookies["userInfo"]["BranchCode"].ToString();
             scode = Request.Cookies["userInfo"]["BranchCode"].ToString();
+            string dt = DateTime.Now.ToString("dd/MM/yyyy");
             #region Dashboard Table
+            //Top 10 Supplier OS
             DataSet ds = new DataSet();
-            ds = objbs.Top10SupplierOutstanding();
-            gvSupplier.DataSource = ds.Tables[0];
-            gvSupplier.DataBind();
+            ds = objbs.Top10SupplierOutstanding(sTablename);
+            if (ds != null)
+            {
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    gvSupplier.DataSource = ds.Tables[0];
+                    gvSupplier.DataBind();
+                }
+                else
+                {
+                    gvSupplier.DataSource = null;
+                    gvSupplier.DataBind();
+                }
+            }
+            else
+            {
+                gvSupplier.DataSource = null;
+                gvSupplier.DataBind();
+            }
+
+            //Today Rawmaterial transfer amt to production
+            DateTime vouchdate = DateTime.ParseExact(dt, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            DataSet ds1 = new DataSet();
+            ds1 = objbs.TodayRawMaterialTransAmounttoProduction(vouchdate,sTablename);
+            if (ds1 != null)
+            {
+                if (ds1.Tables[0].Rows.Count > 0)
+                {
+                    lblRawTransAmount.Text = "Rs." + Convert.ToDouble(ds1.Tables[0].Rows[0]["AvgRate"]).ToString("f2");
+                }
+                else
+                {
+                    lblRawTransAmount.Text = "Rs. 0";
+                }
+            }
+            else
+            {
+                lblRawTransAmount.Text = "Rs. 0";
+            }
+
+            //Today Rawmaterial transfer amt to Branch
+            DateTime vouchdate1 = DateTime.ParseExact(dt, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            DataSet ds2 = new DataSet();
+            ds2= objbs.TodayRawMaterialTransAmounttoBranch(vouchdate, sTablename);
+            if (ds2 != null)
+            {
+                if (ds2.Tables[0].Rows.Count > 0)
+                {
+                    lblRawTransAmountBranch.Text = "Rs." + Convert.ToDouble(ds2.Tables[0].Rows[0]["amt"]).ToString("f2");
+                }
+                else
+                {
+                    lblRawTransAmountBranch.Text = "Rs. 0";
+                }
+            }
+            else
+            {
+                lblRawTransAmountBranch.Text = "Rs. 0";
+            }
+
+            //Stock Value
+            DataSet ds3 = new DataSet();
+            ds3 = objbs.GetCurrentStockValue(sTablename);
+            if (ds3 != null)
+            {
+                if (ds3.Tables[0].Rows.Count > 0)
+                {
+                    lblStockValue.Text = "Rs." + Convert.ToDouble(ds3.Tables[0].Rows[0]["Amount"]).ToString("f2");
+                }
+                else
+                {
+                    lblStockValue.Text = "Rs. 0";
+                }
+            }
+            else
+            {
+                lblStockValue.Text = "Rs. 0";
+            }
+
+            //Expense Amount
+            DataSet ds4 = new DataSet();
+            ds4 = objbs.TodayExpenseAmount(vouchdate,sTablename);
+            if (ds4 != null)
+            {
+                if (ds4.Tables[0].Rows.Count > 0)
+                {
+                    lblExpAmount.Text = "Rs." + Convert.ToDouble(ds4.Tables[0].Rows[0]["Amount"]).ToString("f2");
+                }
+                else
+                {
+                    lblExpAmount.Text = "Rs. 0";
+                }
+            }
+            else
+            {
+                lblExpAmount.Text = "Rs. 0";
+            }
+
             #endregion
 
             DataSet dmovivation = objbs.getmotivation();
@@ -46,10 +146,10 @@ namespace Billing.Accountsbootstrap
             }
 
             DataSet dsNoBranch = objbs.GetNoBranch();
-              if (dsNoBranch.Tables[0].Rows.Count > 0)
-              {
-                  Company.InnerText = dsNoBranch.Tables[0].Rows[0]["CustomerName"].ToString();
-              }
+            if (dsNoBranch.Tables[0].Rows.Count > 0)
+            {
+                Company.InnerText = dsNoBranch.Tables[0].Rows[0]["CustomerName"].ToString();
+            }
             if (scode == "Admin")
             {
 
@@ -151,12 +251,12 @@ namespace Billing.Accountsbootstrap
 
                 if (lblUser.Text.ToLower().Contains("pro") == true)
                 {
-                //////    tdmsg.Visible = true;
+                    //////    tdmsg.Visible = true;
 
-                //////    ddlBranch.Visible = true;
-                //////    DataSet ds2 = objbs.OrderdAdmin();
-                //////    GridView1.DataSource = ds2;
-                //////    GridView1.DataBind();
+                    //////    ddlBranch.Visible = true;
+                    //////    DataSet ds2 = objbs.OrderdAdmin();
+                    //////    GridView1.DataSource = ds2;
+                    //////    GridView1.DataBind();
                 }
                 else
                 {
@@ -354,7 +454,7 @@ namespace Billing.Accountsbootstrap
 
                     #endregion
 
-                    
+
                 }
                 #endregion
             }
@@ -367,7 +467,18 @@ namespace Billing.Accountsbootstrap
             SendEmail(sender, e);
         }
 
-
+        double TtlBalance = 0;
+        protected void gvSupplier_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                TtlBalance += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "Balance"));
+            }
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                lblSuppOS.Text = "Rs. " + Convert.ToDouble(TtlBalance).ToString("f2");
+            }
+        }
         protected void SendEmail(object sender, EventArgs e)
         {
             string body = this.PopulateBody(" ",
@@ -382,7 +493,7 @@ namespace Billing.Accountsbootstrap
                 Branch = "GN MILLS";
             }
 
-           ////// this.SendHtmlFormattedEmail("callforcakemail@gmail.com ", "callforcakemail@gmail.com ", "Summary Bill And Amount Report (" + Convert.ToDateTime(DateTime.Now).ToString("dd-MM-yyyy HH:mm:ss") + ") - Store: " + Branch + " ", body, "msasit01@gmail.com","prathisasi05@gmail.com","prathi05sasi@yahoo.com");
+            ////// this.SendHtmlFormattedEmail("callforcakemail@gmail.com ", "callforcakemail@gmail.com ", "Summary Bill And Amount Report (" + Convert.ToDateTime(DateTime.Now).ToString("dd-MM-yyyy HH:mm:ss") + ") - Store: " + Branch + " ", body, "msasit01@gmail.com","prathisasi05@gmail.com","prathi05sasi@yahoo.com");
 
             this.SendHtmlFormattedEmail("rajar@bigdbiz.in ", "rajar@bigdbiz.in", "Summary Bill And Amount Report (" + Convert.ToDateTime(DateTime.Now).ToString("dd-MM-yyyy HH:mm:ss") + ") - Store: " + Branch + " ", body, "rajar@bigdbiz.in", "rajar@bigdbiz.in", "rajar@bigdbiz.in");
 
@@ -415,7 +526,7 @@ namespace Billing.Accountsbootstrap
             return body;
         }
 
-        private void SendHtmlFormattedEmail(string recepientEmail, string cc, string subject, string body, string a,string b,string c)
+        private void SendHtmlFormattedEmail(string recepientEmail, string cc, string subject, string body, string a, string b, string c)
         {
             using (MailMessage mailMessage = new MailMessage())
             {
@@ -455,9 +566,9 @@ namespace Billing.Accountsbootstrap
             //}
         }
 
-       
 
-      
+
+
 
 
         public static bool TcpSocketTest()
@@ -467,10 +578,10 @@ namespace Billing.Accountsbootstrap
                 System.Net.Sockets.TcpClient client =
                     new System.Net.Sockets.TcpClient("www.google.com", 80);
                 client.Close();
-              
+
                 return true;
 
-               
+
             }
             catch (System.Exception ex)
             {
@@ -520,7 +631,7 @@ namespace Billing.Accountsbootstrap
             cmd.ExecuteNonQuery();
 
 
-            DataSet ds = objbs.chkstock(Convert.ToInt32(lblUserID.Text),sTablename);
+            DataSet ds = objbs.chkstock(Convert.ToInt32(lblUserID.Text), sTablename);
             int ToolId = 0;
             if (ds.Tables[0].Rows.Count > 0)
             {
@@ -562,7 +673,7 @@ namespace Billing.Accountsbootstrap
             if (ddlMeridian.SelectedValue == "PM")
             {
                 int hours = Convert.ToInt32(ddlHours.SelectedValue);
-                to = Convert.ToDateTime(txtEndDate.Text).ToShortDateString()+ " " + hours.ToString() + ":" + ddlMinutes.SelectedValue + ":" + "00";
+                to = Convert.ToDateTime(txtEndDate.Text).ToShortDateString() + " " + hours.ToString() + ":" + ddlMinutes.SelectedValue + ":" + "00";
             }
             else
             {
@@ -570,7 +681,7 @@ namespace Billing.Accountsbootstrap
             }
             if (lblUser.Text.ToLower().Contains("pro") == true)
             {
-                int isave = objbs.Messege(date,  txtMsg.Text, to, Convert.ToInt32(ddlBranch.SelectedValue),(scode));
+                int isave = objbs.Messege(date, txtMsg.Text, to, Convert.ToInt32(ddlBranch.SelectedValue), (scode));
             }
             else
             {
@@ -590,18 +701,18 @@ namespace Billing.Accountsbootstrap
         {
             if (e.CommandName == "delete")
             {
-                int del=objbs.deletemessege(Convert.ToInt32(e.CommandArgument.ToString()));
+                int del = objbs.deletemessege(Convert.ToInt32(e.CommandArgument.ToString()));
                 //DataSet ds = objbs.SentMessege(scode);
 
                 //gvmsg.DataSource = ds.Tables[0];
                 //gvmsg.DataBind();
-                Response .Redirect
+                Response.Redirect
                     ("Home_Page.aspx");
-                
+
             }
         }
 
-        
+
 
     }
 }

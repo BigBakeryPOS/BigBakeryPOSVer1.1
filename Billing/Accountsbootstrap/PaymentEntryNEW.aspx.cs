@@ -69,12 +69,12 @@ namespace Billing.Accountsbootstrap
 
                 //}
                 //ddlBank.Items.Insert(0, "Select Bank");
-                DataSet dspaymode = objbs.tblsalespaymode();
+                DataSet dspaymode = objbs.GetOthersPaymode_Payment("17");
                 if (dspaymode.Tables[0].Rows.Count > 0)
                 {
                     ddlPayMode.DataSource = dspaymode.Tables[0];
                     ddlPayMode.DataTextField = "PayMode";
-                    ddlPayMode.DataValueField = "PayModeId";
+                    ddlPayMode.DataValueField = "Value";
                     ddlPayMode.DataBind();
                     ddlPayMode.Items.Insert(0, "Payment");
 
@@ -88,17 +88,18 @@ namespace Billing.Accountsbootstrap
 
         protected void ddlPayMode_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlPayMode.SelectedValue == "0" || ddlPayMode.SelectedValue == "Payment" || ddlPayMode.SelectedValue == "1")
+            if (ddlPayMode.SelectedValue == "4" || ddlPayMode.SelectedValue == "11" || ddlPayMode.SelectedValue == "15" || ddlPayMode.SelectedValue == "19")
             {
                 //txtbank.Enabled = false;
-                ddlBank.Enabled = false;
-                txtCheqeNo.Enabled = false;
-            }
-            else if (ddlPayMode.SelectedValue == "7" || ddlPayMode.SelectedValue == "8")
-            {
-                //txtbank.Enabled = true;
+              
                 ddlBank.Enabled = true;
                 txtCheqeNo.Enabled = true;
+            }
+            else 
+            {
+                //txtbank.Enabled = true;
+                ddlBank.Enabled = false;
+                txtCheqeNo.Enabled = false;
             }
         }
         protected void txtAmount_TextChanged(object sender, EventArgs e)

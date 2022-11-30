@@ -453,6 +453,7 @@
     <Content Include="Accountsbootstrap\SemiReceiveProductionStock.aspx" />
     <Content Include="Accountsbootstrap\SemiReceiveProductionStockGrid.aspx" />
     <Content Include="Accountsbootstrap\SendMail.aspx" />
+    <Content Include="Accountsbootstrap\Sessionclose.aspx" />
     <Content Include="Accountsbootstrap\sessionreport.aspx" />
     <Content Include="Accountsbootstrap\Statement.aspx" />
     <Content Include="Accountsbootstrap\StockAuditReport.aspx" />
@@ -512,6 +513,7 @@
     <Content Include="css\toastr.css" />
     <Content Include="HeaderMaster\NewHeader.ascx" />
     <Content Include="images\add.jpg" />
+    <Content Include="images\posmulti.png" />
     <Content Include="images\preview.jpg" />
     <Content Include="images\preview2.jpg" />
     <Content Include="images\preview3.jpg" />
@@ -3309,6 +3311,13 @@
     </Compile>
     <Compile Include="Accountsbootstrap\Send_Message.aspx.designer.cs">
       <DependentUpon>Send_Message.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\Sessionclose.aspx.cs">
+      <DependentUpon>Sessionclose.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\Sessionclose.aspx.designer.cs">
+      <DependentUpon>Sessionclose.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\sessionreport.aspx.cs">
       <DependentUpon>sessionreport.aspx</DependentUpon>

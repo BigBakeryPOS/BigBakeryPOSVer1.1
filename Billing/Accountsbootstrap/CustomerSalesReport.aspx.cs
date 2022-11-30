@@ -162,12 +162,14 @@ namespace Billing.Accountsbootstrap
                             gvCustsales.DataSource = dcustbranch.Tables[0];
                             gvCustsales.DataBind();
                             getsummarysales();
+                            getpaymentsales();
                         }
                         else
                         {
                             gvCustsales.DataSource = null;
                             gvCustsales.DataBind();
                             getsummarysales();
+                            getpaymentsales();
                         }
 
 
@@ -199,6 +201,7 @@ namespace Billing.Accountsbootstrap
         protected void rad_chaked(object sender, EventArgs e)
         {
             getsummarysales();
+            getpaymentsales();
         }
         public void getsummarysales()
         {
@@ -259,6 +262,69 @@ namespace Billing.Accountsbootstrap
                 {
                     gvnormalsales.DataSource = null;
                     gvnormalsales.DataBind();
+                }
+            }
+        }
+
+        public void getpaymentsales()
+        {
+            DataSet elosales = new DataSet();
+            if (chkbutton.SelectedValue == "0")
+            {
+                DataSet dsgrid = new DataSet();
+                DataSet ds = new DataSet();
+                if (ddlBranch.SelectedValue == "All")
+                {
+                    DataSet ds1 = objbs.GetBranch_New("All");
+                    for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
+                    {
+
+                        ds = objbs.sales_distributionFromTodate_paymentflow(txtfromdate.Text, txttodate.Text, ds1.Tables[0].Rows[i]["BranchCode"].ToString(), chkbutton.SelectedValue);
+                        elosales.Merge(ds);
+                    }
+                }
+                else
+                {
+                    elosales = objbs.sales_distributionFromTodate_paymentflow(txtfromdate.Text, txttodate.Text, ddlBranch.SelectedValue, chkbutton.SelectedValue);
+                }
+                if (elosales.Tables[0].Rows.Count > 0)
+                {
+                    gvpaymentflowwise.DataSource = elosales.Tables[0];
+                    gvpaymentflowwise.DataBind();
+                }
+                else
+                {
+                    gvpaymentflowwise.DataSource = null;
+                    gvpaymentflowwise.DataBind();
+                }
+            }
+            else
+            {
+                DataSet dsgrid = new DataSet();
+                DataSet ds = new DataSet();
+                if (ddlBranch.SelectedValue == "All")
+                {
+                    DataSet ds1 = objbs.GetBranch_New("All");
+                    for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
+                    {
+                        ds = objbs.sales_distributionFromTodate_paymentflow(txtfromdate.Text, txttodate.Text, ds1.Tables[0].Rows[i]["BranchCode"].ToString(), chkbutton.SelectedValue);
+                        elosales.Merge(ds);
+                    }
+                }
+                else
+                {
+                    elosales = objbs.sales_distributionFromTodate_paymentflow(txtfromdate.Text, txttodate.Text, ddlBranch.SelectedValue, chkbutton.SelectedValue);
+                }
+
+                if (elosales.Tables[0].Rows.Count > 0)
+                {
+                    gvpaymentflowwise.DataSource = elosales.Tables[0];
+                    gvpaymentflowwise.DataBind();
+                }
+                else
+                {
+                    gvpaymentflowwise.DataSource = null;
+                    gvpaymentflowwise.DataBind();
                 }
             }
         }
@@ -353,18 +419,15 @@ namespace Billing.Accountsbootstrap
                         gvCustsales.DataSource = dcustbranch.Tables[0];
                         gvCustsales.DataBind();
                         getsummarysales();
+                        getpaymentsales();
                     }
                     else
                     {
                         gvCustsales.DataSource = null;
                         gvCustsales.DataBind();
                         getsummarysales();
+                        getpaymentsales();
                     }
-
-
-
-
-
 
                 }
             }
@@ -410,12 +473,14 @@ namespace Billing.Accountsbootstrap
                         gvCustsales.DataSource = dcustbranch.Tables[0];
                         gvCustsales.DataBind();
                         getsummarysales();
+                        getpaymentsales();
                     }
                     else
                     {
                         gvCustsales.DataSource = null;
                         gvCustsales.DataBind();
                         getsummarysales();
+                        getpaymentsales();
                     }
 
                     //lblCaption.Text = "Store :  " + BranchNAme + " " + StoreName + " Customer Sales Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
@@ -492,12 +557,14 @@ namespace Billing.Accountsbootstrap
                         gvCustsales.DataSource = dt.Tables[0];
                         gvCustsales.DataBind();
                         getsummarysales();
+                        getpaymentsales();
                     }
                     else
                     {
                         gvCustsales.DataSource = null;
                         gvCustsales.DataBind();
                         getsummarysales();
+                        getpaymentsales();
                     }
 
 
@@ -542,12 +609,14 @@ namespace Billing.Accountsbootstrap
                         gvCustsales.DataSource = dt.Tables[0];
                         gvCustsales.DataBind();
                         getsummarysales();
+                        getpaymentsales();
                     }
                     else
                     {
                         gvCustsales.DataSource = null;
                         gvCustsales.DataBind();
                         getsummarysales();
+                        getpaymentsales();
                     }
                 }
 
@@ -824,12 +893,14 @@ namespace Billing.Accountsbootstrap
                         gvCustsales.DataSource = dcustbranch.Tables[0];
                         gvCustsales.DataBind();
                         getsummarysales();
+                        getpaymentsales();
                     }
                     else
                     {
                         gvCustsales.DataSource = null;
                         gvCustsales.DataBind();
                         getsummarysales();
+                        getpaymentsales();
                     }
 
 
@@ -875,12 +946,14 @@ namespace Billing.Accountsbootstrap
                         gvCustsales.DataSource = dcustbranch.Tables[0];
                         gvCustsales.DataBind();
                         getsummarysales();
+                        getpaymentsales();
                     }
                     else
                     {
                         gvCustsales.DataSource = null;
                         gvCustsales.DataBind();
                         getsummarysales();
+                        getpaymentsales();
                     }
                 }
 
@@ -1027,12 +1100,14 @@ namespace Billing.Accountsbootstrap
                         gvCustsales.DataSource = dcustbranch.Tables[0];
                         gvCustsales.DataBind();
                         getsummarysales();
+                        getpaymentsales();
                     }
                     else
                     {
                         gvCustsales.DataSource = null;
                         gvCustsales.DataBind();
                         getsummarysales();
+                        getpaymentsales();
                     }
 
 
@@ -1078,12 +1153,14 @@ namespace Billing.Accountsbootstrap
                         gvCustsales.DataSource = dcustbranch.Tables[0];
                         gvCustsales.DataBind();
                         getsummarysales();
+                        getpaymentsales();
                     }
                     else
                     {
                         gvCustsales.DataSource = null;
                         gvCustsales.DataBind();
                         getsummarysales();
+                        getpaymentsales();
                     }
                 }
 
