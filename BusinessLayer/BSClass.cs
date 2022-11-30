@@ -1850,7 +1850,7 @@ namespace BusinessLayer
 
         }
 
-        public int insertOrdersalesnewKot(string sSalesTable, int UserID, string BillNo, string BillDate, int CustomerID, double NetAmount, double Total, double Tax, double Discount, int iEdit, int Icnt, double dAdvance, int Ordeeno, string msg, string takenBy, string DeliveryDate, string DeliveryTime, string Notes, int iPayMode, decimal cash, decimal bal, string Provider, string Approved, string attender, string Biller, string cashier, double cgst, double sgst, double stotal, string Saletypemargin, string GstMargin, string Gateway, string salestype, string salesorderno, string isnormal, string attender1, string kottblno)
+        public int insertOrdersalesnewKot(string sSalesTable, int UserID, string BillNo, string BillDate, int CustomerID, double NetAmount, double Total, double Tax, double Discount, int iEdit, int Icnt, double dAdvance, int Ordeeno, string msg, string takenBy, string DeliveryDate, string DeliveryTime, string Notes, int iPayMode, decimal cash, decimal bal, string Provider, string Approved, string attender, string Biller, string cashier, double cgst, double sgst, double stotal, string Saletypemargin, string GstMargin, string Gateway, string salestype, string salesorderno, string isnormal, string attender1, string kottblno,string transamounttable)
         {
             int iSuccess = 0;
             DataSet billnonew = new DataSet();
@@ -1865,6 +1865,28 @@ namespace BusinessLayer
             // string sQry = "insert into " + sSalesTable + "(UserID, BillNo, BillDate, CustomerID, NetAmount, Total,Tax,Discount,iEdit,ContactTypeID,Advance,OrderNo,Messege,OrderTakenBy,DeliveryDate,DeilveryTime,Notes,iPayMode,CancelStatus) values ('" + UserID + "','" + billnonw + "','" + BillDate + "','" + CustomerID + "','" + NetAmount + "','" + Total + "','" + Tax + "','" + Discount + "'," + iEdit + ",'" + Icnt + "','" + dAdvance + "','" + Ordeeno + "','" + msg + "','" + takenBy + "','" + DeliveryDate + "','" + DeliveryTime + "','" + Notes + "'," + iPayMode + ",'No')";
             string sQry = "insert into " + sSalesTable + "(UserID, BillNo, BillDate, CustomerID, NetAmount, Total,Tax,Discount,iEdit,ContactTypeID,Advance,OrderNo,Messege,OrderTakenBy,DeliveryDate,DeilveryTime,Notes,iPayMode,CancelStatus,CashPaid,Balance,Provider,Approved,Attender,Biller,cashier,CGST,SGST,STotal,Saletypemargin,GstMargin,Gateway,salestype,SalesOrder,IsNormal,KOTTbleNo,IsPrint) values ('" + UserID + "','" + billnonw + "','" + BillDate + "','" + CustomerID + "','" + NetAmount + "','" + Total + "','" + Tax + "','" + Discount + "'," + iEdit + ",'" + Icnt + "','" + dAdvance + "','" + Ordeeno + "','" + msg + "','" + takenBy + "','" + DeliveryDate + "','" + DeliveryTime + "','" + Notes + "'," + iPayMode + ",'No'," + cash + "," + bal + ",'" + Provider + "','" + Approved + "','" + attender1 + "','" + Biller + "','" + cashier + "'," + cgst + "," + sgst + "," + stotal + ",'" + Saletypemargin + "','" + GstMargin + "','" + Gateway + "','" + salestype + "','" + salesorderno + "','" + isnormal + "','" + kottblno + "','0')";
             iSuccess = dbObj.InlineExecuteNonQuery(sQry);
+
+            // Insert into TransAmount
+            // Get MAx Salesid
+            string salesuniqueid = "0";
+            DataSet ds1 = new DataSet();
+            string sQry11 = "select * from " + sSalesTable + " where billno='" + billno1 + "' and Salestype='" + salestype + "'";
+            ds1 = dbObj.InlineExecuteDataSet(sQry11);
+            if (ds1.Tables[0].Rows.Count > 0)
+            {
+                salesuniqueid = (ds1.Tables[0].Rows[0]["SalesID"].ToString());
+            }
+
+            string strans = "Insert into " + transamounttable + "(Salesid,Billno,Billdate,SalesTypeid,paymode,Amount,BillerId,Attenderid, " +
+                " SalesPaymodeid,Currency)values('" + salesuniqueid + "','" + billno1 + "','" + BillDate + "' " +
+                " ,'" + salestype + "','" + iPayMode + "','" + Total + "','1','" + attender1 + "','" + iPayMode + "','INR')";
+
+            iSuccess = dbObj.InlineExecuteNonQuery(strans);
+
+
+
+
+
             return billno1;
 
         }
@@ -11082,6 +11104,9 @@ namespace BusinessLayer
 
             string sQry = "update tblsales_" + table + " set cancelstatus='Yes',Reference=" + Ref + ",Reason='" + reason + "',Canceltine= getdate() where salesid='" + salesid + "' and orderno=0 ";
             iSuccess = dbObj.InlineExecuteNonQuery(sQry);
+
+            string sQry1 = "update tbltranssalesAmount_" + table + " set IsCancelStatus='Yes',Canceldatetime= getdate() where salesid='" + salesid + "'";
+            iSuccess = dbObj.InlineExecuteNonQuery(sQry1);
 
             if (OnliOrder == "Y")
             {
@@ -23472,12 +23497,12 @@ namespace BusinessLayer
             DataSet ds = new DataSet();
             if (notpaid == "No")
             {
-                string sQry = "select Top 100 b.ipaymode, a.CustomerName,'' as ContactType,b.BillDate,b.BillNo,a.Area,a.City,b.Total as NetAmount,b.salesID,a.Email ,F.paymode as Payment_Mode from tblCustomer a," + sSalesTable + " b ,tblsalespaymode F where a.CustomerID=b.CustomerID  " + " and f.value=b.ipaymode and b.OrderNo=0 and b.cancelstatus='No' and convert(date,b.billdate)=convert(date,getdate()) and b.isnormal='Y' and b.ipaymode<>'5'  order by b.billno desc";
+                string sQry = "select Top 100 b.ipaymode, a.CustomerName,'' as ContactType,b.BillDate,b.BillNo,a.Area,a.City,b.Total as NetAmount,b.salesID,a.Email ,F.paymode as Payment_Mode,b.salestype from tblCustomer a," + sSalesTable + " b ,tblsalespaymode F where a.CustomerID=b.CustomerID  " + " and f.value=b.ipaymode and b.OrderNo=0 and b.cancelstatus='No' and convert(date,b.billdate)=convert(date,getdate()) and b.isnormal='Y' and b.ipaymode<>'5'  order by b.billno desc";
                 ds = dbObj.InlineExecuteDataSet(sQry);
             }
             else
             {
-                string sQry = "select Top 100 b.ipaymode, a.CustomerName,'' as ContactType,b.BillDate,b.BillNo,a.Area,a.City,b.Total as NetAmount,b.salesID,a.Email ,F.paymode as Payment_Mode from tblCustomer a," + sSalesTable + " b ,tblsalespaymode F where a.CustomerID=b.CustomerID  " + " and f.value=b.ipaymode and b.OrderNo=0 and b.cancelstatus='No' and convert(date,b.billdate)=convert(date,getdate()) and b.isnormal='Y' and b.ipaymode<>'5'  order by f.OrderWise desc";
+                string sQry = "select Top 100 b.ipaymode, a.CustomerName,'' as ContactType,b.BillDate,b.BillNo,a.Area,a.City,b.Total as NetAmount,b.salesID,a.Email ,F.paymode as Payment_Mode,b.salestype from tblCustomer a," + sSalesTable + " b ,tblsalespaymode F where a.CustomerID=b.CustomerID  " + " and f.value=b.ipaymode and b.OrderNo=0 and b.cancelstatus='No' and convert(date,b.billdate)=convert(date,getdate()) and b.isnormal='Y' and b.ipaymode<>'5'  order by f.OrderWise desc";
                 ds = dbObj.InlineExecuteDataSet(sQry);
             }
             return ds;
@@ -23587,6 +23612,10 @@ namespace BusinessLayer
             int iDel = 0;
             string sQry = "Update tblsales_" + stablename + " set ipaymode='" + paymode + "' where salesid='" + isalesid + "'";
             iDel = dbObj.InlineExecuteNonQuery(sQry);
+
+            string sQry1 = "Update tbltranssalesAmount_" + stablename + " set paymode='" + paymode + "' where salesid='" + isalesid + "'";
+            iDel = dbObj.InlineExecuteNonQuery(sQry1);
+
             return iDel;
         }
 
@@ -33946,7 +33975,8 @@ namespace BusinessLayer
             int isave = 0;
 
             DataSet ds = new DataSet();
-            string sqry = "select isnull(max(DC_NO)+1,1) as DC_No from tblGoodTransfer_" + TableName + "";
+            //string sqry = "select isnull(max(DC_NO)+1,1) as DC_No from tblGoodTransfer_" + TableName + "";
+            string sqry = "select isnull(max(DC_NO+1),1) as DC_No from tblGoodTransfer_" + TableName + "";
             ds = dbObj.InlineExecuteDataSet(sqry);
 
 
@@ -37708,6 +37738,39 @@ namespace BusinessLayer
             i = dbObj.InlineExecuteNonQuery(strans);
 
             return i;
+        }
+
+        #endregion
+
+        #region OthersPaymode
+        public DataSet GetOthersPaymode()
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select * from tblsalespaymode where others='Y' ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+        #endregion
+
+        public int InsertErrorLog(string Logtime, string LogMsg, string LogStack, string LogSource, string LogTargetSite)
+        {
+            int iSuccess = 0;
+
+            string sQry = "insert into tblErrorLog(LogTime,LogMsg,LogStack,LogSource,LogTargetSite) values ('" + Logtime + "','" + LogMsg + "','" + LogStack + "','" + LogSource + "','" + LogTargetSite + "')";
+            iSuccess = dbObj.InlineExecuteNonQuery1(sQry, "InsertErrorLog");
+
+            return iSuccess;
+
+        }
+
+        #region Dashboard
+
+        public DataSet Top10SupplierOutstanding()
+        {
+            DataSet ds = new DataSet();
+            string qr = "select top 10 c.LedgerName as CustomerName,c.MobileNo, round((sum(isnull(roundoff, 0)) -(sum(isnull(ReceiptAmount, 0)) + sum(ReturnAmount))),0) as Balance, case w.PayMode when'1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_prod w inner join tblLedger c on c.LedgerID = w.supplier where w.PayMode = 2  and(isnull(roundoff, 0) - (isnull(ReceiptAmount, 0) + ReturnAmount)) > 0 group by c.LedgerName,c.MobileNo,PayMode order by round((sum(isnull(roundoff,0)) -(sum(isnull(ReceiptAmount, 0)) + sum(ReturnAmount))),0) desc";
+            ds = dbObj.InlineExecuteDataSet(qr);
+            return ds;
         }
 
         #endregion
