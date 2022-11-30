@@ -344,3 +344,20 @@
     display: none;
   }
 }
+
+/* User Signout dropdown section */
+.usr.dropdown {
+    position: absolute;
+    top: 0;
+    z-index: 99999;
+    right: 0;
+    margin: 8px;
+}
+.usr .bi {
+	font-size: 1.5em;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; // remove the gap so it doesn't close
+ }
