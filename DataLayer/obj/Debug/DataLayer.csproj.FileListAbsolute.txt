@@ -444,13 +444,6 @@ D:\BigPOSGITCode\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.csproj.CoreCom
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.csproj.CopyComplete
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.dll
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.pdb
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\bin\Debug\DataLayer.dll
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\bin\Debug\DataLayer.pdb
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.csproj.AssemblyReference.cache
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.csproj.CoreCompileInputs.cache
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.csproj.CopyComplete
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.dll
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.pdb
 C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\bin\Debug\DataLayer.dll
 C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\bin\Debug\DataLayer.pdb
 C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.csproj.AssemblyReference.cache
