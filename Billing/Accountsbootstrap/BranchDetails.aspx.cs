@@ -23,6 +23,10 @@ namespace Billing.Accountsbootstrap
         {
             if (!IsPostBack)
             {
+                // bind time
+                BindTime();
+
+
                 // Getversion
 
                 DataSet getversion = objBs.GetVersion("S");
@@ -147,6 +151,28 @@ namespace Billing.Accountsbootstrap
                 }
             }
 
+        }
+
+        private void BindTime()
+        {
+            // Set the start time (00:00 means 12:00 AM)
+            DateTime StartTime = DateTime.ParseExact("00:00", "HH:mm", null);
+            // Set the end time (23:55 means 11:55 PM)
+            DateTime EndTime = DateTime.ParseExact("23:55", "HH:mm", null);
+            //Set 5 minutes interval
+            TimeSpan Interval = new TimeSpan(0, 30, 0);
+            //To set 1 hour interval
+            //TimeSpan Interval = new TimeSpan(1, 0, 0);           
+            ddlTimeFrom.Items.Clear();
+          //  ddlTimeTo.Items.Clear();
+            while (StartTime <= EndTime)
+            {
+                ddlTimeFrom.Items.Add(StartTime.ToString("HH:mm tt"));
+               // ddlTimeTo.Items.Add(StartTime.ToShortTimeString());
+                StartTime = StartTime.Add(Interval);
+            }
+            ddlTimeFrom.Items.Insert(0, new ListItem("--Select--", "0"));
+           // ddlTimeTo.Items.Insert(0, new ListItem("--Select--", "0"));
         }
 
         //protected void branch_type(object sender, EventArgs e)

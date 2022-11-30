@@ -157,13 +157,13 @@ namespace Billing.Accountsbootstrap
                     {
                         if (txtamount.Text == "")
                             txtamount.Text = "0";
-                            //int iinsert = objBs.iupdatetranssalesamount("tblTranssalesAmount_" + sTableName + "", salesid, billno, Billdate, SalesTypeid, drppayment.SelectedValue, txtamount.Text, BillerId, Attenderid, lblmulticheck.Text, Currency);
-                            tot += Convert.ToDouble(txtamount.Text);
+                        //int iinsert = objBs.iupdatetranssalesamount("tblTranssalesAmount_" + sTableName + "", salesid, billno, Billdate, SalesTypeid, drppayment.SelectedValue, txtamount.Text, BillerId, Attenderid, lblmulticheck.Text, Currency);
+                        tot += Convert.ToDouble(txtamount.Text);
 
 
                     }
 
-                   
+
                 }
                 if (tot == Convert.ToDouble(lblamount.Text))
                 {
@@ -308,6 +308,16 @@ namespace Billing.Accountsbootstrap
 
 
         }
+
+        public void gvCustsales_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+            }
+        }
+
         protected void refresh_Click(object sender, EventArgs e)
         {
 
@@ -351,22 +361,29 @@ namespace Billing.Accountsbootstrap
                 {
 
                     string salesid = lblsalesid.Text;
-                    if (radbtn.SelectedValue == "1")
+                    if (radbtn.SelectedIndex >= 0)
                     {
-                        isucess = objBs.updatepaymode(salesid, radbtn.SelectedValue, sTableName);
+                        if (radbtn.SelectedValue == "1")
+                        {
+                            isucess = objBs.updatepaymode(salesid, radbtn.SelectedValue, sTableName);
 
-                    }
-                    else if (radbtn.SelectedValue == "4")
-                    {
-                        isucess = objBs.updatepaymode(salesid, radbtn.SelectedValue, sTableName);
-                    }
-                    else if (radbtn.SelectedValue == "10")
-                    {
-                        isucess = objBs.updatepaymode(salesid, radbtn.SelectedValue, sTableName);
-                    }
-                    else if (radbtn.SelectedValue == "17")
-                    {
-                        isucess = objBs.updatepaymode(salesid, radbtn.SelectedValue, sTableName);
+                        }
+                        else if (radbtn.SelectedValue == "4")
+                        {
+                            isucess = objBs.updatepaymode(salesid, radbtn.SelectedValue, sTableName);
+                        }
+                        else if (radbtn.SelectedValue == "10")
+                        {
+                            isucess = objBs.updatepaymode(salesid, radbtn.SelectedValue, sTableName);
+                        }
+                        else if (radbtn.SelectedValue == "17")
+                        {
+                            isucess = objBs.updatepaymode(salesid, radbtn.SelectedValue, sTableName);
+                        }
+                        else
+                        {
+                            isucess = objBs.updatepaymode(salesid, radbtn.SelectedValue, sTableName);
+                        }
                     }
                 }
 
@@ -449,47 +466,33 @@ namespace Billing.Accountsbootstrap
 
 
 
-        public void gvCustsales_RowDataBound(object sender, GridViewRowEventArgs e)
+        public void gvsales_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            //Get the value of column from the DataKeys using the RowIndex.
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                int id = Convert.ToInt32(gvsales.DataKeys[e.Row.RowIndex].Values[0]);
+                string salestypeid = gvsales.DataKeys[e.Row.RowIndex].Values[1].ToString();
+                RadioButtonList lblradtype = ((RadioButtonList)e.Row.FindControl("lblradtype"));
+                // Get paymode
+
+                DataSet paymode = objBs.PaymodevaluesNew(salestypeid);
+                if (paymode.Tables[0].Rows.Count > 0)
+                {
+                    lblradtype.DataSource = paymode.Tables[0];
+                    lblradtype.DataTextField = "PayMode";
+                    lblradtype.DataValueField = "Value";
+                    lblradtype.DataBind();
+                }
+                else
+                {
+
+                }
 
 
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-            //    GridView gv = e.Row.FindControl("gvLiaLedger") as GridView;
-            //    GridView gvGroup = (GridView)sender;
-            //    if (gvGroup.DataKeys[e.Row.RowIndex].Value != "")
-            //    {
-            //        int groupID = Convert.ToInt32(gvGroup.DataKeys[e.Row.RowIndex].Value);
-            //        DataSet ds = objBs.CustomerSalesdetailed(groupID, sTableName);
-            //        //if (ds.Tables[0].Rows.Count > 0)
-            //        //{
-            //        if (ds.Tables[0].Rows.Count > 0)
-            //        {
-            //            gv.DataSource = ds;
-            //            double amount = Convert.ToDouble(ds.Tables[0].Rows[0]["NetAmount"]);
-            //            amount1 = amount1 + amount;
-            //            gv.DataBind();
-            //        }
-            //        //}
-            //    }
 
-            //}
 
-            //if (e.Row.RowType == DataControlRowType.Footer)
-            //{
-            //    e.Row.Cells[0].HorizontalAlign = HorizontalAlign.Left;
-            //    e.Row.Cells[1].HorizontalAlign = HorizontalAlign.Right;
-            //    e.Row.Cells[2].HorizontalAlign = HorizontalAlign.Right;
-            //    e.Row.Cells[3].HorizontalAlign = HorizontalAlign.Right;
-            //    e.Row.Cells[7].HorizontalAlign = HorizontalAlign.Center;
-
-            //    //e.Row.Cells[0].Text = "Total";
-
-            //    //e.Row.Cells[7].Text = amount1.ToString("N2");
-            //    //e.Row.Cells[7].ForeColor = System.Drawing.Color.White;
-
-            //}
-
+            }
         }
 
 
