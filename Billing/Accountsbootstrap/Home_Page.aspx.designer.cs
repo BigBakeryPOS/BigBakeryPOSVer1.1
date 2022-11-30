@@ -78,6 +78,15 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.Label lblmotivation;
 
         /// <summary>
+        /// lblSuppOS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSuppOS;
+
+        /// <summary>
         /// gvSupplier control.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,42 @@ namespace Billing.Accountsbootstrap
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvSupplier;
+
+        /// <summary>
+        /// lblRawTransAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRawTransAmount;
+
+        /// <summary>
+        /// lblRawTransAmountBranch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRawTransAmountBranch;
+
+        /// <summary>
+        /// lblStockValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStockValue;
+
+        /// <summary>
+        /// lblExpAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblExpAmount;
 
         /// <summary>
         /// IDTodaySales control.
