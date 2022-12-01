@@ -11,10 +11,16 @@
     <link href="../Menu/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet"
         type="text/css" />
     <title>POS Billing BigbBiz Solutions</title>
-   
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">   
     <script src="../js/toastrmin.js" type="text/javascript"></script>
     <script src="../js/toastr.js" type="text/javascript"></script>
     <link href="../css/toastr.css" rel="stylesheet" type="text/css" />
+	 <!-- jQuery -->
+    <script src="/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>													   
     <script type="text/javascript">
         function showpop1(msg, title) {
 
@@ -815,12 +821,12 @@
                 style="color: White">Store Stock Day Close</a></li>
             <li id="chnagepassword" runat="server" visible="false"><a href="../Accountsbootstrap/ChangePassword.aspx"
                 style="color: White">Change Password</a></li>
-            <li><a href="../Accountsbootstrap/login1.aspx" style="color: White">Sign Out</a></li>
-            <li><a href="javascript:;" style="padding: 15px 0;">
+            <!--li><a href="../Accountsbootstrap/login1.aspx" style="color: White">Sign Out</a></li-->
+            <li><a href="javascript:;" style="padding: 15px 0; display: none;">
                 <asp:Label runat="server" ID="lblWelcome" CssClass="label">Welcome : </asp:Label>
-                <asp:Label runat="server" ID="lblUser" CssClass="label" Visible="true"> </asp:Label><br />
+                 
                 <asp:Label runat="server" ID="Label2" CssClass="label">: </asp:Label>
-                <asp:Label runat="server" ID="lblstore" CssClass="label" Visible="true"> </asp:Label></a>
+                 </a>
             </li>
             <li>
                 <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false  "> </asp:Label><br />
@@ -828,6 +834,17 @@
                     CssClass="label"></asp:Label></li>
         </ul>
     </div>
+	<div class="usr dropdown">
+		<button class="btn btn-primary pos-btn1 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<i class="bi bi-person-circle"></i>
+		</button>
+		<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+			<h6 class="dropdown-header"><asp:Label runat="server" ID="lblUser" Visible="true"> </asp:Label><br>
+			<asp:Label runat="server" ID="lblstore" Visible="true"> </asp:Label></h6>
+			<li role="separator" class="divider"></li>
+			<li><a href="../Accountsbootstrap/login1.aspx">Sign Out</a></li>
+		</ul>
+	</div>
     <div class="footer" visible="false">
         <%--<div id="show" style="background-color: Black; font-size: large; color: White">
             Messege
@@ -848,4 +865,3 @@
     </div>
 	
 </html>
-
