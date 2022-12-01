@@ -37880,6 +37880,53 @@ namespace BusinessLayer
             return isucess;
         }
         #endregion
+
+        #region Session Closing Process
+        public DataSet getoverallentries(string sTable, string Date)
+        {
+            DataSet dsmerge = new DataSet();
+            string salesamount = string.Empty;
+            DataSet getsalesamount = new DataSet();
+
+            string orderamount = string.Empty;
+            DataSet getorderamount = new DataSet();
+
+            string receiptamount = string.Empty;
+            DataSet getreceiptamount = new DataSet();
+
+            string paymentamount = string.Empty;
+            DataSet getpaymentamount = new DataSet();
+
+
+            // Sales
+            salesamount = "select b.paymode,b.value,cast(sum(amount) as float) as amnt,'Sales' as type,'+' as sign from tblTransSalesAmount_"+sTable+" as a " +
+                " inner join tblsalespaymode as b on b.value=a.paymode where cast(billdate as date)='"+Date+"' group by b.paymode,value";
+            getsalesamount = dbObj.InlineExecuteDataSet(salesamount);
+            dsmerge.Merge(getsalesamount);
+
+
+            // Order
+            orderamount = "select b.paymode,b.value,cast(sum(amount) as float) as amnt,'Order' as type,'+' as sign from tbltransorderamount_" + sTable + " as a " +
+                " inner join tblsalespaymode as b on b.value=a.paymode where cast(billdate as date)='" + Date + "' group by b.paymode,value";
+            getorderamount = dbObj.InlineExecuteDataSet(orderamount);
+            dsmerge.Merge(getorderamount);
+
+
+            // Receipt
+            receiptamount = "select b.paymode,b.value,cast(sum(Netamount) as float) as amnt,'Receipt' as type,'+' as sign from tblReceipt_" + sTable + " as a " +
+                " inner join tblsalespaymode as b on b.value=a.payment_id where cast(receiptdate as date)='" + Date + "' group by b.paymode,value";
+            getreceiptamount = dbObj.InlineExecuteDataSet(receiptamount);
+            dsmerge.Merge(getreceiptamount);
+
+            // Payment
+            paymentamount = "select b.paymode,b.value,cast(sum(amount) as float) as amnt,'Payment' as type,'-' as sign from tblpaymententry_" + sTable + " as a " +
+                " inner join tblsalespaymode as b on b.value=a.paymode where cast(date as date)='" + Date + "' group by b.paymode,value";
+            getpaymentamount = dbObj.InlineExecuteDataSet(paymentamount);
+            dsmerge.Merge(getpaymentamount);
+
+            return dsmerge;
+        }
+        #endregion
     }
 
 

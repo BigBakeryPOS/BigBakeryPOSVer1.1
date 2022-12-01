@@ -69,8 +69,8 @@ namespace Billing.Accountsbootstrap
                 DataSet getdenominationclose = objBs.getdenominationmaster();
                 if (getdenominationclose.Tables[0].Rows.Count > 0)
                 {
-                    gvdenominationcloseing.DataSource = getdenominationclose.Tables[0];
-                    gvdenominationcloseing.DataBind();
+                  //  gvdenominationcloseing.DataSource = getdenominationclose.Tables[0];
+                  //  gvdenominationcloseing.DataBind();
 
                     gvdenominationoffice.DataSource = getdenominationclose.Tables[0];
                     gvdenominationoffice.DataBind();
@@ -79,11 +79,22 @@ namespace Billing.Accountsbootstrap
                 dt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 date.Text = dt;
                 Button1.Enabled = false;
-                DataSet getdenomination = objBs.getdenominationmaster();
-                if (getdenomination.Tables[0].Rows.Count > 0)
+                //DataSet getdenomination = objBs.getdenominationmaster();
+                //if (getdenomination.Tables[0].Rows.Count > 0)
+                //{
+                //    griddenomination.DataSource = getdenomination.Tables[0];
+                //    griddenomination.DataBind();
+                //}
+
+                string dtnew = DateTime.Now.ToString("yyyy-MM-dd");
+
+
+                DataSet getoverallsalesamount = objBs.getoverallentries(sTableName, dtnew);
+                if (getoverallsalesamount.Tables[0].Rows.Count > 0)
                 {
-                    griddenomination.DataSource = getdenomination.Tables[0];
-                    griddenomination.DataBind();
+                    gvdetailed.DataSource = getoverallsalesamount;
+                    gvdetailed.DataBind();
+
                 }
 
                 DataSet ds = objBs.check_denomination(sTableName, dt);
@@ -661,48 +672,48 @@ namespace Billing.Accountsbootstrap
 
         protected void getoverallcalculation(object sender, EventArgs e)
         {
-            btncalc_Click(sender, e);
+           // btncalc_Click(sender, e);
 
             if (drpsessiontype1.SelectedValue == "Select Type")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Please Select Session Mode Type.Thank You!!!');", true);
                 return;
             }
-            // CHECKING AMOUNT VIA FULL DENOMINATION
-            for (int i = 0; i < griddenomination.Rows.Count; i++)
-            {
+            // // CHECKING AMOUNT VIA FULL DENOMINATION
+            //for (int i = 0; i < griddenomination.Rows.Count; i++)
+            //{
 
-                Label lblvalue = (Label)griddenomination.Rows[i].FindControl("lblvalue");
-                TextBox lblnos = (TextBox)griddenomination.Rows[i].FindControl("lblnos");
-                Label lbltotal = (Label)griddenomination.Rows[i].FindControl("lbltotal");
+            //    Label lblvalue = (Label)griddenomination.Rows[i].FindControl("lblvalue");
+            //    TextBox lblnos = (TextBox)griddenomination.Rows[i].FindControl("lblnos");
+            //    Label lbltotal = (Label)griddenomination.Rows[i].FindControl("lbltotal");
 
-                for (int ii = 0; ii < gvdenominationoffice.Rows.Count; ii++)
-                {
+            //    for (int ii = 0; ii < gvdenominationoffice.Rows.Count; ii++)
+            //    {
 
-                    Label lblvalue1 = (Label)gvdenominationoffice.Rows[ii].FindControl("lblvalue");
-                    TextBox lblnos1 = (TextBox)gvdenominationoffice.Rows[ii].FindControl("lblnos");
-                    Label lbltotal1 = (Label)gvdenominationoffice.Rows[ii].FindControl("lbltotal");
+            //        Label lblvalue1 = (Label)gvdenominationoffice.Rows[ii].FindControl("lblvalue");
+            //        TextBox lblnos1 = (TextBox)gvdenominationoffice.Rows[ii].FindControl("lblnos");
+            //        Label lbltotal1 = (Label)gvdenominationoffice.Rows[ii].FindControl("lbltotal");
 
-                    if (lblnos1.Text == "")
-                        lblnos1.Text = "0";
-                    if (lblvalue.Text == lblvalue1.Text)
-                    {
+            //        if (lblnos1.Text == "")
+            //            lblnos1.Text = "0";
+            //        if (lblvalue.Text == lblvalue1.Text)
+            //        {
 
-                        if (Convert.ToInt16(lblnos.Text) >= Convert.ToInt32(lblnos1.Text))
-                        {
+            //            if (Convert.ToInt16(lblnos.Text) >= Convert.ToInt32(lblnos1.Text))
+            //            {
 
-                        }
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Make Sure it Correct Denomination in " + lblvalue.Text + ".Thank You!!!');", true);
-                            return;
-                        }
-                    }
+            //            }
+            //            else
+            //            {
+            //                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Make Sure it Correct Denomination in " + lblvalue.Text + ".Thank You!!!');", true);
+            //                return;
+            //            }
+            //        }
 
 
-                }
+            //    }
 
-            }
+            //}
 
 
 
@@ -724,58 +735,59 @@ namespace Billing.Accountsbootstrap
             }
 
             lblgrandtotalDenominoffice.Text = tot.ToString("0.00");
+            Button4.Enabled = true;
 
-            double bal = Convert.ToDouble(lblbalanceamount.Text) - tot;
+          //  double bal = Convert.ToDouble(lblbalanceamount.Text) - tot;
 
-            lblbalanceamount.Text = bal.ToString("0.00");
+            // lblbalanceamount.Text = bal.ToString("0.00");
 
-            // FILL IN CLOSING DENOMINATION
-            double toto = 0;
-            for (int i = 0; i < griddenomination.Rows.Count; i++)
-            {
+            //// FILL IN CLOSING DENOMINATION
+            //double toto = 0;
+            //for (int i = 0; i < griddenomination.Rows.Count; i++)
+            //{
 
-                Label lblvalue = (Label)griddenomination.Rows[i].FindControl("lblvalue");
-                TextBox lblnos = (TextBox)griddenomination.Rows[i].FindControl("lblnos");
-                Label lbltotal = (Label)griddenomination.Rows[i].FindControl("lbltotal");
+            //    Label lblvalue = (Label)griddenomination.Rows[i].FindControl("lblvalue");
+            //    TextBox lblnos = (TextBox)griddenomination.Rows[i].FindControl("lblnos");
+            //    Label lbltotal = (Label)griddenomination.Rows[i].FindControl("lbltotal");
 
-                for (int ii = 0; ii < gvdenominationoffice.Rows.Count; ii++)
-                {
+            //    for (int ii = 0; ii < gvdenominationoffice.Rows.Count; ii++)
+            //    {
 
-                    Label lblvalue1 = (Label)gvdenominationoffice.Rows[ii].FindControl("lblvalue");
-                    TextBox lblnos1 = (TextBox)gvdenominationoffice.Rows[ii].FindControl("lblnos");
-                    Label lbltotal1 = (Label)gvdenominationoffice.Rows[ii].FindControl("lbltotal");
+            //        Label lblvalue1 = (Label)gvdenominationoffice.Rows[ii].FindControl("lblvalue");
+            //        TextBox lblnos1 = (TextBox)gvdenominationoffice.Rows[ii].FindControl("lblnos");
+            //        Label lbltotal1 = (Label)gvdenominationoffice.Rows[ii].FindControl("lbltotal");
 
-                    if (lblnos1.Text == "")
-                        lblnos1.Text = "0";
-                    if (lblvalue.Text == lblvalue1.Text)
-                    {
-                        for (int j = 0; j < gvdenominationcloseing.Rows.Count; j++)
-                        {
+            //        if (lblnos1.Text == "")
+            //            lblnos1.Text = "0";
+            //        if (lblvalue.Text == lblvalue1.Text)
+            //        {
+            //            for (int j = 0; j < gvdenominationcloseing.Rows.Count; j++)
+            //            {
 
-                            int nos = Convert.ToInt32(lblnos.Text) - Convert.ToInt32(lblnos1.Text);
+            //                int nos = Convert.ToInt32(lblnos.Text) - Convert.ToInt32(lblnos1.Text);
 
-                            Label lblvalue2 = (Label)gvdenominationcloseing.Rows[j].FindControl("lblvalue");
-                            if (lblvalue.Text == lblvalue2.Text)
-                            {
-                                TextBox lblnos2 = (TextBox)gvdenominationcloseing.Rows[j].FindControl("lblnos");
-                                Label lbltotal2 = (Label)gvdenominationcloseing.Rows[j].FindControl("lbltotal");
+            //                Label lblvalue2 = (Label)gvdenominationcloseing.Rows[j].FindControl("lblvalue");
+            //                if (lblvalue.Text == lblvalue2.Text)
+            //                {
+            //                    TextBox lblnos2 = (TextBox)gvdenominationcloseing.Rows[j].FindControl("lblnos");
+            //                    Label lbltotal2 = (Label)gvdenominationcloseing.Rows[j].FindControl("lbltotal");
 
-                                lblnos2.Text = nos.ToString();
-                                double total = (Convert.ToDouble(lblvalue2.Text) * Convert.ToDouble(lblnos2.Text));
-                                toto += total;
-                                lbltotal2.Text = total.ToString("0.00");
-                            }
+            //                    lblnos2.Text = nos.ToString();
+            //                    double total = (Convert.ToDouble(lblvalue2.Text) * Convert.ToDouble(lblnos2.Text));
+            //                    toto += total;
+            //                    lbltotal2.Text = total.ToString("0.00");
+            //                }
 
 
-                        }
+            //            }
 
-                        lblgrandtotalDenomin.Text = toto.ToString("0.00");
+            //            lblgrandtotalDenomin.Text = toto.ToString("0.00");
 
-                    }
+            //        }
 
-                }
+            //    }
 
-            }
+            //}
         }
 
     }

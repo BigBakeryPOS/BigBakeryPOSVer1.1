@@ -605,6 +605,8 @@ namespace Billing.Accountsbootstrap
             TimeSpan start = new TimeSpan(hours, minu, 0);
             TimeSpan now = DateTime.Now.TimeOfDay;
 
+            // TimeSpan.Compare(start.TimeOfDay, now.TimeOfDay)
+
             if ((now < start))
             {
                 //match found

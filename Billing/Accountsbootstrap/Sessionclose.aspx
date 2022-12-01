@@ -137,7 +137,7 @@
         <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label">Welcome : </asp:Label>
         <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label">Welcome: </asp:Label>
         <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
-        <asp:Label ID="chkhour" runat="server" Visible="false" Text="01"></asp:Label>
+        <asp:Label ID="chkhour" runat="server" Visible="false" Text="09"></asp:Label>
         <asp:Label ID="chkminu" runat="server" Visible="false" Text="30"></asp:Label>
         <asp:UpdatePanel ID="Updatepnel" runat="server" UpdateMode="Conditional" EnableViewState="true"
             ChildrenAsTriggers="true">
@@ -165,7 +165,7 @@
                                     <div class="row">
 
 
-                                        <div class="col-lg-3">
+                                        <div runat="server" visible="false" class="col-lg-3">
                                             <label>Over-All  Denomination Table</label>
                                             <div class="table-responsive panel-grid-left">
                                                 <asp:GridView ID="griddenomination" Width="100%" runat="server" AutoGenerateColumns="false" CssClass="table table-striped pos-table" padding="0" spacing="0" border="0">
@@ -190,7 +190,7 @@
                                                 </asp:GridView>
                                             </div>
                                             <div>
-                                                <asp:Button ID="Button1" runat="server" Visible="false" Text=" " Enabled="false" CssClass="btn btn-info pos-btn1"
+                                                <asp:Button ID="Button1" runat="server" Visible="true" Text=" " Enabled="false" CssClass="btn btn-info pos-btn1"
                                                     OnClick="Button1_Click" />
 
                                                 <asp:Label ID="lblErr" runat="server" ForeColor="Red" Visible="false"></asp:Label>
@@ -249,6 +249,8 @@
                                             <asp:Label ID="Label1" runat="server" ForeColor="Red" Visible="false"></asp:Label>
                                             <asp:Button ID="Button5" runat="server" Text="Calculate" CssClass="btn btn-info pos-btn1"
                                                 OnClick="getoverallcalculation" TabIndex="11" />
+                                            <asp:Button ID="Button4" runat="server" Text="Day Close" Enabled="false" CssClass="btn btn-info pos-btn1" ValidationGroup="val1"
+                                                OnClick="Button1_Click" />
                                             <div>
 
                                                 <label>
@@ -258,13 +260,60 @@
                                             </div>
 
                                         </div>
-
-
-
                                         <div class="col-lg-3">
+                                            <asp:GridView ID="gvdetailed" align="center" EmptyDataText="No Records Found" runat="server"
+                                                AllowPaging="true" PageSize="500" AutoGenerateColumns="false" CssClass="mGrid">
+                                                <HeaderStyle BackColor="#990000" />
+                                                <PagerSettings FirstPageText="1" Mode="Numeric" />
+                                                <Columns>
+                                                    <asp:BoundField HeaderText="Paymode" DataField="paymode" />
+                                                    <asp:BoundField HeaderText="Value" DataField="value" />
+                                                    <asp:BoundField HeaderText="Amount" DataField="amnt" DataFormatString="{0:f3}" />
+                                                    <asp:BoundField HeaderText="Type" DataField="type" />
+                                                    <asp:BoundField HeaderText="Sign" DataField="Sign" />
+                                                </Columns>
+                                                <FooterStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />
+                                                <HeaderStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />
+                                            </asp:GridView>
+
+                                            <asp:GridView ID="gvsummary" align="center" EmptyDataText="No Records Found" runat="server"
+                                                AllowPaging="true" PageSize="500" AutoGenerateColumns="false" CssClass="mGrid">
+                                                <HeaderStyle BackColor="#990000" />
+                                                <PagerSettings FirstPageText="1" Mode="Numeric" />
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="S.No">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
+                                                            <asp:Label ID="lblvalue" runat="server" Text='<%#Eval("value") %>'></asp:Label>
+                                                            <asp:Label ID="lblamnt" runat="server" Text='<%#Eval("amnt") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:BoundField HeaderText="Paymode" DataField="paymode" />
+                                                    <asp:TemplateField HeaderText="Entered Amount">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtenteramount" onBlur="ResetColor()" onFocus="ChangeColor()" runat="server"
+                                                                Width="50px" AutoPostBack="false">0</asp:TextBox>
+                                                            <ajaxToolkit:FilteredTextBoxExtender ID="ftbe" runat="server" TargetControlID="txtenteramount"
+                                                                FilterType="Custom,Numbers" ValidChars="." />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Reason/Notes">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtreason" onBlur="ResetColor()" onFocus="ChangeColor()" runat="server"
+                                                                Width="50px" AutoPostBack="false">0</asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                                <FooterStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />
+                                                <HeaderStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />
+                                            </asp:GridView>
+                                        </div>
+
+
+                                        <div runat="server" visible="false" class="col-lg-3">
 
                                             <label>Closing Petty Cash</label>
-                                            <div class="table-responsive panel-grid-left">
+                                            <div runat="server" visible="false" class="table-responsive panel-grid-left">
                                                 <div class="col-lg-12" align="center">
                                                     <label>
                                                         Select Session Type</label>
@@ -294,8 +343,7 @@
                                                 </asp:GridView>
 
                                             </div>
-                                            <asp:Button ID="Button4" runat="server" Text="Day Close" Enabled="true" CssClass="btn btn-info pos-btn1" ValidationGroup="val1"
-                                                OnClick="Button1_Click" />
+
                                             <asp:Label ID="Label7" runat="server" ForeColor="Red" Visible="false"></asp:Label>
                                             <asp:Button ID="Button2" runat="server" Text="Calculate" Visible="false" CssClass="btn btn-info pos-btn1"
                                                 OnClick="btncalcc_Click" TabIndex="11" />
