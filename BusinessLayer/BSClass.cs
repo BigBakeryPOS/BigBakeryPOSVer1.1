@@ -37753,7 +37753,7 @@ namespace BusinessLayer
         public DataSet GetOthersPaymode_Payment(string Paymode)
         {
             DataSet ds = new DataSet();
-            string sqry = "select * from tblsalespaymode where others='Y' and paymodeid not in (" + Paymode + " ";
+            string sqry = "select * from tblsalespaymode where others='Y' and paymodeid not in (" + Paymode + ")";
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
         }
