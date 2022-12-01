@@ -12,17 +12,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>POS Sales </title>
-    <!-- Bootstrap Core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../Styles/style1.css" rel="stylesheet" />
-    <!-- MetisMenu CSS -->
-    <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet" />
-    <!-- Custom CSS -->
-    <link href="../css/sb-admin-2.css" rel="stylesheet" />
-    <!-- Custom Fonts -->
-    <link href="../css/TableCSSCode.css" rel="stylesheet" type="text/css" />
-    <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="Style/chosen.css" />
+     
     <link href="Style/chosen.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         function DisableButton() {
@@ -54,19 +44,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        .autocomplete_completionListElement {
-            list-style: none;
-            cursor: pointer;
-            padding: 0;
-            margin: 0;
-            box-shadow: #007aff80 0 5px 20px;
-            max-height: 400px;
-            overflow: auto;
-        }
-
-            .autocomplete_completionListElement li {
-                padding: 10px !important;
-            }
+    .autocomplete_completionListElement {
+        list-style: none;
+        cursor: pointer;
+        padding:0; margin:0;
+					  
+        box-shadow: #37609180 0 5px 20px;
+        max-height: 400px;
+        overflow: auto;
+    }
+    .autocomplete_completionListElement li {
+        padding: 10px !important;
+    }
     </style>
 </head>
 <body>
@@ -103,9 +92,9 @@
                                         <Columns>
                                             <asp:TemplateField>
                                                 <ItemTemplate>
-                                                    <asp:Button ID="Button1" runat="server" Font-Bold="true"
+                                                    <asp:Button ID="Button1" runat="server"  
                                                         Text='<%#Eval("PrintCategory")%>' CommandArgument='<%#Eval("CategoryID") %>'
-                                                        CssClass="btn btn-link" ForeColor="White" OnClick="Button1_Click" />
+                                                        CssClass="btn btn-link btn-main-cat"   OnClick="Button1_Click" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
@@ -499,36 +488,38 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12 text-right" style="padding: 5px 20px; background-color: #f2f2f2;">
+                                        <div class="col-md-12" style="padding: 5px 20px; background-color: #f2f2f2;">
 
-                                            <asp:Button ID="btnPrint" runat="server" CssClass="btn pos-btn1 btn-sm" Width="80px"
+                                            <asp:Button ID="btnPrint" runat="server" CssClass="btn pos-btn1 btn-sm" 
                                                 UseSubmitBehavior="false" OnClientClick="this.disabled=true;" OnClick="btnPrint_Click"
                                                 Text="Save & Print" />
 
-                                            <asp:Button ID="btnsve" runat="server" CssClass="btn btn-primary" Width="100px" UseSubmitBehavior="false"
+                                            <asp:Button ID="btnsve" runat="server" CssClass="btn pos-btn1 btn-sm" Width="80px" UseSubmitBehavior="false"
                                                 OnClientClick="this.disabled=true;" OnClick="btnsave_Click" Text="Save" />
 
-                                            <asp:Button ID="btnkot" runat="server" CssClass="btn btn-primary" Width="100px" UseSubmitBehavior="false"
+                                            <asp:Button ID="btnkot" runat="server" CssClass="btn pos-btn1 btn-sm" Width="100px" UseSubmitBehavior="false"
                                                 OnClientClick="this.disabled=true;" OnClick="btnkot_Click" Text="Print & Kot" />
 
 
-                                            <asp:Button ID="btnReset" runat="server" CssClass="btn pos-btn1 btn-sm " Width="80px"
-                                                Text="Reset" OnClick="btnReset_Click" />
+                                           
 
-                                            <asp:Button ID="btnCancel" runat="server" CssClass="btn pos-btn1 btn-sm" Width="80px"
+                                            <asp:Button ID="btnCancel" runat="server" CssClass="btn btn-danger btn-sm" Width="80px"
                                                 Text="Cancel" OnClick="btnCancel_Click" />
 
-                                            <asp:Button ID="Button5" runat="server" CssClass="btn pos-btn1 btn-sm"
+                                            <asp:Button ID="Button5" runat="server" CssClass="btn btn-warning btn-sm"
                                                 Visible="true" Text="Hold Bill" OnClick="btnhold_check" />
 
                                             <asp:Button ID="Button4" runat="server" CssClass="btn pos-btn1 btn-sm" Text="Smry.Bills" Visible="false"
                                                 PostBackUrl="~/Accountsbootstrap/Home_Page.aspx" />
 
-                                            <asp:Button ID="btnView" runat="server" CssClass="btn pos-btn1 btn-sm" OnClick="btnView_Onclick"
+                                            <asp:Button ID="btnView" runat="server" CssClass="btn btn-info btn-sm" OnClick="btnView_Onclick"
                                                 Text="Tax Detail View" />
 
-                                            <asp:Button ID="btnTaxClose" runat="server" CssClass="btn pos-btn1 btn-sm" Visible="false"
+                                            <asp:Button ID="btnTaxClose" runat="server" CssClass="btn btn-info btn-sm" Visible="false"
                                                 Width="120px" OnClick="btnTaxClose_Onclick" Text="Tax Detail Close" />
+
+                                             <asp:Button ID="btnReset" runat="server" CssClass="btn btn-link btn-sm" 
+                                                Text="Reset" OnClick="btnReset_Click" />
 
                                         </div>
                                     </div>
@@ -1261,19 +1252,19 @@
                                     </table>
                                     <table>
                                         <tr>
-                                            <td valign="top" style="width: 15%; margin-top: -18px;">
+                                            <td valign="top">
                                                 <label>
                                                     Hold Bill's</label>
-                                                <asp:DataList ID="Holdbill" runat="server" CssClass="SlidingBox" Height="100px" Style="margin-top: -18px"
+                                                <asp:DataList ID="Holdbill" runat="server" CssClass="SlidingBox"  
                                                     ScrollBars="auto" RepeatColumns="5" RepeatDirection="Horizontal" RepeatLayout="Table"
-                                                    Width="50%">
+                                                    Width="100%">
                                                     <ItemTemplate>
-                                                        <asp:Button ID="Button1" runat="server" Font-Bold="true" Height="40px" Width="10pc"
+                                                        <asp:Button ID="Button1" runat="server" Font-Bold="true" 
                                                             Text='<%#Eval("BillNo")+"-"+ Eval("SalesTypeOrderNo")+"-"+ Eval("Attendername")%>'
-                                                            CommandArgument='<%#Eval("TempSalesID") %>' CssClass="btn btn-primary" ForeColor="White"
+                                                            CommandArgument='<%#Eval("TempSalesID") %>' CssClass="btn btn-warning btn-sm" ForeColor="White"
                                                             OnClick="Button1hold_Click" />
-                                                        <br />
-                                                        <asp:ImageButton ID="btndelete" runat="server" Font-Bold="true" Height="30px" Width="30px"
+                                                        
+                                                        <asp:ImageButton ID="btndelete" runat="server" Font-Bold="true" Height="24px" Width="24px"
                                                             CommandArgument='<%#Eval("TempSalesID") %>' ImageAlign="Middle" ImageUrl="~/images/cancel-circle.png"
                                                             OnClick="btncncl_click" />
                                                         <asp:Image ID="dlt" runat="server" ImageUrl="~/images/cancel-circle.png" Visible="false" />

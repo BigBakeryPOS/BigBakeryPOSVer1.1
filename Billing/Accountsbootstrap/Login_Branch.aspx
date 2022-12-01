@@ -7,14 +7,14 @@
     <title>POS Billing - Login</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <!-- ubi style -->
-	<link href="dashboard.css" rel="stylesheet">
+	<link href="../css/pos_style.css" rel="stylesheet">
 	<!-- ubi style -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 
-    <body class="loginpage">
+<body class="loginpage">
         <div align="center">
             <label>
                 MAC ADDRESS:</label><asp:Label ID="macaddress" runat="server" ></asp:Label>
@@ -69,33 +69,22 @@
 			  </div>
             </div>
             </div>
-
-                <div class="row clearfix">
-				<div class="col-sm-6 margin-x-md">
-					<div class="postel">
-					<span class="glyphicon glyphicon-headphones pos-color pos-list-icons" aria-hidden="true"></span>
-					<b class="pos-color uppercase">Support</b><br>
-					<b>+91 91235 15998</b>
-					</div>
-				</div>
-				<div class="col-sm-6 margin-x-md">
-					<div class="posemail">
-					<span class="glyphicon glyphicon-envelope pos-color pos-list-icons" aria-hidden="true"></span>
-					<b class="pos-color uppercase">Email</b><br>
-					<b><a href="mailto:contactus@bigdbiz.in">contactus@bigdbiz.in</a></b>
-					</div>
+			<div class="row clearfix">
+			<div class="col-sm-6 margin-x-md">
+				<div class="postel">
+				<span class="glyphicon glyphicon-headphones pos-color pos-list-icons" aria-hidden="true"></span>
+				<b class="pos-color uppercase">Support</b><br>
+				<b>+91 91235 15998</b>
 				</div>
 			</div>
-		
-		
-
-
-                  
-
-
-
-
-        
+			<div class="col-sm-6 margin-x-md">
+				<div class="posemail">
+				<span class="glyphicon glyphicon-envelope pos-color pos-list-icons" aria-hidden="true"></span>
+				<b class="pos-color uppercase">Email</b><br>
+				<b><a href="mailto:contactus@bigdbiz.in">contactus@bigdbiz.in</a></b>
+				</div>
+			</div>
+		</div>
         </form>
         <div class="row">
 				<div class="col-sm-12 text-center">
@@ -104,60 +93,5 @@
 				</div>
 		</div>
         </div>
-    </body>
-    <%--  <div class="login-box">
-    <img src="avatar.png" class="avatar">
-        <h1>Login Here</h1>
-             <form id="form1" runat="server">
-            <div class="field">
-                <span class="fa fa-user"></span>
-                
-            </div>
-            <div class="field space">
-                <span class="fa fa-lock"></span>
-                <asp:TextBox ID="password" runat="server" Placeholder="PassWord" TextMode="Password"></asp:TextBox>
-                <span class="show">SHOW</span>
-            </div>
-            <div class="field space">
-                <span class="fa fa-user"></span>
-                <asp:TextBox ID="txtemp" runat="server" TextMode="Password" Placeholder="EmpName"></asp:TextBox>
-            </div>
-            <div class="pass">
-                <a href="#">Forgot Password?</a>
-            </div>
-            <div runat="server" visible="false" class="field">
-                <asp:Button BackColor="#d65357" OnClick="LoginButton_Click" ID="btn" Text="Sign-In"
-                    runat="server" />
-            </div>
-            </form>
-            <div runat="server" visible="false" class="login">
-                Or login with</div>
-            <div runat="server" visible="false" class="links">
-                <div class="facebook">
-                    <i class="fab fa-facebook-f"><span>Facebook</span></i>
-                </div>
-                <div class="instagram">
-                    <i class="fab fa-instagram"><span>Instagram</span></i>
-                </div>
-            </div>
-            <div class="signup">
-                Don't have account? <a href="#">Signup Now</a>
-            </div>
-        </div>
-    <script>
-      const pass_field = document.querySelector('.pass-key');
-      const showBtn = document.querySelector('.show');
-      showBtn.addEventListener('click', function(){
-       if(pass_field.type === "password"){
-         pass_field.type = "text";
-         showBtn.textContent = "HIDE";
-         showBtn.style.color = "#3498db";
-       }else{
-         pass_field.type = "password";
-         showBtn.textContent = "SHOW";
-         showBtn.style.color = "#222";
-       }
-      });
-    </script>--%>
-
+</body>
 </html>
