@@ -22,6 +22,62 @@
             -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#0871D0, endColorstr=#0871D0)" no-repeat;
         }
     </style>
+      <script type="text/javascript" language="javascript">
+        var oldRowColor;
+
+        // this function is used to change the backgound color
+
+        function ChangeColor() {
+
+            var obj = window.event.srcElement;
+
+            if (obj.tagName == "INPUT" && obj.type == "text") {
+
+                obj = obj.parentElement.parentElement;
+
+                oldRowColor = obj.className;
+
+                obj.className = "HighLightRowColor";
+
+            }
+
+        }
+
+        // this function is used to reset the background color 
+        function ResetColor() {
+
+            var obj = window.event.srcElement;
+
+            if (obj.tagName == "INPUT" && obj.type == "text") {
+
+                obj = obj.parentElement.parentElement;
+
+                obj.className = oldRowColor;
+
+            }
+
+        }
+
+      </script>
+    <style type="text/css">
+        .RowStyleBackGroundColor
+        {
+            background-color: White;
+        }
+        
+        .RowAlternateStyleBackGroundColor
+        {
+            background-color: White;
+        }
+        
+        .HighLightRowColor
+        {
+            background-color: Silver;
+            font-weight: bold;
+            font-size: xx-large;
+            color: White;
+        }
+    </style>
     <meta content="" charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -66,7 +122,7 @@
             }
         }
     </script>
-    <script type="text/javascript" language="javascript">
+     <script type="text/javascript" language="javascript">
         var oldRowColor;
 
         // this function is used to change the backgound color
@@ -102,23 +158,27 @@
 
         }
 
-    </script>
+     </script>
     <style type="text/css">
-        .RowStyleBackGroundColor {
+        .RowStyleBackGroundColor
+        {
             background-color: White;
         }
-
-        .RowAlternateStyleBackGroundColor {
+        
+        .RowAlternateStyleBackGroundColor
+        {
             background-color: White;
         }
-
-        .HighLightRowColor {
-            background-color: #eeeeee;
+        
+        .HighLightRowColor
+        {
+            background-color: darkred;
             font-weight: bold;
             font-size: xx-large;
             color: White;
         }
     </style>
+
     <style>
         blink, .blink {
             animation: blinker 1s linear infinite;
@@ -139,6 +199,7 @@
         <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
         <asp:Label ID="chkhour" runat="server" Visible="false" Text="09"></asp:Label>
         <asp:Label ID="chkminu" runat="server" Visible="false" Text="30"></asp:Label>
+        <asp:Label ID="lbldefaultcur" runat="server" Visible="false" Text="INR"></asp:Label>
         <asp:UpdatePanel ID="Updatepnel" runat="server" UpdateMode="Conditional" EnableViewState="true"
             ChildrenAsTriggers="true">
             <ContentTemplate>
@@ -261,8 +322,8 @@
 
                                         </div>
                                         <div class="col-lg-3">
-                                            <asp:GridView ID="gvdetailed" align="center" EmptyDataText="No Records Found" runat="server"
-                                                AllowPaging="true" PageSize="500" AutoGenerateColumns="false" CssClass="mGrid">
+                                            <asp:GridView ID="gvdetailed" align="center" EmptyDataText="No Records Found" runat="server" Visible="false"
+                                                AllowPaging="true" PageSize="500" cssClass="table table-striped pos-table" AutoGenerateColumns="false" >
                                                 <HeaderStyle BackColor="#990000" />
                                                 <PagerSettings FirstPageText="1" Mode="Numeric" />
                                                 <Columns>
@@ -277,30 +338,30 @@
                                             </asp:GridView>
 
                                             <asp:GridView ID="gvsummary" align="center" EmptyDataText="No Records Found" runat="server"
-                                                AllowPaging="true" PageSize="500" AutoGenerateColumns="false" CssClass="mGrid">
+                                                AllowPaging="true" PageSize="500" AutoGenerateColumns="false" cssClass="table  pos-table">
                                                 <HeaderStyle BackColor="#990000" />
                                                 <PagerSettings FirstPageText="1" Mode="Numeric" />
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="S.No">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
-                                                            <asp:Label ID="lblvalue" runat="server" Text='<%#Eval("value") %>'></asp:Label>
-                                                            <asp:Label ID="lblamnt" runat="server" Text='<%#Eval("amnt") %>'></asp:Label>
+                                                            <asp:Label ID="lblvalue" runat="server" Visible="false" Text='<%#Eval("value") %>'></asp:Label>
+                                                            <asp:Label ID="lblamnt" runat="server" isible="false"  Text='<%#Eval("amnt") %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:BoundField HeaderText="Paymode" DataField="paymode" />
                                                     <asp:TemplateField HeaderText="Entered Amount">
                                                         <ItemTemplate>
                                                             <asp:TextBox ID="txtenteramount" onBlur="ResetColor()" onFocus="ChangeColor()" runat="server"
-                                                                Width="50px" AutoPostBack="false">0</asp:TextBox>
+                                                                 Class="form-control" AutoPostBack="false">0</asp:TextBox>
                                                             <ajaxToolkit:FilteredTextBoxExtender ID="ftbe" runat="server" TargetControlID="txtenteramount"
                                                                 FilterType="Custom,Numbers" ValidChars="." />
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Reason/Notes">
                                                         <ItemTemplate>
-                                                            <asp:TextBox ID="txtreason" onBlur="ResetColor()" onFocus="ChangeColor()" runat="server"
-                                                                Width="50px" AutoPostBack="false">0</asp:TextBox>
+                                                            <asp:TextBox ID="txtreason" Class="form-control" onBlur="ResetColor()" onFocus="ChangeColor()" runat="server"
+                                                                 AutoPostBack="false">0</asp:TextBox>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                 </Columns>
@@ -356,7 +417,7 @@
 
                                         </div>
 
-                                        <div class="col-lg-3">
+                                        <div runat="server" visible="false" class="col-lg-3">
                                             <div runat="server">
                                                 <label>Over All Card Amount</label>
                                                 <asp:TextBox ID="txtoverallcard" runat="server" CssClass="form-control"></asp:TextBox>

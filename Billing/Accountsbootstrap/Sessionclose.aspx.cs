@@ -66,7 +66,7 @@ namespace Billing.Accountsbootstrap
 
 
 
-                DataSet getdenominationclose = objBs.getdenominationmaster();
+                DataSet getdenominationclose = objBs.getdenominationmaster(lbldefaultcur.Text);
                 if (getdenominationclose.Tables[0].Rows.Count > 0)
                 {
                   //  gvdenominationcloseing.DataSource = getdenominationclose.Tables[0];
@@ -95,20 +95,55 @@ namespace Billing.Accountsbootstrap
                     gvdetailed.DataSource = getoverallsalesamount;
                     gvdetailed.DataBind();
 
+
+
+
+                    DataTable dttNew = new DataTable();
+                    DataSet dsnew = new DataSet();
+                    DataRow drNew;
+                    dttNew.Columns.Add("paymode");
+                    dttNew.Columns.Add("value");
+                    dttNew.Columns.Add("amnt");
+
+                    dsnew.Tables.Add(dttNew);
+
+                    var result = from r in getoverallsalesamount.Tables[0].AsEnumerable()
+                                 group r by new { paymode = r["paymode"], value = r["value"], Sign = r["Sign"] } into g
+                                 select new
+                                 {
+                                     paymode = g.Key.paymode,
+                                     value = g.Key.value,
+                                     total = g.Sum(x => Convert.ToDouble(x["amnt"])),
+
+                                 };
+
+                    foreach (var g in result)
+                    {
+                        drNew = dttNew.NewRow();
+
+                        drNew["paymode"] = g.paymode;
+                        drNew["value"] = g.value;
+                        drNew["amnt"] = g.total;
+                       
+                        dsnew.Tables[0].Rows.Add(drNew);
+                    }
+
+                    gvsummary.DataSource = dsnew.Tables[0];
+                    gvsummary.DataBind();
                 }
 
-                DataSet ds = objBs.check_denomination(sTableName, dt);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    //btndayyclose.Visible = true;
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('You Cant Update Another Time.Thank You!!!.Kindly Click Direct Day Close Button.');", true);
-                    return;
-                }
-                else
-                {
-                   // btndayyclose.Visible = false;
-                    Button1.Text = "save";
-                }
+                //DataSet ds = objBs.check_denomination(sTableName, dt);
+                //if (ds.Tables[0].Rows.Count > 0)
+                //{
+                //    //btndayyclose.Visible = true;
+                //    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('You Cant Update Another Time.Thank You!!!.Kindly Click Direct Day Close Button.');", true);
+                //    return;
+                //}
+                //else
+                //{
+                //   // btndayyclose.Visible = false;
+                //    Button1.Text = "save";
+                //}
                 //if (ds.Tables[0].Rows.Count > 0)
                 //{
                 //    //Button1.Text = "Update";
@@ -434,50 +469,50 @@ namespace Billing.Accountsbootstrap
 
             dt = date.Text;
 
-            DataSet ds = objBs.check_denomination(sTableName, dt);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('You Cant Update Another Time.Thank You!!!');", true);
-                return;
-            }
+            //DataSet ds = objBs.check_denomination(sTableName, dt);
+            //if (ds.Tables[0].Rows.Count > 0)
+            //{
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('You Cant Update Another Time.Thank You!!!');", true);
+            //    return;
+            //}
 
-            int hours = Convert.ToInt32(chkhour.Text);
-            int minu = Convert.ToInt32(chkminu.Text);
+            //int hours = Convert.ToInt32(chkhour.Text);
+            //int minu = Convert.ToInt32(chkminu.Text);
 
-            TimeSpan start = new TimeSpan(hours, minu, 0);
-            TimeSpan now = DateTime.Now.TimeOfDay;
+            //TimeSpan start = new TimeSpan(hours, minu, 0);
+            //TimeSpan now = DateTime.Now.TimeOfDay;
 
-            if ((now < start))
-            {
-                //match found
-                //  date.Text = "";
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Not Allow To close.Please Close After 09.30 PM.Thank You!!!');", true);
-                return;
-            }
-            else
-            {
+            //if ((now < start))
+            //{
+            //    //match found
+            //    //  date.Text = "";
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Not Allow To close.Please Close After 09.30 PM.Thank You!!!');", true);
+            //    return;
+            //}
+            //else
+            //{
 
-            }
+            //}
 
 
 
-            DateTime dat1 = Convert.ToDateTime(date.Text);
-            DateTime Toady = DateTime.Now.Date; ;
+            //DateTime dat1 = Convert.ToDateTime(date.Text);
+            //DateTime Toady = DateTime.Now.Date; ;
 
-            var days = dat1.Day;
-            var toda = Toady.Day;
+            //var days = dat1.Day;
+            //var toda = Toady.Day;
 
-            if ((toda - days) == 0)
-            {
+            //if ((toda - days) == 0)
+            //{
 
-            }
+            //}
 
-            else
-            {
-                date.Text = "";
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Not Allow To close.Thank You!!!');", true);
-                return;
-            }
+            //else
+            //{
+            //    date.Text = "";
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Not Allow To close.Thank You!!!');", true);
+            //    return;
+            //}
 
 
             double toto = 0;

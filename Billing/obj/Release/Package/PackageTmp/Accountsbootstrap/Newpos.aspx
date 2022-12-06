@@ -5,8 +5,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title></title>
-    <script src="../js/jquery-2.1.0.min.js" type="text/javascript"></script>
+
+
     <script type="text/javascript">
         function Home() {
             var test = document.getElementById("lblbilltype");
@@ -15,23 +15,23 @@
 
         }
     </script>
-    <script src="../js/jquery.responsiveTabs.js" type="text/javascript"></script>
-    <script src="../js/jquery.responsiveTabs.min.js" type="text/javascript"></script>
-    <script src="../js/jquery.responsiveTabs.js" type="text/javascript"></script>
-    <script src="../js/jquery.responsiveTabs.min.js" type="text/javascript"></script>
-    <link href="../css/responsive-tabs.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="../css/chosen.css" />
+    
+     
     <link href="../css/responsive-tabs.css" rel="stylesheet" type="text/css" />
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
-    <link id="Link1" href="../css/bootstrap.min.css" runat="server" rel="stylesheet" />
-    <!-- MetisMenu CSS -->
-    <link id="Link2" href="../css/plugins/metisMenu/metisMenu.min.css" runat="server"
-        rel="stylesheet" />
-    <!-- Custom CSS -->
-    <link id="Link3" href="../css/sb-admin-2.css" runat="server" rel="stylesheet" />
-    <script src="../js/jquery-2.1.0.min.js" type="text/javascript"></script>
-    <!-- Custom Fonts -->
-    <link href="../Styles/style1.css" rel="stylesheet" />
+      
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
     <style type="text/css">
         .button
         {
@@ -177,8 +177,9 @@
         }
 
     </script>
-    <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    
+	
+	
     <style type="text/css">
     .scroll {
    width: 200px;
@@ -207,12 +208,12 @@
 
 
         .r-tabs .r-tabs-nav .r-tabs-tab {
-            background-color: #007AFF;
+            background-color: #376091;
         }
         .r-tabs {
             border:0;
             padding: 2px;
-            background: #007AFF;
+            background: #376091;
         }
         .r-tabs .r-tabs-nav .r-tabs-state-active .r-tabs-anchor {
 
@@ -222,14 +223,14 @@
             text-align: center;
             padding: 10px;
             background: #fff;
-            color: #007aff;
+            color: #376091;
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
    
-    <link href="../css/billingstyle.css" rel="stylesheet" />
+    
 </head>
 <body>
     <usc:Header ID="Header" runat="server" />
@@ -362,7 +363,7 @@
                                                  
                                                 <asp:DataList ID="datcat" runat="server" RepeatColumns="1" RepeatDirection="Vertical" cssClass="table table-condensed table-borderless">
                                                     <ItemTemplate>
-                                                        <asp:Button ID="btncat" runat="server" Font-Bold="true" cssClass="btn btn-link"  ForeColor="White" 
+                                                        <asp:Button ID="btncat" runat="server" Font-Bold="true" cssClass="btn btn-link btn-main-cat"  
                                                             Text='<%#Eval("Category")%>' CommandArgument='<%#Eval("CategoryID") %>' OnClick="Button1_Click"
                                                              />
                                                     </ItemTemplate>
@@ -478,7 +479,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="2" style="background-color: #007aff; color: White; text-align: center;
+                                                <td colspan="2" style="background-color: #376091; color: White; text-align: center;
                                                     font-weight: bold; height: 30px; font-size: 14px">
                                                     Order Summary
                                                 </td>
@@ -628,16 +629,16 @@
                                                             <td width="30px">
                                                             </td>
                                                         </tr>
-                                                        <tr id="trTot" runat="server" style="background-color: #c5e2ff; color: #007aff;">
+                                                        <tr id="trTot" runat="server"   class="pos-total">
                                                             <td width="50px">
                                                             </td>
                                                             <td width="50px">
                                                             </td>
-                                                            <td width="50px" align="right" class="pos-total">
+                                                            <td width="50px" align="right">
                                                                 <label>
                                                                     Total</label>
                                                             </td>
-                                                            <td width="30px" align="right" class="pos-total">
+                                                            <td width="30px" align="right">
                                                                <b><asp:Label ID="lblGrandTotal1" runat="server"></asp:Label></b>
                                                             </td>
                                                         </tr>
@@ -719,9 +720,9 @@
                                     <ProgressTemplate>
                                         <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0;
                                             right: 0; left: 0; z-index: 9999999; opacity: 0.7;">
-                                            <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="/images/01-progress.gif"
-                                                AlternateText="Loading ..." ToolTip="Loading ..." Style="width: 150px; padding: 10px;
-                                                position: fixed; top: 50%; left: 40%;" />
+                                            <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="../images/Preloader_10.gif"
+                                                AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px;
+                    position: fixed; top: 45%; left: 50%;" />
                                             <%--<asp:Image ID="imgUpdateProgress1" runat="server" ImageUrl="/images/loading.gif" />--%>
                                         </div>
                                     </ProgressTemplate>
@@ -845,7 +846,7 @@
                                             <td>
                                                 <br />
                                                 <asp:Button ID="btnnsettlement" runat="server" OnClick="btnPrint_Click" Text="Settlement"
-                                                    class="btn btn-danger" Style="background-color: steelblue" />
+                                                    class="btn btn-primary pos-btn1"/>
                                             </td>
                                         </tr>
                                     </table>
@@ -871,7 +872,7 @@
                                                 <asp:ListItem Text="Enclusive" Value="4" Selected="True"></asp:ListItem>
                                             </asp:RadioButtonList>
                                         </div>
-                                        <asp:GridView ID="GridView1all" runat="server" Width="100%" HeaderStyle-BackColor="DarkBlue"
+                                        <asp:GridView ID="GridView1all" runat="server" Width="100%" HeaderStyle-BackColor="#376091"
                                             HeaderStyle-ForeColor="White" CssClass="table table-hover" OnRowCommand="gvlist_RowCommand1"
                                             AutoGenerateColumns="false" GridLines="None" ShowHeader="true" OnRowDataBound="GridView1all_RowDataBound">
                                             <Columns>
@@ -1064,17 +1065,17 @@
                                                 <td width="30px">
                                                 </td>
                                             </tr>
-                                            <tr id="tr10" runat="server" style="background-color: #c5e2ff; color: #007aff;">
+                                            <tr id="tr10" runat="server"    class="pos-total">
                                                 <td width="50px">
                                                 </td>
                                                 <td width="50px">
                                                 </td>
-                                                <td width="50px" align="right" class="pos-total">
+                                                <td width="50px" align="right" >
                                                     <label>
                                                         Total</label>
                                                 </td>
                                                 <td width="30px" align="right">
-                                                    <asp:Label ID="lblGrandTotal1g" runat="server" class="pos-total"></asp:Label>
+                                                    <asp:Label ID="lblGrandTotal1g" runat="server" ></asp:Label>
                                                 </td>
                                             </tr>
                                             <tr id="tr11" runat="server" style="display: none">
@@ -1112,9 +1113,9 @@
                                 <ProgressTemplate>
                                     <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0;
                                         right: 0; left: 0; z-index: 9999999; opacity: 0.7;">
-                                        <asp:Image ID="imgUpdateProgress1" runat="server" ImageUrl="/images/01-progress.gif"
-                                            AlternateText="Loading ..." ToolTip="Loading ..." Style="width: 150px; padding: 10px;
-                                            position: fixed; top: 50%; left: 40%;" />
+                                        <asp:Image ID="imgUpdateProgress1" runat="server" ImageUrl="../images/Preloader_10.gif"
+                                            AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px;
+                    position: fixed; top: 45%; left: 50%;" />
                                         <%--<asp:Image ID="imgUpdateProgress1" runat="server" ImageUrl="/images/loading.gif" />--%>
                                     </div>
                                 </ProgressTemplate>
@@ -1355,10 +1356,8 @@
             </div>
         </div>
     </asp:Panel>
-    <%-- <script src="../js/jquery.min.js" type="text/javascript"></script>
-    <script src="../js/chosen.min.js" type="text/javascript"></script>
-    <script type="text/javascript">        $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>--%>
-    <link rel="stylesheet" href="billingstyle.css" />    
+    <script src="../js/jquery.responsiveTabs.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../css/billingstyle.css" />    
 </form>
 </body>
 </html>

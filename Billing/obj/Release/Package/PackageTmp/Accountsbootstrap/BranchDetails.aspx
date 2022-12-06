@@ -379,6 +379,10 @@
                                                     <asp:ListItem Text="Yes" Value="Y"></asp:ListItem>
                                                     <asp:ListItem Text="No" Value="N"></asp:ListItem>
                                                 </asp:DropDownList>
+                                                <br />
+                                                <label>
+                                                    Day close Time Setting</label>
+                                               <asp:DropDownList ID="ddlTimeFrom" runat="server" CssClass="form-control" ></asp:DropDownList>
 
 
                                                

@@ -242,7 +242,7 @@
                                                         Enabled="false" ToolTip="Not Allow To Delete" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Edit"  Visible="false">
+                                            <asp:TemplateField HeaderText="Edit"  Visible="true">
                                                 <ItemTemplate>
                                                     <asp:LinkButton ID="btnedit" runat="server" CommandArgument='<%#Eval("BillNo") %>'
                                                         CommandName="edit">

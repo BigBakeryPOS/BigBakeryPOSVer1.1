@@ -12498,10 +12498,10 @@ namespace BusinessLayer
             return ds;
         }
 
-        public DataSet getdenominationmaster()
+        public DataSet getdenominationmaster(string cur)
         {
             DataSet ds = new DataSet();
-            string s = "select * from tbldenominationmaster where Isactive='Yes' order by ordertype asc ";
+            string s = "select * from tbldenominationmaster where Isactive='Yes' and Currency='"+cur+"' order by ordertype asc ";
             ds = dbObj.InlineExecuteDataSet(s);
             return ds;
         }
