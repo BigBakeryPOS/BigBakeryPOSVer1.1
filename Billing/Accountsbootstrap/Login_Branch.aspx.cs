@@ -603,7 +603,7 @@ namespace Billing.Accountsbootstrap
                         }
                         else if (logintypeid == "2")
                         {
-                            Response.Redirect("../Accountsbootstrap/Home_Page.aspx");
+                            Response.Redirect("../Accountsbootstrap/Home.aspx");
                         }
                         else if (logintypeid == "3")
                         {

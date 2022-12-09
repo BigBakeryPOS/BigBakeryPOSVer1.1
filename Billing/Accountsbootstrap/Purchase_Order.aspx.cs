@@ -53,6 +53,16 @@ namespace Billing.Accountsbootstrap
                     ddlsuplier.DataValueField = "LedgerID";
                     ddlsuplier.DataBind();
                     ddlsuplier.Items.Insert(0, "Select Supplier");
+                }
+
+                DataSet dssubcompany = kbs.GetsubCompanyDetails();
+                if (dssubcompany.Tables[0].Rows.Count > 0)
+                {
+                    drpsubcompany.DataSource = dssubcompany.Tables[0];
+                    drpsubcompany.DataTextField = "CustomerName";
+                    drpsubcompany.DataValueField = "subComapanyID";
+                    drpsubcompany.DataBind();
+                    drpsubcompany.Items.Insert(0, "Select Company");
 
 
                 }
@@ -100,6 +110,7 @@ namespace Billing.Accountsbootstrap
                         txtsdate1.Text = Convert.ToDateTime(dagent.Tables[0].Rows[0]["OrderDate"]).ToString("dd/MM/yyyy");
 
                         ddlsuplier.SelectedValue = dagent.Tables[0].Rows[0]["Supplier"].ToString();
+                        drpsubcompany.SelectedValue = dagent.Tables[0].Rows[0]["Companyid"].ToString();
 
                         DataSet dsupplier = kbs.getsupplierdetais(ddlsuplier.SelectedValue);
                         if (dsupplier.Tables[0].Rows.Count > 0)
@@ -730,6 +741,13 @@ namespace Billing.Accountsbootstrap
         protected void btnSave_Click(object sender, EventArgs e)
         {
 
+
+            if(drpsubcompany.SelectedValue == "Select Company")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Please Select Company Name.Thank You!!!.');", true);
+                return;
+            }
+
             if (txtdcno.Text == "")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Please Enter Order No.Thank You!!!.');", true);
@@ -830,7 +848,7 @@ namespace Billing.Accountsbootstrap
 
                     DateTime Date = DateTime.ParseExact(txtsdate1.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-                    int insertPurchase = kbs.insertPurchaseOrder(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), txtdcno.Text, Date, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), Province);
+                    int insertPurchase = kbs.insertPurchaseOrder(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), txtdcno.Text, Date, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), Province,drpsubcompany.SelectedValue);
 
 
 
@@ -945,7 +963,7 @@ namespace Billing.Accountsbootstrap
 
                     DateTime Date = DateTime.ParseExact(txtsdate1.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-                    int insertPurchase = kbs.UpdatePurchaseOrder(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), txtdcno.Text, Date, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, iSalesID, Convert.ToInt32(lblUserID.Text), Province);
+                    int insertPurchase = kbs.UpdatePurchaseOrder(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), txtdcno.Text, Date, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, iSalesID, Convert.ToInt32(lblUserID.Text), Province,drpsubcompany.SelectedValue);
 
                     DataSet dspurchaseorderID = kbs.GettransPpurchaseid(sTableName, Convert.ToInt32(iSalesID));
 

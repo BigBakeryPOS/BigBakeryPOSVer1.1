@@ -110,6 +110,12 @@
                                         </label>
                                     </div>
                                     <div class="row">
+                                         <div class="col-lg-2">
+                                            <label>
+                                                Select Company</label>
+                                            <asp:DropDownList ID="drpsubcompany" runat="server" TabIndex="1" CssClass="form-control">
+                                            </asp:DropDownList>
+                                        </div>
                                         <div class="col-lg-2">
                                             <label>
                                                 Invoice/DC No</label>
@@ -360,7 +366,7 @@
                                                                 Width="200px" AutoPostBack="true" OnSelectedIndexChanged="ddlDef_OnSelectedIndexChanged">
                                                             </asp:DropDownList>--%>
                                                             <asp:Label ID="txtdefname" Width="350px" runat="server" Text='<%#Eval("Ingredient") %>'></asp:Label>
-                                                            <asp:Label ID="txtdefid" Visible="true" runat="server" Text='<%#Eval("IngredientID") %>'></asp:Label>
+                                                            <asp:Label ID="txtdefid" Visible="false" runat="server" Text='<%#Eval("IngredientID") %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Billing Name">
@@ -373,7 +379,7 @@
                                                             <%-- <asp:DropDownList ID="ddlunits" Visible="false" CssClass="form-control" runat="server">
                                                             </asp:DropDownList>--%>
                                                             <asp:Label ID="lblunits" Width="20px" Text='<%#Eval("Units") %>' runat="server"></asp:Label>
-                                                            <asp:Label ID="lblunitsid" Visible="true" Width="20px" Text='<%#Eval("Unitsid") %>' runat="server"></asp:Label>
+                                                            <asp:Label ID="lblunitsid" Visible="false" Width="20px" Text='<%#Eval("Unitsid") %>' runat="server"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="HSN Code">
@@ -389,8 +395,8 @@
                                                             <%--<asp:Label ID="lblprimaryvalue" runat="server"></asp:Label>--%>
 
                                                             <asp:Label ID="lblprimaryname" Width="100px" Text='<%#Eval("PUnits") %>' runat="server"></asp:Label>
-                                                            <asp:Label ID="lblprimarynamevalue" Visible="true" Width="100px" Text='<%#Eval("PUnitsvalue") %>' runat="server"></asp:Label>
-                                                            <asp:Label ID="lblprimaryvalue" Visible="true" Text='<%#Eval("Pvalue") %>' runat="server"></asp:Label>
+                                                            <asp:Label ID="lblprimarynamevalue" Visible="false" Width="100px" Text='<%#Eval("PUnitsvalue") %>' runat="server"></asp:Label>
+                                                            <asp:Label ID="lblprimaryvalue" Visible="false" Text='<%#Eval("Pvalue") %>' runat="server"></asp:Label>
 
                                                         </ItemTemplate>
                                                     </asp:TemplateField>

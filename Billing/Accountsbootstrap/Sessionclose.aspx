@@ -221,6 +221,11 @@
                                             </ajaxToolkit:CalendarExtender>
                                             <asp:Button ID="btnSubmit" runat="server" Visible="false" Text="Submit" CssClass="btn btn-info" />
                                         </div>
+                                         <div class="col-lg-2">
+                                             <asp:DropDownList ID="drpsessionmaster" runat="server" CssClass="form-control" >
+
+                                             </asp:DropDownList>
+                                             </div>
                                     </div>
                                     <br />
                                     <div class="row">
