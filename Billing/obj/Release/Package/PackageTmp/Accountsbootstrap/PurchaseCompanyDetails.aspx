@@ -1,10 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PurchaseCompanyDetails.aspx.cs" Inherits="Billing.Accountsbootstrap.PurchaseCompanyDetails" %>
 
-<%--<%@ Register TagPrefix="usc" TagName="Header" Src="~/HeaderMaster/Header.ascx" %>--%>
+<%@ Register TagPrefix="usc" TagName="Header" Src="~/HeaderMaster/Header.ascx" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
-<head id="Head1" runat="server" />
+<head  />
 <meta content="" charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -50,7 +50,7 @@
 <link href="../css/toastr.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <%-- <usc:Header ID="Header" runat="server" />--%>
+     <usc:Header ID="Header" runat="server" />
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
@@ -369,7 +369,7 @@
                                 <asp:Label ID="lblerror" runat="server" Style="color: Red"></asp:Label>
                                 <asp:Button ID="btnadd" runat="server" class="btn btn-success" Text="Save" OnClick="Add_Click"
                                     ValidationGroup="val1" />&nbsp
-                                    <asp:Button ID="Button1" runat="server" class="btn btn-danger" Text="Exit" PostBackUrl="~/Accountsbootstrap/CompanyDetailGrid.aspx" />
+                                    <asp:Button ID="Button1" runat="server" class="btn btn-danger" Text="Exit" PostBackUrl="~/Accountsbootstrap/PurchaseCompanyDetailsGrid.aspx" />
                             </div>
                             <div class="col-lg-12" style="display: none">
                                 <div id="horizontalTab" style="background-color: #D0D3D6; padding-left: 30px">
