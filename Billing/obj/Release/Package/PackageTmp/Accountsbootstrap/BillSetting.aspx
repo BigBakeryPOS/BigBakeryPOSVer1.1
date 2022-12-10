@@ -138,6 +138,26 @@
         }
     </script>
 
+    <style>
+        .chkChoice input
+        {
+            margin-left: -30px;
+        }
+        .chkChoice td
+        {
+            padding-left: 45px;
+        }
+        
+        .chkChoice1 input
+        {
+            margin-left: -20px;
+        }
+        .chkChoice1 td
+        {
+            padding-left: 40px;
+        }
+    </style>
+
 </head>
 <body>
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label" Visible="false">  </asp:Label>
@@ -201,8 +221,8 @@
                                                     placeholder="Enter Billno and Press Tab" onkeyup="Search_Gridview(this, 'gvsales')"></asp:TextBox>
 
                                                 <div class="table-responsive panel-grid-left">
-                                                    <asp:GridView ID="gvsales" align="center" runat="server" AllowPaging="false" PageSize="25" CssClass="table table-striped pos-table"
-                                                        AutoGenerateColumns="false" OnRowCommand="gvsales_RowCommand" padding="0" spacing="0" border="0" EmptyDataText="No Records Found">
+                                                    <asp:GridView ID="gvsales" align="center" runat="server" DataKeyNames="salesid,salestype" AllowPaging="false" PageSize="25" CssClass="table table-striped pos-table"
+                                                        AutoGenerateColumns="false" OnRowCommand="gvsales_RowCommand" OnRowDataBound="gvsales_RowDataBound" padding="0" spacing="0" border="0" EmptyDataText="No Records Found">
                                                         <%-- <HeaderStyle BackColor="#990000" />
                                                         <PagerSettings FirstPageText="1" Mode="Numeric" />--%>
                                                         <PagerStyle CssClass="pos-paging" />
@@ -221,7 +241,7 @@
                                                             <asp:BoundField HeaderText="Payment Type" DataField="Payment_Mode" DataFormatString="{0:f}" />
                                                             <asp:TemplateField HeaderText="Sales Type">
                                                                 <ItemTemplate>
-                                                                    <asp:RadioButtonList ID="lblradtype" RepeatColumns="2" Width="100px"
+                                                                    <asp:RadioButtonList ID="lblradtype" CssClass="chkChoice1" RepeatColumns="3" Width="100px"
                                                                         runat="server">
                                                                         <asp:ListItem Text="Cash" Value="1"></asp:ListItem>
                                                                         <asp:ListItem Text="Card" Value="4"></asp:ListItem>

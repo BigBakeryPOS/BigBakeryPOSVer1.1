@@ -91,3 +91,11 @@ border-bottom: 1px solid #ccc !important;
     text-align: center;
     color: #fff;
 }
+.pos-bill-tab {
+	overflow: auto; 
+	height: calc(100vh - 143px);
+	scrollbar-width: thin;
+}
+.pos-bill-right .r-tabs .r-tabs-panel {
+  border-bottom-right-radius: 12px;
+}

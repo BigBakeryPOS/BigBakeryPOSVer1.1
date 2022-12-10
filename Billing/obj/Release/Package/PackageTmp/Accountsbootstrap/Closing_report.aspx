@@ -274,8 +274,6 @@
                                     <asp:Button ID="Button1" runat="server" Visible="false" Text="Send Mail" CssClass="btn btn-primary pos-btn1"
                                         OnClick="btnMail_Click" />
                                     <asp:Button ID="Button2" runat="server" Text="Print" CssClass="btn btn-primary pos-btn1" OnClientClick=" printGrid()" />
-
-                                    
                                 </div>
                                 <div class="col-md-4 form-inline">
                                     <asp:RequiredFieldValidator ErrorMessage="Name is Required " ForeColor="Red" ControlToValidate="txtName"
