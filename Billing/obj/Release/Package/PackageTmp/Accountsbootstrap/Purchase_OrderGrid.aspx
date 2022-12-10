@@ -206,6 +206,8 @@
                                         NextPageText="Next" PreviousPageText="Previous" />--%>
                                     <Columns>
                                         <asp:BoundField HeaderText="LedgerID" DataField="Purchaseid" Visible="false" />
+                                        
+                                        <asp:BoundField HeaderText="Company Name" DataField="companyname" />
                                         <asp:BoundField HeaderText="OrderNo" DataField="OrderNo" />
                                         <asp:BoundField HeaderText="SupplierName" DataField="CustomerName" HeaderStyle-HorizontalAlign="Center" />                                      
                                         <asp:BoundField HeaderText="OrderDate" DataField="OrderDate" DataFormatString="{0:dd/MM/yyyy}" />

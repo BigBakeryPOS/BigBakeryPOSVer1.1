@@ -200,7 +200,7 @@
                         </div>
                     </div>
                     <div class="col-lg-12">
-                        <div class="col-lg-3">
+                        <div runat="server" visible="false" class="col-lg-3">
                             <div class="panel panel-default" style="height: 350px;">
                                 <div class="panel-heading" style="background-color: #0071BD; color: White; text-align: center">
                                     <i class="fa fa-cogs" aria-hidden="true"></i> Admin Login Details
@@ -227,7 +227,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div runat="server" visible="false" class="col-lg-3">
                             <div class="panel panel-default" style="height: 350px;">
                                 <div class="panel-heading" style="background-color: #0071BD; color: White; text-align: center">
                                     <i class="fa fa-cogs" aria-hidden="true"></i> Admin Setting Details
@@ -301,7 +301,7 @@
                               
                             </div>
                         </div>                         
-                        <div class="col-lg-3">
+                        <div runat="server" visible="false" class="col-lg-3">
                         <div class="panel panel-default" style="height: 350px;">
                                 <div class="panel-heading" style="background-color: #0071BD; color: White; text-align: center">
                                     <i class="fa fa-cogs" aria-hidden="true"></i> App Banner Image Upload

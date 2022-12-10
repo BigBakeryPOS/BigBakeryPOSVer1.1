@@ -383,6 +383,9 @@
                         Model Master</a></li>
                     <li id="HappyHours" runat="server" visible="false"><a href="../Accountsbootstrap/Offer.aspx">
                         Happy Hours Master</a></li>
+                    <li id="subcompany" runat="server" visible="true"><a href="../Accountsbootstrap/PurchaseCompanyDetailsGrid.aspx">
+                        Sub Company Master</a></li>
+                    
                 </ul>
             </li>
             <li id="OrderFormMenu" runat="server" visible="false" class='has-sub'><a id="A10"
@@ -565,6 +568,9 @@
                                 runat="server">Invoice Generate</a></li>
                             <li id="DenominationReport" runat="server" visible="false"><a href="../Accountsbootstrap/Denomination.aspx"
                                 runat="server">Denomination Report</a></li>
+                            <li id="Li3" runat="server" visible="true"><a href="../Accountsbootstrap/Sessionclose.aspx"
+                                runat="server">Session Close</a></li>
+                            
                                 <li id="NewTaxReport" runat="server" visible="false"><a id="A38" href="../Accountsbootstrap/NewTaxReport.aspx"
                                 runat="server">Tax Report</a></li>
                             <li id="SalesSummaryReport" runat="server" visible="false"><a href="../Accountsbootstrap/SalesSummaryReport.aspx"

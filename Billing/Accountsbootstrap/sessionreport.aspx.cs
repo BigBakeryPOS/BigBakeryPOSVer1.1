@@ -49,7 +49,7 @@ namespace Billing.Accountsbootstrap
                 drpsessiontype.Items.Insert(0, "Select Type");
 
 
-                DataSet getdenomination = objbs.getdenominationmaster();
+                DataSet getdenomination = objbs.getdenominationmaster(lbldefaultcur.Text);
                 if (getdenomination.Tables[0].Rows.Count > 0)
                 {
                     griddenomination.DataSource = getdenomination.Tables[0];

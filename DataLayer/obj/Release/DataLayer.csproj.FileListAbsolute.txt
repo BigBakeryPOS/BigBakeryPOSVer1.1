@@ -48,3 +48,6 @@ D:\BigPOSGITCode\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.csproj.CopyC
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\bin\Release\CommonLayer.dll
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\bin\Release\CommonLayer.pdb
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.csproj.CopyComplete
+C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\bin\Release\CommonLayer.dll
+C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\bin\Release\CommonLayer.pdb
+C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.csproj.CopyComplete

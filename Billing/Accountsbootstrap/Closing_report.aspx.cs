@@ -123,7 +123,7 @@ namespace Billing.Accountsbootstrap
                 drpsessiontype1.Enabled = false;
 
 
-                DataSet getdenominationclose = objbs.getdenominationmaster();
+                DataSet getdenominationclose = objbs.getdenominationmaster(lbldefaultcur.Text);
                 if (getdenominationclose.Tables[0].Rows.Count > 0)
                 {
                     gvdenominationcloseing.DataSource = getdenominationclose.Tables[0];

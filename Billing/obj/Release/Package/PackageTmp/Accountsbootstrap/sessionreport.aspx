@@ -178,6 +178,7 @@
     <div class="container-fluid">
 	<div class="row">
     <div class="col-lg-12">
+        <asp:Label ID="lbldefaultcur" runat="server" Visible="false" Text="INR"></asp:Label>
     <div class="col-lg-4">
         <div class="panel panel-custom1">
 		<div class="panel-header">

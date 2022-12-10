@@ -140,8 +140,9 @@
     <asp:Label runat="server" ID="lblWelcome" ForeColor="White" CssClass="label">Welcome : </asp:Label>
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label">Welcome: </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
-    <asp:Label ID="chkhour" runat="server" Visible="false" Text="01"></asp:Label>
+    <asp:Label ID="chkhour" runat="server" Visible="false" Text="09"></asp:Label>
     <asp:Label ID="chkminu" runat="server" Visible="false" Text="30"></asp:Label>
+        <asp:Label ID="lbldefaultcur" runat="server" Visible="false" Text="INR"></asp:Label>
     <asp:UpdatePanel ID="Updatepnel" runat="server" UpdateMode="Conditional" EnableViewState="true"
         ChildrenAsTriggers="true">
         <ContentTemplate>

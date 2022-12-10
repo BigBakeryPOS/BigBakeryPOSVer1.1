@@ -231,6 +231,7 @@
                 <asp:Label ID="chkhour" runat="server" Visible="false" Text="01"></asp:Label>
                 <asp:Label ID="chkminu" runat="server" Visible="false" Text="30"></asp:Label>
                 <asp:Label ID="lbltotexpense" runat="server" Visible="false"></asp:Label>
+                <asp:Label ID="lbldefaultcur" runat="server" Visible="false" Text="INR"></asp:Label>
                 <%--nknavaneethan4U@gmail.com--%>
                 <asp:TextBox ID="txtemail" Visible="false" runat="server" Text="nknavaneethan4U@gmail.com" class="form-control"></asp:TextBox>
                 <asp:TextBox ID="txtdelorderemail" runat="server" Text="blaackforestonline@gmail.com" class="form-control"></asp:TextBox>
