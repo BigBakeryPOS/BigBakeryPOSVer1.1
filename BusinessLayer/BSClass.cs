@@ -29841,7 +29841,7 @@ namespace BusinessLayer
             DataSet ds = new DataSet();
 
             //string sQry = "select  purchaseID as salesid,BillNo,BillDate,Total,ReturnAmount,ReceiptAmount,(Total-(ReceiptAmount+ReturnAmount)) as Balance from tblkitchenPurchase_" + sTableName + "  where supplier='" + supplier + "' and Paymode=2 and (Total-(ReceiptAmount+ReturnAmount))>0 and IsHide='N' ";
-            string sQry = "select  purchaseID as salesid,BillNo,BillDate,isnull(roundoff,0) as Total,ReturnAmount,ReceiptAmount,(isnull(roundoff,0)-(ReceiptAmount+ReturnAmount)) as Balance from tblkitchenPurchase_" + sTableName + "  where supplier='" + supplier + "' and Paymode=2 and (isnull(roundoff,0)-(ReceiptAmount+ReturnAmount))>0  ";
+            string sQry = "select  purchaseID as salesid,BillNo,BillDate,isnull(roundoff,0) as Total,ReturnAmount,ReceiptAmount,(isnull(roundoff,0)-(ReceiptAmount+ReturnAmount)) as Balance from tblkitchenPurchase_" + sTableName + "  where supplier='" + supplier + "' and Paymode=18 and (isnull(roundoff,0)-(ReceiptAmount+ReturnAmount))>0  ";
             ds = dbObj.InlineExecuteDataSet(sQry);
 
 
