@@ -8,6 +8,7 @@ using BusinessLayer;
 using DataLayer;
 using System.Data;
 using System.Text;
+using Microsoft.Office.Interop.Excel;
 
 namespace Billing.Accountsbootstrap
 {
@@ -26,7 +27,6 @@ namespace Billing.Accountsbootstrap
             //Logintypeid = Request.Cookies["userInfo"]["LoginTypeId"].ToString();
             if (!IsPostBack)
             {
-
                 DataSet ds = objBs.GetsubCompanyDetails();
                 if (ds != null)
                 {
@@ -46,6 +46,48 @@ namespace Billing.Accountsbootstrap
                     gvcust.DataSource = null;
                     gvcust.DataBind();
                 }
+
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "subcompany");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "subcompany");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnadd.Visible = true;
+                    }
+                    else
+                    {
+                        btnadd.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gvcust.Columns[9].Visible = true;
+                    }
+                    else
+                    {
+                        gvcust.Columns[9].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        gvcust.Columns[10].Visible = true;
+                    }
+                    else
+                    {
+                        gvcust.Columns[10].Visible = false;
+                    }
+                }
+
             }
         }
 

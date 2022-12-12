@@ -651,7 +651,8 @@ namespace Billing.Accountsbootstrap
 
         protected void btncancel_Click(object sender, EventArgs e)
         {
-            clearall();
+            //clearall();
+            Response.Redirect("SalesType.aspx");
         }
         private void clearall()
         {
@@ -670,9 +671,10 @@ namespace Billing.Accountsbootstrap
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-            DataSet ingrid = kbs.GetSalesType();
-            Ingredientdrid.DataSource = ingrid;
-            Ingredientdrid.DataBind();
+            Response.Redirect("SalesType.aspx");
+            //DataSet ingrid = kbs.GetSalesType();
+            //Ingredientdrid.DataSource = ingrid;
+            //Ingredientdrid.DataBind();
         }
 
     }

@@ -1328,6 +1328,11 @@ namespace Billing.HeaderMaster
                                         MasterMenu.Visible = true;
                                         Ingridients.Visible = true;
                                     }
+                                    if (screen == "subcompany")
+                                    {
+                                        MasterMenu.Visible = true;                                      
+                                        subcompany.Visible = true;
+                                    }
                                     if (screen == "CustMast")
                                     {
                                         MasterMenu.Visible = true;
@@ -2561,6 +2566,11 @@ namespace Billing.HeaderMaster
                                     MasterMenu.Visible = true;
                                     Customer.Visible = true;
                                     CustMast.Visible = true;
+                                }
+                                if (screen == "subcompany")
+                                {
+                                    MasterMenu.Visible = true;
+                                    subcompany.Visible = true;
                                 }
                                 if (screen == "DealMast")
                                 {
@@ -3803,6 +3813,11 @@ namespace Billing.HeaderMaster
                                 MasterMenu.Visible = true;
                                 Customer.Visible = true;
                                 CustMast.Visible = true;
+                            }
+                            if (screen == "subcompany")
+                            {
+                                MasterMenu.Visible = true;
+                                subcompany.Visible = true;
                             }
                             if (screen == "DealMast")
                             {

@@ -10,6 +10,7 @@ using System.Data;
 using System.Text;
 using System.Diagnostics;
 using System.Globalization;
+using Microsoft.Office.Interop.Excel;
 
 namespace Billing.Accountsbootstrap
 {
@@ -38,6 +39,47 @@ namespace Billing.Accountsbootstrap
 
             if (!IsPostBack)
             {
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "wholesale");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "wholesale");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                          addbutton.Visible = true;
+                    }
+                    else
+                    {
+                         addbutton.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gvsales.Columns[16].Visible = true;
+                    }
+                    else
+                    {
+                        gvsales.Columns[16].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        //  gvsales.Columns[16].Visible = true;
+                    }
+                    else
+                    {
+                        // gvsales.Columns[16].Visible = false;
+                    }
+                }
+
                 txtFDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 txtTDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
@@ -54,14 +96,11 @@ namespace Billing.Accountsbootstrap
                     ddlCus.DataValueField = "LedgerID";
                     ddlCus.DataBind();
                     ddlCus.Items.Insert(0, "All");
-
-
                 }
                 else
                 {
                     ddlCus.Items.Insert(0, "All");
                 }
-
             }
         }
 
@@ -137,7 +176,7 @@ namespace Billing.Accountsbootstrap
             if (e.CommandName == "Editt")
             {
                 string yourUrl = "WholeSales.aspx?iSalesID=" + e.CommandArgument.ToString();
-                              ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow1", "window.open('" + yourUrl + "');", true);
+                              ScriptManager.RegisterStartupScript(Page, GetType(), "OpenWindow1", "window.open('" + yourUrl + "');", true);
 
                 #region
                 //if (e.CommandArgument.ToString() != "")
@@ -211,7 +250,7 @@ namespace Billing.Accountsbootstrap
                         {
                             if (dlReason.SelectedItem.Text == "select")
                             {
-                                ScriptManager.RegisterStartupScript(this, typeof(Page), "alertMessage", "alertMessagee();", true);
+                                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alertMessagee();", true);
                                 return;
                             }
                             else
@@ -227,7 +266,7 @@ namespace Billing.Accountsbootstrap
                         }
                         else
                         {
-                            ScriptManager.RegisterStartupScript(this, typeof(Page), "alertMessage", "alertMessage();", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alertMessage();", true);
 
                             //this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('You clicked YES!')", true);
                         }
@@ -265,7 +304,7 @@ namespace Billing.Accountsbootstrap
             {
 
                 string yourUrl = "Invoice_Print1.aspx?SalesId=" + e.CommandArgument.ToString();
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow1", "window.open('" + yourUrl + "');", true);
+                ScriptManager.RegisterStartupScript(Page, GetType(), "OpenWindow1", "window.open('" + yourUrl + "');", true);
 
          //       string yourUrl = "WholeSalesPrintnew.aspx?ISalesId=" + e.CommandArgument.ToString();
            //     ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow1", "window.open('" + yourUrl + "');", true);
@@ -279,7 +318,7 @@ namespace Billing.Accountsbootstrap
             {
 
                 string yourUrl = "WholeSalesQtyPrint.aspx?ISalesId=" + e.CommandArgument.ToString();
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow1", "window.open('" + yourUrl + "');", true);
+                ScriptManager.RegisterStartupScript(Page, GetType(), "OpenWindow1", "window.open('" + yourUrl + "');", true);
 
             }
         }
