@@ -52,7 +52,7 @@
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=3.0.30930.28736, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\backup\bk28112022\BigBakeryPOSVer1.1\Billing\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Ajaxified">
       <HintPath>G:\Binaries\Ajaxified.dll</HintPath>
@@ -292,6 +292,7 @@
     <Content Include="Accountsbootstrap\GRNPMgrid.aspx" />
     <Content Include="Accountsbootstrap\GRNPMREPORT.aspx" />
     <Content Include="Accountsbootstrap\GRNReport.aspx" />
+    <Content Include="Accountsbootstrap\Home.aspx" />
     <Content Include="Accountsbootstrap\HomePage.aspx" />
     <Content Include="Accountsbootstrap\Home_Page.aspx" />
     <Content Include="Accountsbootstrap\HTMLPage1.htm" />
@@ -401,6 +402,8 @@
     <Content Include="Accountsbootstrap\Productiontostock.aspx" />
     <Content Include="Accountsbootstrap\ProduuctionStockDetails.aspx" />
     <Content Include="Accountsbootstrap\PRtnPrint.aspx" />
+    <Content Include="Accountsbootstrap\PurchaseCompanyDetails.aspx" />
+    <Content Include="Accountsbootstrap\PurchaseCompanyDetailsGrid.aspx" />
     <Content Include="Accountsbootstrap\PurchaseFutureExpReport.aspx" />
     <Content Include="Accountsbootstrap\PurchaseOrderRights.aspx" />
     <Content Include="Accountsbootstrap\PurchaseReportDetailed.aspx" />
@@ -1835,6 +1838,13 @@
     <Compile Include="Accountsbootstrap\GRNReport.aspx.designer.cs">
       <DependentUpon>GRNReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accountsbootstrap\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accountsbootstrap\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2779,6 +2789,20 @@
     </Compile>
     <Compile Include="Accountsbootstrap\Purchase.aspx.designer.cs">
       <DependentUpon>Purchase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\PurchaseCompanyDetails.aspx.cs">
+      <DependentUpon>PurchaseCompanyDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\PurchaseCompanyDetails.aspx.designer.cs">
+      <DependentUpon>PurchaseCompanyDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\PurchaseCompanyDetailsGrid.aspx.cs">
+      <DependentUpon>PurchaseCompanyDetailsGrid.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\PurchaseCompanyDetailsGrid.aspx.designer.cs">
+      <DependentUpon>PurchaseCompanyDetailsGrid.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\PurchaseEntryGrid.aspx.cs">
       <DependentUpon>PurchaseEntryGrid.aspx</DependentUpon>

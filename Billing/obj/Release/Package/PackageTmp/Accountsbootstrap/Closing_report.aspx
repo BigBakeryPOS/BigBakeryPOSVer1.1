@@ -231,6 +231,7 @@
                 <asp:Label ID="chkhour" runat="server" Visible="false" Text="01"></asp:Label>
                 <asp:Label ID="chkminu" runat="server" Visible="false" Text="30"></asp:Label>
                 <asp:Label ID="lbltotexpense" runat="server" Visible="false"></asp:Label>
+                <asp:Label ID="lbldefaultcur" runat="server" Visible="false" Text="INR"></asp:Label>
                 <%--nknavaneethan4U@gmail.com--%>
                 <asp:TextBox ID="txtemail" Visible="false" runat="server" Text="nknavaneethan4U@gmail.com" class="form-control"></asp:TextBox>
                 <asp:TextBox ID="txtdelorderemail" runat="server" Text="blaackforestonline@gmail.com" class="form-control"></asp:TextBox>
@@ -274,8 +275,6 @@
                                     <asp:Button ID="Button1" runat="server" Visible="false" Text="Send Mail" CssClass="btn btn-primary pos-btn1"
                                         OnClick="btnMail_Click" />
                                     <asp:Button ID="Button2" runat="server" Text="Print" CssClass="btn btn-primary pos-btn1" OnClientClick=" printGrid()" />
-
-                                    
                                 </div>
                                 <div class="col-md-4 form-inline">
                                     <asp:RequiredFieldValidator ErrorMessage="Name is Required " ForeColor="Red" ControlToValidate="txtName"

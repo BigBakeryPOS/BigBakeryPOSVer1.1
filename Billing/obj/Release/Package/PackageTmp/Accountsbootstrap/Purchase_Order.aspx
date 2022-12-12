@@ -65,6 +65,12 @@
 
                                 <div class="panel-body">
                                     <div class="row">
+                                         <div class="col-lg-2">
+                                            <label>
+                                                Select Company</label>
+                                            <asp:DropDownList ID="drpsubcompany" runat="server" TabIndex="1" CssClass="form-control">
+                                            </asp:DropDownList>
+                                        </div>
                                         <div class="col-lg-3">
                                             <label>
                                                 Supplier</label>
@@ -94,13 +100,13 @@
                                             <label>Address</label>
                                             <asp:TextBox ID="txtaddress" runat="server" CssClass="form-control" TextMode="MultiLine" ReadOnly="true"></asp:TextBox>
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-1">
                                             <label>Order No</label>
                                             <asp:TextBox Visible="false" CssClass="form-control" ID="txtbillno" placeholder="Enter Order No"
                                                 runat="server" Enabled="false"></asp:TextBox>
                                             <asp:TextBox CssClass="form-control" ID="txtdcno" placeholder="Enter Order No" runat="server"></asp:TextBox>
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-1">
                                             <label>Order Date</label>
                                             <asp:TextBox CssClass="form-control" ID="txtsdate1" Enabled="true" runat="server"
                                                 TabIndex="1" placeholder="Select Date"></asp:TextBox>

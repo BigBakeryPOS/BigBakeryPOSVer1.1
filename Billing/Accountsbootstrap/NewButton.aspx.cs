@@ -1931,7 +1931,7 @@ namespace Billing.Accountsbootstrap
                         if (dr["CategoryUserid"].ToString() == Item.Text && lblcattype.Text == dr["cattype"].ToString())
                         {
                             decimal qty = Convert.ToDecimal(dr["Qty"].ToString());
-                            decimal shwqty = Convert.ToInt32(dr["ShwQty"].ToString());
+                            decimal shwqty = Convert.ToDecimal(dr["ShwQty"].ToString());
                             //  int minQty = Convert.ToInt32(dr["recQty"].ToString());
                             decimal rate = Convert.ToDecimal(dr["Rate"].ToString());
                             decimal cqty = Convert.ToDecimal(dr["cQty"].ToString());
@@ -1945,6 +1945,10 @@ namespace Billing.Accountsbootstrap
                             amt = shwfinal * rate;
                             dr["Amount"] = amt.ToString("" + ratesetting + "");
                             if (dr["Qty"].ToString() == "0" && lblcattype.Text == dr["cattype"].ToString())
+                            {
+                                dt.Rows.Remove(dr);
+                            }
+                            if(shwfinal < 0)
                             {
                                 dt.Rows.Remove(dr);
                             }

@@ -67,7 +67,7 @@ namespace Billing.Accountsbootstrap
 
 
 
-                DataSet getdenominationclose = objBs.getdenominationmaster();
+                DataSet getdenominationclose = objBs.getdenominationmaster(lbldefaultcur.Text);
                 if (getdenominationclose.Tables[0].Rows.Count > 0)
                 {
                     gvdenominationcloseing.DataSource = getdenominationclose.Tables[0];
@@ -80,7 +80,7 @@ namespace Billing.Accountsbootstrap
                 dt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 date.Text = dt;
                 Button1.Enabled = false;
-                DataSet getdenomination = objBs.getdenominationmaster();
+                DataSet getdenomination = objBs.getdenominationmaster(lbldefaultcur.Text);
                 if (getdenomination.Tables[0].Rows.Count > 0)
                 {
                     griddenomination.DataSource = getdenomination.Tables[0];
@@ -604,6 +604,8 @@ namespace Billing.Accountsbootstrap
 
             TimeSpan start = new TimeSpan(hours, minu, 0);
             TimeSpan now = DateTime.Now.TimeOfDay;
+
+            // TimeSpan.Compare(start.TimeOfDay, now.TimeOfDay)
 
             if ((now < start))
             {

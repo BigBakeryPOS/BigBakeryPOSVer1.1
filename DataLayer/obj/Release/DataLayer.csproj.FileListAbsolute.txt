@@ -48,3 +48,15 @@ D:\BigPOSGITCode\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.csproj.CopyC
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\bin\Release\CommonLayer.dll
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\bin\Release\CommonLayer.pdb
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.csproj.CopyComplete
+C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\bin\Release\CommonLayer.dll
+C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\bin\Release\CommonLayer.pdb
+C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.csproj.CopyComplete
+D:\BigBakeryPOSVer1.1\DataLayer\bin\Release\DataLayer.dll
+D:\BigBakeryPOSVer1.1\DataLayer\bin\Release\DataLayer.pdb
+D:\BigBakeryPOSVer1.1\DataLayer\bin\Release\CommonLayer.dll
+D:\BigBakeryPOSVer1.1\DataLayer\bin\Release\CommonLayer.pdb
+D:\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.csproj.AssemblyReference.cache
+D:\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.csproj.CoreCompileInputs.cache
+D:\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.csproj.CopyComplete
+D:\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.dll
+D:\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.pdb

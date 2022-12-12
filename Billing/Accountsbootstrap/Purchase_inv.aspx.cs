@@ -59,6 +59,18 @@ namespace Billing.Accountsbootstrap
 
                 }
 
+                DataSet dssubcompany = kbs.GetsubCompanyDetails();
+                if (dssubcompany.Tables[0].Rows.Count > 0)
+                {
+                    drpsubcompany.DataSource = dssubcompany.Tables[0];
+                    drpsubcompany.DataTextField = "CustomerName";
+                    drpsubcompany.DataValueField = "subComapanyID";
+                    drpsubcompany.DataBind();
+                    drpsubcompany.Items.Insert(0, "Select Company");
+
+
+                }
+
                 DataSet bank = kbs.Ledgerbank();
                 if (bank.Tables[0].Rows.Count > 0)
                 {

@@ -5,33 +5,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title></title>
-    <script src="../js/jquery-2.1.0.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         function Home() {
             var test = document.getElementById("lblbilltype");
-
             test.innethtml = "Home Delivery";
-
         }
-    </script>
-    <script src="../js/jquery.responsiveTabs.js" type="text/javascript"></script>
-    <script src="../js/jquery.responsiveTabs.min.js" type="text/javascript"></script>
-    <script src="../js/jquery.responsiveTabs.js" type="text/javascript"></script>
-    <script src="../js/jquery.responsiveTabs.min.js" type="text/javascript"></script>
-    <link href="../css/responsive-tabs.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="../css/chosen.css" />
+    </script>   
     <link href="../css/responsive-tabs.css" rel="stylesheet" type="text/css" />
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
-    <link id="Link1" href="../css/bootstrap.min.css" runat="server" rel="stylesheet" />
-    <!-- MetisMenu CSS -->
-    <link id="Link2" href="../css/plugins/metisMenu/metisMenu.min.css" runat="server"
-        rel="stylesheet" />
-    <!-- Custom CSS -->
-    <link id="Link3" href="../css/sb-admin-2.css" runat="server" rel="stylesheet" />
-    <script src="../js/jquery-2.1.0.min.js" type="text/javascript"></script>
-    <!-- Custom Fonts -->
-    <link href="../Styles/style1.css" rel="stylesheet" />
     <style type="text/css">
         .button
         {
@@ -177,23 +158,18 @@
         }
 
     </script>
-    <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+     
     <style type="text/css">
-    .scroll {
-   width: 200px;
-   height: 700px;
-    background: red;
-   overflow: auto;
-}
-.scroll::-webkit-scrollbar {
-   width: 1em;
-   display:none;
-}
-
-
-
-
+	.scroll {
+		width: 200px;
+		height: 700px;
+		background: red;
+		overflow: auto;
+	}
+	.scroll::-webkit-scrollbar {
+	   width: 1em;
+	   display:none;
+	}
     </style>
     <style>
         .chkChoice input
@@ -204,15 +180,13 @@
         {
             padding-left: 20px;
         }
-
-
         .r-tabs .r-tabs-nav .r-tabs-tab {
-            background-color: #007AFF;
+            background-color: #376091;
         }
         .r-tabs {
             border:0;
             padding: 2px;
-            background: #007AFF;
+            background: #376091;
         }
         .r-tabs .r-tabs-nav .r-tabs-state-active .r-tabs-anchor {
 
@@ -222,14 +196,12 @@
             text-align: center;
             padding: 10px;
             background: #fff;
-            color: #007aff;
+            color: #376091;
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
-   
-    <link href="../css/billingstyle.css" rel="stylesheet" />
 </head>
 <body>
     <usc:Header ID="Header" runat="server" />
@@ -241,11 +213,9 @@
     <div class="clearfix"></div>
     <div class="container-fluid">
         <div class="row panel panel-custom1">
-            <div class="col-sm-7">
-            
-            
+            <div class="col-sm-6">
             <div class="row">
-            <div class="col-sm-4 pos-bill-left">
+				<div class="col-sm-4 pos-bill-left">
  
                     <asp:Label ID="billtypeid" runat="server" Visible="false"></asp:Label>
                     <div id="Div1" runat="server" visible="false">
@@ -296,129 +266,85 @@
                         <asp:UpdatePanel ID="UpdatePanel4" runat="server" UpdateMode="Always">
                             <ContentTemplate>
                                
-                                    <div id="categoryname" runat="server" visible="true">
-
-                                            <div class="row pos-detail">
-                                               <b>T.NO.: </b> <b>
-                                                    <label id="lbltable" runat="server">
-                                                    </label>
-                                                </b> 
-                                                <label id="lbltableid" visible="false" runat="server">
-                                                </label>
-                                                
-                                                <b>KOT NO:</b> 
-                                                <label id="lblOrdeNo" runat="server">
-                                                </label>
-                                                <label id="salesid" visible="false" runat="server">
-                                                </label>
-                                                <br>
-
-                                                 <b>Date: </b> 
-                                                <label id="lblDate" runat="server">
-                                                </label>
-
-                                                <%--<font size="2px"><b>Type :</b></font><br />--%>
-                                                <label id="lblbilltype" runat="server" visible="false">
-                                                </label>
-
-                                            </div>
-
-                                       
-                                            <table border="0">
-                                                
-                                                
-                                                <tr id="Tr1" runat="server" visible="false" valign="top"  style="display:none">
-                                                    <td valign="top"  >
-                                                        <table id="Table1" runat="server"  >
-                                                            <tr align="left">
-                                                                 
-                                                                <td>
-                                                                    <asp:Button ID="btnhome" Text="Home Delivery" class="button1" runat="server" OnClick="Name" />
-                                                                </td>
-                                                                <td>
-                                                                    <asp:Button ID="Button6" Text="Dine IN" runat="server" class="button1" OnClick="Name" />
-                                                                </td>
-                                                                <td >
-                                                                    <asp:Button ID="Button7" Text="Take Away" runat="server" class="button1" OnClick="Name" />
-                                                                </td>
-                                                                
-                                                            </tr>
-                                                            <tr id="Tr2" align="left" runat="server" visible="false">
-                                                                <td style="padding-left: 25px">
-                                                                    <label>
-                                                                        Payment Mode</label>
-                                                                    <asp:DropDownList ID="drpPayment1" runat="server" Width="150px" CssClass="form-control">
-                                                                        <asp:ListItem Text="Cash" Value="1" Enabled="true"></asp:ListItem>
-                                                                        <asp:ListItem Text="Card" Value="4" Enabled="true"></asp:ListItem>
-                                                                        <%--<asp:ListItem Text="Cash and Card" Value="5" Enabled="true"></asp:ListItem>--%>
-                                                                    </asp:DropDownList>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <div>
-                                                 
-                                                <asp:DataList ID="datcat" runat="server" RepeatColumns="1" RepeatDirection="Vertical" cssClass="table table-condensed table-borderless">
-                                                    <ItemTemplate>
-                                                        <asp:Button ID="btncat" runat="server" Font-Bold="true" cssClass="btn btn-link"  ForeColor="White" 
-                                                            Text='<%#Eval("Category")%>' CommandArgument='<%#Eval("CategoryID") %>' OnClick="Button1_Click"
-                                                             />
-                                                    </ItemTemplate>
-                                                </asp:DataList>
-                                                 
-                                            </div>
-                                         
-                                    </div>
+								<div id="categoryname" runat="server" visible="true">
+										<div class="row pos-detail">
+										   <b>T.NO.: 
+												<label id="lbltable" runat="server">
+												</label> 
+											<label id="lbltableid" visible="false" runat="server">
+											</label><br> 
+											KOT NO: 
+											<label id="lblOrdeNo" runat="server">
+											</label>
+											<label id="salesid" visible="false" runat="server">
+											</label>
+											<br> 
+											<label id="lblDate" runat="server">
+											</label> 
+											<label id="lblbilltype" runat="server" visible="false">
+											</label>
+											</b>
+										</div>
+										<table border="0">
+											<tr id="Tr1" runat="server" visible="false" valign="top"  style="display:none">
+												<td valign="top"  >
+													<table id="Table1" runat="server"  >
+														<tr align="left">
+															 
+															<td>
+																<asp:Button ID="btnhome" Text="Home Delivery" class="button1" runat="server" OnClick="Name" />
+															</td>
+															<td>
+																<asp:Button ID="Button6" Text="Dine IN" runat="server" class="button1" OnClick="Name" />
+															</td>
+															<td >
+																<asp:Button ID="Button7" Text="Take Away" runat="server" class="button1" OnClick="Name" />
+															</td>
+															
+														</tr>
+														<tr id="Tr2" align="left" runat="server" visible="false">
+															<td style="padding-left: 25px">
+																<label>
+																	Payment Mode</label>
+																<asp:DropDownList ID="drpPayment1" runat="server" Width="150px" CssClass="form-control">
+																	<asp:ListItem Text="Cash" Value="1" Enabled="true"></asp:ListItem>
+																	<asp:ListItem Text="Card" Value="4" Enabled="true"></asp:ListItem>
+																	<%--<asp:ListItem Text="Cash and Card" Value="5" Enabled="true"></asp:ListItem>--%>
+																</asp:DropDownList>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+										<asp:DataList ID="datcat" runat="server" RepeatColumns="1" RepeatDirection="Vertical" cssClass="table table-condensed table-borderless">
+											<ItemTemplate>
+												<asp:Button ID="btncat" runat="server" cssClass="btn btn-link btn-main-cat"  
+													Text='<%#Eval("Category")%>' CommandArgument='<%#Eval("CategoryID") %>' OnClick="Button1_Click"
+													 />
+											</ItemTemplate>
+										</asp:DataList>
+								 </div>
                                 
                             </ContentTemplate>
-                        </asp:UpdatePanel>
-
-
-            </div>
-            <div class="col-sm-8 pos-bill-middle">
-
-                 
+                        </asp:UpdatePanel> 
+				</div>
+				<div class="col-sm-8 pos-bill-middle">
                     <div id="itemname1" runat="server" visible="true">
-                        
                             <asp:UpdatePanel ID="UpdatePanell1" runat="server" UpdateMode="Always">
                                 <ContentTemplate>
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="row item-title">
-                                                Items
-                                            </div>
-                                        </div>
                                         <div class="col-md-12" style="padding-top: 10px;">
-                                           
-                                            
                                             <asp:DataList ID="datkot" runat="server" ScrollBars="auto" RepeatColumns="3" CellSpacing="0"
                                             RepeatDirection="Horizontal" RepeatLayout="Table" Width="100%">
-                                            <ItemTemplate>
-                                                <%--<asp:Button ID="Button2" Style="white-space: normal" runat="server" class="button"
-                                Font-Bold="true" Text='<%#Eval("Definition")%>' CommandName='<%#Eval("CategoryID")%>'
-                                CommandArgument='<%#Eval("CategoryUserID") %>' OnClick="Button2_Click" />--%>
-                                                <%--  <asp:Label ID="lblrate" Text='<%#Eval("Rate")%>' runat="server"></asp:Label><br />--%>
-                                                <%-- <asp:ImageButton ID="Button2" Font-Bold="true" Style="white-space: normal" runat="server"
-                                                    Width="120px" ImageUrl='<%#Eval("Image")%>' CommandName='<%#Eval("CategoryID")%>'
-                                                    CommandArgument='<%#Eval("CategoryUserID") %>  ' Font-Size="8px" Height="90px"
-                                                    BackColor="#800000" ForeColor="Wheat" OnClick="Button2_Click" /><br />
-                                                <asp:Label ID="Label1" Text='<%#Eval("Definition")%>' runat="server" Font-Size="13px"
-                                                    Font-Bold="true"></asp:Label>--%>
-                                                <asp:Button ID="Button2" CssClass="btn btn-link btn-bill-item" Font-Bold="true" runat="server"
-                                                    Text='<%#Eval("Definition")%>' CommandArgument='<%#Eval("CategoryUserID") %>  '   OnClick="Button2_Click" />
-                                            </ItemTemplate>
-                                        </asp:DataList>
-
-
+												<ItemTemplate>
+													<asp:Button ID="Button2" CssClass="btn btn-link btn-bill-item" Font-Bold="true" runat="server"
+														Text='<%#Eval("Definition")%>' CommandArgument='<%#Eval("CategoryUserID") %>  '   OnClick="Button2_Click" />
+												</ItemTemplate>
+											</asp:DataList>
                                         </div>
                                     </div>
-
-                                    
-
-
-                                    <table border="0">
+									<table border="0">
                                         <tr id="item" runat="server">
                                             <td colspan="1" valign="top" width="10%">
                                             </td>
@@ -437,30 +363,20 @@
                                     </table>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
-                         
                     </div>
-                
-
-
-
+				</div>
             </div>
             </div>
-
-
-
-            </div>
-            <div class="col-sm-5 pos-bill-right">
-
-                 
+            <div class="col-sm-6 pos-bill-right">
                 <div id="horizontalTab" class="row">
                     <ul>
                         <li><a href="#tab-2">Order Summary
                             <span class="label label-success"><%=iCntt %></span><asp:Label ID="count" runat="server"></asp:Label></a></li>
                         <li><a href="#tab-3">Total Item</a></li>
                     </ul>
-                    <div id="tab-2" style="background-color: white;">
-                        <div>
-                            <div style="overflow: auto; margin:0 auto; ">
+                    <div id="tab-2" style="padding-bottom: 0;">
+                        <div class="pos-bill-tab">
+                             
                                 <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Always">
                                     <ContentTemplate>
                                         <table border="0" width="100%" class="table table-condensed" >
@@ -474,25 +390,17 @@
                                                     </asp:DropDownList>
                                                 </td>
                                                 <td align="right">
+													<label>&nbsp;</label><br>
                                                     <asp:Button ID="Button2" runat="server" Text="Print KOT" CssClass="btn btn-md btn-primary pos-btn1"  OnClick="Button2_Click1" />
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="2" style="background-color: #007aff; color: White; text-align: center;
-                                                    font-weight: bold; height: 30px; font-size: 14px">
-                                                    Order Summary
-                                                </td>
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <td colspan="2">
-                                                    <div style="height: 200px; overflow: auto; vertical-align: top">
-                                                    <asp:GridView ID="gvlist" Width="100%" runat="server" CssClass="table table-hover"
-                                                        OnRowCommand="gvlist_RowCommand" AutoGenerateColumns="false" GridLines="None"
-                                                        ShowHeader="true">
-                                                        <HeaderStyle BackColor="#D8D8D8"  />
+												<div style="height: 200px; overflow: auto; vertical-align: top">
+                                                    <asp:GridView ID="gvlist" Width="100%" runat="server" CssClass="table table-condensed table-hover"
+                                                        OnRowCommand="gvlist_RowCommand" AutoGenerateColumns="false" GridLines="None" HeaderStyle-BackColor="#376091" HeaderStyle-ForeColor="White" ShowHeader="true"> 
                                                         <Columns>
-                                                            <asp:BoundField DataField="Definition" HeaderText="Definition" />
+                                                            <asp:BoundField DataField="Definition" HeaderText="Item" />
                                                             <asp:TemplateField HeaderText="Stock" ItemStyle-Font-Size="Smaller">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="Available_QTY" runat="server" Text='<%#Eval("Available_QTY") %>' Visible="true"></asp:Label>
@@ -527,68 +435,31 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="2">
-                                                    <table id="Table2" width="100%" align="left" runat="server" class="table table-condensed"
+                                                    <table id="Table2" width="100%"  runat="server" class="table table-condensed"
                                                         style="background-color: White;">
-                                                        <tr id="trsub" runat="server">
-                                                            <td width="50px">
-                                                                <label>
-                                                                    Total Qty</label>
-                                                            </td>
-                                                            <td width="50px">
-                                                                <asp:Label ID="lbltotqty" Font-Bold="true" ForeColor="Red" Font-Size="20px" runat="server"></asp:Label>
-                                                            </td>
-                                                            <td width="50px">
-                                                                <label>
-                                                                    Item Total</label>
-                                                            </td>
-                                                            <td width="30px" align="right">
-                                                                <b><asp:Label ID="lbltotal1" runat="server"></asp:Label></b>
-                                                            </td>
-                                                        </tr>
-                                                        <tr id="tr17" runat="server">
-                                                            <td width="50px">
-                                                               <label id="IDCgst" runat="server">
-                                                                    CGST:</label>
-                                                                <asp:Label ID="lblcgst" runat="server">0</asp:Label>
-                                                            </td>
-                                                            <td width="50px">
-                                                               <label id="IDSgst" runat="server">
-                                                                    SGST:</label>
-                                                                <asp:Label ID="lblsgst" runat="server">0</asp:Label>
-                                                            </td>
-                                                            <td width="50px">
-                                                                <label>
-                                                                    Tax</label>
-                                                            </td>
-                                                            <td width="30px" align="right">
-                                                                <asp:Label ID="txtTax" runat="server" style="text-align: right">0</asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr id="tr18" runat="server">
-                                                            <td width="50px">
-                                                            </td>
-                                                            <td width="50px">
-                                                            </td>
-                                                            <td width="50px">
-                                                            </td>
-                                                            <td width="30px">
-                                                            </td>
-                                                        </tr>
-                                                        <tr id="tr19" runat="server">
-                                                            <td width="50px">
-                                                            </td>
-                                                            <td width="50px">
-                                                            </td>
-                                                            <td width="50px">
-                                                                <label>
-                                                                    Sub Total</label>
-                                                            </td>
-                                                            <td width="30px" align="right">
-                                                                <b><asp:Label ID="lblsubttl" runat="server" Width="50px">0</asp:Label></b>
-                                                            </td>
-                                                        </tr>
+														<tr>
+															<td><label>Total Qty:  <asp:Label ID="lbltotqty" runat="server"></asp:Label></label></td>
+															<td></td>
+															<td  align="right"><label>Item Total: <asp:Label ID="lbltotal1" runat="server"></asp:Label></label></td>
+														</tr>
+														<tr>
+															<td><label id="IDCgst" runat="server">CGST: <asp:Label ID="lblcgst" runat="server">0</asp:Label></label></td>
+															<td><label id="IDSgst" runat="server">SGST: <asp:Label ID="lblsgst" runat="server">0</asp:Label></label></td>
+															<td  align="right"><label>Tax: <asp:Label ID="txtTax" runat="server">0</asp:Label></label></td>
+														</tr>
+														<tr>
+															<td></td>
+															<td></td>
+															<td  align="right"><label>Sub Total: <asp:Label ID="lblsubttl" runat="server" Width="50px">0</asp:Label></label></td>
+														</tr>
+														<tr>
+															<td></td>
+															<td></td>
+															<td class="pos-title1"  align="right"><label>Total: <asp:Label ID="lblGrandTotal1" runat="server"></asp:Label></label></td>
+														</tr>
+														 
                                                         <tr id="trdis" runat="server">
-                                                            <td colspan="2" width="50px">
+                                                            <td colspan="2">
                                                                 <label>
                                                                     Disc. Check</label>
                                                                 <asp:CheckBox ID="chkdisc" runat="server" OnCheckedChanged="disc_checkedchanged"
@@ -596,14 +467,13 @@
                                                                 <asp:TextBox ID="txtdiscotp" runat="server" placeholder="Enter OTP" Enabled="false"
                                                                     OnTextChanged="otp_chnaged" AutoPostBack="true"></asp:TextBox>
                                                             </td>
-                                                            <td width="50px">
+                                                            <td >
                                                                 <label>
                                                                     Disc %</label>
                                                                 <asp:TextBox ID="txtDiscount1" runat="server" AutoPostBack="false" Width="50px" OnTextChanged="txtDiscount_TextChanged">0</asp:TextBox>
+																<asp:Label ID="lbldisco1" runat="server"></asp:Label>
                                                             </td>
-                                                            <td width="30px">
-                                                                <asp:Label ID="lbldisco1" runat="server"></asp:Label>
-                                                            </td>
+                                                             
                                                         </tr>
                                                         <tr id="tradv" runat="server" style="display: none">
                                                             <td width="50px">
@@ -618,29 +488,7 @@
                                                                 <asp:TextBox ID="txtAdvance" runat="server" AutoPostBack="true" Width="50px" OnTextChanged="txtAdvance_TextChanged">0</asp:TextBox>
                                                             </td>
                                                         </tr>
-                                                        <tr id="trTax" runat="server" visible="false">
-                                                            <td width="50px">
-                                                            </td>
-                                                            <td width="50px">
-                                                            </td>
-                                                            <td width="50px">
-                                                            </td>
-                                                            <td width="30px">
-                                                            </td>
-                                                        </tr>
-                                                        <tr id="trTot" runat="server" style="background-color: #c5e2ff; color: #007aff;">
-                                                            <td width="50px">
-                                                            </td>
-                                                            <td width="50px">
-                                                            </td>
-                                                            <td width="50px" align="right" class="pos-total">
-                                                                <label>
-                                                                    Total</label>
-                                                            </td>
-                                                            <td width="30px" align="right" class="pos-total">
-                                                               <b><asp:Label ID="lblGrandTotal1" runat="server"></asp:Label></b>
-                                                            </td>
-                                                        </tr>
+                                                        
                                                         <tr id="tr15" runat="server" style="display: none">
                                                             <td width="50px">
                                                             </td>
@@ -669,49 +517,7 @@
                                                         </tr>
                                                     </table>
                                                 </td>
-                                            </tr>
-                                            <%--   <tr>
-                                                <td width="70px">
-                                                    <asp:Label runat="server" Width="200px" ID="txtSubTotal" CssClass="labelTxt">SubTotal</asp:Label>
-                                                </td>
-                                                <td width="100px">
-                                                    <asp:TextBox ID="lblTotal" runat="server" AutoPostBack="true" Width="150px">0</asp:TextBox>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="70px">
-                                                    <asp:Label runat="server" Width="200px" ID="Label2" CssClass="labelTxt">VAT </asp:Label>
-                                                </td>
-                                                <td width="100px">
-                                                    <asp:TextBox ID="txt_servicetaxpercent" runat="server" Text="9" Visible="false" Enabled="false"
-                                                        AutoPostBack="true" Width="100px" OnTextChanged="txt_servicetaxpercent_TextChanged"></asp:TextBox>
-                                                    <asp:TextBox ID="txt_ServiceTaxamount" runat="server" AutoPostBack="true" Width="100px"
-                                                        Enabled="false">0</asp:TextBox>
-                                                </td>
-                                            </tr>
-                                            <tr id="Tr11" runat="server" visible="false">
-                                                <td width="70px">
-                                                    <asp:Label runat="server" Width="200px" ID="Label3" CssClass="labelTxt"> SGST </asp:Label>
-                                                </td>
-                                                <td width="100px">
-                                                    <asp:TextBox ID="txt_VATPercent" Visible="false" runat="server" Text="9" AutoPostBack="true"
-                                                        Enabled="false" Width="100px" OnTextChanged="txt_VATPercent_TextChanged"></asp:TextBox>
-                                                    <asp:TextBox ID="txt_VATAmount" runat="server" AutoPostBack="true" Width="100px"
-                                                        Enabled="false" OnTextChanged="txt_VATAmount_TextChanged">0</asp:TextBox>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="70px">
-                                                    <label>
-                                                        <h3>
-                                                            Total</h3>
-                                                    </label>
-                                                </td>
-                                                <td width="30px" align="right" class="pos-total">
-                                                    <h2>
-                                                        <asp:Label ID="Label1" runat="server" Font-Size="Large" Width="100px" Enabled="false"></asp:Label></h2>
-                                                </td>
-                                            </tr>--%>
+                                            </tr> 
                                         </table>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
@@ -719,29 +525,30 @@
                                     <ProgressTemplate>
                                         <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0;
                                             right: 0; left: 0; z-index: 9999999; opacity: 0.7;">
-                                            <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="/images/01-progress.gif"
-                                                AlternateText="Loading ..." ToolTip="Loading ..." Style="width: 150px; padding: 10px;
-                                                position: fixed; top: 50%; left: 40%;" />
+                                            <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="../images/Preloader_10.gif"
+                                                AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px;
+                    position: fixed; top: 45%; left: 50%;" />
                                             <%--<asp:Image ID="imgUpdateProgress1" runat="server" ImageUrl="/images/loading.gif" />--%>
                                         </div>
                                     </ProgressTemplate>
                                 </asp:UpdateProgress>
-                            </div>
+                             
                              
                         </div>
                     </div>
 
 
-                        <div id="tab-3" style="background-color: white; padding-top: 30px;" >
+                        <div id="tab-3" style="padding-bottom: 0;" >
+						<div class="pos-bill-tab">
                             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
                                 <ContentTemplate>
-                                    <div style="margin:0 auto;" >
+                                     
                                     <asp:Label ID="lblmargin" Visible="false" runat="server"></asp:Label>
                                     <asp:Label ID="lblmargintax" Visible="false" runat="server"></asp:Label>
                                     <asp:Label ID="lblpaygate" Visible="false" runat="server"></asp:Label>
-                                    <table class="table tabel-condensed">
+                                    <table class="table table-condensed">
                                         <tr>
-                                            <td width="20%">
+                                            <td>
                                                 <label>
                                                     Bill/Kot No</label>
                                                 <asp:TextBox ID="txtBillNo" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
@@ -758,7 +565,7 @@
                                             <td>
                                                 <label>
                                                     Sales Type</label>
-                                                <asp:DropDownList ID="drpsalestype" Width="100%" runat="server" OnSelectedIndexChanged="drpsalestype_selectedindex"
+                                                <asp:DropDownList ID="drpsalestype" runat="server" OnSelectedIndexChanged="drpsalestype_selectedindex"
                                                     AutoPostBack="true" CssClass="form-control">
                                                 </asp:DropDownList>
                                                 <asp:Label ID="lblisnormal" runat="server" Visible="false"></asp:Label>
@@ -766,7 +573,7 @@
                                             <td width="25%">
                                                 <label>
                                                     Payment Mode</label>
-                                                <asp:DropDownList Width="100%" ID="drpPayment" runat="server" OnSelectedIndexChanged="drppayment_selectedindex"
+                                                <asp:DropDownList ID="drpPayment" runat="server" OnSelectedIndexChanged="drppayment_selectedindex"
                                                     AutoPostBack="false" CssClass="form-control">
                                                 </asp:DropDownList>
                                             </td>
@@ -788,12 +595,12 @@
                                             <td runat="server" id="Chkbills" visible="false">
                                                 <label>
                                                     Order No</label>
-                                                <asp:TextBox ID="txtorderno" runat="server" Width="80%" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="txtorderno" runat="server" CssClass="form-control"></asp:TextBox>
                                             </td>
                                             <td runat="server" id="chkgivenby" visible="false">
                                                 <label>
                                                     Given By</label>
-                                                <asp:TextBox ID="txtgiven" runat="server" Width="80%" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="txtgiven" runat="server" CssClass="form-control"></asp:TextBox>
                                             </td>
                                             <td id="Td1" runat="server" visible="false">
                                                 <label>
@@ -808,7 +615,7 @@
                                             <td>
                                                 <label>
                                                     Amount</label><br />
-                                                <label id="lbldisplay" runat="server" style="font-size: x-large; color: Blue">
+                                                <label id="lbldisplay" runat="server" cssClass="form-control">
                                                 </label>
                                             </td>
                                         </tr>
@@ -835,17 +642,17 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2">
+                                            <td>
                                                 <label>
                                                     Attender Name</label>
-                                                <asp:DropDownList Width="100%" ID="drpAttend" runat="server" AutoPostBack="false"
+                                                <asp:DropDownList ID="drpAttend" runat="server" AutoPostBack="false"
                                                     Enabled="false" CssClass="form-control">
                                                 </asp:DropDownList>
                                             </td>
-                                            <td>
-                                                <br />
+                                            <td colspan="3">
+                                                <label>&nbsp;</label><br />
                                                 <asp:Button ID="btnnsettlement" runat="server" OnClick="btnPrint_Click" Text="Settlement"
-                                                    class="btn btn-danger" Style="background-color: steelblue" />
+                                                    class="btn btn-primary pos-btn1"  />
                                             </td>
                                         </tr>
                                     </table>
@@ -871,8 +678,9 @@
                                                 <asp:ListItem Text="Enclusive" Value="4" Selected="True"></asp:ListItem>
                                             </asp:RadioButtonList>
                                         </div>
-                                        <asp:GridView ID="GridView1all" runat="server" Width="100%" HeaderStyle-BackColor="DarkBlue"
-                                            HeaderStyle-ForeColor="White" CssClass="table table-hover" OnRowCommand="gvlist_RowCommand1"
+										<div style="height: 220px; overflow: auto;">
+                                        <asp:GridView ID="GridView1all" runat="server" Width="100%" HeaderStyle-BackColor="#376091"
+                                            HeaderStyle-ForeColor="White" CssClass="table table-condensed table-hover" OnRowCommand="gvlist_RowCommand1"
                                             AutoGenerateColumns="false" GridLines="None" ShowHeader="true" OnRowDataBound="GridView1all_RowDataBound">
                                             <Columns>
                                                 <asp:TemplateField Visible="false" ItemStyle-CssClass="hidden" ItemStyle-Font-Size="Smaller">
@@ -942,88 +750,31 @@
                                                 </asp:TemplateField>
                                             </Columns>
                                         </asp:GridView>
-                                        <div align="right">
-                                            <%--<b>SGST:<asp:Label ID="shwsgst" runat="server"></asp:Label></b><br />--%>
-                                            <%--  Sub Total:
-                                            <asp:Label ID="lblsubtotal" runat="server">0</asp:Label>
-                                            <br />
-                                            Discount: %<asp:TextBox ID="txtdiscou" runat="server" AutoPostBack="true" Enabled="false"
-                                                OnTextChanged="txtdiscou_TextChanged" Width="50px">0</asp:TextBox>
-                                            <asp:Label ID="lbldisco" runat="server">0</asp:Label>
-                                            <asp:CheckBox ID="chckdiscnt" runat="server" OnCheckedChanged="chckdiscnt_CheckedChanged"
-                                                AutoPostBack="true" Checked="true" />
-                                            <br />
-                                            <asp:Label ID="lblDisTotal" runat="server" Visible="false">0</asp:Label><br />
-                                            <b>VAT:<asp:Label ID="shwcgst" runat="server"></asp:Label></b><br />
-                                            <asp:TextBox ID="TextBox1" runat="server" Text="0" AutoPostBack="true" Width="100px"
-                                                OnTextChanged="txt_VATPercent_TextChanged" Visible="false"></asp:TextBox>
-                                            <asp:TextBox ID="TextBox2" runat="server" Text="0" AutoPostBack="true" Width="100px"
-                                                OnTextChanged="txt_VATPercent_TextChanged" Visible="false"></asp:TextBox>
-                                            <b>GRAND TOTAL:
-                                                <asp:Label ID="lblGrandtotal" runat="server">0</asp:Label></b>--%>
                                         </div>
-                                        <table id="Table3" width="100%"  runat="server" class="table tabel-condensed table-borderless"
-                                            style="background-color: White;">
-                                            <tr id="tr3" runat="server">
-                                                <td width="50px">
-                                                    <label>
-                                                        Total Qty</label>
-                                                </td>
-                                                <td width="50px">
-                                                    <asp:Label ID="lbltotqtyg" Font-Bold="true" ForeColor="Red" Font-Size="20px" runat="server"></asp:Label>
-                                                </td>
-                                                <td width="50px">
-                                                    <label>
-                                                        Item - Total</label>
-                                                </td>
-                                                <td width="30px">
-                                                    <asp:Label ID="lbltotal1g" runat="server"></asp:Label>
-                                                </td>
-                                            </tr>
-                                            <tr id="tr4" runat="server">
-                                                <td width="50px">
-                                                    <label>
-                                                        CGST:</label>
-                                                    <asp:Label ID="lblcgstg" runat="server" Width="50px">0</asp:Label>
-                                                </td>
-                                                <td width="50px">
-                                                    <label>
-                                                        SGST:</label>
-                                                    <asp:Label ID="lblsgstg" runat="server" Width="50px">0</asp:Label>
-                                                </td>
-                                                <td width="50px">
-                                                    <label>
-                                                        Tax</label>
-                                                </td>
-                                                <td width="30px">
-                                                    <asp:TextBox ID="txtTaxg" runat="server" Width="50px">0</asp:TextBox>
-                                                </td>
-                                            </tr>
-                                            <tr id="tr5" runat="server">
-                                                <td width="50px">
-                                                </td>
-                                                <td width="50px">
-                                                </td>
-                                                <td width="50px">
-                                                </td>
-                                                <td width="30px">
-                                                </td>
-                                            </tr>
-                                            <tr id="tr6" runat="server">
-                                                <td width="50px">
-                                                </td>
-                                                <td width="50px">
-                                                </td>
-                                                <td width="50px">
-                                                    <label>
-                                                        SubTotal</label>
-                                                </td>
-                                                <td width="30px">
-                                                    <asp:Label ID="lblsubttlg" runat="server" Width="50px">0</asp:Label>
-                                                </td>
-                                            </tr>
+                                        <table id="Table3" width="100%"  runat="server" class="table table-condensed table-borderless" >
+										<tr>
+											<td><label>Total Qty:  <asp:Label ID="lbltotqtyg" runat="server"></asp:Label></label></td>
+											<td></td>
+											<td  align="right"><label>Item Total: <asp:Label ID="lbltotal1g" runat="server"></asp:Label></label></td>
+										</tr>
+										<tr>
+											<td><label>CGST: <asp:Label ID="lblcgstg" runat="server">0</asp:Label></label></td>
+											<td><label>SGST: <asp:Label ID="lblsgstg" runat="server">0</asp:Label></label></td>
+											<td  align="right"><label>Tax: <asp:TextBox ID="txtTaxg" runat="server" style="width: 50px">0</asp:TextBox></label></td>
+										</tr>
+										<tr>
+											<td></td>
+											<td></td>
+											<td align="right"><label>Sub Total:  <asp:Label ID="lblsubttlg" runat="server">0</asp:Label></label></td>
+										</tr>
+                                        <tr>
+											<td></td>
+											<td></td>
+											<td class="pos-title1"  align="right"><label>Total:  <asp:Label ID="lblGrandTotal1g" runat="server"></asp:Label></label></td>
+										</tr>     
+                                             
                                             <tr id="tr7" runat="server">
-                                                <td colspan="2" width="50px">
+                                                <td colspan="2">
                                                     <label>
                                                         Disc. Check</label>
                                                     <asp:CheckBox ID="chkdiscg" runat="server" OnCheckedChanged="disc_checkedchanged"
@@ -1031,15 +782,12 @@
                                                     <asp:TextBox ID="txtdiscotpg" runat="server" placeholder="Enter OTP" Enabled="false"
                                                         OnTextChanged="otp_chnaged" AutoPostBack="true"></asp:TextBox>
                                                 </td>
-                                                <td width="50px">
-                                                    <label>
-                                                        Disc %</label>
-                                                    <asp:TextBox ID="txtDiscount1g" runat="server" AutoPostBack="false" Width="50px"
-                                                        OnTextChanged="txtDiscount_TextChanged">0</asp:TextBox>
+                                                <td>
+                                                    <label>  Disc %</label>
+                                                    <asp:TextBox ID="txtDiscount1g" runat="server" AutoPostBack="false"  style="width: 50px"
+                                                        OnTextChanged="txtDiscount_TextChanged">0</asp:TextBox><asp:Label ID="lbldisco1g" runat="server"></asp:Label>
                                                 </td>
-                                                <td width="30px">
-                                                    <asp:Label ID="lbldisco1g" runat="server"></asp:Label>
-                                                </td>
+                                                 
                                             </tr>
                                             <tr id="tr8" runat="server" style="display: none">
                                                 <td width="50px">
@@ -1064,19 +812,7 @@
                                                 <td width="30px">
                                                 </td>
                                             </tr>
-                                            <tr id="tr10" runat="server" style="background-color: #c5e2ff; color: #007aff;">
-                                                <td width="50px">
-                                                </td>
-                                                <td width="50px">
-                                                </td>
-                                                <td width="50px" align="right" class="pos-total">
-                                                    <label>
-                                                        Total</label>
-                                                </td>
-                                                <td width="30px" align="right">
-                                                    <asp:Label ID="lblGrandTotal1g" runat="server" class="pos-total"></asp:Label>
-                                                </td>
-                                            </tr>
+                                            
                                             <tr id="tr11" runat="server" style="display: none">
                                                 <td width="50px">
                                                 </td>
@@ -1105,20 +841,21 @@
                                             </tr>
                                         </table>
                                     </div>
-                                </div>
+                                
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                             <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
                                 <ProgressTemplate>
                                     <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0;
                                         right: 0; left: 0; z-index: 9999999; opacity: 0.7;">
-                                        <asp:Image ID="imgUpdateProgress1" runat="server" ImageUrl="/images/01-progress.gif"
-                                            AlternateText="Loading ..." ToolTip="Loading ..." Style="width: 150px; padding: 10px;
-                                            position: fixed; top: 50%; left: 40%;" />
+                                        <asp:Image ID="imgUpdateProgress1" runat="server" ImageUrl="../images/Preloader_10.gif"
+                                            AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px;
+                    position: fixed; top: 45%; left: 50%;"/>
                                         <%--<asp:Image ID="imgUpdateProgress1" runat="server" ImageUrl="/images/loading.gif" />--%>
                                     </div>
                                 </ProgressTemplate>
                             </asp:UpdateProgress>
+							</div>
                         </div>
                         <script src="../js/jquery.responsiveTabs.js" type="text/javascript"></script>
                         <script type="text/javascript">
@@ -1155,7 +892,7 @@
         </div>
     </div>        
         
-        <div class="row" style="background-color: white; padding-top: 30px">
+        <div style="position: fixed; left:0; bottom:0; padding: 6px;">
             <asp:Button ID="btnback" runat="server" OnClick="btnback_click" Text="<<" />
         </div>
      
@@ -1355,10 +1092,8 @@
             </div>
         </div>
     </asp:Panel>
-    <%-- <script src="../js/jquery.min.js" type="text/javascript"></script>
-    <script src="../js/chosen.min.js" type="text/javascript"></script>
-    <script type="text/javascript">        $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>--%>
-    <link rel="stylesheet" href="billingstyle.css" />    
+	<script src="../js/jquery.responsiveTabs.min.js" type="text/javascript"></script>
+	<link href="../css/billingstyle.css" rel="stylesheet" />
 </form>
 </body>
 </html>

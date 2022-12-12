@@ -87,3 +87,14 @@ C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\BusinessLayer\obj\Re
 C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\BusinessLayer\obj\Release\BusinessLayer.csproj.CopyComplete
 C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\BusinessLayer\obj\Release\BusinessLayer.dll
 C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\BusinessLayer\obj\Release\BusinessLayer.pdb
+D:\BigBakeryPOSVer1.1\BusinessLayer\bin\Release\BusinessLayer.dll
+D:\BigBakeryPOSVer1.1\BusinessLayer\bin\Release\BusinessLayer.pdb
+D:\BigBakeryPOSVer1.1\BusinessLayer\bin\Release\CommonLayer.dll
+D:\BigBakeryPOSVer1.1\BusinessLayer\bin\Release\DataLayer.dll
+D:\BigBakeryPOSVer1.1\BusinessLayer\bin\Release\CommonLayer.pdb
+D:\BigBakeryPOSVer1.1\BusinessLayer\bin\Release\DataLayer.pdb
+D:\BigBakeryPOSVer1.1\BusinessLayer\obj\Release\BusinessLayer.csproj.AssemblyReference.cache
+D:\BigBakeryPOSVer1.1\BusinessLayer\obj\Release\BusinessLayer.csproj.CoreCompileInputs.cache
+D:\BigBakeryPOSVer1.1\BusinessLayer\obj\Release\BusinessLayer.csproj.CopyComplete
+D:\BigBakeryPOSVer1.1\BusinessLayer\obj\Release\BusinessLayer.dll
+D:\BigBakeryPOSVer1.1\BusinessLayer\obj\Release\BusinessLayer.pdb
