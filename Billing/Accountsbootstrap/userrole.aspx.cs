@@ -926,313 +926,589 @@ namespace Billing.Accountsbootstrap
 
         protected void chkRead_OnCheckedChangedadd1(object sender, EventArgs e)
         {
-            for (int i = 0; i < grdmaster.Rows.Count; i++)
+            CheckBox chkbox = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)chkbox.NamingContainer;
+
+            CheckBox chkRead = (CheckBox)row.FindControl("chkRead");
+            CheckBox chkEdit = (CheckBox)row.FindControl("chkEdit");
+            CheckBox chkDelete = (CheckBox)row.FindControl("chkDelete");
+            CheckBox chkSave = (CheckBox)row.FindControl("chkSave");
+            CheckBox chkboxAdd = (CheckBox)row.FindControl("chkboxAdd");
+            if (chkboxAdd.Checked == true)
             {
-                CheckBox chkRead = (CheckBox)grdmaster.Rows[i].FindControl("chkRead");
-                CheckBox chkEdit = (CheckBox)grdmaster.Rows[i].FindControl("chkEdit");
-                CheckBox chkDelete = (CheckBox)grdmaster.Rows[i].FindControl("chkDelete");
-                CheckBox chkSave = (CheckBox)grdmaster.Rows[i].FindControl("chkSave");
-
-                CheckBox chkboxAdd = (CheckBox)grdmaster.Rows[i].FindControl("chkboxAdd");
-
-                if (chkboxAdd.Checked == true)
-                {
-                    chkRead.Checked = true;
-                }
-                else
-                {
-                    chkRead.Checked = false;
-                    chkEdit.Checked = false;
-                    chkDelete.Checked = false;
-                    chkSave.Checked = false;
-                }
+                chkRead.Checked = true;
             }
+            else
+            {
+                chkRead.Checked = false;
+                chkEdit.Checked = false;
+                chkDelete.Checked = false;
+                chkSave.Checked = false;
+            }
+            //for (int i = 0; i < grdmaster.Rows.Count; i++)
+            //{
+            //    CheckBox chkRead = (CheckBox)grdmaster.Rows[i].FindControl("chkRead");
+            //    CheckBox chkEdit = (CheckBox)grdmaster.Rows[i].FindControl("chkEdit");
+            //    CheckBox chkDelete = (CheckBox)grdmaster.Rows[i].FindControl("chkDelete");
+            //    CheckBox chkSave = (CheckBox)grdmaster.Rows[i].FindControl("chkSave");
+
+            //    CheckBox chkboxAdd = (CheckBox)grdmaster.Rows[i].FindControl("chkboxAdd");
+
+            //    if (chkboxAdd.Checked == true)
+            //    {
+            //        chkRead.Checked = true;
+            //    }
+            //    else
+            //    {
+            //        chkRead.Checked = false;
+            //        chkEdit.Checked = false;
+            //        chkDelete.Checked = false;
+            //        chkSave.Checked = false;
+            //    }
+            //}
         }
         protected void chkRead_OnCheckedChanged1(object sender, EventArgs e)
         {
-            for (int i = 0; i < grdmaster.Rows.Count; i++)
+            CheckBox chkbox = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)chkbox.NamingContainer;
+
+            CheckBox chkRead = (CheckBox)row.FindControl("chkRead");
+            CheckBox chkEdit = (CheckBox)row.FindControl("chkEdit");
+            CheckBox chkDelete = (CheckBox)row.FindControl("chkDelete");
+            CheckBox chkSave = (CheckBox)row.FindControl("chkSave");
+            CheckBox chkboxAdd = (CheckBox)row.FindControl("chkboxAdd");
+
+            if (chkRead.Checked == true)
             {
-                CheckBox chkRead = (CheckBox)grdmaster.Rows[i].FindControl("chkRead");
-                CheckBox chkEdit = (CheckBox)grdmaster.Rows[i].FindControl("chkEdit");
-                CheckBox chkDelete = (CheckBox)grdmaster.Rows[i].FindControl("chkDelete");
-                CheckBox chkSave = (CheckBox)grdmaster.Rows[i].FindControl("chkSave");
+                chkboxAdd.Checked = true;
 
-                CheckBox chkboxAdd = (CheckBox)grdmaster.Rows[i].FindControl("chkboxAdd");
+                chkEdit.Enabled = false;
+                chkDelete.Enabled = false;
+                chkSave.Enabled = false;
 
-                if (chkRead.Checked == true)
+                chkEdit.Checked = false;
+                chkDelete.Checked = false;
+                chkSave.Checked = false;
+            }
+            else
+            {
+                if (chkEdit.Checked == false && chkDelete.Checked == false && chkSave.Checked == false)
                 {
-                    chkboxAdd.Checked = true;
-
-                    chkEdit.Enabled = false;
-                    chkDelete.Enabled = false;
-                    chkSave.Enabled = false;
-
-                    chkEdit.Checked = false;
-                    chkDelete.Checked = false;
-                    chkSave.Checked = false;
+                    chkboxAdd.Checked = false;
                 }
                 else
                 {
-                    if (chkEdit.Checked == false && chkDelete.Checked == false && chkSave.Checked == false)
+                    if (chkEdit.Checked == true)
                     {
-                        chkboxAdd.Checked = false;
+                        chkboxAdd.Checked = true;
                     }
-                    else
+                    if (chkDelete.Checked == true)
                     {
-                        if (chkEdit.Checked == true)
-                        {
-                            chkboxAdd.Checked = true;
-                        }
-                        if (chkDelete.Checked == true)
-                        {
-                            chkboxAdd.Checked = true;
-                        }
-                        if (chkSave.Checked == true)
-                        {
-                            chkboxAdd.Checked = true;
-                        }
-
+                        chkboxAdd.Checked = true;
+                    }
+                    if (chkSave.Checked == true)
+                    {
+                        chkboxAdd.Checked = true;
                     }
 
-                    chkEdit.Enabled = true;
-                    chkDelete.Enabled = true;
-                    chkSave.Enabled = true;
                 }
+
+                chkEdit.Enabled = true;
+                chkDelete.Enabled = true;
+                chkSave.Enabled = true;
             }
+
+            //for (int i = 0; i < grdmaster.Rows.Count; i++)
+            //{
+            //    CheckBox chkRead = (CheckBox)grdmaster.Rows[i].FindControl("chkRead");
+            //    CheckBox chkEdit = (CheckBox)grdmaster.Rows[i].FindControl("chkEdit");
+            //    CheckBox chkDelete = (CheckBox)grdmaster.Rows[i].FindControl("chkDelete");
+            //    CheckBox chkSave = (CheckBox)grdmaster.Rows[i].FindControl("chkSave");
+
+            //    CheckBox chkboxAdd = (CheckBox)grdmaster.Rows[i].FindControl("chkboxAdd");
+
+            //    if (chkRead.Checked == true)
+            //    {
+            //        chkboxAdd.Checked = true;
+
+            //        chkEdit.Enabled = false;
+            //        chkDelete.Enabled = false;
+            //        chkSave.Enabled = false;
+
+            //        chkEdit.Checked = false;
+            //        chkDelete.Checked = false;
+            //        chkSave.Checked = false;
+            //    }
+            //    else
+            //    {
+            //        if (chkEdit.Checked == false && chkDelete.Checked == false && chkSave.Checked == false)
+            //        {
+            //            chkboxAdd.Checked = false;
+            //        }
+            //        else
+            //        {
+            //            if (chkEdit.Checked == true)
+            //            {
+            //                chkboxAdd.Checked = true;
+            //            }
+            //            if (chkDelete.Checked == true)
+            //            {
+            //                chkboxAdd.Checked = true;
+            //            }
+            //            if (chkSave.Checked == true)
+            //            {
+            //                chkboxAdd.Checked = true;
+            //            }
+
+            //        }
+
+            //        chkEdit.Enabled = true;
+            //        chkDelete.Enabled = true;
+            //        chkSave.Enabled = true;
+            //    }
+            //}
 
         }
 
         protected void chkRead_OnCheckedChangedadd2(object sender, EventArgs e)
         {
-            for (int i = 0; i < OrderFormMenu.Rows.Count; i++)
+            CheckBox chkbox = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)chkbox.NamingContainer;
+
+            CheckBox chkRead = (CheckBox)row.FindControl("chkRead");
+            CheckBox chkEdit = (CheckBox)row.FindControl("chkEdit");
+            CheckBox chkDelete = (CheckBox)row.FindControl("chkDelete");
+            CheckBox chkSave = (CheckBox)row.FindControl("chkSave");
+            CheckBox chkboxAdd = (CheckBox)row.FindControl("chkboxAdd");
+
+            if (chkboxAdd.Checked == true)
             {
-                CheckBox chkRead = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkRead");
-                CheckBox chkEdit = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkEdit");
-                CheckBox chkDelete = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkDelete");
-                CheckBox chkSave = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkSave");
-
-                CheckBox chkboxAdd = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkboxAdd");
-
-                if (chkboxAdd.Checked == true)
-                {
-                    chkRead.Checked = true;
-                }
-                else
-                {
-                    chkRead.Checked = false;
-                    chkEdit.Checked = false;
-                    chkDelete.Checked = false;
-                    chkSave.Checked = false;
-                }
+                chkRead.Checked = true;
             }
+            else
+            {
+                chkRead.Checked = false;
+                chkEdit.Checked = false;
+                chkDelete.Checked = false;
+                chkSave.Checked = false;
+            }
+
+            //for (int i = 0; i < OrderFormMenu.Rows.Count; i++)
+            //{
+            //    CheckBox chkRead = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkRead");
+            //    CheckBox chkEdit = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkEdit");
+            //    CheckBox chkDelete = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkDelete");
+            //    CheckBox chkSave = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkSave");
+
+            //    CheckBox chkboxAdd = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkboxAdd");
+
+            //    if (chkboxAdd.Checked == true)
+            //    {
+            //        chkRead.Checked = true;
+            //    }
+            //    else
+            //    {
+            //        chkRead.Checked = false;
+            //        chkEdit.Checked = false;
+            //        chkDelete.Checked = false;
+            //        chkSave.Checked = false;
+            //    }
+            //}
         }
         protected void chkRead_OnCheckedChanged2(object sender, EventArgs e)
         {
-            for (int i = 0; i < OrderFormMenu.Rows.Count; i++)
+            CheckBox chkbox = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)chkbox.NamingContainer;
+
+            CheckBox chkRead = (CheckBox)row.FindControl("chkRead");
+            CheckBox chkEdit = (CheckBox)row.FindControl("chkEdit");
+            CheckBox chkDelete = (CheckBox)row.FindControl("chkDelete");
+            CheckBox chkSave = (CheckBox)row.FindControl("chkSave");
+            CheckBox chkboxAdd = (CheckBox)row.FindControl("chkboxAdd");
+
+            if (chkRead.Checked == true)
             {
-                CheckBox chkRead = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkRead");
-                CheckBox chkEdit = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkEdit");
-                CheckBox chkDelete = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkDelete");
-                CheckBox chkSave = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkSave");
+                chkboxAdd.Checked = true;
 
-                CheckBox chkboxAdd = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkboxAdd");
+                chkEdit.Enabled = false;
+                chkDelete.Enabled = false;
+                chkSave.Enabled = false;
 
-                if (chkRead.Checked == true)
+                chkEdit.Checked = false;
+                chkDelete.Checked = false;
+                chkSave.Checked = false;
+            }
+            else
+            {
+                if (chkEdit.Checked == false && chkDelete.Checked == false && chkSave.Checked == false)
                 {
-                    chkboxAdd.Checked = true;
-
-                    chkEdit.Enabled = false;
-                    chkDelete.Enabled = false;
-                    chkSave.Enabled = false;
-
-                    chkEdit.Checked = false;
-                    chkDelete.Checked = false;
-                    chkSave.Checked = false;
+                    chkboxAdd.Checked = false;
                 }
                 else
                 {
-                    if (chkEdit.Checked == false && chkDelete.Checked == false && chkSave.Checked == false)
+                    if (chkEdit.Checked == true)
                     {
-                        chkboxAdd.Checked = false;
+                        chkboxAdd.Checked = true;
                     }
-                    else
+                    if (chkDelete.Checked == true)
                     {
-                        if (chkEdit.Checked == true)
-                        {
-                            chkboxAdd.Checked = true;
-                        }
-                        if (chkDelete.Checked == true)
-                        {
-                            chkboxAdd.Checked = true;
-                        }
-                        if (chkSave.Checked == true)
-                        {
-                            chkboxAdd.Checked = true;
-                        }
-
+                        chkboxAdd.Checked = true;
+                    }
+                    if (chkSave.Checked == true)
+                    {
+                        chkboxAdd.Checked = true;
                     }
 
-                    chkEdit.Enabled = true;
-                    chkDelete.Enabled = true;
-                    chkSave.Enabled = true;
                 }
+
+                chkEdit.Enabled = true;
+                chkDelete.Enabled = true;
+                chkSave.Enabled = true;
             }
+
+            //for (int i = 0; i < OrderFormMenu.Rows.Count; i++)
+            //{
+            //    CheckBox chkRead = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkRead");
+            //    CheckBox chkEdit = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkEdit");
+            //    CheckBox chkDelete = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkDelete");
+            //    CheckBox chkSave = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkSave");
+
+            //    CheckBox chkboxAdd = (CheckBox)OrderFormMenu.Rows[i].FindControl("chkboxAdd");
+
+            //    if (chkRead.Checked == true)
+            //    {
+            //        chkboxAdd.Checked = true;
+
+            //        chkEdit.Enabled = false;
+            //        chkDelete.Enabled = false;
+            //        chkSave.Enabled = false;
+
+            //        chkEdit.Checked = false;
+            //        chkDelete.Checked = false;
+            //        chkSave.Checked = false;
+            //    }
+            //    else
+            //    {
+            //        if (chkEdit.Checked == false && chkDelete.Checked == false && chkSave.Checked == false)
+            //        {
+            //            chkboxAdd.Checked = false;
+            //        }
+            //        else
+            //        {
+            //            if (chkEdit.Checked == true)
+            //            {
+            //                chkboxAdd.Checked = true;
+            //            }
+            //            if (chkDelete.Checked == true)
+            //            {
+            //                chkboxAdd.Checked = true;
+            //            }
+            //            if (chkSave.Checked == true)
+            //            {
+            //                chkboxAdd.Checked = true;
+            //            }
+
+            //        }
+
+            //        chkEdit.Enabled = true;
+            //        chkDelete.Enabled = true;
+            //        chkSave.Enabled = true;
+            //    }
+            //}
 
         }
 
         protected void chkRead_OnCheckedChangedadd3(object sender, EventArgs e)
         {
-            for (int i = 0; i < grdinventory.Rows.Count; i++)
+            CheckBox chkbox = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)chkbox.NamingContainer;
+
+            CheckBox chkRead = (CheckBox)row.FindControl("chkRead");
+            CheckBox chkEdit = (CheckBox)row.FindControl("chkEdit");
+            CheckBox chkDelete = (CheckBox)row.FindControl("chkDelete");
+            CheckBox chkSave = (CheckBox)row.FindControl("chkSave");
+            CheckBox chkboxAdd = (CheckBox)row.FindControl("chkboxAdd");
+            if (chkboxAdd.Checked == true)
             {
-                CheckBox chkRead = (CheckBox)grdinventory.Rows[i].FindControl("chkRead");
-                CheckBox chkEdit = (CheckBox)grdinventory.Rows[i].FindControl("chkEdit");
-                CheckBox chkDelete = (CheckBox)grdinventory.Rows[i].FindControl("chkDelete");
-                CheckBox chkSave = (CheckBox)grdinventory.Rows[i].FindControl("chkSave");
-
-                CheckBox chkboxAdd = (CheckBox)grdinventory.Rows[i].FindControl("chkboxAdd");
-
-                if (chkboxAdd.Checked == true)
-                {
-                    chkRead.Checked = true;
-                }
-                else
-                {
-                    chkRead.Checked = false;
-                    chkEdit.Checked = false;
-                    chkDelete.Checked = false;
-                    chkSave.Checked = false;
-                }
+                chkRead.Checked = true;
             }
+            else
+            {
+                chkRead.Checked = false;
+                chkEdit.Checked = false;
+                chkDelete.Checked = false;
+                chkSave.Checked = false;
+            }
+            //for (int i = 0; i < grdinventory.Rows.Count; i++)
+            //{
+            //    CheckBox chkRead = (CheckBox)grdinventory.Rows[i].FindControl("chkRead");
+            //    CheckBox chkEdit = (CheckBox)grdinventory.Rows[i].FindControl("chkEdit");
+            //    CheckBox chkDelete = (CheckBox)grdinventory.Rows[i].FindControl("chkDelete");
+            //    CheckBox chkSave = (CheckBox)grdinventory.Rows[i].FindControl("chkSave");
+
+            //    CheckBox chkboxAdd = (CheckBox)grdinventory.Rows[i].FindControl("chkboxAdd");
+
+            //    if (chkboxAdd.Checked == true)
+            //    {
+            //        chkRead.Checked = true;
+            //    }
+            //    else
+            //    {
+            //        chkRead.Checked = false;
+            //        chkEdit.Checked = false;
+            //        chkDelete.Checked = false;
+            //        chkSave.Checked = false;
+            //    }
+            //}
         }
         protected void chkRead_OnCheckedChanged3(object sender, EventArgs e)
         {
-            for (int i = 0; i < grdinventory.Rows.Count; i++)
+            CheckBox chkbox = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)chkbox.NamingContainer;
+
+            CheckBox chkRead = (CheckBox)row.FindControl("chkRead");
+            CheckBox chkEdit = (CheckBox)row.FindControl("chkEdit");
+            CheckBox chkDelete = (CheckBox)row.FindControl("chkDelete");
+            CheckBox chkSave = (CheckBox)row.FindControl("chkSave");
+            CheckBox chkboxAdd = (CheckBox)row.FindControl("chkboxAdd");
+
+            if (chkRead.Checked == true)
             {
-                CheckBox chkRead = (CheckBox)grdinventory.Rows[i].FindControl("chkRead");
-                CheckBox chkEdit = (CheckBox)grdinventory.Rows[i].FindControl("chkEdit");
-                CheckBox chkDelete = (CheckBox)grdinventory.Rows[i].FindControl("chkDelete");
-                CheckBox chkSave = (CheckBox)grdinventory.Rows[i].FindControl("chkSave");
+                chkboxAdd.Checked = true;
 
-                CheckBox chkboxAdd = (CheckBox)grdinventory.Rows[i].FindControl("chkboxAdd");
+                chkEdit.Enabled = false;
+                chkDelete.Enabled = false;
+                chkSave.Enabled = false;
 
-                if (chkRead.Checked == true)
+                chkEdit.Checked = false;
+                chkDelete.Checked = false;
+                chkSave.Checked = false;
+            }
+            else
+            {
+                if (chkEdit.Checked == false && chkDelete.Checked == false && chkSave.Checked == false)
                 {
-                    chkboxAdd.Checked = true;
-
-                    chkEdit.Enabled = false;
-                    chkDelete.Enabled = false;
-                    chkSave.Enabled = false;
-
-                    chkEdit.Checked = false;
-                    chkDelete.Checked = false;
-                    chkSave.Checked = false;
+                    chkboxAdd.Checked = false;
                 }
                 else
                 {
-                    if (chkEdit.Checked == false && chkDelete.Checked == false && chkSave.Checked == false)
+                    if (chkEdit.Checked == true)
                     {
-                        chkboxAdd.Checked = false;
+                        chkboxAdd.Checked = true;
                     }
-                    else
+                    if (chkDelete.Checked == true)
                     {
-                        if (chkEdit.Checked == true)
-                        {
-                            chkboxAdd.Checked = true;
-                        }
-                        if (chkDelete.Checked == true)
-                        {
-                            chkboxAdd.Checked = true;
-                        }
-                        if (chkSave.Checked == true)
-                        {
-                            chkboxAdd.Checked = true;
-                        }
-
+                        chkboxAdd.Checked = true;
+                    }
+                    if (chkSave.Checked == true)
+                    {
+                        chkboxAdd.Checked = true;
                     }
 
-                    chkEdit.Enabled = true;
-                    chkDelete.Enabled = true;
-                    chkSave.Enabled = true;
                 }
+
+                chkEdit.Enabled = true;
+                chkDelete.Enabled = true;
+                chkSave.Enabled = true;
             }
+
+            //for (int i = 0; i < grdinventory.Rows.Count; i++)
+            //{
+            //    CheckBox chkRead = (CheckBox)grdinventory.Rows[i].FindControl("chkRead");
+            //    CheckBox chkEdit = (CheckBox)grdinventory.Rows[i].FindControl("chkEdit");
+            //    CheckBox chkDelete = (CheckBox)grdinventory.Rows[i].FindControl("chkDelete");
+            //    CheckBox chkSave = (CheckBox)grdinventory.Rows[i].FindControl("chkSave");
+
+            //    CheckBox chkboxAdd = (CheckBox)grdinventory.Rows[i].FindControl("chkboxAdd");
+
+            //    if (chkRead.Checked == true)
+            //    {
+            //        chkboxAdd.Checked = true;
+
+            //        chkEdit.Enabled = false;
+            //        chkDelete.Enabled = false;
+            //        chkSave.Enabled = false;
+
+            //        chkEdit.Checked = false;
+            //        chkDelete.Checked = false;
+            //        chkSave.Checked = false;
+            //    }
+            //    else
+            //    {
+            //        if (chkEdit.Checked == false && chkDelete.Checked == false && chkSave.Checked == false)
+            //        {
+            //            chkboxAdd.Checked = false;
+            //        }
+            //        else
+            //        {
+            //            if (chkEdit.Checked == true)
+            //            {
+            //                chkboxAdd.Checked = true;
+            //            }
+            //            if (chkDelete.Checked == true)
+            //            {
+            //                chkboxAdd.Checked = true;
+            //            }
+            //            if (chkSave.Checked == true)
+            //            {
+            //                chkboxAdd.Checked = true;
+            //            }
+
+            //        }
+
+            //        chkEdit.Enabled = true;
+            //        chkDelete.Enabled = true;
+            //        chkSave.Enabled = true;
+            //    }
+            //}
 
         }
 
         protected void chkRead_OnCheckedChangedadd4(object sender, EventArgs e)
         {
-            for (int i = 0; i < grRequestAccept.Rows.Count; i++)
+            CheckBox chkbox = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)chkbox.NamingContainer;
+
+            CheckBox chkRead = (CheckBox)row.FindControl("chkRead");
+            CheckBox chkEdit = (CheckBox)row.FindControl("chkEdit");
+            CheckBox chkDelete = (CheckBox)row.FindControl("chkDelete");
+            CheckBox chkSave = (CheckBox)row.FindControl("chkSave");
+            CheckBox chkboxAdd = (CheckBox)row.FindControl("chkboxAdd");
+
+            if (chkboxAdd.Checked == true)
             {
-                CheckBox chkRead = (CheckBox)grRequestAccept.Rows[i].FindControl("chkRead");
-                CheckBox chkEdit = (CheckBox)grRequestAccept.Rows[i].FindControl("chkEdit");
-                CheckBox chkDelete = (CheckBox)grRequestAccept.Rows[i].FindControl("chkDelete");
-                CheckBox chkSave = (CheckBox)grRequestAccept.Rows[i].FindControl("chkSave");
-
-                CheckBox chkboxAdd = (CheckBox)grRequestAccept.Rows[i].FindControl("chkboxAdd");
-
-                if (chkboxAdd.Checked == true)
-                {
-                    chkRead.Checked = true;
-                }
-                else
-                {
-                    chkRead.Checked = false;
-                    chkEdit.Checked = false;
-                    chkDelete.Checked = false;
-                    chkSave.Checked = false;
-                }
+                chkRead.Checked = true;
             }
+            else
+            {
+                chkRead.Checked = false;
+                chkEdit.Checked = false;
+                chkDelete.Checked = false;
+                chkSave.Checked = false;
+            }
+
+            //for (int i = 0; i < grRequestAccept.Rows.Count; i++)
+            //{
+            //    CheckBox chkRead = (CheckBox)grRequestAccept.Rows[i].FindControl("chkRead");
+            //    CheckBox chkEdit = (CheckBox)grRequestAccept.Rows[i].FindControl("chkEdit");
+            //    CheckBox chkDelete = (CheckBox)grRequestAccept.Rows[i].FindControl("chkDelete");
+            //    CheckBox chkSave = (CheckBox)grRequestAccept.Rows[i].FindControl("chkSave");
+
+            //    CheckBox chkboxAdd = (CheckBox)grRequestAccept.Rows[i].FindControl("chkboxAdd");
+
+            //    if (chkboxAdd.Checked == true)
+            //    {
+            //        chkRead.Checked = true;
+            //    }
+            //    else
+            //    {
+            //        chkRead.Checked = false;
+            //        chkEdit.Checked = false;
+            //        chkDelete.Checked = false;
+            //        chkSave.Checked = false;
+            //    }
+            //}
         }
         protected void chkRead_OnCheckedChanged4(object sender, EventArgs e)
         {
-            for (int i = 0; i < grRequestAccept.Rows.Count; i++)
+            CheckBox chkbox = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)chkbox.NamingContainer;
+
+            CheckBox chkRead = (CheckBox)row.FindControl("chkRead");
+            CheckBox chkEdit = (CheckBox)row.FindControl("chkEdit");
+            CheckBox chkDelete = (CheckBox)row.FindControl("chkDelete");
+            CheckBox chkSave = (CheckBox)row.FindControl("chkSave");
+            CheckBox chkboxAdd = (CheckBox)row.FindControl("chkboxAdd");
+
+            if (chkRead.Checked == true)
             {
-                CheckBox chkRead = (CheckBox)grRequestAccept.Rows[i].FindControl("chkRead");
-                CheckBox chkEdit = (CheckBox)grRequestAccept.Rows[i].FindControl("chkEdit");
-                CheckBox chkDelete = (CheckBox)grRequestAccept.Rows[i].FindControl("chkDelete");
-                CheckBox chkSave = (CheckBox)grRequestAccept.Rows[i].FindControl("chkSave");
+                chkboxAdd.Checked = true;
 
-                CheckBox chkboxAdd = (CheckBox)grRequestAccept.Rows[i].FindControl("chkboxAdd");
+                chkEdit.Enabled = false;
+                chkDelete.Enabled = false;
+                chkSave.Enabled = false;
 
-                if (chkRead.Checked == true)
+                chkEdit.Checked = false;
+                chkDelete.Checked = false;
+                chkSave.Checked = false;
+            }
+            else
+            {
+                if (chkEdit.Checked == false && chkDelete.Checked == false && chkSave.Checked == false)
                 {
-                    chkboxAdd.Checked = true;
-
-                    chkEdit.Enabled = false;
-                    chkDelete.Enabled = false;
-                    chkSave.Enabled = false;
-
-                    chkEdit.Checked = false;
-                    chkDelete.Checked = false;
-                    chkSave.Checked = false;
+                    chkboxAdd.Checked = false;
                 }
                 else
                 {
-                    if (chkEdit.Checked == false && chkDelete.Checked == false && chkSave.Checked == false)
+                    if (chkEdit.Checked == true)
                     {
-                        chkboxAdd.Checked = false;
+                        chkboxAdd.Checked = true;
                     }
-                    else
+                    if (chkDelete.Checked == true)
                     {
-                        if (chkEdit.Checked == true)
-                        {
-                            chkboxAdd.Checked = true;
-                        }
-                        if (chkDelete.Checked == true)
-                        {
-                            chkboxAdd.Checked = true;
-                        }
-                        if (chkSave.Checked == true)
-                        {
-                            chkboxAdd.Checked = true;
-                        }
-
+                        chkboxAdd.Checked = true;
+                    }
+                    if (chkSave.Checked == true)
+                    {
+                        chkboxAdd.Checked = true;
                     }
 
-                    chkEdit.Enabled = true;
-                    chkDelete.Enabled = true;
-                    chkSave.Enabled = true;
                 }
+
+                chkEdit.Enabled = true;
+                chkDelete.Enabled = true;
+                chkSave.Enabled = true;
             }
+
+            //for (int i = 0; i < grRequestAccept.Rows.Count; i++)
+            //{
+            //    CheckBox chkRead = (CheckBox)grRequestAccept.Rows[i].FindControl("chkRead");
+            //    CheckBox chkEdit = (CheckBox)grRequestAccept.Rows[i].FindControl("chkEdit");
+            //    CheckBox chkDelete = (CheckBox)grRequestAccept.Rows[i].FindControl("chkDelete");
+            //    CheckBox chkSave = (CheckBox)grRequestAccept.Rows[i].FindControl("chkSave");
+
+            //    CheckBox chkboxAdd = (CheckBox)grRequestAccept.Rows[i].FindControl("chkboxAdd");
+
+            //    if (chkRead.Checked == true)
+            //    {
+            //        chkboxAdd.Checked = true;
+
+            //        chkEdit.Enabled = false;
+            //        chkDelete.Enabled = false;
+            //        chkSave.Enabled = false;
+
+            //        chkEdit.Checked = false;
+            //        chkDelete.Checked = false;
+            //        chkSave.Checked = false;
+            //    }
+            //    else
+            //    {
+            //        if (chkEdit.Checked == false && chkDelete.Checked == false && chkSave.Checked == false)
+            //        {
+            //            chkboxAdd.Checked = false;
+            //        }
+            //        else
+            //        {
+            //            if (chkEdit.Checked == true)
+            //            {
+            //                chkboxAdd.Checked = true;
+            //            }
+            //            if (chkDelete.Checked == true)
+            //            {
+            //                chkboxAdd.Checked = true;
+            //            }
+            //            if (chkSave.Checked == true)
+            //            {
+            //                chkboxAdd.Checked = true;
+            //            }
+
+            //        }
+
+            //        chkEdit.Enabled = true;
+            //        chkDelete.Enabled = true;
+            //        chkSave.Enabled = true;
+            //    }
+            //}
 
         }
 

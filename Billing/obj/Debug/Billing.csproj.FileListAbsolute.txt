@@ -1355,10 +1355,6 @@ C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug\Bi
 C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.CopyComplete
 C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.dll
 C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.pdb
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.AssemblyReference.cache
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\obj\Debug\UChat.Global.resources
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.GenerateResource.cache
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.CoreCompileInputs.cache
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\bin\Billing.dll.config
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\bin\Billing.dll
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\bin\Billing.pdb
@@ -1374,6 +1370,10 @@ C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\bin\CommonLayer.pdb
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\bin\DataLayer.pdb
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\bin\Microsoft.Office.Interop.Excel.xml
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\bin\Office.xml
+C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.AssemblyReference.cache
+C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\obj\Debug\UChat.Global.resources
+C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.GenerateResource.cache
+C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.CoreCompileInputs.cache
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.CopyComplete
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.dll
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.pdb
