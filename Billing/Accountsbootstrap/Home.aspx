@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Home</title>
+    <title>Home Page</title>
     <link rel="Stylesheet" type="text/css" href="../css/date.css" />
     <!-- Bootstrap Core CSS -->
     <link href="../Styles/style1.css" rel="stylesheet" type="text/css" />

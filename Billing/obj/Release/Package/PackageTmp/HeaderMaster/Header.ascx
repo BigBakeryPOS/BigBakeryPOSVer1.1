@@ -383,7 +383,7 @@
                         Model Master</a></li>
                     <li id="HappyHours" runat="server" visible="false"><a href="../Accountsbootstrap/Offer.aspx">
                         Happy Hours Master</a></li>
-                    <li id="subcompany" runat="server" visible="true"><a href="../Accountsbootstrap/PurchaseCompanyDetailsGrid.aspx">
+                    <li id="subcompany" runat="server" visible="false"><a href="../Accountsbootstrap/PurchaseCompanyDetailsGrid.aspx">
                         Sub Company Master</a></li>
                     
                 </ul>

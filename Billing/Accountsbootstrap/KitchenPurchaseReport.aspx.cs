@@ -15,6 +15,7 @@ using System.Data.SqlClient;
 using iTextSharp.text;
 using iTextSharp.tool.xml;
 using iTextSharp.text.pdf;
+using System.Globalization;
 
 namespace Billing.Accountsbootstrap
 {
@@ -73,8 +74,11 @@ namespace Billing.Accountsbootstrap
                 DateTime From1 = new DateTime();
                 DateTime To1 = new DateTime();
 
-                From1 = DateTime.Parse(Convert.ToDateTime(txtfromdate.Text).ToString("yyyy/MM/dd"), Cul, System.Globalization.DateTimeStyles.NoCurrentDateDefault);
-                To1 = DateTime.Parse(Convert.ToDateTime(txttodate.Text).ToString("yyyy/MM/dd"), Cul, System.Globalization.DateTimeStyles.NoCurrentDateDefault);
+               // From1 = DateTime.Parse(Convert.ToDateTime(txtfromdate.Text).ToString("yyyy/MM/dd"), Cul, System.Globalization.DateTimeStyles.NoCurrentDateDefault);
+               // To1 = DateTime.Parse(Convert.ToDateTime(txttodate.Text).ToString("yyyy/MM/dd"), Cul, System.Globalization.DateTimeStyles.NoCurrentDateDefault);
+
+                From1 = DateTime.ParseExact(txtfromdate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture); 
+                To1 = DateTime.ParseExact(txttodate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
 
                 //DateTime sFrom = Convert.ToDateTime(txtfromdate.Text);
@@ -83,7 +87,7 @@ namespace Billing.Accountsbootstrap
                 //string ToDate = sTO.ToString("yyyy-MM-dd");
 
 
-                DataSet pending = objBs.getpurchasedetails(sTableName, ddlsuplier.SelectedValue, Convert.ToDateTime(From1).ToString("yyyy/MM/dd hh:mm tt"), Convert.ToDateTime(To1).ToString("yyyy/MM/dd hh:mm tt"), ddlraw.SelectedValue);
+                DataSet pending = objBs.getpurchasedetails(sTableName, ddlsuplier.SelectedValue, Convert.ToDateTime(From1).ToString("yyyy/MM/dd"), Convert.ToDateTime(To1).ToString("yyyy/MM/dd"), ddlraw.SelectedValue);
                 if (pending.Tables[0].Rows.Count > 0)
                 {
                     BankGrid.DataSource = pending;
@@ -146,8 +150,8 @@ namespace Billing.Accountsbootstrap
             DateTime From1 = new DateTime();
             DateTime To1 = new DateTime();
 
-            From1 = DateTime.Parse(Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy"), Cul, System.Globalization.DateTimeStyles.NoCurrentDateDefault);
-            To1 = DateTime.Parse(Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy"), Cul, System.Globalization.DateTimeStyles.NoCurrentDateDefault);
+            From1 = DateTime.ParseExact(txtfromdate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            To1 = DateTime.ParseExact(txttodate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
             DataSet pending = objBs.getpurchasedetails(sTableName, ddlsuplier.SelectedValue, Convert.ToDateTime(From1).ToString("yyyy/MM/dd"), Convert.ToDateTime(To1).ToString("yyyy/MM/dd"), ddlraw.SelectedValue);
             if (pending.Tables[0].Rows.Count > 0)
