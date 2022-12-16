@@ -240,6 +240,24 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.GridView grddetailedreport;
 
         /// <summary>
+        /// UpdatePanel8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel8;
+
+        /// <summary>
+        /// grdUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdUser;
+
+        /// <summary>
         /// Div1 control.
         /// </summary>
         /// <remarks>

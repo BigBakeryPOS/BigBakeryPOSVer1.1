@@ -52,6 +52,47 @@ namespace Billing.Accountsbootstrap
             if (!IsPostBack)
             {
 
+                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "OrderForm");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "OrderForm");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnadd.Visible = true;
+                    }
+                    else
+                    {
+                        btnadd.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        //gv.Columns[2].Visible = true;
+                    }
+                    else
+                    {
+                        //gv.Columns[2].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                       //gv.Columns[3].Visible = true;
+                    }
+                    else
+                    {
+                        //gv.Columns[3].Visible = false;
+                    }
+                }
+
                 DataSet dgetbookcode = objbs.getbookcode(sTablename);
                 if (dgetbookcode.Tables[0].Rows.Count > 0)
                 {

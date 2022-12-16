@@ -22,16 +22,50 @@ namespace Billing.Accountsbootstrap
 
             superadmin = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
-            DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "attender");
-            if (dacess1.Tables[0].Rows.Count > 0)
-            {
-                if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
-                {
-                    Response.Redirect("Login_branch.aspx");
-                }
-            }
+           
             if (!IsPostBack)
             {
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "attender");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "attender");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnSave.Visible = true;
+                    }
+                    else
+                    {
+                        btnSave.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gridview.Columns[1].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[1].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        gridview.Columns[2].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[2].Visible = false;
+                    }
+                }
+
                 ViewState["SortExpr"] = Sort_Direction;
 
                 DataSet getbranch = objBs.getbranch();

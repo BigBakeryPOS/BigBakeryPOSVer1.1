@@ -69,6 +69,47 @@ namespace Billing
 
             if (!IsPostBack)
             {
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Sales");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Sales");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        addbutton.Visible = true;
+                    }
+                    else
+                    {
+                        addbutton.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gvsales.Columns[10].Visible = true;
+                    }
+                    else
+                    {
+                        gvsales.Columns[10].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        //gv.Columns[3].Visible = true;
+                    }
+                    else
+                    {
+                        //gv.Columns[3].Visible = false;
+                    }
+                }
+
                 DataSet ds = objBs.CustomerSalesGirdNew(Convert.ToInt32(Request.Cookies["userInfo"]["UserID"].ToString()), "tblSales_" + sTableName);
                 gvsales.DataSource = ds;
                 gvsales.DataBind();

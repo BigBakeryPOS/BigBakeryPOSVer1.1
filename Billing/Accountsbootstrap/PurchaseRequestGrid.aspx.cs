@@ -22,6 +22,48 @@ namespace Billing.Accountsbootstrap
             sCode = Request.Cookies["userInfo"]["BranchCode"].ToString();
             qtysetting = Request.Cookies["userInfo"]["Qtysetting"].ToString();
 
+            DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "StockRequest");
+            if (dacess1.Tables[0].Rows.Count > 0)
+            {
+                if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                {
+                    Response.Redirect("Login_branch.aspx");
+                }
+            }
+
+            DataSet dacess = new DataSet();
+            dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "StockRequest");
+            if (dacess.Tables[0].Rows.Count > 0)
+            {
+                if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                {
+                    btnadd1.Visible = true;
+                }
+                else
+                {
+                    btnadd1.Visible = false;
+                }
+
+                if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                {
+                    //gv.Columns[2].Visible = true;
+                }
+                else
+                {
+                    //gv.Columns[2].Visible = false;
+                }
+
+                if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                {
+                    //gv.Columns[3].Visible = true;
+                }
+                else
+                {
+                    //gv.Columns[3].Visible = false;
+                }
+            }
+
+
             DataSet ds = objbs.PurchaseReqGridBranch(lblUserID.Text, sCode);
             gvPurchaseEntry.DataSource = ds;
             gvPurchaseEntry.DataBind();

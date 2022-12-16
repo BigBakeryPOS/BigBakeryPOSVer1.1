@@ -12,9 +12,7 @@ using System.Text;
 namespace Billing.Accountsbootstrap
 {
     public partial class stockgrid : System.Web.UI.Page
-    {
-
-                
+    {  
         BSClass objBs = new BSClass();
         string sTableName = "";
        
@@ -27,6 +25,48 @@ namespace Billing.Accountsbootstrap
             ddlfilter.Enabled = false;
             if (!IsPostBack)
             {
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "StockMaster");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "StockMaster");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnadd1.Visible = true;
+                    }
+                    else
+                    {
+                        btnadd1.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        //gv.Columns[2].Visible = true;
+                    }
+                    else
+                    {
+                        //gv.Columns[2].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        gridview.Columns[8].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[8].Visible = false;
+                    }
+                }
+
+
                 DataSet ds = new DataSet();
               //  if (sTableName == "admin")
               //  ds = objBs.getstockdetgrid(sTableName);

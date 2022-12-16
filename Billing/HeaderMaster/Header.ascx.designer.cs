@@ -1284,13 +1284,13 @@ namespace Billing.HeaderMaster
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DenominationReport;
 
         /// <summary>
-        /// Li3 control.
+        /// SessioncloseReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li3;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SessioncloseReport;
 
         /// <summary>
         /// NewTaxReport control.
@@ -1662,13 +1662,13 @@ namespace Billing.HeaderMaster
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl TaxWiseOrder;
 
         /// <summary>
-        /// Li4 control.
+        /// DayEndReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li4;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DayEndReport;
 
         /// <summary>
         /// StockReport control.
@@ -2398,6 +2398,42 @@ namespace Billing.HeaderMaster
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A37;
+
+        /// <summary>
+        /// UserMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserMenu;
+
+        /// <summary>
+        /// A39 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A39;
+
+        /// <summary>
+        /// UserRole control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserRole;
+
+        /// <summary>
+        /// User control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl User;
 
         /// <summary>
         /// onlineorderentry control.
