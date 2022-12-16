@@ -35,11 +35,11 @@ namespace Billing.Accountsbootstrap
 
 
                 DataSet dss = new DataSet();
-                dss = objbs.getcustomer();
+                dss = objbs.SupplierList11();
                 if (dss.Tables[0].Rows.Count > 0)
                 {
                     ddlcustomerrep.DataSource = dss.Tables[0];
-                    ddlcustomerrep.DataTextField = "CustomerName";
+                    ddlcustomerrep.DataTextField = "LedgerName";
                     ddlcustomerrep.DataValueField = "LedgerID";
                     ddlcustomerrep.DataBind();
                     ddlcustomerrep.Items.Insert(0, "All");

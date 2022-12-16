@@ -1104,8 +1104,13 @@ namespace Billing.Accountsbootstrap
                         #endregion
 
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Saved Sucessfully');", true);
+                        Response.Redirect("../Accountsbootstrap/PurchaseCompanyDetailsGrid.aspx");
                     }
 
+                }
+                else
+                {
+                    lblerror.Text = "Email  id Mandatory .Thank You!!!";
                 }
             }
 
@@ -1130,9 +1135,10 @@ namespace Billing.Accountsbootstrap
                 int iStatus = objBs.SubEditCompanyDetails(txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, txtGstNo.Text, txtWebSite.Text, txtSocial.Text, Convert.ToInt32(0), Imagepath, Imagepath2, Imagepath3, Imagepath4, txtUsername.Text, txtPasswprd.Text, txtEmpCode.Text, txtNoOfBranch.Text, drpbranchtype.SelectedValue, txtAboutUs.Text, DigitalMenu, Ecommerce, iCompanyID);
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Updated Sucessfully');", true);
+                Response.Redirect("../Accountsbootstrap/PurchaseCompanyDetailsGrid.aspx");
             }
 
-            Response.Redirect("../Accountsbootstrap/PurchaseCompanyDetailsGrid.aspx");
+           
         }
 
 
