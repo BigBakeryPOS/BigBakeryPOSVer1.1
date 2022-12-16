@@ -20,9 +20,54 @@ namespace Billing.Accountsbootstrap
             lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             sCode = Request.Cookies["userInfo"]["BranchCode"].ToString();
-            DataSet ds = objbs.interReqGridprod(lblUserID.Text, sCode);
-            gvPurchaseEntry.DataSource = ds;
-            gvPurchaseEntry.DataBind();
+            if (!IsPostBack)
+            {
+                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "IPSR");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "IPSR");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        Button1.Visible = true;
+                    }
+                    else
+                    {
+                        Button1.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        //BankGrid.Columns[9].Visible = true;
+                    }
+                    else
+                    {
+                        // BankGrid.Columns[9].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        // BankGrid.Columns[10].Visible = true;
+                    }
+                    else
+                    {
+                        //  BankGrid.Columns[10].Visible = false;
+                    }
+                }
+
+
+                DataSet ds = objbs.interReqGridprod(lblUserID.Text, sCode);
+                gvPurchaseEntry.DataSource = ds;
+                gvPurchaseEntry.DataBind();
+            }
         }
 
         protected void btnadd_Click(object sender, EventArgs e)
