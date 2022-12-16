@@ -155,9 +155,9 @@
                                         <div class="col-lg-2">
                                             <label>
                                                 Item Load</label>
-                                            <asp:DropDownList ID="drpitemload" runat="server" CssClass="form-control" Enabled="false" AutoPostBack="true" OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged">
-                                                <asp:ListItem Text="Load All Item" Value="1"></asp:ListItem>
-                                                <asp:ListItem Text="Load Supplier Item Only" Value="2" Selected="True"></asp:ListItem>
+                                            <asp:DropDownList ID="drpitemload" runat="server" CssClass="form-control" Enabled="true" AutoPostBack="true" OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged">
+                                                <asp:ListItem Text="Load All Item" Value="1" Selected="True" ></asp:ListItem>
+                                                <asp:ListItem Text="Load Supplier Item Only" Value="2" ></asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
 
@@ -210,13 +210,13 @@
                                 </div>
 
                                 <div class="col-lg-12">
-                                    <asp:Panel ID="Panel2" runat="server" Height="85px" ScrollBars="Both" Width="100%">
+                                    <asp:Panel ID="Panel2" runat="server" Height="85px"  Width="100%">
                                         <table border="1">
                                             <tr>
                                                 <td>
                                                     <label>
                                                         Select ingredents</label><br /><%--CssClass="chzn-select"--%>
-                                                    <asp:DropDownList ID="drpmingredents" runat="server" TabIndex="5" 
+                                                    <asp:DropDownList ID="drpmingredents" runat="server" TabIndex="5" CssClass="chzn-select"
                                                         Height="30px" Width="280px" AutoPostBack="true" OnSelectedIndexChanged="ddlDef_OnSelectedIndexChanged">
                                                     </asp:DropDownList>
                                                 </td>
@@ -228,7 +228,7 @@
                                                 <td>
                                                     <label>
                                                         Units</label><br />
-                                                    <asp:DropDownList ID="ddlmunits" Visible="false" CssClass="form-control" runat="server">
+                                                    <asp:DropDownList ID="ddlmunits" Visible="false" CssClass="chzn-select" runat="server">
                                                     </asp:DropDownList>
                                                     <asp:Label ID="lblmunits" Width="50px" runat="server"></asp:Label>
                                                     <asp:Label ID="lblmunitsid" Width="50px" runat="server"></asp:Label>
@@ -243,7 +243,7 @@
                                                         Primary Unit
                                                     </label>
                                                     <br />
-                                                    <asp:DropDownList ID="ddlmprimaryunits" Width="150px" Enabled="true"
+                                                    <asp:DropDownList ID="ddlmprimaryunits" Width="150px" Enabled="true" CssClass="chzn-select"
                                                         runat="server" OnSelectedIndexChanged="drpprimary_unit" AutoPostBack="true" Height="25px">
                                                     </asp:DropDownList><br />
                                                     <asp:Label ID="lblmprimaryvalue" runat="server"></asp:Label>

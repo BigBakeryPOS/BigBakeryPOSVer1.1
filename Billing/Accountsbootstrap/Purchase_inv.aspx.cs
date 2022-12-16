@@ -127,6 +127,7 @@ namespace Billing.Accountsbootstrap
                         txtsdate1.Text = dagent.Tables[0].Rows[0]["BillDate"].ToString();
 
                         ddlsuplier.SelectedValue = dagent.Tables[0].Rows[0]["Supplier"].ToString();
+                        drpsubcompany.SelectedValue = dagent.Tables[0].Rows[0]["subcompanyid"].ToString();
                         ddlsuplier_OnSelectedIndexChanged(sender, e);
                         ddlpaymode.SelectedValue = dagent.Tables[0].Rows[0]["Paymode"].ToString();
 
@@ -1773,7 +1774,7 @@ namespace Billing.Accountsbootstrap
                     DateTime Date = DateTime.ParseExact(txtsdate1.Text, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
 
 
-                    int insertPurchase = kbs.insertPurchase(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), txtbillno.Text, Date, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(Supplier), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), BillingType, PONo, Province, Convert.ToDouble(txtDiscountAmount.Text), Convert.ToDouble(txtFreightCharge.Text), Convert.ToDouble(txtFreightChargeTax.Text), Convert.ToInt32(ddltax.SelectedValue), Convert.ToDouble(ddltax.SelectedItem.Text), Convert.ToDouble(txtroundoff.Text), drpitemchnage.SelectedValue, drpitemload.SelectedValue);
+                    int insertPurchase = kbs.insertPurchase(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), txtbillno.Text, Date, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(Supplier), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), BillingType, PONo, Province, Convert.ToDouble(txtDiscountAmount.Text), Convert.ToDouble(txtFreightCharge.Text), Convert.ToDouble(txtFreightChargeTax.Text), Convert.ToInt32(ddltax.SelectedValue), Convert.ToDouble(ddltax.SelectedItem.Text), Convert.ToDouble(txtroundoff.Text), drpitemchnage.SelectedValue, drpitemload.SelectedValue,drpsubcompany.SelectedValue);
 
 
                     for (int i = 0; i < gvcustomerorder.Rows.Count; i++)
@@ -2899,25 +2900,25 @@ namespace Billing.Accountsbootstrap
         }
         protected void txtBillNo_TextChanged(object sender, EventArgs e)
         {
-            TextBox txt = (TextBox)sender;
-            GridViewRow row = (GridViewRow)txt.NamingContainer;
+            //TextBox txt = (TextBox)sender;
+            //GridViewRow row = (GridViewRow)txt.NamingContainer;
 
-            TextBox Qty = (TextBox)row.FindControl("txtQty");
-            TextBox Rate = (TextBox)row.FindControl("txtRate");
-            TextBox Amount = (TextBox)row.FindControl("txtAmount");
-            TextBox txttax = (TextBox)row.FindControl("txtBillNo");
-            TextBox DisCount = (TextBox)row.FindControl("txtDisCount");
+            //TextBox Qty = (TextBox)row.FindControl("txtQty");
+            //TextBox Rate = (TextBox)row.FindControl("txtRate");
+            //TextBox Amount = (TextBox)row.FindControl("txtAmount");
+            //TextBox txttax = (TextBox)row.FindControl("txtBillNo");
+            //TextBox DisCount = (TextBox)row.FindControl("txtDisCount");
 
-            if (Qty.Text == "")
-                Qty.Text = "0";
-            if (Rate.Text == "")
-                Rate.Text = "0";
-            if (Amount.Text == "")
-                Rate.Text = "0";
-            if (txttax.Text == "")
-                Rate.Text = "0";
-            if (DisCount.Text == "")
-                DisCount.Text = "0";
+            if (txtmQty.Text == "")
+                txtmQty.Text = "0";
+            if (txtmRate.Text == "")
+                txtmRate.Text = "0";
+            if (txtmAmount.Text == "")
+                txtmAmount.Text = "0";
+            if (txtmBillNo.Text == "")
+                txtmBillNo.Text = "0";
+            if (txtmDisCount.Text == "")
+                txtmDisCount.Text = "0";
 
             decimal dAmount = 0;
             decimal tax = 0;
@@ -2927,19 +2928,19 @@ namespace Billing.Accountsbootstrap
             Button1.Enabled = true;
 
 
-            decimal dQty = Convert.ToDecimal(Qty.Text);
-            decimal DRate = Convert.ToDecimal(Rate.Text);
-            decimal DDisCount = Convert.ToDecimal(DisCount.Text);
+            decimal dQty = Convert.ToDecimal(txtmQty.Text);
+            decimal DRate = Convert.ToDecimal(txtmRate.Text);
+            decimal DDisCount = Convert.ToDecimal(txtmDisCount.Text);
 
             dAmount = dQty * DRate;
 
             Disc = (dAmount * DDisCount) / 100;
 
-            tax = ((dAmount - Disc) * Convert.ToDecimal(txttax.Text) / 100);
+            tax = ((dAmount - Disc) * Convert.ToDecimal(txtmBillNo.Text) / 100);
 
             decimal amt = (dAmount - Disc) + tax;
 
-            Amount.Text = amt.ToString("f2");
+            txtmAmount.Text = amt.ToString("f2");
 
             decimal samt = 0; decimal sdisc = 0; decimal ttltax = 0;
 
@@ -3016,7 +3017,7 @@ namespace Billing.Accountsbootstrap
             }
             txtroundoff.Text = Convert.ToString(r);
 
-            Rate.Focus();
+            txtmRate.Focus();
         }
 
         protected void txtdefCatID_TextChanged(object sender, EventArgs e)
