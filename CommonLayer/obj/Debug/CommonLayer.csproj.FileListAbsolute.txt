@@ -392,3 +392,9 @@ C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\CommonLayer\obj\Debug\CommonL
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\CommonLayer\obj\Debug\CommonLayer.csproj.CoreCompileInputs.cache
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\CommonLayer\obj\Debug\CommonLayer.dll
 C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\CommonLayer\obj\Debug\CommonLayer.pdb
+C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\CommonLayer\bin\Debug\CommonLayer.dll
+C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\CommonLayer\bin\Debug\CommonLayer.pdb
+C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\CommonLayer\obj\Debug\CommonLayer.csproj.AssemblyReference.cache
+C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\CommonLayer\obj\Debug\CommonLayer.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\CommonLayer\obj\Debug\CommonLayer.dll
+C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\CommonLayer\obj\Debug\CommonLayer.pdb
