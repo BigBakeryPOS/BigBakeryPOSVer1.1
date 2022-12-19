@@ -36,6 +36,47 @@ namespace Billing.Accountsbootstrap
 
                 DateTime sDate = DateTime.ParseExact(txtDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
+                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "IPSRFP");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "IPSRFP");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnadd.Visible = true;
+                    }
+                    else
+                    {
+                        btnadd.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        //BankGrid.Columns[9].Visible = true;
+                    }
+                    else
+                    {
+                        // BankGrid.Columns[9].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        // BankGrid.Columns[10].Visible = true;
+                    }
+                    else
+                    {
+                        //  BankGrid.Columns[10].Visible = false;
+                    }
+                }
+
                 DataSet ds = objbs.getrequestprodfromanotherprod(sCode, sDate);
                 if (ds.Tables[0].Rows.Count > 0)
                 {

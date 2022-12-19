@@ -20717,12 +20717,12 @@ namespace BusinessLayer
             string qr = string.Empty;
             if (IngCatid == "All")
             {
-                qr = "select b.IngreCategory,i.IngredientName,u.UOM,s.Qty from tblIngridents i inner join " + stkTable + " s on s.IngredientID=i.IngridID inner join tblIngridentscategory as b on b.ingcatid=i.ingcatid  inner join tblUOM u on u.UOMID=i.Units where s.qty >0 order by b.IngreCategory asc";
+                qr = "select b.IngreCategory,i.IngredientName,u.UOM,s.Qty,s.Rate from tblIngridents i inner join " + stkTable + " s on s.IngredientID=i.IngridID inner join tblIngridentscategory as b on b.ingcatid=i.ingcatid  inner join tblUOM u on u.UOMID=i.Units where s.qty >0 order by b.IngreCategory asc";
                 ds = dbObj.InlineExecuteDataSet(qr);
             }
             else
             {
-                qr = "select b.IngreCategory,i.IngredientName,u.UOM,s.Qty from tblIngridents i inner join " + stkTable + " s on s.IngredientID=i.IngridID inner join tblIngridentscategory as b on b.ingcatid=i.ingcatid  inner join tblUOM u on u.UOMID=i.Units where s.qty >0 and i.ingcatid='" + IngCatid + "' order by b.IngreCategory asc";
+                qr = "select b.IngreCategory,i.IngredientName,u.UOM,s.Qty,s.Rate from tblIngridents i inner join " + stkTable + " s on s.IngredientID=i.IngridID inner join tblIngridentscategory as b on b.ingcatid=i.ingcatid  inner join tblUOM u on u.UOMID=i.Units where s.qty >0 and i.ingcatid='" + IngCatid + "' order by b.IngreCategory asc";
                 ds = dbObj.InlineExecuteDataSet(qr);
             }
             return ds;

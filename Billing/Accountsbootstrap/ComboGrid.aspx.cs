@@ -16,6 +16,46 @@ namespace Billing.Accountsbootstrap
         {
             if (!IsPostBack)
             {
+                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "combo");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "combo");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        addbtn.Visible = true;
+                    }
+                    else
+                    {
+                        addbtn.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gridview.Columns[4].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[4].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        gridview.Columns[5].Visible = true;
+                    }
+                    else
+                    {
+                        gridview.Columns[5].Visible = false;
+                    }
+                }
 
                 DataSet ds = objbs.getcomboproduct();
                 if (ds.Tables[0].Rows.Count > 0)
