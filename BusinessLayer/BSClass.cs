@@ -17847,7 +17847,8 @@ namespace BusinessLayer
         public DataSet getcontact(string iCusID)
         {
             DataSet ds = new DataSet();
-            string sQry = "select l.LedgerID,* from tblCustomer c inner join tblLedger l on l.LedgerID=c.LedgerId where c.LedgerID='" + iCusID + "' and l.IsActive='Yes' ";
+            //string sQry = "select l.LedgerID,* from tblCustomer c inner join tblLedger l on l.LedgerID=c.LedgerId where c.LedgerID='" + iCusID + "' and l.IsActive='Yes' ";
+            string sQry = "select l.LedgerID,* from tblLedger l  left join tblCustomer c on l.LedgerID=c.LedgerId where l.LedgerID='" + iCusID + "' and l.IsActive='Yes' ";
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
         }
