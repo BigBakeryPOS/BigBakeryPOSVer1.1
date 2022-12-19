@@ -22,6 +22,47 @@ namespace Billing.Accountsbootstrap
             lblUserID.Text = Session["UserID"].ToString();
             if (!IsPostBack)
             {
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "UserRole");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "UserRole");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnadd1.Visible = true;
+                    }
+                    else
+                    {
+                        btnadd1.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gvcust.Columns[2].Visible = true;
+                    }
+                    else
+                    {
+                        gvcust.Columns[2].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        //gvcust.Columns[3].Visible = true;
+                    }
+                    else
+                    {
+                        //gvcust.Columns[3].Visible = false;
+                    }
+                }
+
                 DataSet ds = objBs.selectuserroles();
                 if (ds != null)
                 {
