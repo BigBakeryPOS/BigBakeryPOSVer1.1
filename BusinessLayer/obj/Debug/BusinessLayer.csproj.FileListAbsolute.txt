@@ -806,17 +806,6 @@ D:\BigPOSGITCode\BigBakeryPOSVer1.1\BusinessLayer\obj\Debug\BusinessLayer.csproj
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\BusinessLayer\obj\Debug\BusinessLayer.csproj.CopyComplete
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\BusinessLayer\obj\Debug\BusinessLayer.dll
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\BusinessLayer\obj\Debug\BusinessLayer.pdb
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\BusinessLayer\bin\Debug\BusinessLayer.dll
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\BusinessLayer\bin\Debug\BusinessLayer.pdb
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\BusinessLayer\bin\Debug\CommonLayer.dll
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\BusinessLayer\bin\Debug\DataLayer.dll
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\BusinessLayer\bin\Debug\CommonLayer.pdb
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\BusinessLayer\bin\Debug\DataLayer.pdb
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\BusinessLayer\obj\Debug\BusinessLayer.csproj.AssemblyReference.cache
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\BusinessLayer\obj\Debug\BusinessLayer.csproj.CopyComplete
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\BusinessLayer\obj\Debug\BusinessLayer.dll
-C:\Users\intel\source\repos\bid\BigBakeryPOSVer1.1\BusinessLayer\obj\Debug\BusinessLayer.pdb
 C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\BusinessLayer\bin\Debug\BusinessLayer.dll
 C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\BusinessLayer\bin\Debug\BusinessLayer.pdb
 C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\BusinessLayer\bin\Debug\CommonLayer.dll
