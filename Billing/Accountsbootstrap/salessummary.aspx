@@ -222,7 +222,7 @@
                                                                     <asp:BoundField DataField="category" HeaderText="Category"  />
                                                                     <asp:BoundField DataField="Definition" HeaderText="Item"  />
                                                                     <%-- <asp:BoundField DataField="BrandName" HeaderText="Brand Name" ItemStyle-HorizontalAlign="Center" />--%>
-                                                                    <asp:BoundField DataField="Quantity" HeaderText="Quantity"  />
+                                                                    <asp:BoundField DataField="Quantity" HeaderText="Quantity" DataFormatString='{0:f3}'  />
                                                                     <asp:BoundField DataField="UnitPrice" HeaderText="Unit Price" DataFormatString="{0:###,##0.00}"
                                                                          />
                                                                     <asp:BoundField DataField="NetAmount" Visible="false" HeaderText="Amount"  />
@@ -244,7 +244,7 @@
                                                                     <asp:BoundField DataField="category" HeaderText="Category" />
                                                                     <asp:BoundField DataField="Definition" HeaderText="Item"  />
                                                                     <%-- <asp:BoundField DataField="BrandName" HeaderText="Brand Name" ItemStyle-HorizontalAlign="Center" />--%>
-                                                                    <asp:BoundField DataField="Quantity" HeaderText="Quantity"  />
+                                                                    <asp:BoundField DataField="Quantity" HeaderText="Quantity" DataFormatString='{0:f3}' />
                                                                     <asp:BoundField DataField="UnitPrice" HeaderText="Unit Price" DataFormatString="{0:###,##0.00}"
                                                                          />
                                                                     <asp:BoundField DataField="NetAmount" Visible="false" HeaderText="Amount"  />

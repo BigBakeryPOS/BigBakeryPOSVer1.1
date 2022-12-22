@@ -157,18 +157,19 @@
                                             <asp:BoundField HeaderText="Category " DataField="Category" Visible="true" />
                                             <asp:BoundField HeaderText="Item Name" DataField="Definition" />
                                             <asp:BoundField HeaderText="Quantity" Visible="false" DataField="Quantity" DataFormatString='{0:f3}' />
-                                            <asp:BoundField HeaderText="Available Quantity" DataField="Available_QTY" DataFormatString='{0:f3}' />
+                                            <asp:BoundField HeaderText="Available Quantity" DataField="Available_QTY"  />
                                             <asp:BoundField HeaderText="Purchase Price" Visible="false" DataFormatString="{0:f}"
                                                 DataField="Rate" />
                                             <asp:BoundField HeaderText="Stock Total Price" Visible="false" DataFormatString="{0:f}"
                                                 DataField="StockAmount" />
                                             <asp:BoundField HeaderText="Min Stock" Visible="false" DataFormatString="{0:f}" DataField="MinQty" />
+                                            <asp:BoundField HeaderText="QtyTYpe" Visible="false"  DataField="Qtytype" />
                                         </Columns>
                                         <%--<FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
                                         <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
                                     </asp:GridView>
                                     <div id="div1" runat="server">
-                                        <asp:GridView ID="gvStockValue" Caption="Stock Value Report" runat="server" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
+                                        <asp:GridView ID="gvStockValue" Caption="Stock Value Report" runat="server" GridLines="Both" cssClass="table table-striped pos-table" padding="0" spacing="0" border="1"
                                             OnRowDataBound="gvStockValue_OnRowDataBound" ShowFooter="true" AutoGenerateColumns="false"
                                             Width="100%">
                                            <%-- <HeaderStyle BackColor="#3366FF" />
@@ -181,13 +182,14 @@
                                                 </asp:TemplateField>
                                                 <asp:BoundField HeaderText="Category" DataField="Category" />
                                                 <asp:BoundField HeaderText="Item" DataField="Definition" />
-                                                <asp:BoundField HeaderText="Rate" DataField="Rate" DataFormatString="{0:f2}" ItemStyle-HorizontalAlign="Right" />
-                                                <asp:BoundField HeaderText="Tax" DataField="Tax" DataFormatString="{0:f2}" ItemStyle-HorizontalAlign="Right" />
-                                                <asp:BoundField HeaderText="MRP" DataField="MRP" DataFormatString="{0:f2}" ItemStyle-HorizontalAlign="Right" />
-                                                <asp:BoundField HeaderText="QTY" DataField="Available_QTY" DataFormatString="{0:f2}"
+                                                <asp:BoundField HeaderText="Rate" DataField="Rate" DataFormatString="{0:f2}"  />
+                                                <asp:BoundField HeaderText="Tax" DataField="Tax" DataFormatString="{0:f2}"  />
+                                                <asp:BoundField HeaderText="MRP" DataField="MRP" DataFormatString="{0:f2}"  />
+                                                <asp:BoundField HeaderText="QTY" DataField="Available_QTY" DataFormatString="{0:f3}"
                                                      />
                                                 <asp:BoundField HeaderText="TotalAmount" DataField="TotalAmount" DataFormatString="{0:f2}"
                                                      />
+                                                <asp:BoundField HeaderText="QtyTYpe" Visible="false"  DataField="Qtytype" />
                                             </Columns>
                                             <%--<FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
                                             <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>

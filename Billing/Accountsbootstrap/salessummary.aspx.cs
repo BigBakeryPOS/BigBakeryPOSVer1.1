@@ -161,7 +161,7 @@ namespace Billing.Accountsbootstrap
 
                         //Adding Quantity Column            
                         cell = new TableCell();
-                        cell.Text = string.Format("{0:0.00}", dblSubTotalQuantity);
+                        cell.Text = string.Format("{0:0.000}", dblSubTotalQuantity);
                         cell.HorizontalAlign = HorizontalAlign.Right;
                         cell.CssClass = "SubTotalRowStyle";
                         row.Cells.Add(cell);
@@ -226,7 +226,7 @@ namespace Billing.Accountsbootstrap
 
                         //Adding Quantity Column           
                         cell = new TableCell();
-                        cell.Text = string.Format("{0:0.00}", dblGrandTotalQuantity);
+                        cell.Text = string.Format("{0:0.000}", dblGrandTotalQuantity);
                         cell.HorizontalAlign = HorizontalAlign.Right;
                         cell.CssClass = "GrandTotalRowStyle";
                         row.Cells.Add(cell);
@@ -306,7 +306,7 @@ namespace Billing.Accountsbootstrap
 
                         //Adding Quantity Column            
                         cell = new TableCell();
-                        cell.Text = string.Format("{0:0.00}", dblSubTotalQuantity);
+                        cell.Text = string.Format("{0:0.000}", dblSubTotalQuantity);
                         cell.HorizontalAlign = HorizontalAlign.Right;
                         cell.CssClass = "SubTotalRowStyle";
                         row.Cells.Add(cell);
@@ -371,7 +371,7 @@ namespace Billing.Accountsbootstrap
 
                         //Adding Quantity Column           
                         cell = new TableCell();
-                        cell.Text = string.Format("{0:0.00}", dblGrandTotalQuantity);
+                        cell.Text = string.Format("{0:0.000}", dblGrandTotalQuantity);
                         cell.HorizontalAlign = HorizontalAlign.Right;
                         cell.CssClass = "GrandTotalRowStyle";
                         row.Cells.Add(cell);

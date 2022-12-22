@@ -212,7 +212,7 @@
                                                                 <asp:BoundField HeaderText="Category" DataField="Category" />
                                                                 <asp:BoundField HeaderText="Item" DataField="definition" />
                                                                 <asp:BoundField HeaderText="Unit Price" DataField="unitprice" DataFormatString='{0:f2}' />
-                                                                <asp:BoundField HeaderText="Qty" DataField="quantity" />
+                                                                <asp:BoundField HeaderText="Qty" DataField="quantity"  DataFormatString='{0:f3}' />
                                                                 <asp:BoundField HeaderText="SubTotal" DataField="amount" DataFormatString='{0:f2}' />
                                                                 <asp:BoundField HeaderText="GST%" DataField="tax" />
                                                                 <asp:BoundField HeaderText="GST Amnt" DataField="GST" DataFormatString='{0:f2}' />
@@ -244,7 +244,7 @@
                                                                 <asp:BoundField HeaderText="Bill No" DataField="billno" />
                                                                 <asp:BoundField HeaderText="Bill Date" DataField="BillDate" />
                                                                 <asp:BoundField HeaderText="Unit Price" DataField="unitprice" DataFormatString='{0:f2}' />
-                                                                <asp:BoundField HeaderText="Qty" DataField="quantity" />
+                                                                <asp:BoundField HeaderText="Qty" DataField="quantity" DataFormatString='{0:f3}'  />
                                                                 <asp:BoundField HeaderText="SubTotal" DataField="amount" DataFormatString='{0:f2}' />
                                                                 <asp:BoundField HeaderText="GST Amnt" DataField="GST" DataFormatString='{0:f2}' />
                                                                 <asp:BoundField HeaderText="disc. Amnt" DataField="disc" DataFormatString='{0:f2}' />

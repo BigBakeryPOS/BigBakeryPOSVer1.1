@@ -484,7 +484,7 @@
                     <li id="demandstoreitem" runat="server" visible="false"><a href="../Accountsbootstrap/DemandReqStoreGrid.aspx">
                         Demand to Store Request</a></li>
                     <li id="AcceptRawItem" runat="server" visible="false"><a href="../Accountsbootstrap/StoreRawItemRequestGrid.aspx">
-                        Accept Raw Item </a></li>
+                        Accept/Direct Raw Item Transfer </a></li>
                     <li id="ReceiveRawItem" runat="server" visible="false"><a href="../Accountsbootstrap/ReceiveStoreItemGrid.aspx">
                         Receive Raw Item from Store</a></li>
                     <li id="ReceiveProductionStock" runat="server" visible="false"><a href="../Accountsbootstrap/ReceiveProductionStockGrid.aspx">
