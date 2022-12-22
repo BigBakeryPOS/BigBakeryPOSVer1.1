@@ -283,7 +283,7 @@ namespace Billing.Accountsbootstrap
                                 drsum["Category"] = g.Category;
                                 drsum["definition"] = g.definition;
                                 drsum["unitprice"] = Convert.ToDouble(g.unitprice).ToString("f2");
-                                drsum["quantity"] = g.quantity;
+                                drsum["quantity"] = Convert.ToDouble(g.quantity).ToString("f3");
                                 drsum["amount"] = Convert.ToDouble(g.amount).ToString("f2");
                                 drsum["tax"] = g.tax;
                                 drsum["disc"] = Convert.ToDouble(g.disc).ToString("f2");
@@ -448,7 +448,7 @@ namespace Billing.Accountsbootstrap
                                     drsum["Category"] = g.Category;
                                     drsum["definition"] = g.definition;
                                     drsum["unitprice"] = Convert.ToDouble(g.unitprice).ToString("f2");
-                                    drsum["quantity"] = g.quantity;
+                                    drsum["quantity"] = Convert.ToDouble(g.quantity).ToString("f3");
                                     drsum["amount"] = Convert.ToDouble(g.amount).ToString("f2");
                                     drsum["tax"] = g.tax;
                                     drsum["GST"] = Convert.ToDouble(g.GST).ToString("f2");
@@ -613,7 +613,7 @@ namespace Billing.Accountsbootstrap
                                 //   drsum["Category"] = g.Category;
                                 //  drsum["definition"] = g.definition;
                                 drsum["unitprice"] = Convert.ToDouble(g.unitprice).ToString("f2");
-                                drsum["quantity"] = g.quantity;
+                                drsum["quantity"] = Convert.ToDouble(g.quantity).ToString("f3");
                                 drsum["amount"] = Convert.ToDouble(g.amount).ToString("f2");
                                 // drsum["tax"] = g.tax;
                                 drsum["GST"] = Convert.ToDouble(g.GST).ToString("f2");
@@ -766,7 +766,7 @@ namespace Billing.Accountsbootstrap
                                     //   drsum["Category"] = g.Category;
                                     //  drsum["definition"] = g.definition;
                                     drsum["unitprice"] = Convert.ToDouble(g.unitprice).ToString("f2");
-                                    drsum["quantity"] = g.quantity;
+                                    drsum["quantity"] = Convert.ToDouble(g.quantity).ToString("f3");
                                     drsum["amount"] = Convert.ToDouble(g.amount).ToString("f2");
                                     // drsum["tax"] = g.tax;
                                     drsum["GST"] = Convert.ToDouble(g.GST).ToString("f2");
@@ -975,7 +975,7 @@ namespace Billing.Accountsbootstrap
                                 drsum["name"] = g.name;
                                 drsum["definition"] = g.definition;
                                 drsum["unitprice"] = Convert.ToDouble(g.unitprice).ToString("f2");
-                                drsum["quantity"] = g.quantity;
+                                drsum["quantity"] = Convert.ToDouble(g.quantity).ToString("f3");
                                 drsum["amount"] = Convert.ToDouble(g.amount).ToString("f2");
                                 drsum["tax"] = g.tax;
                                 drsum["disc"] = Convert.ToDouble(g.disc).ToString("f2");
@@ -1136,7 +1136,7 @@ namespace Billing.Accountsbootstrap
                                     drsum["Name"] = g.name;
                                     drsum["definition"] = g.definition;
                                     drsum["unitprice"] = Convert.ToDouble(g.unitprice).ToString("f2");
-                                    drsum["quantity"] = g.quantity;
+                                    drsum["quantity"] = Convert.ToDouble(g.quantity).ToString("f3");
                                     drsum["amount"] = Convert.ToDouble(g.amount).ToString("f2");
                                     drsum["tax"] = g.tax;
                                     drsum["disc"] = Convert.ToDouble(g.disc).ToString("f2");
@@ -1304,7 +1304,7 @@ namespace Billing.Accountsbootstrap
                                 //   drsum["Category"] = g.Category;
                                 //  drsum["definition"] = g.definition;
                                 drsum["unitprice"] = Convert.ToDouble(g.unitprice).ToString("f2");
-                                drsum["quantity"] = g.quantity;
+                                drsum["quantity"] = Convert.ToDouble(g.quantity).ToString("f3");
                                 drsum["amount"] = Convert.ToDouble(g.amount).ToString("f2");
                                 // drsum["tax"] = g.tax;
                                 drsum["GST"] = Convert.ToDouble(g.GST).ToString("f2");
@@ -1461,7 +1461,7 @@ namespace Billing.Accountsbootstrap
                                     //   drsum["Category"] = g.Category;
                                     //  drsum["definition"] = g.definition;
                                     drsum["unitprice"] = Convert.ToDouble(g.unitprice).ToString("f2");
-                                    drsum["quantity"] = g.quantity;
+                                    drsum["quantity"] = Convert.ToDouble(g.quantity).ToString("f3");
                                     drsum["amount"] = Convert.ToDouble(g.amount).ToString("f2");
                                     // drsum["tax"] = g.tax;
                                     drsum["GST"] = Convert.ToDouble(g.GST).ToString("f2");
@@ -1938,7 +1938,7 @@ namespace Billing.Accountsbootstrap
             {
                 e.Row.Cells[6].Text = "Total :-";
                 e.Row.Cells[7].Text = unitprice.ToString("f2");
-                e.Row.Cells[8].Text = Qty.ToString("f2");
+                e.Row.Cells[8].Text = Qty.ToString("f3");
                 e.Row.Cells[9].Text = subtotal.ToString("f2");
                 e.Row.Cells[11].Text = gstamount.ToString("f2");
                 e.Row.Cells[12].Text = discvalue.ToString("f2");
@@ -1975,7 +1975,7 @@ namespace Billing.Accountsbootstrap
             {
                 e.Row.Cells[6].Text = "Total :";
                 e.Row.Cells[5].Text = unitprice.ToString("f2");
-                e.Row.Cells[6].Text = Qty.ToString("f2");
+                e.Row.Cells[6].Text = Qty.ToString("f3");
                 e.Row.Cells[7].Text = subtotal.ToString("f2");
                 e.Row.Cells[8].Text = gstamount.ToString("f2");
                 e.Row.Cells[9].Text = discvalue.ToString("f2");

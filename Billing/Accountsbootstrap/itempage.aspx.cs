@@ -640,7 +640,7 @@ namespace Billing.Accountsbootstrap
 
 
             cust = Request.QueryString.Get("cust");
-            if (cust != "" || cust != null)
+           // if (cust != "" || cust != null)
             {
                 DataSet ndstt = new DataSet();
                 DataTable ndttt = new DataTable();
@@ -721,14 +721,16 @@ namespace Billing.Accountsbootstrap
                             int ibrachinsert = objBs.insertbranchitem(ndstt);
                             int isubcatinsert = objBs.insertsubcategoryitem(ndstt1);
 
-                            DataSet dss = objBs.GetItemID();
+                            //DataSet dss = objBs.GetItemID();
 
-                            int iCategoryID = 0;
-                            if (dss.Tables[0].Rows[0]["categoryUserId"].ToString() != "")
-                            {
-                                iCategoryID = Convert.ToInt32(dss.Tables[0].Rows[0]["categoryUserId"].ToString());
-                                iSuccess = objBs.StockOnlyItem(ndstt, Convert.ToInt32(lblUserID.Text), Convert.ToInt32(ddlcategory.SelectedValue), Convert.ToInt32(iCategoryID), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToString(DateTime.Now.ToString("MM/dd/yyyy")), 1, Convert.ToInt32(0), "0");
-                            }
+                            //int iCategoryID = 0;
+                            //if (dss.Tables[0].Rows[0]["categoryUserId"].ToString() != "")
+                            //{
+                            //    iCategoryID = Convert.ToInt32(dss.Tables[0].Rows[0]["categoryUserId"].ToString());
+                            //    iSuccess = objBs.StockOnlyItem(ndstt, Convert.ToInt32(lblUserID.Text), Convert.ToInt32(ddlcategory.SelectedValue), Convert.ToInt32(iCategoryID), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToString(DateTime.Now.ToString("MM/dd/yyyy")), 1, Convert.ToInt32(0), "0");
+                            //}
+
+                            Response.Redirect("DescriptionGrid.aspx");
                         }
                         else
                         {
@@ -737,14 +739,16 @@ namespace Billing.Accountsbootstrap
                             int ibrachinsert = objBs.insertbranchitem(ndstt);
                             int isubcatinsert = objBs.insertsubcategoryitem(ndstt1);
 
-                            DataSet dss = objBs.GetItemID();
+                            //DataSet dss = objBs.GetItemID();
 
-                            int iCategoryID = 0;
-                            if (dss.Tables[0].Rows[0]["categoryUserId"].ToString() != "")
-                            {
-                                iCategoryID = Convert.ToInt32(dss.Tables[0].Rows[0]["categoryUserId"].ToString());
-                                iSuccess = objBs.StockOnlyItem(ndstt, Convert.ToInt32(lblUserID.Text), Convert.ToInt32(ddlcategory.SelectedValue), Convert.ToInt32(iCategoryID), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToString(DateTime.Now.ToString("MM/dd/yyyy")), 1, Convert.ToInt32(0), "0");
-                            }
+                            //int iCategoryID = 0;
+                            //if (dss.Tables[0].Rows[0]["categoryUserId"].ToString() != "")
+                            //{
+                            //    iCategoryID = Convert.ToInt32(dss.Tables[0].Rows[0]["categoryUserId"].ToString());
+                            //    iSuccess = objBs.StockOnlyItem(ndstt, Convert.ToInt32(lblUserID.Text), Convert.ToInt32(ddlcategory.SelectedValue), Convert.ToInt32(iCategoryID), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToDouble(0), Convert.ToString(DateTime.Now.ToString("MM/dd/yyyy")), 1, Convert.ToInt32(0), "0");
+                            //}
+
+                            Response.Redirect("DescriptionGrid.aspx");
                         }
                     }
                     else
@@ -782,6 +786,8 @@ namespace Billing.Accountsbootstrap
                         objBs.updateitementry(txtcatdescription.Text, txtdescription.Text, cust, txtSerial.Text, ddltax.SelectedValue, ddltax.SelectedItem.Text, Convert.ToDouble(txtRate.Text), ddluom.SelectedValue, ddluom.SelectedItem.Text, txtminumumstock.Text, raddisplay.SelectedValue, lblFile_Path.Text, Empcode, txtprintitemname.Text, drpfoodtype.SelectedValue, superadmin, ddlcategory.SelectedValue, lblitemid.Text, txtHSNCode.Text, txtMRPPrice.Text, txtBarcode.Text, txtDetails.Text, Pagepath, drpratetype.SelectedValue, radbnsalestype.SelectedValue);
                         int ibrachinsert = objBs.updatebranchitem(ndstt, cust);
                         int isubcatinsert = objBs.Updatesubcategoryitem(ndstt1, cust);
+
+                        Response.Redirect("DescriptionGrid.aspx");
                     }
                     else
                     {
@@ -789,15 +795,17 @@ namespace Billing.Accountsbootstrap
                         objBs.updateitementry(txtcatdescription.Text, txtdescription.Text, cust, txtSerial.Text, ddltax.SelectedValue, ddltax.SelectedItem.Text, Convert.ToDouble(txtRate.Text), ddluom.SelectedValue, ddluom.SelectedItem.Text, txtminumumstock.Text, raddisplay.SelectedValue, lblFile_Path.Text, Empcode, txtprintitemname.Text, drpfoodtype.SelectedValue, superadmin, ddlcategory.SelectedValue, lblitemid.Text, txtHSNCode.Text, txtMRPPrice.Text, txtBarcode.Text, txtDetails.Text, Pagepath, drpratetype.SelectedValue, radbnsalestype.SelectedValue);
                         int ibrachinsert = objBs.updatebranchitem(ndstt, cust);
                         int isubcatinsert = objBs.Updatesubcategoryitem(ndstt1, cust);
+
+                        Response.Redirect("DescriptionGrid.aspx");
                     }
                 }
             }
 
-            else
-            {
-                lblerror.Text = "Please Enter Description";
-            }
-            Response.Redirect("DescriptionGrid.aspx");
+            //else
+            //{
+            //    lblerror.Text = "Please Enter Description";
+            //}
+            //Response.Redirect("DescriptionGrid.aspx");
         }
 
         protected void btnexit_Click(object sender, EventArgs e)

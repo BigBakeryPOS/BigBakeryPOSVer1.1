@@ -219,7 +219,7 @@
                                                                 <asp:BoundField HeaderText="Item Name" DataField="definition" />
                                                                 <asp:BoundField HeaderText="Total Amount" DataField="tot" DataFormatString='{0:f2}' />
                                                                 <asp:BoundField HeaderText="Total Discount" DataField="dic" DataFormatString='{0:f2}' />
-                                                                <asp:BoundField HeaderText="Qty" DataField="qty" />
+                                                                <asp:BoundField HeaderText="Qty" DataField="qty"  DataFormatString='{0:f3}' />
                                                             </Columns>
                                                           <%--  <HeaderStyle BackColor="white" />
                                                             <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
@@ -238,7 +238,7 @@
                                                                 <asp:BoundField HeaderText="Login Name" DataField="name" />
                                                                 <asp:BoundField HeaderText="Total Amount" DataField="tot" DataFormatString='{0:f2}' />
                                                                 <asp:BoundField HeaderText="Total Discount" DataField="dic" DataFormatString='{0:f2}' />
-                                                                <asp:BoundField HeaderText="Qty" DataField="qty" />
+                                                                <asp:BoundField HeaderText="Qty" DataField="qty" DataFormatString='{0:f3}' />
                                                             </Columns>
                                                             <%--<HeaderStyle BackColor="white" />
                                                             <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
@@ -258,7 +258,7 @@
                                                                 <asp:BoundField HeaderText="Bill Date" DataField="bdate" DataFormatString='{0:dd/MMM/yyyy}' />
                                                                 <asp:BoundField HeaderText="Total Amount" DataField="tot" DataFormatString='{0:f2}' />
                                                                 <asp:BoundField HeaderText="Total Discount" DataField="dic" DataFormatString='{0:f2}' />
-                                                                <asp:BoundField HeaderText="Qty" DataField="qty" />
+                                                                <asp:BoundField HeaderText="Qty" DataField="qty" DataFormatString='{0:f3}' />
                                                             </Columns>
                                                             <%--<HeaderStyle BackColor="white" />
                                                             <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"

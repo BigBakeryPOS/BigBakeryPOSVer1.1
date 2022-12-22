@@ -5881,12 +5881,13 @@ namespace BusinessLayer
 
                 if (logintype == "5" || logintype == "4")
                 {
-                    string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.prod_Qty) as Available_Qty,c.serial  from tblProductionQty_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.descriptionid=c.CategoryUserID and a.prod_qty>0 and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial   order by c.Definition asc";
+                    string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.prod_Qty) as Available_Qty,c.serial,c.qtytype  from tblProductionQty_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.descriptionid=c.CategoryUserID and a.prod_qty>0 and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial,c.qtytype   order by c.Definition asc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
                 else
                 {
-                    string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.Available_QTY) as Available_Qty,c.Serial  from tblStock_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.SubCategoryID=c.CategoryUserID and a.Available_QTY>0 and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial   order by cast(c.serial as int) asc";
+                    //string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.Available_QTY) as Available_Qty,c.Serial  from tblStock_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.SubCategoryID=c.CategoryUserID and a.Available_QTY>0 and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial   order by cast(c.serial as int) asc";
+                    string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.Available_QTY) as Available_Qty,c.Serial,c.qtytype  from tblStock_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.SubCategoryID=c.CategoryUserID and a.Available_QTY>0 and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial,c.qtytype   order by b.category,c.definition asc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
             }
@@ -17847,7 +17848,8 @@ namespace BusinessLayer
         public DataSet getcontact(string iCusID)
         {
             DataSet ds = new DataSet();
-            string sQry = "select l.LedgerID,* from tblCustomer c inner join tblLedger l on l.LedgerID=c.LedgerId where c.LedgerID='" + iCusID + "' and l.IsActive='Yes' ";
+            //string sQry = "select l.LedgerID,* from tblCustomer c inner join tblLedger l on l.LedgerID=c.LedgerId where c.LedgerID='" + iCusID + "' and l.IsActive='Yes' ";
+            string sQry = "select l.LedgerID,* from tblLedger l  left join tblCustomer c on l.LedgerID=c.LedgerId where l.LedgerID='" + iCusID + "' and l.IsActive='Yes' ";
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
         }
@@ -28444,12 +28446,12 @@ namespace BusinessLayer
                 if (CategoryUserID == "All")
                 {
                     // string sQry = "select c.Category,cu.Definition,Tax,Rate,Available_QTY,(Available_QTY * Rate) as MRP, ((Available_QTY * Rate) * Tax ) / 100 as GST,((Available_QTY * Rate) + (((Available_QTY * Rate) * Tax ) / 100)) as Price  from tblCategory c inner join tblCategoryUser cu on cu.Categoryid=c.Categoryid inner join tblStock_" + sTableName + " s on s.SubCategoryID=cu.CategoryUserID where Available_QTY>0  order by Category,Definition asc";
-                    string sQry = "select c.Category,cu.Definition,Rate,Tax,Round((Rate+((Rate*Tax)/100)),0) as MRP, Available_QTY, Round(((Available_QTY * Rate) + (((Available_QTY * Rate) * Tax ) / 100)),0) as TotalAmount, (Available_QTY * Rate) as MRP1,  ((Available_QTY * Rate) * Tax ) / 100 as GST from tblCategory c inner join tblCategoryUser cu on cu.Categoryid=c.Categoryid inner join tblStock_" + sTableName + " s on s.SubCategoryID=cu.CategoryUserID where Available_QTY>0  order by Category,Definition asc";
+                    string sQry = "select c.Category,cu.Definition,Rate,Tax,Round((Rate+((Rate*Tax)/100)),0) as MRP, Available_QTY, Round(((Available_QTY * Rate) + (((Available_QTY * Rate) * Tax ) / 100)),0) as TotalAmount, (Available_QTY * Rate) as MRP1,  ((Available_QTY * Rate) * Tax ) / 100 as GST,cu.qtytype from tblCategory c inner join tblCategoryUser cu on cu.Categoryid=c.Categoryid inner join tblStock_" + sTableName + " s on s.SubCategoryID=cu.CategoryUserID where Available_QTY>0  order by Category,Definition asc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
                 else
                 {
-                    string sQry = "select c.Category,cu.Definition,Tax,Rate,Available_QTY,(Available_QTY * Rate) as MRP, ((Available_QTY * Rate) * Tax ) / 100 as GST,((Available_QTY * Rate) + (((Available_QTY * Rate) * Tax ) / 100)) as Price  from tblCategory c inner join tblCategoryUser cu on cu.Categoryid=c.Categoryid inner join tblStock_" + sTableName + " s on s.SubCategoryID=cu.CategoryUserID where CategoryUserID='" + CategoryUserID + "' and Available_QTY>0  order by Category,Definition asc";
+                    string sQry = "select c.Category,cu.Definition,Tax,Rate,Available_QTY,(Available_QTY * Rate) as MRP, ((Available_QTY * Rate) * Tax ) / 100 as GST,((Available_QTY * Rate) + (((Available_QTY * Rate) * Tax ) / 100)) as Price,cu.qtytype  from tblCategory c inner join tblCategoryUser cu on cu.Categoryid=c.Categoryid inner join tblStock_" + sTableName + " s on s.SubCategoryID=cu.CategoryUserID where CategoryUserID='" + CategoryUserID + "' and Available_QTY>0  order by Category,Definition asc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
             }
@@ -28457,12 +28459,12 @@ namespace BusinessLayer
             {
                 if (CategoryUserID == "All")
                 {
-                    string sQry = "select c.Category,cu.Definition,Rate,Tax,Round((Rate+((Rate*Tax)/100)),0) as MRP, Available_QTY, Round(((Available_QTY * Rate) + (((Available_QTY * Rate) * Tax ) / 100)),0) as TotalAmount, (Available_QTY * Rate) as MRP1,  ((Available_QTY * Rate) * Tax ) / 100 as GST from tblCategory c inner join tblCategoryUser cu on cu.Categoryid=c.Categoryid inner join tblStock_" + sTableName + " s on s.SubCategoryID=cu.CategoryUserID where c.Categoryid='" + Categoryid + "' and Available_QTY>0  order by Category,Definition asc";
+                    string sQry = "select c.Category,cu.Definition,Rate,Tax,Round((Rate+((Rate*Tax)/100)),0) as MRP, Available_QTY, Round(((Available_QTY * Rate) + (((Available_QTY * Rate) * Tax ) / 100)),0) as TotalAmount, (Available_QTY * Rate) as MRP1,  ((Available_QTY * Rate) * Tax ) / 100 as GST,cu.qtytype from tblCategory c inner join tblCategoryUser cu on cu.Categoryid=c.Categoryid inner join tblStock_" + sTableName + " s on s.SubCategoryID=cu.CategoryUserID where c.Categoryid='" + Categoryid + "' and Available_QTY>0  order by Category,Definition asc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
                 else
                 {
-                    string sQry = "select c.Category,cu.Definition,Tax,Rate,Available_QTY,(Available_QTY * Rate) as MRP, ((Available_QTY * Rate) * Tax ) / 100 as GST,((Available_QTY * Rate) + (((Available_QTY * Rate) * Tax ) / 100)) as Price  from tblCategory c inner join tblCategoryUser cu on cu.Categoryid=c.Categoryid inner join tblStock_" + sTableName + " s on s.SubCategoryID=cu.CategoryUserID where c.Categoryid='" + Categoryid + "' and CategoryUserID='" + CategoryUserID + "' and Available_QTY>0  order by Category,Definition asc";
+                    string sQry = "select c.Category,cu.Definition,Tax,Rate,Available_QTY,(Available_QTY * Rate) as MRP, ((Available_QTY * Rate) * Tax ) / 100 as GST,((Available_QTY * Rate) + (((Available_QTY * Rate) * Tax ) / 100)) as Price,cu.qtytype  from tblCategory c inner join tblCategoryUser cu on cu.Categoryid=c.Categoryid inner join tblStock_" + sTableName + " s on s.SubCategoryID=cu.CategoryUserID where c.Categoryid='" + Categoryid + "' and CategoryUserID='" + CategoryUserID + "' and Available_QTY>0  order by Category,Definition asc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
             }

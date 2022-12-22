@@ -149,7 +149,7 @@
                                                                             <Columns>
                                                                                 <asp:BoundField HeaderText="Transid" Visible="false" DataField="SalesID" />
                                                                                 <asp:BoundField HeaderText="Product" DataField="Definition" />
-                                                                                <asp:BoundField HeaderText="Qty" DataField="Quantity" />
+                                                                                <asp:BoundField HeaderText="Qty" DataField="Quantity" DataFormatString='{0:f3}' />
                                                                                 <asp:BoundField HeaderText="UnitPrice" DataField="UnitPrice" DataFormatString='{0:f}' />
                                                                                 <asp:BoundField HeaderText="Total Amount" DataField="Amount" DataFormatString='{0:f}' />
                                                                                 <asp:BoundField HeaderText="Sales Type" DataField="SalesType" DataFormatString='{0:f}' />

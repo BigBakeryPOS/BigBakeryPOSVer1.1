@@ -196,7 +196,8 @@
                                 <asp:BoundField HeaderText="Ingr. Category" DataField="IngreCategory" />
                                 <asp:BoundField HeaderText="Ingredient Name" DataField="IngredientName" />
                                 <asp:BoundField HeaderText="Qty" DataField="Qty" DataFormatString='{0:f}' />
-                                <asp:BoundField HeaderText="Unit" DataField="UOM" />
+                                 <asp:BoundField HeaderText="Rate" DataField="Rate" DataFormatString='{0:f}'/>
+                                <asp:BoundField HeaderText="Unit" DataField="UOM" />                                           
                                 <%--<asp:BoundField HeaderText="Expired Date" DataField="ExpiredDate" DataFormatString="{0:dd/MM/yyyy}" />--%>
                             </Columns>
                             <%--<FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />

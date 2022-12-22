@@ -154,7 +154,7 @@
                         </div>
 
 
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
                             <div class="list-group">
 
                                 <label>Select Category</label>
@@ -196,7 +196,7 @@
                                 <%--<button type="submit" class="btn btn-success" onclick="Add_Click">Add</button>--%>
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
                             <div class="list-group">
                                 <asp:TextBox CssClass="form-control" ID="txtSerialNo" runat="server" Visible="false"
                                     MaxLength="150">0</asp:TextBox>
@@ -253,7 +253,7 @@
                         </div>
 
 
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
                             <div class="list-group">
                                 <label>
                                     Display Online
@@ -346,7 +346,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3">
+                        <div runat="server" visible="false" class="col-lg-3">
                             <div class="form-group">
                                 <label>
                                     Enter Rate Setting

@@ -27,6 +27,8 @@ namespace Billing.Accountsbootstrap
         string Password = "";
         string logintype = "";
         double Available_QTY = 0; double TotalAmount = 0;
+        string ratesetting = "";
+        string qtysetting = "";
 
         private string connnectionString;
         private string connnectionStringMain;
@@ -39,6 +41,9 @@ namespace Billing.Accountsbootstrap
             logintype = Request.Cookies["userInfo"]["LoginTypeId"].ToString();
 
             Password = Request.Cookies["userInfo"]["Password"].ToString();
+
+            ratesetting = Request.Cookies["userInfo"]["Ratesetting"].ToString();
+            qtysetting = Request.Cookies["userInfo"]["Qtysetting"].ToString();
 
             DataSet dsPlaceName = objBs.GetPlacename(lblUser.Text, Password);
             StoreName = dsPlaceName.Tables[0].Rows[0]["StoreName"].ToString();
@@ -91,6 +96,29 @@ namespace Billing.Accountsbootstrap
 
         protected void gvstock_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+
+            string qtytype = "D";
+            string Available = "0";
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                qtytype = (DataBinder.Eval(e.Row.DataItem, "qtytype")).ToString();
+                
+
+                if (qtytype == "D")
+                {
+                    e.Row.Cells[4].Text = Convert.ToDouble(e.Row.Cells[4].Text).ToString("0");
+                }
+               else
+                {
+                    //DataBinder.Eval(e.Row.DataItem, "Available_QTY") = Convert.ToDouble(Available).ToString("" + qtysetting + "");
+                    e.Row.Cells[4].Text = Convert.ToDouble(e.Row.Cells[4].Text).ToString("" + qtysetting + "");
+                }
+
+
+
+            }
+
             ////DataSet dlow = objBs.stockcolour();
             ////if (sTableName != "admin")
             ////{
@@ -395,6 +423,36 @@ namespace Billing.Accountsbootstrap
                 e.Row.Cells[5].Text = "Total:-";
                 e.Row.Cells[6].Text = Available_QTY.ToString("f2");
                 e.Row.Cells[7].Text = TotalAmount.ToString("f2");
+            }
+
+            string qtytype = "D";
+            string Available = "0";
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                qtytype = (DataBinder.Eval(e.Row.DataItem, "qtytype")).ToString();
+
+
+                if (qtytype == "D")
+                {
+                    e.Row.Cells[6].Text = Convert.ToDouble(e.Row.Cells[6].Text).ToString("0");
+                    e.Row.Cells[3].Text = Convert.ToDouble(e.Row.Cells[3].Text).ToString("" + ratesetting + "");
+                    //e.Row.Cells[4].Text = Convert.ToDouble(e.Row.Cells[4].Text).ToString("" + qtysetting + "");
+                    e.Row.Cells[5].Text = Convert.ToDouble(e.Row.Cells[5].Text).ToString("" + ratesetting + "");
+                    e.Row.Cells[7].Text = Convert.ToDouble(e.Row.Cells[7].Text).ToString("" + ratesetting + "");
+                }
+                else
+                {
+                    //DataBinder.Eval(e.Row.DataItem, "Available_QTY") = Convert.ToDouble(Available).ToString("" + qtysetting + "");
+                    e.Row.Cells[6].Text = Convert.ToDouble(e.Row.Cells[6].Text).ToString("" + qtysetting + "");
+                    e.Row.Cells[3].Text = Convert.ToDouble(e.Row.Cells[3].Text).ToString("" + ratesetting + "");
+                    //e.Row.Cells[4].Text = Convert.ToDouble(e.Row.Cells[4].Text).ToString("" + qtysetting + "");
+                    e.Row.Cells[5].Text = Convert.ToDouble(e.Row.Cells[5].Text).ToString("" + ratesetting + "");
+                    e.Row.Cells[7].Text = Convert.ToDouble(e.Row.Cells[7].Text).ToString("" + ratesetting + "");
+                }
+
+
+
             }
 
         }
