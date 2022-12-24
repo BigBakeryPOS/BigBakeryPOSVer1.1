@@ -38019,6 +38019,169 @@ namespace BusinessLayer
             return dsmerge;
         }
         #endregion
+
+
+        #region Direct Store Goods Transfer
+        public DataSet GetDirectStoreGoodTrasnfer(string TableName)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select s.DC_NO,DC_Date,SentBY,SUM(Order_Qty) as Qty,Branch,Status  " +
+                " from  tblGoodTransferstore_" + TableName + " s inner join tblTransGoodsTransferstore_" + TableName + " ts  on ts.DC_No=s.DC_NO group by s.DC_NO,DC_Date,SentBY,Branch,Status  order by DC_Date desc ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+
+        }
+
+       
+
+
+        public DataSet getMAXNOformProductionStore(string scode)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select isnull(max(convert(int,DC_NO))+1,1) as DC_No from tblGoodTransferstore_" + scode + "";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+
+            return ds;
+        }
+
+
+
+        public DataSet selectcategorymasterforproductionentryStore()
+        {
+            DataSet ds = new DataSet();
+            //string sQry = "select * from tblcategory  where isdelete=0 order by category asc ";
+            string sQry = "select distinct a.* from tblIngridentsCategory as a inner join tblIngridents as b on b.ingcatid=a.ingcatid where b.isallow='Y' order by a.IngreCategory asc ";
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
+
+        public DataSet GetDirectstoreGoodTrasnferDetails(string TableName, int DC_NO)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select s.DC_NO,DC_Date,SentBY,c.IngreCategory as Category,cu.IngredientName as Definition,Order_Qty as Qty,u.UOM as Unit  from " +
+                " tblgoodtransferstore_" + TableName + " s inner join tblTransGoodsTransferstore_" + TableName + " ts  on ts.DC_No=s.DC_NO " +
+                " inner join tblIngridents cu on cu.IngridID=ts.DescriptionId inner join tblIngridentsCategory c on c.ingcatid=cu.ingcatid " +
+                " inner join tblUOM u on u.UOMID=cu.units  where s.DC_No=" + DC_NO + "";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+
+
+        public DataSet itemforreqestNew_DirectTransferStore(string categoryid, string stable, string catid)
+        {
+            DataSet ds = new DataSet();
+            if (categoryid == "All")
+            {
+                // string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and a.categoryid in " + catid + "   order by category asc";
+
+                string sqry = "select distinct a.ingcatid as categoryid,a.IngreCategory as category,b.IngridID as categoryuserid,b.IngredientName as definition, " +
+" UOM,u.UOMID,b.TaxValue as GST,c.Rate,c.Qty as Qty, c.Rate as mrp,b.IngredientCode as serial  from tblIngridentsCategory a inner  " +
+                      "                   join tblIngridents b on a.ingcatid = b.ingcatid inner join tblUOM u on u.UOMID = b.units inner  " +
+                     "                    join tblRawMatlStock_" + stable + " as c on c.IngredientID = b.IngridID " +
+                   "  where a.IsActive = 'Yes' and b.IsActive = 'Yes' and b.isallow = 'Y' and c.Qty > 0  order by IngreCategory asc";
+                ds = dbObj.InlineExecuteDataSet(sqry);
+            }
+            else
+            {
+                string sqry = "select distinct a.ingcatid as categoryid,a.IngreCategory as category,b.IngridID as categoryuserid,b.IngredientName as definition, " +
+" UOM,u.UOMID,b.TaxValue as GST,c.Rate,c.Qty as Qty, c.Rate as mrp,b.IngredientCode as serial  from tblIngridentsCategory a inner  " +
+                       "                   join tblIngridents b on a.ingcatid = b.ingcatid inner join tblUOM u on u.UOMID = b.units inner  " +
+                      "                    join tblRawMatlStock_" + stable + " as c on c.IngredientID = b.IngridID " +
+                    "  where a.IsActive = 'Yes' and b.IsActive = 'Yes' and b.isallow = 'Y' and c.Qty > 0 and a.ingcatid=" + categoryid + " order by IngreCategory asc";
+                
+                ds = dbObj.InlineExecuteDataSet(sqry);
+            }
+            return ds;
+        }
+
+        public DataSet CheckDirectGoodTrasnferstore(string TableName, int DescriptionId, double Prod_Qty)
+        {
+            DataSet ds = new DataSet();
+            string sQry = "select * from tblRawMatlStock_" + TableName + "  where IngredientID=" + DescriptionId + " and Qty>=" + Prod_Qty + " ";
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
+
+        public int InsertDirectGoodTrasnferStore(string TableName, string Branch, DateTime DC_Date, string SentBY, string UserId)
+        {
+            int isave = 0;
+
+            DataSet ds = new DataSet();
+            //string sqry = "select isnull(max(DC_NO)+1,1) as DC_No from tblGoodTransfer_" + TableName + "";
+            string sqry = "select isnull(max(DC_NO+1),1) as DC_No from tblGoodTransferstore_" + TableName + "";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+
+
+            // get trip number 
+            string sq = " select isnull(max(Tripno+1),1) as no from tblgoodtransferstore_" + TableName + "  where branch='" + Branch + "' and cast(DC_date as date) >='" + Convert.ToDateTime(DC_Date).ToString("yyyy/MM/dd") + "'";
+            DataSet dss = dbObj.InlineExecuteDataSet(sq);
+
+            if (dss.Tables[0].Rows.Count > 0)
+            {
+                string tripno = dss.Tables[0].Rows[0]["no"].ToString();
+
+
+
+                string sQry = "insert into tblGoodTransferstore_" + TableName + " (Branch,DC_NO,DC_Date,RequestNO,Status,isCancel,ProductionName,isTransfer,BranchCode,IsReceived,SentBY,BranchReqNo,UserId,Tripno,Dispatchstatus) values('" + Branch + "'," + ds.Tables[0].Rows[0]["DC_No"].ToString() + ",'" + Convert.ToDateTime(DC_Date).ToString("yyyy/MM/dd hh:mm tt") + "',0,'',0,'Production',0,'" + Branch + "',0,'" + SentBY + "','0'," + UserId + ",'" + tripno + "','Y')";
+                isave = dbObj.InlineExecuteNonQuery(sQry);
+            }
+
+            return Convert.ToInt32(ds.Tables[0].Rows[0]["DC_No"].ToString());
+        }
+
+
+        public int InsertDirectTransGoodTrasnferstore(string TableName, int DC_No, string BranchCode, int CategoryId, int DescriptionId, double Order_Qty, double TRate, double TGST)
+        {
+            int isave = 0;
+            string sQry = "insert into tblTransGoodsTransferstore_" + TableName + " (DC_No,CategoryId,DescriptionId,Units,Order_Qty,Received_Qty,BranchID,isStocked,RequestNo,BranchCode,Damage_Qty,Missing_Qty,BranchReqNo,TRate,TGST) values('" + DC_No + "','" + CategoryId + "','" + DescriptionId + "','0','" + Order_Qty + "','" + Order_Qty + "',0,0,0,'" + BranchCode + "',0,0,'0'," + TRate + "," + TGST + ")";
+            isave = dbObj.InlineExecuteNonQuery(sQry);
+
+            string sQry1 = "update tblRawMatlStock_" + TableName + " set Qty=Qty-'" + Order_Qty + "' where IngredientID=" + DescriptionId + "  ";
+            isave = dbObj.InlineExecuteNonQuery(sQry1);
+
+            return isave;
+        }
+
+        public DataSet itemforreqestNew_DirectTransfer_Barcodesearchstore(string categoryid, string stable, string searchbarcode)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select distinct a.ingcatid as categoryid,a.IngreCategory as category,b.IngridID as categoryuserid,b.IngredientName as definition, " +
+" UOM,u.UOMID,b.TaxValue as GST,c.Rate,c.Qty as Qty, c.Rate as mrp,b.IngredientCode as serial  from tblIngridentsCategory a inner  " +
+                      "                   join tblIngridents b on a.ingcatid = b.ingcatid inner join tblUOM u on u.UOMID = b.units inner  " +
+                     "                    join tblRawMatlStock_" + stable + " as c on c.IngredientID = b.IngridID " +
+                   "  where a.IsActive = 'Yes' and b.IsActive = 'Yes' and b.isallow = 'Y' and c.Qty > 0 and b.IngredientCode='" + searchbarcode + "' order by IngreCategory asc";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+
+            return ds;
+        }
+
+        public DataSet GoodTrasnferListExp_ReportStore(string sDCNO, string BranchID)
+        {
+            DataSet ds = new DataSet();
+            // string sqry = "select d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty from tblGoodTransfer a,tblTransGoodsTransfer b,tblcategory c,tblCategoryUser d  where a.DC_NO=b.DC_No and b.CategoryId=c.categoryid and b.DescriptionId=d.CategoryUserID and a.BranchCode='" + BranchID + "' and a.DC_No='" + sDCNO + "' and  a.BranchCode=b.BranchCode ";
+            string sqry = " select a.dc_no,a.dc_date,a.sentby,sum(b.order_qty * cast(isnull(b.Trate,0) as float))  as totamnt,c.BranchName,c.BranchArea,c.mobileno,c.LandLine,a.Tripno  from tblgoodtransferstore_" + BranchID + " as a  inner join tblTransGoodsTransferstore_" + BranchID + " as b on b.dc_no=a.dc_no " +
+ " inner join tblbranch as c on c.branchcode=a.branchcode inner join tblIngridents as d on d.IngridID=b.descriptionid " +
+ " where a.DC_No='" + sDCNO + "' group by  a.dc_no,a.dc_date,a.sentby,c.BranchName,c.BranchArea,c.mobileno,c.LandLine,a.Tripno ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+
+            return ds;
+        }
+
+        public DataSet TransGoodTrasnferListExp_Reportstore(string sDCNO, string BranchID)
+        {
+            DataSet ds = new DataSet();
+            // string sqry = "select d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty from tblGoodTransfer a,tblTransGoodsTransfer b,tblcategory c,tblCategoryUser d  where a.DC_NO=b.DC_No and b.CategoryId=c.categoryid and b.DescriptionId=d.CategoryUserID and a.BranchCode='" + BranchID + "' and a.DC_No='" + sDCNO + "' and  a.BranchCode=b.BranchCode ";
+            string sqry = " select a.dc_no,a.dc_date,a.sentby,d.IngredientName as printitem,sum(b.order_qty) as Qty,b.Trate as mrp,sum(b.order_qty * cast(b.Trate as float))  as totmrp   from tblgoodtransferstore_" + BranchID + " as a  inner join tblTransGoodsTransferstore_" + BranchID + " as b on b.dc_no=a.dc_no " +
+ " inner join tblbranch as c on c.branchcode=a.branchcode inner join tblIngridents as d on d.IngridID=b.descriptionid " +
+ " where a.DC_No='" + sDCNO + "' group by  a.dc_no,a.dc_date,a.sentby,b.Trate,d.IngredientName ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+
+            return ds;
+        }
+
+        #endregion
     }
 
 
