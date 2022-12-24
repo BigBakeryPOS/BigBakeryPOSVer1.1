@@ -477,6 +477,8 @@
                         runat="server">Direct Transfer To Branch</a></li>
                     <li id="storestockreceive" runat="server" visible="false"><a id="A1" href="../Accountsbootstrap/OrderFromBranchStore.aspx"
                         runat="server">Store Stock request from Branch</a></li>
+                    <li id="Li3" runat="server" visible="true"><a id="A40" href="../Accountsbootstrap/DirectstoreGoodsTransferGrid.aspx"
+                        runat="server">Store Item Direct Transfer To Branch</a></li>
                     <li id="GRNPM" runat="server" visible="false"><a href="../Accountsbootstrap/GRNPMgrid.aspx">
                         GRN (+)(-)</a></li>
                     <li id="RequestRawItem" runat="server" visible="false"><a href="../Accountsbootstrap/GoodsTransferNewGrid.aspx">
