@@ -18451,13 +18451,13 @@ namespace BusinessLayer
             }
             else
             {
-                Query = "insert into tblRawMatlStock_" + Table + " (IngredientID,Qty,UserID,idDelete,units,Rate)values(" + IngredientID + "," + PUqty + "," + userid + ",0,'" + Units + "'," + Rate + " ";
+                Query = "insert into tblRawMatlStock_" + Table + " (IngredientID,Qty,UserID,idDelete,units,Rate)values(" + IngredientID + "," + PUqty + "," + userid + ",0,'" + Units + "'," + Rate + " )";
             }
 
             stock = dbObj.InlineExecuteNonQuery(Query);
 
             // insert stock - expiry date  
-            string sQry11 = "insert into tblRawMatlStockExp_" + Table + " (IngredientID,Qty,ExpiredDate,PurchaseID)values(" + IngredientID + "," + PUqty + ",'" + ExpiryDate1.ToString("yyyy-MM-dd") + "'," + PurchaseID + " ";
+            string sQry11 = "insert into tblRawMatlStockExp_" + Table + " (IngredientID,Qty,ExpiredDate,PurchaseID)values(" + IngredientID + "," + PUqty + ",'" + ExpiryDate1.ToString("yyyy-MM-dd") + "'," + PurchaseID + ") ";
             save = dbObj.InlineExecuteNonQuery(sQry11);
 
             return save;
