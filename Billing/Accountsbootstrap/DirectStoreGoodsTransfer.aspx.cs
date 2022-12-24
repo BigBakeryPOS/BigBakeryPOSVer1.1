@@ -12,6 +12,7 @@ using System.Text;
 using System.Drawing;
 using System.IO;
 using System.Globalization;
+//using Microsoft.Office.Interop.Excel;
 
 namespace Billing.Accountsbootstrap
 {
@@ -36,6 +37,29 @@ namespace Billing.Accountsbootstrap
             if (!IsPostBack)
             {
                 // goodsentrytype(sender, e);
+
+                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "directstorestock");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "directstorestock");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnaddqueue.Visible = true;
+                    }
+                    else
+                    {
+                        btnaddqueue.Visible = false;
+                    }
+                }
 
                 DataSet dDcNo = objbs.getMAXNOformProductionStore(sCode);
                 txtTransferNo.Text = dDcNo.Tables[0].Rows[0]["DC_No"].ToString();
