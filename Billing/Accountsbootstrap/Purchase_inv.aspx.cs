@@ -66,7 +66,7 @@ namespace Billing.Accountsbootstrap
                     drpsubcompany.DataTextField = "CustomerName";
                     drpsubcompany.DataValueField = "subComapanyID";
                     drpsubcompany.DataBind();
-                    drpsubcompany.Items.Insert(0, "Select Company");
+                   // drpsubcompany.Items.Insert(0, "Select Company");
 
 
                 }

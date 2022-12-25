@@ -31,46 +31,46 @@ namespace Billing.Accountsbootstrap
 
             if (!IsPostBack)
             {
-                //DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "DirectStockReceive");
-                //if (dacess1.Tables[0].Rows.Count > 0)
-                //{
-                //    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
-                //    {
-                //        Response.Redirect("Login_branch.aspx");
-                //    }
-                //}
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "directstorestock");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
 
-                //DataSet dacess = new DataSet();
-                //dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "DirectStockReceive");
-                //if (dacess.Tables[0].Rows.Count > 0)
-                //{
-                //    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
-                //    {
-                //        addbtn.Visible = true;
-                //    }
-                //    else
-                //    {
-                //        addbtn.Visible = false;
-                //    }
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "directstorestock");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        addbtn.Visible = true;
+                    }
+                    else
+                    {
+                        addbtn.Visible = false;
+                    }
 
-                //    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
-                //    {
-                //        //BankGrid.Columns[9].Visible = true;
-                //    }
-                //    else
-                //    {
-                //        // BankGrid.Columns[9].Visible = false;
-                //    }
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        //BankGrid.Columns[9].Visible = true;
+                    }
+                    else
+                    {
+                        // BankGrid.Columns[9].Visible = false;
+                    }
 
-                //    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
-                //    {
-                //        // BankGrid.Columns[10].Visible = true;
-                //    }
-                //    else
-                //    {
-                //        //  BankGrid.Columns[10].Visible = false;
-                //    }
-                //}
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        // BankGrid.Columns[10].Visible = true;
+                    }
+                    else
+                    {
+                        //  BankGrid.Columns[10].Visible = false;
+                    }
+                }
 
                 DataSet ds = objBs.GetDirectStoreGoodTrasnfer(sTableName);
                 if (ds.Tables[0].Rows.Count > 0)

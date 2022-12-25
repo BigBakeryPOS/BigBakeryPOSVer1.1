@@ -18451,13 +18451,13 @@ namespace BusinessLayer
             }
             else
             {
-                Query = "insert into tblRawMatlStock_" + Table + " (IngredientID,Qty,UserID,idDelete,units,Rate)values(" + IngredientID + "," + PUqty + "," + userid + ",0,'" + Units + "'," + Rate + " ";
+                Query = "insert into tblRawMatlStock_" + Table + " (IngredientID,Qty,UserID,idDelete,units,Rate)values(" + IngredientID + "," + PUqty + "," + userid + ",0,'" + Units + "'," + Rate + " )";
             }
 
             stock = dbObj.InlineExecuteNonQuery(Query);
 
             // insert stock - expiry date  
-            string sQry11 = "insert into tblRawMatlStockExp_" + Table + " (IngredientID,Qty,ExpiredDate,PurchaseID)values(" + IngredientID + "," + PUqty + ",'" + ExpiryDate1.ToString("yyyy-MM-dd") + "'," + PurchaseID + " ";
+            string sQry11 = "insert into tblRawMatlStockExp_" + Table + " (IngredientID,Qty,ExpiredDate,PurchaseID)values(" + IngredientID + "," + PUqty + ",'" + ExpiryDate1.ToString("yyyy-MM-dd") + "'," + PurchaseID + ") ";
             save = dbObj.InlineExecuteNonQuery(sQry11);
 
             return save;
@@ -38181,6 +38181,51 @@ namespace BusinessLayer
             return ds;
         }
 
+        #endregion
+
+
+        #region min Store stock alert
+        public DataSet StockDetailsDecrerseAlert(string stkTable, string IngCatid)
+        {
+            DataSet ds = new DataSet();
+            string qr = string.Empty;
+            if (IngCatid == "All")
+            {
+                // qr = "select ic.IngreCategory, a.IngredientName,b.Units,b.Qty,b.rate from tblIngridents a inner join " + stkTable + " s on s.IngredientID=a.IngridID inner join tblRawMatlStock_Prod b on a.ingridid = b.ingredientid inner join tblIngridentscategory ic on ic.IngCatID=a.IngCatID where  b.qty < a.quantity order by a.IngredientName asc";
+                qr = "select ic.IngreCategory, a.IngredientName,u.UOM,a.Quantity as minqty,s.Qty as curqty,s.Rate,(a.Quantity - s.Qty) as Purqty " +
+                    " from tblIngridents a inner join tblRawMatlStock_"+ stkTable + " s on s.IngredientID=a.IngridID  inner join tblIngridentscategory " +
+                    " ic on ic.IngCatID=a.IngCatID inner join tbluom as u on u.uomid=a.units where  s.qty < a.quantity order by a.IngredientName asc";
+                ds = dbObj.InlineExecuteDataSet(qr);
+            }
+            else
+            {
+                //qr = "select ic.IngreCategory, a.IngredientName,b.Units,b.Qty,b.rate from tblIngridents a inner join " + stkTable + " s on s.IngredientID=a.IngridID inner join tblRawMatlStock_Prod b on a.ingridid = b.ingredientid inner join tblIngridentscategory ic on ic.IngCatID=a.IngCatID  where  b.qty < a.quantity and a.ingcatid='" + IngCatid + "' order by a.IngredientName asc";
+                qr = "select ic.IngreCategory, a.IngredientName,u.UOM,a.Quantity as minqty,s.Qty as curqty,s.Rate,(a.Quantity - s.Qty) as Purqty " +
+                    " from tblIngridents a inner join tblRawMatlStock_" + stkTable + " s on s.IngredientID=a.IngridID  inner join tblIngridentscategory " +
+                    " ic on ic.IngCatID=a.IngCatID inner join tbluom as u on u.uomid=a.units where  s.qty < a.quantity and a.ingcatid='" + IngCatid + "' order by a.IngredientName asc";
+                ds = dbObj.InlineExecuteDataSet(qr);
+            }
+            return ds;
+        }
+
+
+
+        //public DataSet StockDetailsforRawitems(string stkTable, string IngCatid)
+        //{
+        //    DataSet ds = new DataSet();
+        //    string qr = string.Empty;
+        //    if (IngCatid == "All")
+        //    {
+        //        qr = "select b.IngreCategory,i.IngredientName,u.UOM,s.Qty,s.Rate from tblIngridents i inner join " + stkTable + " s on s.IngredientID=i.IngridID inner join tblIngridentscategory as b on b.ingcatid=i.ingcatid  inner join tblUOM u on u.UOMID=i.Units where s.qty >0 order by b.IngreCategory asc";
+        //        ds = dbObj.InlineExecuteDataSet(qr);
+        //    }
+        //    else
+        //    {
+        //        qr = "select b.IngreCategory,i.IngredientName,u.UOM,s.Qty,s.Rate from tblIngridents i inner join " + stkTable + " s on s.IngredientID=i.IngridID inner join tblIngridentscategory as b on b.ingcatid=i.ingcatid  inner join tblUOM u on u.UOMID=i.Units where s.qty >0 and i.ingcatid='" + IngCatid + "' order by b.IngreCategory asc";
+        //        ds = dbObj.InlineExecuteDataSet(qr);
+        //    }
+        //    return ds;
+        //}
         #endregion
     }
 

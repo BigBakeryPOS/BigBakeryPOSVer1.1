@@ -428,6 +428,7 @@
     <Content Include="Accountsbootstrap\ReceiveProductionStockGrid.aspx" />
     <Content Include="Accountsbootstrap\ReceiveStoreItem.aspx" />
     <Content Include="Accountsbootstrap\ReceiveStoreItemGrid.aspx" />
+    <Content Include="Accountsbootstrap\ReportRawMaterialDecAlert.aspx" />
     <Content Include="Accountsbootstrap\RequestFromBranchGrid.aspx" />
     <Content Include="Accountsbootstrap\RequestFromProdGrid.aspx" />
     <Content Include="Accountsbootstrap\RequestFromStoreGrid.aspx" />
@@ -3053,6 +3054,13 @@
     </Compile>
     <Compile Include="Accountsbootstrap\RegistrationForm.aspx.designer.cs">
       <DependentUpon>RegistrationForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\ReportRawMaterialDecAlert.aspx.cs">
+      <DependentUpon>ReportRawMaterialDecAlert.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\ReportRawMaterialDecAlert.aspx.designer.cs">
+      <DependentUpon>ReportRawMaterialDecAlert.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\RequestFromBranchGrid.aspx.cs">
       <DependentUpon>RequestFromBranchGrid.aspx</DependentUpon>
