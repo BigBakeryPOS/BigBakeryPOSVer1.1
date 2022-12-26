@@ -1072,6 +1072,13 @@ namespace Billing.HeaderMaster
                                         purexp.Visible = true;
 
                                     }
+                                    if (screen == "minstorealert")
+                                    {
+                                        Reports.Visible = true;
+                                        RawPurchaseReport.Visible = true;
+                                        minstorealert.Visible = true;
+
+                                    }
                                     if (screen == "dayclose")
                                     {
                                         dayclose.Visible = true;
@@ -1653,6 +1660,13 @@ namespace Billing.HeaderMaster
                                     {
                                         RequestAccept.Visible = true;
                                         storegoodsreceived.Visible = true;
+                                    }
+
+
+                                    if (screen == "directstorestock")
+                                    {
+                                        RequestAccept.Visible = true;
+                                        directstorestock.Visible = true;
                                     }
 
 
@@ -2339,6 +2353,16 @@ namespace Billing.HeaderMaster
                                         purexp.Visible = true;
 
                                     }
+
+                                    if (screen == "minstorealert")
+                                    {
+                                        Reports.Visible = true;
+                                        RawPurchaseReport.Visible = true;
+                                        minstorealert.Visible = true;
+
+                                    }
+
+
                                     if (screen == "dayclose")
                                     {
                                         dayclose.Visible = true;
@@ -2904,6 +2928,14 @@ namespace Billing.HeaderMaster
                                     RequestAccept.Visible = true;
                                     storestockreceive.Visible = true;
                                 }
+
+                                if (screen == "directstorestock")
+                                {
+                                    RequestAccept.Visible = true;
+                                    directstorestock.Visible = true;
+                                }
+
+
                                 if (screen == "storegoodsreceived")
                                 {
                                     RequestAccept.Visible = true;
@@ -3614,6 +3646,14 @@ namespace Billing.HeaderMaster
                                     purexp.Visible = true;
 
                                 }
+                                if (screen == "minstorealert")
+                                {
+                                    Reports.Visible = true;
+                                    RawPurchaseReport.Visible = true;
+                                    minstorealert.Visible = true;
+
+                                }
+
                                 if (screen == "dayclose")
                                 {
                                     dayclose.Visible = true;
@@ -4176,6 +4216,13 @@ namespace Billing.HeaderMaster
                                 RequestAccept.Visible = true;
                                 storestockreceive.Visible = true;
                             }
+
+                            if (screen == "directstorestock")
+                            {
+                                RequestAccept.Visible = true;
+                                directstorestock.Visible = true;
+                            }
+
                             if (screen == "storegoodsreceived")
                             {
                                 RequestAccept.Visible = true;
@@ -4891,6 +4938,14 @@ namespace Billing.HeaderMaster
                                 purexp.Visible = true;
 
                             }
+                            if (screen == "minstorealert")
+                            {
+                                Reports.Visible = true;
+                                RawPurchaseReport.Visible = true;
+                                minstorealert.Visible = true;
+
+                            }
+
                             if (screen == "dayclose")
                             {
                                 dayclose.Visible = true;

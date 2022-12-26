@@ -5881,12 +5881,13 @@ namespace BusinessLayer
 
                 if (logintype == "5" || logintype == "4")
                 {
-                    string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.prod_Qty) as Available_Qty,c.serial  from tblProductionQty_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.descriptionid=c.CategoryUserID and a.prod_qty>0 and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial   order by c.Definition asc";
+                    string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.prod_Qty) as Available_Qty,c.serial,c.qtytype  from tblProductionQty_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.descriptionid=c.CategoryUserID and a.prod_qty>0 and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial,c.qtytype   order by c.Definition asc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
                 else
                 {
-                    string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.Available_QTY) as Available_Qty,c.Serial  from tblStock_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.SubCategoryID=c.CategoryUserID and a.Available_QTY>0 and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial   order by cast(c.serial as int) asc";
+                    //string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.Available_QTY) as Available_Qty,c.Serial  from tblStock_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.SubCategoryID=c.CategoryUserID and a.Available_QTY>0 and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial   order by cast(c.serial as int) asc";
+                    string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.Available_QTY) as Available_Qty,c.Serial,c.qtytype  from tblStock_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.SubCategoryID=c.CategoryUserID and a.Available_QTY>0 and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial,c.qtytype   order by b.category,c.definition asc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
             }
@@ -17847,7 +17848,8 @@ namespace BusinessLayer
         public DataSet getcontact(string iCusID)
         {
             DataSet ds = new DataSet();
-            string sQry = "select l.LedgerID,* from tblCustomer c inner join tblLedger l on l.LedgerID=c.LedgerId where c.LedgerID='" + iCusID + "' and l.IsActive='Yes' ";
+            //string sQry = "select l.LedgerID,* from tblCustomer c inner join tblLedger l on l.LedgerID=c.LedgerId where c.LedgerID='" + iCusID + "' and l.IsActive='Yes' ";
+            string sQry = "select l.LedgerID,* from tblLedger l  left join tblCustomer c on l.LedgerID=c.LedgerId where l.LedgerID='" + iCusID + "' and l.IsActive='Yes' ";
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
         }
@@ -18449,13 +18451,13 @@ namespace BusinessLayer
             }
             else
             {
-                Query = "insert into tblRawMatlStock_" + Table + " (IngredientID,Qty,UserID,idDelete,units,Rate)values(" + IngredientID + "," + PUqty + "," + userid + ",0,'" + Units + "'," + Rate + " ";
+                Query = "insert into tblRawMatlStock_" + Table + " (IngredientID,Qty,UserID,idDelete,units,Rate)values(" + IngredientID + "," + PUqty + "," + userid + ",0,'" + Units + "'," + Rate + " )";
             }
 
             stock = dbObj.InlineExecuteNonQuery(Query);
 
             // insert stock - expiry date  
-            string sQry11 = "insert into tblRawMatlStockExp_" + Table + " (IngredientID,Qty,ExpiredDate,PurchaseID)values(" + IngredientID + "," + PUqty + ",'" + ExpiryDate1.ToString("yyyy-MM-dd") + "'," + PurchaseID + " ";
+            string sQry11 = "insert into tblRawMatlStockExp_" + Table + " (IngredientID,Qty,ExpiredDate,PurchaseID)values(" + IngredientID + "," + PUqty + ",'" + ExpiryDate1.ToString("yyyy-MM-dd") + "'," + PurchaseID + ") ";
             save = dbObj.InlineExecuteNonQuery(sQry11);
 
             return save;
@@ -28446,12 +28448,12 @@ namespace BusinessLayer
                 if (CategoryUserID == "All")
                 {
                     // string sQry = "select c.Category,cu.Definition,Tax,Rate,Available_QTY,(Available_QTY * Rate) as MRP, ((Available_QTY * Rate) * Tax ) / 100 as GST,((Available_QTY * Rate) + (((Available_QTY * Rate) * Tax ) / 100)) as Price  from tblCategory c inner join tblCategoryUser cu on cu.Categoryid=c.Categoryid inner join tblStock_" + sTableName + " s on s.SubCategoryID=cu.CategoryUserID where Available_QTY>0  order by Category,Definition asc";
-                    string sQry = "select c.Category,cu.Definition,Rate,Tax,Round((Rate+((Rate*Tax)/100)),0) as MRP, Available_QTY, Round(((Available_QTY * Rate) + (((Available_QTY * Rate) * Tax ) / 100)),0) as TotalAmount, (Available_QTY * Rate) as MRP1,  ((Available_QTY * Rate) * Tax ) / 100 as GST from tblCategory c inner join tblCategoryUser cu on cu.Categoryid=c.Categoryid inner join tblStock_" + sTableName + " s on s.SubCategoryID=cu.CategoryUserID where Available_QTY>0  order by Category,Definition asc";
+                    string sQry = "select c.Category,cu.Definition,Rate,Tax,Round((Rate+((Rate*Tax)/100)),0) as MRP, Available_QTY, Round(((Available_QTY * Rate) + (((Available_QTY * Rate) * Tax ) / 100)),0) as TotalAmount, (Available_QTY * Rate) as MRP1,  ((Available_QTY * Rate) * Tax ) / 100 as GST,cu.qtytype from tblCategory c inner join tblCategoryUser cu on cu.Categoryid=c.Categoryid inner join tblStock_" + sTableName + " s on s.SubCategoryID=cu.CategoryUserID where Available_QTY>0  order by Category,Definition asc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
                 else
                 {
-                    string sQry = "select c.Category,cu.Definition,Tax,Rate,Available_QTY,(Available_QTY * Rate) as MRP, ((Available_QTY * Rate) * Tax ) / 100 as GST,((Available_QTY * Rate) + (((Available_QTY * Rate) * Tax ) / 100)) as Price  from tblCategory c inner join tblCategoryUser cu on cu.Categoryid=c.Categoryid inner join tblStock_" + sTableName + " s on s.SubCategoryID=cu.CategoryUserID where CategoryUserID='" + CategoryUserID + "' and Available_QTY>0  order by Category,Definition asc";
+                    string sQry = "select c.Category,cu.Definition,Tax,Rate,Available_QTY,(Available_QTY * Rate) as MRP, ((Available_QTY * Rate) * Tax ) / 100 as GST,((Available_QTY * Rate) + (((Available_QTY * Rate) * Tax ) / 100)) as Price,cu.qtytype  from tblCategory c inner join tblCategoryUser cu on cu.Categoryid=c.Categoryid inner join tblStock_" + sTableName + " s on s.SubCategoryID=cu.CategoryUserID where CategoryUserID='" + CategoryUserID + "' and Available_QTY>0  order by Category,Definition asc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
             }
@@ -28459,12 +28461,12 @@ namespace BusinessLayer
             {
                 if (CategoryUserID == "All")
                 {
-                    string sQry = "select c.Category,cu.Definition,Rate,Tax,Round((Rate+((Rate*Tax)/100)),0) as MRP, Available_QTY, Round(((Available_QTY * Rate) + (((Available_QTY * Rate) * Tax ) / 100)),0) as TotalAmount, (Available_QTY * Rate) as MRP1,  ((Available_QTY * Rate) * Tax ) / 100 as GST from tblCategory c inner join tblCategoryUser cu on cu.Categoryid=c.Categoryid inner join tblStock_" + sTableName + " s on s.SubCategoryID=cu.CategoryUserID where c.Categoryid='" + Categoryid + "' and Available_QTY>0  order by Category,Definition asc";
+                    string sQry = "select c.Category,cu.Definition,Rate,Tax,Round((Rate+((Rate*Tax)/100)),0) as MRP, Available_QTY, Round(((Available_QTY * Rate) + (((Available_QTY * Rate) * Tax ) / 100)),0) as TotalAmount, (Available_QTY * Rate) as MRP1,  ((Available_QTY * Rate) * Tax ) / 100 as GST,cu.qtytype from tblCategory c inner join tblCategoryUser cu on cu.Categoryid=c.Categoryid inner join tblStock_" + sTableName + " s on s.SubCategoryID=cu.CategoryUserID where c.Categoryid='" + Categoryid + "' and Available_QTY>0  order by Category,Definition asc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
                 else
                 {
-                    string sQry = "select c.Category,cu.Definition,Tax,Rate,Available_QTY,(Available_QTY * Rate) as MRP, ((Available_QTY * Rate) * Tax ) / 100 as GST,((Available_QTY * Rate) + (((Available_QTY * Rate) * Tax ) / 100)) as Price  from tblCategory c inner join tblCategoryUser cu on cu.Categoryid=c.Categoryid inner join tblStock_" + sTableName + " s on s.SubCategoryID=cu.CategoryUserID where c.Categoryid='" + Categoryid + "' and CategoryUserID='" + CategoryUserID + "' and Available_QTY>0  order by Category,Definition asc";
+                    string sQry = "select c.Category,cu.Definition,Tax,Rate,Available_QTY,(Available_QTY * Rate) as MRP, ((Available_QTY * Rate) * Tax ) / 100 as GST,((Available_QTY * Rate) + (((Available_QTY * Rate) * Tax ) / 100)) as Price,cu.qtytype  from tblCategory c inner join tblCategoryUser cu on cu.Categoryid=c.Categoryid inner join tblStock_" + sTableName + " s on s.SubCategoryID=cu.CategoryUserID where c.Categoryid='" + Categoryid + "' and CategoryUserID='" + CategoryUserID + "' and Available_QTY>0  order by Category,Definition asc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
             }
@@ -38018,6 +38020,214 @@ namespace BusinessLayer
 
             return dsmerge;
         }
+        #endregion
+
+
+        #region Direct Store Goods Transfer
+        public DataSet GetDirectStoreGoodTrasnfer(string TableName)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select s.DC_NO,DC_Date,SentBY,SUM(Order_Qty) as Qty,Branch,Status  " +
+                " from  tblGoodTransferstore_" + TableName + " s inner join tblTransGoodsTransferstore_" + TableName + " ts  on ts.DC_No=s.DC_NO group by s.DC_NO,DC_Date,SentBY,Branch,Status  order by DC_Date desc ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+
+        }
+
+       
+
+
+        public DataSet getMAXNOformProductionStore(string scode)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select isnull(max(convert(int,DC_NO))+1,1) as DC_No from tblGoodTransferstore_" + scode + "";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+
+            return ds;
+        }
+
+
+
+        public DataSet selectcategorymasterforproductionentryStore()
+        {
+            DataSet ds = new DataSet();
+            //string sQry = "select * from tblcategory  where isdelete=0 order by category asc ";
+            string sQry = "select distinct a.* from tblIngridentsCategory as a inner join tblIngridents as b on b.ingcatid=a.ingcatid where b.isallow='Y' order by a.IngreCategory asc ";
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
+
+        public DataSet GetDirectstoreGoodTrasnferDetails(string TableName, int DC_NO)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select s.DC_NO,DC_Date,SentBY,c.IngreCategory as Category,cu.IngredientName as Definition,Order_Qty as Qty,u.UOM as Unit  from " +
+                " tblgoodtransferstore_" + TableName + " s inner join tblTransGoodsTransferstore_" + TableName + " ts  on ts.DC_No=s.DC_NO " +
+                " inner join tblIngridents cu on cu.IngridID=ts.DescriptionId inner join tblIngridentsCategory c on c.ingcatid=cu.ingcatid " +
+                " inner join tblUOM u on u.UOMID=cu.units  where s.DC_No=" + DC_NO + "";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+
+
+        public DataSet itemforreqestNew_DirectTransferStore(string categoryid, string stable, string catid)
+        {
+            DataSet ds = new DataSet();
+            if (categoryid == "All")
+            {
+                // string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and a.categoryid in " + catid + "   order by category asc";
+
+                string sqry = "select distinct a.ingcatid as categoryid,a.IngreCategory as category,b.IngridID as categoryuserid,b.IngredientName as definition, " +
+" UOM,u.UOMID,b.TaxValue as GST,c.Rate,c.Qty as Qty, c.Rate as mrp,b.IngredientCode as serial  from tblIngridentsCategory a inner  " +
+                      "                   join tblIngridents b on a.ingcatid = b.ingcatid inner join tblUOM u on u.UOMID = b.units inner  " +
+                     "                    join tblRawMatlStock_" + stable + " as c on c.IngredientID = b.IngridID " +
+                   "  where a.IsActive = 'Yes' and b.IsActive = 'Yes' and b.isallow = 'Y' and c.Qty > 0  order by IngreCategory asc";
+                ds = dbObj.InlineExecuteDataSet(sqry);
+            }
+            else
+            {
+                string sqry = "select distinct a.ingcatid as categoryid,a.IngreCategory as category,b.IngridID as categoryuserid,b.IngredientName as definition, " +
+" UOM,u.UOMID,b.TaxValue as GST,c.Rate,c.Qty as Qty, c.Rate as mrp,b.IngredientCode as serial  from tblIngridentsCategory a inner  " +
+                       "                   join tblIngridents b on a.ingcatid = b.ingcatid inner join tblUOM u on u.UOMID = b.units inner  " +
+                      "                    join tblRawMatlStock_" + stable + " as c on c.IngredientID = b.IngridID " +
+                    "  where a.IsActive = 'Yes' and b.IsActive = 'Yes' and b.isallow = 'Y' and c.Qty > 0 and a.ingcatid=" + categoryid + " order by IngreCategory asc";
+                
+                ds = dbObj.InlineExecuteDataSet(sqry);
+            }
+            return ds;
+        }
+
+        public DataSet CheckDirectGoodTrasnferstore(string TableName, int DescriptionId, double Prod_Qty)
+        {
+            DataSet ds = new DataSet();
+            string sQry = "select * from tblRawMatlStock_" + TableName + "  where IngredientID=" + DescriptionId + " and Qty>=" + Prod_Qty + " ";
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
+
+        public int InsertDirectGoodTrasnferStore(string TableName, string Branch, DateTime DC_Date, string SentBY, string UserId)
+        {
+            int isave = 0;
+
+            DataSet ds = new DataSet();
+            //string sqry = "select isnull(max(DC_NO)+1,1) as DC_No from tblGoodTransfer_" + TableName + "";
+            string sqry = "select isnull(max(DC_NO+1),1) as DC_No from tblGoodTransferstore_" + TableName + "";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+
+
+            // get trip number 
+            string sq = " select isnull(max(Tripno+1),1) as no from tblgoodtransferstore_" + TableName + "  where branch='" + Branch + "' and cast(DC_date as date) >='" + Convert.ToDateTime(DC_Date).ToString("yyyy/MM/dd") + "'";
+            DataSet dss = dbObj.InlineExecuteDataSet(sq);
+
+            if (dss.Tables[0].Rows.Count > 0)
+            {
+                string tripno = dss.Tables[0].Rows[0]["no"].ToString();
+
+
+
+                string sQry = "insert into tblGoodTransferstore_" + TableName + " (Branch,DC_NO,DC_Date,RequestNO,Status,isCancel,ProductionName,isTransfer,BranchCode,IsReceived,SentBY,BranchReqNo,UserId,Tripno,Dispatchstatus) values('" + Branch + "'," + ds.Tables[0].Rows[0]["DC_No"].ToString() + ",'" + Convert.ToDateTime(DC_Date).ToString("yyyy/MM/dd hh:mm tt") + "',0,'',0,'Production',0,'" + Branch + "',0,'" + SentBY + "','0'," + UserId + ",'" + tripno + "','Y')";
+                isave = dbObj.InlineExecuteNonQuery(sQry);
+            }
+
+            return Convert.ToInt32(ds.Tables[0].Rows[0]["DC_No"].ToString());
+        }
+
+
+        public int InsertDirectTransGoodTrasnferstore(string TableName, int DC_No, string BranchCode, int CategoryId, int DescriptionId, double Order_Qty, double TRate, double TGST)
+        {
+            int isave = 0;
+            string sQry = "insert into tblTransGoodsTransferstore_" + TableName + " (DC_No,CategoryId,DescriptionId,Units,Order_Qty,Received_Qty,BranchID,isStocked,RequestNo,BranchCode,Damage_Qty,Missing_Qty,BranchReqNo,TRate,TGST) values('" + DC_No + "','" + CategoryId + "','" + DescriptionId + "','0','" + Order_Qty + "','" + Order_Qty + "',0,0,0,'" + BranchCode + "',0,0,'0'," + TRate + "," + TGST + ")";
+            isave = dbObj.InlineExecuteNonQuery(sQry);
+
+            string sQry1 = "update tblRawMatlStock_" + TableName + " set Qty=Qty-'" + Order_Qty + "' where IngredientID=" + DescriptionId + "  ";
+            isave = dbObj.InlineExecuteNonQuery(sQry1);
+
+            return isave;
+        }
+
+        public DataSet itemforreqestNew_DirectTransfer_Barcodesearchstore(string categoryid, string stable, string searchbarcode)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select distinct a.ingcatid as categoryid,a.IngreCategory as category,b.IngridID as categoryuserid,b.IngredientName as definition, " +
+" UOM,u.UOMID,b.TaxValue as GST,c.Rate,c.Qty as Qty, c.Rate as mrp,b.IngredientCode as serial  from tblIngridentsCategory a inner  " +
+                      "                   join tblIngridents b on a.ingcatid = b.ingcatid inner join tblUOM u on u.UOMID = b.units inner  " +
+                     "                    join tblRawMatlStock_" + stable + " as c on c.IngredientID = b.IngridID " +
+                   "  where a.IsActive = 'Yes' and b.IsActive = 'Yes' and b.isallow = 'Y' and c.Qty > 0 and b.IngredientCode='" + searchbarcode + "' order by IngreCategory asc";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+
+            return ds;
+        }
+
+        public DataSet GoodTrasnferListExp_ReportStore(string sDCNO, string BranchID)
+        {
+            DataSet ds = new DataSet();
+            // string sqry = "select d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty from tblGoodTransfer a,tblTransGoodsTransfer b,tblcategory c,tblCategoryUser d  where a.DC_NO=b.DC_No and b.CategoryId=c.categoryid and b.DescriptionId=d.CategoryUserID and a.BranchCode='" + BranchID + "' and a.DC_No='" + sDCNO + "' and  a.BranchCode=b.BranchCode ";
+            string sqry = " select a.dc_no,a.dc_date,a.sentby,sum(b.order_qty * cast(isnull(b.Trate,0) as float))  as totamnt,c.BranchName,c.BranchArea,c.mobileno,c.LandLine,a.Tripno  from tblgoodtransferstore_" + BranchID + " as a  inner join tblTransGoodsTransferstore_" + BranchID + " as b on b.dc_no=a.dc_no " +
+ " inner join tblbranch as c on c.branchcode=a.branchcode inner join tblIngridents as d on d.IngridID=b.descriptionid " +
+ " where a.DC_No='" + sDCNO + "' group by  a.dc_no,a.dc_date,a.sentby,c.BranchName,c.BranchArea,c.mobileno,c.LandLine,a.Tripno ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+
+            return ds;
+        }
+
+        public DataSet TransGoodTrasnferListExp_Reportstore(string sDCNO, string BranchID)
+        {
+            DataSet ds = new DataSet();
+            // string sqry = "select d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty from tblGoodTransfer a,tblTransGoodsTransfer b,tblcategory c,tblCategoryUser d  where a.DC_NO=b.DC_No and b.CategoryId=c.categoryid and b.DescriptionId=d.CategoryUserID and a.BranchCode='" + BranchID + "' and a.DC_No='" + sDCNO + "' and  a.BranchCode=b.BranchCode ";
+            string sqry = " select a.dc_no,a.dc_date,a.sentby,d.IngredientName as printitem,sum(b.order_qty) as Qty,b.Trate as mrp,sum(b.order_qty * cast(b.Trate as float))  as totmrp   from tblgoodtransferstore_" + BranchID + " as a  inner join tblTransGoodsTransferstore_" + BranchID + " as b on b.dc_no=a.dc_no " +
+ " inner join tblbranch as c on c.branchcode=a.branchcode inner join tblIngridents as d on d.IngridID=b.descriptionid " +
+ " where a.DC_No='" + sDCNO + "' group by  a.dc_no,a.dc_date,a.sentby,b.Trate,d.IngredientName ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+
+            return ds;
+        }
+
+        #endregion
+
+
+        #region min Store stock alert
+        public DataSet StockDetailsDecrerseAlert(string stkTable, string IngCatid)
+        {
+            DataSet ds = new DataSet();
+            string qr = string.Empty;
+            if (IngCatid == "All")
+            {
+                // qr = "select ic.IngreCategory, a.IngredientName,b.Units,b.Qty,b.rate from tblIngridents a inner join " + stkTable + " s on s.IngredientID=a.IngridID inner join tblRawMatlStock_Prod b on a.ingridid = b.ingredientid inner join tblIngridentscategory ic on ic.IngCatID=a.IngCatID where  b.qty < a.quantity order by a.IngredientName asc";
+                qr = "select ic.IngreCategory, a.IngredientName,u.UOM,a.Quantity as minqty,s.Qty as curqty,s.Rate,(a.Quantity - s.Qty) as Purqty " +
+                    " from tblIngridents a inner join tblRawMatlStock_"+ stkTable + " s on s.IngredientID=a.IngridID  inner join tblIngridentscategory " +
+                    " ic on ic.IngCatID=a.IngCatID inner join tbluom as u on u.uomid=a.units where  s.qty < a.quantity order by a.IngredientName asc";
+                ds = dbObj.InlineExecuteDataSet(qr);
+            }
+            else
+            {
+                //qr = "select ic.IngreCategory, a.IngredientName,b.Units,b.Qty,b.rate from tblIngridents a inner join " + stkTable + " s on s.IngredientID=a.IngridID inner join tblRawMatlStock_Prod b on a.ingridid = b.ingredientid inner join tblIngridentscategory ic on ic.IngCatID=a.IngCatID  where  b.qty < a.quantity and a.ingcatid='" + IngCatid + "' order by a.IngredientName asc";
+                qr = "select ic.IngreCategory, a.IngredientName,u.UOM,a.Quantity as minqty,s.Qty as curqty,s.Rate,(a.Quantity - s.Qty) as Purqty " +
+                    " from tblIngridents a inner join tblRawMatlStock_" + stkTable + " s on s.IngredientID=a.IngridID  inner join tblIngridentscategory " +
+                    " ic on ic.IngCatID=a.IngCatID inner join tbluom as u on u.uomid=a.units where  s.qty < a.quantity and a.ingcatid='" + IngCatid + "' order by a.IngredientName asc";
+                ds = dbObj.InlineExecuteDataSet(qr);
+            }
+            return ds;
+        }
+
+
+
+        //public DataSet StockDetailsforRawitems(string stkTable, string IngCatid)
+        //{
+        //    DataSet ds = new DataSet();
+        //    string qr = string.Empty;
+        //    if (IngCatid == "All")
+        //    {
+        //        qr = "select b.IngreCategory,i.IngredientName,u.UOM,s.Qty,s.Rate from tblIngridents i inner join " + stkTable + " s on s.IngredientID=i.IngridID inner join tblIngridentscategory as b on b.ingcatid=i.ingcatid  inner join tblUOM u on u.UOMID=i.Units where s.qty >0 order by b.IngreCategory asc";
+        //        ds = dbObj.InlineExecuteDataSet(qr);
+        //    }
+        //    else
+        //    {
+        //        qr = "select b.IngreCategory,i.IngredientName,u.UOM,s.Qty,s.Rate from tblIngridents i inner join " + stkTable + " s on s.IngredientID=i.IngridID inner join tblIngridentscategory as b on b.ingcatid=i.ingcatid  inner join tblUOM u on u.UOMID=i.Units where s.qty >0 and i.ingcatid='" + IngCatid + "' order by b.IngreCategory asc";
+        //        ds = dbObj.InlineExecuteDataSet(qr);
+        //    }
+        //    return ds;
+        //}
         #endregion
     }
 

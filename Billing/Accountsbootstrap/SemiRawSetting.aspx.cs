@@ -111,6 +111,8 @@ namespace Billing.Accountsbootstrap
                     gridsemiitem.DataBind();
                 }
 
+                btnCheck.Visible = true;
+
                 if (Type == "Edit")
                 {
                     if (idEdit != "" || idEdit != null)
@@ -129,6 +131,7 @@ namespace Billing.Accountsbootstrap
                             drpitem.Enabled = false;
                             gridview1.DataSource = dget.Tables[0];
                             gridview1.DataBind();
+                            btnCheck.Visible = false;
 
                             for (int i = 0; i < gridsemiitem.Rows.Count; i++)
                             {

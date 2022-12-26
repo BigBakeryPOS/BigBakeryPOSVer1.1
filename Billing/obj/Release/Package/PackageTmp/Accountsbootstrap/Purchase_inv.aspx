@@ -110,7 +110,7 @@
                                         </label>
                                     </div>
                                     <div class="row">
-                                         <div class="col-lg-2">
+                                         <div runat="server" visible="false" class="col-lg-2">
                                             <label>
                                                 Select Company</label>
                                             <asp:DropDownList ID="drpsubcompany" runat="server" TabIndex="1" CssClass="form-control">

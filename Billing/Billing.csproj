@@ -255,6 +255,9 @@
     <Content Include="Accountsbootstrap\DirectGoodsTransfer.aspx" />
     <Content Include="Accountsbootstrap\DirectGoodsTransferGrid.aspx" />
     <Content Include="Accountsbootstrap\DirectGoodsTransferPrint.aspx" />
+    <Content Include="Accountsbootstrap\DirectStoreGoodsTransfer.aspx" />
+    <Content Include="Accountsbootstrap\DirectStoreGoodsTransferGrid.aspx" />
+    <Content Include="Accountsbootstrap\DirectStoreGoodsTransferPrint.aspx" />
     <Content Include="Accountsbootstrap\dispatchEntry.aspx" />
     <Content Include="Accountsbootstrap\DispatchPrint.aspx" />
     <Content Include="Accountsbootstrap\Dispatch_OrderPrint.aspx" />
@@ -425,6 +428,7 @@
     <Content Include="Accountsbootstrap\ReceiveProductionStockGrid.aspx" />
     <Content Include="Accountsbootstrap\ReceiveStoreItem.aspx" />
     <Content Include="Accountsbootstrap\ReceiveStoreItemGrid.aspx" />
+    <Content Include="Accountsbootstrap\ReportRawMaterialDecAlert.aspx" />
     <Content Include="Accountsbootstrap\RequestFromBranchGrid.aspx" />
     <Content Include="Accountsbootstrap\RequestFromProdGrid.aspx" />
     <Content Include="Accountsbootstrap\RequestFromStoreGrid.aspx" />
@@ -1580,6 +1584,27 @@
     </Compile>
     <Compile Include="Accountsbootstrap\DirectGoodsTransferPrint.aspx.designer.cs">
       <DependentUpon>DirectGoodsTransferPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\DirectStoreGoodsTransfer.aspx.cs">
+      <DependentUpon>DirectStoreGoodsTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\DirectStoreGoodsTransfer.aspx.designer.cs">
+      <DependentUpon>DirectStoreGoodsTransfer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\DirectStoreGoodsTransferGrid.aspx.cs">
+      <DependentUpon>DirectStoreGoodsTransferGrid.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\DirectStoreGoodsTransferGrid.aspx.designer.cs">
+      <DependentUpon>DirectStoreGoodsTransferGrid.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\DirectStoreGoodsTransferPrint.aspx.cs">
+      <DependentUpon>DirectStoreGoodsTransferPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\DirectStoreGoodsTransferPrint.aspx.designer.cs">
+      <DependentUpon>DirectStoreGoodsTransferPrint.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\dispatchEntry.aspx.cs">
       <DependentUpon>dispatchEntry.aspx</DependentUpon>
@@ -3029,6 +3054,13 @@
     </Compile>
     <Compile Include="Accountsbootstrap\RegistrationForm.aspx.designer.cs">
       <DependentUpon>RegistrationForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\ReportRawMaterialDecAlert.aspx.cs">
+      <DependentUpon>ReportRawMaterialDecAlert.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\ReportRawMaterialDecAlert.aspx.designer.cs">
+      <DependentUpon>ReportRawMaterialDecAlert.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\RequestFromBranchGrid.aspx.cs">
       <DependentUpon>RequestFromBranchGrid.aspx</DependentUpon>

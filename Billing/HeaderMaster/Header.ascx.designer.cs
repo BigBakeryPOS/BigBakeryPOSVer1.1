@@ -861,6 +861,24 @@ namespace Billing.HeaderMaster
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A1;
 
         /// <summary>
+        /// directstorestock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl directstorestock;
+
+        /// <summary>
+        /// A40 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A40;
+
+        /// <summary>
         /// GRNPM control.
         /// </summary>
         /// <remarks>
@@ -1507,6 +1525,15 @@ namespace Billing.HeaderMaster
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl purexp;
+
+        /// <summary>
+        /// minstorealert control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl minstorealert;
 
         /// <summary>
         /// SalesReport control.

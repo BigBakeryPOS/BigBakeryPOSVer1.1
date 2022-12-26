@@ -477,6 +477,8 @@
                         runat="server">Direct Transfer To Branch</a></li>
                     <li id="storestockreceive" runat="server" visible="false"><a id="A1" href="../Accountsbootstrap/OrderFromBranchStore.aspx"
                         runat="server">Store Stock request from Branch</a></li>
+                    <li id="directstorestock" runat="server" visible="false"><a id="A40" href="../Accountsbootstrap/DirectstoreGoodsTransferGrid.aspx"
+                        runat="server">Direct Store Stock Transfer To Branch</a></li>
                     <li id="GRNPM" runat="server" visible="false"><a href="../Accountsbootstrap/GRNPMgrid.aspx">
                         GRN (+)(-)</a></li>
                     <li id="RequestRawItem" runat="server" visible="false"><a href="../Accountsbootstrap/GoodsTransferNewGrid.aspx">
@@ -484,7 +486,7 @@
                     <li id="demandstoreitem" runat="server" visible="false"><a href="../Accountsbootstrap/DemandReqStoreGrid.aspx">
                         Demand to Store Request</a></li>
                     <li id="AcceptRawItem" runat="server" visible="false"><a href="../Accountsbootstrap/StoreRawItemRequestGrid.aspx">
-                        Accept Raw Item </a></li>
+                        Accept/Direct Raw Item Transfer </a></li>
                     <li id="ReceiveRawItem" runat="server" visible="false"><a href="../Accountsbootstrap/ReceiveStoreItemGrid.aspx">
                         Receive Raw Item from Store</a></li>
                     <li id="ReceiveProductionStock" runat="server" visible="false"><a href="../Accountsbootstrap/ReceiveProductionStockGrid.aspx">
@@ -615,6 +617,9 @@
                                 Purchase Summary </a></li>
                             <li id="purexp" runat="server" visible="false"><a href="../Accountsbootstrap/PurchaseFutureExpReport.aspx">
                                 Purchase Future Expiry Details </a></li>
+                            <li id="minstorealert" runat="server" visible="false"><a href="../Accountsbootstrap/ReportRawMaterialDecAlert.aspx">
+                                Min.Store Stck Altert Report </a></li>
+                            
                         </ul>
                     </li>
                     <li id="SalesReport" class='has-sub' runat="server" visible="false"><a id="ASalesReport" href="javascript:;"

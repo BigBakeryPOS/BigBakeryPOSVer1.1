@@ -723,7 +723,7 @@ namespace Billing.Accountsbootstrap
             {
                 e.Row.Cells[4].Text = "Total :-";
 
-                e.Row.Cells[7].Text = Qty.ToString("f2");
+                e.Row.Cells[7].Text = Qty.ToString("f3");
                 e.Row.Cells[6].Text = discvalue.ToString("f2");
                 e.Row.Cells[5].Text = totalvalue.ToString("f2");
 
@@ -747,7 +747,7 @@ namespace Billing.Accountsbootstrap
                 e.Row.Cells[1].Text = "Total :";
                 e.Row.Cells[3].Text = totalvalue.ToString("f2");
                 e.Row.Cells[4].Text = discvalue.ToString("f2");
-                e.Row.Cells[5].Text = Qty.ToString("f2");
+                e.Row.Cells[5].Text = Qty.ToString("f3");
                 //e.Row.Cells[11].Text = commamount.ToString("f2");
                 //e.Row.Cells[13].Text = commgstamnt.ToString("f2");
                 //e.Row.Cells[15].Text = gatwaycharge.ToString("f2");
@@ -773,7 +773,7 @@ namespace Billing.Accountsbootstrap
                 e.Row.Cells[3].Text = "Total :";
                 e.Row.Cells[4].Text = totalvalue.ToString("f2");
                 e.Row.Cells[5].Text = discvalue.ToString("f2");
-                e.Row.Cells[6].Text = Qty.ToString("f2");
+                e.Row.Cells[6].Text = Qty.ToString("f3");
                 //e.Row.Cells[11].Text = commamount.ToString("f2");
                 //e.Row.Cells[13].Text = commgstamnt.ToString("f2");
                 //e.Row.Cells[15].Text = gatwaycharge.ToString("f2");

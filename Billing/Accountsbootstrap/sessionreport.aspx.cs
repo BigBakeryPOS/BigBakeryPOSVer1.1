@@ -64,10 +64,7 @@ namespace Billing.Accountsbootstrap
                     griddetails.DataSource = getsessiondetails.Tables[0];
                     griddetails.DataBind();
                 }
-
             }
-
-
         }
 
         protected void gvorderToday_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -85,8 +82,6 @@ namespace Billing.Accountsbootstrap
                     for (int i = 0; i < getdenomination.Tables[0].Rows.Count; i++)
                     {
                          ttot += Convert.ToDouble(getdenomination.Tables[0].Rows[i]["Total"]);
-
-                       
                     }
                      lblDenototal.Text = (ttot).ToString("0.00");
                     string caption = "<h4><b>Cash Session Close Details" + "</br>" +"Session Name:"+getdenomination.Tables[0].Rows[0]["sessionname"].ToString() + "</br>"+ "Close Date :" + Convert.ToDateTime(getdenomination.Tables[0].Rows[0]["cashdate"]).ToString("MM/dd/yyyy hh:MM:tt") + "</br>" +  "</b></h4> " + "</br>" + " Print Time :" + DateTime.Now.ToString("MM/dd/yyyy hh:MM:tt") + " ";
