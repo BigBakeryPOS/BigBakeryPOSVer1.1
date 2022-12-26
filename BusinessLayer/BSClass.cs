@@ -23345,7 +23345,7 @@ namespace BusinessLayer
         public DataSet getPurchaseInvoicelist(string iSalesID, string Table)
         {
             DataSet ds = new DataSet();
-            string qr = "select * from tblkitchenPurchase_" + Table + " where Billno='" + iSalesID + "'";
+            string qr = "select * from tblkitchenPurchase_" + Table + " where purchaseid='" + iSalesID + "'";
             ds = dbObj.InlineExecuteDataSet(qr);
             return ds;
         }
@@ -23353,7 +23353,9 @@ namespace BusinessLayer
         public DataSet getPurchaseInvoicetranslist(string iSalesID, string Table)
         {
             DataSet ds = new DataSet();
-            string qr = "select * from tblkitchenPurchase_" + Table + " a inner join tbltranskitchenPurchase_" + Table + " b on a.PurchaseID = b.purchaseID where a.billno='" + iSalesID + "' and b.status='NO'";
+            //string qr = "select * from tblkitchenPurchase_" + Table + " a inner join tbltranskitchenPurchase_" + Table + " b on a.PurchaseID = b.purchaseID where a.purchaseid='" + iSalesID + "' and b.status='NO'";
+            string qr = "select i.Units,tp.* from tbltranskitchenPurchase_" + Table + " tp inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblkitchenPurchase_" + Table + " c on c.purchaseid = tp.purchaseid where c.purchaseid='" + iSalesID + "' and tp.status='NO'";
+            
 
             ds = dbObj.InlineExecuteDataSet(qr);
             return ds;

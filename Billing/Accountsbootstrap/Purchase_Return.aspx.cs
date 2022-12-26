@@ -40,6 +40,16 @@ namespace Billing.Accountsbootstrap
 
                 }
 
+                DataSet Paymode = kbs.GetOthersPaymode();
+                if (Paymode.Tables[0].Rows.Count > 0)
+                {
+                    ddlpaymode.DataSource = Paymode.Tables[0];
+                    ddlpaymode.DataTextField = "Paymode";
+                    ddlpaymode.DataValueField = "Value";
+                    ddlpaymode.DataBind();
+                    ddlpaymode.Items.Insert(0, "Select Paymode");
+                }
+
                 DataSet bank = kbs.Ledgerbank();
                 if (bank.Tables[0].Rows.Count > 0)
                 {
@@ -55,7 +65,7 @@ namespace Billing.Accountsbootstrap
                 {
                     drpPO.DataSource = dsPO.Tables[0];
                     drpPO.DataTextField = "BillNo";
-                    drpPO.DataValueField = "BillNo";
+                    drpPO.DataValueField = "PurchaseID";
                     drpPO.DataBind();
                     drpPO.Items.Insert(0, "Select Purchase InvoiceNo");
 
@@ -831,7 +841,7 @@ namespace Billing.Accountsbootstrap
 
                             DropDownList paymode = (DropDownList)gvcustomerorder.Rows[i].FindControl("ddlPay");
 
-                            TextBox txtSupliername = (TextBox)gvcustomerorder.Rows[i].FindControl("txtsupplier"); 
+                            TextBox txtSupliername = (TextBox)gvcustomerorder.Rows[i].FindControl("txtsupplier");
 
                             TextBox txtexpireddate = (TextBox)gvcustomerorder.Rows[i].FindControl("txtexpireddate");
 
@@ -852,7 +862,7 @@ namespace Billing.Accountsbootstrap
 
                                 //if (BillingType == "Purchase Order")
                                 //{
-                                    int iSucess = kbs.UpdatePurchaseInvoiceSTk(PONo, sTableName, dQty, idef);                                  
+                                int iSucess = kbs.UpdatePurchaseInvoiceSTk(PONo, sTableName, dQty, idef);
                                 //}
                             }
                         }
@@ -924,7 +934,7 @@ namespace Billing.Accountsbootstrap
                         PONo = Convert.ToInt32(drpPO.SelectedValue);
                     }
 
-                    int insertPurchase = kbs.updatePurchase(sTableName, txtbillno.Text, txtsdate1.Text, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), iSalesID, bank, chequeno, CreditorID1, ledgerid, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), txteditnarrations.Text, Province,0,0,0,0,0,0);
+                    int insertPurchase = kbs.updatePurchase(sTableName, txtbillno.Text, txtsdate1.Text, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), iSalesID, bank, chequeno, CreditorID1, ledgerid, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), txteditnarrations.Text, Province, 0, 0, 0, 0, 0, 0);
                     int trans1 = kbs.getduplisttrans123(iSalesID, sTableName);
 
                     int transdelete = kbs.getduplisttransdelete(iSalesID, sTableName);
@@ -998,6 +1008,8 @@ namespace Billing.Accountsbootstrap
             TextBox Rate = (TextBox)row.FindControl("txtRate");
             TextBox Amount = (TextBox)row.FindControl("txtAmount");
             TextBox txttax = (TextBox)row.FindControl("txtBillNo");
+            
+            
             #region
             if (Qty.Text == "")
             {
@@ -1061,7 +1073,10 @@ namespace Billing.Accountsbootstrap
                 TextBox txtQty = (TextBox)gvcustomerorder.Rows[i].FindControl("txtQty");
                 TextBox txtRate = (TextBox)gvcustomerorder.Rows[i].FindControl("txtRate");
                 TextBox txtBillNo = (TextBox)gvcustomerorder.Rows[i].FindControl("txtBillNo");
-
+                Label lblprimaryvalue = (Label)gvcustomerorder.Rows[i].FindControl("lblprimaryvalue");
+                TextBox txtpqty = (TextBox)gvcustomerorder.Rows[i].FindControl("txtpqty");
+                if (lblprimaryvalue.Text == "") lblprimaryvalue.Text = "1";
+                txtpqty.Text = Convert.ToDouble(Convert.ToDouble(lblprimaryvalue.Text) * Convert.ToDouble(txtQty.Text)).ToString();
                 if (txtQty.Text == "")
                 {
                     return;
@@ -1105,6 +1120,16 @@ namespace Billing.Accountsbootstrap
 
             txttax.Focus();
         }
+
+        protected void txtDisCount_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtDisCountAmount_TextChanged(object sender, EventArgs e)
+        {
+        }
+
         protected void txtBillNo_TextChanged(object sender, EventArgs e)
         {
             TextBox txt = (TextBox)sender;
@@ -1424,6 +1449,176 @@ namespace Billing.Accountsbootstrap
             }
         }
 
+        protected void ddlsuplier_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataSet dss = kbs.getsupplierdetais(ddlsuplier.SelectedValue);
+            if (dss.Tables[0].Rows.Count > 0)
+            {
+                if (dss.Tables[0].Rows[0]["Province"].ToString() == "Inner" || dss.Tables[0].Rows[0]["Province"].ToString() == "")
+                {
+                    rbdpurchasetype.SelectedValue = "1";
+                }
+                else
+                {
+                    rbdpurchasetype.SelectedValue = "2";
+                }
+            }
+            else
+            {
+                rbdpurchasetype.SelectedValue = "1";
+            }
+        }
+
+        protected void txtdefQty_TextChangedOLD(object sender, EventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+            GridViewRow row = (GridViewRow)txt.NamingContainer;
+
+            TextBox Qty = (TextBox)row.FindControl("txtQty");
+            TextBox Rate = (TextBox)row.FindControl("txtRate");
+            TextBox Amount = (TextBox)row.FindControl("txtAmount");
+            TextBox txttax = (TextBox)row.FindControl("txtBillNo");
+            TextBox DisCount = (TextBox)row.FindControl("txtDisCount");
+
+            //DropDownList ddlprimaryunits = (DropDownList)row.FindControl("ddlprimaryunits");
+            Label lblprimaryname = (Label)row.FindControl("lblprimaryname");
+            Label lblprimaryvalue = (Label)row.FindControl("lblprimaryvalue");
+            TextBox PQty = (TextBox)row.FindControl("txtPQty");
+
+            //if (ddlprimaryunits.SelectedValue == "Select PrimaryUom")
+            //{
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Please Select Primary Uom.');", true);
+            //    return;
+            //}
+
+            if (Qty.Text == "")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Please Enter Qty');", true);
+                return;
+            }
+            if (Rate.Text == "")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Please Enter Rate');", true);
+                return;
+            }
+
+
+            if (Qty.Text == "")
+                Qty.Text = "0";
+            if (Rate.Text == "")
+                Rate.Text = "0";
+            if (Amount.Text == "")
+                Rate.Text = "0";
+            if (txttax.Text == "")
+                Rate.Text = "0";
+            if (DisCount.Text == "")
+                DisCount.Text = "0";
+
+            decimal dAmount = 0;
+            decimal tax = 0;
+            decimal Disc = 0;
+            decimal Pqty = 0;
+
+            lblError.Visible = false;
+            Button1.Enabled = true;
+
+
+            decimal dQty = Convert.ToDecimal(Qty.Text);
+            decimal DRate = Convert.ToDecimal(Rate.Text);
+            decimal DDisCount = Convert.ToDecimal(DisCount.Text);
+
+            dAmount = dQty * DRate;
+
+            Pqty = dQty * Convert.ToDecimal(lblprimaryvalue.Text);
+            Disc = (dAmount * DDisCount) / 100;
+
+            tax = ((dAmount - Disc) * Convert.ToDecimal(txttax.Text) / 100);
+
+            decimal amt = (dAmount - Disc) + tax;
+
+            Amount.Text = amt.ToString("f2");
+            PQty.Text = Pqty.ToString("f2");
+
+            decimal samt = 0; decimal sdisc = 0; decimal ttltax = 0;
+
+            for (int i = 0; i < gvcustomerorder.Rows.Count; i++)
+            {
+                TextBox txtsno = (TextBox)gvcustomerorder.Rows[i].FindControl("txtsno");
+                txtsno.Text = (i + 1).ToString();
+
+                TextBox txtQty = (TextBox)gvcustomerorder.Rows[i].FindControl("txtQty");
+                TextBox txtRate = (TextBox)gvcustomerorder.Rows[i].FindControl("txtRate");
+                TextBox txtBillNo = (TextBox)gvcustomerorder.Rows[i].FindControl("txtBillNo");
+                TextBox txtDisCount = (TextBox)gvcustomerorder.Rows[i].FindControl("txtDisCount");
+
+                if (txtQty.Text == "")
+                    txtQty.Text = "0";
+                if (txtRate.Text == "")
+                    txtRate.Text = "0";
+                if (txtBillNo.Text == "")
+                    txtBillNo.Text = "0";
+                if (txtDisCount.Text == "")
+                    txtDisCount.Text = "0";
+
+                decimal dAmount1 = Convert.ToDecimal(txtQty.Text) * Convert.ToDecimal(txtRate.Text);
+
+                decimal disc1 = (dAmount1 * Convert.ToDecimal(txtDisCount.Text)) / 100;
+
+                decimal tax1 = (((dAmount1 - disc1) * Convert.ToDecimal(txtBillNo.Text)) / 100);
+
+                samt += (dAmount1 - disc1);
+                sdisc += disc1;
+                ttltax += tax1;
+
+            }
+
+            txtSubTotal.Text = samt.ToString("f2");
+            txtDiscountAmount.Text = sdisc.ToString("f2");
+            txttotal.Text = (samt + ttltax).ToString("f2");
+
+            if (rbdpurchasetype.SelectedValue == "1")
+            {
+                txtcgst.Text = string.Format("{0:N2}", Convert.ToDouble(ttltax) / 2);
+                txtsgst.Text = string.Format("{0:N2}", Convert.ToDouble(ttltax) / 2);
+                txtigst.Text = "0.00";
+            }
+            else
+            {
+                txtcgst.Text = "0.00";
+                txtsgst.Text = "0.00";
+                txtigst.Text = ttltax.ToString("f2");
+            }
+
+            #region FreightCharge
+
+            //if (txtFreightCharge.Text == "")
+            //    txtFreightCharge.Text = "0";
+
+            //decimal Tax = (Convert.ToDecimal(txtFreightCharge.Text) * Convert.ToDecimal(ddltax.SelectedItem.Text)) / 100;
+            //txtFreightChargeTax.Text = Tax.ToString("f2");
+
+            //decimal GrndTotal = (Convert.ToDecimal(txtSubTotal.Text) + Convert.ToDecimal(txtcgst.Text) + Convert.ToDecimal(txtsgst.Text) + Convert.ToDecimal(txtigst.Text) + Convert.ToDecimal(txtFreightCharge.Text) + Tax);
+            decimal GrndTotal = (Convert.ToDecimal(txtSubTotal.Text) + Convert.ToDecimal(txtcgst.Text) + Convert.ToDecimal(txtsgst.Text) + Convert.ToDecimal(txtigst.Text));
+            txttotal.Text = GrndTotal.ToString("f2");
+
+            #endregion
+
+            double r = 0;
+            double roundoff = Convert.ToDouble(txttotal.Text) - Math.Floor(Convert.ToDouble(txttotal.Text));
+            if (roundoff > 0.5)
+            {
+                r = Math.Round(Convert.ToDouble(txttotal.Text), MidpointRounding.AwayFromZero);
+            }
+            else
+            {
+                r = Math.Floor(Convert.ToDouble(txttotal.Text));
+            }
+            txtroundoff.Text = Convert.ToString(r);
+
+            DisCount.Focus();
+        }
+
+
         protected void drpPO_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             if (drpPO.SelectedValue == "0")
@@ -1446,19 +1641,28 @@ namespace Billing.Accountsbootstrap
                     txtsdate1.Text = Convert.ToDateTime(dagent.Tables[0].Rows[0]["BillDate"]).ToString("yyyy-MM-dd"); // dagent.Tables[0].Rows[0]["OrderDate"].ToString("yyyy-MM-dd");
 
                     ddlsuplier.SelectedValue = dagent.Tables[0].Rows[0]["Supplier"].ToString();
-
+                    ddlsuplier_OnSelectedIndexChanged(sender, e);
                     ddlpaymode.SelectedValue = dagent.Tables[0].Rows[0]["Paymode"].ToString();
 
-                    if (dagent.Tables[0].Rows[0]["Paymode"].ToString() == "1")
-                    {
-                        ddlbank.Enabled = false;
-                        txtcheque.Enabled = false;
-                    }
-                    else
+                    if (dagent.Tables[0].Rows[0]["Paymode"].ToString() == "4" || dagent.Tables[0].Rows[0]["Paymode"].ToString() == "11" || dagent.Tables[0].Rows[0]["Paymode"].ToString() == "15" || dagent.Tables[0].Rows[0]["Paymode"].ToString() == "19")
                     {
                         ddlbank.Enabled = true;
                         txtcheque.Enabled = true;
-                      
+                        ddlbank.Visible = true;
+                        txtcheque.Visible = true;
+                        lblbank.Visible = true;
+                        lblChq.Visible = true;
+                    }
+                    else
+                    {
+                        ddlbank.Enabled = false;
+                        txtcheque.Enabled = false;
+
+                        ddlbank.Visible = false;
+                        txtcheque.Visible = false;
+
+                        lblbank.Visible = false;
+                        lblChq.Visible = false;
                     }
 
                     if (dagent.Tables[0].Rows[0]["Province"].ToString() == "Inner")
@@ -1470,14 +1674,14 @@ namespace Billing.Accountsbootstrap
                         rbdpurchasetype.SelectedValue = "2";
                     }
                     // ddlbank.SelectedValue = dagent.Tables[0].Rows[0]["Bank"].ToString();
-                    // txtcheque.Text = dagent.Tables[0].Rows[0]["ChequeNo"].ToString();
+                    //txtcheque.Text = dagent.Tables[0].Rows[0]["ChequeNo"].ToString();
                     txtSubTotal.Text = dagent.Tables[0].Rows[0]["SubTotal"].ToString();
                     txttotal.Text = dagent.Tables[0].Rows[0]["Total"].ToString();
                     txtcgst.Text = dagent.Tables[0].Rows[0]["CGST"].ToString();
                     txtsgst.Text = dagent.Tables[0].Rows[0]["SGST"].ToString();
                     txtigst.Text = dagent.Tables[0].Rows[0]["IGST"].ToString();
 
-                   
+
                     // Button1.Text = "update";
 
                     DataSet transpur = kbs.getPurchaseInvoicetranslist(drpPO.SelectedValue, sTableName);
@@ -1509,6 +1713,9 @@ namespace Billing.Accountsbootstrap
                     dct = new DataColumn("Units");
                     dttt.Columns.Add(dct);
 
+                    dct = new DataColumn("Unitsid");
+                    dttt.Columns.Add(dct);
+
                     dct = new DataColumn("BillNo");
                     dttt.Columns.Add(dct);
                     dct = new DataColumn("Supplier");
@@ -1518,6 +1725,27 @@ namespace Billing.Accountsbootstrap
 
                     dct = new DataColumn("ExpDate");
                     dttt.Columns.Add(dct);
+                    dct = new DataColumn("DisCount");
+                    dttt.Columns.Add(dct);
+
+                    dct = new DataColumn("DisCountAmnt");
+                    dttt.Columns.Add(dct);
+
+                    dct = new DataColumn("PUnits");
+                    dttt.Columns.Add(dct);
+
+                    dct = new DataColumn("PUnitsvalue");
+                    dttt.Columns.Add(dct);
+
+                    dct = new DataColumn("Pvalue");
+                    dttt.Columns.Add(dct);
+
+                    dct = new DataColumn("Bname");
+                    dttt.Columns.Add(dct);
+
+                    dct = new DataColumn("Hsncode");
+                    dttt.Columns.Add(dct);
+
 
                     dct = new DataColumn("PoQty");
                     dttt.Columns.Add(dct);
@@ -1537,15 +1765,37 @@ namespace Billing.Accountsbootstrap
                         drNew["Rate"] = dr["Rate"];
                         drNew["Amount"] = dr["Amount"];
                         drNew["Units"] = dr["Units"];
-                        drNew["BillNo"] = dr["BillNo"];
+                        drNew["BillNo"] = dr["Tax"];
                         drNew["Supplier"] = 0;
                         drNew["Paymode"] = 0;
-
-                        drNew["PoQty"] = dr["Qty"];
+                        drNew["ExpDate"] = dr["ExpiryDate"];
+                        drNew["DisCount"] = dr["Disc"];
+                        drNew["DisCountAmnt"] = dr["DiscountAmnt"];
+                        drNew["PoQty"] = dr["PUQty"];
+                        DataSet dspunits = kbs.GetPrimaryUOMName(Convert.ToInt32(dr["Punitsid"]));
+                        if (dspunits.Tables[0].Rows.Count > 0)
+                        {
+                            drNew["PUnits"] = dspunits.Tables[0].Rows[0]["primaryname"].ToString();
+                        }
+                        drNew["PUnitsvalue"] = dr["PUnitsid"];
+                        drNew["Pvalue"] = dr["Pvalue"];
                         drNew["Narrations"] = dr["Narrations"];
 
                         drNew["ExpDate"] = dr["ExpiryDate"];
+                        DataSet dss = kbs.getingreUnits(dr["IngredientID"].ToString(), ddlsuplier.SelectedValue, "1");
+                        if (dss.Tables[0].Rows.Count > 0)
+                        {
+                            // Label lblunits = (Label)row.FindControl("lblunits");
+                            //drNew["Units"] = dss.Tables[0].Rows[0]["UOM"].ToString();
+                            //drNew["Unitsid"] = dss.Tables[0].Rows[0]["UOMid"].ToString();
+                            //  TextBox txtBillNo = (TextBox)row.FindControl("txtBillNo");
+                            // txtmBillNo.Text = dss.Tables[0].Rows[0]["TaxValue"].ToString();
 
+                            drNew["Bname"] = dss.Tables[0].Rows[0]["BIngredientName"].ToString();
+
+                            drNew["Hsncode"] = dss.Tables[0].Rows[0]["HsnCode"].ToString();
+
+                        }
 
                         dstd.Tables[0].Rows.Add(drNew);
                     }
@@ -1559,7 +1809,10 @@ namespace Billing.Accountsbootstrap
                         TextBox txtsno = (TextBox)gvcustomerorder.Rows[vLoop].FindControl("txtsno");
                         DropDownList ddlDef = (DropDownList)gvcustomerorder.Rows[vLoop].FindControl("ddlDef");
                         Label lblDescriptionID = (Label)gvcustomerorder.Rows[vLoop].FindControl("lblDescriptionID");
-                        Label lblunits = (Label)gvcustomerorder.Rows[vLoop].FindControl("lblunits");
+                        //Label lblunits = (Label)gvcustomerorder.Rows[vLoop].FindControl("lblunits");
+                        Label lblunitsid = (Label)gvcustomerorder.Rows[vLoop].FindControl("lblunitsid");
+
+                        TextBox txtbillingname = (TextBox)gvcustomerorder.Rows[vLoop].FindControl("txtbillingname");
 
                         TextBox txtQty = (TextBox)gvcustomerorder.Rows[vLoop].FindControl("txtQty");
                         TextBox txtRate = (TextBox)gvcustomerorder.Rows[vLoop].FindControl("txtRate");
@@ -1569,7 +1822,9 @@ namespace Billing.Accountsbootstrap
                         TextBox txtsupplier = (TextBox)gvcustomerorder.Rows[vLoop].FindControl("txtsupplier");
                         DropDownList ddlPay = (DropDownList)gvcustomerorder.Rows[vLoop].FindControl("ddlPay");
                         TextBox txtexpireddate = (TextBox)gvcustomerorder.Rows[vLoop].FindControl("txtexpireddate");
-
+                        TextBox txtDisCount = (TextBox)gvcustomerorder.Rows[vLoop].FindControl("txtDisCount");
+                        TextBox txthsncode = (TextBox)gvcustomerorder.Rows[vLoop].FindControl("txthsncode");
+                        TextBox txtDisCountAmount = (TextBox)gvcustomerorder.Rows[vLoop].FindControl("txtDisCountAmount");
 
                         Label lblpoqty = (Label)gvcustomerorder.Rows[vLoop].FindControl("lblpoqty");
                         TextBox txtnarrations = (TextBox)gvcustomerorder.Rows[vLoop].FindControl("txtnarrations");
@@ -1579,14 +1834,25 @@ namespace Billing.Accountsbootstrap
                         //lblpoqty.Text = Convert.ToDouble(dstd.Tables[0].Rows[vLoop]["PoQty"]).ToString();
                         lblpoqty.Text = Convert.ToDouble(dstd.Tables[0].Rows[vLoop]["Qty"]).ToString();
                         txtnarrations.Text = dstd.Tables[0].Rows[vLoop]["Narrations"].ToString();
+                        Label lblprimaryvalue = (Label)gvcustomerorder.Rows[vLoop].FindControl("lblprimaryvalue");
+                        Label lblprimarynamevalue = (Label)gvcustomerorder.Rows[vLoop].FindControl("lblprimarynamevalue");
+                        Label lblprimaryname = (Label)gvcustomerorder.Rows[vLoop].FindControl("lblprimaryname");
+
+                        TextBox txtpqty = (TextBox)gvcustomerorder.Rows[vLoop].FindControl("txtpqty");
+
 
                         ddlDef.SelectedValue = Convert.ToInt32(dstd.Tables[0].Rows[vLoop]["IngredientID"]).ToString();
                         lblDescriptionID.Text = Convert.ToInt32(dstd.Tables[0].Rows[vLoop]["IngredientID"]).ToString();
+
+                        txtbillingname.Text = dstd.Tables[0].Rows[vLoop]["BName"].ToString();
+                        //lblunits.Text = dstd.Tables[0].Rows[vLoop]["Units"].ToString();
+                        //lblunitsid.Text = dstd.Tables[0].Rows[vLoop]["Unitsid"].ToString();
+                        txthsncode.Text = dstd.Tables[0].Rows[vLoop]["Hsncode"].ToString();
                         txtQty.Text = Convert.ToDouble(dstd.Tables[0].Rows[vLoop]["Qty"]).ToString();
                         txtRate.Text = Convert.ToDouble(dstd.Tables[0].Rows[vLoop]["Rate"]).ToString();
                         txtAmount.Text = Convert.ToDouble(dstd.Tables[0].Rows[vLoop]["Amount"]).ToString();
                         ddlunits.SelectedValue = Convert.ToInt32(dstd.Tables[0].Rows[vLoop]["Units"]).ToString();
-                        lblunits.Text = ddlunits.SelectedItem.Text;
+                        //lblunits.Text = ddlunits.SelectedItem.Text;
                         //////  txtBillNo.Text = Convert.ToInt32(dstd.Tables[0].Rows[vLoop]["BillNo"]).ToString(); 
 
                         txtBillNo.Text = Convert.ToDouble(dstd.Tables[0].Rows[vLoop]["BillNo"]).ToString("f2");
@@ -1597,6 +1863,13 @@ namespace Billing.Accountsbootstrap
                         {
                             txtexpireddate.Text = "";
                         }
+                        txtDisCount.Text = Convert.ToDouble(dstd.Tables[0].Rows[vLoop]["DisCount"]).ToString();
+                        txtDisCountAmount.Text = Convert.ToDouble(dstd.Tables[0].Rows[vLoop]["DisCountAmnt"]).ToString();
+                        // ddlprimaryunits.SelectedValue = dstd.Tables[0].Rows[vLoop]["PUnits"].ToString();
+                        lblprimaryvalue.Text = dstd.Tables[0].Rows[vLoop]["Pvalue"].ToString();
+                        lblprimaryname.Text = dstd.Tables[0].Rows[vLoop]["PUnits"].ToString();
+                        lblprimarynamevalue.Text = dstd.Tables[0].Rows[vLoop]["PUnitsvalue"].ToString();
+                        txtpqty.Text = Convert.ToDouble(dstd.Tables[0].Rows[vLoop]["PoQty"]).ToString();
                         ddlDef.Enabled = false;
                     }
                 }
@@ -1617,13 +1890,13 @@ namespace Billing.Accountsbootstrap
                     txtsno.Text = (i + 1).ToString();
 
                     TextBox tAmount = (TextBox)gvcustomerorder.Rows[i].FindControl("txtAmount");
-                    
+
 
                     TextBox txtQty = (TextBox)gvcustomerorder.Rows[i].FindControl("txtQty");
                     TextBox txtRate = (TextBox)gvcustomerorder.Rows[i].FindControl("txtRate");
                     TextBox txtBillNo = (TextBox)gvcustomerorder.Rows[i].FindControl("txtBillNo");
 
-                   
+
 
 
                     decimal dAmount1 = Convert.ToDecimal(txtQty.Text) * Convert.ToDecimal(txtRate.Text);
@@ -1665,15 +1938,25 @@ namespace Billing.Accountsbootstrap
 
         protected void ddlpaymode_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlpaymode.SelectedValue == "1" || ddlpaymode.SelectedValue == "2")
-            {
-                ddlbank.Enabled = false;
-                txtcheque.Enabled = false;
-            }
-            else
+            if (ddlpaymode.SelectedValue == "4" || ddlpaymode.SelectedValue == "11" || ddlpaymode.SelectedValue == "15" || ddlpaymode.SelectedValue == "19")
             {
                 ddlbank.Enabled = true;
                 txtcheque.Enabled = true;
+                ddlbank.Visible = true;
+                txtcheque.Visible = true;
+                lblbank.Visible = true;
+                lblChq.Visible = true;
+            }
+            else
+            {
+                ddlbank.Enabled = false;
+                txtcheque.Enabled = false;
+
+                ddlbank.Visible = false;
+                txtcheque.Visible = false;
+
+                lblbank.Visible = false;
+                lblChq.Visible = false;
             }
             ddlpaymode.Focus();
         }
