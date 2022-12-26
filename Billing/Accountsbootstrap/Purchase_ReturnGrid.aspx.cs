@@ -52,20 +52,20 @@ namespace Billing.Accountsbootstrap
 
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
                     {
-                        BankGrid.Columns[7].Visible = true;
+                       // BankGrid.Columns[7].Visible = true;
                     }
                     else
                     {
-                        BankGrid.Columns[7].Visible = false;
+                        //BankGrid.Columns[7].Visible = false;
                     }
 
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
                     {
-                        BankGrid.Columns[8].Visible = true;
+                       // BankGrid.Columns[8].Visible = true;
                     }
                     else
                     {
-                        BankGrid.Columns[8].Visible = false;
+                       // BankGrid.Columns[8].Visible = false;
                     }
                 }
                 DataSet dsCustomer = objBs.SupplierList11();

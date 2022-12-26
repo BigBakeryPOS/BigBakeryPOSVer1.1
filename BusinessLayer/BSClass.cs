@@ -23363,7 +23363,7 @@ namespace BusinessLayer
             return ds;
         }
 
-        public int insertPurchaseReturn(string Table, int ledgerid, int CreditorID1, string BillNo, string BillDate, string EntryDate, decimal Subtotal, decimal Tax, decimal Total, int Supplier, int Paymode, int bank, string chequeno, string cgst, string sgst, string igst, string dcno, int EntryUserID, string billingtype, int pono, string Province)
+        public int insertPurchaseReturn(string Table, int ledgerid, int CreditorID1, string BillNo, string BillDate, string EntryDate, decimal Subtotal, decimal Tax, decimal Total, int Supplier, int Paymode, int bank, string chequeno, string cgst, string sgst, string igst, string dcno, int EntryUserID, string billingtype, int pono, string Province,string RoundOff)
         {
             int TransNo = 0;
             int Bn0 = 0;
@@ -23390,7 +23390,7 @@ namespace BusinessLayer
             ds2 = dbObj.InlineExecuteDataSet(qy2);
             TransNo = Convert.ToInt32(ds2.Tables[0].Rows[0]["TransNo"].ToString());
 
-            string sQry = "insert into tblkitchenPurchaseReturn_" + Table + "(PurchaseRtnDate,BillNo,EntryDate,Subtotal,Tax,Total,Supplier,Paymode,Bank,ChequeNo,Daybookid,CGST,SGST,IGST,DCNO,EntryUserID,BillingType,PurInvNo,Province) values('" + Convert.ToDateTime(date1).ToString("yyyy/MM/dd") + "'," + BillNo + ",'" + Convert.ToDateTime(date1).ToString("yyyy/MM/dd hh:mm tt") + "'," + Subtotal + "," + Tax + "," + Total + "," + Supplier + "," + Paymode + "," + bank + ",'" + chequeno + "'," + TransNo + ",'" + cgst + "','" + sgst + "','" + igst + "','" + dcno + "'," + EntryUserID + ",'" + billingtype + "','" + pono + "','" + Province + "')";
+            string sQry = "insert into tblkitchenPurchaseReturn_" + Table + "(PurchaseRtnDate,BillNo,EntryDate,Subtotal,Tax,Total,Supplier,Paymode,Bank,ChequeNo,Daybookid,CGST,SGST,IGST,DCNO,EntryUserID,BillingType,PurInvNo,Province,RoundOff) values('" + Convert.ToDateTime(date1).ToString("yyyy/MM/dd") + "'," + BillNo + ",'" + Convert.ToDateTime(date1).ToString("yyyy/MM/dd hh:mm tt") + "'," + Subtotal + "," + Tax + "," + Total + "," + Supplier + "," + Paymode + "," + bank + ",'" + chequeno + "'," + TransNo + ",'" + cgst + "','" + sgst + "','" + igst + "','" + dcno + "'," + EntryUserID + ",'" + billingtype + "','" + pono + "','" + Province + "','" + RoundOff + "')";
             save = dbObj.InlineExecuteNonQuery(sQry);
 
             //if (billingtype == "Purchase Order")
@@ -23407,7 +23407,7 @@ namespace BusinessLayer
         }
 
 
-        public int insertTransPurchaseReturn(string Table, int PurchaseID, int IngredientID, decimal Qty, decimal Rate, decimal Amount, decimal Tax, int userid, string Units, decimal billno, int supplier, string pay, string ExpiryDate, string Narrations)
+        public int insertTransPurchaseReturn(string Table, int PurchaseID, int IngredientID, decimal Qty, decimal Rate, decimal Amount, decimal Tax, int userid, string Units, decimal billno, int supplier, string pay, string ExpiryDate, string Narrations, double Disc, double discamount, string Punitsid, double Pvalue, double PUqty,int Purchasebillno)
         {
             int save = 0;
             int save1 = 0;
@@ -23426,7 +23426,7 @@ namespace BusinessLayer
                 ExpiryDate1 = DateTime.ParseExact(ExpiryDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             }
 
-            string sQry = "insert into tbltranskitchenPurchaseReturn_" + Table + "(PurchaseRtnID,IngredientID,Qty,Rate,Amount,Tax,Units,BillNo,SupplierID,Paymode,ExpiryDate,Narrations) values(" + PurchaseID + "," + IngredientID + "," + Qty + "," + Rate + "," + Amount + "," + Tax + ",'" + Units + "'," + billno + "," + supplier + ",'" + pay + "','" + ExpiryDate1.ToString("yyyy-MM-dd") + "','" + Narrations + "')";
+            string sQry = "insert into tbltranskitchenPurchaseReturn_" + Table + "(PurchaseRtnID,IngredientID,Qty,Rate,Amount,Tax,Units,BillNo,SupplierID,Paymode,ExpiryDate,Narrations,Disc,DiscountAmnt,Punitsid,Pvalue,PUqty) values(" + PurchaseID + "," + IngredientID + "," + Qty + "," + Rate + "," + Amount + "," + Tax + ",'" + Units + "'," + billno + "," + supplier + ",'" + pay + "','" + ExpiryDate1.ToString("yyyy-MM-dd") + "','" + Narrations + "','" + Disc + "'," + discamount + ",'" + Punitsid + "','" + Pvalue + "','" + PUqty + "')";
             save = dbObj.InlineExecuteNonQuery(sQry);
 
 
@@ -23458,7 +23458,7 @@ namespace BusinessLayer
 
                 DataSet ds2 = new DataSet();
                 int purbillno = Convert.ToInt32(billno);
-                string qr = "select distinct PurchaseID from tblkitchenPurchase_" + Table + " a where a.billno='" + purbillno + "'";
+                string qr = "select distinct PurchaseID from tblkitchenPurchase_" + Table + " a where a.PurchaseID='" + Purchasebillno + "'";
                 ds2 = dbObj.InlineExecuteDataSet(qr);
                 if (ds2.Tables[0].Rows.Count > 0)
                 {
@@ -23487,7 +23487,7 @@ namespace BusinessLayer
             int iSucess = 0;
 
             DataSet ds1 = new DataSet();
-            string qy1 = "select * from tblkitchenPurchase_" + Table + " where  billno='" + ID + "' ";
+            string qy1 = "select * from tblkitchenPurchase_" + Table + " where  PurchaseID='" + ID + "' ";
             ds1 = dbObj.InlineExecuteDataSet(qy1);
 
             if (ds1.Tables[0].Rows.Count > 0)
@@ -23511,7 +23511,7 @@ namespace BusinessLayer
             int iSucess = 0;
 
             DataSet ds1 = new DataSet();
-            string qy1 = "select * from tblkitchenPurchase_" + Table + " where  billno='" + ID + "' ";
+            string qy1 = "select * from tblkitchenPurchase_" + Table + " where  PurchaseID='" + ID + "' ";
             ds1 = dbObj.InlineExecuteDataSet(qy1);
 
             if (ds1.Tables[0].Rows.Count > 0)
@@ -23527,12 +23527,29 @@ namespace BusinessLayer
             {
                 if (ds12.Tables[0].Rows[0]["Status"].ToString() == "YES")
                 {
-                    string sQry11 = " update tblkitchenPurchase_" + Table + " set Status = 'YES'  where  billno='" + ID + "' ";
+                    string sQry11 = " update tblkitchenPurchase_" + Table + " set Status = 'YES'  where  purchaseid='" + ID + "' ";
                     iSucess = dbObj.InlineExecuteNonQuery(sQry11);
                 }
             }
 
             return iSucess;
+        }
+
+        public DataSet getduplisttransrtn(string iSalesID, string Table)
+        {
+            DataSet ds = new DataSet();
+            //////string qr = "select * from tbltranskitchenPurchase_" + Table + " where Purchaseid='" + iSalesID + "'";
+            string qr = "select i.Units,tp.* from tbltranskitchenPurchaseReturn_" + Table + " tp inner join tblIngridents i on i.IngridID=tp.IngredientID where purchasertnid='" + iSalesID + "'";
+            ds = dbObj.InlineExecuteDataSet(qr);
+            return ds;
+        }
+
+        public DataSet getduplistrtn(string iSalesID, string Table)
+        {
+            DataSet ds = new DataSet();
+            string qr = "select * from tblkitchenPurchasereturn_" + Table + " where purchasertnid='" + iSalesID + "'";
+            ds = dbObj.InlineExecuteDataSet(qr);
+            return ds;
         }
 
         public DataSet getpurchaseReturnMaster(string Table)
