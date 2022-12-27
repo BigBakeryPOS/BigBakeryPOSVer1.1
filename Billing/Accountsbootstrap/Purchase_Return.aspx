@@ -64,6 +64,12 @@
 
                                 <div class="panel-body">
                                     <div class="row">
+                                         <div runat="server" visible="false" class="col-lg-2">
+                                            <label>
+                                                Select Company</label>
+                                            <asp:DropDownList ID="drpsubcompany" runat="server" TabIndex="1" CssClass="form-control">
+                                            </asp:DropDownList>
+                                        </div>
                                             <asp:HiddenField ID="hdPurid" runat="server" />
                                         <div class="col-lg-3">
                                             <label>
@@ -104,13 +110,13 @@
                                                 <asp:ListItem Text="Inter-State Purchase" Value="2"></asp:ListItem>
                                             </asp:RadioButtonList>
                                         </div>
-
+                                            <div class="col-lg-3">
                                         <div id="shwedit" runat="server" visible="false">
                                             <label>
                                                 Edit Narrations :</label>
                                             <asp:TextBox CssClass="form-control" ID="txteditnarrations" runat="server"></asp:TextBox>
                                         </div>
-
+                                                </div>
 
                                         <label id="lblpurchase" runat="server" visible="false">
                                         </label>
@@ -470,7 +476,7 @@
                                                                     <asp:Label ID="catid1" runat="server"></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:CommandField ButtonType="Image" ShowDeleteButton="true" DeleteImageUrl="~/images/delete.png" Visible="false" />
+                                                            <asp:CommandField ButtonType="Image" ShowDeleteButton="true" DeleteImageUrl="~/images/delete.png" Visible="true" />
                                                         </Columns>
                                                     </asp:GridView>
                                                 </div>

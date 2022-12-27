@@ -52,20 +52,20 @@ namespace Billing.Accountsbootstrap
 
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
                     {
-                       // BankGrid.Columns[7].Visible = true;
+                        BankGrid.Columns[7].Visible = true;
                     }
                     else
                     {
-                        //BankGrid.Columns[7].Visible = false;
+                        BankGrid.Columns[7].Visible = false;
                     }
 
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
                     {
-                       // BankGrid.Columns[8].Visible = true;
+                        BankGrid.Columns[8].Visible = true;
                     }
                     else
                     {
-                       // BankGrid.Columns[8].Visible = false;
+                        BankGrid.Columns[8].Visible = false;
                     }
                 }
                 DataSet dsCustomer = objBs.SupplierList11();
@@ -131,7 +131,7 @@ namespace Billing.Accountsbootstrap
 
             else if (e.CommandName == "delete")
             {
-                int iSucess = objBs.deletePURmaster(e.CommandArgument.ToString(),sTableName);
+                int iSucess = objBs.deletePURRtnmaster(e.CommandArgument.ToString(),sTableName);
                 Response.Redirect("Purchase_ReturnGrid.aspx");
             }
             else if (e.CommandName == "Print")

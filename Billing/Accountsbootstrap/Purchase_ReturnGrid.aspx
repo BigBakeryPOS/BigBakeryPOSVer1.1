@@ -281,7 +281,7 @@
         <div class="popup_Container">
             <div class="popup_Titlebar" id="PopupHeader">
                 <div class="TitlebarLeft">
-                    Delete Purchase Invoice</div>
+                    Delete Purchase Return Invoice</div>
                 <div class="TitlebarRight" onclick="$get('ButtonDeleteCancel').click();">
                 </div>
             </div>

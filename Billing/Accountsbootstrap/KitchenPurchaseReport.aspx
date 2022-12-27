@@ -206,9 +206,17 @@
                             </asp:DropDownList>
                        
                     </div>
+                    
                     </div>
                     <br />
                     <div class="row">
+                         <div class="col-lg-3">
+                                            <label>
+                                                Select Company</label>
+                                            <asp:DropDownList ID="drpsubcompany" runat="server" AutoPostBack="true"
+                                OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged" TabIndex="1" CssClass="form-control">
+                                            </asp:DropDownList>
+                                        </div>
                     <div class="col-lg-3">
                        
                             <label>
@@ -251,6 +259,7 @@
                                     <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
                                         NextPageText="Next" PreviousPageText="Previous" />--%>
                                     <Columns>
+                                         <asp:BoundField HeaderText="CompanyName" DataField="compname" />
                                         <asp:BoundField HeaderText="IngredientName" DataField="IngredientName" />
                                         <asp:BoundField HeaderText="SupplierName" DataField="CustomerName" HeaderStyle-HorizontalAlign="Center" />
                                         <asp:BoundField HeaderText="BillDate" DataField="BillDate" DataFormatString="{0:dd/MMM/yyyy}" />

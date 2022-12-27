@@ -272,7 +272,7 @@ namespace Billing.Accountsbootstrap
                             drNew["BillNo"] = dr["Tax"];
                             drNew["Supplier"] = 0;
                             drNew["Paymode"] = 0;
-                            drNew["ExpDate"] = dr["ExpiryDate"];
+                            drNew["ExpDate"] = Convert.ToDateTime(dr["ExpiryDate"]).ToString("dd/MM/yyyy");
                             drNew["DisCount"] = dr["Disc"];
                             drNew["DisCountAmnt"] = dr["DiscountAmnt"];
 
@@ -1240,7 +1240,14 @@ namespace Billing.Accountsbootstrap
                 drNew["BillNo"] = txtmBillNo.Text;
                 drNew["Supplier"] = 0;
                 drNew["Paymode"] = 0;
-                drNew["ExpDate"] = txtmexpireddate.Text;
+                if (txtmexpireddate.Text == "" || txtmexpireddate.Text == "0")
+                {
+                    drNew["ExpDate"] = "";
+                }
+                else
+                {
+                    drNew["ExpDate"] = Convert.ToDateTime(txtmexpireddate.Text).ToString("dd/MM/yyyy");
+                }
 
                 drNew["DisCount"] = txtmDisCount.Text;
                 drNew["DisCountAmnt"] = txtmDisCountAmount.Text;
@@ -1277,7 +1284,14 @@ namespace Billing.Accountsbootstrap
                 drNew["BillNo"] = txtmBillNo.Text;
                 drNew["Supplier"] = 0;
                 drNew["Paymode"] = 0;
-                drNew["ExpDate"] = txtmexpireddate.Text;
+                if (txtmexpireddate.Text == "" || txtmexpireddate.Text == "0")
+                {
+                    drNew["ExpDate"] = "";
+                }
+                else
+                {
+                    drNew["ExpDate"] = Convert.ToDateTime(txtmexpireddate.Text).ToString("dd/MM/yyyy");
+                }
 
                 drNew["DisCount"] = txtmDisCount.Text;
                 drNew["DisCountAmnt"] = txtmDisCountAmount.Text;
