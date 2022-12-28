@@ -113,7 +113,6 @@ namespace Billing.Accountsbootstrap
 
         protected void gridPurchase_RowCreated(object sender, GridViewRowEventArgs e)
         {
-            
             #region 4
             if (rbdCtry.Checked == true)
             {
