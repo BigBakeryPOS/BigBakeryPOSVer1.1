@@ -6136,30 +6136,71 @@ namespace BusinessLayer
             return ds;
         }
 
-        public DataSet ordebyexpdate2PurReport(string sTableName, string sFmdate, string sToDate)
+        public DataSet ordebyexpdate2PurReport(string sTableName, string sFmdate, string sToDate, string Subcompany)
         {
             DataSet ds = new DataSet();
             // string paygird = "select A.CustomerID,B.CategoryID,B.SubCategoryID,A.BillNo,convert(date,a.BillDate) as BillDate,E.CustomerName as LedgerName,'brand' as BrandName,D.category,C.Definition,B.Quantity,B.UnitPrice ,(B.Quantity *B.UnitPrice) as NetAmount ,F.Payment_Mode,( ((B.Amount * c. GST) / 100 ) + B.Amount ) as SalesAmount,C.GST from tblsales_" + sTableName + " A,tblTransSales_" + sTableName + " B,tblCategoryUser C,tblcategory D,tblCustomer E,tblPaymentMode F where A.BillNo=b.SalesID  and B.CategoryID=D.categoryid and B.SubCategoryID=C.CategoryUserID and f.Payment_ID=a.ContactTypeID and A.CustomerID=E.CustomerID and convert(date, A.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and cancelstatus='NO' order by B.SubCategoryID";
-            string paygird = "select A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_prod A,tbltranskitchenPurchase_prod B,tblIngridents D,tblledger E,tblsalespaymode F  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and convert(date, A.BillDate)   between '" + sFmdate + "' and '" + sToDate + "' order by b.ExpiryDate ";
-            ds = dbObj.InlineExecuteDataSet(paygird);
+            if (Subcompany == "All")
+            {
+                string paygird = "select cm.customername as compname,A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_" + sTableName + " A,tbltranskitchenPurchase_" + sTableName + " B,tblIngridents D,tblledger E,tblsalespaymode F,tblsubCompanyDetails cm  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and cm.subComapanyID = a.subcompanyid  and convert(date, A.BillDate)   between '" + sFmdate + "' and '" + sToDate + "'  order by b.ExpiryDate ";
+                ds = dbObj.InlineExecuteDataSet(paygird);
+            }
+            else
+            {
+                string paygird = "select cm.customername as compname,A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_" + sTableName + " A,tbltranskitchenPurchase_" + sTableName + " B,tblIngridents D,tblledger E,tblsalespaymode F,tblsubCompanyDetails cm  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and cm.subComapanyID = a.subcompanyid  and convert(date, A.BillDate)   between '" + sFmdate + "' and '" + sToDate + "' and cm.subComapanyID='" + Subcompany + "' order by b.ExpiryDate ";
+                ds = dbObj.InlineExecuteDataSet(paygird);
+            }
             return ds;
         }
 
-        public DataSet ordebysupplier2PurReport(string sTableName, string sFmdate, string sToDate)
+        public DataSet ordebycompany2PurReport(string sTableName, string sFmdate, string sToDate, string Subcompany)
         {
             DataSet ds = new DataSet();
             // string paygird = "select A.CustomerID,B.CategoryID,B.SubCategoryID,A.BillNo,convert(date,a.BillDate) as BillDate,E.CustomerName as LedgerName,'brand' as BrandName,D.category,C.Definition,B.Quantity,B.UnitPrice ,(B.Quantity *B.UnitPrice) as NetAmount ,F.Payment_Mode,( ((B.Amount * c. GST) / 100 ) + B.Amount ) as SalesAmount,C.GST from tblsales_" + sTableName + " A,tblTransSales_" + sTableName + " B,tblCategoryUser C,tblcategory D,tblCustomer E,tblPaymentMode F where A.BillNo=b.SalesID  and B.CategoryID=D.categoryid and B.SubCategoryID=C.CategoryUserID and f.Payment_ID=a.ContactTypeID and A.CustomerID=E.CustomerID and convert(date, A.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and cancelstatus='NO' order by B.SubCategoryID";
-            string paygird = "select A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode  as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_prod A,tbltranskitchenPurchase_prod B,tblIngridents D,tblledger E,tblsalespaymode F  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and convert(date, A.BillDate)   between '" + sFmdate + "' and '" + sToDate + "' order by A.Supplier ";
-            ds = dbObj.InlineExecuteDataSet(paygird);
+            if (Subcompany == "All")
+            {
+                string paygird = "select cm.customername as compname,cm.subComapanyID,A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_" + sTableName + " A,tbltranskitchenPurchase_" + sTableName + " B,tblIngridents D,tblledger E,tblsalespaymode F,tblsubCompanyDetails cm  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and cm.subComapanyID = a.subcompanyid  and convert(date, A.BillDate)   between '" + sFmdate + "' and '" + sToDate + "'  order by cm.customername ";
+                ds = dbObj.InlineExecuteDataSet(paygird);
+            }
+            else
+            {
+                string paygird = "select cm.customername as compname,cm.subComapanyID,A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_" + sTableName + " A,tbltranskitchenPurchase_" + sTableName + " B,tblIngridents D,tblledger E,tblsalespaymode F,tblsubCompanyDetails cm  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and cm.subComapanyID = a.subcompanyid  and convert(date, A.BillDate)   between '" + sFmdate + "' and '" + sToDate + "' and cm.subComapanyID='" + Subcompany + "' order by cm.customername ";
+                ds = dbObj.InlineExecuteDataSet(paygird);
+            }
             return ds;
         }
 
-        public DataSet ordebyproduct2PurReport(string sTableName, string sFmdate, string sToDate)
+        public DataSet ordebysupplier2PurReport(string sTableName, string sFmdate, string sToDate,string Subcompany)
         {
             DataSet ds = new DataSet();
             // string paygird = "select A.CustomerID,B.CategoryID,B.SubCategoryID,A.BillNo,convert(date,a.BillDate) as BillDate,E.CustomerName as LedgerName,'brand' as BrandName,D.category,C.Definition,B.Quantity,B.UnitPrice ,(B.Quantity *B.UnitPrice) as NetAmount ,F.Payment_Mode,( ((B.Amount * c. GST) / 100 ) + B.Amount ) as SalesAmount,C.GST from tblsales_" + sTableName + " A,tblTransSales_" + sTableName + " B,tblCategoryUser C,tblcategory D,tblCustomer E,tblPaymentMode F where A.BillNo=b.SalesID  and B.CategoryID=D.categoryid and B.SubCategoryID=C.CategoryUserID and f.Payment_ID=a.ContactTypeID and A.CustomerID=E.CustomerID and convert(date, A.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and cancelstatus='NO' order by B.SubCategoryID";
-            string paygird = "select A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_prod A,tbltranskitchenPurchase_prod B,tblIngridents D,tblledger E,tblsalespaymode F  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and convert(date, A.BillDate)   between '" + sFmdate + "' and '" + sToDate + "' order by B.IngredientID ";
-            ds = dbObj.InlineExecuteDataSet(paygird);
+            if (Subcompany == "All")
+            {
+                string paygird = "select cm.customername as compname,A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode  as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_" + sTableName + " A,tbltranskitchenPurchase_" + sTableName + " B,tblIngridents D,tblledger E,tblsalespaymode F,tblsubCompanyDetails cm  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and cm.subComapanyID = a.subcompanyid and convert(date, A.BillDate)   between '" + sFmdate + "' and '" + sToDate + "' order by A.Supplier ";
+                ds = dbObj.InlineExecuteDataSet(paygird);
+            }
+            else
+            {
+                string paygird = "select cm.customername as compname,A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode  as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_" + sTableName + " A,tbltranskitchenPurchase_" + sTableName + " B,tblIngridents D,tblledger E,tblsalespaymode F,tblsubCompanyDetails cm  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and cm.subComapanyID = a.subcompanyid and convert(date, A.BillDate)   between '" + sFmdate + "' and '" + sToDate + "'  and cm.subComapanyID='" + Subcompany + "' order by A.Supplier ";
+                ds = dbObj.InlineExecuteDataSet(paygird);
+            }
+            return ds;
+        }
+
+        public DataSet ordebyproduct2PurReport(string sTableName, string sFmdate, string sToDate, string Subcompany)
+        {
+            DataSet ds = new DataSet();
+            // string paygird = "select A.CustomerID,B.CategoryID,B.SubCategoryID,A.BillNo,convert(date,a.BillDate) as BillDate,E.CustomerName as LedgerName,'brand' as BrandName,D.category,C.Definition,B.Quantity,B.UnitPrice ,(B.Quantity *B.UnitPrice) as NetAmount ,F.Payment_Mode,( ((B.Amount * c. GST) / 100 ) + B.Amount ) as SalesAmount,C.GST from tblsales_" + sTableName + " A,tblTransSales_" + sTableName + " B,tblCategoryUser C,tblcategory D,tblCustomer E,tblPaymentMode F where A.BillNo=b.SalesID  and B.CategoryID=D.categoryid and B.SubCategoryID=C.CategoryUserID and f.Payment_ID=a.ContactTypeID and A.CustomerID=E.CustomerID and convert(date, A.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and cancelstatus='NO' order by B.SubCategoryID";
+            if (Subcompany == "All")
+            {
+                string paygird = "select cm.customername as compname,A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_" + sTableName + " A,tbltranskitchenPurchase_" + sTableName + " B,tblIngridents D,tblledger E,tblsalespaymode F,tblsubCompanyDetails cm  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and cm.subComapanyID = a.subcompanyid and convert(date, A.BillDate)   between '" + sFmdate + "' and '" + sToDate + "' order by B.IngredientID ";
+                ds = dbObj.InlineExecuteDataSet(paygird);
+            }
+            else
+            {
+                string paygird = "select cm.customername as compname,A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_" + sTableName + " A,tbltranskitchenPurchase_" + sTableName + " B,tblIngridents D,tblledger E,tblsalespaymode F,tblsubCompanyDetails cm  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and cm.subComapanyID = a.subcompanyid and convert(date, A.BillDate)   between '" + sFmdate + "' and '" + sToDate + "' and cm.subComapanyID='" + Subcompany + "' order by B.IngredientID ";
+                ds = dbObj.InlineExecuteDataSet(paygird);
+            }
             return ds;
         }
         public DataSet ordebycatqty(string sTableName, string sFmdate, string sToDate)
@@ -6205,12 +6246,20 @@ namespace BusinessLayer
             return ds; ;
         }
 
-        public DataSet PurExpirydateReport(string sTableName, DateTime sFmdate)
+        public DataSet PurExpirydateReport(string sTableName, DateTime sFmdate,string Subcompany)
         {
             DataSet ds = new DataSet();
             // string paygird = "select A.CustomerID,B.CategoryID,B.SubCategoryID,A.BillNo,convert(date,a.BillDate) as BillDate,E.CustomerName as LedgerName,'brand' as BrandName,D.category,C.Definition,B.Quantity,B.UnitPrice ,(B.Quantity *B.UnitPrice) as NetAmount ,F.Payment_Mode,( ((B.Amount * c. GST) / 100 ) + B.Amount ) as SalesAmount,C.GST from tblsales_" + sTableName + " A,tblTransSales_" + sTableName + " B,tblCategoryUser C,tblcategory D,tblCustomer E,tblPaymentMode F where A.BillNo=b.SalesID  and B.CategoryID=D.categoryid and B.SubCategoryID=C.CategoryUserID and f.Payment_ID=a.ContactTypeID and A.CustomerID=E.CustomerID and convert(date, A.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and cancelstatus='NO' order by B.SubCategoryID";
-            string paygird = "select A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_prod A,tbltranskitchenPurchase_prod B,tblIngridents D,tblledger E,tblsalespaymode F  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and convert(date,b.ExpiryDate)  >= '" + sFmdate.ToString("yyyy/MM/dd") + "' and b.ExpiryDate <> '1900-01-01 00:00:00.000' order by b.ExpiryDate ";
-            ds = dbObj.InlineExecuteDataSet(paygird);
+            if (Subcompany == "All")
+            {
+                string paygird = "select cm.customername as compname,A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_" + sTableName + " A,tbltranskitchenPurchase_" + sTableName + " B,tblIngridents D,tblledger E,tblsalespaymode F,tblsubCompanyDetails cm  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and cm.subComapanyID = a.subcompanyid  and convert(date,b.ExpiryDate)  >= '" + sFmdate.ToString("yyyy/MM/dd") + "' and b.ExpiryDate <> '1900-01-01 00:00:00.000' order by b.ExpiryDate ";
+                ds = dbObj.InlineExecuteDataSet(paygird);
+            }
+            else
+            {
+                string paygird = "select cm.customername as compname,A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_" + sTableName + " A,tbltranskitchenPurchase_" + sTableName + " B,tblIngridents D,tblledger E,tblsalespaymode F,tblsubCompanyDetails cm  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and cm.subComapanyID = a.subcompanyid and convert(date,b.ExpiryDate)  >= '" + sFmdate.ToString("yyyy/MM/dd") + "' and b.ExpiryDate <> '1900-01-01 00:00:00.000' and cm.subComapanyID='" + Subcompany + "' order by b.ExpiryDate ";
+                ds = dbObj.InlineExecuteDataSet(paygird);
+            }
             return ds;
         }
 
@@ -29063,46 +29112,123 @@ namespace BusinessLayer
 
         #region Purchase Report
 
-        public DataSet GetPurchaseReport(string sTableName, string From, string To, string Group, string ListItems)
+        public DataSet GetPurchaseReport(string sTableName, string From, string To, string Group, string ListItems,string Subcompany)
         {
             DataSet ds = new DataSet();
             if (Group == "Supplier")
             {
                 if (ListItems == "All")
                 {
-                    string qry = "select p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' order by LedgerName,IngreCategory,IngredientName asc ";
-                    ds = dbObj.InlineExecuteDataSet(qry);
+                    if (Subcompany == "All")
+                    {
+                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID  inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' order by LedgerName,IngreCategory,IngredientName asc ";
+                        ds = dbObj.InlineExecuteDataSet(qry);
+                    }
+                    else
+                    {
+                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and p.subcompanyid='" + Subcompany + "' order by LedgerName,IngreCategory,IngredientName asc ";
+                        ds = dbObj.InlineExecuteDataSet(qry);
+                    }
                 }
                 else
                 {
-                    string qry = "select p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and LedgerId=" + ListItems + " order by LedgerName,IngreCategory,IngredientName asc ";
-                    ds = dbObj.InlineExecuteDataSet(qry);
+                    if (Subcompany == "All")
+                    {
+                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and LedgerId=" + ListItems + " order by LedgerName,IngreCategory,IngredientName asc ";
+                        ds = dbObj.InlineExecuteDataSet(qry);
+                    }
+                    else
+                    {
+                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and LedgerId=" + ListItems + "  and p.subcompanyid='" + Subcompany + "' order by LedgerName,IngreCategory,IngredientName asc ";
+                        ds = dbObj.InlineExecuteDataSet(qry);
+                    }
+                }
+            }
+            else if (Group == "Company")
+            {
+                if (ListItems == "All")
+                {
+                    if (Subcompany == "All")
+                    {
+                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID  inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' order by cm.customername,LedgerName,IngreCategory,IngredientName asc ";
+                        ds = dbObj.InlineExecuteDataSet(qry);
+                    }
+                    else
+                    {
+                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and p.subcompanyid='" + Subcompany + "' order by cm.customername,LedgerName,IngreCategory,IngredientName asc ";
+                        ds = dbObj.InlineExecuteDataSet(qry);
+                    }
+                }
+                else
+                {
+                    if (Subcompany == "All")
+                    {
+                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and p.subcompanyid=" + ListItems + " order by cm.customername,LedgerName,IngreCategory,IngredientName asc ";
+                        ds = dbObj.InlineExecuteDataSet(qry);
+                    }
+                    else
+                    {
+                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and p.subcompanyid=" + ListItems + "  and p.subcompanyid='" + Subcompany + "' order by cm.customername,LedgerName,IngreCategory,IngredientName asc ";
+                        ds = dbObj.InlineExecuteDataSet(qry);
+                    }
                 }
             }
             else if (Group == "Category")
             {
                 if (ListItems == "All")
                 {
-                    string qry = "select p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' order by IngreCategory,IngredientName,LedgerName asc ";
-                    ds = dbObj.InlineExecuteDataSet(qry);
+                    if (Subcompany == "All")
+                    {
+                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' order by IngreCategory,IngredientName,LedgerName asc ";
+                        ds = dbObj.InlineExecuteDataSet(qry);
+                    }
+                    else
+                    {
+                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "'  and p.subcompanyid='" + Subcompany + "' order by IngreCategory,IngredientName,LedgerName asc ";
+                        ds = dbObj.InlineExecuteDataSet(qry);
+                    }
                 }
                 else
                 {
-                    string qry = "select p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and ic.IngCatID=" + ListItems + "  order by IngreCategory,IngredientName,LedgerName asc ";
-                    ds = dbObj.InlineExecuteDataSet(qry);
+                    if (Subcompany == "All")
+                    {
+                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and ic.IngCatID=" + ListItems + "  order by IngreCategory,IngredientName,LedgerName asc ";
+                        ds = dbObj.InlineExecuteDataSet(qry);
+                    }
+                    else
+                    {
+                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and ic.IngCatID=" + ListItems + "   and p.subcompanyid='" + Subcompany + "'  order by IngreCategory,IngredientName,LedgerName asc ";
+                        ds = dbObj.InlineExecuteDataSet(qry);
+                    }
                 }
             }
             else if (Group == "Ingredent")
             {
                 if (ListItems == "All")
                 {
-                    string qry = "select p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "'   order by IngredientName,IngreCategory,LedgerName asc ";
-                    ds = dbObj.InlineExecuteDataSet(qry);
+                    if (Subcompany == "All")
+                    {
+                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "'   order by IngredientName,IngreCategory,LedgerName asc ";
+                        ds = dbObj.InlineExecuteDataSet(qry);
+                    }
+                    else
+                    {
+                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "'   and p.subcompanyid='" + Subcompany + "'  order by IngredientName,IngreCategory,LedgerName asc ";
+                        ds = dbObj.InlineExecuteDataSet(qry);
+                    }
                 }
                 else
                 {
-                    string qry = "select p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and IngridID=" + ListItems + " order by IngredientName,IngreCategory,LedgerName asc ";
-                    ds = dbObj.InlineExecuteDataSet(qry);
+                    if (Subcompany == "All")
+                    {
+                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and IngridID=" + ListItems + " order by IngredientName,IngreCategory,LedgerName asc ";
+                        ds = dbObj.InlineExecuteDataSet(qry);
+                    }
+                    else
+                    {
+                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and IngridID=" + ListItems + "   and p.subcompanyid='" + Subcompany + "'  order by IngredientName,IngreCategory,LedgerName asc ";
+                        ds = dbObj.InlineExecuteDataSet(qry);
+                    }
                 }
             }
             return ds;

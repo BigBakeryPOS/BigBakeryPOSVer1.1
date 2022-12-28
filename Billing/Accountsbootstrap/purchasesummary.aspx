@@ -11,34 +11,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Sales Report </title>
+    <title>Purchase Report </title>
     <style type="text/css">
-        .GroupHeaderStyle
-        {
+        .GroupHeaderStyle {
             background-color: #afc3dd;
             color: Black;
             font-weight: bold;
             text-transform: uppercase;
         }
-        .SubTotalRowStyle
-        {
+
+        .SubTotalRowStyle {
             background-color: #cccccc;
             color: Black;
             font-weight: bold;
         }
-        .GrandTotalRowStyle
-        {
+
+        .GrandTotalRowStyle {
             background-color: #0073e4;
             color: white;
             font-weight: bold;
         }
-        .align1
-        {
+
+        .align1 {
             text-align: right;
         }
-        
-        .myGridStyle1 tr th
-        {
+
+        .myGridStyle1 tr th {
             padding: 8px;
             color: #afc3dd;
             background-color: #000000;
@@ -48,27 +46,24 @@
             text-align: center;
             text-transform: uppercase;
         }
-        
-        
-        
-        
-        
-        .myGridStyle1 tr:nth-child(even)
-        {
+
+
+
+
+
+        .myGridStyle1 tr:nth-child(even) {
             background-color: #ffffff;
         }
-        
-        
-        
-        .myGridStyle1 tr:nth-child(odd)
-        {
+
+
+
+        .myGridStyle1 tr:nth-child(odd) {
             background-color: #ffffff;
         }
-        
-        
-        
-        .myGridStyle1 td
-        {
+
+
+
+        .myGridStyle1 td {
             border: 1px solid gray;
             padding: 8px;
         }
@@ -83,7 +78,7 @@
     <link href="../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet" />
-    
+
     <!-- Custom Fonts -->
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -143,143 +138,148 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label">Welcome: </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <usc:Header ID="Header" runat="server" />
-     <div class="container-fluid">
-	<div class="row">
-    <div class="col-lg-12">
-     <div class="row panel-custom1">
-        <div class="panel-header">
-          <h1 class="page-header"> Purchase Summary Report Grid</h1>
-	    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row panel-custom1">
+                    <div class="panel-header">
+                        <h1 class="page-header">Purchase Summary Report Grid</h1>
+                    </div>
 
-                <div class="panel-body">
-                            <form id="form1" runat="server">
+                    <div class="panel-body">
+                        <form id="form1" runat="server">
                             <asp:UpdatePanel ID="update" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
                                     <div class="row">
-                                        
+
                                         <div class="col-lg-4" id="Admin" runat="server">
-                                                <label>
-                                                    Select Branch</label>
-                                                <asp:DropDownList CssClass="form-control" ID="ddlBranch" runat="server">
-                                                    <asp:ListItem Text="KK Nagar" Value="co1"></asp:ListItem>
-                                                    <asp:ListItem Text=" Byepass" Value="co2"></asp:ListItem>
-                                                    <asp:ListItem Text=" BB Kulam" Value="co3"></asp:ListItem>
-                                                    <asp:ListItem Text="Narayanapuram" Value="co4"></asp:ListItem>
-                                                    <asp:ListItem Text="Nellai" Value="co5"></asp:ListItem>
-                                                </asp:DropDownList>
-                                            </div>
-                                       
+                                            <label>
+                                                Select Branch</label>
+                                            <asp:DropDownList CssClass="form-control" ID="ddlBranch" runat="server">
+                                                <asp:ListItem Text="KK Nagar" Value="co1"></asp:ListItem>
+                                                <asp:ListItem Text=" Byepass" Value="co2"></asp:ListItem>
+                                                <asp:ListItem Text=" BB Kulam" Value="co3"></asp:ListItem>
+                                                <asp:ListItem Text="Narayanapuram" Value="co4"></asp:ListItem>
+                                                <asp:ListItem Text="Nellai" Value="co5"></asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+
                                         <div class="col-lg-3">
                                             <asp:ScriptManager ID="ScriptManager1" runat="server">
                                             </asp:ScriptManager>
-                                            
-                                                <asp:Label ID="lblFromDate" runat="server">From Date</asp:Label>
-                                                <asp:TextBox ID="txtFromDate" runat="server" AutoPostBack="true" CssClass="form-control center-block"
-                                                    OnTextChanged="txtFromDate_TextChanged"></asp:TextBox>
-                                                <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="yyyy-MM-dd" TargetControlID="txtFromDate"
-                                                    runat="server" CssClass="cal_Theme1">
-                                                </ajaxToolkit:CalendarExtender>
-                                          
+
+                                            <asp:Label ID="lblFromDate" runat="server">From Date</asp:Label>
+                                            <asp:TextBox ID="txtFromDate" runat="server" AutoPostBack="true" CssClass="form-control center-block"
+                                                OnTextChanged="txtFromDate_TextChanged"></asp:TextBox>
+                                            <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="yyyy-MM-dd" TargetControlID="txtFromDate"
+                                                runat="server" CssClass="cal_Theme1">
+                                            </ajaxToolkit:CalendarExtender>
+
                                         </div>
                                         <div class="col-lg-3">
-                                          
-                                                <asp:Label ID="lblToDate" runat="server">To Date</asp:Label>
-                                                <asp:TextBox ID="txtToDate" runat="server" AutoPostBack="true" CssClass="form-control center-block"
-                                                    OnTextChanged="txtToDate_TextChanged"></asp:TextBox>
-                                                <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="yyyy-MM-dd" TargetControlID="txtToDate"
-                                                    runat="server" CssClass="cal_Theme1">
-                                                </ajaxToolkit:CalendarExtender>
-                                            
+
+                                            <asp:Label ID="lblToDate" runat="server">To Date</asp:Label>
+                                            <asp:TextBox ID="txtToDate" runat="server" AutoPostBack="true" CssClass="form-control center-block"
+                                                OnTextChanged="txtToDate_TextChanged"></asp:TextBox>
+                                            <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="yyyy-MM-dd" TargetControlID="txtToDate"
+                                                runat="server" CssClass="cal_Theme1">
+                                            </ajaxToolkit:CalendarExtender>
+
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <br />
-                                                <asp:RadioButton ID="rbdSupp" runat="server" Text="Supplier" CssClass="center-block" style="display:inline"
-                                                    AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdSupp_CheckedChanged" />
-                                           
-                                       
-                                                <asp:RadioButton ID="rbdProduct" runat="server" Text="Product" CssClass="center-block" style="display:inline"
-                                                    AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdProduct_CheckedChanged" />
-                                            
-                                                <asp:RadioButton ID="rbdExpDate" runat="server" Text="Expired Date" CssClass="center-block" style="display:inline"
-                                                    AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdExpDate_CheckedChanged" />
-                                           
+                                            <asp:RadioButton ID="rbdSupp" runat="server" Text="Supplier" CssClass="center-block" Style="display: inline"
+                                                AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdSupp_CheckedChanged" />
+
+
+                                            <asp:RadioButton ID="rbdProduct" runat="server" Text="Product" CssClass="center-block" Style="display: inline"
+                                                AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdProduct_CheckedChanged" />
+
+                                            <asp:RadioButton ID="rbdExpDate" runat="server" Text="Expired Date" CssClass="center-block" Style="display: inline"
+                                                AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdExpDate_CheckedChanged" />
+                                             <asp:RadioButton ID="rdbCompany" runat="server" Text="Company" CssClass="center-block"
+                                                GroupName="a" AutoPostBack="true" OnCheckedChanged="rdbCompany_OnCheckedChanged" Style="display: inline" />
+                                     
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label>
+                                                Select Company</label>
+                                            <asp:DropDownList ID="drpsubcompany" runat="server"  TabIndex="1" CssClass="form-control">
+                                            </asp:DropDownList>
                                         </div>
                                         <div class="col-lg-3">
-                                            
-                                                <br />
-                                                <asp:Button ID="btnPrint" runat="server" CssClass="btn btn-secondary" 
-                                                    Text="Print" OnClick="btnPrintFromCodeBehind_Click" />
-                                    
-                                            <asp:Button ID="btnpdf" visible="false" runat="server" Text="PDF" CssClass="btn btn-info" OnClick="btnpdf_Click"
-                                                 />
+
+                                            <br />
+                                            <asp:Button ID="btnPrint" runat="server" CssClass="btn btn-secondary"
+                                                Text="Print" OnClick="btnPrintFromCodeBehind_Click" />
+
+                                            <asp:Button ID="btnpdf" Visible="false" runat="server" Text="PDF" CssClass="btn btn-info" OnClick="btnpdf_Click" />
                                         </div>
-
-
-
 
                                         <div runat="server" visible="false" class="col-lg-2">
-                                            
-                                                <asp:RadioButton ID="rdbCustomer" runat="server" Text="Customer" CssClass="center-block"
-                                                    AutoPostBack="true" GroupName="a" OnCheckedChanged="rdbCustomer_CheckedChanged" />
-                                           
+
+                                            <asp:RadioButton ID="rdbCustomer" runat="server" Text="Customer" CssClass="center-block"
+                                                AutoPostBack="true" GroupName="a" OnCheckedChanged="rdbCustomer_CheckedChanged" />
+
                                         </div>
                                         <div class="col-lg-2" visible="false" runat="server">
-                                           
-                                                <asp:RadioButton ID="rbdPayMode" runat="server" Text="Payment Mode" CssClass="center-block"
-                                                    AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdPayMode_CheckedChanged" />
-                                            
+
+                                            <asp:RadioButton ID="rbdPayMode" runat="server" Text="Payment Mode" CssClass="center-block"
+                                                AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdPayMode_CheckedChanged" />
+
                                         </div>
                                         <div class="col-lg-2" visible="false" runat="server">
-                                           
-                                                <asp:RadioButton ID="rbproqty" runat="server" Text="Product wise Qty" CssClass="center-block"
-                                                    AutoPostBack="true" GroupName="a" OnCheckedChanged="rbproqty_CheckedChanged" />
-                                            
+
+                                            <asp:RadioButton ID="rbproqty" runat="server" Text="Product wise Qty" CssClass="center-block"
+                                                AutoPostBack="true" GroupName="a" OnCheckedChanged="rbproqty_CheckedChanged" />
+
                                         </div>
                                         <div class="col-lg-2" visible="false" runat="server">
-                                            
-                                                <asp:RadioButton ID="rbdcatqty" runat="server" Text="Category wise Qty" CssClass="center-block"
-                                                    AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdcatqty_CheckedChanged" />
-                                            
+
+                                            <asp:RadioButton ID="rbdcatqty" runat="server" Text="Category wise Qty" CssClass="center-block"
+                                                AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdcatqty_CheckedChanged" />
+
                                         </div>
                                         <div class="col-lg-2" visible="false" runat="server">
-                                          
-                                                <asp:RadioButton ID="rbdCtry" runat="server" Text="Category" CssClass="center-block"
-                                                    AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdCtry_CheckedChanged" />
-                                           
+
+                                            <asp:RadioButton ID="rbdCtry" runat="server" Text="Category" CssClass="center-block"
+                                                AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdCtry_CheckedChanged" />
+
                                         </div>
                                         <div id="Div1" runat="server" class="col-lg-2" visible="false">
-                                                <asp:RadioButton ID="rbdBrnd" runat="server" Text="Expiry Date" CssClass="center-block"
-                                                    AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdExpDate_CheckedChanged" />
-                                            </div>
-                                        
+                                            <asp:RadioButton ID="rbdBrnd" runat="server" Text="Expiry Date" CssClass="center-block"
+                                                AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdExpDate_CheckedChanged" />
+                                        </div>
+
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="table-responsive panel-grid-left">
                                                 <table>
-                                                            <asp:GridView ID="gridPurchase" Width="100%" runat="server" EmptyDataText="Sorry Data Not Found!" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
-                                                                 AutoGenerateColumns="false" OnRowCreated="gridPurchase_RowCreated"
-                                                                OnRowDataBound="gridPurchase_RowDataBound">
-                                                                <Columns>
-                                                                    <asp:BoundField DataField="BillNo" Visible="false" />
-                                                                    <asp:BoundField DataField="BillNo" HeaderText="Bill No" ItemStyle-HorizontalAlign="Center" />
-                                                                    <asp:BoundField DataField="BillDate" HeaderText="Bill Date" ItemStyle-HorizontalAlign="Center"
-                                                                        DataFormatString="{0:dd-MMM-yyyy}" />
-                                                                    <asp:BoundField DataField="LedgerName" HeaderText="Supplier" ItemStyle-HorizontalAlign="Center" />
-                                                                    <asp:BoundField DataField="Payment_Mode" HeaderText="Payment Mode" ItemStyle-HorizontalAlign="Center" />
-                                                                    <asp:BoundField DataField="Ingredientname" HeaderText="Ingredient Name" ItemStyle-HorizontalAlign="Center" />
-                                                                    <asp:BoundField DataField="ExpiryDate" HeaderText="Expiry Date" ItemStyle-HorizontalAlign="Center"  DataFormatString="{0:dd-MMM-yyyy}"/>
-                                                                    <%-- <asp:BoundField DataField="BrandName" HeaderText="Brand Name" ItemStyle-HorizontalAlign="Center" />--%>
-                                                                    <asp:BoundField DataField="Qty" HeaderText="Quantity" ItemStyle-HorizontalAlign="Right" />
-                                                                    <asp:BoundField DataField="Rate" HeaderText="Unit Price" DataFormatString="{0:###,##0.00}"
-                                                                        Visible="false" ItemStyle-HorizontalAlign="Right" />
-                                                                    <asp:BoundField DataField="NetAmount" HeaderText="Amount" ItemStyle-HorizontalAlign="Right" />
-                                                                    <asp:BoundField DataField="SalesAmount" HeaderText="Purchase Amount" ItemStyle-HorizontalAlign="Right" />
-                                                                </Columns>
-                                                            </asp:GridView>
-                                                        </td>
-                                                        <asp:GridView ID="gridcatqty" Width="100%" runat="server" EmptyDataText="Sorry Data Not Found!" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
-                                                             AutoGenerateColumns="true" OnRowCreated="gridcatqty_RowCreated1"
+                                                    <asp:GridView ID="gridPurchase" Width="100%" runat="server" EmptyDataText="Sorry Data Not Found!" CssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
+                                                        AutoGenerateColumns="false" OnRowCreated="gridPurchase_RowCreated"
+                                                        OnRowDataBound="gridPurchase_RowDataBound">
+                                                        <Columns>
+                                                            <asp:BoundField HeaderText="CompanyName" DataField="compname" />
+                                                            <asp:BoundField DataField="BillNo" Visible="false" />
+                                                            <asp:BoundField DataField="BillNo" HeaderText="Bill No" ItemStyle-HorizontalAlign="Center" />
+                                                            <asp:BoundField DataField="BillDate" HeaderText="Bill Date" ItemStyle-HorizontalAlign="Center"
+                                                                DataFormatString="{0:dd-MMM-yyyy}" />
+                                                            <asp:BoundField DataField="LedgerName" HeaderText="Supplier" ItemStyle-HorizontalAlign="Center" />
+                                                            <asp:BoundField DataField="Payment_Mode" HeaderText="Payment Mode" ItemStyle-HorizontalAlign="Center" />
+                                                            <asp:BoundField DataField="Ingredientname" HeaderText="Ingredient Name" ItemStyle-HorizontalAlign="Center" />
+                                                            <asp:BoundField DataField="ExpiryDate" HeaderText="Expiry Date" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd-MMM-yyyy}" />
+                                                            <%-- <asp:BoundField DataField="BrandName" HeaderText="Brand Name" ItemStyle-HorizontalAlign="Center" />--%>
+                                                            <asp:BoundField DataField="Qty" HeaderText="Quantity" ItemStyle-HorizontalAlign="Right" />
+                                                            <asp:BoundField DataField="Rate" HeaderText="Unit Price" DataFormatString="{0:###,##0.00}"
+                                                                Visible="false" ItemStyle-HorizontalAlign="Right" />
+                                                            <asp:BoundField DataField="NetAmount" HeaderText="Amount" ItemStyle-HorizontalAlign="Right" />
+                                                            <asp:BoundField DataField="SalesAmount" HeaderText="Purchase Amount" ItemStyle-HorizontalAlign="Right" />
+                                                        </Columns>
+                                                    </asp:GridView>
+                                                    </td>
+                                                        <asp:GridView ID="gridcatqty" Width="100%" runat="server" EmptyDataText="Sorry Data Not Found!" CssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
+                                                            AutoGenerateColumns="true" OnRowCreated="gridcatqty_RowCreated1"
                                                             OnRowDataBound="gridcatqty_RowDataBound1">
                                                             <Columns>
                                                                 <%--  <asp:BoundField DataField="category" HeaderText="Group" />--%>
@@ -288,11 +288,10 @@
                                     <asp:BoundField DataField="qty" HeaderText="Quantity" ItemStyle-HorizontalAlign="Center" />--%>
                                                             </Columns>
                                                         </asp:GridView>
-                                                    
-                                                        <td visible="false" id="Td1" runat="server">
-                                                            Total:<label id="lblTotal" runat="server"></label>
-                                                        </td>
-                                                    
+
+                                                    <td visible="false" id="Td1" runat="server">Total:<label id="lblTotal" runat="server"></label>
+                                                    </td>
+
                                                 </table>
                                             </div>
                                         </div>
@@ -333,20 +332,18 @@
         </div>
     </ProgressTemplate>--%>
                                 <ProgressTemplate>
-                                    <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0;
-                                        right: 0; left: 0; z-index: 9999999; opacity: 0.7;">
+                                    <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; opacity: 0.7;">
                                         <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="../images/Preloader_10.gif"
-                                            AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px; position: fixed;
-                                            top: 45%; left: 50%;" />
+                                            AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px; position: fixed; top: 45%; left: 50%;" />
                                     </div>
                                 </ProgressTemplate>
                             </asp:UpdateProgress>
-                            </form>
+                        </form>
+                    </div>
+
                 </div>
-          
-    </div>
-    </div>
-    </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
