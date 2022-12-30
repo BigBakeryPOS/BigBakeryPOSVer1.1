@@ -3307,21 +3307,21 @@ namespace Billing.Accountsbootstrap
 
                 }
                 dTotal = dAmt;
-                txtSubTotal.Text = samt.ToString("f2");
-                txttotal.Text = dTotal.ToString("f2");
-                // txtTax.Text = ttltax.ToString("f2");
-                if (rbdpurchasetype.SelectedValue == "1")
-                {
-                    txtcgst.Text = string.Format("{0:N2}", Convert.ToDouble(ttltax) / 2);
-                    txtsgst.Text = string.Format("{0:N2}", Convert.ToDouble(ttltax) / 2);
-                    txtigst.Text = "0.00";
-                }
-                else
-                {
-                    txtcgst.Text = "0.00";
-                    txtsgst.Text = "0.00";
-                    txtigst.Text = ttltax.ToString("f2");
-                }
+                //txtSubTotal.Text = samt.ToString("f2");
+                //txttotal.Text = dTotal.ToString("f2");
+                //// txtTax.Text = ttltax.ToString("f2");
+                //if (rbdpurchasetype.SelectedValue == "1")
+                //{
+                //    txtcgst.Text = string.Format("{0:N2}", Convert.ToDouble(ttltax) / 2);
+                //    txtsgst.Text = string.Format("{0:N2}", Convert.ToDouble(ttltax) / 2);
+                //    txtigst.Text = "0.00";
+                //}
+                //else
+                //{
+                //    txtcgst.Text = "0.00";
+                //    txtsgst.Text = "0.00";
+                //    txtigst.Text = ttltax.ToString("f2");
+                //}
 
 
 
