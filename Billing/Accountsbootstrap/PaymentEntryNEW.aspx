@@ -118,13 +118,12 @@
     </script>
 </head>
 <style type="text/css">
-    body
-    {
+    body {
         font-family: Arial;
         font-size: 10pt;
     }
-    .GridPager a, .GridPager span
-    {
+
+    .GridPager a, .GridPager span {
         display: block;
         height: 20px;
         width: 20px;
@@ -132,22 +131,21 @@
         text-align: center;
         text-decoration: none;
     }
-    .GridPager a
-    {
+
+    .GridPager a {
         background-color: #f5f5f5;
         color: #969696;
         border: 1px solid #969696;
     }
-    .GridPager span
-    {
+
+    .GridPager span {
         background-color: #A1DCF2;
         color: #000;
         border: 1px solid #3AC0F2;
     }
-    
-    
-    .mGrid
-    {
+
+
+    .mGrid {
         border-collapse: collapse;
         width: 100%;
         border: 1px solid gray;
@@ -200,197 +198,208 @@
 <body>
     <usc:Header ID="Header" runat="server" />
     <form id="f1" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
-     <div class="container-fluid">
-	<div class="row">
-    <div class="col-lg-12">
-    <div class="row panel-custom1">
-        <div class="panel-header">
-          <h1 class="page-header">Add payment Entry</h1>
-	    </div>
-      <div class="panel-body">
-        <div class="row">
-           
-                <div class="col-lg-3">
-                    <label>Payment No</label>
-                    <asp:TextBox ID="txtBillNo" CssClass="form-control" runat="server" 
-                        Enabled="false"></asp:TextBox>
-                    <asp:DropDownList runat="server" ID="ddltype" CssClass="form-control" 
-                        Visible="false">
-                        <asp:ListItem Text="Payment" Value="Payment" Selected="True"></asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-                <div class="col-lg-3">
-                    <label>
-                        PaymentDate</label>
-                    <asp:TextBox ID="txtBillDate" CssClass="form-control"  runat="server"></asp:TextBox>
-                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtBillDate"
-                        Format="dd/MM/yyyy" PopupButtonID="txtdate1" EnabledOnClient="true" runat="server"
-                        CssClass="cal_Theme1">
-                    </ajaxToolkit:CalendarExtender>
-                </div>
-                <div class="col-lg-3">
-                    <label>
-                        Supplier
-                    </label>
-                    <asp:DropDownList runat="server" ID="ddlsuplier" CssClass="form-control" AutoPostBack="true"
-                         OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged">
-                    </asp:DropDownList>
-                </div>
-                
-                <div class="col-lg-3">
-                    <label>
-                        PaidAmount
-                    </label>
-                    <asp:TextBox ID="txtAmount" CssClass="form-control" runat="server" AutoPostBack="true"
-                         Enabled="false" OnTextChanged="txtAmount_TextChanged">0.00</asp:TextBox>
-                </div>
-                </div>
-                <br />
-                <div class="row">
-                <div class="col-lg-3">
-                    <label>
-                        PayMode</label>
-                    <asp:DropDownList ID="ddlPayMode" runat="server" CssClass="form-control" 
-                        AutoPostBack="true" OnSelectedIndexChanged="ddlPayMode_OnSelectedIndexChanged">
-                    </asp:DropDownList>
-                </div>
-                <div class="col-lg-3">
-                    <label>
-                        Bank Name</label>
-                    <asp:TextBox ID="txtbank" CssClass="form-control" runat="server" Enabled="false" Visible="false"></asp:TextBox>
-                    <asp:DropDownList ID="ddlBank" runat="server" CssClass="form-control"  Enabled="false">
-                    </asp:DropDownList>
-                </div>
-                <div class="col-lg-3">
-                    <label>
-                        CHQ/UTR</label>
-                    <asp:TextBox ID="txtCheqeNo" CssClass="form-control" runat="server" 
-                        Enabled="false"></asp:TextBox>
-                </div>
-                <div class="col-lg-3">
-                    <br />
-                   
-               
-                    <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary pos-btn1" Text="Process"
-                        OnClientClick="Confirm(this)" UseSubmitBehavior="false" OnClick="Process_Click" />
-                    <%--<asp:DropDownList ID="ddlbank" runat="server" Width="100px" Visible="false" CssClass="form-control">
-                    </asp:DropDownList>--%>
-                    <asp:TextBox ID="txtCloseDiscount" CssClass="form-control" runat="server"
-                        Enabled="false" Visible="false">0.00</asp:TextBox>
-                &nbsp;&nbsp;<asp:Button ID="btncalc" runat="server" class="btn btn-warning" Text="Calculate" OnClick="btncalc_Click"
-                        />
-                    &nbsp; &nbsp; <asp:Button ID="Button1" runat="server" Text="Export To Excel" Visible="true" Class="btn btn-success"
-                        OnClick="btnExcel_Click"  /> 
-                    <%--<asp:Button ID="btnexit" runat="server" class="btn btn-danger" Text="Exit" 
-                        OnClick="btnexit_OnClick" />--%>
-                    <asp:TextBox ID="txtchequedate" CssClass="form-control" runat="server"
-                        Visible="false" Enabled="false"></asp:TextBox>
-                    <ajaxToolkit:CalendarExtender ID="CalendarExtender4" TargetControlID="txtchequedate"
-                        Format="dd/MM/yyyy" PopupButtonID="txtdate1" EnabledOnClient="true" runat="server"
-                        CssClass="cal_Theme1">
-                    </ajaxToolkit:CalendarExtender>
-                    
-               </div>
-            </div>
-            <div class="row">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <asp:TextBox placeholder="Search Text" ID="txtsearchmobile" Style="height: 28px;"
-                                runat="server" CssClass="form-control" MaxLength="25" Visible="false" onkeyup="Search_Gridview(this, 'gv')"></asp:TextBox>
-                            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtendername" runat="server"
-                                FilterType="LowercaseLetters, UppercaseLetters,Custom,Numbers" ValidChars=" ._/-"
-                                TargetControlID="txtsearchmobile" />
+                    <div class="row panel-custom1">
+                        <div class="panel-header">
+                            <h1 class="page-header">Add payment Entry</h1>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+
+                                <div class="col-lg-3">
+                                    <label>Payment No</label>
+                                    <asp:TextBox ID="txtBillNo" CssClass="form-control" runat="server"
+                                        Enabled="false"></asp:TextBox>
+                                    <asp:DropDownList runat="server" ID="ddltype" CssClass="form-control"
+                                        Visible="false">
+                                        <asp:ListItem Text="Payment" Value="Payment" Selected="True"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label>
+                                        PaymentDate</label>
+                                    <asp:TextBox ID="txtBillDate" CssClass="form-control" runat="server"></asp:TextBox>
+                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtBillDate"
+                                        Format="dd/MM/yyyy" PopupButtonID="txtdate1" EnabledOnClient="true" runat="server"
+                                        CssClass="cal_Theme1">
+                                    </ajaxToolkit:CalendarExtender>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label>
+                                        Supplier
+                                    </label>
+                                    <asp:DropDownList runat="server" ID="ddlsuplier" CssClass="form-control" AutoPostBack="true"
+                                        OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged">
+                                    </asp:DropDownList>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <label>
+                                        PaidAmount
+                                    </label>
+                                    <asp:TextBox ID="txtAmount" CssClass="form-control" runat="server" AutoPostBack="true"
+                                        Enabled="false" OnTextChanged="txtAmount_TextChanged">0.00</asp:TextBox>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <label>
+                                        PayMode</label>
+                                    <asp:DropDownList ID="ddlPayMode" runat="server" CssClass="form-control"
+                                        AutoPostBack="true" OnSelectedIndexChanged="ddlPayMode_OnSelectedIndexChanged">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>
+                                        Bank Name</label>
+                                    <asp:TextBox ID="txtbank" CssClass="form-control" runat="server" Enabled="false" Visible="false"></asp:TextBox>
+                                    <asp:DropDownList ID="ddlBank" runat="server" CssClass="form-control" Enabled="false">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>
+                                        CHQ/UTR</label>
+                                    <asp:TextBox ID="txtCheqeNo" CssClass="form-control" runat="server"
+                                        Enabled="false"></asp:TextBox>
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>
+                                        Entry by</label>
+                                    <asp:TextBox ID="txtEntryBy" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="col-lg-4">
+                                    <br />
+
+
+                                    <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary pos-btn1" Text="Process"
+                                        OnClientClick="Confirm(this)" UseSubmitBehavior="false" OnClick="Process_Click" />
+                                    <%--<asp:DropDownList ID="ddlbank" runat="server" Width="100px" Visible="false" CssClass="form-control">
+                    </asp:DropDownList>--%>
+                                    <asp:TextBox ID="txtCloseDiscount" CssClass="form-control" runat="server"
+                                        Enabled="false" Visible="false">0.00</asp:TextBox>
+                                    &nbsp;&nbsp;<asp:Button ID="btncalc" runat="server" class="btn btn-warning" Text="Calculate" OnClick="btncalc_Click" />
+                                    &nbsp; &nbsp;
+                                    <asp:Button ID="Button1" runat="server" Text="Export To Excel" Visible="true" Class="btn btn-success"
+                                        OnClick="btnExcel_Click" />
+                                    <%--<asp:Button ID="btnexit" runat="server" class="btn btn-danger" Text="Exit" 
+                        OnClick="btnexit_OnClick" />--%>
+                                    <asp:TextBox ID="txtchequedate" CssClass="form-control" runat="server"
+                                        Visible="false" Enabled="false"></asp:TextBox>
+                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender4" TargetControlID="txtchequedate"
+                                        Format="dd/MM/yyyy" PopupButtonID="txtdate1" EnabledOnClient="true" runat="server"
+                                        CssClass="cal_Theme1">
+                                    </ajaxToolkit:CalendarExtender>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                            <div class="col-lg-2">
+                                                <asp:TextBox placeholder="Search Text" ID="txtsearchmobile" Style="height: 28px;"
+                                                    runat="server" CssClass="form-control" MaxLength="25" Visible="false" onkeyup="Search_Gridview(this, 'gv')"></asp:TextBox>
+                                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtendername" runat="server"
+                                                    FilterType="LowercaseLetters, UppercaseLetters,Custom,Numbers" ValidChars=" ._/-"
+                                                    TargetControlID="txtsearchmobile" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="IDValues" runat="server">
+
+                                    <div class="col-lg-12">
+                                        <div id="Div5" runat="server" class="table-responsive panel-grid-left">
+                                            <asp:GridView ID="gv" EmptyDataText="Oops! No Activity Performed." ShowFooter="true"
+                                                Caption="Customer Cash Receive" CssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
+                                                runat="server" AutoGenerateColumns="false">
+                                                <%-- <PagerStyle HorizontalAlign="Left" CssClass="GridPager" />--%>
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="S.No">
+                                                        <ItemTemplate>
+                                                            <%#Container.DataItemIndex+1 %>
+                                                            <asp:Label ID="lblSalesid" runat="server" Text='<%# Eval("salesid")%>' Visible="false"></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="BillNo">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblBillNo" runat="server" Text='<%# Eval("BillNo")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="BillDate">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblBillDate" runat="server" Text='<%# Eval("BillDate", "{0:dd/MM/yyyy}") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Bill Amount">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblBillAmt" runat="server" Text='<%# Eval("Total","{0:f2}")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Return Amount">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblReturnAmount" runat="server" Text='<%# Eval("ReturnAmount","{0:f2}")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Paid Amount">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblPaidamt" runat="server" Text='<%# Eval("ReceiptAmount","{0:f2}")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Balance Amount">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblBalance" runat="server" Text='<%# Eval("Balance","{0:f2}")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Payment Amount">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtpaid" runat="server" MaxLength="10" Enabled="true">0</asp:TextBox>
+                                                            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtenderpaid" runat="server"
+                                                                FilterType="Custom,Numbers" ValidChars="." TargetControlID="txtpaid" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Close Discount"
+                                                        Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtclosediscount" runat="server" MaxLength="4">0</asp:TextBox>
+                                                            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtenderpaid1" runat="server"
+                                                                FilterType="Custom,Numbers" ValidChars="." TargetControlID="txtclosediscount" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Entry By" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtNarration" runat="server" Text=""></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Tick to Calc Amount">
+                                                        <ItemTemplate>
+                                                            <asp:CheckBox ID="chkamount" runat="server" AutoPostBack="true" OnCheckedChanged="Chkamount_click"
+                                                                Checked="false" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </div>
+                                        <br />
+                                        <div id="refund" runat="server" visible="false">
+                                            <asp:Label ID="Label1" runat="server" Style="font-size: larger; font-weight: bold">Refund Amont:</asp:Label>
+                                            <asp:Label ID="lblledgerbalance" runat="server" Style="font-size: larger; font-weight: bold">0</asp:Label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="IDValues" runat="server">
-
-                    <div class="col-lg-12">
-                        <div id="Div5" runat="server" class="table-responsive panel-grid-left">
-                            <asp:GridView ID="gv" EmptyDataText="Oops! No Activity Performed." ShowFooter="true"
-                                Caption="Customer Cash Receive" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
-                              runat="server" AutoGenerateColumns="false">
-                               <%-- <PagerStyle HorizontalAlign="Left" CssClass="GridPager" />--%>
-                                <Columns>
-                                    <asp:TemplateField HeaderText="S.No">
-                                        <ItemTemplate>
-                                            <%#Container.DataItemIndex+1 %>
-                                            <asp:Label ID="lblSalesid" runat="server" Text='<%# Eval("salesid")%>' Visible="false"></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="BillNo">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblBillNo" runat="server" Text='<%# Eval("BillNo")%>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="BillDate">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblBillDate" runat="server" Text='<%# Eval("BillDate", "{0:dd/MM/yyyy}") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Bill Amount">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblBillAmt" runat="server" Text='<%# Eval("Total","{0:f2}")%>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Return Amount">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblReturnAmount" runat="server" Text='<%# Eval("ReturnAmount","{0:f2}")%>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Paid Amount">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblPaidamt" runat="server" Text='<%# Eval("ReceiptAmount","{0:f2}")%>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Balance Amount">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblBalance" runat="server" Text='<%# Eval("Balance","{0:f2}")%>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Payment Amount">
-                                        <ItemTemplate>
-                                            <asp:TextBox ID="txtpaid" runat="server" MaxLength="10" Enabled="true">0</asp:TextBox>
-                                            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtenderpaid" runat="server"
-                                                FilterType="Custom,Numbers" ValidChars="." TargetControlID="txtpaid" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Close Discount"
-                                        Visible="false">
-                                        <ItemTemplate>
-                                            <asp:TextBox ID="txtclosediscount" runat="server" MaxLength="4">0</asp:TextBox>
-                                            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtenderpaid1" runat="server"
-                                                FilterType="Custom,Numbers" ValidChars="." TargetControlID="txtclosediscount" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Entry By">
-                                        <ItemTemplate>
-                                            <asp:TextBox ID="txtNarration" runat="server" Text=""></asp:TextBox>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                </Columns>
-                            </asp:GridView>
-                        </div>
-                        <br />
-                        <div id="refund" runat="server" visible="false">
-                            <asp:Label ID="Label1" runat="server" Style="font-size: larger; font-weight: bold">Refund Amont:</asp:Label>
-                            <asp:Label ID="lblledgerbalance" runat="server" Style="font-size: larger; font-weight: bold">0</asp:Label>
-                        </div>
-                    </div>
-                   
-            </div>
         </div>
-    </div>
-</div>
-</div>
-</div>
-</div>
-  <%--  <div class="panel-body">
+        <%--  <div class="panel-body">
         <div class="row">
             <div class="col-lg-12">
                 <div class="col-lg-1">
@@ -574,13 +583,13 @@
         </div>
     </div>--%>
 
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
-    <script src="../bower_components/raphael/raphael-min.js"></script>
-    <script src="../bower_components/morrisjs/morris.min.js"></script>
-    <script src="../js/morris-data.js"></script>
-    <script src="../dist/js/sb-admin-2.js"></script>
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+        <script src="../bower_components/raphael/raphael-min.js"></script>
+        <script src="../bower_components/morrisjs/morris.min.js"></script>
+        <script src="../js/morris-data.js"></script>
+        <script src="../dist/js/sb-admin-2.js"></script>
     </form>
 </body>
 </html>
