@@ -5895,12 +5895,12 @@ namespace BusinessLayer
             {
                 if (logintype == "5" || logintype == "4")
                 {
-                    string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.prod_Qty) as Available_Qty,c.serial  from tblProductionQty_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.descriptionid=c.CategoryUserID and a.prod_qty>0 and c.categoryid='" + Categoryid + "' and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial   order by c.Definition asc";
+                    string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.prod_Qty) as Available_Qty,c.serial,c.qtytype  from tblProductionQty_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.descriptionid=c.CategoryUserID and a.prod_qty>0 and c.categoryid='" + Categoryid + "' and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial,c.qtytype   order by c.Definition asc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
                 else
                 {
-                    string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.Available_QTY) as Available_Qty,c.Serial  from tblStock_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.SubCategoryID=c.CategoryUserID and a.Available_QTY>0 and c.categoryid='" + Categoryid + "' and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial   order by cast(c.serial as int) asc";
+                    string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.Available_QTY) as Available_Qty,c.Serial,c.qtytype  from tblStock_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.SubCategoryID=c.CategoryUserID and a.Available_QTY>0 and c.categoryid='" + Categoryid + "' and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial,c.qtytype   order by cast(c.serial as int) asc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
             }
