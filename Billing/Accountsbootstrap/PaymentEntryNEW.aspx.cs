@@ -91,11 +91,11 @@ namespace Billing.Accountsbootstrap
             if (ddlPayMode.SelectedValue == "4" || ddlPayMode.SelectedValue == "11" || ddlPayMode.SelectedValue == "15" || ddlPayMode.SelectedValue == "19")
             {
                 //txtbank.Enabled = false;
-              
+
                 ddlBank.Enabled = true;
                 txtCheqeNo.Enabled = true;
             }
-            else 
+            else
             {
                 //txtbank.Enabled = true;
                 ddlBank.Enabled = false;
@@ -210,7 +210,7 @@ namespace Billing.Accountsbootstrap
                 Label lblBalance = (Label)gv.Rows[vLoop].FindControl("lblBalance");
                 TextBox txtpaid = (TextBox)gv.Rows[vLoop].FindControl("txtpaid");
                 TextBox txtclosediscount = (TextBox)gv.Rows[vLoop].FindControl("txtclosediscount");
-
+                CheckBox chkamount = (CheckBox)gv.Rows[vLoop].FindControl("chkamount");
                 if (txtpaid.Text == "")
                     txtpaid.Text = "0";
                 if (txtclosediscount.Text == "")
@@ -223,11 +223,19 @@ namespace Billing.Accountsbootstrap
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Received Amount is greater Than The Balance Amount in BillNo " + lblBillNo.Text + ".');", true);
                     return;
                 }
-                if ((Convert.ToDouble(txtpaid.Text) + Convert.ToDouble(txtclosediscount.Text)) > 0 && txtNarration.Text == "")
+                if (chkamount.Checked == true)
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Plz Enter Entry By in BillNo " + lblBillNo.Text + ".');", true);
-                    return;
+                    if ((Convert.ToDouble(txtpaid.Text) + Convert.ToDouble(txtclosediscount.Text)) == 0)
+                    {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Please Enter Amount');", true);
+                        return;
+                    }
                 }
+                //if ((Convert.ToDouble(txtpaid.Text) + Convert.ToDouble(txtclosediscount.Text)) > 0 && txtNarration.Text == "")
+                //{
+                //    ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Plz Enter Entry By in BillNo " + lblBillNo.Text + ".');", true);
+                //    return;
+                //}
             }
             txtAmount.Text = paid.ToString("0.00");
             txtCloseDiscount.Text = closediscount.ToString("0.00");
@@ -260,11 +268,11 @@ namespace Billing.Accountsbootstrap
 
                 }
             }
-           
+
 
             if (ddlPayMode.SelectedValue == "7" || ddlPayMode.SelectedValue == "8")
             {
-                BankName =ddlBank.SelectedValue;
+                BankName = ddlBank.SelectedValue;
                 ChequeNo = txtCheqeNo.Text;
             }
 
@@ -284,6 +292,12 @@ namespace Billing.Accountsbootstrap
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Plz Enter Your Amount.');", true);
                 txtAmount.Focus();
+                return;
+            }
+            else if (txtEntryBy.Text == "")
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Plz Enter Enter By.');", true);
+                txtEntryBy.Focus();
                 return;
             }
             else
@@ -314,11 +328,11 @@ namespace Billing.Accountsbootstrap
                         return;
                     }
 
-                    if ((Convert.ToDouble(txtpaid.Text) + Convert.ToDouble(txtclosediscount.Text)) > 0 && txtNarration.Text == "")
-                    {
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Plz Enter Entry By in BillNo " + lblBillNo.Text + ".');", true);
-                        return;
-                    }
+                    //if ((Convert.ToDouble(txtpaid.Text) + Convert.ToDouble(txtclosediscount.Text)) > 0 && txtNarration.Text == "")
+                    //{
+                    //    ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Plz Enter Entry By in BillNo " + lblBillNo.Text + ".');", true);
+                    //    return;
+                    //}
                 }
                 txtAmount.Text = paid.ToString("0.00");
                 txtCloseDiscount.Text = closediscount.ToString("0.00");
@@ -363,7 +377,7 @@ namespace Billing.Accountsbootstrap
                 DateTime billldate = DateTime.ParseExact(txtBillDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 DateTime chequedate = DateTime.ParseExact(txtchequedate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-                int PaymentID = objbs.insertPayment(sTableName, billldate, chequedate, ddlsuplier.SelectedValue, Convert.ToDouble(txtAmount.Text), BankName, ChequeNo, Convert.ToInt32(ddlPayMode.SelectedValue), Bank, Convert.ToDouble(txtCloseDiscount.Text), Convert.ToInt32(userid), ddltype.SelectedValue,bankid);
+                int PaymentID = objbs.insertPayment(sTableName, billldate, chequedate, ddlsuplier.SelectedValue, Convert.ToDouble(txtAmount.Text), BankName, ChequeNo, Convert.ToInt32(ddlPayMode.SelectedValue), Bank, Convert.ToDouble(txtCloseDiscount.Text), Convert.ToInt32(userid), ddltype.SelectedValue, bankid);
 
                 for (int vLoop = 0; vLoop < gv.Rows.Count; vLoop++)
                 {
@@ -388,7 +402,7 @@ namespace Billing.Accountsbootstrap
 
                     if ((Convert.ToDouble(txtpaid.Text) + Convert.ToDouble(txtclosediscount.Text)) > 0)
                     {
-                        int UpPaid = objbs.UpPaidinPurchase(PaymentID, sTableName, salesid, Convert.ToDecimal(txtpaid.Text), txtNarration.Text, Convert.ToDecimal(txtclosediscount.Text), ddltype.SelectedValue);
+                        int UpPaid = objbs.UpPaidinPurchase(PaymentID, sTableName, salesid, Convert.ToDecimal(txtpaid.Text), txtEntryBy.Text, Convert.ToDecimal(txtclosediscount.Text), ddltype.SelectedValue);
                     }
 
                     #endregion
@@ -405,6 +419,36 @@ namespace Billing.Accountsbootstrap
         {
             Response.Redirect("PaymentEntryGrid.aspx");
         }
+
+        protected void Chkamount_click(object sender, EventArgs e)
+        {
+            if (ddlsuplier.SelectedItem.Text != "Select Supplier")
+            {
+                gv.Visible = true;
+
+                if (gv.Rows.Count > 0)
+                {
+                    for (int vLoop = 0; vLoop < gv.Rows.Count; vLoop++)
+                    {
+                        Label lblBillNo = (Label)gv.Rows[vLoop].FindControl("lblBillNo");
+                        Label lblBalance = (Label)gv.Rows[vLoop].FindControl("lblBalance");
+                        Label lblSalesid = (Label)gv.Rows[vLoop].FindControl("lblSalesid");
+                        Label lblPaidamt = (Label)gv.Rows[vLoop].FindControl("lblPaidamt");
+                        TextBox txtpaid = (TextBox)gv.Rows[vLoop].FindControl("txtpaid");
+                        TextBox txtNarration = (TextBox)gv.Rows[vLoop].FindControl("txtNarration");
+                        TextBox txtclosediscount = (TextBox)gv.Rows[vLoop].FindControl("txtclosediscount");
+                        CheckBox chkamount = (CheckBox)gv.Rows[vLoop].FindControl("chkamount");
+                        if (chkamount.Checked == true)
+                        {
+                            txtpaid.Text = lblBalance.Text;
+                        }
+                    }
+                }
+            }
+
+        }
+
+
         protected void btnExcel_Click(object sender, EventArgs e)
         {
             if (ddlsuplier.SelectedValue == "Select Supplier")
@@ -480,7 +524,7 @@ namespace Billing.Accountsbootstrap
         //            ddlsuplier.Items.Insert(0, "Select Supplier");
         //        }
 
-               
+
         //        //DataSet dsbank = objbs.Bankactive();
         //        //if (dsbank.Tables[0].Rows.Count > 0)
         //        //{
@@ -684,7 +728,7 @@ namespace Billing.Accountsbootstrap
         //    }
         //    else
         //    {
-                
+
         //        #region Calculations
 
         //        double paid = 0; double closediscount = 0;

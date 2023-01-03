@@ -7,37 +7,36 @@
 <html lang="en">
 <head>
     <style type="text/css">
-        a img
-        {
+        a img {
             border: none;
         }
-        ol li
-        {
+
+        ol li {
             list-style: decimal outside;
         }
-        div#container
-        {
+
+        div#container {
             width: 780px;
             margin: 0 auto;
             padding: 1em 0;
         }
-        div.side-by-side
-        {
+
+        div.side-by-side {
             width: 100%;
             margin-bottom: 1em;
         }
-        div.side-by-side > div
-        {
-            float: left;
-            width: 50%;
-        }
-        div.side-by-side > div > em
-        {
-            margin-bottom: 10px;
-            display: block;
-        }
-        .clearfix:after
-        {
+
+            div.side-by-side > div {
+                float: left;
+                width: 50%;
+            }
+
+                div.side-by-side > div > em {
+                    margin-bottom: 10px;
+                    display: block;
+                }
+
+        .clearfix:after {
             content: "\0020";
             display: block;
             height: 0;
@@ -92,8 +91,8 @@
             alert('Are You Sure, You want to delete This Customer!');
         }
     </script>
-    
-     <script type="text/javascript">
+
+    <script type="text/javascript">
          function Search_Gridview(strKey, strGV) {
 
 
@@ -119,7 +118,7 @@
          }    
     </script>
 
-     <script type="text/javascript">
+    <script type="text/javascript">
          function printGrid() {
              var gridData = document.getElementById('<%= BankGrid.ClientID %>');
              var windowUrl = 'about:blank';
@@ -146,156 +145,167 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="White" CssClass="label">Welcome: </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <form runat="server" id="form1">
-    <asp:ValidationSummary runat="server" HeaderText="Validation Messages" ValidationGroup="val1"
-        ID="val1" ShowMessageBox="true" ShowSummary="false" />
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
-    <div class="container-fluid">
-	<div class="row">
-    <div class="col-lg-12">
-     <div class="row panel-custom1">
-        <div class="panel-header">
-          <h1 class="page-header">Raw Material Details</h1>
-	    </div>
-
-            <div class="panel-body">
-             <div class="row">
+        <asp:ValidationSummary runat="server" HeaderText="Validation Messages" ValidationGroup="val1"
+            ID="val1" ShowMessageBox="true" ShowSummary="false" />
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <div class="container-fluid">
+            <div class="row">
                 <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-lg-3">
-                      
-                            <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="phono" ControlToValidate="txtsearch"
-                                ErrorMessage="Please enter your searching Data!" Text="*" Style="color: White" />
-                            <asp:TextBox CssClass="form-control" Enabled="true" ID="txtsearch" runat="server"
-                                placeholder="Search Text"></asp:TextBox>
-                            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
-                                FilterType="LowercaseLetters, UppercaseLetters,Numbers,Custom" ValidChars=" "
-                                TargetControlID="txtsearch" />
-                       
-                    </div>
-                    <div class="col-lg-3">
-                        
-                            <label>
-                                From date</label>
-                            <asp:TextBox runat="server" ID="txtfromdate" CssClass="form-control" AutoPostBack="true"
-                                OnTextChanged="txtfromdate_TextChanged"> 
-                            </asp:TextBox>
-                            <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtfromdate"
-                                Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
-                            </ajaxToolkit:CalendarExtender>
-                      
-                    </div>
-                    <div class="col-lg-3">
-                        
-                            <label>
-                                To date</label>
-                            <asp:TextBox runat="server" ID="txttodate" CssClass="form-control" AutoPostBack="true"
-                                OnTextChanged="txtfromdate_TextChanged">
-                            </asp:TextBox>
-                            <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txttodate"
-                                Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
-                            </ajaxToolkit:CalendarExtender>
-                       
-                    </div>
-                    <div class="col-lg-3">
-                       
-                            <label>
-                                Supplier</label>
-                            <asp:DropDownList CssClass="form-control" ID="ddlsuplier"  AutoPostBack="true"
-                                OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged"  runat="server">
-                            </asp:DropDownList>
-                       
-                    </div>
-                    </div>
-                    <br />
-                    <div class="row">
-                    <div class="col-lg-3">
-                       
-                            <label>
-                                RawMaterials</label>
-                            <asp:DropDownList CssClass="form-control" ID="ddlraw" AutoPostBack="true"
-                                OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged" MaxLength="150" runat="server">
-                            </asp:DropDownList>
-                       
-                    </div>
-                   <div class="col-lg-3">
-                       
-                            <br />
-                            <asp:Button ID="btnPrint" runat="server" CssClass="btn btn-info pos-btn1" 
-                                Text="Print" OnClick="btnPrintFromCodeBehind_Click" width="100px"/>
-                               &nbsp;&nbsp;&nbsp;  <asp:Button ID="btnpdf" runat="server" Text="PDF" CssClass="btn btn-info" OnClick="btnpdf_Click" width="100px" />
-
-                    </div>
-                    <div id="Div2" class="col-lg-1" runat="server" visible="false">
-                        <div class="form-group">
-                            <br />
-                            <asp:Button ID="btnExport" Text="Export to Excel" runat="server" Width="110px" CssClass="btn btn-success"
-                                OnClick="btnExport_Click" />
+                    <div class="row panel-custom1">
+                        <div class="panel-header">
+                            <h1 class="page-header">Raw Material Details</h1>
                         </div>
-                    </div>
-                    
-                </div>
-                </div>
-                </div>
-                <br />
-                        <div class="row">
 
-                        <div class="col-lg-12">
-                     
-                            <div id="Div1" runat="server" class="table-responsive panel-grid-left">
-                                <asp:GridView ID="BankGrid" runat="server" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" Width="100%" AllowSorting="true"
-                                    EmptyDataText="No Records Found" AutoGenerateColumns="false">
-                                    <PagerStyle cssclass="pos-paging" />
-                                   <%-- <HeaderStyle BackColor="#3366FF" />
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+
+                                            <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="phono" ControlToValidate="txtsearch"
+                                                ErrorMessage="Please enter your searching Data!" Text="*" Style="color: White" />
+                                            <asp:TextBox CssClass="form-control" Enabled="true" ID="txtsearch" runat="server"
+                                                placeholder="Search Text"></asp:TextBox>
+                                            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
+                                                FilterType="LowercaseLetters, UppercaseLetters,Numbers,Custom" ValidChars=" "
+                                                TargetControlID="txtsearch" />
+
+                                        </div>
+                                        <div class="col-lg-3">
+
+                                            <label>
+                                                From date</label>
+                                            <asp:TextBox runat="server" ID="txtfromdate" CssClass="form-control" AutoPostBack="true"
+                                                OnTextChanged="txtfromdate_TextChanged"> 
+                                            </asp:TextBox>
+                                            <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtfromdate"
+                                                Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
+                                            </ajaxToolkit:CalendarExtender>
+
+                                        </div>
+                                        <div class="col-lg-3">
+
+                                            <label>
+                                                To date</label>
+                                            <asp:TextBox runat="server" ID="txttodate" CssClass="form-control" AutoPostBack="true"
+                                                OnTextChanged="txtfromdate_TextChanged">
+                                            </asp:TextBox>
+                                            <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txttodate"
+                                                Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
+                                            </ajaxToolkit:CalendarExtender>
+
+                                        </div>
+                                        <div class="col-lg-3">
+
+                                            <label>
+                                                Supplier</label>
+                                            <asp:DropDownList CssClass="form-control" ID="ddlsuplier" AutoPostBack="true"
+                                                OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged" runat="server">
+                                            </asp:DropDownList>
+
+                                        </div>
+
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <label>
+                                                Select Company</label>
+                                            <asp:DropDownList ID="drpsubcompany" runat="server" AutoPostBack="true"
+                                                OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged" TabIndex="1" CssClass="form-control">
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="col-lg-3">
+
+                                            <label>
+                                                RawMaterials</label>
+                                            <asp:DropDownList CssClass="form-control" ID="ddlraw" AutoPostBack="true"
+                                                OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged" MaxLength="150" runat="server">
+                                            </asp:DropDownList>
+
+                                        </div>
+                                        <div class="col-lg-3">
+
+                                            <br />
+                                            <asp:Button ID="btnPrint" runat="server" CssClass="btn btn-info pos-btn1"
+                                                Text="Print" OnClick="btnPrintFromCodeBehind_Click" Width="100px" />
+                                            &nbsp;&nbsp;&nbsp; 
+                                            <asp:Button ID="btnpdf" runat="server" Text="PDF" CssClass="btn btn-info" OnClick="btnpdf_Click" Width="100px" />
+
+                                        </div>
+                                        <div id="Div2" class="col-lg-1" runat="server" visible="false">
+                                            <div class="form-group">
+                                                <br />
+                                                <asp:Button ID="btnExport" Text="Export to Excel" runat="server" Width="110px" CssClass="btn btn-success"
+                                                    OnClick="btnExport_Click" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+
+                                <div class="col-lg-12">
+
+                                    <div id="Div1" runat="server" class="table-responsive panel-grid-left">
+                                        <asp:GridView ID="BankGrid" runat="server" CssClass="table table-striped pos-table" padding="0" spacing="0" border="0" Width="100%" AllowSorting="true"
+                                            EmptyDataText="No Records Found" AutoGenerateColumns="false">
+                                            <PagerStyle CssClass="pos-paging" />
+                                            <%-- <HeaderStyle BackColor="#3366FF" />
                                     <EmptyDataRowStyle HorizontalAlign="Center" BackColor="#59d3b4" ForeColor="Black" />
                                     <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
                                         NextPageText="Next" PreviousPageText="Previous" />--%>
-                                    <Columns>
-                                        <asp:BoundField HeaderText="IngredientName" DataField="IngredientName" />
-                                        <asp:BoundField HeaderText="SupplierName" DataField="CustomerName" HeaderStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField HeaderText="BillDate" DataField="BillDate" DataFormatString="{0:dd/MMM/yyyy}" />
-                                        <%-- <asp:BoundField HeaderText="Total" DataField="Total" DataFormatString='{0:f}' />--%>
-                                        <asp:BoundField HeaderText="Qty" DataField="Qty" DataFormatString='{0:f}' />
-                                        <asp:BoundField HeaderText="Rate" DataField="Rate" DataFormatString='{0:f}' />
-                                        <asp:BoundField HeaderText="Payment" DataField="Paymentmode" />
-                                    </Columns>
-                                    <%--<FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                                            <Columns>
+                                                <asp:BoundField HeaderText="CompanyName" DataField="compname" />
+                                                <asp:BoundField HeaderText="IngredientName" DataField="IngredientName" />
+                                                <asp:BoundField HeaderText="SupplierName" DataField="CustomerName" HeaderStyle-HorizontalAlign="Center" />
+                                                <asp:BoundField HeaderText="BillDate" DataField="BillDate" DataFormatString="{0:dd/MMM/yyyy}" />
+                                                <%-- <asp:BoundField HeaderText="Total" DataField="Total" DataFormatString='{0:f}' />--%>
+                                                <asp:BoundField HeaderText="Qty" DataField="Qty" DataFormatString='{0:f}' />
+                                                <asp:BoundField HeaderText="Rate" DataField="Rate" DataFormatString='{0:f}' />
+                                                <asp:BoundField HeaderText="Payment" DataField="Paymentmode" />
+                                            </Columns>
+                                            <%--<FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
                                     <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>
-                                </asp:GridView>
+                                        </asp:GridView>
+                                    </div>
+                                </div>
                             </div>
-                      </div>
-                      </div>
-                      
-            </div>
-       
-        <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
-        <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
-        <script type="text/javascript">            $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
-  
-    <asp:Panel class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none"
-        runat="server">
-        <div class="popup_Container">
-            <div class="popup_Titlebar" id="PopupHeader">
-                <div class="TitlebarLeft">
-                    Customer List</div>
-                <div class="TitlebarRight" onclick="$get('ButtonDeleteCancel').click();">
+
+                        </div>
+
+                        <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
+                        <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
+                        <script type="text/javascript">            $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
+
+                        <asp:Panel class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none"
+                            runat="server">
+                            <div class="popup_Container">
+                                <div class="popup_Titlebar" id="PopupHeader">
+                                    <div class="TitlebarLeft">
+                                        Customer List
+                                    </div>
+                                    <div class="TitlebarRight" onclick="$get('ButtonDeleteCancel').click();">
+                                    </div>
+                                </div>
+                                <div class="popup_Body">
+                                    <p>
+                                        Are you sure want to delete?
+                                    </p>
+                                </div>
+                                <div class="popup_Buttons">
+                                    <input id="ButtonDeleleOkay" type="button" value="Yes" />
+                                    <input id="ButtonDeleteCancel" type="button" value="No" />
+                                </div>
+                            </div>
+                        </asp:Panel>
+                    </div>
                 </div>
             </div>
-            <div class="popup_Body">
-                <p>
-                    Are you sure want to delete?
-                </p>
-            </div>
-            <div class="popup_Buttons">
-                <input id="ButtonDeleleOkay" type="button" value="Yes" />
-                <input id="ButtonDeleteCancel" type="button" value="No" />
-            </div>
         </div>
-    </asp:Panel>
-    </div>
-    </div>
-    </div>
-    </div>
     </form>
 </body>
 </html>

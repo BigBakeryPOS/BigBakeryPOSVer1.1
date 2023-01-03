@@ -72,6 +72,16 @@ namespace Billing.Accountsbootstrap
                     txtFromDate.Enabled = false;
                 }
 
+                DataSet dssubcompany = objBs.GetsubCompanyDetails();
+                if (dssubcompany.Tables[0].Rows.Count > 0)
+                {
+                    drpsubcompany.DataSource = dssubcompany.Tables[0];
+                    drpsubcompany.DataTextField = "CustomerName";
+                    drpsubcompany.DataValueField = "subComapanyID";
+                    drpsubcompany.DataBind();
+                    drpsubcompany.Items.Insert(0, "All");
+                }
+
                 //DateTime utc = DateTime.UtcNow;
                 //// DateTimeOffset localServerTime = DateTimeOffset.Now;
 
@@ -103,7 +113,6 @@ namespace Billing.Accountsbootstrap
 
         protected void gridPurchase_RowCreated(object sender, GridViewRowEventArgs e)
         {
-            
             #region 4
             if (rbdCtry.Checked == true)
             {
@@ -275,7 +284,7 @@ namespace Billing.Accountsbootstrap
                         GridViewRow row = new GridViewRow(0, 0, DataControlRowType.DataRow, DataControlRowState.Insert);
                         TableCell cell = new TableCell();
                         cell.Text = "Product Name : " + DataBinder.Eval(e.Row.DataItem, "Ingredientname").ToString();
-                        cell.ColumnSpan = 9;
+                        cell.ColumnSpan = 10;
                         cell.CssClass = "GroupHeaderStyle";
                         row.Cells.Add(cell);
                         gridPurchase.Controls[0].Controls.AddAt(e.Row.RowIndex + intSubTotalIndex, row);
@@ -292,7 +301,7 @@ namespace Billing.Accountsbootstrap
                         TableCell cell = new TableCell();
                         cell.Text = "Sub Total";
                         cell.HorizontalAlign = HorizontalAlign.Left;
-                        cell.ColumnSpan = 6;
+                        cell.ColumnSpan = 7;
                         cell.CssClass = "SubTotalRowStyle";
                         row.Cells.Add(cell);
 
@@ -332,7 +341,7 @@ namespace Billing.Accountsbootstrap
                             row = new GridViewRow(0, 0, DataControlRowType.DataRow, DataControlRowState.Insert);
                             cell = new TableCell();
                             cell.Text = "Product Name : " + DataBinder.Eval(e.Row.DataItem, "Ingredientname").ToString();
-                            cell.ColumnSpan = 9;
+                            cell.ColumnSpan = 10;
                             cell.CssClass = "GroupHeaderStyle";
                             row.Cells.Add(cell);
                             gridPurchase.Controls[0].Controls.AddAt(e.Row.RowIndex + intSubTotalIndex, row);
@@ -357,7 +366,7 @@ namespace Billing.Accountsbootstrap
                         TableCell cell = new TableCell();
                         cell.Text = "Grand Total";
                         cell.HorizontalAlign = HorizontalAlign.Left;
-                        cell.ColumnSpan = 6;
+                        cell.ColumnSpan = 7;
                         cell.CssClass = "GrandTotalRowStyle";
                         row.Cells.Add(cell);
 
@@ -419,7 +428,7 @@ namespace Billing.Accountsbootstrap
                         GridViewRow row = new GridViewRow(0, 0, DataControlRowType.DataRow, DataControlRowState.Insert);
                         TableCell cell = new TableCell();
                         cell.Text = "Supplier Name : " + DataBinder.Eval(e.Row.DataItem, "LedgerName").ToString();
-                        cell.ColumnSpan = 9;
+                        cell.ColumnSpan = 10;
                         cell.CssClass = "GroupHeaderStyle";
                         row.Cells.Add(cell);
                         gridPurchase.Controls[0].Controls.AddAt(e.Row.RowIndex + intSubTotalIndex, row);
@@ -436,7 +445,7 @@ namespace Billing.Accountsbootstrap
                         TableCell cell = new TableCell();
                         cell.Text = "Sub Total";
                         cell.HorizontalAlign = HorizontalAlign.Left;
-                        cell.ColumnSpan = 6;
+                        cell.ColumnSpan = 7;
                         cell.CssClass = "SubTotalRowStyle";
                         row.Cells.Add(cell);
 
@@ -501,7 +510,7 @@ namespace Billing.Accountsbootstrap
                         TableCell cell = new TableCell();
                         cell.Text = "Grand Total";
                         cell.HorizontalAlign = HorizontalAlign.Left;
-                        cell.ColumnSpan = 6;
+                        cell.ColumnSpan = 7;
                         cell.CssClass = "GrandTotalRowStyle";
                         row.Cells.Add(cell);
 
@@ -540,10 +549,7 @@ namespace Billing.Accountsbootstrap
             #region 7
             if (rbdExpDate.Checked == true)
             {
-
                 {
-
-
                     //----------start----------//
                     bool IsSubTotalRowNeedToAdd = false;
                     bool IsGrandTotalRowNeedtoAdd = false;
@@ -563,7 +569,7 @@ namespace Billing.Accountsbootstrap
                         GridViewRow row = new GridViewRow(0, 0, DataControlRowType.DataRow, DataControlRowState.Insert);
                         TableCell cell = new TableCell();
                         cell.Text = "Expired Date : " + DataBinder.Eval(e.Row.DataItem, "ExpiryDate").ToString();
-                        cell.ColumnSpan = 9;
+                        cell.ColumnSpan = 10;
                         cell.CssClass = "GroupHeaderStyle";
                         row.Cells.Add(cell);
                         gridPurchase.Controls[0].Controls.AddAt(e.Row.RowIndex + intSubTotalIndex, row);
@@ -580,7 +586,7 @@ namespace Billing.Accountsbootstrap
                         TableCell cell = new TableCell();
                         cell.Text = "Sub Total";
                         cell.HorizontalAlign = HorizontalAlign.Left;
-                        cell.ColumnSpan = 6;
+                        cell.ColumnSpan = 7;
                         cell.CssClass = "SubTotalRowStyle";
                         row.Cells.Add(cell);
 
@@ -620,7 +626,7 @@ namespace Billing.Accountsbootstrap
                             row = new GridViewRow(0, 0, DataControlRowType.DataRow, DataControlRowState.Insert);
                             cell = new TableCell();
                             cell.Text = "Expired Date : " + DataBinder.Eval(e.Row.DataItem, "ExpiryDate").ToString();
-                            cell.ColumnSpan = 9;
+                            cell.ColumnSpan = 10;
                             cell.CssClass = "GroupHeaderStyle";
                             row.Cells.Add(cell);
                             gridPurchase.Controls[0].Controls.AddAt(e.Row.RowIndex + intSubTotalIndex, row);
@@ -645,7 +651,7 @@ namespace Billing.Accountsbootstrap
                         TableCell cell = new TableCell();
                         cell.Text = "Grand Total";
                         cell.HorizontalAlign = HorizontalAlign.Left;
-                        cell.ColumnSpan = 6;
+                        cell.ColumnSpan = 7;
                         cell.CssClass = "GrandTotalRowStyle";
                         row.Cells.Add(cell);
 
@@ -681,7 +687,147 @@ namespace Billing.Accountsbootstrap
                 }
             }
             #endregion
+            #region 8
+            if (rdbCompany.Checked == true)
+            {
+                {
+                    //----------start----------//
+                    bool IsSubTotalRowNeedToAdd = false;
+                    bool IsGrandTotalRowNeedtoAdd = false;
+                    if ((strPreviousRowID != string.Empty) && (DataBinder.Eval(e.Row.DataItem, "subComapanyID") != null))
+                        if (strPreviousRowID != DataBinder.Eval(e.Row.DataItem, "subComapanyID").ToString())
+                            IsSubTotalRowNeedToAdd = true;
+                    if ((strPreviousRowID != string.Empty) && (DataBinder.Eval(e.Row.DataItem, "subComapanyID") == null))
+                    {
+                        IsSubTotalRowNeedToAdd = true;
+                        IsGrandTotalRowNeedtoAdd = true;
+                        intSubTotalIndex = 0;
+                    }
+                    #region Inserting first Row and populating fist Group Header details
+                    if ((strPreviousRowID == string.Empty) && (DataBinder.Eval(e.Row.DataItem, "subComapanyID") != null))
+                    {
+                        GridView gridPurchase = (GridView)sender;
+                        GridViewRow row = new GridViewRow(0, 0, DataControlRowType.DataRow, DataControlRowState.Insert);
+                        TableCell cell = new TableCell();
+                        cell.Text = "Company Name : " + DataBinder.Eval(e.Row.DataItem, "compname").ToString();
+                        cell.ColumnSpan = 10;
+                        cell.CssClass = "GroupHeaderStyle";
+                        row.Cells.Add(cell);
+                        gridPurchase.Controls[0].Controls.AddAt(e.Row.RowIndex + intSubTotalIndex, row);
+                        intSubTotalIndex++;
+                    }
+                    #endregion
+                    if (IsSubTotalRowNeedToAdd)
+                    {
+                        #region Adding Sub Total Row
+                        GridView gridPurchase = (GridView)sender;
+                        // Creating a Row          
+                        GridViewRow row = new GridViewRow(0, 0, DataControlRowType.DataRow, DataControlRowState.Insert);
+                        //Adding Total Cell          
+                        TableCell cell = new TableCell();
+                        cell.Text = "Sub Total";
+                        cell.HorizontalAlign = HorizontalAlign.Left;
+                        cell.ColumnSpan = 7;
+                        cell.CssClass = "SubTotalRowStyle";
+                        row.Cells.Add(cell);
 
+                        //Adding Quantity Column            
+                        cell = new TableCell();
+                        cell.Text = string.Format("{0:0.00}", dblSubTotalQuantity);
+                        cell.HorizontalAlign = HorizontalAlign.Right;
+                        cell.CssClass = "SubTotalRowStyle";
+                        row.Cells.Add(cell);
+                        //Adding Unit Price Column          
+                        //cell = new TableCell();
+                        //cell.Text = string.Format("{0:0.00}", dblSubTotalUnitPrice);
+                        //cell.HorizontalAlign = HorizontalAlign.Right;
+                        //cell.CssClass = "SubTotalRowStyle";
+                        //row.Cells.Add(cell);
+                        //Adding Discount Column         
+                        cell = new TableCell();
+                        cell.Text = string.Format("{0:0.00}", dblSubTotalDiscount);
+                        cell.HorizontalAlign = HorizontalAlign.Right;
+                        cell.CssClass = "SubTotalRowStyle";
+                        row.Cells.Add(cell);
+
+
+                        cell = new TableCell();
+                        cell.Text = string.Format("{0:0.00}", dblSubSalesAmount);
+                        cell.HorizontalAlign = HorizontalAlign.Right;
+                        cell.CssClass = "SubTotalRowStyle";
+                        row.Cells.Add(cell);
+
+                        //Adding the Row at the RowIndex position in the Grid      
+                        gridPurchase.Controls[0].Controls.AddAt(e.Row.RowIndex + intSubTotalIndex, row);
+                        intSubTotalIndex++;
+                        #endregion
+                        #region Adding Next Group Header Details
+                        if (DataBinder.Eval(e.Row.DataItem, "subComapanyID") != null)
+                        {
+                            row = new GridViewRow(0, 0, DataControlRowType.DataRow, DataControlRowState.Insert);
+                            cell = new TableCell();
+                            cell.Text = "Company Name : " + DataBinder.Eval(e.Row.DataItem, "compname").ToString();
+                            cell.ColumnSpan = 10;
+                            cell.CssClass = "GroupHeaderStyle";
+                            row.Cells.Add(cell);
+                            gridPurchase.Controls[0].Controls.AddAt(e.Row.RowIndex + intSubTotalIndex, row);
+                            intSubTotalIndex++;
+                        }
+                        #endregion
+                        #region Reseting the Sub Total Variables
+                        dblSubTotalUnitPrice = 0;
+                        dblSubTotalQuantity = 0;
+                        dblSubTotalDiscount = 0;
+                        dblSubSalesAmount = 0;
+
+                        #endregion
+                    }
+                    if (IsGrandTotalRowNeedtoAdd)
+                    {
+                        #region Grand Total Row
+                        GridView gridPurchase = (GridView)sender;
+                        // Creating a Row      
+                        GridViewRow row = new GridViewRow(0, 0, DataControlRowType.DataRow, DataControlRowState.Insert);
+                        //Adding Total Cell           
+                        TableCell cell = new TableCell();
+                        cell.Text = "Grand Total";
+                        cell.HorizontalAlign = HorizontalAlign.Left;
+                        cell.ColumnSpan = 7;
+                        cell.CssClass = "GrandTotalRowStyle";
+                        row.Cells.Add(cell);
+
+                        //Adding Quantity Column           
+                        cell = new TableCell();
+                        cell.Text = string.Format("{0:0.00}", dblGrandTotalQuantity);
+                        cell.HorizontalAlign = HorizontalAlign.Right;
+                        cell.CssClass = "GrandTotalRowStyle";
+                        row.Cells.Add(cell);
+                        //Adding Unit Price Column          
+                        //cell = new TableCell();
+                        //cell.Text = string.Format("{0:0.00}", dblGrandTotalUnitPrice);
+                        //cell.HorizontalAlign = HorizontalAlign.Right;
+                        //cell.CssClass = "GrandTotalRowStyle";
+                        //row.Cells.Add(cell);
+                        cell = new TableCell();
+                        cell.Text = string.Format("{0:0.00}", dblGrandTotalDiscount);
+                        cell.HorizontalAlign = HorizontalAlign.Right;
+                        cell.CssClass = "GrandTotalRowStyle";
+                        row.Cells.Add(cell);
+
+
+                        cell = new TableCell();
+                        cell.Text = string.Format("{0:0.00}", dblGrandSalesAmount);
+                        cell.HorizontalAlign = HorizontalAlign.Right;
+                        cell.CssClass = "GrandTotalRowStyle";
+                        row.Cells.Add(cell);
+
+                        //Adding the Row at the RowIndex position in the Grid     
+                        gridPurchase.Controls[0].Controls.AddAt(e.Row.RowIndex, row);
+                        #endregion
+                    }
+                }
+            }
+            #endregion
         }
 
         protected void gridPurchase_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -815,7 +961,28 @@ namespace Billing.Accountsbootstrap
 
                 }
             }
-            
+            else if (rdbCompany.Checked == true)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    strPreviousRowID = DataBinder.Eval(e.Row.DataItem, "subComapanyID").ToString();
+                    double dblQuantity = Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "Qty").ToString());
+                    double dblUnitPrice = Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "Rate").ToString());
+                    double dblDiscount = Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "NetAmount").ToString());
+
+                    double SalesAmount = Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "SalesAmount").ToString());
+                    dblSubSalesAmount += SalesAmount;
+                    dblGrandSalesAmount += SalesAmount;
+
+                    dblSubTotalUnitPrice += dblUnitPrice;
+                    dblSubTotalQuantity += dblQuantity;
+                    dblSubTotalDiscount += dblDiscount;
+                    dblGrandTotalUnitPrice += dblUnitPrice;
+                    dblGrandTotalQuantity += dblQuantity;
+                    dblGrandTotalDiscount += dblDiscount;
+
+                }
+            }
         }
 
         protected void btnExport_Click(object sender, EventArgs e)
@@ -1197,6 +1364,35 @@ namespace Billing.Accountsbootstrap
             gridPurchase.Caption = caption;
         }
 
+        protected void rdbCompany_OnCheckedChanged(object sender, EventArgs e)
+        {
+            DataSet ds1;
+            DateTime sFrom = Convert.ToDateTime(txtFromDate.Text);
+            string FromDate = sFrom.ToString("yyyy-MM-dd");
+            DateTime sTO = Convert.ToDateTime(txtToDate.Text);
+            string ToDate = sTO.ToString("yyyy-MM-dd");
+            gridcatqty.Visible = false;
+            if (sTableName == "admin")
+            {
+                ds1 = objBs.ordebyproduct2(ddlBranch.SelectedValue, FromDate, ToDate);
+            }
+            else
+            {
+                ds1 = objBs.ordebycompany2PurReport(sTableName, FromDate, ToDate, drpsubcompany.SelectedValue);
+            }
+            gridPurchase.DataSource = ds1;
+            gridPurchase.DataBind();
+
+            gridPurchase.Visible = true;
+            Td1.Visible = false;
+
+
+            //btn.Visible = true;
+            btn.Visible = false;
+            string caption = " <h4><b>" + " Store :  " + BranchNAme + " " + StoreName + " Generate On " + DateTime.Now.ToString("MM/dd/yyyy hh:mm tt") + " </b></h4> ";
+            gridPurchase.Caption = caption;
+        }
+
         protected void rbdExpDate_CheckedChanged(object sender, EventArgs e)
         {
             DataSet ds1;
@@ -1211,7 +1407,7 @@ namespace Billing.Accountsbootstrap
             }
             else
             {
-                ds1 = objBs.ordebyexpdate2PurReport(sTableName, FromDate, ToDate);
+                ds1 = objBs.ordebyexpdate2PurReport(sTableName, FromDate, ToDate, drpsubcompany.SelectedValue);
             }
             gridPurchase.DataSource = ds1;
             gridPurchase.DataBind();
@@ -1240,7 +1436,7 @@ namespace Billing.Accountsbootstrap
             }
             else
             {
-                ds1 = objBs.ordebysupplier2PurReport(sTableName, FromDate, ToDate);
+                ds1 = objBs.ordebysupplier2PurReport(sTableName, FromDate, ToDate, drpsubcompany.SelectedValue);
             }
             gridPurchase.DataSource = ds1;
             gridPurchase.DataBind();
@@ -1270,7 +1466,7 @@ namespace Billing.Accountsbootstrap
             }
             else
             {
-                ds1 = objBs.ordebyproduct2PurReport(sTableName, FromDate, ToDate);
+                ds1 = objBs.ordebyproduct2PurReport(sTableName, FromDate, ToDate, drpsubcompany.SelectedValue);
             }
             gridPurchase.DataSource = ds1;
             gridPurchase.DataBind();

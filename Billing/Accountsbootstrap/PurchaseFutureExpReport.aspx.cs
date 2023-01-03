@@ -35,7 +35,15 @@ namespace Billing.Accountsbootstrap
 
             if (!IsPostBack)
             {
-
+                DataSet dssubcompany = objBs.GetsubCompanyDetails();
+                if (dssubcompany.Tables[0].Rows.Count > 0)
+                {
+                    drpsubcompany.DataSource = dssubcompany.Tables[0];
+                    drpsubcompany.DataTextField = "CustomerName";
+                    drpsubcompany.DataValueField = "subComapanyID";
+                    drpsubcompany.DataBind();
+                    drpsubcompany.Items.Insert(0, "All");
+                }
 
             }
         }
@@ -53,7 +61,7 @@ namespace Billing.Accountsbootstrap
 
             From1 = DateTime.Parse(FromDate.ToString(), Cul, System.Globalization.DateTimeStyles.NoCurrentDateDefault);
 
-            ds1 = objBs.PurExpirydateReport(sTableName, From1);
+            ds1 = objBs.PurExpirydateReport(sTableName, From1, drpsubcompany.SelectedValue);
 
             gvSalesValue.DataSource = ds1;
             gvSalesValue.DataBind();          

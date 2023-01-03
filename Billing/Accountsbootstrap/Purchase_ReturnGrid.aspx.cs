@@ -131,7 +131,7 @@ namespace Billing.Accountsbootstrap
 
             else if (e.CommandName == "delete")
             {
-                int iSucess = objBs.deletePURmaster(e.CommandArgument.ToString(),sTableName);
+                int iSucess = objBs.deletePURRtnmaster(e.CommandArgument.ToString(),sTableName);
                 Response.Redirect("Purchase_ReturnGrid.aspx");
             }
             else if (e.CommandName == "Print")
