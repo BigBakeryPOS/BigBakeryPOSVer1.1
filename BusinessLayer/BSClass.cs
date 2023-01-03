@@ -6140,7 +6140,11 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
             // string paygird = "select A.CustomerID,B.CategoryID,B.SubCategoryID,A.BillNo,convert(date,a.BillDate) as BillDate,E.CustomerName as LedgerName,'brand' as BrandName,D.category,C.Definition,B.Quantity,B.UnitPrice ,(B.Quantity *B.UnitPrice) as NetAmount ,F.Payment_Mode,( ((B.Amount * c. GST) / 100 ) + B.Amount ) as SalesAmount,C.GST from tblsales_" + sTableName + " A,tblTransSales_" + sTableName + " B,tblCategoryUser C,tblcategory D,tblCustomer E,tblPaymentMode F where A.BillNo=b.SalesID  and B.CategoryID=D.categoryid and B.SubCategoryID=C.CategoryUserID and f.Payment_ID=a.ContactTypeID and A.CustomerID=E.CustomerID and convert(date, A.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and cancelstatus='NO' order by B.SubCategoryID";
-            string paygird = "select A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_prod A,tbltranskitchenPurchase_prod B,tblIngridents D,tblledger E,tblsalespaymode F  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and convert(date, A.BillDate)   between '" + sFmdate + "' and '" + sToDate + "' order by b.ExpiryDate ";
+            string paygird = "select A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName, " +
+                " 'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode as Payment_Mode,( B.Amount ) as SalesAmount, " +
+                " B.Tax,b.ExpiryDate from tblkitchenPurchase_"+ sTableName + " A,tbltranskitchenPurchase_"+ sTableName + " B,tblIngridents D,tblledger E,tblsalespaymode F " +
+                " where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID " +
+                " and convert(date, A.BillDate)   between '" + sFmdate + "' and '" + sToDate + "' order by b.ExpiryDate ";
             ds = dbObj.InlineExecuteDataSet(paygird);
             return ds;
         }
@@ -6168,7 +6172,12 @@ namespace BusinessLayer
             //DataSet dcat = new DataSet();
             //DataSet dmerge = new DataSet();
             //string sqr = "select  Item, sum(Qty) as Qty from (select distinct c.Category as Item ,sum(b.Quantity) as Qty from tblsales_" + sTableName + " a, tbltranssales_" + sTableName + " b,tblcategory c where a.BillNo=b.SalesID and cancelstatus='No'and b.CategoryID=c.CategoryID and convert(date,a.BillDate) between '" + sFmdate + "' and '" + sToDate + "' group by c.Category union all select distinct c.Category as Item ,sum(convert(money,b.Qty)) as Qty from tblOrder_" + sTableName + " a, tblTransOrder_" + sTableName + " b, tblcategory c where a.BillNo=b.BillNo and b.CategoryID=c.CategoryID and isCancel=0 and convert(date,a.OrderDate) between '" + sFmdate + "' and '" + sToDate + "' group by c.Category ) as a group by Item";
-            string sqr = "select  '" + sTableName + "' as Branch,Item, sum(Qty) as Qty from (select distinct c.Category as Item ,sum(b.Quantity) as Qty,'" + sTableName + "' as Branch from tblsales_" + sTableName + " a, tbltranssales_" + sTableName + " b,tblcategory c where a.BillNo=b.SalesID and a.salesid=b.salesuniqueid and cancelstatus='No'and b.CategoryID=c.CategoryID and convert(date,a.BillDate) between '" + sFmdate + "' and '" + sToDate + "' group by c.Category union all select distinct c.Category as Item ,sum(convert(money,b.Qty)) as Qty,'" + sTableName + "' as Branch from tblOrder_" + sTableName + " a, tblTransOrder_" + sTableName + " b, tblcategory c where a.BillNo=b.BillNo and b.CategoryID=c.CategoryID and isCancel=0 and convert(date,a.OrderDate) between '" + sFmdate + "' and '" + sToDate + "' group by c.Category ) as a group by Item";
+            string sqr = "select  '" + sTableName + "' as Branch,Item, sum(Qty) as Qty from (select distinct c.Category as Item " +
+                ",sum(b.Quantity) as Qty,'" + sTableName + "' as Branch from tblsales_" + sTableName + " a, " +
+                " tbltranssales_" + sTableName + " b,tblcategory c where a.BillNo=b.SalesID and a.salesid=b.salesuniqueid " +
+                " and cancelstatus='No'and b.CategoryID=c.CategoryID and convert(date,a.BillDate) between '" + sFmdate + "' " +
+                " and '" + sToDate + "' group by c.Category ";
+            //union all select distinct c.Category as Item ,sum(convert(money,b.Qty)) as Qty,'" + sTableName + "' as Branch from tblOrder_" + sTableName + " a, tblTransOrder_" + sTableName + " b, tblcategory c where a.BillNo=b.BillNo and b.CategoryID=c.CategoryID and isCancel=0 and convert(date,a.OrderDate) between '" + sFmdate + "' and '" + sToDate + "' group by c.Category ) as a group by Item";
             ds = dbObj.InlineExecuteDataSet(sqr);
             //if (dcat.Tables[0].Rows.Count > 0)
             //{
@@ -6189,7 +6198,11 @@ namespace BusinessLayer
             DataSet ds = new DataSet();
             //DataSet dcat = new DataSet();
             //DataSet dmerge = new DataSet();
-            string sqr = "select distinct(b.definition) as Item, sum(a.Quantity) as Qty,'" + sTableName + "' as Branch from tbltranssales_" + sTableName + " a,tblcategoryuser b,tblsales_" + sTableName + " c where a.subcategoryid=b.categoryuserid and  cancelstatus='No' and a.SalesID=c.BillNo and c.salesid=a.salesuniqueid and Convert(date,c.Billdate) between '" + sFmdate + "' and '" + sToDate + "' group by b.definition union all select distinct(b.definition) as Item, sum(convert(money,a.Qty)) as Qty,'" + sTableName + "' as Branch from tblTransOrder_" + sTableName + " a,tblcategoryuser b,tblOrder_" + sTableName + " c where a.subcategoryid=b.categoryuserid and a.BillNo=c.BillNo and c.isCancel=0 and Convert(date,c.OrderDate) between '" + sFmdate + "' and '" + sToDate + "' group by b.Definition";
+            string sqr = "select distinct(b.definition) as Item, sum(a.Quantity) as Qty,'" + sTableName + "' as Branch " +
+                " from tbltranssales_" + sTableName + " a,tblcategoryuser b,tblsales_" + sTableName + " c " +
+                " where a.subcategoryid=b.categoryuserid and  cancelstatus='No' and a.SalesID=c.BillNo and c.salesid=a.salesuniqueid " +
+                " and Convert(date,c.Billdate) between '" + sFmdate + "' and '" + sToDate + "' group by b.definition ";
+                // union all select distinct(b.definition) as Item, sum(convert(money,a.Qty)) as Qty,'" + sTableName + "' as Branch from tblTransOrder_" + sTableName + " a,tblcategoryuser b,tblOrder_" + sTableName + " c where a.subcategoryid=b.categoryuserid and a.BillNo=c.BillNo and c.isCancel=0 and Convert(date,c.OrderDate) between '" + sFmdate + "' and '" + sToDate + "' group by b.Definition";
             ds = dbObj.InlineExecuteDataSet(sqr);
             //if (dcat.Tables[0].Rows.Count > 0)
             //{
@@ -14012,9 +14025,6 @@ namespace BusinessLayer
             if (scode == "BY" || scode == "KK")
             {
                 sGRN = "select distinct descriptionid as CategoryUserID  , sum(b.Received_Qty) as Qty from tblgoodtransfer a,tbltransgoodstransfer b where a.Dc_no=b.dc_no  and convert(date,a.DC_date)  ='" + date + "' and a.Branch='" + scode + "' and a.branchcode=a.branchcode and b.isstocked=1 group by descriptionid  union all  select distinct CategoryUserID,sum(GRN_Qty) as Qty from tblgrn  where UserID=" + userid + " and cast(Date as Date) = '" + date + "'   group by CategoryUserID ";
-
-
-
             }
             else if (scode == "NP" || scode == "BB")
             {
@@ -22327,7 +22337,7 @@ namespace BusinessLayer
 
 
 
-        public int InsertitemforAll(int categoryid, string Item, Double Rate, Double Tax, int TaxId, int UOMid, string Empcode, double Minimumstock, string HSNCode, string foodtype, string BarCode, string mrp, string serial_no, string Description, string ratetype)
+        public int InsertitemforAll(int categoryid, string Item, Double Rate, Double Tax, int TaxId, int UOMid, string Empcode, double Minimumstock, string HSNCode, string foodtype, string BarCode, string mrp, string serial_no, string Description, string ratetype,string qtytype)
         {
             int iSuccess = 0;
             DataSet ds = new DataSet();
@@ -22338,8 +22348,8 @@ namespace BusinessLayer
             {
                 subcat = Convert.ToInt32(ds.Tables[0].Rows[0]["categoryUserId"].ToString());
             }
-            string sQry = "insert into tblCategoryUser( CategoryID,Definition,IsDelete,Serial_No,Serial,Size,isChecked,Tax,GST,TaxVal,unit,Rate,categoryUserId,Minimumstock,DisplayOnline,IsActive,Empcode,HSNCode,Printitem,FoodType,BarCode,mrp,Description,ratetype) values "
-                + "('" + categoryid + "',N'" + Item + "',0,'" + serial_no + "','" + serial_no + "','0',1,'" + Tax + "','" + Tax + "','" + TaxId + "','" + UOMid + "','" + Rate + "'," + subcat + "," + Minimumstock + ",'Y','Yes','" + Empcode + "','" + HSNCode + "',N'" + Item + "','" + foodtype + "','" + BarCode + "','" + mrp + "','" + Description + "','" + ratetype + "')";
+            string sQry = "insert into tblCategoryUser( CategoryID,Definition,IsDelete,Serial_No,Serial,Size,isChecked,Tax,GST,TaxVal,unit,Rate,categoryUserId,Minimumstock,DisplayOnline,IsActive,Empcode,HSNCode,Printitem,FoodType,BarCode,mrp,Description,ratetype,QtyType) values "
+                + "('" + categoryid + "',N'" + Item + "',0,'" + serial_no + "','" + serial_no + "','0',1,'" + Tax + "','" + Tax + "','" + TaxId + "','" + UOMid + "','" + Rate + "'," + subcat + "," + Minimumstock + ",'Y','Yes','" + Empcode + "','" + HSNCode + "',N'" + Item + "','" + foodtype + "','" + BarCode + "','" + mrp + "','" + Description + "','" + ratetype + "','"+qtytype+"')";
             iSuccess = dbObj.InlineExecuteNonQuery(sQry);
 
             //  DateTime Date = DateTime.ParseExact(DateTime.Now.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);

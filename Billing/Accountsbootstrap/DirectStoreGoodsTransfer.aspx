@@ -522,12 +522,12 @@ color:White;
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Rate">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblrate" runat="server" Text='<%#Eval("MRP") %>'></asp:Label>
+                                                <asp:Label ID="lblrate" runat="server" Text='<%# String.IsNullOrEmpty(Eval("MRP").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("MRP").ToString())) %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Avl.Qty">
                                             <ItemTemplate>
-                                                <asp:Label ID="lbqty" runat="server" Width="50px" Text='<%#Eval("Qty") %>'></asp:Label>
+                                                <asp:Label ID="lbqty" runat="server" Width="50px" Text='<%# String.IsNullOrEmpty(Eval("QTY").ToString()) ?  "" :  string.Format("{0:0.000}",Convert.ToDouble(Eval("QTY").ToString())) %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Qty">

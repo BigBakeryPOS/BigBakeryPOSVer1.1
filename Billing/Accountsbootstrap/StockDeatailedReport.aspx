@@ -209,7 +209,7 @@
                                                         <asp:TemplateField HeaderText="OP-STOCK">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblopstock" 
-                                                                    runat="server" Text='<%# String.IsNullOrEmpty(Eval("OpeningStock").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("OpeningStock").ToString())) %>'></asp:Label>
+                                                                    runat="server" Text='<%# String.IsNullOrEmpty(Eval("OpeningStock").ToString()) ?  "" :  string.Format("{0:0.000}",Convert.ToDouble(Eval("OpeningStock").ToString())) %>'></asp:Label>
                                                                 <br />
                                                                 <asp:Label ID="lblopstockrate" 
                                                                     Font-Bold="true" runat="server" Text='<%#Eval("OpeningStockRate")%>'></asp:Label>
@@ -217,35 +217,35 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="GRN-STOCK">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblgrnstock"  runat="server" Text='<%# String.IsNullOrEmpty(Eval("GRNQty").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("GRNQty").ToString())) %>'></asp:Label>
+                                                                <asp:Label ID="lblgrnstock"  runat="server" Text='<%# String.IsNullOrEmpty(Eval("GRNQty").ToString()) ?  "" :  string.Format("{0:0.000}",Convert.ToDouble(Eval("GRNQty").ToString())) %>'></asp:Label>
                                                                 <br />
                                                                 <asp:Label ID="lblgrnstockrate"  runat="server" Text='<%#Eval("GRNQtyRate")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="GRN-STOCK/P">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblgrnstockP"  runat="server" Text='<%# String.IsNullOrEmpty(Eval("GRNQtyP").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("GRNQtyP").ToString())) %>'></asp:Label>
+                                                                <asp:Label ID="lblgrnstockP"  runat="server" Text='<%# String.IsNullOrEmpty(Eval("GRNQtyP").ToString()) ?  "" :  string.Format("{0:0.000}",Convert.ToDouble(Eval("GRNQtyP").ToString())) %>'></asp:Label>
                                                                 <br />
                                                                 <asp:Label ID="lblgrnstockrateP"  runat="server" Text='<%#Eval("GRNQtyRateP")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="GRN-STOCK/M">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblgrnstockM"  runat="server" Text='<%# String.IsNullOrEmpty(Eval("GRNQtyM").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("GRNQtyM").ToString())) %>'></asp:Label>
+                                                                <asp:Label ID="lblgrnstockM"  runat="server" Text='<%# String.IsNullOrEmpty(Eval("GRNQtyM").ToString()) ?  "" :  string.Format("{0:0.000}",Convert.ToDouble(Eval("GRNQtyM").ToString())) %>'></asp:Label>
                                                                 <br />
                                                                 <asp:Label ID="lblgrnstockrateM" runat="server" Text='<%#Eval("GRNQtyRateM")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="SALE-STOCK">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblsalestock"  runat="server" Text='<%# String.IsNullOrEmpty(Eval("SalesQty").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("SalesQty").ToString())) %>'></asp:Label>
+                                                                <asp:Label ID="lblsalestock"  runat="server" Text='<%# String.IsNullOrEmpty(Eval("SalesQty").ToString()) ?  "" :  string.Format("{0:0.000}",Convert.ToDouble(Eval("SalesQty").ToString())) %>'></asp:Label>
                                                                 <br />
                                                                 <asp:Label ID="lblsalestockrate"  runat="server" Text='<%#Eval("SalesQtyRate")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="RETURN-STOCK">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblreturnstock"  runat="server" Text='<%# String.IsNullOrEmpty(Eval("Return").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("Return").ToString())) %>'></asp:Label>
+                                                                <asp:Label ID="lblreturnstock"  runat="server" Text='<%# String.IsNullOrEmpty(Eval("Return").ToString()) ?  "" :  string.Format("{0:0.000}",Convert.ToDouble(Eval("Return").ToString())) %>'></asp:Label>
                                                                 <br />
                                                                 <asp:Label ID="lblreturnstockrate"  runat="server" Text='<%#Eval("ReturnRate")%>'></asp:Label>
                                                             </ItemTemplate>
@@ -253,7 +253,7 @@
                                                         <asp:TemplateField HeaderText="CLOSING-STOCK">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblavlstock"
-                                                                    runat="server" Text='<%# String.IsNullOrEmpty(Eval("Available_Qty").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("Available_Qty").ToString())) %>'></asp:Label>
+                                                                    runat="server" Text='<%# String.IsNullOrEmpty(Eval("Available_Qty").ToString()) ?  "" :  string.Format("{0:0.000}",Convert.ToDouble(Eval("Available_Qty").ToString())) %>'></asp:Label>
                                                                 <br />
                                                                 <asp:Label ID="lblavlstockrate" runat="server" Text='<%#Eval("Available_QtyRate")%>'></asp:Label>
                                                             </ItemTemplate>
@@ -261,7 +261,7 @@
                                                         <asp:TemplateField HeaderText="STOCK +/-">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblstockPM" 
-                                                                    runat="server" Text='<%# String.IsNullOrEmpty(Eval("StockPM").ToString()) ?  "" :  string.Format("{0:0.00}",Convert.ToDouble(Eval("StockPM").ToString())) %>'></asp:Label>
+                                                                    runat="server" Text='<%# String.IsNullOrEmpty(Eval("StockPM").ToString()) ?  "" :  string.Format("{0:0.000}",Convert.ToDouble(Eval("StockPM").ToString())) %>'></asp:Label>
                                                                 <br />
                                                                 <asp:Label ID="lblstockratePM" runat="server" Text='<%#Eval("StockRatePM")%>'></asp:Label>
                                                             </ItemTemplate>

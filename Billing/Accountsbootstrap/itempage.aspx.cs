@@ -21,6 +21,7 @@ namespace Billing.Accountsbootstrap
         string sTableName = "";
         string Rate = "";
         string superadmin = "";
+        string ratesetting = "";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -31,13 +32,14 @@ namespace Billing.Accountsbootstrap
             superadmin = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
             Rate = Request.Cookies["userInfo"]["Rate"].ToString();
+            ratesetting = Request.Cookies["userInfo"]["Ratesetting"].ToString();
             if (sTableName == "admin")
             {
 
             }
             if (!IsPostBack)
             {
-                if (sTableName == "admin")
+              //  if (sTableName == "admin")
                 {
                     //purchase.Visible = true;
 
@@ -59,25 +61,25 @@ namespace Billing.Accountsbootstrap
                     }
                 }
 
-                else
-                {
-                    DataSet dsbranch = objBs.getbranchcode(sTableName);
-                    if (dsbranch.Tables[0].Rows.Count > 0)
-                    {
-                        chkbranch.DataSource = dsbranch.Tables[0];
-                        chkbranch.DataTextField = "BranchArea";
-                        chkbranch.DataValueField = "BranchCode";
-                        chkbranch.DataBind();
-                        chkbranch.Enabled = false;
-                        chkbranch.SelectedValue = "1";
-                        txtbranch.Visible = false;
+                //else
+                //{
+                //    DataSet dsbranch = objBs.getbranchcode(sTableName);
+                //    if (dsbranch.Tables[0].Rows.Count > 0)
+                //    {
+                //        chkbranch.DataSource = dsbranch.Tables[0];
+                //        chkbranch.DataTextField = "BranchArea";
+                //        chkbranch.DataValueField = "BranchCode";
+                //        chkbranch.DataBind();
+                //        chkbranch.Enabled = false;
+                //        chkbranch.SelectedValue = "1";
+                //        txtbranch.Visible = false;
 
-                        for (int i = 0; i < chkbranch.Items.Count; i++)
-                        {
-                            chkbranch.Items[i].Selected = true;
-                        }
-                    }
-                }
+                //        for (int i = 0; i < chkbranch.Items.Count; i++)
+                //        {
+                //            chkbranch.Items[i].Selected = true;
+                //        }
+                //    }
+                //}
 
 
                 DataSet dsuom = objBs.getUOM();
@@ -158,8 +160,8 @@ namespace Billing.Accountsbootstrap
                             txtSerialNo.Text = ds.Tables[0].Rows[0]["Serial_No"].ToString();
                             txtSerial.Text = ds.Tables[0].Rows[0]["Serial"].ToString();
                             txtSize.Text = ds.Tables[0].Rows[0]["Size"].ToString();
-                            txtRate.Text = ds.Tables[0].Rows[0]["Rate"].ToString();
-                            txtMRPPrice.Text = ds.Tables[0].Rows[0]["MRP"].ToString();
+                            txtRate.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["Rate"]).ToString(""+ratesetting+"");
+                            txtMRPPrice.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["MRP"]).ToString(""+ ratesetting + "");
                             txtHSNCode.Text = ds.Tables[0].Rows[0]["HSNCode"].ToString();
                             txtprintitemname.Text = ds.Tables[0].Rows[0]["Printitem"].ToString();
                             drpfoodtype.SelectedValue = ds.Tables[0].Rows[0]["FoodType"].ToString();
@@ -584,7 +586,7 @@ namespace Billing.Accountsbootstrap
                         }
                         else
                         {
-                            int iStatus = objBs.InsertitemforAll(categoryid, Item, Convert.ToDouble(Rate), Convert.ToDouble(Tax), TaxId, UOMid, Empcode, Minimumstock, HSNCode, Foodtype, SerialNo, "", "", "", "");
+                            int iStatus = objBs.InsertitemforAll(categoryid, Item, Convert.ToDouble(Rate), Convert.ToDouble(Tax), TaxId, UOMid, Empcode, Minimumstock, HSNCode, Foodtype, SerialNo, "", "", "", "","");
 
                             DataSet dss = objBs.GetItemID();
 
@@ -685,6 +687,12 @@ namespace Billing.Accountsbootstrap
                         ndrd1["subcatid"] = listItem.Value;
                         ndstt1.Tables[0].Rows.Add(ndrd1);
                     }
+                }
+
+
+                if (txtdescription.Text == "")
+                {
+                    txtdescription.Text = txtprintitemname.Text;
                 }
 
 
