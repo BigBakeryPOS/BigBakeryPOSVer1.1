@@ -168,6 +168,15 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.RadioButton rbdProduct;
 
         /// <summary>
+        /// rbdcompany control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbdcompany;
+
+        /// <summary>
         /// rbdExpDate control.
         /// </summary>
         /// <remarks>
@@ -175,24 +184,6 @@ namespace Billing.Accountsbootstrap
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton rbdExpDate;
-
-        /// <summary>
-        /// rdbCompany control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbCompany;
-
-        /// <summary>
-        /// drpsubcompany control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpsubcompany;
 
         /// <summary>
         /// btnPrint control.
