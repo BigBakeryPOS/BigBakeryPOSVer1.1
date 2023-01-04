@@ -110,7 +110,7 @@
                                           <br />
                                         <asp:Button ID="btnsearch" runat="server" class="btn btn-primary pos-btn1" Text="Search"  
                                                 onclick="btnsearch_Click"   /> 
-                                        &nbsp;&nbsp;&nbsp;<asp:Button ID="btnrefresh" runat="server" class="btn btn-secondary" Text="Reset"   /> 
+                                        &nbsp;&nbsp;&nbsp;<asp:Button ID="btnrefresh" runat="server" OnClick="btnrefresh_Click" class="btn btn-secondary" Text="Reset"   /> 
                                        
                                         </div> 
                                       </div>  

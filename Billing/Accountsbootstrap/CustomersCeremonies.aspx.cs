@@ -66,12 +66,13 @@ namespace Billing.Accountsbootstrap
                 //}
                 #region
 
-                DataSet dsCustomer = objBs.getgridforcustsale();
+               // DataSet dsCustomer = objBs.getgridforcustsale();
+                DataSet dsCustomer = objBs.getcustomers(sTableName);
                 if (dsCustomer.Tables[0].Rows.Count > 0)
                 {
                     ddlcustomer.DataSource = dsCustomer.Tables[0];
                     ddlcustomer.DataTextField = "CustomerName";
-                    ddlcustomer.DataValueField = "CustomerID";
+                    ddlcustomer.DataValueField = "CustomerId";
                     ddlcustomer.DataBind();
                     ddlcustomer.Items.Insert(0, "All");
                 }

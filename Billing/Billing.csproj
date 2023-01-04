@@ -103,7 +103,7 @@
     <Reference Include="System.Management" />
     <Reference Include="System.Web.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\System.Web.DataVisualization.dll</HintPath>
+      <HintPath>E:\backup\BigBakeryPOSVer1.1\Billing\bin\System.Web.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DataVisualization.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -356,7 +356,9 @@
     <Content Include="Accountsbootstrap\ItemStockRequestStoreDept.aspx" />
     <Content Include="Accountsbootstrap\ItemUpdateScreen.aspx" />
     <Content Include="Accountsbootstrap\KitchenOrders.aspx" />
+    <Content Include="Accountsbootstrap\KitchenPurchaseOrderReport.aspx" />
     <Content Include="Accountsbootstrap\KitchenPurchaseReport.aspx" />
+    <Content Include="Accountsbootstrap\KitchenPurchaseReturnReport.aspx" />
     <Content Include="Accountsbootstrap\KitchenUsageGrid.aspx" />
     <Content Include="Accountsbootstrap\KitchenUsageReport.aspx" />
     <Content Include="Accountsbootstrap\KitPrint.aspx" />
@@ -2201,12 +2203,26 @@
     <Compile Include="Accountsbootstrap\KitchenOrders.aspx.designer.cs">
       <DependentUpon>KitchenOrders.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accountsbootstrap\KitchenPurchaseOrderReport.aspx.cs">
+      <DependentUpon>KitchenPurchaseOrderReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\KitchenPurchaseOrderReport.aspx.designer.cs">
+      <DependentUpon>KitchenPurchaseOrderReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accountsbootstrap\KitchenPurchaseReport.aspx.cs">
       <DependentUpon>KitchenPurchaseReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Accountsbootstrap\KitchenPurchaseReport.aspx.designer.cs">
       <DependentUpon>KitchenPurchaseReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\KitchenPurchaseReturnReport.aspx.cs">
+      <DependentUpon>KitchenPurchaseReturnReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\KitchenPurchaseReturnReport.aspx.designer.cs">
+      <DependentUpon>KitchenPurchaseReturnReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\KitchenUsageGrid.aspx.cs">
       <DependentUpon>KitchenUsageGrid.aspx</DependentUpon>

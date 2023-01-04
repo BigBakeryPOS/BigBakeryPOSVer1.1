@@ -19260,7 +19260,144 @@ namespace BusinessLayer
 
         #endregion
 
+        #region KitchenPurchaseReturn
+
+        public DataSet getpurchaseReturndetails(string Table, string Supplier, string sFmdate, string sToDate, string Raw, string subcompany)
+        {
+            DataSet ds = new DataSet();
+            if (Supplier == "All")
+            {
+                if (Raw == "All")
+                {
+                    if (subcompany == "All")
+                    {
+                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchaseReturn_" + Table + " kp inner join tblTranskitchenPurchaseReturn_" + Table + " tkp on kp.purchaseRtnID=tkp.PurchaseRtnID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where  convert(date,kp.PurchaseRtnDate) between '" + sFmdate + "' and '" + sToDate + "' order by kp.BillNo desc";
+                        ds = dbObj.InlineExecuteDataSet(sQry);
+                    }
+                    else
+                    {
+                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchaseReturn_" + Table + " kp inner join tblTranskitchenPurchaseReturn_" + Table + " tkp on kp.purchaseRtnID=tkp.PurchaseRtnID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where  convert(date,kp.PurchaseRtnDate) between '" + sFmdate + "' and '" + sToDate + "' and kp.subcompanyid='" + subcompany + "' order by kp.BillNo desc";
+                        ds = dbObj.InlineExecuteDataSet(sQry);
+                    }
+
+                }
+                else
+                {
+                    if (subcompany == "All")
+                    {
+                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchaseReturn_" + Table + " kp inner join tblTranskitchenPurchaseReturn_" + Table + " tkp on kp.purchaseRtnID=tkp.PurchaseRtnID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where  convert(date,kp.PurchaseRtnDate) between '" + sFmdate + "' and '" + sToDate + "' and tkp.IngredientID=" + Raw + " order by kp.BillNo desc";
+                        ds = dbObj.InlineExecuteDataSet(sQry);
+                    }
+                    else
+                    {
+                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchaseReturn_" + Table + " kp inner join tblTranskitchenPurchaseReturn_" + Table + " tkp on kp.purchaseRtnID=tkp.PurchaseRtnID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where  convert(date,kp.PurchaseRtnDate) between '" + sFmdate + "' and '" + sToDate + "' and tkp.IngredientID=" + Raw + " and kp.subcompanyid='" + subcompany + "' order by kp.BillNo desc";
+                        ds = dbObj.InlineExecuteDataSet(sQry);
+                    }
+                }
+            }
+            else
+            {
+                if (Raw == "All")
+                {
+                    if (subcompany == "All")
+                    {
+                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchaseReturn_" + Table + " kp inner join tblTranskitchenPurchaseReturn_" + Table + " tkp on kp.purchaseRtnID=tkp.PurchaseRtnID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where Supplier=" + Supplier + "  and convert(date,kp.PurchaseRtnDate) between '" + sFmdate + "' and '" + sToDate + "' order by kp.BillNo desc";
+                        ds = dbObj.InlineExecuteDataSet(sQry);
+                    }
+                    else
+                    {
+                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchaseReturn_" + Table + " kp inner join tblTranskitchenPurchaseReturn_" + Table + " tkp on kp.purchaseRtnID=tkp.PurchaseRtnID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where Supplier=" + Supplier + "  and convert(date,kp.PurchaseRtnDate) between '" + sFmdate + "' and '" + sToDate + "' and kp.subcompanyid='" + subcompany + "' order by kp.BillNo desc";
+                        ds = dbObj.InlineExecuteDataSet(sQry);
+                    }
+                }
+
+                else
+                {
+                    if (subcompany == "All")
+                    {
+                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchaseReturn_" + Table + " kp inner join tblTranskitchenPurchaseReturn_" + Table + " tkp on kp.purchaseRtnID=tkp.PurchaseRtnID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where Supplier=" + Supplier + "  and tkp.IngredientID=" + Raw + " and  convert(date,kp.PurchaseRtnDate) between '" + sFmdate + "' and '" + sToDate + "' order by kp.BillNo desc";
+                        ds = dbObj.InlineExecuteDataSet(sQry);
+                    }
+                    else
+                    {
+                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchaseReturn_" + Table + " kp inner join tblTranskitchenPurchaseReturn_" + Table + " tkp on kp.purchaseRtnID=tkp.PurchaseRtnID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where Supplier=" + Supplier + "  and tkp.IngredientID=" + Raw + " and  convert(date,kp.PurchaseRtnDate) between '" + sFmdate + "' and '" + sToDate + "' and kp.subcompanyid='" + subcompany + "' order by kp.BillNo desc";
+                        ds = dbObj.InlineExecuteDataSet(sQry);
+                    }
+                }
+            }
+            return ds;
+        }
         #endregion
+
+        #region KitchenPurchaseorder
+
+        public DataSet getpurchaseorderdetails(string Table, string Supplier, string sFmdate, string sToDate, string Raw, string subcompany)
+        {
+            DataSet ds = new DataSet();
+            if (Supplier == "All")
+            {
+                if (Raw == "All")
+                {
+                    if (subcompany == "All")
+                    {
+                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblTranskitchenPurchasen_" + Table + " tkp on kp.purchaseorderID=tkp.purchaseorderID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where  convert(date,kp.orderDate) between '" + sFmdate + "' and '" + sToDate + "' order by kp.BillNo desc";
+                        ds = dbObj.InlineExecuteDataSet(sQry);
+                    }
+                    else
+                    {
+                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblTranskitchenPurchaseReturn_" + Table + " tkp on kp.purchaseorderID=tkp.PurchaseorderID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where  convert(date,kp.orderDate) between '" + sFmdate + "' and '" + sToDate + "' and kp.subcompanyid='" + subcompany + "' order by kp.BillNo desc";
+                        ds = dbObj.InlineExecuteDataSet(sQry);
+                    }
+
+                }
+                else
+                {
+                    if (subcompany == "All")
+                    {
+                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblTranskitchenPurchaseOrder_" + Table + " tkp on kp.purchaseorderID=tkp.PurchaseorderID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where  convert(date,kp.OrderDate) between '" + sFmdate + "' and '" + sToDate + "' and tkp.IngredientID=" + Raw + " order by kp.BillNo desc";
+                        ds = dbObj.InlineExecuteDataSet(sQry);
+                    }
+                    else
+                    {
+                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblTranskitchenPurchaseOrder_" + Table + " tkp on kp.purchaseorderID=tkp.PurchaseorderID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where  convert(date,kp.OrderDate) between '" + sFmdate + "' and '" + sToDate + "' and tkp.IngredientID=" + Raw + " and kp.subcompanyid='" + subcompany + "' order by kp.BillNo desc";
+                        ds = dbObj.InlineExecuteDataSet(sQry);
+                    }
+                }
+            }
+            else
+            {
+                if (Raw == "All")
+                {
+                    if (subcompany == "All")
+                    {
+                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblTranskitchenPurchaseReturn_" + Table + " tkp on kp.purchaseOrderID=tkp.PurchaseRtnID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where Supplier=" + Supplier + "  and convert(date,kp.PurchaseRtnDate) between '" + sFmdate + "' and '" + sToDate + "' order by kp.BillNo desc";
+                        ds = dbObj.InlineExecuteDataSet(sQry);
+                    }
+                    else
+                    {
+                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblTranskitchenPurchaseReturn_" + Table + " tkp on kp.purchaseRtnID=tkp.PurchaseRtnID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where Supplier=" + Supplier + "  and convert(date,kp.PurchaseRtnDate) between '" + sFmdate + "' and '" + sToDate + "' and kp.subcompanyid='" + subcompany + "' order by kp.BillNo desc";
+                        ds = dbObj.InlineExecuteDataSet(sQry);
+                    }
+                }
+
+                else
+                {
+                    if (subcompany == "All")
+                    {
+                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchaseReturn_" + Table + " kp inner join tblTranskitchenPurchaseReturn_" + Table + " tkp on kp.purchaseRtnID=tkp.PurchaseRtnID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where Supplier=" + Supplier + "  and tkp.IngredientID=" + Raw + " and  convert(date,kp.PurchaseRtnDate) between '" + sFmdate + "' and '" + sToDate + "' order by kp.BillNo desc";
+                        ds = dbObj.InlineExecuteDataSet(sQry);
+                    }
+                    else
+                    {
+                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchaseReturn_" + Table + " kp inner join tblTranskitchenPurchaseReturn_" + Table + " tkp on kp.purchaseRtnID=tkp.PurchaseRtnID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where Supplier=" + Supplier + "  and tkp.IngredientID=" + Raw + " and  convert(date,kp.PurchaseRtnDate) between '" + sFmdate + "' and '" + sToDate + "' and kp.subcompanyid='" + subcompany + "' order by kp.BillNo desc";
+                        ds = dbObj.InlineExecuteDataSet(sQry);
+                    }
+                }
+            }
+            return ds;
+        }
+        #endregion
+
 
         #region Get Production Process by Branchwise
 
@@ -20424,6 +20561,14 @@ namespace BusinessLayer
 
         #region Ceremonies
 
+        public DataSet getcustomers(string stablename)
+        {
+            DataSet ds = new DataSet();
+            //string sqry = "select * from tblCustomer  where ContactTypeID='1' and IsActive='Yes' ";
+            string sqry = "select distinct(CustomerName),c.CustomerId from tblCustomer c inner  join tblContactType on c.ContactTypeID = tblContactType.ContactID inner join  tblOrder_"+ stablename +" s on s.customerid=c.customerid where  IsActive = 'Yes' order by CustomerName asc";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
         public DataSet getgridforcustsale()
         {
             DataSet ds = new DataSet();
@@ -38561,6 +38706,7 @@ namespace BusinessLayer
         //    return ds;
         //}
         #endregion
+        #endregion 
     }
 
 

@@ -611,6 +611,8 @@
                                 Kitchen Raw Received Report </a></li>
                             <li id="PurchaseReport" runat="server" visible="false"><a href="../Accountsbootstrap/KitchenPurchaseReport.aspx">
                                 Purchase Report</a></li>
+                             <li id="PurchaseReturnReport" runat="server" visible="false"><a href="../Accountsbootstrap/KitchenPurchaseReturnReport.aspx">
+                                Purchase Return Report</a></li>
                             <li id="storepurchasedetailed" runat="server" visible="false"><a href="../Accountsbootstrap/PurchaseReportDetailed.aspx">
                                 Store Purchase Detailed Report</a></li>
                             <li id="pursum" runat="server" visible="false"><a href="../Accountsbootstrap/purchasesummary.aspx">
