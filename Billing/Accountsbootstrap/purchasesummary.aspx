@@ -207,6 +207,12 @@
                                                     AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdExpDate_CheckedChanged" />
                                            
                                         </div>
+                                           <div class="col-lg-2">
+                                            <label>
+                                                Select Company</label>
+                                            <asp:DropDownList ID="drpsubcompany" runat="server"  TabIndex="1" CssClass="form-control">
+                                            </asp:DropDownList>
+                                        </div>
                                         <div class="col-lg-3">
                                             
                                                 <br />

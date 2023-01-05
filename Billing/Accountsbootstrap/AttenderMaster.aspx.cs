@@ -17,12 +17,17 @@ namespace Billing.Accountsbootstrap
         string Sort_Direction = "AttenderName ASC";
         string sTableName = "";
         string superadmin = "";
+        string sbranchname = "";
+        string sbranchid = "";
         protected void Page_Load(object sender, EventArgs e)
         {
 
             superadmin = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
-           
+           //// sbranchname = Session["Store"].ToString();
+            sbranchid = Session["BranchID"].ToString();
+          //  Session["Store"] = dsbranch.Tables[0].Rows[0]["BranchName"].ToString();
+
             if (!IsPostBack)
             {
                 DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "attender");
@@ -67,15 +72,16 @@ namespace Billing.Accountsbootstrap
                 }
 
                 ViewState["SortExpr"] = Sort_Direction;
+                lblbranch.Text = sbranchname.ToString();
 
-                DataSet getbranch = objBs.getbranch();
-                if (getbranch.Tables[0].Rows.Count > 0)
-                {
-                    drpbranch.DataSource = getbranch.Tables[0];
-                    drpbranch.DataTextField = "brancharea";
-                    drpbranch.DataValueField = "branchID";
-                    drpbranch.DataBind();
-                }
+                //DataSet getbranch = objBs.getbranch();
+                //if (getbranch.Tables[0].Rows.Count > 0)
+                //{
+                //    drpbranch.DataSource = getbranch.Tables[0];
+                //    drpbranch.DataTextField = "brancharea";
+                //    drpbranch.DataValueField = "branchID";
+                //    drpbranch.DataBind();
+                //}
 
                 DataSet getAttender = objBs.getattendertype();
                 if (getAttender.Tables[0].Rows.Count > 0)
@@ -138,15 +144,15 @@ namespace Billing.Accountsbootstrap
 
                 if (iCat != "" || iCat != null)
                 {
-
-                    DataSet getbranch = objBs.getbranch();
-                    if (getbranch.Tables[0].Rows.Count > 0)
-                    {
-                        drpbranch.DataSource = getbranch.Tables[0];
-                        drpbranch.DataTextField = "brancharea";
-                        drpbranch.DataValueField = "branchID";
-                        drpbranch.DataBind();
-                    }
+                    lblbranch.Text = sbranchname.ToString();
+                    //DataSet getbranch = objBs.getbranch();
+                    //if (getbranch.Tables[0].Rows.Count > 0)
+                    //{
+                    //    drpbranch.DataSource = getbranch.Tables[0];
+                    //    drpbranch.DataTextField = "brancharea";
+                    //    drpbranch.DataValueField = "branchID";
+                    //    drpbranch.DataBind();
+                    //}
 
                     DataSet disc = objBs.chkdiscvalue();
                     if (disc.Tables[0].Rows.Count > 0)
@@ -179,7 +185,8 @@ namespace Billing.Accountsbootstrap
 
                         txtattenderid.Text = ds.Tables[0].Rows[0]["attenderid"].ToString();
                         txtattendername.Text = ds.Tables[0].Rows[0]["attendername"].ToString();
-                        drpbranch.SelectedValue = ds.Tables[0].Rows[0]["branch"].ToString();
+                        lblbranch.Text = ds.Tables[0].Rows[0]["branch"].ToString();
+                        //drpbranch.SelectedValue = ds.Tables[0].Rows[0]["branch"].ToString();
                         drpattendertype.SelectedValue = ds.Tables[0].Rows[0]["type"].ToString();
                         txtpwd.Text = ds.Tables[0].Rows[0]["PWD"].ToString();
                         txtdisc.Text = ds.Tables[0].Rows[0]["disc"].ToString();
@@ -356,7 +363,8 @@ namespace Billing.Accountsbootstrap
                 }
                 else
                 {
-                    int iStatus = objBs.InsertAttenderName(txtattendername.Text, drpbranch.SelectedValue, drpattendertype.SelectedValue, txtpwd.Text,txtdisc.Text);
+                    int iStatus = objBs.InsertAttenderName(txtattendername.Text,sbranchid.ToString(), drpattendertype.SelectedValue, txtpwd.Text, txtdisc.Text);
+                   // int iStatus = objBs.InsertAttenderName(txtattendername.Text, drpbranch.SelectedValue, drpattendertype.SelectedValue, txtpwd.Text,txtdisc.Text);
 
                     foreach (ListItem listItem in chkdisc.Items)
                     {
@@ -377,8 +385,8 @@ namespace Billing.Accountsbootstrap
             {
 
                 int idelete = objBs.Ideletetransdisctype(txtattenderid.Text);
-
-                objBs.updateattendername(Convert.ToInt32(txtattenderid.Text), txtattendername.Text, drpbranch.SelectedValue, drpattendertype.SelectedValue, txtpwd.Text,txtdisc.Text);
+                objBs.updateattendername(Convert.ToInt32(txtattenderid.Text), txtattendername.Text, sbranchid.ToString(), drpattendertype.SelectedValue, txtpwd.Text, txtdisc.Text);
+               // objBs.updateattendername(Convert.ToInt32(txtattenderid.Text), txtattendername.Text, drpbranch.SelectedValue, drpattendertype.SelectedValue, txtpwd.Text,txtdisc.Text);
 
                 foreach (ListItem listItem in chkdisc.Items)
                 {

@@ -1383,6 +1383,7 @@ C:\Users\Solution\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\Commo
 C:\Users\Solution\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\DataLayer.dll
 C:\Users\Solution\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\Microsoft.Office.Interop.Excel.dll
 C:\Users\Solution\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\Office.dll
+C:\Users\Solution\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\System.Web.DataVisualization.dll
 C:\Users\Solution\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\Microsoft.Vbe.Interop.dll
 C:\Users\Solution\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\stdole.dll
 C:\Users\Solution\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\BusinessLayer.pdb
@@ -1397,4 +1398,3 @@ C:\Users\Solution\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug
 C:\Users\Solution\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.CopyComplete
 C:\Users\Solution\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.dll
 C:\Users\Solution\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.pdb
-C:\Users\Solution\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\System.Web.DataVisualization.dll
