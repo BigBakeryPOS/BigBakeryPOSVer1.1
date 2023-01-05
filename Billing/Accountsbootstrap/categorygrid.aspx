@@ -188,7 +188,7 @@
                 <div class="panel-header">
 				<h1 class="page-header">Add Category/ Group</h1>
 		        </div>
-                <center><blink> <label  style="color:#007aff">Need To Add Category Name and Code</label></blink></center>
+               <%-- <center><blink> <label  style="color:#007aff">Need To Add Category Name and Code</label></blink></center>--%>
                     <div class="panel-body panel-form-right">
                           <div class="list-group">
                                 <asp:TextBox CssClass="form-control" ID="txtcategoryId" runat="server" Visible="false"></asp:TextBox>

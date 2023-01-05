@@ -194,8 +194,9 @@
                                 <asp:TextBox ID="txtdisc" runat="server" CssClass="form-control"  >0</asp:TextBox>
                                 </div>
                             <br />
-                             <label>Select Branch</label>
-                           <asp:DropDownList ID="drpbranch" runat="server"  CssClass="form-control" ></asp:DropDownList>
+                             <label>Branch</label>
+                        <asp:Label ID="lblbranch" runat="server"></asp:Label>
+                          <%-- <asp:DropDownList ID="drpbranch" runat="server"  CssClass="form-control" ></asp:DropDownList>--%>
                            <br />
                         <label>Discount Selection</label>
                         <asp:CheckBoxList ID="chkdisc" runat="server"  RepeatColumns="4" Width="300px"></asp:CheckBoxList>

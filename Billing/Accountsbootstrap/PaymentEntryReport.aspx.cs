@@ -31,12 +31,12 @@ namespace Billing.Accountsbootstrap
                 txttodate.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
 
-                DataSet dspaymode = objbs.tblsalespaymode();
+                DataSet dspaymode = objbs.GetOthersPaymode_Payment("17");
                 if (dspaymode.Tables[0].Rows.Count > 0)
                 {
                     ddlpay.DataSource = dspaymode.Tables[0];
                     ddlpay.DataTextField = "PayMode";
-                    ddlpay.DataValueField = "PayModeId";
+                    ddlpay.DataValueField = "Value";
                     ddlpay.DataBind();
                     ddlpay.Items.Insert(0, "All");
 

@@ -400,7 +400,7 @@ namespace Billing.Accountsbootstrap
                 DataSet dReqNo = objbs.ReqNoStore(Convert.ToInt32(lblUserID.Text), sCodeBnch);
                 txtpono.Text = dReqNo.Tables[0].Rows[0]["RequestNo"].ToString();
 
-                int MainRequestID = objbs.insert_stockrequestStore(Convert.ToInt32(empid), txtpono.Text, sDate, "Requset Sent", 0, sTableName, 0, Convert.ToInt32(lblUserID.Text), txtOrderBy.Text, sCodeBnch, requestentrytime, sCodeProd, entrytime);
+                int MainRequestID = objbs.insert_stockrequestStore(Convert.ToInt32(empid), txtpono.Text, sDate, "Request Sent", 0, sTableName, 0, Convert.ToInt32(lblUserID.Text), txtOrderBy.Text, sCodeBnch, requestentrytime, sCodeProd, entrytime);
                 #region Geautex
                 for (int i = 0; i < gvqueueitems.Rows.Count; i++)
                 {

@@ -84,7 +84,15 @@ namespace Billing.Accountsbootstrap
 
         protected void Exit_Click(object sender, EventArgs e)
         {
-            Response.Redirect("../Accountsbootstrap/viewcustomer.aspx");
+            string iCusID = Request.QueryString.Get("iCusID");
+            if (iCusID != "" || iCusID != null)
+            {
+                Response.Redirect("Customer_ContactReport.aspx");
+            }
+            else
+            {
+                Response.Redirect("../Accountsbootstrap/viewcustomer.aspx");
+            }
         }
         }
 }
