@@ -79,7 +79,7 @@ namespace Billing.Accountsbootstrap
 
 
 
-             //   string FromDate = txtfromdate.ToString("dd/MM/yyyy");
+             // string FromDate = txtfromdate.ToString("dd/MM/yyyy");
 
                 DateTime From1 = new DateTime();
                 DateTime To1 = new DateTime();
