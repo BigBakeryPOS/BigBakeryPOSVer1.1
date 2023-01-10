@@ -464,3 +464,12 @@ D:\BigPOSGITCode\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.csproj.CoreCom
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.csproj.CopyComplete
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.dll
 D:\BigPOSGITCode\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.pdb
+D:\BigBakeryPOSVer1.1\DataLayer\bin\Debug\DataLayer.dll
+D:\BigBakeryPOSVer1.1\DataLayer\bin\Debug\DataLayer.pdb
+D:\BigBakeryPOSVer1.1\DataLayer\bin\Debug\CommonLayer.dll
+D:\BigBakeryPOSVer1.1\DataLayer\bin\Debug\CommonLayer.pdb
+D:\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.csproj.AssemblyReference.cache
+D:\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.csproj.CoreCompileInputs.cache
+D:\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.csproj.CopyComplete
+D:\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.dll
+D:\BigBakeryPOSVer1.1\DataLayer\obj\Debug\DataLayer.pdb
