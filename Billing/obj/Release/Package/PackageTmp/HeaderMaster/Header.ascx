@@ -383,7 +383,7 @@
                         Model Master</a></li>
                     <li id="HappyHours" runat="server" visible="false"><a href="../Accountsbootstrap/Offer.aspx">
                         Happy Hours Master</a></li>
-                    <li id="subcompany" runat="server" visible="true"><a href="../Accountsbootstrap/PurchaseCompanyDetailsGrid.aspx">
+                    <li id="subcompany" runat="server" visible="false"><a href="../Accountsbootstrap/PurchaseCompanyDetailsGrid.aspx">
                         Sub Company Master</a></li>
                     
                 </ul>
@@ -477,6 +477,8 @@
                         runat="server">Direct Transfer To Branch</a></li>
                     <li id="storestockreceive" runat="server" visible="false"><a id="A1" href="../Accountsbootstrap/OrderFromBranchStore.aspx"
                         runat="server">Store Stock request from Branch</a></li>
+                    <li id="directstorestock" runat="server" visible="false"><a id="A40" href="../Accountsbootstrap/DirectstoreGoodsTransferGrid.aspx"
+                        runat="server">Direct Store Stock Transfer To Branch</a></li>
                     <li id="GRNPM" runat="server" visible="false"><a href="../Accountsbootstrap/GRNPMgrid.aspx">
                         GRN (+)(-)</a></li>
                     <li id="RequestRawItem" runat="server" visible="false"><a href="../Accountsbootstrap/GoodsTransferNewGrid.aspx">
@@ -484,7 +486,7 @@
                     <li id="demandstoreitem" runat="server" visible="false"><a href="../Accountsbootstrap/DemandReqStoreGrid.aspx">
                         Demand to Store Request</a></li>
                     <li id="AcceptRawItem" runat="server" visible="false"><a href="../Accountsbootstrap/StoreRawItemRequestGrid.aspx">
-                        Accept Raw Item </a></li>
+                        Accept/Direct Raw Item Transfer </a></li>
                     <li id="ReceiveRawItem" runat="server" visible="false"><a href="../Accountsbootstrap/ReceiveStoreItemGrid.aspx">
                         Receive Raw Item from Store</a></li>
                     <li id="ReceiveProductionStock" runat="server" visible="false"><a href="../Accountsbootstrap/ReceiveProductionStockGrid.aspx">
@@ -568,7 +570,7 @@
                                 runat="server">Invoice Generate</a></li>
                             <li id="DenominationReport" runat="server" visible="false"><a href="../Accountsbootstrap/Denomination.aspx"
                                 runat="server">Denomination Report</a></li>
-                            <li id="Li3" runat="server" visible="true"><a href="../Accountsbootstrap/Sessionclose.aspx"
+                            <li id="SessioncloseReport" runat="server" visible="false"><a href="../Accountsbootstrap/Sessionclose.aspx"
                                 runat="server">Session Close</a></li>
                             
                                 <li id="NewTaxReport" runat="server" visible="false"><a id="A38" href="../Accountsbootstrap/NewTaxReport.aspx"
@@ -615,6 +617,9 @@
                                 Purchase Summary </a></li>
                             <li id="purexp" runat="server" visible="false"><a href="../Accountsbootstrap/PurchaseFutureExpReport.aspx">
                                 Purchase Future Expiry Details </a></li>
+                            <li id="minstorealert" runat="server" visible="false"><a href="../Accountsbootstrap/ReportRawMaterialDecAlert.aspx">
+                                Min.Store Stck Altert Report </a></li>
+                            
                         </ul>
                     </li>
                     <li id="SalesReport" class='has-sub' runat="server" visible="false"><a id="ASalesReport" href="javascript:;"
@@ -646,7 +651,7 @@
                                 runat="server">Sales Margin Report</a></li>
                             <li id="TaxWiseOrder" runat="server" visible="false"><a href="../Accountsbootstrap/FullSalesReport2.aspx">
                                 Tax Wise Order Report</a></li>
-                            <li id="Li4" runat="server" visible="true"><a href="../Accountsbootstrap/TwoReports.aspx">
+                            <li id="DayEndReport" runat="server" visible="false"><a href="../Accountsbootstrap/TwoReports.aspx">
                                 DayEnd Report</a></li>
                         </ul>
                     </li>
@@ -757,13 +762,13 @@
                     <li id="OtherReport" runat="server" visible="false" class='has-sub'><a runat="server" href="javascript:;">
                         Other Report</a>
                         <ul>
-                            <li id="CustomerReport" runat="server" visible="true"><a href="../Accountsbootstrap/Customer_ContactReport.aspx"
+                            <li id="CustomerReport" runat="server" visible="false"><a href="../Accountsbootstrap/Customer_ContactReport.aspx"
                                 runat="server">Customer Report</a></li>
-                            <li id="GroupReport" runat="server" visible="true"><a href="../Accountsbootstrap/ItemReport.aspx">
+                            <li id="GroupReport" runat="server" visible="false"><a href="../Accountsbootstrap/ItemReport.aspx">
                                 Group Report</a></li>
-                            <li id="ItemReport" runat="server" visible="true"><a href="../Accountsbootstrap/ItemDetReport.aspx">
+                            <li id="ItemReport" runat="server" visible="false"><a href="../Accountsbootstrap/ItemDetReport.aspx">
                                 Item Report</a></li>
-                            <li id="SendMessage" runat="server" visible="true"><a href="../Accountsbootstrap/Send_Message.aspx">
+                            <li id="SendMessage" runat="server" visible="false"><a href="../Accountsbootstrap/Send_Message.aspx">
                                 Send Message</a></li>
                         </ul>
                     </li>
@@ -796,6 +801,15 @@
                                 runat="server">Trial Balance Report</a></li>
                         </ul>
                     </li>
+                </ul>
+            </li>
+             <li id="UserMenu" runat="server" visible="false" class='has-sub'><a id="A39"
+                runat="server" style="color: White" href="javascript:;">User</a>
+                <ul>
+                    <li id="UserRole" runat="server" visible="false"><a href="../Accountsbootstrap/UserroleGrid.aspx">
+                        User Role</a></li>
+                    <li id="User" runat="server" visible="false"><a href="../Accountsbootstrap/Usergrid.aspx">
+                        User Create </a></li>
                 </ul>
             </li>
             <li id="onlineorderentry" runat="server" visible="false"><a href="../Accountsbootstrap/OnlineBillEntry.aspx"

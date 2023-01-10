@@ -85,6 +85,7 @@
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\Desktop\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data">
       <HintPath>G:\\MySql.Data.DLL</HintPath>
@@ -94,14 +95,14 @@
     </Reference>
     <Reference Include="Office, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\Desktop\Office.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Management" />
-    <Reference Include="System.Web.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\System.Web.DataVisualization.dll</HintPath>
+    <Reference Include="System.Web.DataVisualization">
+      <HintPath>D:\bakery backup\BigBakeryPOSVer1.1\Billing\bin\System.Web.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DataVisualization.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -207,6 +208,7 @@
     <Content Include="Accountsbootstrap\css\TimePicker.css" />
     <Content Include="Accountsbootstrap\CustomerBillReport.aspx" />
     <Content Include="Accountsbootstrap\customercancelreport.aspx" />
+    <Content Include="Accountsbootstrap\CustomerCeremoniesReminder.aspx" />
     <Content Include="Accountsbootstrap\CustomerHistory.aspx" />
     <Content Include="Accountsbootstrap\customerKotReport.aspx" />
     <Content Include="Accountsbootstrap\CustomerOutStanding.aspx" />
@@ -253,6 +255,9 @@
     <Content Include="Accountsbootstrap\DirectGoodsTransfer.aspx" />
     <Content Include="Accountsbootstrap\DirectGoodsTransferGrid.aspx" />
     <Content Include="Accountsbootstrap\DirectGoodsTransferPrint.aspx" />
+    <Content Include="Accountsbootstrap\DirectStoreGoodsTransfer.aspx" />
+    <Content Include="Accountsbootstrap\DirectStoreGoodsTransferGrid.aspx" />
+    <Content Include="Accountsbootstrap\DirectStoreGoodsTransferPrint.aspx" />
     <Content Include="Accountsbootstrap\dispatchEntry.aspx" />
     <Content Include="Accountsbootstrap\DispatchPrint.aspx" />
     <Content Include="Accountsbootstrap\Dispatch_OrderPrint.aspx" />
@@ -351,7 +356,9 @@
     <Content Include="Accountsbootstrap\ItemStockRequestStoreDept.aspx" />
     <Content Include="Accountsbootstrap\ItemUpdateScreen.aspx" />
     <Content Include="Accountsbootstrap\KitchenOrders.aspx" />
+    <Content Include="Accountsbootstrap\KitchenPurchaseOrderReport.aspx" />
     <Content Include="Accountsbootstrap\KitchenPurchaseReport.aspx" />
+    <Content Include="Accountsbootstrap\KitchenPurchaseReturnReport.aspx" />
     <Content Include="Accountsbootstrap\KitchenUsageGrid.aspx" />
     <Content Include="Accountsbootstrap\KitchenUsageReport.aspx" />
     <Content Include="Accountsbootstrap\KitPrint.aspx" />
@@ -364,6 +371,7 @@
     <Content Include="Accountsbootstrap\Login_Store.aspx" />
     <Content Include="Accountsbootstrap\MarginSetting.aspx" />
     <Content Include="Accountsbootstrap\MenuSync.aspx" />
+    <Content Include="Accountsbootstrap\MinimumQtyAlertReport.aspx" />
     <Content Include="Accountsbootstrap\ModelScreen.aspx" />
     <Content Include="Accountsbootstrap\NewButton.aspx" />
     <Content Include="Accountsbootstrap\NewDashboard.aspx" />
@@ -423,6 +431,7 @@
     <Content Include="Accountsbootstrap\ReceiveProductionStockGrid.aspx" />
     <Content Include="Accountsbootstrap\ReceiveStoreItem.aspx" />
     <Content Include="Accountsbootstrap\ReceiveStoreItemGrid.aspx" />
+    <Content Include="Accountsbootstrap\ReportRawMaterialDecAlert.aspx" />
     <Content Include="Accountsbootstrap\RequestFromBranchGrid.aspx" />
     <Content Include="Accountsbootstrap\RequestFromProdGrid.aspx" />
     <Content Include="Accountsbootstrap\RequestFromStoreGrid.aspx" />
@@ -1278,6 +1287,13 @@
     <Compile Include="Accountsbootstrap\customercancelreport.aspx.designer.cs">
       <DependentUpon>customercancelreport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accountsbootstrap\CustomerCeremoniesReminder.aspx.cs">
+      <DependentUpon>CustomerCeremoniesReminder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\CustomerCeremoniesReminder.aspx.designer.cs">
+      <DependentUpon>CustomerCeremoniesReminder.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accountsbootstrap\CustomerHistory.aspx.cs">
       <DependentUpon>CustomerHistory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1578,6 +1594,27 @@
     </Compile>
     <Compile Include="Accountsbootstrap\DirectGoodsTransferPrint.aspx.designer.cs">
       <DependentUpon>DirectGoodsTransferPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\DirectStoreGoodsTransfer.aspx.cs">
+      <DependentUpon>DirectStoreGoodsTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\DirectStoreGoodsTransfer.aspx.designer.cs">
+      <DependentUpon>DirectStoreGoodsTransfer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\DirectStoreGoodsTransferGrid.aspx.cs">
+      <DependentUpon>DirectStoreGoodsTransferGrid.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\DirectStoreGoodsTransferGrid.aspx.designer.cs">
+      <DependentUpon>DirectStoreGoodsTransferGrid.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\DirectStoreGoodsTransferPrint.aspx.cs">
+      <DependentUpon>DirectStoreGoodsTransferPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\DirectStoreGoodsTransferPrint.aspx.designer.cs">
+      <DependentUpon>DirectStoreGoodsTransferPrint.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\dispatchEntry.aspx.cs">
       <DependentUpon>dispatchEntry.aspx</DependentUpon>
@@ -2174,12 +2211,26 @@
     <Compile Include="Accountsbootstrap\KitchenOrders.aspx.designer.cs">
       <DependentUpon>KitchenOrders.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accountsbootstrap\KitchenPurchaseOrderReport.aspx.cs">
+      <DependentUpon>KitchenPurchaseOrderReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\KitchenPurchaseOrderReport.aspx.designer.cs">
+      <DependentUpon>KitchenPurchaseOrderReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accountsbootstrap\KitchenPurchaseReport.aspx.cs">
       <DependentUpon>KitchenPurchaseReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Accountsbootstrap\KitchenPurchaseReport.aspx.designer.cs">
       <DependentUpon>KitchenPurchaseReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\KitchenPurchaseReturnReport.aspx.cs">
+      <DependentUpon>KitchenPurchaseReturnReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\KitchenPurchaseReturnReport.aspx.designer.cs">
+      <DependentUpon>KitchenPurchaseReturnReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\KitchenUsageGrid.aspx.cs">
       <DependentUpon>KitchenUsageGrid.aspx</DependentUpon>
@@ -2306,6 +2357,13 @@
     </Compile>
     <Compile Include="Accountsbootstrap\MenuSync.aspx.designer.cs">
       <DependentUpon>MenuSync.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\MinimumQtyAlertReport.aspx.cs">
+      <DependentUpon>MinimumQtyAlertReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\MinimumQtyAlertReport.aspx.designer.cs">
+      <DependentUpon>MinimumQtyAlertReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\MinQty.aspx.cs">
       <DependentUpon>MinQty.aspx</DependentUpon>
@@ -3027,6 +3085,13 @@
     </Compile>
     <Compile Include="Accountsbootstrap\RegistrationForm.aspx.designer.cs">
       <DependentUpon>RegistrationForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\ReportRawMaterialDecAlert.aspx.cs">
+      <DependentUpon>ReportRawMaterialDecAlert.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\ReportRawMaterialDecAlert.aspx.designer.cs">
+      <DependentUpon>ReportRawMaterialDecAlert.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\RequestFromBranchGrid.aspx.cs">
       <DependentUpon>RequestFromBranchGrid.aspx</DependentUpon>

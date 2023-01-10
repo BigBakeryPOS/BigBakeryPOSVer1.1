@@ -28,6 +28,47 @@ namespace Billing.Accountsbootstrap
 
             if (!IsPostBack)
             {
+                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "wholesaleReturn");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "wholesaleReturn");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        Button1.Visible = true;
+                    }
+                    else
+                    {
+                        Button1.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                       // gvsales.Columns[16].Visible = true;
+                    }
+                    else
+                    {
+                        //gvsales.Columns[16].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        //  gvsales.Columns[16].Visible = true;
+                    }
+                    else
+                    {
+                        // gvsales.Columns[16].Visible = false;
+                    }
+                }
+
                 DataSet ds = objBs.GetSalesallret(sTableName);
                 gvsales.DataSource = ds;
                 gvsales.DataBind();

@@ -27,6 +27,8 @@ namespace Billing.Accountsbootstrap
         string Password = "";
         string logintype = "";
         double Available_QTY = 0; double TotalAmount = 0;
+        string ratesetting = "";
+        string qtysetting = "";
 
         private string connnectionString;
         private string connnectionStringMain;
@@ -39,6 +41,9 @@ namespace Billing.Accountsbootstrap
             logintype = Request.Cookies["userInfo"]["LoginTypeId"].ToString();
 
             Password = Request.Cookies["userInfo"]["Password"].ToString();
+
+            ratesetting = Request.Cookies["userInfo"]["Ratesetting"].ToString();
+            qtysetting = Request.Cookies["userInfo"]["Qtysetting"].ToString();
 
             DataSet dsPlaceName = objBs.GetPlacename(lblUser.Text, Password);
             StoreName = dsPlaceName.Tables[0].Rows[0]["StoreName"].ToString();
@@ -57,22 +62,23 @@ namespace Billing.Accountsbootstrap
                 }
 
                 DataSet ds = new DataSet();
-                if (sTableName == "admin")
-                {
-                    ds = objBs.getstockdetgrid(sTableName, ddlcategory.SelectedValue, logintype);
-                    gvstock.DataSource = ds;
-                    gvstock.DataBind();
+                //if (sTableName == "admin")
+                //{
+                //    ds = objBs.getstockdetgrid(sTableName, ddlcategory.SelectedValue, logintype);
+                //    gvstock.DataSource = ds;
+                //    gvstock.DataBind();
 
-                }
-                else
-                {
+                //}
+                //else
+                //{
                     admin.Visible = false;
                     ds = objBs.getstockdetgrid(sTableName, ddlcategory.SelectedValue, logintype);
                     string caption1 = " <h4><b>" + " Store :  " + BranchNAme + " " + StoreName + " Generate On " + DateTime.Now.ToString("MM/dd/yyyy hh:mm tt") + " </b></h4> ";
                     gvstock.Caption = caption1;
                     gvstock.DataSource = ds;
                     gvstock.DataBind();
-                }
+                rdbtype.Enabled  = true;
+                //}
             }
 
         }
@@ -91,6 +97,29 @@ namespace Billing.Accountsbootstrap
 
         protected void gvstock_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+
+            string qtytype = "D";
+            string Available = "0";
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                qtytype = (DataBinder.Eval(e.Row.DataItem, "qtytype")).ToString();
+                
+
+                if (qtytype == "D")
+                {
+                    e.Row.Cells[4].Text = Convert.ToDouble(e.Row.Cells[4].Text).ToString("0");
+                }
+               else
+                {
+                    //DataBinder.Eval(e.Row.DataItem, "Available_QTY") = Convert.ToDouble(Available).ToString("" + qtysetting + "");
+                    e.Row.Cells[4].Text = Convert.ToDouble(e.Row.Cells[4].Text).ToString("" + qtysetting + "");
+                }
+
+
+
+            }
+
             ////DataSet dlow = objBs.stockcolour();
             ////if (sTableName != "admin")
             ////{
@@ -140,27 +169,27 @@ namespace Billing.Accountsbootstrap
         protected void btnreset_Click(object sender, EventArgs e)
         {
             DataSet ds = new DataSet();
-            if (sTableName == "admin")
-            {
+            //if (sTableName == "admin")
+            //{
+            //    ds = objBs.getstockdetgrid(sTableName, ddlcategory.SelectedValue, logintype);
+            //    gvstock.DataSource = ds;
+            //    gvstock.DataBind();
+
+            //    //decimal dtotal = 0;
+            //    //decimal Qty = 0;
+            //    //for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            //    //{
+            //    //    dtotal += Convert.ToDecimal(ds.Tables[0].Rows[i]["StockAmount"].ToString());
+            //    //    Qty += Convert.ToDecimal(ds.Tables[0].Rows[i]["Available_QTY"].ToString());
+            //    //}
+
+            //}
+            //else
+            //{
                 ds = objBs.getstockdetgrid(sTableName, ddlcategory.SelectedValue, logintype);
                 gvstock.DataSource = ds;
                 gvstock.DataBind();
-
-                //decimal dtotal = 0;
-                //decimal Qty = 0;
-                //for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                //{
-                //    dtotal += Convert.ToDecimal(ds.Tables[0].Rows[i]["StockAmount"].ToString());
-                //    Qty += Convert.ToDecimal(ds.Tables[0].Rows[i]["Available_QTY"].ToString());
-                //}
-
-            }
-            else
-            {
-                ds = objBs.getstockdetgrid(sTableName, ddlcategory.SelectedValue, logintype);
-                gvstock.DataSource = ds;
-                gvstock.DataBind();
-            }
+          //  }
         }
 
         protected void gvstock_RowCreated(object sender, GridViewRowEventArgs e)
@@ -353,29 +382,29 @@ namespace Billing.Accountsbootstrap
         }
 
         // Admin PassWord
-        protected void txtpassword_OnTextChanged(object sender, EventArgs e)
-        {
-            DataSet adminpass = objBs.GetadminCode(lblUser.Text, Password, txtpassword.Text);
-            if (adminpass.Tables[0].Rows.Count > 0)
-            {
-                rdbtype.Enabled = true;
-                txtpassword.Attributes.Add("value", adminpass.Tables[0].Rows[0]["AdminPass"].ToString());
-            }
-            else
-            {
-                rdbtype.SelectedValue = "1";
-                rdbtype.Enabled = false;
-                //txtpassword.Attributes.Add("value", "");
-                txtpassword.Attributes.Clear();
+        //protected void txtpassword_OnTextChanged(object sender, EventArgs e)
+        //{
+        //    DataSet adminpass = objBs.GetadminCode(lblUser.Text, Password, txtpassword.Text);
+        //    if (adminpass.Tables[0].Rows.Count > 0)
+        //    {
+        //        rdbtype.Enabled = true;
+        //        txtpassword.Attributes.Add("value", adminpass.Tables[0].Rows[0]["AdminPass"].ToString());
+        //    }
+        //    else
+        //    {
+        //        rdbtype.SelectedValue = "1";
+        //        rdbtype.Enabled = false;
+        //        //txtpassword.Attributes.Add("value", "");
+        //        txtpassword.Attributes.Clear();
 
-                gvStockValue.DataSource = null;
-                gvStockValue.DataBind();
+        //        gvStockValue.DataSource = null;
+        //        gvStockValue.DataBind();
 
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Enter Correct Password.');", true);
-                return;
+        //        ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Enter Correct Password.');", true);
+        //        return;
 
-            }
-        }
+        //    }
+        //}
 
         public override void VerifyRenderingInServerForm(Control control)
         {
@@ -395,6 +424,36 @@ namespace Billing.Accountsbootstrap
                 e.Row.Cells[5].Text = "Total:-";
                 e.Row.Cells[6].Text = Available_QTY.ToString("f2");
                 e.Row.Cells[7].Text = TotalAmount.ToString("f2");
+            }
+
+            string qtytype = "D";
+            string Available = "0";
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                qtytype = (DataBinder.Eval(e.Row.DataItem, "qtytype")).ToString();
+
+
+                if (qtytype == "D")
+                {
+                    e.Row.Cells[6].Text = Convert.ToDouble(e.Row.Cells[6].Text).ToString("0");
+                    e.Row.Cells[3].Text = Convert.ToDouble(e.Row.Cells[3].Text).ToString("" + ratesetting + "");
+                    //e.Row.Cells[4].Text = Convert.ToDouble(e.Row.Cells[4].Text).ToString("" + qtysetting + "");
+                    e.Row.Cells[5].Text = Convert.ToDouble(e.Row.Cells[5].Text).ToString("" + ratesetting + "");
+                    e.Row.Cells[7].Text = Convert.ToDouble(e.Row.Cells[7].Text).ToString("" + ratesetting + "");
+                }
+                else
+                {
+                    //DataBinder.Eval(e.Row.DataItem, "Available_QTY") = Convert.ToDouble(Available).ToString("" + qtysetting + "");
+                    e.Row.Cells[6].Text = Convert.ToDouble(e.Row.Cells[6].Text).ToString("" + qtysetting + "");
+                    e.Row.Cells[3].Text = Convert.ToDouble(e.Row.Cells[3].Text).ToString("" + ratesetting + "");
+                    //e.Row.Cells[4].Text = Convert.ToDouble(e.Row.Cells[4].Text).ToString("" + qtysetting + "");
+                    e.Row.Cells[5].Text = Convert.ToDouble(e.Row.Cells[5].Text).ToString("" + ratesetting + "");
+                    e.Row.Cells[7].Text = Convert.ToDouble(e.Row.Cells[7].Text).ToString("" + ratesetting + "");
+                }
+
+
+
             }
 
         }

@@ -185,7 +185,7 @@ namespace Billing.Accountsbootstrap
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         btnSave.Text = "Update";
-
+                        btnSave.Visible = true;
                         drpstorebranch.SelectedValue = ds.Tables[0].Rows[0]["Branchid"].ToString();
                         DrpProductionBranch.SelectedValue = ds.Tables[0].Rows[0]["ProductionId"].ToString();
                         Drpicingbranch.SelectedValue = ds.Tables[0].Rows[0]["IcingId"].ToString();

@@ -184,7 +184,7 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="form-group has-feedback">
-                                        <asp:TextBox CssClass="form-control" Enabled="true" Text="Search Name.." ID="txtsearch"
+                                        <asp:TextBox CssClass="form-control" Enabled="true"  placeholder="Search Name.."  ID="txtsearch"
                                             runat="server" onkeyup="Search_Gridview(this, 'gvcust')"></asp:TextBox>
                                         <span class="glyphicon glyphicon-search form-control-feedback"></span>
                                         <asp:Label ID="srch"  Visible="false" runat="server" ></asp:Label>

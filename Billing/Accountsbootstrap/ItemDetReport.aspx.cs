@@ -89,7 +89,8 @@ namespace Billing.Accountsbootstrap
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Response.Redirect("DescriptionGrid.aspx");
+            //Response.Redirect("DescriptionGrid.aspx");
+            Response.Redirect("ItemDetReport.aspx");
         }
         protected void Page_Change(object sender, GridViewPageEventArgs e)
         {

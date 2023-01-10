@@ -99,6 +99,7 @@ namespace Billing.Accountsbootstrap
             DataSet dLedger = objbs.LedgerGrid();
             gvledgrid.DataSource = dLedger;
             gvledgrid.DataBind();
+            Response.Redirect("LedgerMasterGrid.aspx");
         }
         protected void btnsave_Click(object sender, EventArgs e)
         {

@@ -42,6 +42,47 @@ namespace Billing.Accountsbootstrap
 
             if (!IsPostBack)
             {
+                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "IPGRG");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "IPGRG");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        //Button1.Visible = true;
+                    }
+                    else
+                    {
+                        //Button1.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        //BankGrid.Columns[9].Visible = true;
+                    }
+                    else
+                    {
+                        // BankGrid.Columns[9].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        // BankGrid.Columns[10].Visible = true;
+                    }
+                    else
+                    {
+                        //  BankGrid.Columns[10].Visible = false;
+                    }
+                }
+
                 #region
                 DataSet dss = objbs.checkinterProdrequestallowornot(scode);
                 if (dss.Tables[0].Rows.Count > 0)

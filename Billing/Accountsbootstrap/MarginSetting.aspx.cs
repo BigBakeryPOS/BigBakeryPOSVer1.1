@@ -30,6 +30,46 @@ namespace Billing.Accountsbootstrap
 
             if (!IsPostBack)
             {
+                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "Msetting");
+                if (dacess1.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
+                    {
+                        Response.Redirect("Login_branch.aspx");
+                    }
+                }
+
+                DataSet dacess = new DataSet();
+                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "Msetting");
+                if (dacess.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
+                    {
+                        btnSubmit.Visible = true;
+                    }
+                    else
+                    {
+                        btnSubmit.Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    {
+                        gv.Columns[5].Visible = true;
+                    }
+                    else
+                    {
+                        gv.Columns[5].Visible = false;
+                    }
+
+                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
+                    {
+                        //gv.Columns[3].Visible = true;
+                    }
+                    else
+                    {
+                        //gv.Columns[3].Visible = false;
+                    }
+                }
 
                 DataSet dsCategory = objbs.gridcategoryAll();
                 if (dsCategory.Tables[0].Rows.Count > 0)
@@ -131,6 +171,7 @@ namespace Billing.Accountsbootstrap
         protected void btncancel_Click(object sender, EventArgs e)
         {
             clearall();
+            Response.Redirect("MarginSetting.aspx");
         }
         private void clearall()
         {
@@ -168,6 +209,7 @@ namespace Billing.Accountsbootstrap
                         txtofmargin.Text = dedit.Tables[0].Rows[0]["Ownfranchise"].ToString();
                         txtid.Text = dedit.Tables[0].Rows[0]["Catmarginid"].ToString();
                         btnSubmit.Text = "Update";
+                        btnSubmit.Visible = true;
                     }
 
                 }

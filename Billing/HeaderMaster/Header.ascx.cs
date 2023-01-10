@@ -536,6 +536,12 @@ namespace Billing.HeaderMaster
                                         DayCloseReport.Visible = true;
                                         DenominationReport.Visible = true;
                                     }
+                                    if (screen == "SessioncloseReport")
+                                    {
+                                        Reports.Visible = true;
+                                        DayCloseReport.Visible = true;
+                                        SessioncloseReport.Visible = true;
+                                    }
                                     ////////////////////////////////////////////////////
                                     if (screen == "CustomersCeremonies")
                                     {
@@ -701,6 +707,12 @@ namespace Billing.HeaderMaster
                                         Reports.Visible = true;
                                         SalesReport.Visible = true;
                                         TaxWiseOrder.Visible = true;
+                                    }
+                                    if (screen == "DayEndReport")
+                                    {
+                                        Reports.Visible = true;
+                                        SalesReport.Visible = true;
+                                        DayEndReport.Visible = true;
                                     }
                                     ////////////////////////////////////////////////////
                                     if (screen == "Productionrep")
@@ -1058,6 +1070,13 @@ namespace Billing.HeaderMaster
                                         Reports.Visible = true;
                                         RawPurchaseReport.Visible = true;
                                         purexp.Visible = true;
+
+                                    }
+                                    if (screen == "minstorealert")
+                                    {
+                                        Reports.Visible = true;
+                                        RawPurchaseReport.Visible = true;
+                                        minstorealert.Visible = true;
 
                                     }
                                     if (screen == "dayclose")
@@ -1328,6 +1347,11 @@ namespace Billing.HeaderMaster
                                         MasterMenu.Visible = true;
                                         Ingridients.Visible = true;
                                     }
+                                    if (screen == "subcompany")
+                                    {
+                                        MasterMenu.Visible = true;                                      
+                                        subcompany.Visible = true;
+                                    }
                                     if (screen == "CustMast")
                                     {
                                         MasterMenu.Visible = true;
@@ -1399,7 +1423,19 @@ namespace Billing.HeaderMaster
                                         Waiter.Visible = true;
                                     }
                                     #endregion
-
+                                    #region UserMenu
+                                    if (screen == "UserRole")
+                                    {
+                                        UserMenu.Visible = true;
+                                        UserRole.Visible = true;
+                                    }
+                                    if (screen == "User")
+                                    {
+                                        UserMenu.Visible = true;
+                                        User.Visible = true;
+                                    }
+                                    #endregion
+                                   
                                     #region OrderFormMenu
                                     if (screen == "OrderForm")
                                     {
@@ -1627,6 +1663,13 @@ namespace Billing.HeaderMaster
                                     }
 
 
+                                    if (screen == "directstorestock")
+                                    {
+                                        RequestAccept.Visible = true;
+                                        directstorestock.Visible = true;
+                                    }
+
+
                                     if (screen == "GoodsReceived")
                                     {
                                         RequestAccept.Visible = true;
@@ -1781,6 +1824,12 @@ namespace Billing.HeaderMaster
                                         Reports.Visible = true;
                                         DayCloseReport.Visible = true;
                                         DenominationReport.Visible = true;
+                                    }
+                                    if (screen == "SessioncloseReport")
+                                    {
+                                        Reports.Visible = true;
+                                        DayCloseReport.Visible = true;
+                                        SessioncloseReport.Visible = true;
                                     }
                                     ////////////////////////////////////////////////////
                                     if (screen == "CustomersCeremonies")
@@ -1945,6 +1994,12 @@ namespace Billing.HeaderMaster
                                         Reports.Visible = true;
                                         SalesReport.Visible = true;
                                         TaxWiseOrder.Visible = true;
+                                    }
+                                    if (screen == "DayEndReport")
+                                    {
+                                        Reports.Visible = true;
+                                        SalesReport.Visible = true;
+                                        DayEndReport.Visible = true;
                                     }
                                     ////////////////////////////////////////////////////
                                     if (screen == "Productionrep")
@@ -2298,6 +2353,16 @@ namespace Billing.HeaderMaster
                                         purexp.Visible = true;
 
                                     }
+
+                                    if (screen == "minstorealert")
+                                    {
+                                        Reports.Visible = true;
+                                        RawPurchaseReport.Visible = true;
+                                        minstorealert.Visible = true;
+
+                                    }
+
+
                                     if (screen == "dayclose")
                                     {
                                         dayclose.Visible = true;
@@ -2562,6 +2627,11 @@ namespace Billing.HeaderMaster
                                     Customer.Visible = true;
                                     CustMast.Visible = true;
                                 }
+                                if (screen == "subcompany")
+                                {
+                                    MasterMenu.Visible = true;
+                                    subcompany.Visible = true;
+                                }
                                 if (screen == "DealMast")
                                 {
                                     MasterMenu.Visible = true;
@@ -2625,6 +2695,19 @@ namespace Billing.HeaderMaster
                                 {
                                     MasterMenu.Visible = true;
                                     Waiter.Visible = true;
+                                }
+                                #endregion
+
+                                #region UserMenu
+                                if (screen == "UserRole")
+                                {
+                                    UserMenu.Visible = true;
+                                    UserRole.Visible = true;
+                                }
+                                if (screen == "User")
+                                {
+                                    UserMenu.Visible = true;
+                                    User.Visible = true;
                                 }
                                 #endregion
 
@@ -2845,6 +2928,14 @@ namespace Billing.HeaderMaster
                                     RequestAccept.Visible = true;
                                     storestockreceive.Visible = true;
                                 }
+
+                                if (screen == "directstorestock")
+                                {
+                                    RequestAccept.Visible = true;
+                                    directstorestock.Visible = true;
+                                }
+
+
                                 if (screen == "storegoodsreceived")
                                 {
                                     RequestAccept.Visible = true;
@@ -3002,6 +3093,12 @@ namespace Billing.HeaderMaster
                                     Reports.Visible = true;
                                     DayCloseReport.Visible = true;
                                     DenominationReport.Visible = true;
+                                }
+                                if (screen == "SessioncloseReport")
+                                {
+                                    Reports.Visible = true;
+                                    DayCloseReport.Visible = true;
+                                    SessioncloseReport.Visible = true;
                                 }
                                 ////////////////////////////////////////////////////
                                 if (screen == "CustomersCeremonies")
@@ -3187,6 +3284,12 @@ namespace Billing.HeaderMaster
                                     Reports.Visible = true;
                                     SalesReport.Visible = true;
                                     TaxWiseOrder.Visible = true;
+                                }
+                                if (screen == "DayEndReport")
+                                {
+                                    Reports.Visible = true;
+                                    SalesReport.Visible = true;
+                                    DayEndReport.Visible = true;
                                 }
                                 ////////////////////////////////////////////////////
                                 if (screen == "Productionrep")
@@ -3543,6 +3646,14 @@ namespace Billing.HeaderMaster
                                     purexp.Visible = true;
 
                                 }
+                                if (screen == "minstorealert")
+                                {
+                                    Reports.Visible = true;
+                                    RawPurchaseReport.Visible = true;
+                                    minstorealert.Visible = true;
+
+                                }
+
                                 if (screen == "dayclose")
                                 {
                                     dayclose.Visible = true;
@@ -3804,6 +3915,11 @@ namespace Billing.HeaderMaster
                                 Customer.Visible = true;
                                 CustMast.Visible = true;
                             }
+                            if (screen == "subcompany")
+                            {
+                                MasterMenu.Visible = true;
+                                subcompany.Visible = true;
+                            }
                             if (screen == "DealMast")
                             {
                                 MasterMenu.Visible = true;
@@ -3867,6 +3983,19 @@ namespace Billing.HeaderMaster
                             {
                                 MasterMenu.Visible = true;
                                 Waiter.Visible = true;
+                            }
+                            #endregion
+
+                            #region UserMenu
+                            if (screen == "UserRole")
+                            {
+                                UserMenu.Visible = true;
+                                UserRole.Visible = true;
+                            }
+                            if (screen == "User")
+                            {
+                                UserMenu.Visible = true;
+                                User.Visible = true;
                             }
                             #endregion
 
@@ -4087,6 +4216,13 @@ namespace Billing.HeaderMaster
                                 RequestAccept.Visible = true;
                                 storestockreceive.Visible = true;
                             }
+
+                            if (screen == "directstorestock")
+                            {
+                                RequestAccept.Visible = true;
+                                directstorestock.Visible = true;
+                            }
+
                             if (screen == "storegoodsreceived")
                             {
                                 RequestAccept.Visible = true;
@@ -4248,6 +4384,12 @@ namespace Billing.HeaderMaster
                                 Reports.Visible = true;
                                 DayCloseReport.Visible = true;
                                 DenominationReport.Visible = true;
+                            }
+                            if (screen == "SessioncloseReport")
+                            {
+                                Reports.Visible = true;
+                                DayCloseReport.Visible = true;
+                                SessioncloseReport.Visible = true;
                             }
                             ////////////////////////////////////////////////////
                             if (screen == "CustomersCeremonies")
@@ -4433,6 +4575,12 @@ namespace Billing.HeaderMaster
                                 Reports.Visible = true;
                                 SalesReport.Visible = true;
                                 TaxWiseOrder.Visible = true;
+                            }
+                            if (screen == "DayEndReport")
+                            {
+                                Reports.Visible = true;
+                                SalesReport.Visible = true;
+                                DayEndReport.Visible = true;
                             }
                             ////////////////////////////////////////////////////
                             if (screen == "Productionrep")
@@ -4790,6 +4938,14 @@ namespace Billing.HeaderMaster
                                 purexp.Visible = true;
 
                             }
+                            if (screen == "minstorealert")
+                            {
+                                Reports.Visible = true;
+                                RawPurchaseReport.Visible = true;
+                                minstorealert.Visible = true;
+
+                            }
+
                             if (screen == "dayclose")
                             {
                                 dayclose.Visible = true;

@@ -60,3 +60,12 @@ D:\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.csproj.CoreCompileInputs.c
 D:\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.csproj.CopyComplete
 D:\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.dll
 D:\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.pdb
+C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\bin\Release\DataLayer.dll
+C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\bin\Release\DataLayer.pdb
+C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\bin\Release\CommonLayer.dll
+C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\bin\Release\CommonLayer.pdb
+C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.csproj.AssemblyReference.cache
+C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.csproj.CoreCompileInputs.cache
+C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.csproj.CopyComplete
+C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.dll
+C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\DataLayer\obj\Release\DataLayer.pdb

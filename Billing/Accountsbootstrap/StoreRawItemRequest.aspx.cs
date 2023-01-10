@@ -211,13 +211,13 @@ namespace Billing.Accountsbootstrap
                         drpdepartment.DataTextField = "Deptname";
                         drpdepartment.DataValueField = "DeptID";
                         drpdepartment.DataBind();
-                        drpdepartment.Items.Insert(0, "Select Dept");
+                        drpdepartment.Items.Insert(0, "Select Department");
                     }
                     else
                     {
                         drpdepartment.DataSource = null;
                         drpdepartment.DataBind();
-                        drpdepartment.Items.Insert(0, "Select Dept");
+                        drpdepartment.Items.Insert(0, "Select Department");
                     }
 
             }
@@ -1033,6 +1033,7 @@ namespace Billing.Accountsbootstrap
 
             if (drpdepartment.SelectedValue == "Select Department")
             {
+
             }
             else
             {

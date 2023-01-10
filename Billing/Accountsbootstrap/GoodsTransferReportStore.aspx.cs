@@ -191,5 +191,9 @@ namespace Billing.Accountsbootstrap
         {
 
         }
-    }
+        protected void btnrefresh_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("GoodsTransferReportStore.aspx");
+        }
+        }
 }
