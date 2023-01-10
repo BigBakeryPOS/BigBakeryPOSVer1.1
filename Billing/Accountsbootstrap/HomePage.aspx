@@ -180,14 +180,20 @@
 						<div class="col-sm-3 item-card-col"><a href="#"><div class="card item-card"><i class="bi-grid-3x2-gap icon-default-color" style="font-size: 2em;"></i>
 							<p>Running Table</p></div></a> 
 						</div>
-						<div class="col-sm-3 item-card-col"><a href="#"><div class="card item-card"><i class="bi-repeat icon-default-color" style="font-size: 2em;"></i>
+						<%--<div class="col-sm-3 item-card-col"><a href="#"><div class="card item-card"><i class="bi-repeat icon-default-color" style="font-size: 2em;"></i>
 							<p>Synchronise</p></div></a> 
-						</div>
+						</div>--%>
 						<div class="col-sm-3 item-card-col"><a href="#"><div class="card item-card"><i class="bi-printer icon-default-color" style="font-size: 2em;"></i>
 							<p>Bill Reprint</p></div></a> 
 						</div>
 						<div class="col-sm-3 item-card-col"><a href="billsetting.aspx"><div class="card item-card"><i class="bi-receipt icon-default-color" style="font-size: 2em;"></i>
 							<p>Bill Settlement</p></div></a> 
+						</div>
+                        <div class="col-sm-3 item-card-col"><a href="BillSettingForOrder.aspx"><div class="card item-card"><i class="bi-receipt icon-default-color" style="font-size: 2em;"></i>
+							<p>Order Settlement</p></div></a> 
+						</div>
+                         <div class="col-sm-3 item-card-col"><a href="stockgrid.aspx"><div class="card item-card"><i class="bi-receipt icon-default-color" style="font-size: 2em;"></i>
+							<p>GRN Master</p></div></a> 
 						</div>
 					</div> 	
 						 
