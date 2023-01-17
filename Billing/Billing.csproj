@@ -488,6 +488,7 @@
     <Content Include="Accountsbootstrap\Tax.aspx" />
     <Content Include="Accountsbootstrap\TodaysDeliveryOrder.aspx" />
     <Content Include="Accountsbootstrap\TrailDatewise.aspx" />
+    <Content Include="Accountsbootstrap\twoinchprint.aspx" />
     <Content Include="Accountsbootstrap\TwoReports.aspx" />
     <Content Include="Accountsbootstrap\Uom.aspx" />
     <Content Include="Accountsbootstrap\usercreate.aspx" />
@@ -3721,6 +3722,13 @@
     </Compile>
     <Compile Include="Accountsbootstrap\TransferBills.aspx.designer.cs">
       <DependentUpon>TransferBills.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\twoinchprint.aspx.cs">
+      <DependentUpon>twoinchprint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\twoinchprint.aspx.designer.cs">
+      <DependentUpon>twoinchprint.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\TwoReports.aspx.cs">
       <DependentUpon>TwoReports.aspx</DependentUpon>

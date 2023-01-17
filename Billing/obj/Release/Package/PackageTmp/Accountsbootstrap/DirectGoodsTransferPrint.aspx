@@ -76,10 +76,12 @@
                         <tr>
                             <td colspan="3" align="center">
                                 <asp:Label ID="lblstore" runat="server" Style="font-weight: bold; font-size: x-large"></asp:Label><br />
+                                <asp:Label ID="lblAddres" visible="true" runat="server" Style="font-size: large"></asp:Label><br />
+                                GST NO:<asp:Label ID="lblgstno" visible="true" runat="server" Style="font-size: large"></asp:Label><br />
                                 <asp:Label ID="lblst" runat="server" Style="font-weight: bold; font-size: 20px" Text="Delivery Challan Slip"></asp:Label><br />
-                                 <asp:Label ID="lblAddres" visible="false" runat="server" Style="font-size: large"></asp:Label>
+                                 
                                 <br />
-                                <asp:Label ID="lbltrip" runat="server" Style="font-weight: bold; font-size: 20px"  ></asp:Label>
+                                Trip No : <asp:Label ID="lbltrip" runat="server" Style="font-weight: bold; font-size: 20px"  ></asp:Label>
                             </td>
                         </tr>
                         <tr>

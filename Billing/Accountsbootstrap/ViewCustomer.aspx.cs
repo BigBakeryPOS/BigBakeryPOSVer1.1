@@ -34,7 +34,7 @@ namespace Billing.Accountsbootstrap
                     head1.InnerHtml = "Customer Master";
                     title1.InnerText = "Customer Details";
                     //Page.Title=
-                    DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "CustMast");
+                    DataSet dacess1 = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "CustMast");
                     if (dacess1.Tables[0].Rows.Count > 0)
                     {
                         if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -44,7 +44,7 @@ namespace Billing.Accountsbootstrap
                     }
 
                     DataSet dacess = new DataSet();
-                    dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "CustMast");
+                    dacess = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "CustMast");
                     if (dacess.Tables[0].Rows.Count > 0)
                     {
                         if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
@@ -79,7 +79,7 @@ namespace Billing.Accountsbootstrap
                 {
                     head1.InnerHtml = "Dealer Master";
                     title1.InnerText = "Dealer Details";
-                    DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "DealMast");
+                    DataSet dacess1 = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "DealMast");
                     if (dacess1.Tables[0].Rows.Count > 0)
                     {
                         if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -89,7 +89,7 @@ namespace Billing.Accountsbootstrap
                     }
 
                     DataSet dacess = new DataSet();
-                    dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "DealMast");
+                    dacess = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "DealMast");
                     if (dacess.Tables[0].Rows.Count > 0)
                     {
                         if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
@@ -124,7 +124,7 @@ namespace Billing.Accountsbootstrap
                 {
                     head1.InnerHtml = "Supplier Master";
                     title1.InnerText = "Supplier Details";
-                    DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "SupMast");
+                    DataSet dacess1 = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "SupMast");
                     if (dacess1.Tables[0].Rows.Count > 0)
                     {
                         if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -134,7 +134,7 @@ namespace Billing.Accountsbootstrap
                     }
 
                     DataSet dacess = new DataSet();
-                    dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "SupMast");
+                    dacess = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "SupMast");
                     if (dacess.Tables[0].Rows.Count > 0)
                     {
                         if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
@@ -169,7 +169,7 @@ namespace Billing.Accountsbootstrap
                 {
                     head1.InnerHtml = "icing Employee Master";
                     title1.InnerText = "icing Employee Details";
-                    DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "EmpMast");
+                    DataSet dacess1 = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "EmpMast");
                     if (dacess1.Tables[0].Rows.Count > 0)
                     {
                         if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -179,7 +179,7 @@ namespace Billing.Accountsbootstrap
                     }
 
                     DataSet dacess = new DataSet();
-                    dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "EmpMast");
+                    dacess = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "EmpMast");
                     if (dacess.Tables[0].Rows.Count > 0)
                     {
                         if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
@@ -214,7 +214,7 @@ namespace Billing.Accountsbootstrap
                 {
                     head1.InnerHtml = "dispatch Employee Master";
                     title1.InnerText = "dispatch Employee Details";
-                    DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "DisMast");
+                    DataSet dacess1 = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "DisMast");
                     if (dacess1.Tables[0].Rows.Count > 0)
                     {
                         if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -224,7 +224,7 @@ namespace Billing.Accountsbootstrap
                     }
 
                     DataSet dacess = new DataSet();
-                    dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "DisMast");
+                    dacess = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "DisMast");
                     if (dacess.Tables[0].Rows.Count > 0)
                     {
                         if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)

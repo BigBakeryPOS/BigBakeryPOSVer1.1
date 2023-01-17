@@ -34,7 +34,7 @@ namespace Billing.Accountsbootstrap
             {
                 DataSet ds1 = objbs.getrecptnumber(sTableName);
 
-                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "CustomerSalesReceipts");
+                DataSet dacess1 = objbs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "CustomerSalesReceipts");
                 if (dacess1.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -44,7 +44,7 @@ namespace Billing.Accountsbootstrap
                 }
 
                 DataSet dacess = new DataSet();
-                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "CustomerSalesReceipts");
+                dacess = objbs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "CustomerSalesReceipts");
                 if (dacess.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)

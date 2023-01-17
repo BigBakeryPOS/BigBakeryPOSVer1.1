@@ -441,10 +441,21 @@
                                     </div>
                                     <div class="panel-body ">
                                         <label>
-                                            Stock Options
+                                           POS Stock Options
                                         </label>
                                         <br />
                                         <asp:RadioButtonList ID="RdlStocktype" CssClass="rbl" runat="server" RepeatColumns="2">
+                                            <asp:ListItem Text="With Stock" Value="1" Selected="True"></asp:ListItem>
+                                            <asp:ListItem Text="With OutStock" Value="2"></asp:ListItem>
+                                        </asp:RadioButtonList>
+                                        <br />
+                                    </div>
+                                    <div class="panel-body ">
+                                        <label>
+                                           Production Stock Options
+                                        </label>
+                                        <br />
+                                        <asp:RadioButtonList ID="rdlproductionstocktype" CssClass="rbl" runat="server" RepeatColumns="2">
                                             <asp:ListItem Text="With Stock" Value="1" Selected="True"></asp:ListItem>
                                             <asp:ListItem Text="With OutStock" Value="2"></asp:ListItem>
                                         </asp:RadioButtonList>

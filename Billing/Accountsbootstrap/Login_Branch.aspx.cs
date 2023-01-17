@@ -381,6 +381,9 @@ namespace Billing.Accountsbootstrap
                         userInfo["StockOption"] = getbranch.Tables[0].Rows[0]["StockOption"].ToString();
                         Session["StockOption"] = getbranch.Tables[0].Rows[0]["StockOption"].ToString();
 
+                        userInfo["ProdStockOption"] = getbranch.Tables[0].Rows[0]["ProdStockOption"].ToString();
+                        Session["ProdStockOption"] = getbranch.Tables[0].Rows[0]["ProdStockOption"].ToString();
+
 
                         userInfo["BillCode"] = getbranch.Tables[0].Rows[0]["BillCode"].ToString();
                         Session["BillCode"] = getbranch.Tables[0].Rows[0]["BillCode"].ToString();
@@ -461,6 +464,9 @@ namespace Billing.Accountsbootstrap
 
                         userInfo["StockOption"] = "Nil";
                         Session["StockOption"] = "Nil";
+
+                        userInfo["ProdStockOption"] = "Nil";
+                        Session["ProdStockOption"] = "Nil";
 
 
                         userInfo["BillCode"] = "Big";
@@ -611,7 +617,7 @@ namespace Billing.Accountsbootstrap
                         }
                         else if (logintypeid == "4")
                         {
-                            Response.Redirect("../Accountsbootstrap/Home_Page.aspx");
+                            Response.Redirect("../Accountsbootstrap/Home_Page.aspx") ;
                         }
                         else if (logintypeid == "5")
                         {

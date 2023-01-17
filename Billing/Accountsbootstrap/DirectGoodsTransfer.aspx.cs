@@ -820,7 +820,7 @@ namespace Billing.Accountsbootstrap
 
             gvitems.DataSource = null;
             gvitems.DataBind();
-            //ddlrequestno_OnSelectedIndexChanged(sender, e);
+            ddlrequestno_OnSelectedIndexChanged(sender, e);
 
         }
         protected void btnPrev_Click(object sender, EventArgs e)

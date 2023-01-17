@@ -37,7 +37,7 @@ namespace Billing.Accountsbootstrap
         string BillPrintLogo = "";
         string ratesetting = "";
         string qtysetting = "";
-        string Billgenerate = "";
+        string BillGenerateSetting = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -48,24 +48,64 @@ namespace Billing.Accountsbootstrap
             //    StoreNo = Session["StoreNo"].ToString();
 
             //    sTin = Session["TIN"].ToString();
-            Country = Request.Cookies["userInfo"]["Country"].ToString();
+            
 
             sTableName = Request.QueryString.Get("User").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
             sStore = Request.QueryString.Get("Store").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
             sAddress = Request.QueryString.Get("Address").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
             StoreNo = Request.QueryString.Get("StoreNo").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
             sTin = Request.QueryString.Get("TIN").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
-            Printtype = Request.Cookies["userInfo"]["Printtype"].ToString();
-            fssaino = Request.QueryString.Get("fssaino").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+            
 
-            // need to change after  FOR APP NOT WORKING
-            currency = Request.Cookies["userInfo"]["Currency"].ToString();
-            taxsetting = Request.Cookies["userInfo"]["TaxSetting"].ToString();
-            taxsplitupsetting = Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString();
-            BillPrintLogo = Request.Cookies["userInfo"]["BillPrintLogo"].ToString();
-            ratesetting = Request.Cookies["userInfo"]["Ratesetting"].ToString();
-            qtysetting = Request.Cookies["userInfo"]["Qtysetting"].ToString();
-            Billgenerate = Request.Cookies["userInfo"]["BillGenerateSetting"].ToString();
+
+
+
+
+            //// need to change after  FOR APP NOT WORKING
+            //Country = Request.Cookies["userInfo"]["Country"].ToString();
+            //currency = Request.Cookies["userInfo"]["Currency"].ToString();
+            //taxsetting = Request.Cookies["userInfo"]["TaxSetting"].ToString();
+            //taxsplitupsetting = Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString();
+            //BillPrintLogo = Request.Cookies["userInfo"]["BillPrintLogo"].ToString();
+            //ratesetting = Request.Cookies["userInfo"]["Ratesetting"].ToString();
+            //qtysetting = Request.Cookies["userInfo"]["Qtysetting"].ToString();
+            //Billgenerate = Request.Cookies["userInfo"]["BillGenerateSetting"].ToString();
+
+            // get below parameter from database 
+
+            DataSet fillbranchdetails = objBs.getbranchcode(sTableName);
+            if (fillbranchdetails.Tables[0].Rows.Count > 0)
+            {
+
+                fssaino = fillbranchdetails.Tables[0].Rows[0]["Fssaino"].ToString();
+                Printtype = fillbranchdetails.Tables[0].Rows[0]["Printtype"].ToString();
+                Country = fillbranchdetails.Tables[0].Rows[0]["Country"].ToString();
+                currency = fillbranchdetails.Tables[0].Rows[0]["currency"].ToString();
+                taxsetting = fillbranchdetails.Tables[0].Rows[0]["TaxSetting"].ToString();
+                taxsplitupsetting = fillbranchdetails.Tables[0].Rows[0]["Billtaxsplitupshown"].ToString();
+                BillPrintLogo = fillbranchdetails.Tables[0].Rows[0]["BillPrintLogo"].ToString();
+                ratesetting = fillbranchdetails.Tables[0].Rows[0]["Ratesetting"].ToString();
+                qtysetting = fillbranchdetails.Tables[0].Rows[0]["Qtysetting"].ToString();
+                BillGenerateSetting = fillbranchdetails.Tables[0].Rows[0]["BillGenerateSetting"].ToString();
+                fssaino = fillbranchdetails.Tables[0].Rows[0]["Fssaino"].ToString();
+
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Something Went Wrong in Branch MAster.Thank You!!!');", true);
+                return;
+            }
+
+            //Printtype = Request.QueryString.Get("Printtype").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+            //fssaino = Request.QueryString.Get("fssaino").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+            //Country = Request.QueryString.Get("Country").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+            //currency = Request.QueryString.Get("currency").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+            //taxsetting = Request.QueryString.Get("taxsetting").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+            //taxsplitupsetting = Request.QueryString.Get("Billtaxsplitupshown").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+            //BillPrintLogo = Request.QueryString.Get("BillPrintLogo").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+            //ratesetting = Request.QueryString.Get("Ratesetting").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+            //qtysetting = Request.QueryString.Get("Qtysetting").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+            //BillGenerateSetting = Request.QueryString.Get("BillGenerateSetting").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
 
             lblcurrency.Text = currency;
 
@@ -104,7 +144,7 @@ namespace Billing.Accountsbootstrap
                 //lblmobilename.Text = "Mobile No: ";
                 lblmobilename.Visible = false;
                 lblmobilename1.Visible = true;
-                lblgstdetails.Visible = true;
+                lblgstdetails.Visible = false;
                 divroundoff.Visible = true;
             }
 
@@ -136,7 +176,9 @@ namespace Billing.Accountsbootstrap
 
             if (BillPrintLogo == "Y")
             {
-                idimglog.Visible = true;
+                // Temp changes by littlespoon
+
+                idimglog.Visible = false;
             }
             else
             {
@@ -153,7 +195,7 @@ namespace Billing.Accountsbootstrap
             }
             else
             {
-                idimglog.Visible = true;
+                idimglog.Visible = false;
                 lblstore.Text = sStore;
                 lblstore.Visible = true;
             }
@@ -188,7 +230,9 @@ namespace Billing.Accountsbootstrap
             DataSet getfranchisee = objBs.getfarnchiseename(sTableName);
             if (getfranchisee.Tables[0].Rows.Count > 0)
             {
-                idFranchisee.Visible = true;
+                // temp purpose for littlespoon
+
+                idFranchisee.Visible = false;
                 lblfranchise.Text = getfranchisee.Tables[0].Rows[0]["FranchiseeName"].ToString();
             }
             else
@@ -202,7 +246,8 @@ namespace Billing.Accountsbootstrap
                 DataSet getfranchisee1 = objBs.getfarnchiseename_new(sTableName);
                 if (getfranchisee1.Tables[0].Rows.Count > 0)
                 {
-                    idFranchisee.Visible = true;
+                    // temp purpose for littlespoon
+                    idFranchisee.Visible = false;
                     lblfranchise.Text = getfranchisee1.Tables[0].Rows[0]["FranchiseeName"].ToString();
                 }
                 else
@@ -312,12 +357,13 @@ namespace Billing.Accountsbootstrap
                         }
                     }
 
-                    if (Billgenerate == "1")
+                    if (BillGenerateSetting == "1")
                     {
 
                         lblbillno.Text = ds.Tables[0].Rows[0]["FullBill"].ToString();
+                        lblbillno.Text = ds.Tables[0].Rows[0]["BillNo"].ToString();
                     }
-                    else if (Billgenerate == "2")
+                    else if (BillGenerateSetting == "2")
                     {
                         lblbillno.Text = ds.Tables[0].Rows[0]["BillNo"].ToString();
                     }
@@ -459,7 +505,12 @@ namespace Billing.Accountsbootstrap
                         gvPrint.DataSource = Itembinding;
                         gvPrint.DataBind();
                         int cntt = gvPrint.Rows.Count;
+                        
+
                         Label4.Text = cntt.ToString("0");
+
+
+                       
 
 
                         #region GROUP WISE GST
@@ -655,6 +706,18 @@ namespace Billing.Accountsbootstrap
                         staxdetails.Visible = false;
                     }
 
+                    string saletypeid = ds.Tables[0].Rows[0]["salestype"].ToString();
+                    if (saletypeid == "3" || saletypeid == "4")
+                    {
+                        gvPrint.Columns[3].Visible = false;
+                        gvPrint.Columns[5].Visible = false;
+                        PCGST.Visible = false;
+                        divsubtotal.Visible = false;
+                        divroundoff.Visible = false;
+                        staxdetails.Visible = false;
+                        SGST1.Visible = false;
+                    }
+
                     if (Printtype == "Y")
                     {
                         ClientScript.RegisterStartupScript(typeof(Page), "closePage", "window.close();", true);
@@ -676,24 +739,26 @@ namespace Billing.Accountsbootstrap
                 //Control ctrl = (Control)Session["ctrl"];
                 //PrintWebControl(ctrl);
 
-                string KOTPrint = Request.QueryString.Get("KOTPrint");
-                if (KOTPrint != null)
-                {
-                    KOTPrint = Request.QueryString.Get("KOTPrint").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
-                    if (KOTPrint == "True")
-                    {
-                        DataSet ds1 = objBs.PrintingSalesLiveKitchen1(iD, sTableName, type.ToString());
-                        if (ds1.Tables[0].Rows.Count > 0)
-                        {
+                // NEED TO SAVE AND FETCH VALUE FROM SALES 12.01.2023
 
-                            string yourUrl1 = "SalesLiveKitchenPrint.aspx?Mode=Sales&iSalesID=" + iD + "&type=" + type.ToString() + "&Store=" + sStore;
+                //string KOTPrint = Request.QueryString.Get("KOTPrint");
+                //if (KOTPrint != null)
+                //{
+                //    KOTPrint = Request.QueryString.Get("KOTPrint").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+                //    if (KOTPrint == "True")
+                //    {
+                //        DataSet ds1 = objBs.PrintingSalesLiveKitchen1(iD, sTableName, type.ToString());
+                //        if (ds1.Tables[0].Rows.Count > 0)
+                //        {
 
-                            //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow2", "window.open('" + yourUrl1 + "');", true);
+                //            string yourUrl1 = "SalesLiveKitchenPrint.aspx?Mode=Sales&iSalesID=" + iD + "&type=" + type.ToString() + "&Store=" + sStore;
 
-                        }
-                    }
-                }
+                //            //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
+                //            ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow2", "window.open('" + yourUrl1 + "');", true);
+
+                //        }
+                //    }
+                //}
 
             }
 

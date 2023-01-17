@@ -308,6 +308,11 @@ namespace Billing.Accountsbootstrap
             gvitems.DataSource = null;
             gvitems.DataBind();
 
+            if(radentrytype.SelectedValue =="1" || radentrytype.SelectedValue == "3")
+            {
+                ddlrequestno_OnSelectedIndexChanged(sender, e);
+            }
+
         }
 
         protected void gvqueueitems_RowCommand(object sender, GridViewCommandEventArgs e)
