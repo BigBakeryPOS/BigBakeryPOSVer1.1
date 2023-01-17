@@ -5907,6 +5907,42 @@ namespace BusinessLayer
             return ds;
         }
 
+        public DataSet getMinstockdetgrid(string stable, string Categoryid, string logintype)
+        {
+            DataSet ds = new DataSet();
+            //string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.Available_QTY) as Available_Qty  from tblStock_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID and a.CategoryID=b.categoryid and c.IsDelete=0 and isd =0 and a.SubCategoryID=c.CategoryUserID and a.Available_QTY>0  group by c.CategoryUserID,b.category,c.Definition   order by c.Definition asc";
+
+            if (Categoryid == "All")
+            {
+
+                //if (logintype == "5" || logintype == "4")
+                //{
+                string sQry = "select c.Category,cu.Definition,cu.MinimumStock,s.Available_QTY,(s.Available_Qty-cu.MinimumStock) as Balance,cu.qtytype from tblCategory c inner join tblCategoryUser cu on c.CategoryId=cu.CategoryId inner join tblstock_"+stable + " s on s.SubCategoryId=cu.ItemId group by c.category,cu.definition,cu.MinimumStock,s.Available_Qty,cu.qtytype ";
+                    ds = dbObj.InlineExecuteDataSet(sQry);
+                //}
+                //else
+                //{
+                //    //string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.Available_QTY) as Available_Qty,c.Serial  from tblStock_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.SubCategoryID=c.CategoryUserID and a.Available_QTY>0 and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial   order by cast(c.serial as int) asc";
+                //    string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.Available_QTY) as Available_Qty,c.Serial,c.qtytype  from tblStock_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.SubCategoryID=c.CategoryUserID and a.Available_QTY>0 and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial,c.qtytype   order by b.category,c.definition asc";
+                //    ds = dbObj.InlineExecuteDataSet(sQry);
+               // }
+            }
+            else
+            {
+                //if (logintype == "5" || logintype == "4")
+                //{
+                string sQry = "select c.Category,cu.Definition,cu.MinimumStock,s.Available_QTY,(s.Available_Qty-cu.MinimumStock) as Balance,cu.qtytype from tblCategory c inner join tblCategoryUser cu on c.CategoryId=cu.CategoryId inner join tblstock_"+stable+" s on s.SubCategoryId=cu.ItemId where c.CategoryId='" + Categoryid + "' group by c.category,cu.definition,cu.MinimumStock,s.Available_Qty,cu.qtytype"; 
+                ds = dbObj.InlineExecuteDataSet(sQry);
+                //}
+                //else
+                //{
+                //    string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.Available_QTY) as Available_Qty,c.Serial,c.qtytype  from tblStock_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.SubCategoryID=c.CategoryUserID and a.Available_QTY>0 and c.categoryid='" + Categoryid + "' and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial,c.qtytype   order by cast(c.serial as int) asc";
+                //    ds = dbObj.InlineExecuteDataSet(sQry);
+                //}
+            }
+            return ds;
+        }
+
         public DataSet getstockdetgrid1(string stable)
         {
             DataSet ds = new DataSet();
@@ -22586,7 +22622,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
 
-            string sqry = "select BranchCode as  BranchName,BranchId,'0' as Margin from tblbranch where IsActive='Yes' and BranchType=0";
+            string sqry = "select BranchCode as  BranchName,Branchname as Name,BranchId,'0' as Margin from tblbranch where IsActive='Yes' and BranchType=0";
             ds = dbObj.InlineExecuteDataSet(sqry);
 
             return ds;
@@ -38160,8 +38196,18 @@ namespace BusinessLayer
             return ds;
         }
         #endregion
-		
-		 #region CashReceipt
+        #region getBranchname
+        public DataSet getbranchname(string sbranchid)
+        {
+            dbObj = new DBAccess();
+            DataSet ds = new DataSet();
+            string sqry = "select * from tblbranch where branchid='" + sbranchid + "'";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+        #endregion
+
+        #region CashReceipt
         public DataSet GetReceipt(string sTableName)
         {
             DataSet ds = new DataSet();
@@ -38854,6 +38900,19 @@ namespace BusinessLayer
         //    return ds;
         //}
         #endregion
+
+        #region Customer Ceremonies Reminder
+        public DataSet GetCustomerCeremoniesReminder(string TableName)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select  distinct c.CustomerName,c.MobileNo,c.Email,ce.OnlineMaster as ceremonies,cast(s.DeliveryDate as date) as Date,'" + TableName + "' as Branch    from  tblOrder_" + TableName + " s inner join   tblCustomer c on c.CustomerID=s.CustomerID  inner join tblonlinemaster ce on ce.OnlineId=s.ceremonies where DATEADD(year, 1, CAST(deliverydate as date)) =DATEADD(DAY,7, cast(getdate() as date))   order by Date asc";
+
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+
+        }
+        #endregion
+
         #endregion 
     }
 
