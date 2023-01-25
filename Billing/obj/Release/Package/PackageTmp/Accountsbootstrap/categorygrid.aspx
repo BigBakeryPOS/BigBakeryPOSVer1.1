@@ -193,7 +193,7 @@
                           <div class="list-group">
                                 <asp:TextBox CssClass="form-control" ID="txtcategoryId" runat="server" Visible="false"></asp:TextBox>
                             
-                                <label>Category/Group Name</label>
+                                <label>Category/Group Name<asp:Label ID="lblstar" runat="server" Text="*" ForeColor="red"> </asp:Label></label>
                                 <asp:ListBox Visible="false"  runat="server" DataValueField="CategoryID"
                                     ID="listcategory" CssClass="form-control" AutoPostBack="true"></asp:ListBox>
                                 <asp:TextBox CssClass="form-control" ID="txtcategory" runat="server" placeholder="To Add New Category"
@@ -201,7 +201,7 @@
                                 <asp:RequiredFieldValidator runat="server" ID="txtcat" ControlToValidate="txtcategory"
                                     ValidationGroup="val1" ErrorMessage="Please enter your Category!" Style="color: Red" />
                             <br />
-                                <label>Category/Group Code</label>
+                                <label>Category/Group Code<asp:Label ID="Label1" runat="server" Text="*" ForeColor="red"> </asp:Label></label>
                                 <asp:TextBox CssClass="form-control" ID="txtcatcode" runat="server" placeholder="Enter Category Code"></asp:TextBox>
                                 <asp:RequiredFieldValidator runat="server" ID="rvcatcode" ControlToValidate="txtcatcode"
                                     ValidationGroup="val1" ErrorMessage="Please enter your Category!" Style="color: Red" />
@@ -209,7 +209,7 @@
                                 </label>
                             <br />
                                 <label>
-                                    Print Category/Group Name</label>
+                                    Print Category/Group Name<asp:Label ID="Label2" runat="server" Text="*" ForeColor="red"> </asp:Label></label>
                                 <asp:TextBox CssClass="form-control" ID="txtprintcat" runat="server" placeholder="To Add New Print Category"
                                     Style="text-transform: capitalize"></asp:TextBox>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtprintcat"
@@ -269,7 +269,7 @@
 
                                    <asp:TemplateField HeaderText="Branch" ItemStyle-Width="300px">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblBranch" Text='<%#Eval("BranchName") %>' runat="server"></asp:Label>
+                                            <asp:Label ID="lblBranch" Text='<%#Eval("Name") %>' runat="server"></asp:Label>
                                             <asp:HiddenField ID="hidBranchId" runat="server" Value='<%#Eval("BranchId") %>' />
                                         </ItemTemplate>
                                     </asp:TemplateField>

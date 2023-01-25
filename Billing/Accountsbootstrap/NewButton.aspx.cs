@@ -6164,23 +6164,13 @@ namespace Billing.Accountsbootstrap
 
                                 if (Isprint == "Y")
                                 {
-
-                                    if (PrintOption == "1")
+                                    if (lblprintlayout.Text == "2")
                                     {
-
-                                        yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
+                                        yourUrl = "twoinchprint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
                                     }
-
-                                    if (PrintOption == "2")
+                                    else
                                     {
-                                        yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
-                                    }
-                                    //  string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
-                                    //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
-                                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow1", "window.open('" + yourUrl + "');", true);
 
-                                    if (lblprintcount.Text == "2")
-                                    {
                                         if (PrintOption == "1")
                                         {
 
@@ -6193,7 +6183,24 @@ namespace Billing.Accountsbootstrap
                                         }
                                         //  string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
                                         //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
-                                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow2", "window.open('" + yourUrl + "');", true);
+                                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow1", "window.open('" + yourUrl + "');", true);
+
+                                        if (lblprintcount.Text == "2")
+                                        {
+                                            if (PrintOption == "1")
+                                            {
+
+                                                yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
+                                            }
+
+                                            if (PrintOption == "2")
+                                            {
+                                                yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
+                                            }
+                                            //  string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
+                                            //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
+                                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow2", "window.open('" + yourUrl + "');", true);
+                                        }
                                     }
 
 
@@ -6356,41 +6363,48 @@ namespace Billing.Accountsbootstrap
                             string yourUrl = "";
                             if (Isprint == "Y")
                             {
-
-                                if (PrintOption == "1")
+                                if (lblprintlayout.Text == "2")
                                 {
-
-                                    yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
+                                    yourUrl = "twoinchprint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
                                 }
-
-                                if (PrintOption == "2")
+                                else
                                 {
-                                    yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
-                                }
 
-
-                                //                            string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
-
-
-
-                                //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
-                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow1", "window.open('" + yourUrl + "');", true);
-
-                                if (lblprintcount.Text == "2")
-                                {
                                     if (PrintOption == "1")
                                     {
 
-                                        yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false" + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
+                                        yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
                                     }
 
                                     if (PrintOption == "2")
                                     {
-                                        yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false" + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
+                                        yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
                                     }
-                                    //  string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
+
+
+                                    //                            string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
+
+
+
                                     //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
-                                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow2", "window.open('" + yourUrl + "');", true);
+                                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow1", "window.open('" + yourUrl + "');", true);
+
+                                    if (lblprintcount.Text == "2")
+                                    {
+                                        if (PrintOption == "1")
+                                        {
+
+                                            yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false" + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
+                                        }
+
+                                        if (PrintOption == "2")
+                                        {
+                                            yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false" + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
+                                        }
+                                        //  string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
+                                        //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
+                                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow2", "window.open('" + yourUrl + "');", true);
+                                    }
                                 }
 
 
@@ -6508,44 +6522,50 @@ namespace Billing.Accountsbootstrap
 
                                 if (Isprint == "Y")
                                 {
-
-                                    if (PrintOption == "1")
+                                    if (lblprintlayout.Text == "2")
                                     {
-
-                                        yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
+                                        yourUrl = "twoinchprint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
                                     }
-
-                                    if (PrintOption == "2")
+                                    else
                                     {
-                                        yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
-                                    }
 
-
-                                    //string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
-
-
-
-                                    //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
-                                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow1", "window.open('" + yourUrl + "');", true);
-
-                                    if (lblprintcount.Text == "2")
-                                    {
                                         if (PrintOption == "1")
                                         {
 
-                                            yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false" + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
+                                            yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
                                         }
 
                                         if (PrintOption == "2")
                                         {
-                                            yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false" + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
+                                            yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
                                         }
-                                        //  string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
+
+
+                                        //string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
+
+
+
                                         //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
-                                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow2", "window.open('" + yourUrl + "');", true);
+                                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow1", "window.open('" + yourUrl + "');", true);
+
+                                        if (lblprintcount.Text == "2")
+                                        {
+                                            if (PrintOption == "1")
+                                            {
+
+                                                yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false" + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
+                                            }
+
+                                            if (PrintOption == "2")
+                                            {
+                                                yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false" + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
+                                            }
+                                            //  string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
+                                            //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
+                                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow2", "window.open('" + yourUrl + "');", true);
+                                        }
+
                                     }
-
-
                                 }
 
                                 //DataSet ds = objbs.PrintingSalesLiveKitchen(OrderBill, sTableName, "Sales");
@@ -6801,41 +6821,48 @@ namespace Billing.Accountsbootstrap
                                 string yourUrl = "";
                                 if (Isprint == "Y")
                                 {
-
-                                    if (PrintOption == "1")
+                                    if (lblprintlayout.Text == "2")
                                     {
-
-                                        yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked;
+                                        yourUrl = "twoinchprint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
                                     }
-
-                                    if (PrintOption == "2")
+                                    else
                                     {
-                                        yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked;
-                                    }
 
-
-                                    //string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
-
-
-
-                                    //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
-                                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow1", "window.open('" + yourUrl + "');", true);
-
-                                    if (lblprintcount.Text == "2")
-                                    {
                                         if (PrintOption == "1")
                                         {
 
-                                            yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false";
+                                            yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked;
                                         }
 
                                         if (PrintOption == "2")
                                         {
-                                            yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false";
+                                            yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked;
                                         }
-                                        //  string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
+
+
+                                        //string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
+
+
+
                                         //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
-                                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow2", "window.open('" + yourUrl + "');", true);
+                                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow1", "window.open('" + yourUrl + "');", true);
+
+                                        if (lblprintcount.Text == "2")
+                                        {
+                                            if (PrintOption == "1")
+                                            {
+
+                                                yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false";
+                                            }
+
+                                            if (PrintOption == "2")
+                                            {
+                                                yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false";
+                                            }
+                                            //  string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
+                                            //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
+                                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow2", "window.open('" + yourUrl + "');", true);
+                                        }
                                     }
 
                                 }
@@ -7045,41 +7072,48 @@ namespace Billing.Accountsbootstrap
                             string yourUrl = "";
                             if (Isprint == "Y")
                             {
-
-                                if (PrintOption == "1")
+                                if (lblprintlayout.Text == "2")
                                 {
-
-                                    yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked;
+                                    yourUrl = "twoinchprint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
                                 }
-
-                                if (PrintOption == "2")
+                                else
                                 {
-                                    yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked;
-                                }
 
-
-                                // string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
-
-
-
-                                //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
-                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow1", "window.open('" + yourUrl + "');", true);
-
-                                if (lblprintcount.Text == "2")
-                                {
                                     if (PrintOption == "1")
                                     {
 
-                                        yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false";
+                                        yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked;
                                     }
 
                                     if (PrintOption == "2")
                                     {
-                                        yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false";
+                                        yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked;
                                     }
-                                    //  string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
+
+
+                                    // string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
+
+
+
                                     //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
-                                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow2", "window.open('" + yourUrl + "');", true);
+                                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow1", "window.open('" + yourUrl + "');", true);
+
+                                    if (lblprintcount.Text == "2")
+                                    {
+                                        if (PrintOption == "1")
+                                        {
+
+                                            yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false";
+                                        }
+
+                                        if (PrintOption == "2")
+                                        {
+                                            yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false";
+                                        }
+                                        //  string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
+                                        //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
+                                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow2", "window.open('" + yourUrl + "');", true);
+                                    }
                                 }
 
                             }
@@ -7254,42 +7288,49 @@ namespace Billing.Accountsbootstrap
                                 string yourUrl = "";
                                 if (Isprint == "Y")
                                 {
-
-                                    if (PrintOption == "1")
+                                    if (lblprintlayout.Text == "2")
                                     {
-
-                                        yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked;
+                                        yourUrl = "twoinchprint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
                                     }
-
-                                    if (PrintOption == "2")
+                                    else
                                     {
-                                        yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked;
-                                    }
 
-
-
-                                    // string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
-
-
-
-                                    //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
-                                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow1", "window.open('" + yourUrl + "');", true);
-
-                                    if (lblprintcount.Text == "2")
-                                    {
                                         if (PrintOption == "1")
                                         {
 
-                                            yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false";
+                                            yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked;
                                         }
 
                                         if (PrintOption == "2")
                                         {
-                                            yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false";
+                                            yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot.Checked;
                                         }
-                                        //  string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
+
+
+
+                                        // string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
+
+
+
                                         //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
-                                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow2", "window.open('" + yourUrl + "');", true);
+                                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow1", "window.open('" + yourUrl + "');", true);
+
+                                        if (lblprintcount.Text == "2")
+                                        {
+                                            if (PrintOption == "1")
+                                            {
+
+                                                yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false";
+                                            }
+
+                                            if (PrintOption == "2")
+                                            {
+                                                yourUrl = "SalesPrintType2.aspx?Mode=Sales&Type=" + drpsalestype.SelectedValue + "&iSalesID=" + OrderBill + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&state=" + Request.Cookies["userInfo"]["state"].ToString() + "&statecode=" + Request.Cookies["userInfo"]["statecode"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=false";
+                                            }
+                                            //  string yourUrl = "SalesPrint.aspx?Mode=Sales&iSalesID=" + OrderBill;
+                                            //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
+                                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow2", "window.open('" + yourUrl + "');", true);
+                                        }
                                     }
 
                                 }

@@ -197,8 +197,17 @@ namespace Billing.Accountsbootstrap
                         txtprintcat.Text = ds.Tables[0].Rows[0]["Printcategory"].ToString();
                         drpcattype.SelectedValue = ds.Tables[0].Rows[0]["CatType"].ToString();
 
-                        lblFile_Path.Text = (ds.Tables[0].Rows[0]["ImagePath"].ToString()).Remove(0,2);
-                        img_Photo.ImageUrl = (ds.Tables[0].Rows[0]["ImagePath"].ToString());
+                        if (ds.Tables[0].Rows[0]["ImagePath"].ToString() == "")
+                        {
+                            lblFile_Path.Text = (ds.Tables[0].Rows[0]["ImagePath"].ToString());
+                            img_Photo.ImageUrl = (ds.Tables[0].Rows[0]["ImagePath"].ToString());
+                        }
+                        else
+                        {
+
+                            lblFile_Path.Text = (ds.Tables[0].Rows[0]["ImagePath"].ToString()).Remove(0, 2);
+                            img_Photo.ImageUrl = (ds.Tables[0].Rows[0]["ImagePath"].ToString());
+                        }
 
                         drpcattype.Enabled = false;
 
@@ -393,7 +402,7 @@ namespace Billing.Accountsbootstrap
         protected void btnSave_Click(object sender, EventArgs e)
         {
             if (lblFile_Path.Text == "")
-                lblFile_Path.Text = "Files/BlackForrest.png";
+                lblFile_Path.Text = "Files/image1.jpg";
 
             string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority +
                                 Request.ApplicationPath.TrimEnd('/') + "/";

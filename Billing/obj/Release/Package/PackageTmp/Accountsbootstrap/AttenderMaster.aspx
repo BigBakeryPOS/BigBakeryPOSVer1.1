@@ -183,11 +183,11 @@
                                 ValidationGroup="val1" ErrorMessage="Please enter your Attender Name!" Style="color: Red" />
                             <br />
                             <label>Attender Type</label>
-                                <asp:DropDownList ID="drpattendertype" runat="server"  CssClass="form-control" >
+                                <asp:DropDownList ID="drpattendertype" OnSelectedIndexChanged="drpattendertype_SelectedIndexChanged" AutoPostBack="true" runat="server"  CssClass="form-control" >
                                 </asp:DropDownList>
                             <br />
-                            <label>Attender PassWord</label>
-                                <asp:TextBox ID="txtpwd" runat="server" CssClass="form-control"  >0</asp:TextBox>
+                           <asp:Label ID="lblattender" runat="server" Text="Attender Password" Visible="false"></asp:Label>
+                                <asp:TextBox ID="txtpwd" runat="server" CssClass="form-control" Visible="false"  >0</asp:TextBox>
                                 <div runat="server" visible="false" class="form-group">
                             <br />
                             <label>Disc %</label>
@@ -198,8 +198,9 @@
                         <asp:Label ID="lblbranch" runat="server"></asp:Label>
                           <%-- <asp:DropDownList ID="drpbranch" runat="server"  CssClass="form-control" ></asp:DropDownList>--%>
                            <br />
-                        <label>Discount Selection</label>
-                        <asp:CheckBoxList ID="chkdisc" runat="server"  RepeatColumns="4" Width="300px"></asp:CheckBoxList>
+                        <%--<label>Discount Selection</label>--%>
+                        <asp:Label ID="lblchk" runat="server" Visible="false" Text="Discount Seletion"></asp:Label>
+                        <asp:CheckBoxList ID="chkdisc" runat="server" Visible="false"  RepeatColumns="4" Width="300px"></asp:CheckBoxList>
                     </div>
                         <asp:Button ID="btnSave" runat="server" class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="btnSave_Click"
                             ValidationGroup="val1" AccessKey="s" Width="150px" />

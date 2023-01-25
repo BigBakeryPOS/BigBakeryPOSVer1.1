@@ -8819,6 +8819,57 @@ namespace BusinessLayer
             return dmerge;
         }
 
+
+
+        public DataSet PrintingSalesNew_twoinchprint(int ID, string sTable, string Mode, string salestypeid)
+        {
+            DataSet ds = new DataSet();
+            DataSet dmerge = new DataSet();
+
+            string sqry = "";
+           
+            {
+                //sqry = "select d.printitem as printitem,b.cattype,cast(0 as int) as ComboId,d.printitem+' / '+d.hsncode as printite,a.isnormal,a.SalesOrder,f.paymenttype,d.gst/2 as cg, d.gst/2 as sg,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate, " +
+                //    " a.NetAmount,a.Advance,a.Total,a.Discount,b.UnitPrice,c.category,d.Definition,SUM(b.Amount) as Amount,SUM(b.Quantity) as Quantity, " +
+                //    " a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,a.NetAmount,d.mrp,(d.mrp * sum(b.quantity)) as amo,cast(d.gst as nvarchar)+' % '  as gst from tblsales_" + sTable + "  a,tblTransSales_" + sTable + " b, " +
+                //    " tblcategory c,tblCategoryUser d,tblCustomer e,tblsalestype f where a.salesid=b.salesuniqueid and  f.salestypeid=a.salestype and  a.BillNo=b.SalesID " +
+                //    " and c.categoryid=d.CategoryID and a.isnormal=b.isnormal and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and " +
+                //    " a.CustomerID=e.CustomerID and a.BillNo=" + ID + " and (a.salestype='" + salestypeid + "') and b.cattype='N'  " +
+                //    " group by b.cattype,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount,f.paymenttype,a.isnormal,a.SalesOrder,d.printitem,d.hsncode,d.mrp ";
+
+                if (salestypeid == " 3" || salestypeid == " 4" || salestypeid == "3" || salestypeid == "4")
+                {
+                    sqry = "select d.printitem as Itemname,SUM(b.Quantity) as Qty " +
+                      //" a.NetAmount,a.Advance,a.Total,a.Discount,b.UnitPrice,c.category,d.Definition,SUM(b.Amount) as Amount, " +
+                      "  from tblsales_" + sTable + "  a,tblTransSales_" + sTable + " b, " +
+                      " tblcategory c,tblCategoryUser d,tblCustomer e,tblsalestype f where a.salesid=b.salesuniqueid and  f.salestypeid=a.salestype and  a.BillNo=b.SalesID " +
+                      " and c.categoryid=d.CategoryID and a.isnormal=b.isnormal and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and " +
+                      " a.CustomerID=e.CustomerID and a.BillNo=" + ID + " and (a.salestype='" + salestypeid + "') and b.cattype='N'  " +
+                      " group by b.cattype,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount,f.paymenttype,a.isnormal,a.SalesOrder,d.printitem,d.hsncode,d.mrp ";
+
+                    ds = dbObj.InlineExecuteDataSet(sqry);
+                }
+                else
+                {
+
+                    sqry = "select d.printitem as Itemname,SUM(b.Quantity) as Qty,d.mrp as Rate,(d.mrp * sum(b.quantity)) as Amount " +
+                       //" a.NetAmount,a.Advance,a.Total,a.Discount,b.UnitPrice,c.category,d.Definition,SUM(b.Amount) as Amount, " +
+                       "  from tblsales_" + sTable + "  a,tblTransSales_" + sTable + " b, " +
+                       " tblcategory c,tblCategoryUser d,tblCustomer e,tblsalestype f where a.salesid=b.salesuniqueid and  f.salestypeid=a.salestype and  a.BillNo=b.SalesID " +
+                       " and c.categoryid=d.CategoryID and a.isnormal=b.isnormal and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and " +
+                       " a.CustomerID=e.CustomerID and a.BillNo=" + ID + " and (a.salestype='" + salestypeid + "') and b.cattype='N'  " +
+                       " group by b.cattype,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount,f.paymenttype,a.isnormal,a.SalesOrder,d.printitem,d.hsncode,d.mrp ";
+
+                    ds = dbObj.InlineExecuteDataSet(sqry);
+                }
+
+                dmerge.Merge(ds);
+            }
+
+            //ds = dbObj.InlineExecuteDataSet(sqry);
+            return dmerge;
+        }
+
         public DataSet gettaxdetailedgrid(string iSalesID, string sSalesTable, string salestypeid)
         {
             DataSet ds = new DataSet();
@@ -38419,7 +38470,7 @@ namespace BusinessLayer
             else
             {
                 //sqry = "select (cast(d.mrp as float) * SUM(b.Quantity)) as tott,  f.Name,d.mrp,a.biller,d.gst/2 as cg, d.gst/2 as sg,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,a.Discount,b.UnitPrice,c.category,d.Definition,SUM(b.Amount) as Amount,SUM(b.Quantity) as Quantity,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,a.NetAmount  from tblsales_" + sTable + "  a,tblTransSales_" + sTable + " b,tblcategory c,tblCategoryUser d,tblCustomer e,tblworkers f where f.EmpID=a.Billerid and a.BillNo=b.SalesID and c.categoryid=d.CategoryID and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and a.CustomerID=e.CustomerID and a.BillNo=" + ID + " group by f.name,d.mrp,a.biller,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount  ";
-                sqry = "select (cast(d.mrp as float) * SUM(b.Quantity)) as tott,  a.biller as Name,d.mrp,a.biller,d.gst/2 as cg, d.gst/2 as sg,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,a.Discount,b.UnitPrice,c.category,d.Definition,SUM(b.Amount) as Amount,SUM(b.Quantity) as Quantity,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,a.NetAmount  from tblsales_" + sTable + "  a,tblTransSales_" + sTable + " b,tblcategory c,tblCategoryUser d,tblCustomer e where  a.BillNo=b.SalesID and c.categoryid=d.CategoryID and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and a.CustomerID=e.CustomerID and a.BillNo=" + ID + " group by d.mrp,a.biller,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount  ";
+                sqry = "select (cast(d.mrp as float) * SUM(b.Quantity)) as tott,  a.biller as Name,d.mrp,a.biller,d.gst/2 as cg, d.gst/2 as sg,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,a.Discount,b.UnitPrice,c.category,d.Definition,SUM(b.Amount) as Amount,SUM(b.Quantity) as Quantity,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,a.NetAmount  from tblsales_" + sTable + "  a,tblTransSales_" + sTable + " b,tblcategory c,tblCategoryUser d,tblCustomer e where  a.BillNo=b.SalesID and a.salesid=b.salesuniqueid  and c.categoryid=d.CategoryID and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and a.CustomerID=e.CustomerID and a.BillNo=" + ID + " and (a.salestype='"+ Mode + "') group by d.mrp,a.biller,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount  ";
             }
 
             ds = dbObj.InlineExecuteDataSet(sqry);

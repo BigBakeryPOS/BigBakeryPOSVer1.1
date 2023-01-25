@@ -81,6 +81,7 @@
                         <asp:Label ID="lblattednercheck" Visible="false" runat="server" Text="N"></asp:Label>
                         <asp:CheckBox ID="chkkot" runat="server" Visible="false" Checked="false" CssClass="form-control"></asp:CheckBox>
                         <asp:Label ID="lblprintcount" runat="server" Text="2" Visible="false"></asp:Label>
+                        <asp:Label ID="lblprintlayout" runat="server" Text="2" Visible="false" ></asp:Label>
                         <asp:ScriptManager ID="ScriptManager1" runat="server">
                         </asp:ScriptManager>
 

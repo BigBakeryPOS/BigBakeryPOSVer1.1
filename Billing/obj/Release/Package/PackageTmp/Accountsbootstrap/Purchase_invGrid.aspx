@@ -222,14 +222,14 @@
                                             NextPageText="Next" PreviousPageText="Previous" />--%>
                                         <Columns>
                                             <asp:BoundField HeaderText="LedgerID" DataField="Purchaseid" Visible="false" />
-                                            <asp:BoundField HeaderText="DC No" DataField="dcNo" />
+                                            <asp:BoundField HeaderText="Invoice No" DataField="dcNo" />
                                             <asp:BoundField HeaderText="DC Date" DataField="BillDate" DataFormatString="{0:dd/MM/yyyy}" />
-                                            <asp:BoundField HeaderText="BillNo" DataField="BillNo" />
+                                            <asp:BoundField HeaderText="DC No" DataField="BillNo" />
                                             <asp:BoundField HeaderText="Entry Date" DataField="EntryDate" DataFormatString="{0:dd/MM/yyyy}" />
                                             <asp:BoundField HeaderText="SupplierName" DataField="CustomerName" HeaderStyle-HorizontalAlign="Center" />
                                             <asp:BoundField HeaderText="Total" DataField="Total" DataFormatString='{0:f}' />
                                             <asp:BoundField HeaderText="Payment" DataField="Paymentmode" />
-                                            <asp:TemplateField HeaderText="Print"  Visible="true">
+                                            <asp:TemplateField HeaderText="Print"  Visible="false">
                                                 <ItemTemplate>
                                                     <asp:LinkButton ID="btnPrint" runat="server" CommandArgument='<%#Eval("purchaseID") %>'
                                                         CommandName="Print">

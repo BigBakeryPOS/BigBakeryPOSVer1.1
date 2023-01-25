@@ -91,14 +91,14 @@ namespace Billing
                         addbutton.Visible = false;
                     }
 
-                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
-                    {
-                        gvsales.Columns[10].Visible = true;
-                    }
-                    else
-                    {
-                        gvsales.Columns[10].Visible = false;
-                    }
+                    //if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    //{
+                    //    gvsales.Columns[10].Visible = true;
+                    //}
+                    //else
+                    //{
+                    //    gvsales.Columns[10].Visible = false;
+                    //}
 
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
                     {
@@ -263,7 +263,8 @@ namespace Billing
             {
                 if (e.CommandArgument.ToString() != "")
                 {
-                    Response.Redirect("cashsales.aspx?iSalesID=" + e.CommandArgument.ToString());
+                    // Response.Redirect("cashsales.aspx?iSalesID=" + e.CommandArgument.ToString());
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Not Allow To Edit');", true);
                 }
             }
             else if (e.CommandName == "cancel")
