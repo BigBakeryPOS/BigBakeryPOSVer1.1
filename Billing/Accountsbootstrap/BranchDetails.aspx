@@ -169,7 +169,8 @@
                                                     <label>
                                                         Currency
                                                     </label>
-                                                    <asp:TextBox CssClass="form-control" ID="txtcurrency" runat="server"></asp:TextBox>
+                                                    <asp:DropDownList ID="drpcurrency" runat="server" CssClass="form-control" ></asp:DropDownList>
+                                                    <asp:TextBox Visible="false" CssClass="form-control" ID="txtcurrency" runat="server"></asp:TextBox>
                                                     <asp:Label ID="lblloginid" runat="server" Visible="false"></asp:Label>
                                                 </div>
                                             </div>
@@ -411,6 +412,13 @@
                                                     <asp:ListItem Text="Yes" Value="Y"></asp:ListItem>
                                                     <asp:ListItem Text="No" Value="N"></asp:ListItem>
                                                 </asp:DropDownList>
+                                                 <br />
+                                                <label>
+                                                    Item Transfer With Tray Wise to Branch</label>
+                                                <asp:DropDownList ID="drpitemmergeornot" runat="server" CssClass="form-control">
+                                                    <asp:ListItem Text="Yes" Value="Y"></asp:ListItem>
+                                                    <asp:ListItem Text="No" Value="N"></asp:ListItem>
+                                                </asp:DropDownList>
                                             </div>
                                         </div>
                                     </div>
@@ -455,7 +463,7 @@
                                            Production Stock Options
                                         </label>
                                         <br />
-                                        <asp:RadioButtonList ID="rdlproductionstocktype" CssClass="rbl" runat="server" RepeatColumns="2">
+                                        <asp:RadioButtonList ID="rdlproductionstocktype" CssClass="rbl" runat="server" RepeatColumns="2" OnSelectedIndexChanged="productionstock_changed" AutoPostBack="true" >
                                             <asp:ListItem Text="With Stock" Value="1" Selected="True"></asp:ListItem>
                                             <asp:ListItem Text="With OutStock" Value="2"></asp:ListItem>
                                         </asp:RadioButtonList>

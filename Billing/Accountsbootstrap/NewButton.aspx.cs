@@ -160,7 +160,7 @@ namespace Billing.Accountsbootstrap
 
             if (!IsPostBack)
             {
-                lblcurrency.Text = currency;
+                //lblcurrency.Text = currency;
                 ViewState["SortExpr"] = Sort_Direction;
 
                 DataSet dshold = objbs.TempCustomerSalesGird(Convert.ToInt32(Request.Cookies["userInfo"]["UserID"].ToString()), "tblTempSales_" + sTableName);
@@ -187,6 +187,46 @@ namespace Billing.Accountsbootstrap
                     divdrop.Visible = true;
                     divscript.Visible = false;
                 }
+
+                // Load Currency 
+
+                //DataSet dsdefaultcurrency = objbs.LoadCurrency();
+                //if (dsdefaultcurrency.Tables[0].Rows.Count > 0)
+                //{
+                //    drpexchangecurrency.DataSource = dsdefaultcurrency.Tables[0];
+                //    drpexchangecurrency.DataTextField = "curname";
+                //    drpexchangecurrency.DataValueField = "CurrencyId";
+                //    drpexchangecurrency.DataBind();
+
+                //    DataSet getexchngevalue = objbs.getiCurrencyvalues(drpexchangecurrency.SelectedValue);
+                //    if (getexchngevalue.Tables[0].Rows.Count > 0)
+                //    {
+                //        lblexchnagecurrency.Text = getexchngevalue.Tables[0].Rows[0]["value"].ToString();
+                //        lblexcurrency.Text = getexchngevalue.Tables[0].Rows[0]["currencyname"].ToString();
+                //    }
+                //    else
+                //    {
+                //        lblexchnagecurrency.Text = "1";
+                //        lblexcurrency.Text = "NIL";
+                //    }
+                //}
+
+                //if(lblcurrency.Text == lblexcurrency.Text)
+                //{
+                //    lbldisplay.Visible = true;
+                //    lblcurrency.Visible = true;
+
+                //    lblexdisplay.Visible = false;
+                //    lblexcurrency.Visible = false;
+                //}
+                //else
+                //{
+                //    lbldisplay.Visible = false;
+                //    lblcurrency.Visible = false;
+
+                //    lblexdisplay.Visible = true;
+                //    lblexcurrency.Visible = true;
+                //}
 
 
 
@@ -288,6 +328,14 @@ namespace Billing.Accountsbootstrap
                     drpitemsearch.DataValueField = "valuee";
                     drpitemsearch.DataBind();
                     drpitemsearch.Items.Insert(0, "Select Item");
+
+                    //myDropDownlistID.DataSource = getallitembind.Tables[0];
+                    //myDropDownlistID.DataTextField = "Definition";
+                    //myDropDownlistID.DataValueField = "valuee";
+                    //myDropDownlistID.DataBind();
+                    //myDropDownlistID.Items.Insert(0, "Select Item");
+
+                    
 
                 }
 
@@ -485,8 +533,37 @@ namespace Billing.Accountsbootstrap
                     //}
                 }
             }
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$(document).ready(function() { $('#drpitemsearch').select2(); });", true);
+          //  ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$('.chzn-select').chosen(); $('.chzn-select-deselect').chosen({ allow_single_deselect: true });", true);
+        }
+        protected void Default_currency_click(object sender, EventArgs e)
+        {
+            if (lbldisplay.InnerText == "")
+                lbldisplay.InnerText = "0";
 
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$('.chzn-select').chosen(); $('.chzn-select-deselect').chosen({ allow_single_deselect: true });", true);
+            txtdiscou_TextChanged(sender, e);
+
+            //DataSet getexchngevalue = objbs.getiCurrencyvalues(drpexchangecurrency.SelectedValue);
+            //if (getexchngevalue.Tables[0].Rows.Count > 0)
+            //{
+            //    lblexchnagecurrency.Text = getexchngevalue.Tables[0].Rows[0]["value"].ToString();
+
+            //    lblcurrency.Text = getexchngevalue.Tables[0].Rows[0]["currencyname"].ToString();
+
+            //    double exrate = Convert.ToDouble(lblexchnagecurrency.Text);
+            //    double oriamount = Convert.ToDouble(lbldisplay.InnerText);
+
+            //    double tot = oriamount * exrate;
+
+            //    lbldisplay.InnerText = tot.ToString("" + ratesetting + "");
+
+            //    //lbldisplay
+            //    //lblcurrency
+            //}
+            //else
+            //{
+            //    lblexchnagecurrency.Text = "1";
+            //}
         }
 
 
@@ -841,6 +918,45 @@ namespace Billing.Accountsbootstrap
 
             lblGrandTotal.Text = (sstortal - dis).ToString("" + ratesetting + "");
             lbldisplay.InnerText = (sstortal - dis).ToString("" + ratesetting + "");
+
+            //DataSet getexchngevalue = objbs.getiCurrencyvalues(drpexchangecurrency.SelectedValue);
+            //if (getexchngevalue.Tables[0].Rows.Count > 0)
+            //{
+            //    lblexchnagecurrency.Text = getexchngevalue.Tables[0].Rows[0]["value"].ToString();
+
+            //    lblexcurrency.Text = getexchngevalue.Tables[0].Rows[0]["currencyname"].ToString();
+
+            //    double exrate = Convert.ToDouble(lblexchnagecurrency.Text);
+            //    double oriamount = Convert.ToDouble(lbldisplay.InnerText);
+
+            //    double tot = oriamount * exrate;
+
+            //    lblexdisplay.InnerText = tot.ToString("" + ratesetting + "");
+
+            //    //lbldisplay
+            //    //lblcurrency
+
+            //    //if (lblcurrency.Text == lblexcurrency.Text)
+            //    //{
+            //    //    lbldisplay.Visible = true;
+            //    //    lblcurrency.Visible = true;
+
+            //    //    lblexdisplay.Visible = false;
+            //    //    lblexcurrency.Visible = false;
+            //    //}
+            //    //else
+            //    //{
+            //    //    lbldisplay.Visible = false;
+            //    //    lblcurrency.Visible = false;
+
+            //    //    lblexdisplay.Visible = true;
+            //    //    lblexcurrency.Visible = true;
+            //    //}
+            //}
+            //else
+            //{
+            //    lblexchnagecurrency.Text = "1";
+            //}
         }
 
         protected void Qty_chnaged(object sender, EventArgs e)
@@ -901,7 +1017,7 @@ namespace Billing.Accountsbootstrap
                         // dCat = objbs.GetStockDetails(Convert.ToInt32(btn.CommandArgument), Convert.ToInt32(lblUserID.Text), sTableName);
                         if (cattype == "N")
                         {
-                            dCat = objbs.GetStockDetails(Convert.ToInt32(categoryuserid), Convert.ToInt32(lblUserID.Text), sTableName, StockOption);
+                            dCat = objbs.GetStockDetails_Ratetype(Convert.ToInt32(categoryuserid), Convert.ToInt32(lblUserID.Text), sTableName, StockOption,lblratetype.Text,lblmrptype.Text);
                         }
                         else if (cattype == "C")
                         {
@@ -922,7 +1038,7 @@ namespace Billing.Accountsbootstrap
                                 dAvlQty = Convert.ToDecimal(dCat.Tables[0].Rows[i]["Available_QTY"].ToString());
                                 GST = Convert.ToDecimal(dCat.Tables[0].Rows[i]["GST"].ToString());
                                 Shwqty = Convert.ToDecimal(dCat.Tables[0].Rows[i]["QTY"].ToString());
-                                mrpamnt = Convert.ToDecimal(dCat.Tables[0].Rows[i]["Rate1"]);
+                                mrpamnt = Convert.ToDecimal(dCat.Tables[0].Rows[i]["mrp"]);
                                 DateTime expDate = Convert.ToDateTime(dCat.Tables[0].Rows[0]["Expirydate"].ToString());
                                 if (lblisinclusiverate.Text == "Y")
                                 {
@@ -997,7 +1113,7 @@ namespace Billing.Accountsbootstrap
                                         }
                                         dr["Amount"] = amt.ToString("" + ratesetting + "");
                                         dr["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
-                                        dr["mrp"] = Convert.ToDouble(dCat.Tables[0].Rows[i]["Rate1"]).ToString("" + ratesetting + "");
+                                        dr["mrp"] = Convert.ToDouble(dCat.Tables[0].Rows[i]["mrp"]).ToString("" + ratesetting + "");
                                         //  dr["Itemid"] = dCat.Tables[0].Rows[i]["Itemid"].ToString();
                                         // dr["RecQty"] = Reqty.ToString();
                                         dr["Orirate"] = dRate.ToString();
@@ -1097,7 +1213,7 @@ namespace Billing.Accountsbootstrap
                                             dr["ShwQty"] = Shwqty.ToString("" + qtysetting + "");
                                             dr["Rate"] = Convert.ToDecimal(dRate).ToString("" + ratesetting + "");
                                             dr["Tax"] = Convert.ToDecimal(GST);
-                                            dr["mrp"] = Convert.ToDouble(dCat.Tables[0].Rows[i]["Rate1"]).ToString("" + ratesetting + "");
+                                            dr["mrp"] = Convert.ToDouble(dCat.Tables[0].Rows[i]["mrp"]).ToString("" + ratesetting + "");
                                             dr["cattype"] = cattype;
                                             dr["combo"] = comboo;
                                             dr["Cqty"] = Shwqty.ToString("" + qtysetting + "");
@@ -1159,8 +1275,12 @@ namespace Billing.Accountsbootstrap
 
                 }
                 txtmanualslno.Focus();
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$(document).ready(function() { $('#drpitemsearch').select2(); });", true);
 
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$('.chzn-select').chosen(); $('.chzn-select-deselect').chosen({ allow_single_deselect: true });", true);
+              //  ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$('.chzn-select').chosen(); $('.chzn-select-deselect').chosen({ allow_single_deselect: true });", true);
+
+              //  ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$(document).ready(function() { $('#drpitemsearch').select2(); }); ", true);
+
                 txtmanualqty.Text = "";
                 DataSet getallitembind = objbs.GetNewSelectDistinctItems("N", Convert.ToInt32(lblUserID.Text), sTableName, StockOption);
                 if (getallitembind.Tables[0].Rows.Count > 0)
@@ -1174,6 +1294,7 @@ namespace Billing.Accountsbootstrap
                 }
 
                 txtbrcode.Text = "";
+              //  drpitemsearch.Focus();
 
                 #endregion
             }
@@ -1244,7 +1365,7 @@ namespace Billing.Accountsbootstrap
                         // dCat = objbs.GetStockDetails(Convert.ToInt32(btn.CommandArgument), Convert.ToInt32(lblUserID.Text), sTableName);
                         // if (cattype == "N")
                         {
-                            dCat = objbs.GetStockDetails(Convert.ToInt32(categoryuserid), Convert.ToInt32(lblUserID.Text), sTableName, StockOption);
+                            dCat = objbs.GetStockDetails_Ratetype(Convert.ToInt32(categoryuserid), Convert.ToInt32(lblUserID.Text), sTableName, StockOption, lblratetype.Text, lblmrptype.Text);
                         }
                         //else if (cattype == "C")
                         //{
@@ -1264,7 +1385,7 @@ namespace Billing.Accountsbootstrap
                                 stockID = Convert.ToInt32(dCat.Tables[0].Rows[i]["CategoryUserid"].ToString());
                                 dAvlQty = Convert.ToDecimal(dCat.Tables[0].Rows[i]["Available_QTY"].ToString());
                                 GST = Convert.ToDecimal(dCat.Tables[0].Rows[i]["GST"].ToString());
-                                mrpamnt = Convert.ToDecimal(dCat.Tables[0].Rows[i]["Rate1"]);
+                                mrpamnt = Convert.ToDecimal(dCat.Tables[0].Rows[i]["mrp"]);
                                 Shwqty = Convert.ToDecimal(dCat.Tables[0].Rows[i]["QTY"].ToString());
                                 DateTime expDate = Convert.ToDateTime(dCat.Tables[0].Rows[0]["Expirydate"].ToString());
                                 if (lblisinclusiverate.Text == "Y")
@@ -1332,7 +1453,7 @@ namespace Billing.Accountsbootstrap
                                         dr["Qty"] = Convert.ToDecimal(Qty).ToString();//Qty.ToString("0");
                                         dr["Rate"] = Convert.ToDecimal(DRATE).ToString("" + ratesetting + "");
                                         dr["Tax"] = Convert.ToDecimal(0);
-                                        dr["mrp"] = Convert.ToDouble(dCat.Tables[0].Rows[i]["Rate1"]).ToString("" + ratesetting + "");
+                                        dr["mrp"] = Convert.ToDouble(dCat.Tables[0].Rows[i]["mrp"]).ToString("" + ratesetting + "");
                                         //decimal amt = Convert.ToDecimal(dr["qty"].ToString()) * Convert.ToDecimal(dRate);
 
                                         {
@@ -1428,7 +1549,7 @@ namespace Billing.Accountsbootstrap
                                             dr["ShwQty"] = Shwqty.ToString("" + qtysetting + "");
                                             dr["Rate"] = Convert.ToDecimal(dRate).ToString("" + ratesetting + "");
                                             dr["Tax"] = Convert.ToDecimal(GST);
-                                            dr["mrp"] = Convert.ToDecimal(dCat.Tables[0].Rows[i]["Rate1"]).ToString("" + ratesetting + "");
+                                            dr["mrp"] = Convert.ToDecimal(dCat.Tables[0].Rows[i]["mrp"]).ToString("" + ratesetting + "");
                                             dr["cattype"] = cattype;
                                             dr["combo"] = comboo;
                                             dr["Cqty"] = Shwqty.ToString("" + qtysetting + "");
@@ -1492,8 +1613,8 @@ namespace Billing.Accountsbootstrap
 
                 }
                 //txtmanualslno.Focus();
-
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$('.chzn-select').chosen(); $('.chzn-select-deselect').chosen({ allow_single_deselect: true });", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$(document).ready(function() { $('#drpitemsearch').select2(); });", true);
+              //  ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$('.chzn-select').chosen(); $('.chzn-select-deselect').chosen({ allow_single_deselect: true });", true);
                 txtmanualqty.Text = "";
                 DataSet getallitembind = objbs.GetNewSelectDistinctItems("N", Convert.ToInt32(lblUserID.Text), sTableName, StockOption);
                 if (getallitembind.Tables[0].Rows.Count > 0)
@@ -1776,7 +1897,7 @@ namespace Billing.Accountsbootstrap
                 String cattype = dcatchk.Tables[0].Rows[0]["cattype"].ToString();
 
 
-                DataSet dCat = objbs.SelectDistinctItems(Convert.ToInt32(btn.CommandArgument), Convert.ToInt32(lblUserID.Text), sTableName, cattype, StockOption);
+                DataSet dCat = objbs.SelectDistinctItems(Convert.ToInt32(btn.CommandArgument), Convert.ToInt32(lblUserID.Text), sTableName, cattype, StockOption,lblmrptype.Text);
                 Session["SubID"] = Convert.ToInt32(btn.CommandArgument);
                 int icount = dCat.Tables[0].Rows.Count;
 
@@ -1821,7 +1942,7 @@ namespace Billing.Accountsbootstrap
                     //string sDate1 = Date1.ToString("dd/MM/yy");
 
                     dr1 = dt1.NewRow();
-                    dr1["Definition"] = dCat.Tables[0].Rows[i]["Printitem"].ToString() + Environment.NewLine + " (" + sTock + ")" + " - " + Convert.ToDouble(dCat.Tables[0].Rows[i]["mrp"]).ToString("" + ratesetting + "");
+                    dr1["Definition"] = dCat.Tables[0].Rows[i]["Printitem"].ToString() + Environment.NewLine + " (" + sTock + ")" + " - " + Convert.ToDouble(dCat.Tables[0].Rows[i]["raate"]).ToString("" + ratesetting + "");
                     dr1["CategoryUserID"] = dCat.Tables[0].Rows[i]["StockID"].ToString();
                     dr1["Cattype"] = cattype;
                     btn.ID = dCat.Tables[0].Rows[i]["StockID"].ToString();
@@ -1841,7 +1962,7 @@ namespace Billing.Accountsbootstrap
                         // string sDate2 = Date2.ToString("dd/MM/yy");
 
                         dr2 = dt2.NewRow();
-                        dr2["Definition"] = dCat.Tables[0].Rows[i]["Printitem"].ToString() + Environment.NewLine + " (" + sTock1 + ")" + " - " + Convert.ToDouble(dCat.Tables[0].Rows[i]["mrp"]).ToString("" + ratesetting + "");
+                        dr2["Definition"] = dCat.Tables[0].Rows[i]["Printitem"].ToString() + Environment.NewLine + " (" + sTock1 + ")" + " - " + Convert.ToDouble(dCat.Tables[0].Rows[i]["raate"]).ToString("" + ratesetting + "");
                         dr2["CategoryUserID"] = dCat.Tables[0].Rows[i]["StockID"].ToString();
                         dr2["Cattype"] = cattype;
                         btn.ID = dCat.Tables[0].Rows[i]["StockID"].ToString();
@@ -1863,7 +1984,7 @@ namespace Billing.Accountsbootstrap
                         // string sDate3 = Date3.ToString("dd/MM/yy");
 
                         dr3 = dt3.NewRow();
-                        dr3["Definition"] = dCat.Tables[0].Rows[i]["Printitem"].ToString() + Environment.NewLine + " (" + sTock2 + ")" + " - " + Convert.ToDouble(dCat.Tables[0].Rows[i]["mrp"]).ToString("" + ratesetting + "");
+                        dr3["Definition"] = dCat.Tables[0].Rows[i]["Printitem"].ToString() + Environment.NewLine + " (" + sTock2 + ")" + " - " + Convert.ToDouble(dCat.Tables[0].Rows[i]["raate"]).ToString("" + ratesetting + "");
                         dr3["CategoryUserID"] = dCat.Tables[0].Rows[i]["StockID"].ToString();
                         dr3["Cattype"] = cattype;
                         btn.ID = dCat.Tables[0].Rows[i]["StockID"].ToString();
@@ -1886,7 +2007,7 @@ namespace Billing.Accountsbootstrap
                 GridView4.DataSource = dt3;
                 GridView4.DataBind();
                 //UpdatePanel3.Update();
-               // UpdatePanel.Update();
+                // UpdatePanel.Update();
                 //int icount = dCat.Tables[0].Rows.Count;
 
                 //for (int i = 0; i < icount; i++)
@@ -2205,7 +2326,7 @@ namespace Billing.Accountsbootstrap
             if (txtQty.Text == "")
                 txtQty.Text = "0";
 
-            
+
             // decimal PackingUnitValue = 0;
             //  DropDownList ddlunit = (DropDownList)row.FindControl("ddlunit");
             // string[] arg = ddlunit.SelectedItem.Text.Split('-');
@@ -2222,7 +2343,7 @@ namespace Billing.Accountsbootstrap
 
             dt = (DataTable)ViewState["dt"];
             DataSet dCat = new DataSet();
-            dCat = objbs.GetStockDetails(Convert.ToInt32(StockID.Text), Convert.ToInt32(lblUserID.Text), sTableName, StockOption);
+            dCat = objbs.GetStockDetails_Ratetype(Convert.ToInt32(StockID.Text), Convert.ToInt32(lblUserID.Text), sTableName, StockOption, lblratetype.Text, lblmrptype.Text);
 
             if (dCat.Tables[0].Rows.Count > 0)
             {
@@ -2242,7 +2363,7 @@ namespace Billing.Accountsbootstrap
                 {
                     dAvlQty = Convert.ToDecimal(dCat.Tables[0].Rows[0]["Available_QTY"].ToString());
                 }
-                
+
 
                 // if (lblisinclusiverate.Text == "Y")
                 //{
@@ -2288,7 +2409,7 @@ namespace Billing.Accountsbootstrap
 
 
                         Qty = Convert.ToDecimal(rows[0]["Qty"].ToString());
-                       
+
                         Qty = Convert.ToDecimal(txtQty.Text);
                         // QtyT = Convert.ToDecimal(txtQty.Text) * Convert.ToDecimal(arg[0].ToString());
 
@@ -2305,7 +2426,7 @@ namespace Billing.Accountsbootstrap
                                 {
                                     rows[0]["Qty"] = Qty.ToString("0");
                                 }
-                                
+
 
 
                                 decimal amt = Convert.ToDecimal(Qty) * dRate;
@@ -2502,8 +2623,21 @@ namespace Billing.Accountsbootstrap
 
         //}
 
+        protected void item_click(object sender, EventArgs e)
+        {
+            txtmanualqty.Focus();
+        }
+
+            
+
         protected void Button2_Click(object sender, EventArgs e)
         {
+
+
+            //RATE get currenct
+            Ratetype_selectted(sender, e);
+
+
             UpdatePanel3.Update();
             decimal Shwqty = 0;
             int comboo = 0;
@@ -2540,7 +2674,7 @@ namespace Billing.Accountsbootstrap
             // dCat = objbs.GetStockDetails(Convert.ToInt32(btn.CommandArgument), Convert.ToInt32(lblUserID.Text), sTableName);
             if (cattype == "N")
             {
-                dCat = objbs.GetStockDetails(Convert.ToInt32(categoryuserid), Convert.ToInt32(lblUserID.Text), sTableName, StockOption);
+                dCat = objbs.GetStockDetails_Ratetype(Convert.ToInt32(categoryuserid), Convert.ToInt32(lblUserID.Text), sTableName, StockOption, lblratetype.Text, lblmrptype.Text);
             }
             else if (cattype == "C")
             {
@@ -2564,7 +2698,7 @@ namespace Billing.Accountsbootstrap
                     stockID = Convert.ToInt32(dCat.Tables[0].Rows[i]["CategoryUserid"].ToString());
                     dAvlQty = Convert.ToDecimal(dCat.Tables[0].Rows[i]["Available_QTY"].ToString());
                     GST = Convert.ToDecimal(dCat.Tables[0].Rows[i]["GST"].ToString());
-                    mrpamnt = Convert.ToDecimal(dCat.Tables[0].Rows[i]["Rate1"]);
+                    mrpamnt = Convert.ToDecimal(dCat.Tables[0].Rows[i]["mrp"]);
                     Shwqty = Convert.ToDecimal(dCat.Tables[0].Rows[i]["QTY"].ToString());
                     Qtytype = dCat.Tables[0].Rows[i]["QTYtype"].ToString();
                     //if (dAvlQty < Shwqty)
@@ -2645,7 +2779,7 @@ namespace Billing.Accountsbootstrap
                             dr["Qty"] = Qty.ToString("" + qtysetting + "");
                             dr["Rate"] = Convert.ToDecimal(DRATE).ToString("" + ratesetting + "");
                             dr["Tax"] = Convert.ToDecimal(0);
-                            dr["mrp"] = Convert.ToDecimal(dCat.Tables[0].Rows[i]["Rate1"]).ToString("" + ratesetting + "");
+                            dr["mrp"] = Convert.ToDecimal(dCat.Tables[0].Rows[i]["mrp"]).ToString("" + ratesetting + "");
                             //decimal amt = Convert.ToDecimal(dr["qty"].ToString()) * Convert.ToDecimal(dRate);
 
                             {
@@ -2846,7 +2980,7 @@ namespace Billing.Accountsbootstrap
 
                                 dr["Rate"] = Convert.ToDecimal(dRate).ToString("" + ratesetting + "");
                                 dr["Tax"] = Convert.ToDecimal(GST);
-                                dr["mrp"] = Convert.ToDecimal(dCat.Tables[0].Rows[i]["Rate1"]).ToString("" + ratesetting + "");
+                                dr["mrp"] = Convert.ToDecimal(dCat.Tables[0].Rows[i]["mrp"]).ToString("" + ratesetting + "");
                                 dr["cattype"] = cattype;
                                 dr["combo"] = comboo;
 
@@ -3977,7 +4111,7 @@ namespace Billing.Accountsbootstrap
 
                 // if (lblisinclusiverate.Text == "N")
                 {
-                    lbldisco.Text = Convert.ToDecimal(Discamt).ToString(""+ratesetting+"");
+                    lbldisco.Text = Convert.ToDecimal(Discamt).ToString("" + ratesetting + "");
                     distot += Convert.ToDecimal(Discamt);
                 }
                 // else
@@ -4081,6 +4215,48 @@ namespace Billing.Accountsbootstrap
 
             lbldisplay.InnerText = Grand1.ToString("" + ratesetting + "");
             txttotqty.Text = TQty.ToString("" + qtysetting + "");
+
+            //DataSet getexchngevalue = objbs.getiCurrencyvalues(drpexchangecurrency.SelectedValue);
+            //if (getexchngevalue.Tables[0].Rows.Count > 0)
+            //{
+            //    lblexchnagecurrency.Text = getexchngevalue.Tables[0].Rows[0]["value"].ToString();
+
+            //    lblexcurrency.Text = getexchngevalue.Tables[0].Rows[0]["currencyname"].ToString();
+
+            //    double exrate = Convert.ToDouble(lblexchnagecurrency.Text);
+            //    double oriamount = Convert.ToDouble(lbldisplay.InnerText);
+
+            //    double tot = oriamount * exrate;
+
+            //    lblexdisplay.InnerText = tot.ToString("" + ratesetting + "");
+
+
+            //    //if (lblcurrency.Text == lblexcurrency.Text)
+            //    //{
+            //    //    lbldisplay.Visible = true;
+            //    //    lblcurrency.Visible = true;
+
+            //    //    lblexdisplay.Visible = false;
+            //    //    lblexcurrency.Visible = false;
+            //    //}
+            //    //else
+            //    //{
+            //    //    lbldisplay.Visible = false;
+            //    //    lblcurrency.Visible = false;
+
+            //    //    lblexdisplay.Visible = true;
+            //    //    lblexcurrency.Visible = true;
+            //    //}
+
+
+
+            //    //lbldisplay
+            //    //lblcurrency
+            //}
+            //else
+            //{
+            //    lblexchnagecurrency.Text = "1";
+            //}
 
             for (int i = 0; i < gvlist.Rows.Count; i++)
             {
@@ -4838,6 +5014,22 @@ namespace Billing.Accountsbootstrap
 
         }
 
+        protected void Ratetype_selectted(object sender, EventArgs e)
+        {
+            DataSet getcolumnname = objbs.editratesetting(Convert.ToInt32(drpratetype.SelectedValue));
+            if (getcolumnname.Tables[0].Rows.Count > 0)
+            {
+                lblratetype.Text = getcolumnname.Tables[0].Rows[0]["Name"].ToString();
+                lblmrptype.Text = getcolumnname.Tables[0].Rows[0]["columnname"].ToString();
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Not Allow To Add item's.Please Contact Administrator!!!.Thank you!!!');", true);
+                return;
+            }
+        }
+            
+
         protected void drppayment_selectedindex(object sender, EventArgs e)
         {
 
@@ -4981,6 +5173,30 @@ namespace Billing.Accountsbootstrap
             {
                 ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Not Allow To Add this Payment Mode.For This Sales Type.Please Contact Administrator!!!.Thank you!!!');", true);
                 return;
+            }
+
+            // Get RAte TYPE
+
+            DataSet ratetype = objbs.getratetype(drpsalestype.SelectedValue);
+            if (ratetype.Tables[0].Rows.Count > 0)
+            {
+                drpratetype.DataSource = ratetype.Tables[0];
+                drpratetype.DataTextField = "CurrencyName";
+                drpratetype.DataValueField = "RateSettingid";
+                drpratetype.DataBind();
+                lblcurrency.Text = drpratetype.SelectedItem.Text;
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Not Allow To Add this Rate Type.For This Sales Type.Please Contact Administrator!!!.Thank you!!!');", true);
+                return;
+            }
+
+            DataSet getcolumnname = objbs.editratesetting(Convert.ToInt32(drpratetype.SelectedValue));
+            if (getcolumnname.Tables[0].Rows.Count > 0)
+            {
+                lblratetype.Text = getcolumnname.Tables[0].Rows[0]["Name"].ToString();
+                lblmrptype.Text = getcolumnname.Tables[0].Rows[0]["columnname"].ToString();
             }
 
 
@@ -5714,7 +5930,20 @@ namespace Billing.Accountsbootstrap
 
             #endregion
 
-            string narration = string.Empty;
+            #region QTY CHECK
+            for (int i = 0; i < gvlist.Rows.Count; i++)
+            {
+                TextBox Qty = (TextBox)gvlist.Rows[i].FindControl("txtQty");
+                TextBox Definition = (TextBox)gvlist.Rows[i].FindControl("Definition");
+                if (Qty.Text == "0" || Qty.Text == "")
+                {
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Please Enter Qty in "+Definition+".Thank you!!!');", true);
+                    return;
+                }
+            }
+                #endregion
+
+                string narration = string.Empty;
             // int totqtyy = 0;
             for (int i = 0; i < gvlist.Rows.Count; i++)
             {
@@ -6084,7 +6313,7 @@ namespace Billing.Accountsbootstrap
                                     Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, ddattender.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(),
                                     ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text),
                                     lblmargin.Text, lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, Attenderid, "0",
-                                    txtDiscount.Text, ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, lblRound.Text, "tblTranssalesAmount_" + sTableName + "", Billerid);
+                                    txtDiscount.Text, ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, lblRound.Text, "tblTranssalesAmount_" + sTableName + "", Billerid, "","","","");
 
 
                                 int isalesid = Convert.ToInt32(OrderBill);
@@ -6111,6 +6340,8 @@ namespace Billing.Accountsbootstrap
                                     TextBox txtshwqty = (TextBox)gvlist.Rows[i].FindControl("txtshwqty");
                                     TextBox txtcqty = (TextBox)gvlist.Rows[i].FindControl("txtcqty");
 
+                                    double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
+                                    double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
                                     // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
 
@@ -6122,7 +6353,7 @@ namespace Billing.Accountsbootstrap
                                     //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
                                     //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
-                                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text));
+                                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
 
                                     // if (StockOption == "1")
                                     {
@@ -6275,7 +6506,7 @@ namespace Billing.Accountsbootstrap
                         {
                             //int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, ddlApproved.SelectedValue, ddattender.SelectedValue, Session["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text));
 
-                            int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(lbldisco.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, ddattender.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), lblmargin.Text, lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, Attenderid, "0", txtDiscount.Text, ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, lblRound.Text, "tblTranssalesAmount_" + sTableName + "", Billerid);
+                            int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(lbldisco.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, ddattender.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), lblmargin.Text, lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, Attenderid, "0", txtDiscount.Text, ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, lblRound.Text, "tblTranssalesAmount_" + sTableName + "", Billerid, "", "", "", "");
 
                             int isalesid = Convert.ToInt32(OrderBill);
 
@@ -6302,6 +6533,9 @@ namespace Billing.Accountsbootstrap
                                 TextBox txtcqty = (TextBox)gvlist.Rows[i].FindControl("txtcqty");
                                 // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
 
+                                double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
+                                double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
+
                                 if (lblitemdiscount.Text == "")
                                 {
                                     lblitemdiscount.Text = "0";
@@ -6315,7 +6549,7 @@ namespace Billing.Accountsbootstrap
 
                                 //iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
 
-                                int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text));
+                                int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
 
                                 //  if (StockOption == "1")
                                 {
@@ -6434,7 +6668,7 @@ namespace Billing.Accountsbootstrap
                             //else
                             {
                                 // int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, ddlApproved.SelectedValue, ddattender.SelectedValue, Session["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text));
-                                int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(lbldisco.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, ddattender.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), lblmargin.Text, lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, Attenderid, "0", txtDiscount.Text, ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, lblRound.Text, "tblTranssalesAmount_" + sTableName + "", Billerid);
+                                int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(lbldisco.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, ddattender.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), lblmargin.Text, lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, Attenderid, "0", txtDiscount.Text, ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, lblRound.Text, "tblTranssalesAmount_" + sTableName + "", Billerid, "", "", "", "");
 
                                 int isalesid = Convert.ToInt32(OrderBill);
 
@@ -6463,6 +6697,9 @@ namespace Billing.Accountsbootstrap
 
                                     // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
 
+                                    double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
+                                    double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
+
                                     if (lblitemdiscount.Text == "")
                                     {
                                         lblitemdiscount.Text = "0";
@@ -6475,7 +6712,7 @@ namespace Billing.Accountsbootstrap
 
                                     //iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
 
-                                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text));
+                                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
 
                                     //  if (StockOption == "1")
                                     {
@@ -6695,7 +6932,7 @@ namespace Billing.Accountsbootstrap
                                     txtgiven.Text, Approved, "0", Request.Cookies["userInfo"]["empcode"].ToString(), ddlCashier.SelectedValue,
                                     Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, lblRound.Text, lblmargin.Text,
                                     lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, Attenderid, "1",
-                                    txtDiscount.Text, ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, "tblTranssalesAmount_" + sTableName + "", Billerid);
+                                    txtDiscount.Text, ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, "tblTranssalesAmount_" + sTableName + "", Billerid, "", "", "", "");
 
 
                                 int isalesid = Convert.ToInt32(OrderBill);
@@ -6725,6 +6962,9 @@ namespace Billing.Accountsbootstrap
                                     TextBox txtcqty = (TextBox)gvlist.Rows[i].FindControl("txtcqty");
                                     // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
 
+                                    double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
+                                    double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
+
                                     if (lblitemdiscount.Text == "")
                                     {
                                         lblitemdiscount.Text = "0";
@@ -6737,7 +6977,7 @@ namespace Billing.Accountsbootstrap
 
                                     //iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
 
-                                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text));
+                                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
                                     // if (StockOption == "1")
                                     {
                                         double Istock = Convert.ToDouble(Qty.Text) * Convert.ToDouble(txtcqty.Text);
@@ -6945,7 +7185,7 @@ namespace Billing.Accountsbootstrap
                                 txtgiven.Text, Approved, Attenderid, Request.Cookies["userInfo"]["empcode"].ToString(), ddlCashier.SelectedValue,
                                 Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, lblRound.Text, lblmargin.Text,
                                 lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, "0", "1", txtDiscount.Text,
-                                ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, "tblTranssalesAmount_" + sTableName + "", Billerid);
+                                ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, "tblTranssalesAmount_" + sTableName + "", Billerid, "", "", "", "");
 
                             int isalesid = Convert.ToInt32(OrderBill);
 
@@ -6975,6 +7215,8 @@ namespace Billing.Accountsbootstrap
                                 TextBox txtcqty = (TextBox)gvlist.Rows[i].FindControl("txtcqty");
 
                                 // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
+                                double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
+                                double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
                                 if (lblitemdiscount.Text == "")
                                 {
@@ -6988,7 +7230,7 @@ namespace Billing.Accountsbootstrap
 
                                 //iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
 
-                                int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text));
+                                int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
 
                                 //  if (StockOption == "1")
                                 {
@@ -7154,7 +7396,7 @@ namespace Billing.Accountsbootstrap
                                     txtgiven.Text, Approved, "0", Request.Cookies["userInfo"]["empcode"].ToString(), ddlCashier.SelectedValue,
                                     Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, lblRound.Text, lblmargin.Text,
                                     lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, Attenderid, "1", txtDiscount.Text,
-                                    ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, "tblTranssalesAmount_" + sTableName + "", Billerid);
+                                    ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, "tblTranssalesAmount_" + sTableName + "", Billerid, "", "", "", "");
 
                                 int isalesid = Convert.ToInt32(OrderBill);
 
@@ -7182,6 +7424,9 @@ namespace Billing.Accountsbootstrap
                                     TextBox txtcqty = (TextBox)gvlist.Rows[i].FindControl("txtcqty");
                                     // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
 
+                                    double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
+                                    double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
+
                                     if (lblitemdiscount.Text == "")
                                     {
                                         lblitemdiscount.Text = "0";
@@ -7196,7 +7441,7 @@ namespace Billing.Accountsbootstrap
                                     //iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
 
 
-                                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text));
+                                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
 
                                     // if (StockOption == "1")
                                     {
@@ -7438,6 +7683,8 @@ namespace Billing.Accountsbootstrap
             lbltotal.Text = "0";
             lblGrandTotal.Text = "0";
             lbldisplay.InnerText = "0";
+          //  lblexdisplay.InnerText = "0";
+          //  lblexcurrency.Text = "";
             txtAdvance.Text = "0";
             txtDiscount.Text = "0";
             txtCustomerName.Text = "";
@@ -8828,7 +9075,7 @@ namespace Billing.Accountsbootstrap
                             {
 
 
-                                int OrderBill = objbs.tempinsertOrdersalesnew("tblTempSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, drpattendername.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, "0", txtorderno.Text, drpsalestype.SelectedValue);
+                                int OrderBill = objbs.tempinsertOrdersalesnew("tblTempSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, drpattendername.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, "0", txtorderno.Text, drpsalestype.SelectedValue,lblcurrency.Text, "", "", "", "");
 
 
                                 int isalesid = Convert.ToInt32(OrderBill);
@@ -8855,13 +9102,14 @@ namespace Billing.Accountsbootstrap
                                     TextBox txtcqty = (TextBox)gvlist.Rows[i].FindControl("txtcqty");
                                     // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
 
-
+                                    double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
+                                    double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
                                     //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
                                     //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
                                     // int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text));
-                                    int iStatus1 = objbs.TempinsertTransSales("tblTempTransSales_" + sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text));
+                                    int iStatus1 = objbs.TempinsertTransSales("tblTempTransSales_" + sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
 
                                     //  if (StockOption == "1")
                                     {
@@ -8956,7 +9204,7 @@ namespace Billing.Accountsbootstrap
                             #region
 
                             //int OrderBill = objbs.tempinsertOrdersalesnew("tblTempSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, ddattender.SelectedValue, Session["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, "0");
-                            int OrderBill = objbs.tempinsertOrdersalesnew("tblTempSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, drpattendername.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), "0", Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, "0", txtorderno.Text, drpsalestype.SelectedValue);
+                            int OrderBill = objbs.tempinsertOrdersalesnew("tblTempSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, drpattendername.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), "0", Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, "0", txtorderno.Text, drpsalestype.SelectedValue, lblcurrency.Text, "", "", "", "");
 
                             int isalesid = Convert.ToInt32(OrderBill);
 
@@ -8981,13 +9229,20 @@ namespace Billing.Accountsbootstrap
                                 TextBox txtcqty = (TextBox)gvlist.Rows[i].FindControl("txtcqty");
                                 // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
 
-
+                                double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
+                                double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
                                 //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
                                 //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
                                 // int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text));
-                                int iStatus1 = objbs.TempinsertTransSales("tblTempTransSales_" + sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text));
+                                int iStatus1 = objbs.TempinsertTransSales("tblTempTransSales_" + sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
+
+                                //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
+                                //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
+
+                                // int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text));
+                                // int iStatus1 = objbs.TempinsertTransSales("tblTempTransSales_" + sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text));
 
                                 //  if (StockOption == "1")
                                 {
@@ -9099,7 +9354,7 @@ namespace Billing.Accountsbootstrap
                             else
                             {
                                 // int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, ddlApproved.SelectedValue, ddattender.SelectedValue, Session["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text));
-                                int OrderBill = objbs.tempinsertOrdersalesnew("tblTempSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, drpattendername.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), "0", Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, "0", txtorderno.Text, drpsalestype.SelectedValue);
+                                int OrderBill = objbs.tempinsertOrdersalesnew("tblTempSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, drpattendername.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), "0", Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, "0", txtorderno.Text, drpsalestype.SelectedValue, lblcurrency.Text, "", "", "", "");
 
                                 int isalesid = Convert.ToInt32(OrderBill);
 
@@ -9124,13 +9379,20 @@ namespace Billing.Accountsbootstrap
                                     TextBox txtcqty = (TextBox)gvlist.Rows[i].FindControl("txtcqty");
                                     // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
 
-
+                                    double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
+                                    double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
                                     //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
                                     //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
                                     // int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text));
-                                    int iStatus1 = objbs.TempinsertTransSales("tblTempTransSales_" + sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text));
+                                    int iStatus1 = objbs.TempinsertTransSales("tblTempTransSales_" + sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
+
+                                    //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
+                                    //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
+
+                                    // int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text));
+                                    // int iStatus1 = objbs.TempinsertTransSales("tblTempTransSales_" + sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text));
 
                                     //  if (StockOption == "1")
                                     {
@@ -9257,7 +9519,7 @@ namespace Billing.Accountsbootstrap
                             {
 
 
-                                int OrderBill = objbs.tempUpdateOrdersalesnew("tblTempSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, drpattendername.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), "0", Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, "0", lbltempsalesid.Text, txtorderno.Text, drpsalestype.SelectedValue);
+                                int OrderBill = objbs.tempUpdateOrdersalesnew("tblTempSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, drpattendername.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), "0", Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, "0", lbltempsalesid.Text, txtorderno.Text, drpsalestype.SelectedValue, lblcurrency.Text, "", "", "", "");
 
 
                                 int isalesid = Convert.ToInt32(OrderBill);
@@ -9282,13 +9544,20 @@ namespace Billing.Accountsbootstrap
                                     TextBox txtcqty = (TextBox)gvlist.Rows[i].FindControl("txtcqty");
                                     // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
 
-
+                                    double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
+                                    double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
                                     //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
                                     //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
                                     // int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text));
-                                    int iStatus1 = objbs.TempinsertTransSales("tblTempTransSales_" + sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text));
+                                    int iStatus1 = objbs.TempinsertTransSales("tblTempTransSales_" + sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
+
+                                    //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
+                                    //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
+
+                                    // int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text));
+                                    //  int iStatus1 = objbs.TempinsertTransSales("tblTempTransSales_" + sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text));
 
                                     // if (StockOption == "1")
                                     {
@@ -9382,7 +9651,7 @@ namespace Billing.Accountsbootstrap
                         {
                             //int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, ddlApproved.SelectedValue, ddattender.SelectedValue, Session["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text));
 
-                            int OrderBill = objbs.tempUpdateOrdersalesnew("tblTempSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, drpattendername.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), "0", Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, "0", lbltempsalesid.Text, txtorderno.Text, drpsalestype.SelectedValue);
+                            int OrderBill = objbs.tempUpdateOrdersalesnew("tblTempSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, drpattendername.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), "0", Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, "0", lbltempsalesid.Text, txtorderno.Text, drpsalestype.SelectedValue, lblcurrency.Text, "", "", "", "");
 
                             int isalesid = Convert.ToInt32(OrderBill);
 
@@ -9405,7 +9674,14 @@ namespace Billing.Accountsbootstrap
                                 TextBox txtshwqty = (TextBox)gvlist.Rows[i].FindControl("txtshwqty");
                                 TextBox txtcqty = (TextBox)gvlist.Rows[i].FindControl("txtcqty");
                                 // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
+                                double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
+                                double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
+                                //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
+                                //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
+
+                                // int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text));
+                                int iStatus1 = objbs.TempinsertTransSales("tblTempTransSales_" + sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
 
 
                                 //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
@@ -9416,7 +9692,7 @@ namespace Billing.Accountsbootstrap
 
                                 //iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD");
 
-                                int iStatus1 = objbs.TempinsertTransSales("tblTempTransSales_" + sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text));
+                                //  int iStatus1 = objbs.TempinsertTransSales("tblTempTransSales_" + sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text));
 
                                 // if (StockOption == "1")
                                 {
@@ -9470,7 +9746,7 @@ namespace Billing.Accountsbootstrap
                             {
                                 // int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, ddlApproved.SelectedValue, ddattender.SelectedValue, Session["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text));
                                 //  int OrderBill = objbs.tempinsertOrdersalesnew("tblTempSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, "0", Session["empcode"].ToString(), "0", Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, "0", txtorderno.Text);
-                                int OrderBill = objbs.tempUpdateOrdersalesnew("tblTempSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, drpattendername.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), "0", Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, "0", lbltempsalesid.Text, txtorderno.Text, drpsalestype.SelectedValue);
+                                int OrderBill = objbs.tempUpdateOrdersalesnew("tblTempSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, drpattendername.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), "0", Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, "0", lbltempsalesid.Text, txtorderno.Text, drpsalestype.SelectedValue, lblcurrency.Text, "", "", "", "");
 
                                 int isalesid = Convert.ToInt32(OrderBill);
 
@@ -9495,6 +9771,14 @@ namespace Billing.Accountsbootstrap
                                     TextBox txtcqty = (TextBox)gvlist.Rows[i].FindControl("txtcqty");
                                     // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
 
+                                    double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
+                                    double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
+
+                                    //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
+                                    //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
+
+                                    // int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text));
+                                    int iStatus1 = objbs.TempinsertTransSales("tblTempTransSales_" + sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
 
 
                                     //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
@@ -9505,7 +9789,7 @@ namespace Billing.Accountsbootstrap
 
                                     //iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD");
 
-                                    int iStatus1 = objbs.TempinsertTransSales("tblTempTransSales_" + sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text));
+                                    //    int iStatus1 = objbs.TempinsertTransSales("tblTempTransSales_" + sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text));
 
                                     // if (StockOption == "1")
                                     {

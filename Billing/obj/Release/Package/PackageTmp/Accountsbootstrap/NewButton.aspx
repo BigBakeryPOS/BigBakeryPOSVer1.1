@@ -40,6 +40,9 @@
 
     </script>
 
+
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
@@ -81,7 +84,7 @@
                         <asp:Label ID="lblattednercheck" Visible="false" runat="server" Text="N"></asp:Label>
                         <asp:CheckBox ID="chkkot" runat="server" Visible="false" Checked="false" CssClass="form-control"></asp:CheckBox>
                         <asp:Label ID="lblprintcount" runat="server" Text="2" Visible="false"></asp:Label>
-                        <asp:Label ID="lblprintlayout" runat="server" Text="2" Visible="false" ></asp:Label>
+                        <asp:Label ID="lblprintlayout" runat="server" Text="1" Visible="false"></asp:Label>
                         <asp:ScriptManager ID="ScriptManager1" runat="server">
                         </asp:ScriptManager>
 
@@ -118,7 +121,10 @@
                                                         <label>
                                                             Select Item</label><br />
                                                         <div runat="server" visible="false" id="divdrop">
-                                                            <asp:DropDownList ID="drpitemsearch" runat="server" CssClass="chzn-select" Width="368px">
+                                                            <asp:DropDownList ID="drpitemsearch1" Visible="false" runat="server" OnSelectedIndexChanged="item_click" AutoPostBack="true" CssClass="chzn-select" Width="368px">
+                                                            </asp:DropDownList>
+
+                                                            <asp:DropDownList ID="drpitemsearch" Width="385px" runat="server" OnSelectedIndexChanged="item_click" AutoPostBack="true" >
                                                             </asp:DropDownList>
                                                             <asp:TextBox ID="txtbrcode" runat="server" CssClass="form-control" Width="368px"
                                                                 placeholder="For Weight Machine Barcode Scan" OnTextChanged="barchnaged_text"
@@ -280,15 +286,26 @@
                                             </td>
                                             <td>
                                                 <label>
+                                                    Rate Type
+                                                </label>
+                                                <asp:DropDownList ID="drpratetype" runat="server" OnSelectedIndexChanged="Ratetype_selectted"
+                                                    AutoPostBack="true" CssClass="form-control">
+                                                </asp:DropDownList>
+                                                <asp:Label ID="lblratetype" Visible="false" runat="server"></asp:Label>
+                                                <asp:Label ID="lblmrptype" Visible="false" runat="server"></asp:Label>
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label>
                                                     Mobile #</label>
                                                 <asp:TextBox ID="txtmobile" runat="server" CssClass="form-control" AutoPostBack="true"
                                                     MaxLength="10" placeholder="Mobile No" OnTextChanged="txtmobile_TextChanged">    </asp:TextBox>
                                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
                                                     FilterType="Numbers,Custom" ValidChars=" -," TargetControlID="txtmobile" />
                                             </td>
-
-                                        </tr>
-                                        <tr>
                                             <td>
                                                 <label>
                                                     Customer Name</label>
@@ -300,7 +317,7 @@
                                                 <asp:DropDownList ID="drpattendername" runat="server" MaxLength="10" CssClass="form-control">
                                                 </asp:DropDownList>
                                             </td>
-                                            <td>
+                                            <td runat="server" visible="false">
                                                 <label>
                                                     Online Amount</label>
                                                 <asp:TextBox ID="txtonlineamount" runat="server" CssClass="form-control" Enabled="false"
@@ -471,21 +488,29 @@
                                         </asp:UpdatePanel>
                                     </div>
                                     <div class="row pos-total">
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <label style="color: #000;">
                                                 Total Qty:
                                             </label>
                                             <asp:TextBox ID="txttotqty" Visible="true" Style="width: 100px; background: transparent; border: 0;"
                                                 Enabled="false" Font-Size="20px" runat="server"></asp:TextBox>
                                         </div>
+                                        <%--<div class="col-md-3">
+                                            <label style="color: #000;">
+                                                Exchange Rate:
+                                                <asp:DropDownList ID="drpexchangecurrency" runat="server" CssClass="Form-Control" AutoPostBack="true" OnSelectedIndexChanged="Default_currency_click"></asp:DropDownList>
+                                                <asp:Label ID="lblexchnagecurrency" runat="server" Visible="false" Text="0"></asp:Label>
+                                            </label>
+                                        </div>--%>
                                         <div class="col-md-6 text-right">
                                             <label style="color: #000;">
                                                 Amount:
                                             </label>
-                                            <label id="lbldisplay" runat="server">
+                                            <label id="lbldisplay" visible="true" runat="server"></label>
+                                            <%--<label id="lblexdisplay" visible="false" runat="server">--%>
                                             </label>
-                                            <asp:Label ID="lblcurrency" runat="server"></asp:Label>
-
+                                            <asp:Label ID="lblcurrency" Visible="true" runat="server"></asp:Label>
+                                            <%--<asp:Label ID="lblexcurrency" Visible="false" runat="server"></asp:Label>--%>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1286,13 +1311,37 @@
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>
+                        <script type="text/javascript" src="ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                        <script type="text/javascript" src="../css/select2.js"></script>
+                        <link href="../css/select2.css" rel="stylesheet" />
+                        
+                        <script type="text/javascript">
+                            $(document).ready(function () { $("#drpitemsearch").select2(); });
+                        </script>
 
+                        <%-- <script type="text/javascript">
+                             $(function () {
+                                 $("[id*=drpitemsearch]").select2({ dropdownAutoWidth: true });
+                             });
 
-                        <script src="Scripts/jquery.min.js" type="text/javascript"></script>
+                             //On UpdatePanel Refresh.
+                             var prm = Sys.WebForms.PageRequestManager.getInstance();
+                             if (prm != null) {
+                                 prm.add_endRequest(function (sender, e) {
+                                     if (sender._postBackSettings.panelsToUpdate != null) {
+                                         $("[id*=DropDownList1]").select2({ dropdownAutoWidth: true });
+                                     }
+                                 });
+                             };
+                         </script>--%>
+
+                        <%--<script src="Scripts/jquery.min.js" type="text/javascript"></script>
                         <script src="Scripts/chosen.jquery.js" type="text/javascript"></script>
                         <script src="Scripts/jquery.min.js" type="text/javascript"></script>
-                        <script src="Scripts/chosen.jquery.js" type="text/javascript"></script>
-                        <script type="text/javascript">                    $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
+                        <script src="Scripts/chosen.jquery.js" type="text/javascript"></script>--%>
+                        <%--<script type="text/javascript">                   
+                            $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>--%>
+
                     </ContentTemplate>
                 </asp:UpdatePanel>
                 <asp:UpdateProgress ID="prgLoadingStatus" runat="server" DynamicLayout="true">
@@ -1337,6 +1386,7 @@
             </div>
         </asp:Panel>
         <link href="../css/billingstyle.css" rel="stylesheet" />
+
     </form>
 </body>
 </html>

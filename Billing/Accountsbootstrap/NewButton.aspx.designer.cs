@@ -222,6 +222,15 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divdrop;
 
         /// <summary>
+        /// drpitemsearch1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList drpitemsearch1;
+
+        /// <summary>
         /// drpitemsearch control.
         /// </summary>
         /// <remarks>
@@ -463,6 +472,33 @@ namespace Billing.Accountsbootstrap
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList drpPayment;
+
+        /// <summary>
+        /// drpratetype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList drpratetype;
+
+        /// <summary>
+        /// lblratetype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblratetype;
+
+        /// <summary>
+        /// lblmrptype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblmrptype;
 
         /// <summary>
         /// txtmobile control.

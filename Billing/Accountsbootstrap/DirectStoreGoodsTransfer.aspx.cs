@@ -327,7 +327,7 @@ namespace Billing.Accountsbootstrap
                 searchitemlist_OnClick(Server, e);
                 //ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Enter Valid Category.Thank You!!!');", true);
                 //return;
-                DataSet dsitems = objbs.itemforreqestNew_DirectTransfer((ddlcategory.SelectedValue), sTableName, lblcatid.Text);
+                DataSet dsitems = objbs.itemforreqestNew_DirectTransferStore((ddlcategory.SelectedValue), sTableName, lblcatid.Text);
                 if (dsitems.Tables[0].Rows.Count > 0)
                 {
                     gvitems.DataSource = dsitems;

@@ -256,6 +256,8 @@ namespace Billing.Accountsbootstrap
 
                 #endregion
             }
+            objbs.updateRecQty_maintable(Productioncode, DcNo, txtRemarks.Text);
+
             Response.Redirect("GoodsReceivedGrid.aspx");
         }
     }

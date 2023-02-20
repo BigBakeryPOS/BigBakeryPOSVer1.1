@@ -322,7 +322,7 @@ namespace Billing.Accountsbootstrap
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvqueueitems.Rows[rowIndex];
                 TextBox txtQty = (TextBox)gvqueueitems.Rows[rowIndex].Cells[4].FindControl("txtQty");
-                txtQty.Text = Convert.ToInt32(Convert.ToDouble(txtQty.Text) + 1).ToString();
+                txtQty.Text = Convert.ToDouble(Convert.ToDouble(txtQty.Text) + 1).ToString();
             }
 
             if (e.CommandName == "minus")
@@ -331,9 +331,9 @@ namespace Billing.Accountsbootstrap
                 GridViewRow row = gvqueueitems.Rows[rowIndex];
                 TextBox txtQty = (TextBox)gvqueueitems.Rows[rowIndex].Cells[4].FindControl("txtQty");
 
-                if (Convert.ToInt32(txtQty.Text) > 0)
+                if (Convert.ToDouble(txtQty.Text) > 0)
                 {
-                    txtQty.Text = Convert.ToInt32(Convert.ToDouble(txtQty.Text) - 1).ToString();
+                    txtQty.Text = Convert.ToDouble(Convert.ToDouble(txtQty.Text) - 1).ToString();
                 }
                 else
                 {
@@ -655,6 +655,34 @@ namespace Billing.Accountsbootstrap
             }
             else if (radentrytype.SelectedValue == "1")
             {
+            }
+        }
+
+        protected void onrowdatabound(object sender, GridViewRowEventArgs e)
+        {
+
+
+
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                //TextBox txtQty = ((TextBox)e.Row.FindControl("txtQty"));
+                Label lbqty = ((Label)e.Row.FindControl("lblProd_Qty"));
+
+
+                Label lblqtytype = ((Label)e.Row.FindControl("lblqtytype"));
+                if (lblqtytype.Text == "D")
+                {
+                    lbqty.Text = Convert.ToDouble(lbqty.Text).ToString("" + qtysetting + "");
+                }
+                else
+                {
+                    lbqty.Text = Convert.ToDouble(lbqty.Text).ToString("0");
+                }
+
+                //lblreceived_Qty.Text = Convert.ToDouble(lblreceived_Qty.Text).ToString("" + qtysetting + "");
+
             }
         }
 

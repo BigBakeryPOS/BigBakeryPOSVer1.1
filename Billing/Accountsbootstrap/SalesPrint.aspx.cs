@@ -306,16 +306,16 @@ namespace Billing.Accountsbootstrap
                 divqtyneeded.Visible = false;
             }
 
-            if (lblPCGST.Text == "Y")
-            {
-                PCGST.Visible = true;
-                Tr2.Visible = false;
-            }
-            else
-            {
-                PCGST.Visible = false;
-                Tr2.Visible = true;
-            }
+            //if (lblPCGST.Text == "Y")
+            //{
+            //    PCGST.Visible = true;
+            //    Tr2.Visible = false;
+            //}
+            //else
+            //{
+            //    PCGST.Visible = false;
+            //    Tr2.Visible = true;
+            //}
 
             if (iD > 0)
             {
@@ -619,19 +619,19 @@ namespace Billing.Accountsbootstrap
                                 /////////////////////////Rajaram //////////////////////////////////
 
 
-                                double TRound1 = taxx + itemvaluee;
+                                //double TRound1 = taxx + itemvaluee;
 
-                                double roundoff2 = Convert.ToDouble(TRound1) - Math.Floor(Convert.ToDouble(lblGrand.Text));
-                                /////////////////////////////////////////////////////////////////////////
+                                //double roundoff2 = Convert.ToDouble(TRound1) - Math.Floor(Convert.ToDouble(lblGrand.Text));
+                                ///////////////////////////////////////////////////////////////////////////
 
-                                if (roundoff2 >= 0.5)
-                                {
-                                    toto = Math.Round(Convert.ToDouble(lblGrand.Text), MidpointRounding.AwayFromZero);
-                                }
-                                else
-                                {
-                                    toto = Math.Floor(Convert.ToDouble(lblGrand.Text));
-                                }
+                                //if (roundoff2 >= 0.5)
+                                //{
+                                //    toto = Math.Round(Convert.ToDouble(lblGrand.Text), MidpointRounding.AwayFromZero);
+                                //}
+                                //else
+                                //{
+                                //    toto = Math.Floor(Convert.ToDouble(lblGrand.Text));
+                                //}
 
                                 drNew["value"] = itemvalu.ToString("0.00");
                                 if (province == "1")

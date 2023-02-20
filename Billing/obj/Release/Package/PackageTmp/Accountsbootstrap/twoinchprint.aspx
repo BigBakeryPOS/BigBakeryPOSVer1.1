@@ -148,11 +148,16 @@
                 </td>
             </tr>
         </table>
+        
         <p class="centered">
             Thanks for your purchase!
                 <br>
-            Technology partner : www.bigdbiz.com
+            <div runat="server" style="font-size:10px" >
+                <b>
+            Tech.partner : www.bigdbiz.com</b>
+                </div>
         </p>
+            
     </div>
     <button id="btnPrint" runat="server" visible="false" class="hidden-print">Print</button>
     <script src="script.js"></script>

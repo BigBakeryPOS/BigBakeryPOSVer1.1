@@ -76,6 +76,478 @@ namespace Billing.Accountsbootstrap
 
                 
             }
+
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$(document).ready(function() { $('#drpitemsearch').select2(); });", true);
+        }
+
+        protected void radbtn_clicked(object sender, EventArgs e)
+        {
+
+            if (radbtntype.SelectedValue == "1")
+            {
+                DataSet dscategory = objbs.selectcategorymasterForGRN();
+                if (dscategory.Tables[0].Rows.Count > 0)
+                {
+                    ddlcategory.DataSource = dscategory;
+                    ddlcategory.DataTextField = "Printcategory";
+                    ddlcategory.DataValueField = "Categoryid";
+                    ddlcategory.DataBind();
+                    ddlcategory.Items.Insert(0, "All");
+                    ddlrequestno_OnSelectedIndexChanged(sender, e);
+                }
+            }
+            else if (radbtntype.SelectedValue == "2")
+            {
+                ddlrequestno_OnSelectedIndexChanged(sender, e);
+                txtCusName1.Focus();
+            }
+            else if (radbtntype.SelectedValue == "3")
+            {
+                ddlrequestno_OnSelectedIndexChanged(sender, e);
+                txtCusName1.Focus();
+            }
+
+
+
+        }
+
+        protected void ddlrequestno_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            gvitems.Visible = true;
+            posdropdown.Visible = false;
+            upcus.Visible = false;
+            drpitemsearch.Visible = false; ;
+            sno.Visible = false;
+
+            if (radbtntype.SelectedValue == "1")
+            {
+
+                int catid = 0;
+
+                if (ddlcategory.SelectedValue == "All")
+                {
+                    catid = 0;
+                }
+                else
+                {
+
+                    catid = Convert.ToInt32(ddlcategory.SelectedValue);
+                }
+
+                DataSet dsitems = objbs.itemforreqest(catid, sTableName, "BLK");
+                if (dsitems.Tables[0].Rows.Count > 0)
+                {
+                    gvitems.DataSource = dsitems;
+                    gvitems.DataBind();
+
+                }
+                else
+                {
+                    gvitems.DataSource = null;
+                    gvitems.DataBind();
+                }
+            }
+            else if (radbtntype.SelectedValue == "2")
+            {
+                gvitems.DataSource = null;
+                gvitems.DataBind();
+                gvitems.Visible = false;
+                posdropdown.Visible = true;
+                upcus.Visible = true;
+                drpitemsearch.Visible = false; ;
+                drpitemsearch.ClearSelection();
+                drpitemsearch.Items.Clear();
+                sno.Visible = false;
+
+            }
+            else if (radbtntype.SelectedValue == "3")
+            {
+                upcus.Visible = false;
+                gvitems.DataSource = null;
+                gvitems.DataBind();
+                gvitems.Visible = false;
+                posdropdown.Visible = true;
+                drpitemsearch.Visible = true;
+                sno.Visible = true;
+                int catid = 0;
+
+                // bind itemname from dropdown
+                DataSet getallitembind = objbs.itemforreqest(catid, sTableName, "BLK");
+                if (getallitembind.Tables[0].Rows.Count > 0)
+                {
+                    drpitemsearch.DataSource = getallitembind.Tables[0];
+                    drpitemsearch.DataTextField = "defi";
+                    drpitemsearch.DataValueField = "categoryuserid";
+                    drpitemsearch.DataBind();
+                    drpitemsearch.Items.Insert(0, "Select Item");
+
+                }
+
+                txtmanualslno.Focus();
+                UpdatePanel1.Update();
+            }
+
+
+
+        }
+
+
+        protected void serach_text(object sender, EventArgs e)
+        {
+
+            if (txtserch.Text == "")
+            {
+                int catid = 0;
+
+                if (ddlcategory.SelectedValue == "All")
+                {
+                    catid = 0;
+                }
+                else
+                {
+
+                    catid = Convert.ToInt32(ddlcategory.SelectedValue);
+                }
+
+                DataSet dsitems = objbs.itemforreqest(catid, sTableName, "BLK");
+                if (dsitems.Tables[0].Rows.Count > 0)
+                {
+                    gvitems.DataSource = dsitems;
+                    gvitems.DataBind();
+
+                }
+                else
+                {
+                    gvitems.DataSource = null;
+                    gvitems.DataBind();
+                }
+            }
+            else
+            {
+
+                //  searchitemlist_OnClick(Server, e);
+
+                DataSet dsitems = objbs.itemforreqestNew_DirectTransfer_search((ddlcategory.SelectedValue), sTableName, txtserch.Text);
+                if (dsitems.Tables[0].Rows.Count > 0)
+                {
+                    gvitems.DataSource = dsitems;
+                    gvitems.DataBind();
+
+                }
+                else
+                {
+                    gvitems.DataSource = null;
+                    gvitems.DataBind();
+                }
+                txtserch.Focus();
+            }
+            txtserch.Focus();
+        }
+
+        protected void search_barcode(object sender, EventArgs e)
+        {
+
+            if (txtbarcode.Text == "")
+            {
+                // searchitemlist_OnClick(Server, e);
+
+                int catid = 0;
+
+                if (ddlcategory.SelectedValue == "All")
+                {
+                    catid = 0;
+                }
+                else
+                {
+
+                    catid = Convert.ToInt32(ddlcategory.SelectedValue);
+                }
+
+                DataSet dsitems = objbs.itemforreqest(catid, sTableName, "BLK");
+                if (dsitems.Tables[0].Rows.Count > 0)
+                {
+                    gvitems.DataSource = dsitems;
+                    gvitems.DataBind();
+
+                }
+                else
+                {
+                    gvitems.DataSource = null;
+                    gvitems.DataBind();
+                }
+            }
+            else
+            {
+
+                // searchitemlist_OnClick(Server, e);
+
+                DataSet dsitems = objbs.itemforreqestNew_DirectTransfer_Barcodesearch((ddlcategory.SelectedValue), sTableName, txtbarcode.Text);
+                if (dsitems.Tables[0].Rows.Count > 0)
+                {
+                    gvitems.DataSource = dsitems;
+                    gvitems.DataBind();
+
+                }
+                else
+                {
+                    gvitems.DataSource = null;
+                    gvitems.DataBind();
+                }
+                txtserch.Focus();
+            }
+            txtserch.Focus();
+            //  UpdatePanel1.Update();
+            // upcus.Update();
+        }
+
+        protected void txtqty_changed(object sender, EventArgs e)
+        {
+            DataSet dstd = new DataSet();
+            DataTable dtddd = new DataTable();
+
+
+            DataTable dttt;
+            DataRow drNew;
+            DataColumn dct;
+            dttt = new DataTable();
+
+            dct = new DataColumn("CategoryID");
+            dttt.Columns.Add(dct);
+            dct = new DataColumn("CategoryUserID");
+            dttt.Columns.Add(dct);
+            dct = new DataColumn("UOMID");
+            dttt.Columns.Add(dct);
+            dct = new DataColumn("Category");
+            dttt.Columns.Add(dct);
+            dct = new DataColumn("Definition");
+            dttt.Columns.Add(dct);
+            dct = new DataColumn("Available_Qty");
+            dttt.Columns.Add(dct);
+            dct = new DataColumn("Qty");
+            dttt.Columns.Add(dct);
+            dct = new DataColumn("UOM");
+            dttt.Columns.Add(dct);
+            dct = new DataColumn("Barcode");
+            dttt.Columns.Add(dct);
+
+            dstd.Tables.Add(dttt);
+
+
+            if (ViewState["CurrentTable1"] != null)
+            {
+                DataTable dt = (DataTable)ViewState["CurrentTable1"];
+
+                // for (int i = 0; i < gvitems.Rows.Count; i++)
+                {
+                    //HiddenField hideCategoryID = (HiddenField)gvitems.Rows[i].FindControl("hideCategoryID");
+                    //HiddenField hideCategoryUserID = (HiddenField)gvitems.Rows[i].FindControl("hideCategoryUserID");
+                    //HiddenField hideUOMID = (HiddenField)gvitems.Rows[i].FindControl("hideUOMID");
+
+                    //HiddenField hdRate = (HiddenField)gvitems.Rows[i].FindControl("hdRate");
+                    //HiddenField hdGST = (HiddenField)gvitems.Rows[i].FindControl("hdGST");
+
+                    //Label lblCategory = (Label)gvitems.Rows[i].FindControl("lblCategory");
+                    //Label lblDefinition = (Label)gvitems.Rows[i].FindControl("lblDefinition");
+
+                    //Label lblom = (Label)gvitems.Rows[i].FindControl("lblom");
+
+                    //TextBox txtQty = (TextBox)gvitems.Rows[i].FindControl("txtQty");
+
+                    if (txtqty.Text == "")
+                        txtqty.Text = "0";
+
+                    if (Convert.ToDouble(txtqty.Text) > 0)
+                    {
+                        drNew = dttt.NewRow();
+                        drNew["CategoryID"] = NhideCategoryID.Value;
+                        drNew["CategoryUserID"] = NhideCategoryUserID.Value;
+                        drNew["UOMID"] = NhideUOMID.Value;
+
+                        //  drNew["Rate"] = NhdRate.Value;
+                        drNew["Available_Qty"] = Nlbqty.Text;
+
+                        drNew["Category"] = NlblCategory.Text;
+                        drNew["Definition"] = NlblDefinition.Text;
+
+                        drNew["Qty"] = txtqty.Text;
+                        drNew["UOM"] = Nlblom.Text;
+                        drNew["Barcode"] = Nlblbarcode.Text;
+
+                        dstd.Tables[0].Rows.Add(drNew);
+                        dtddd = dstd.Tables[0];
+
+
+                    }
+                }
+
+                dtddd.Merge(dt);
+                ViewState["CurrentTable1"] = dtddd;
+            }
+            else
+            {
+                //  for (int i = 0; i < gvitems.Rows.Count; i++)
+                {
+                    if (txtqty.Text == "")
+                        txtqty.Text = "0";
+
+                    if (Convert.ToDouble(txtqty.Text) > 0)
+                    {
+                        drNew = dttt.NewRow();
+                        drNew["CategoryID"] = NhideCategoryID.Value;
+                        drNew["CategoryUserID"] = NhideCategoryUserID.Value;
+                        drNew["UOMID"] = NhideUOMID.Value;
+
+                        //  drNew["Rate"] = NhdRate.Value;
+                        drNew["Available_Qty"] = Nlbqty.Text;
+
+                        drNew["Category"] = NlblCategory.Text;
+                        drNew["Definition"] = NlblDefinition.Text;
+
+                        drNew["Qty"] = txtqty.Text;
+                        drNew["UOM"] = Nlblom.Text;
+                        drNew["Barcode"] = Nlblbarcode.Text;
+
+                        dstd.Tables[0].Rows.Add(drNew);
+                        dtddd = dstd.Tables[0];
+
+
+                    }
+
+                }
+
+                ViewState["CurrentTable1"] = dtddd;
+            }
+            //DataSet dsrawmerge = new DataSet();
+            //dsrawmerge.Tables.Add(dtddd);
+
+            #region Summary
+
+            DataTable dtraw = new DataTable();
+            DataSet dsraw = new DataSet();
+            DataRow drraw;
+
+            dtraw.Columns.Add("CategoryID");
+            dtraw.Columns.Add("CategoryUserID");
+            dtraw.Columns.Add("UOMID");
+
+            dtraw.Columns.Add("Category");
+            dtraw.Columns.Add("Definition");
+            dtraw.Columns.Add("Barcode");
+            dtraw.Columns.Add("Available_Qty");
+            dtraw.Columns.Add("Qty");
+            dtraw.Columns.Add("UOM");
+
+            dsraw.Tables.Add(dtraw);
+
+            if (dstd.Tables[0].Rows.Count > 0)
+            {
+                #region
+
+                // DataTable dtraws = dsrawmerge.Tables[0];
+
+                var result1 = from r in dtddd.AsEnumerable()
+                              group r by new { CategoryID = r["CategoryID"], CategoryUserID = r["CategoryUserID"], UOMID = r["UOMID"], Category = r["Category"], Definition = r["Definition"], Available_Qty = r["Available_Qty"], UOM = r["UOM"], Barcode = r["Barcode"] } into raw
+                              select new
+                              {
+                                  CategoryID = raw.Key.CategoryID,
+                                  CategoryUserID = raw.Key.CategoryUserID,
+                                  UOMID = raw.Key.UOMID,
+                                  Category = raw.Key.Category,
+                                  Definition = raw.Key.Definition,
+                                  Barcode = raw.Key.Barcode,
+                                  Available_Qty = raw.Key.Available_Qty,
+                                  Qty = raw.Sum(x => Convert.ToDouble(x["Qty"])),
+                                  UOM = raw.Key.UOM,
+                              };
+
+
+                foreach (var g in result1)
+                {
+                    drraw = dtraw.NewRow();
+
+                    drraw["CategoryID"] = g.CategoryID;
+                    drraw["CategoryUserID"] = g.CategoryUserID;
+                    drraw["UOMID"] = g.UOMID;
+                    drraw["Category"] = g.Category;
+                    drraw["Barcode"] = g.Barcode;
+                    drraw["Definition"] = g.Definition;
+                    drraw["Available_Qty"] = Convert.ToDouble(g.Available_Qty).ToString("" + qtysetting + "");
+                    drraw["Qty"] = Convert.ToDouble(g.Qty).ToString("" + qtysetting + "");
+                    drraw["UOM"] = g.UOM;
+
+                    dsraw.Tables[0].Rows.Add(drraw);
+                }
+                gvqueueitems.DataSource = dsraw;
+                gvqueueitems.DataBind();
+
+                #endregion
+            }
+
+
+            #endregion
+
+
+            gvitems.DataSource = null;
+            gvitems.DataBind();
+
+            // ddlcategory_SelectedIndexChanged(sender, e);
+            // TextBox10.Text = "";
+
+            txtqty.Text = "";
+            drpitemsearch.Focus();
+             UpdatePanel1.Update();
+            upcus.Update();
+
+        }
+
+        protected void item_click(object sender, EventArgs e)
+        {
+            if (drpitemsearch.SelectedValue == "Select Item")
+            {
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Select Item.Thank You!!!');", true);
+                return;
+            }
+            else
+            {
+                DataSet ds = objbs.getitembyid(drpitemsearch.SelectedValue, sTableName);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+
+
+                    NhideCategoryID.Value = ds.Tables[0].Rows[0]["CategoryID"].ToString();
+                    NhideCategoryUserID.Value = ds.Tables[0].Rows[0]["CategoryUserID"].ToString();
+                    NhideUOMID.Value = ds.Tables[0].Rows[0]["UOMID"].ToString();
+                    NhdRate.Value = ds.Tables[0].Rows[0]["Rate"].ToString();
+                    NhdGST.Value = ds.Tables[0].Rows[0]["GST"].ToString();
+
+                    NlblCategory.Text = ds.Tables[0].Rows[0]["Category"].ToString();
+                    NlblDefinition.Text = ds.Tables[0].Rows[0]["Definition"].ToString();
+                    Nlblrate.Text = ds.Tables[0].Rows[0]["MRP"].ToString();
+                    Nlbqty.Text = ds.Tables[0].Rows[0]["Available_qty"].ToString();
+                    Nlblom.Text = ds.Tables[0].Rows[0]["UOM"].ToString();
+                    Nlblbarcode.Text = ds.Tables[0].Rows[0]["barcode"].ToString();
+                    txtqty.Focus();
+                }
+                else
+                {
+                    NhideCategoryID.Value = "0";
+                    NhideCategoryUserID.Value = "0";
+                    NhideUOMID.Value = "0";
+                    NhdRate.Value = "0";
+                    NhdGST.Value = "0";
+
+                    NlblCategory.Text = "0";
+                    NlblDefinition.Text = "0";
+                    Nlblrate.Text = "0";
+                    Nlbqty.Text = "0";
+                    Nlblom.Text = "0";
+                    txtqty.Text = "0";
+                    Nlblbarcode.Text = "0";
+                    //txtCusName1.Text = "";
+                }
+
+            }
         }
 
         protected void ddlcategory_SelectedIndexChanged(object sender, EventArgs e)

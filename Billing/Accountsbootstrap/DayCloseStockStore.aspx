@@ -127,7 +127,7 @@ $("[id$=myButtonControlID]").click(function(e) {
         <div class="col-lg-3">
         <br />
             <asp:Button ID="btnCloseDay" runat="server" Text="Close Day " OnClick="btnCloseDay_OnClick" CssClass="btn btn-primary pos-btn1" />
-            &nbsp;&nbsp;&nbsp;<asp:Button ID="Button2" runat="server" Text="Billing Screen " PostBackUrl="~/Accountsbootstrap/NewButton.aspx"
+            &nbsp;&nbsp;&nbsp;<asp:Button ID="Button2" runat="server" Text="Stock Transfer To Kitchen "  PostBackUrl="~/Accountsbootstrap/StoreRawItemRequest.aspx"
                 CssClass="btn btn-success" />
             <asp:Button ID="myButtonControlID" runat="server" Text="Export" CssClass="btn btn-warning"
                 Visible="false" />

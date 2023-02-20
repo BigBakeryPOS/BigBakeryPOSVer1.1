@@ -1227,6 +1227,14 @@ namespace Billing.HeaderMaster
                                         MasterMenu.Visible = true;
                                         TAX.Visible = true;
                                     }
+
+                                    if (screen == "Ratesettingmaster")
+                                    {
+                                        MasterMenu.Visible = true;
+                                        Ratesettingmaster.Visible = true;
+                                    }
+
+                                    
                                     if (screen == "IBSM")
                                     {
                                         MasterMenu.Visible = true;
@@ -1352,6 +1360,15 @@ namespace Billing.HeaderMaster
                                         MasterMenu.Visible = true;                                      
                                         subcompany.Visible = true;
                                     }
+
+                                    if (screen == "currencymaster")
+                                    {
+                                        MasterMenu.Visible = true;
+                                        currencymaster.Visible = true;
+                                    }
+
+                                    
+
                                     if (screen == "CustMast")
                                     {
                                         MasterMenu.Visible = true;
@@ -2504,6 +2521,12 @@ namespace Billing.HeaderMaster
                                     MasterMenu.Visible = true;
                                     TAX.Visible = true;
                                 }
+                                if (screen == "Ratesettingmaster")
+                                {
+                                    MasterMenu.Visible = true;
+                                    Ratesettingmaster.Visible = true;
+                                }
+
                                 if (screen == "IBSM")
                                 {
                                     MasterMenu.Visible = true;
@@ -2632,6 +2655,13 @@ namespace Billing.HeaderMaster
                                     MasterMenu.Visible = true;
                                     subcompany.Visible = true;
                                 }
+
+                                if (screen == "currencymaster")
+                                {
+                                    MasterMenu.Visible = true;
+                                    currencymaster.Visible = true;
+                                }
+
                                 if (screen == "DealMast")
                                 {
                                     MasterMenu.Visible = true;
@@ -3795,6 +3825,12 @@ namespace Billing.HeaderMaster
                                 MasterMenu.Visible = true;
                                 TAX.Visible = true;
                             }
+                            if (screen == "Ratesettingmaster")
+                            {
+                                MasterMenu.Visible = true;
+                                Ratesettingmaster.Visible = true;
+                            }
+
                             if (screen == "IBSM")
                             {
                                 MasterMenu.Visible = true;
@@ -3919,6 +3955,12 @@ namespace Billing.HeaderMaster
                             {
                                 MasterMenu.Visible = true;
                                 subcompany.Visible = true;
+                            }
+
+                            if (screen == "currencymaster")
+                            {
+                                MasterMenu.Visible = true;
+                                currencymaster.Visible = true;
                             }
                             if (screen == "DealMast")
                             {

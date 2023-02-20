@@ -160,7 +160,7 @@
                                                         <asp:BoundField HeaderText="FinishedNo" DataField="RequestNo" />
                                                         <asp:BoundField HeaderText="FinishedDate" DataField="RequestDate" DataFormatString='{0:dd/MM/yyyy}' />
                                                         <asp:BoundField HeaderText="Prepared" DataField="Prepared" />
-                                                        <asp:BoundField HeaderText="Qty" DataField="Qty" DataFormatString="{0:f}" />
+                                                        <asp:BoundField HeaderText="Qty" DataField="Qty" DataFormatString="{0:f3}" />
                                                         <asp:TemplateField HeaderText="Cancel Sales" Visible="false">
                                                             <ItemTemplate>
                                                                 <asp:LinkButton ID="btndelete" runat="server" CommandArgument='<%#Eval("RequestNo") %>'

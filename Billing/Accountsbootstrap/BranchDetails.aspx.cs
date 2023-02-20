@@ -41,6 +41,16 @@ namespace Billing.Accountsbootstrap
                 }
 
 
+                DataSet dsdefaultcurrency = objBs.getdefaultcurreny();
+                if (dsdefaultcurrency.Tables[0].Rows.Count > 0)
+                {
+                    drpcurrency.DataSource = dsdefaultcurrency.Tables[0];
+                    drpcurrency.DataTextField = "txt";
+                    drpcurrency.DataValueField = "DefaultCurrencyid";
+                    drpcurrency.DataBind();
+                }
+
+
 
 
                 string iCusID = Request.QueryString.Get("iBranch");
@@ -135,6 +145,16 @@ namespace Billing.Accountsbootstrap
 
                         rdlproductionstocktype.SelectedValue = ds1.Tables[0].Rows[0]["ProdStockOption"].ToString();
 
+                        drpitemmergeornot.SelectedValue = ds1.Tables[0].Rows[0]["itemmergeornot"].ToString();
+
+                        drpcurrency.SelectedValue = ds1.Tables[0].Rows[0]["defaultcurrency"].ToString();
+
+
+
+
+
+
+
 
                         if (drpversion.SelectedItem.Text == lblcurversion.Text)
                         {
@@ -166,15 +186,15 @@ namespace Billing.Accountsbootstrap
             //To set 1 hour interval
             //TimeSpan Interval = new TimeSpan(1, 0, 0);           
             ddlTimeFrom.Items.Clear();
-          //  ddlTimeTo.Items.Clear();
+            //  ddlTimeTo.Items.Clear();
             while (StartTime <= EndTime)
             {
                 ddlTimeFrom.Items.Add(StartTime.ToString("HH:mm tt"));
-               // ddlTimeTo.Items.Add(StartTime.ToShortTimeString());
+                // ddlTimeTo.Items.Add(StartTime.ToShortTimeString());
                 StartTime = StartTime.Add(Interval);
             }
             ddlTimeFrom.Items.Insert(0, new ListItem("--Select--", "0"));
-           // ddlTimeTo.Items.Insert(0, new ListItem("--Select--", "0"));
+            // ddlTimeTo.Items.Insert(0, new ListItem("--Select--", "0"));
         }
 
         //protected void branch_type(object sender, EventArgs e)
@@ -193,6 +213,17 @@ namespace Billing.Accountsbootstrap
 
         protected void Add_Click(object sender, EventArgs e)
         {
+
+            productionstock_changed(sender, e);
+
+            // get currency name
+
+            DataSet getcurrency = objBs.getidefaultCurrencyvalues(drpcurrency.SelectedValue);
+            if (getcurrency.Tables[0].Rows.Count > 0)
+            {
+                txtcurrency.Text = getcurrency.Tables[0].Rows[0]["currencyname"].ToString();
+            }
+
             string Imagepath = string.Empty;
             string BranchType = "";
             if (drpbranchtype.SelectedValue == "O")
@@ -215,7 +246,7 @@ namespace Billing.Accountsbootstrap
             }
             if (btnadd.Text == "Save")
             {
-                int iStatus = objBs.Insertbranch(txtbranchname.Text, txtcustomername.Text, txtcountry.Text, txtstate.Text, txtcity.Text, txtaddress.Text, txtmobileno.Text, txtphoneno.Text, txtemail.Text, txtcurrency.Text, txtbranchcode.Text, txtbrancharea.Text, txtgstin.Text, lblloginid.Text, txtpincode.Text, txtpemail.Text, txtiemail.Text, txtoemail.Text, drpbranchtype.SelectedValue, txtFranchisename.Text, drponlineenabeld.SelectedValue, drpproductiontype.SelectedValue, drpprintautoclose.SelectedValue, drporderonlinesync.SelectedValue, txtfssaino.Text, drponlinepos.SelectedValue, Rdltype.SelectedValue, RdlStocktype.SelectedValue, Imagepath, BranchType, txtUsername.Text, txtPassword.Text, txtbillgenerateCode.Text, drpbillsetting.SelectedValue, drptaxsplitup.SelectedValue, drpprintlogo.SelectedValue, drpversion.SelectedValue, drptaxsetting.SelectedValue, drpratesetting.SelectedValue, drpqtysetting.SelectedValue, drppossalessetting.SelectedValue, drproundoffsetting.SelectedValue, drpautoqtysetting.SelectedValue, drpattednercheck.SelectedValue, drpprintbillsetting.SelectedValue, drporderbooknocheck.SelectedValue,rdlproductionstocktype.SelectedValue);
+                int iStatus = objBs.Insertbranch(txtbranchname.Text, txtcustomername.Text, txtcountry.Text, txtstate.Text, txtcity.Text, txtaddress.Text, txtmobileno.Text, txtphoneno.Text, txtemail.Text, txtcurrency.Text, txtbranchcode.Text, txtbrancharea.Text, txtgstin.Text, lblloginid.Text, txtpincode.Text, txtpemail.Text, txtiemail.Text, txtoemail.Text, drpbranchtype.SelectedValue, txtFranchisename.Text, drponlineenabeld.SelectedValue, drpproductiontype.SelectedValue, drpprintautoclose.SelectedValue, drporderonlinesync.SelectedValue, txtfssaino.Text, drponlinepos.SelectedValue, Rdltype.SelectedValue, RdlStocktype.SelectedValue, Imagepath, BranchType, txtUsername.Text, txtPassword.Text, txtbillgenerateCode.Text, drpbillsetting.SelectedValue, drptaxsplitup.SelectedValue, drpprintlogo.SelectedValue, drpversion.SelectedValue, drptaxsetting.SelectedValue, drpratesetting.SelectedValue, drpqtysetting.SelectedValue, drppossalessetting.SelectedValue, drproundoffsetting.SelectedValue, drpautoqtysetting.SelectedValue, drpattednercheck.SelectedValue, drpprintbillsetting.SelectedValue, drporderbooknocheck.SelectedValue, rdlproductionstocktype.SelectedValue, drpitemmergeornot.SelectedValue,drpcurrency.SelectedValue);
                 Response.Redirect("../Accountsbootstrap/BranchGrid.aspx");
             }
 
@@ -225,7 +256,7 @@ namespace Billing.Accountsbootstrap
 
                 //string BranchId,string BranchName,string ContactName,string Country,string State,string City,string Address,string MobileNo,string LandLine,string Email,string Currency,string BranchCode,string BranchArea,string GSTIN,string loginid
                 // int iStatus = objBs.Updatebranch(iCusID, txtbranchname.Text, txtcustomername.Text, txtcountry.Text, txtstate.Text, txtcity.Text, txtaddress.Text, txtmobileno.Text, txtphoneno.Text, txtemail.Text, txtcurrency.Text, txtbranchcode.Text, txtbrancharea.Text, txtgstin.Text, lblloginid.Text,txtpincode.Text);
-                int iStatus = objBs.Updatebranch(iCusID, txtbranchname.Text, txtcustomername.Text, txtcountry.Text, txtstate.Text, txtcity.Text, txtaddress.Text, txtmobileno.Text, txtphoneno.Text, txtemail.Text, txtcurrency.Text, txtbranchcode.Text, txtbrancharea.Text, txtgstin.Text, lblloginid.Text, txtpincode.Text, txtpemail.Text, txtiemail.Text, txtoemail.Text, drpbranchtype.SelectedValue, txtFranchisename.Text, drponlineenabeld.SelectedValue, drpproductiontype.SelectedValue, drpprintautoclose.SelectedValue, drporderonlinesync.SelectedValue, txtfssaino.Text, drponlinepos.SelectedValue, Rdltype.SelectedValue, RdlStocktype.SelectedValue, Imagepath, txtUsername.Text, txtPassword.Text, txtbillgenerateCode.Text, drpbillsetting.SelectedValue, drptaxsplitup.SelectedValue, drpprintlogo.SelectedValue, drpversion.SelectedValue, drptaxsetting.SelectedValue, drpratesetting.SelectedValue, drpqtysetting.SelectedValue, drppossalessetting.SelectedValue, drproundoffsetting.SelectedValue, drpsdispatch.SelectedValue, drpautoqtysetting.SelectedValue, drpattednercheck.SelectedValue, drpprintbillsetting.SelectedValue, drporderbooknocheck.SelectedValue,rdlproductionstocktype.SelectedValue);
+                int iStatus = objBs.Updatebranch(iCusID, txtbranchname.Text, txtcustomername.Text, txtcountry.Text, txtstate.Text, txtcity.Text, txtaddress.Text, txtmobileno.Text, txtphoneno.Text, txtemail.Text, txtcurrency.Text, txtbranchcode.Text, txtbrancharea.Text, txtgstin.Text, lblloginid.Text, txtpincode.Text, txtpemail.Text, txtiemail.Text, txtoemail.Text, drpbranchtype.SelectedValue, txtFranchisename.Text, drponlineenabeld.SelectedValue, drpproductiontype.SelectedValue, drpprintautoclose.SelectedValue, drporderonlinesync.SelectedValue, txtfssaino.Text, drponlinepos.SelectedValue, Rdltype.SelectedValue, RdlStocktype.SelectedValue, Imagepath, txtUsername.Text, txtPassword.Text, txtbillgenerateCode.Text, drpbillsetting.SelectedValue, drptaxsplitup.SelectedValue, drpprintlogo.SelectedValue, drpversion.SelectedValue, drptaxsetting.SelectedValue, drpratesetting.SelectedValue, drpqtysetting.SelectedValue, drppossalessetting.SelectedValue, drproundoffsetting.SelectedValue, drpsdispatch.SelectedValue, drpautoqtysetting.SelectedValue, drpattednercheck.SelectedValue, drpprintbillsetting.SelectedValue, drporderbooknocheck.SelectedValue, rdlproductionstocktype.SelectedValue, drpitemmergeornot.SelectedValue,drpcurrency.SelectedValue);
                 Response.Redirect("../Accountsbootstrap/login_branch.aspx");
             }
 
@@ -284,6 +315,33 @@ namespace Billing.Accountsbootstrap
             //}
 
 
+
+        }
+
+        protected void productionstock_changed(object sender, EventArgs e)
+        {
+            if (drpbranchtype.SelectedValue == "P")
+            {
+
+                if (rdlproductionstocktype.SelectedValue == "2")
+                {
+
+                }
+                else if (rdlproductionstocktype.SelectedValue == "1")
+                {
+
+                    DataSet dcheckqty = objBs.checkprodqty(txtbranchcode.Text);
+                    if (dcheckqty.Tables[0].Rows.Count > 0)
+                    {
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Production Stock Show Negative So Please  Change item and click Again.Thank You!!!');", true);
+                        return;
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
 
         }
 

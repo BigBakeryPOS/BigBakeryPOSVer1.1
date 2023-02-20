@@ -294,6 +294,24 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.CheckBoxList chkpaylist;
 
         /// <summary>
+        /// div2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div2;
+
+        /// <summary>
+        /// chkratetype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkratetype;
+
+        /// <summary>
         /// btnSubmit control.
         /// </summary>
         /// <remarks>

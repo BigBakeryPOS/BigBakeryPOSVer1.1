@@ -22,6 +22,7 @@ namespace Billing.Accountsbootstrap
         string BranchCode = "";
         string dispatchdirect = "N";
         string qtysetting = "";
+        string ProdStockOption = "1";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,7 +33,8 @@ namespace Billing.Accountsbootstrap
 
             dispatchdirect = Request.Cookies["userInfo"]["dispatchdirect"].ToString();
             qtysetting = Request.Cookies["userInfo"]["Qtysetting"].ToString();
-           
+            ProdStockOption = Request.Cookies["userInfo"]["ProdStockOption"].ToString();
+
 
             if (!IsPostBack)
             {
@@ -195,13 +197,25 @@ namespace Billing.Accountsbootstrap
                     tot_Qty = Order_Qty - rec_Qty;
 
                     lblOrder_Qty.Text = tot_Qty.ToString("0.00");
-
-                    if (Convert.ToDouble(lblStockQty.Text) < Convert.ToDouble(txttransferQty.Text))
+                    if (ProdStockOption == "1")
                     {
-                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Production Qty is Less than the Prod to Stores.');", true);
-                        return;
+
+
+                        if (Convert.ToDouble(lblStockQty.Text) < Convert.ToDouble(txttransferQty.Text))
+                        {
+                            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Production Qty is Less than the Prod to Stores.');", true);
+                            return;
+                        }
+                        else
+                        {
+                            if (Convert.ToDouble(lblOrder_Qty.Text) < Convert.ToDouble(txttransferQty.Text))
+                            {
+                                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Store Requested  Qty is Less than the Prod to Stores.');", true);
+                                return;
+                            }
+                        }
                     }
-                    else
+                    else if(ProdStockOption == "2")
                     {
                         if (Convert.ToDouble(lblOrder_Qty.Text) < Convert.ToDouble(txttransferQty.Text))
                         {
