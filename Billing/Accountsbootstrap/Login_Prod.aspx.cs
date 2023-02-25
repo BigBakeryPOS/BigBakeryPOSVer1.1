@@ -295,6 +295,74 @@ namespace Billing.Accountsbootstrap
                         userInfo["onlinepos"] = getbranch.Tables[0].Rows[0]["onlinepos"].ToString();
                         Session["onlinepos"] = getbranch.Tables[0].Rows[0]["onlinepos"].ToString();
 
+                        userInfo["PrintOption"] = getbranch.Tables[0].Rows[0]["PrintOption"].ToString();
+                        Session["PrintOption"] = getbranch.Tables[0].Rows[0]["PrintOption"].ToString();
+
+                        userInfo["StockOption"] = getbranch.Tables[0].Rows[0]["StockOption"].ToString();
+                        Session["StockOption"] = getbranch.Tables[0].Rows[0]["StockOption"].ToString();
+
+                        userInfo["ProdStockOption"] = getbranch.Tables[0].Rows[0]["ProdStockOption"].ToString();
+                        Session["ProdStockOption"] = getbranch.Tables[0].Rows[0]["ProdStockOption"].ToString();
+
+
+                        userInfo["BillCode"] = getbranch.Tables[0].Rows[0]["BillCode"].ToString();
+                        Session["BillCode"] = getbranch.Tables[0].Rows[0]["BillCode"].ToString();
+
+
+                        userInfo["BillGenerateSetting"] = getbranch.Tables[0].Rows[0]["BillGenerateSetting"].ToString();
+                        Session["BillGenerateSetting"] = getbranch.Tables[0].Rows[0]["BillGenerateSetting"].ToString();
+
+
+                        userInfo["Billtaxsplitupshown"] = getbranch.Tables[0].Rows[0]["Billtaxsplitupshown"].ToString();
+                        Session["Billtaxsplitupshown"] = getbranch.Tables[0].Rows[0]["Billtaxsplitupshown"].ToString();
+
+
+                        userInfo["BillPrintLogo"] = getbranch.Tables[0].Rows[0]["BillPrintLogo"].ToString();
+                        Session["BillPrintLogo"] = getbranch.Tables[0].Rows[0]["BillPrintLogo"].ToString();
+
+
+                        userInfo["TaxSetting"] = getbranch.Tables[0].Rows[0]["TaxSetting"].ToString();
+                        Session["TaxSetting"] = getbranch.Tables[0].Rows[0]["TaxSetting"].ToString();
+
+
+                        userInfo["Ratesetting"] = getbranch.Tables[0].Rows[0]["Ratesetting"].ToString();
+                        Session["Ratesetting"] = getbranch.Tables[0].Rows[0]["Ratesetting"].ToString();
+
+
+                        userInfo["Qtysetting"] = getbranch.Tables[0].Rows[0]["Qtysetting"].ToString();
+                        Session["Qtysetting"] = getbranch.Tables[0].Rows[0]["Qtysetting"].ToString();
+
+                        userInfo["BigVersion"] = getbranch.Tables[0].Rows[0]["BigVersion"].ToString();
+                        Session["BigVersion"] = getbranch.Tables[0].Rows[0]["BigVersion"].ToString();
+
+                        userInfo["Currency"] = getbranch.Tables[0].Rows[0]["Currency"].ToString();
+                        Session["Currency"] = getbranch.Tables[0].Rows[0]["Currency"].ToString();
+
+                        userInfo["possalessetting"] = getbranch.Tables[0].Rows[0]["possalessetting"].ToString();
+                        Session["possalessetting"] = getbranch.Tables[0].Rows[0]["possalessetting"].ToString();
+
+                        userInfo["RoundoffSetting"] = getbranch.Tables[0].Rows[0]["RoundoffSetting"].ToString();
+                        Session["RoundoffSetting"] = getbranch.Tables[0].Rows[0]["RoundoffSetting"].ToString();
+
+                        userInfo["QtyFillSetting"] = getbranch.Tables[0].Rows[0]["QtyFillSetting"].ToString();
+                        Session["QtyFillSetting"] = getbranch.Tables[0].Rows[0]["QtyFillSetting"].ToString();
+
+                        userInfo["Posattendercheck"] = getbranch.Tables[0].Rows[0]["Posattendercheck"].ToString();
+                        Session["Posattendercheck"] = getbranch.Tables[0].Rows[0]["Posattendercheck"].ToString();
+
+                        userInfo["posPrintsetting"] = getbranch.Tables[0].Rows[0]["posPrintsetting"].ToString();
+                        Session["posPrintsetting"] = getbranch.Tables[0].Rows[0]["posPrintsetting"].ToString();
+
+                        userInfo["OrderBookcheck"] = getbranch.Tables[0].Rows[0]["OrderBookcheck"].ToString();
+                        Session["OrderBookcheck"] = getbranch.Tables[0].Rows[0]["OrderBookcheck"].ToString();
+
+
+                        userInfo["ProdStockOption"] = getbranch.Tables[0].Rows[0]["ProdStockOption"].ToString();
+                        Session["ProdStockOption"] = getbranch.Tables[0].Rows[0]["ProdStockOption"].ToString();
+
+                        userInfo["itemmergeornot"] = getbranch.Tables[0].Rows[0]["itemmergeornot"].ToString();
+                        Session["itemmergeornot"] = getbranch.Tables[0].Rows[0]["itemmergeornot"].ToString();
+
 
                     }
                     else
@@ -316,6 +384,74 @@ namespace Billing.Accountsbootstrap
 
                         userInfo["onlinepos"] = "N";
                         Session["onlinepos"] = "N";
+
+                        userInfo["PrintOption"] = "Nil";
+                        Session["PrintOption"] = "Nil";
+
+                        userInfo["StockOption"] = "Nil";
+                        Session["StockOption"] = "Nil";
+
+                        userInfo["ProdStockOption"] = "Nil";
+                        Session["ProdStockOption"] = "Nil";
+
+
+                        userInfo["BillCode"] = "Big";
+                        Session["BillCode"] = "Big";
+
+
+                        userInfo["BillGenerateSetting"] = "2";
+                        Session["BillGenerateSetting"] = "2";
+
+
+                        userInfo["Billtaxsplitupshown"] = "Y";
+                        Session["Billtaxsplitupshown"] = "Y";
+
+
+                        userInfo["BillPrintLogo"] = "N";
+                        Session["BillPrintLogo"] = "N";
+
+
+                        userInfo["TaxSetting"] = "O";
+                        Session["TaxSetting"] = "O";
+
+
+                        userInfo["Ratesetting"] = "0.00";
+                        Session["Ratesetting"] = "0.00";
+
+
+                        userInfo["Qtysetting"] = "0.00";
+                        Session["Qtysetting"] = "0.00";
+
+                        userInfo["BigVersion"] = "1";
+                        Session["BigVersion"] = "1";
+
+                        userInfo["Currency"] = "INR(Rs.)";
+                        Session["Currency"] = "INR(Rs.)";
+
+                        userInfo["possalessetting"] = "D";
+                        Session["possalessetting"] = "D";
+
+                        userInfo["RoundoffSetting"] = "WG";
+                        Session["RoundoffSetting"] = "WG";
+
+
+                        userInfo["QtyFillSetting"] = "Y";
+                        Session["QtyFillSetting"] = "Y";
+
+                        userInfo["Posattendercheck"] = "N";
+                        Session["Posattendercheck"] = "N";
+
+                        userInfo["posPrintsetting"] = "1";
+                        Session["posPrintsetting"] = "1";
+
+                        userInfo["OrderBookcheck"] = "N";
+                        Session["OrderBookcheck"] = "N";
+
+                        userInfo["ProdStockOption"] = "1";
+                        Session["ProdStockOption"] = "1";
+
+                        userInfo["itemmergeornot"] = "Y";
+                        Session["itemmergeornot"] = "Y";
 
                     }
 

@@ -110,85 +110,94 @@ namespace Billing.Accountsbootstrap
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            if (ddlSubCategory.SelectedItem.Text != "Select Description")
+            if(ddlcategory.SelectedValue == "Select Category")
             {
-                if (sTableName == "admin")
-                {
-                    caption.InnerText = "Store :  " + BranchNAme + " " + StoreName + "  Grn Report from " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("MM/dd/yyyy");
-
-                    
-                    DataSet dStockReport = objBs.GRNSearch(txtFrom.Text, txttodate.Text, sCode, Convert.ToInt32(ddlBranch.SelectedValue), Convert.ToInt32(ddlSubCategory.SelectedValue));
-
-                    DataSet dSalesQty = objBs.SalesQtysearch(sTableName, txtFrom.Text, Convert.ToInt32(ddlSubCategory.SelectedValue), txttodate.Text);
-                    string Caption = "Store :  " + BranchNAme + " " + StoreName + "  Grn Report from " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("MM/dd/yyyy");
-                    GVStockAlert.DataSource = Caption;
-                    GVStockAlert.DataSource = dStockReport.Tables[0];
-                    GVStockAlert.DataBind();
-
-                    gvsales.DataSource = dSalesQty.Tables[0];
-                    gvsales.DataBind();
-
-
-                }
-                else
-                {
-                    caption.InnerText = "Store :  " + BranchNAme + " " + StoreName + "  Grn Report from " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("MM/dd/yyyy");
-
-                    DataSet dStockReport = objBs.GRNSearch(txtFrom.Text,txttodate.Text, sCode, Convert.ToInt32(lblUserID.Text), Convert.ToInt32(ddlSubCategory.SelectedValue));
-                    DataSet dSalesQty = objBs.SalesQtysearch(sTableName, txtFrom.Text, Convert.ToInt32(ddlSubCategory.SelectedValue), txttodate.Text);
-                    string Caption = "Store :  " + BranchNAme + " " + StoreName + "  Grn Report from " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("MM/dd/yyyy");
-                    GVStockAlert.DataSource = Caption;
-                    GVStockAlert.DataSource = dStockReport.Tables[0];
-                    GVStockAlert.DataBind();
-
-                    gvsales.DataSource = dSalesQty.Tables[0];
-                    gvsales.DataBind();
-
-
-                    DataSet inter = objBs.InterbranchGRNCat(txttodate.Text, txtFrom.Text, sTableName, Convert.ToInt32(ddlSubCategory.SelectedValue));
-                    GridView1.DataSource = inter.Tables[0];
-                    GridView1.DataBind();
-                }
+               
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Please Select Category.Thank You!!!');", true);
+                    return;
+                
             }
-            else
-            {
-                if (sTableName == "admin")
-
+            else {
+                if (ddlSubCategory.SelectedItem.Text != "Select Description" || ddlSubCategory.SelectedItem.Text == null || ddlSubCategory.SelectedItem.Text == "")
                 {
-                    caption.InnerText = "Store :  " + BranchNAme + " " + StoreName + "  Grn Report from " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("MM/dd/yyyy");
-
-                    
-                    DataSet dStockReport = objBs.GRNSearchcategory(txtFrom.Text, txttodate.Text, sCode, Convert.ToInt32(ddlBranch.SelectedValue), Convert.ToInt32(ddlcategory.SelectedValue));
-
-                    DataSet dSalesQty = objBs.SalesQtysearchcat(sTableName, txtFrom.Text, Convert.ToInt32(ddlcategory.SelectedValue), txttodate.Text);
-                    string Caption = "Store :  " + BranchNAme + " " + StoreName + "  Grn Report from " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("MM/dd/yyyy");
-                    GVStockAlert.DataSource = Caption;
-                    GVStockAlert.DataSource = dStockReport.Tables[0];
-                    GVStockAlert.DataBind();
-
-                    gvsales.DataSource = dSalesQty.Tables[0];
-                    gvsales.DataBind();
+                    if (sTableName == "admin")
+                    {
+                        caption.InnerText = "Store :  " + BranchNAme + " " + StoreName + "  Grn Report from " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("MM/dd/yyyy");
 
 
+                        DataSet dStockReport = objBs.GRNSearch(txtFrom.Text, txttodate.Text, sCode, Convert.ToInt32(ddlBranch.SelectedValue), Convert.ToInt32(ddlSubCategory.SelectedValue));
+
+                        DataSet dSalesQty = objBs.SalesQtysearch(sTableName, txtFrom.Text, Convert.ToInt32(ddlSubCategory.SelectedValue), txttodate.Text);
+                        string Caption = "Store :  " + BranchNAme + " " + StoreName + "  Grn Report from " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("MM/dd/yyyy");
+                        GVStockAlert.DataSource = Caption;
+                        GVStockAlert.DataSource = dStockReport.Tables[0];
+                        GVStockAlert.DataBind();
+
+                        gvsales.DataSource = dSalesQty.Tables[0];
+                        gvsales.DataBind();
+
+
+                    }
+                    else
+                    {
+                        caption.InnerText = "Store :  " + BranchNAme + " " + StoreName + "  Grn Report from " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("MM/dd/yyyy");
+
+                        DataSet dStockReport = objBs.GRNSearch(txtFrom.Text, txttodate.Text, sCode, Convert.ToInt32(lblUserID.Text), Convert.ToInt32(ddlSubCategory.SelectedValue));
+                        DataSet dSalesQty = objBs.SalesQtysearch(sTableName, txtFrom.Text, Convert.ToInt32(ddlSubCategory.SelectedValue), txttodate.Text);
+                        string Caption = "Store :  " + BranchNAme + " " + StoreName + "  Grn Report from " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("MM/dd/yyyy");
+                        GVStockAlert.DataSource = Caption;
+                        GVStockAlert.DataSource = dStockReport.Tables[0];
+                        GVStockAlert.DataBind();
+
+                        gvsales.DataSource = dSalesQty.Tables[0];
+                        gvsales.DataBind();
+
+
+                        DataSet inter = objBs.InterbranchGRNCat(txttodate.Text, txtFrom.Text, sTableName, Convert.ToInt32(ddlSubCategory.SelectedValue));
+                        GridView1.DataSource = inter.Tables[0];
+                        GridView1.DataBind();
+                    }
                 }
                 else
                 {
-                    caption.InnerText = "Store :  " + BranchNAme + " " + StoreName + "  Grn Report from " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("MM/dd/yyyy");
+                    if (sTableName == "admin")
 
-                    DataSet dStockReport = objBs.GRNSearchcategory(txtFrom.Text, txttodate.Text, sCode, Convert.ToInt32(lblUserID.Text), Convert.ToInt32(ddlcategory.SelectedValue));
-                    DataSet dSalesQty = objBs.SalesQtysearchcat(sTableName, txtFrom.Text, Convert.ToInt32(ddlcategory.SelectedValue), txttodate.Text);
-                    string Caption = "Store :  " + BranchNAme + " " + StoreName + "  Grn Report from " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("MM/dd/yyyy");
-                    GVStockAlert.DataSource = Caption;
-                    GVStockAlert.DataSource = dStockReport.Tables[0];
-                    GVStockAlert.DataBind();
-
-                    gvsales.DataSource = dSalesQty.Tables[0];
-                    gvsales.DataBind();
+                    {
+                        caption.InnerText = "Store :  " + BranchNAme + " " + StoreName + "  Grn Report from " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("MM/dd/yyyy");
 
 
-                    DataSet inter = objBs.InterbranchGRNCat(txttodate.Text, txtFrom.Text, sTableName, Convert.ToInt32(ddlcategory.SelectedValue));
-                    GridView1.DataSource = inter.Tables[0];
-                    GridView1.DataBind();
+                        DataSet dStockReport = objBs.GRNSearchcategory(txtFrom.Text, txttodate.Text, sCode, Convert.ToInt32(ddlBranch.SelectedValue), Convert.ToInt32(ddlcategory.SelectedValue));
+
+                        DataSet dSalesQty = objBs.SalesQtysearchcat(sTableName, txtFrom.Text, Convert.ToInt32(ddlcategory.SelectedValue), txttodate.Text);
+                        string Caption = "Store :  " + BranchNAme + " " + StoreName + "  Grn Report from " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("MM/dd/yyyy");
+                        GVStockAlert.DataSource = Caption;
+                        GVStockAlert.DataSource = dStockReport.Tables[0];
+                        GVStockAlert.DataBind();
+
+                        gvsales.DataSource = dSalesQty.Tables[0];
+                        gvsales.DataBind();
+
+
+                    }
+                    else
+                    {
+                        caption.InnerText = "Store :  " + BranchNAme + " " + StoreName + "  Grn Report from " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("MM/dd/yyyy");
+
+                        DataSet dStockReport = objBs.GRNSearchcategory(txtFrom.Text, txttodate.Text, sCode, Convert.ToInt32(lblUserID.Text), Convert.ToInt32(ddlcategory.SelectedValue));
+                        DataSet dSalesQty = objBs.SalesQtysearchcat(sTableName, txtFrom.Text, Convert.ToInt32(ddlcategory.SelectedValue), txttodate.Text);
+                        string Caption = "Store :  " + BranchNAme + " " + StoreName + "  Grn Report from " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("MM/dd/yyyy");
+                        GVStockAlert.DataSource = Caption;
+                        GVStockAlert.DataSource = dStockReport.Tables[0];
+                        GVStockAlert.DataBind();
+
+                        gvsales.DataSource = dSalesQty.Tables[0];
+                        gvsales.DataBind();
+
+
+                        DataSet inter = objBs.InterbranchGRNCat(txttodate.Text, txtFrom.Text, sTableName, Convert.ToInt32(ddlcategory.SelectedValue));
+                        GridView1.DataSource = inter.Tables[0];
+                        GridView1.DataBind();
+                    }
                 }
             }
         }

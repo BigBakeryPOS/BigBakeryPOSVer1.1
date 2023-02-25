@@ -79,7 +79,7 @@ namespace Billing.Accountsbootstrap
 
 
 
-             //   string FromDate = txtfromdate.ToString("dd/MM/yyyy");
+             // string FromDate = txtfromdate.ToString("dd/MM/yyyy");
 
                 DateTime From1 = new DateTime();
                 DateTime To1 = new DateTime();
@@ -213,7 +213,7 @@ namespace Billing.Accountsbootstrap
                 }
                 Response.ClearContent();
                 Response.AddHeader("content-disposition",
-                    "attachment;filename=StockReport.xls");
+                    "attachment;filename=PurchaseReport.xls");
                 //Response.ContentType = "applicatio/excel";
                 Response.ContentType = "application/vnd.ms-excel";
                 StringWriter sw = new StringWriter(); ;
@@ -259,7 +259,7 @@ namespace Billing.Accountsbootstrap
                             XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
                             pdfDoc.Close();
                             Response.ContentType = "application/pdf";
-                            Response.AddHeader("content-disposition", "attachment;filename=StockReport.pdf");
+                            Response.AddHeader("content-disposition", "attachment;filename=PurchaseReport.pdf");
                             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
                             Response.Write(pdfDoc);

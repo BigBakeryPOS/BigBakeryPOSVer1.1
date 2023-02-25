@@ -461,7 +461,7 @@ namespace Billing.Accountsbootstrap
                 DataSet dReqNo = objbs.ReqNoDept(Convert.ToInt32(lblUserID.Text), sTableName);
                 txtpono.Text = dReqNo.Tables[0].Rows[0]["RequestNo"].ToString();
 
-                int MainRequestID = objbs.insert_stockrequestStoreDept(Convert.ToInt32(empid), txtpono.Text, sDate, "Requset Sent", 0, sTableName, 0, Convert.ToInt32(lblUserID.Text), txtOrderBy.Text, "0", requestentrytime, sCodeProd, entrytime, drpdepartment.SelectedValue);
+                int MainRequestID = objbs.insert_stockrequestStoreDept(Convert.ToInt32(empid), txtpono.Text, sDate, "Request Sent", 0, sTableName, 0, Convert.ToInt32(lblUserID.Text), txtOrderBy.Text, "0", requestentrytime, sCodeProd, entrytime, drpdepartment.SelectedValue);
                 #region Geautex
                 for (int i = 0; i < gvqueueitems.Rows.Count; i++)
                 {

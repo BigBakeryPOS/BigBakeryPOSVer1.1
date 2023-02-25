@@ -38,7 +38,7 @@ namespace Billing.Accountsbootstrap
             if (!IsPostBack)
             {
 
-                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Category");
+                DataSet dacess1 = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "Category");
                 if (dacess1.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -48,7 +48,7 @@ namespace Billing.Accountsbootstrap
                 }
 
                 DataSet dacess = new DataSet();
-                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Category");
+                dacess = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "Category");
                 if (dacess.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
@@ -197,8 +197,17 @@ namespace Billing.Accountsbootstrap
                         txtprintcat.Text = ds.Tables[0].Rows[0]["Printcategory"].ToString();
                         drpcattype.SelectedValue = ds.Tables[0].Rows[0]["CatType"].ToString();
 
-                        lblFile_Path.Text = (ds.Tables[0].Rows[0]["ImagePath"].ToString()).Remove(0,2);
-                        img_Photo.ImageUrl = (ds.Tables[0].Rows[0]["ImagePath"].ToString());
+                        if (ds.Tables[0].Rows[0]["ImagePath"].ToString() == "")
+                        {
+                            lblFile_Path.Text = (ds.Tables[0].Rows[0]["ImagePath"].ToString());
+                            img_Photo.ImageUrl = (ds.Tables[0].Rows[0]["ImagePath"].ToString());
+                        }
+                        else
+                        {
+
+                            lblFile_Path.Text = (ds.Tables[0].Rows[0]["ImagePath"].ToString()).Remove(0, 2);
+                            img_Photo.ImageUrl = (ds.Tables[0].Rows[0]["ImagePath"].ToString());
+                        }
 
                         drpcattype.Enabled = false;
 
@@ -326,33 +335,33 @@ namespace Billing.Accountsbootstrap
         protected void gridview_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
 
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                if (superadmin == "1" || sTableName == "Pro" || superadmin=="2")
-                {
-                    ((LinkButton)e.Row.FindControl("btnedit")).Enabled = true;
-                    ((LinkButton)e.Row.FindControl("btndel")).Enabled = true;
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+            //    if (superadmin == "1" || sTableName == "Pro" || superadmin=="2")
+            //    {
+            //        ((LinkButton)e.Row.FindControl("btnedit")).Enabled = true;
+            //        ((LinkButton)e.Row.FindControl("btndel")).Enabled = true;
 
-                    ((Image)e.Row.FindControl("imdedit")).Enabled = true;
-                    ((Image)e.Row.FindControl("Image1")).Enabled = true;
-                }
-                else
-                {
-                    ((LinkButton)e.Row.FindControl("btnedit")).Enabled = false;
-                    ((LinkButton)e.Row.FindControl("btndel")).Visible = false;
+            //        ((Image)e.Row.FindControl("imdedit")).Enabled = true;
+            //        ((Image)e.Row.FindControl("Image1")).Enabled = true;
+            //    }
+            //    else
+            //    {
+            //        ((LinkButton)e.Row.FindControl("btnedit")).Enabled = false;
+            //        ((LinkButton)e.Row.FindControl("btndel")).Visible = false;
 
-                    ((Image)e.Row.FindControl("imdedit")).Enabled = false;
-                    ((Image)e.Row.FindControl("Image1")).Visible = false;
+            //        ((Image)e.Row.FindControl("imdedit")).Enabled = false;
+            //        ((Image)e.Row.FindControl("Image1")).Visible = false;
 
-                    ((Image)e.Row.FindControl("imgdisable1321")).Enabled = false;
-                    ((Image)e.Row.FindControl("imgdisable1321")).Visible = true;
-                }
+            //        ((Image)e.Row.FindControl("imgdisable1321")).Enabled = false;
+            //        ((Image)e.Row.FindControl("imgdisable1321")).Visible = true;
+            //    }
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-            }
+            //}
 
         }
 
@@ -393,7 +402,7 @@ namespace Billing.Accountsbootstrap
         protected void btnSave_Click(object sender, EventArgs e)
         {
             if (lblFile_Path.Text == "")
-                lblFile_Path.Text = "Files/BlackForrest.png";
+                lblFile_Path.Text = "Files/image1.jpg";
 
             string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority +
                                 Request.ApplicationPath.TrimEnd('/') + "/";

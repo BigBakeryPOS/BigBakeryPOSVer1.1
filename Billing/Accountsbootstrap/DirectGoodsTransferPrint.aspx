@@ -76,10 +76,12 @@
                         <tr>
                             <td colspan="3" align="center">
                                 <asp:Label ID="lblstore" runat="server" Style="font-weight: bold; font-size: x-large"></asp:Label><br />
+                                <asp:Label ID="lblAddres" visible="true" runat="server" Style="font-size: large"></asp:Label><br />
+                                GST NO:<asp:Label ID="lblgstno" visible="true" runat="server" Style="font-size: large"></asp:Label><br />
                                 <asp:Label ID="lblst" runat="server" Style="font-weight: bold; font-size: 20px" Text="Delivery Challan Slip"></asp:Label><br />
-                                 <asp:Label ID="lblAddres" visible="false" runat="server" Style="font-size: large"></asp:Label>
+                                 
                                 <br />
-                                <asp:Label ID="lbltrip" runat="server" Style="font-weight: bold; font-size: 20px"  ></asp:Label>
+                                Trip No : <asp:Label ID="lbltrip" runat="server" Style="font-weight: bold; font-size: 20px"  ></asp:Label>
                             </td>
                         </tr>
                         <tr>
@@ -96,7 +98,7 @@
                             </td>--%>
                         </tr>
                     </table>
-                    <table  style="font-weight:bold; font-size:large " border="1" width="100%">
+                    <table  style="font-weight:bold; font-size:15px " border="1" width="100%">
                         <tr>
                             <td width="2%">
                             </td>
@@ -121,7 +123,7 @@
                     </table>
                     <div runat="server" id="divgv">
                         <asp:GridView runat="server" ID="gridprint" GridLines="Vertical" AutoGenerateColumns="false" FooterStyle-Font-Size="25px" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center"
-                            ShowHeader="true" ShowFooter="true" Width="100%" Style="font-family: 'Trebuchet MS'; font-size: 18px; font-weight:bold; " 
+                            ShowHeader="true" ShowFooter="true" Width="100%" Style="font-family: 'Trebuchet MS'; font-size: 15px; font-weight:bold; " 
                             OnRowDataBound="gridprint_RowDataBound"  >
                             <HeaderStyle BorderStyle="Solid" BorderWidth="1px"  />
                             <FooterStyle Font-Bold="true" Font-Size="25px"  />
@@ -134,6 +136,7 @@
                                 </asp:TemplateField>
                                 <asp:BoundField DataField="printitem" HeaderText="Item Name" HeaderStyle-HorizontalAlign="Center" />
                                 <asp:BoundField DataField="Qty" HeaderText="Qty" DataFormatString='{0:f2}' HeaderStyle-HorizontalAlign="Center" />
+                                <asp:BoundField DataField="Tgst" HeaderText="Gst%" DataFormatString='{0:f}' HeaderStyle-HorizontalAlign="Center" />
                                 <asp:BoundField DataField="mrp" HeaderText="Rate" DataFormatString='{0:f2}' ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Center" />
                                 <asp:BoundField DataField="totmrp" HeaderText="Total Amount" DataFormatString='{0:f2}' ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Center" />
                             </Columns>
@@ -189,6 +192,8 @@
                             <td style="border-bottom: solid 1px; text-align: center; width: 15%">
                                 <asp:Label Font-Size="28px" Font-Bold="true" Style="text-align: center" ID="lblgrandtotal" Visible="true"
                                     runat="server"></asp:Label>
+                                <br />
+                                (Inclusive of Tax)
                             </td>
                         </tr>
                     </table>

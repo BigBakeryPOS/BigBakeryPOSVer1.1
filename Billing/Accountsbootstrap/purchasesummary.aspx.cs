@@ -688,7 +688,7 @@ namespace Billing.Accountsbootstrap
             }
             #endregion
             #region 8
-            if (rdbCompany.Checked == true)
+            if (rbdcompany.Checked == true)
             {
                 {
                     //----------start----------//
@@ -961,7 +961,7 @@ namespace Billing.Accountsbootstrap
 
                 }
             }
-            else if (rdbCompany.Checked == true)
+            else if (rbdcompany.Checked == true)
             {
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {

@@ -1414,7 +1414,27 @@ namespace Billing.Accountsbootstrap
                             string Description = (dservercat.Tables[0].Rows[i]["Description"]).ToString();
                             string ratetype = (dservercat.Tables[0].Rows[i]["ratetype"]).ToString();
 
-                            
+
+                            string QtyType = (dservercat.Tables[0].Rows[i]["QtyType"]).ToString();
+                            string defaultcurrencyid = (dservercat.Tables[0].Rows[i]["defaultcurrencyid"]).ToString();
+
+                            string Rate1 = (dservercat.Tables[0].Rows[i]["Rate1"]).ToString();
+                            string MRP1 = (dservercat.Tables[0].Rows[i]["MRP1"]).ToString();
+
+                            string Rate2 = (dservercat.Tables[0].Rows[i]["Rate2"]).ToString();
+                            string MRP2 = (dservercat.Tables[0].Rows[i]["MRP2"]).ToString();
+
+
+                            string Rate3 = (dservercat.Tables[0].Rows[i]["Rate3"]).ToString();
+                            string MRP3 = (dservercat.Tables[0].Rows[i]["MRP3"]).ToString();
+
+                            string Rate4 = (dservercat.Tables[0].Rows[i]["Rate4"]).ToString();
+                            string MRP4 = (dservercat.Tables[0].Rows[i]["MRP4"]).ToString();
+
+                            string Rate5 = (dservercat.Tables[0].Rows[i]["Rate5"]).ToString();
+                            string MRP5 = (dservercat.Tables[0].Rows[i]["MRP5"]).ToString();
+
+
 
 
 
@@ -1445,7 +1465,7 @@ namespace Billing.Accountsbootstrap
                             {
                                 if (drptype.SelectedValue == "1")
                                 {
-                                    int iids = objBs.syncinsertitem(ItemID, CategoryID, Definition, IsDelete, Serial_No, Serial, Size, isChecked, Tax, Rate, CategoryUserID, GST, TaxVal, unit, empcode, MinimumStock, DisplayOnline, ImageUpload, IsActive, HSNCode, Printitem, foodtype,Barcode,Mrp,Pagepath,Description,ratetype);
+                                    int iids = objBs.syncinsertitem(ItemID, CategoryID, Definition, IsDelete, Serial_No, Serial, Size, isChecked, Tax, Rate, CategoryUserID, GST, TaxVal, unit, empcode, MinimumStock, DisplayOnline, ImageUpload, IsActive, HSNCode, Printitem, foodtype,Barcode,Mrp,Pagepath,Description,ratetype,QtyType,defaultcurrencyid,Rate1,MRP1, Rate2, MRP2, Rate3, MRP3, Rate4, MRP4, Rate5, MRP5);
                                 }
                             }
                         }
@@ -1500,6 +1520,27 @@ namespace Billing.Accountsbootstrap
                             string ratetype = (dservercat.Tables[0].Rows[i]["ratetype"]).ToString();
 
 
+
+                            string QtyType = (dservercat.Tables[0].Rows[i]["QtyType"]).ToString();
+                            string defaultcurrencyid = (dservercat.Tables[0].Rows[i]["defaultcurrencyid"]).ToString();
+
+                            string Rate1 = (dservercat.Tables[0].Rows[i]["Rate1"]).ToString();
+                            string MRP1 = (dservercat.Tables[0].Rows[i]["MRP1"]).ToString();
+
+                            string Rate2 = (dservercat.Tables[0].Rows[i]["Rate2"]).ToString();
+                            string MRP2 = (dservercat.Tables[0].Rows[i]["MRP2"]).ToString();
+
+
+                            string Rate3 = (dservercat.Tables[0].Rows[i]["Rate3"]).ToString();
+                            string MRP3 = (dservercat.Tables[0].Rows[i]["MRP3"]).ToString();
+
+                            string Rate4 = (dservercat.Tables[0].Rows[i]["Rate4"]).ToString();
+                            string MRP4 = (dservercat.Tables[0].Rows[i]["MRP4"]).ToString();
+
+                            string Rate5 = (dservercat.Tables[0].Rows[i]["Rate5"]).ToString();
+                            string MRP5 = (dservercat.Tables[0].Rows[i]["MRP5"]).ToString();
+
+
                             // GET LOCAL TBLCATEGORYUSER DATA
 
                             DataSet dsLocalcat = objBs.getitemgetdatafromlocal(ItemID.ToString());
@@ -1515,7 +1556,7 @@ namespace Billing.Accountsbootstrap
                                     if (drptype.SelectedValue == "2")
                                     {
                                         // UPDATE ALL COLUMN NAME
-                                        int isuc = objBs.syncupdateitemNEW(ItemID, CategoryID, Definition, IsDelete, Serial_No, Serial, Tax, Rate, CategoryUserID, GST, TaxVal, unit, MinimumStock, DisplayOnline, ImageUpload, IsActive, HSNCode, Printitem, foodtype, Barcode, Mrp, Pagepath, Description, ratetype);
+                                        int isuc = objBs.syncupdateitemNEW(ItemID, CategoryID, Definition, IsDelete, Serial_No, Serial, Tax, Rate, CategoryUserID, GST, TaxVal, unit, MinimumStock, DisplayOnline, ImageUpload, IsActive, HSNCode, Printitem, foodtype, Barcode, Mrp, Pagepath, Description, ratetype, QtyType, Rate1, MRP1, Rate2, MRP2, Rate3, MRP3, Rate4, MRP4, Rate5, MRP5);
                                     }
 
                                 }

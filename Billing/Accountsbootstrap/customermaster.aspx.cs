@@ -23,7 +23,7 @@ namespace Billing.Accountsbootstrap
 
             lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
-            DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(),  "customer");
+            DataSet dacess1 = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(),  "customer");
             if (dacess1.Tables[0].Rows.Count > 0)
             {
                 if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)

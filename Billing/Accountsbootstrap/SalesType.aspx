@@ -251,6 +251,10 @@
                                         <label>Payment Mode Selection</label>
                                         <asp:CheckBoxList ID="chkpaylist" runat="server" RepeatColumns="4"></asp:CheckBoxList>
                                     </div>
+                                    <div id="div2" runat="server" visible="true">
+                                        <label>Rate Type Selection</label>
+                                        <asp:CheckBoxList ID="chkratetype" runat="server" RepeatColumns="4"></asp:CheckBoxList>
+                                    </div>
                                 </div>
                                 <asp:Button ID="btnSubmit" Style="width: 150px;" runat="server"
                                     class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="btnadd_Click" />

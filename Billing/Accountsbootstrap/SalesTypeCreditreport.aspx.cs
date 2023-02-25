@@ -23,17 +23,15 @@ namespace Billing.Accountsbootstrap
         string BranchNAme = "";
         string StoreName = "";
 
-        string AllBranchAccess = "0";
-
-        double unitprice = 0, Qty = 0, subtotal = 0, gstamount = 0, totalvalue = 0, commamount = 0, commgstamnt = 0, gatwaycharge = 0, grandtot = 0, discvalue = 0;
-
+        double unitprice = 0, Qty = 0, subtotal = 0, gstamount = 0, totalvalue = 0, commamount = 0, commgstamnt = 0, gatwaycharge = 0, grandtot = 0,
+            discvalue = 0;
+        double cnt = 0;
 
         double GTax = 0;
         double GNetAmount = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             Password = Request.Cookies["userInfo"]["Password"].ToString();
-            AllBranchAccess = Request.Cookies["userInfo"]["AllBranchAccess"].ToString();
 
             lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
@@ -65,11 +63,6 @@ namespace Billing.Accountsbootstrap
                     drplogin.DataBind();
                     drplogin.Items.Insert(0, "All");
                 }
-                else
-                {
-                    drplogin.Items.Insert(0, "All");
-
-                }
 
 
 
@@ -84,57 +77,42 @@ namespace Billing.Accountsbootstrap
                 txtfromdate.Text = DateTime.Today.ToString("yyyy-MM-dd");
                 txttodate.Text = DateTime.Today.ToString("yyyy-MM-dd");
 
-                //if (sadmin == "1")
-                //{
-                //    ddlBranch.Enabled = true;
-                //    DataSet dsbranchto = objbs.Branchto();
-                //    ddlBranch.DataSource = dsbranchto.Tables[0];
-                //    ddlBranch.DataTextField = "branchcode";
-                //    ddlBranch.DataValueField = "Userid";
-                //    ddlBranch.DataBind();
-                //    //  ddlBranch.Items.Insert(0, "All");
-                //}
-                //else
-                //{
-                //    DataSet dsbranch = new DataSet();
-                //    string stable = "tblSales_" + sTableName + "";
-                //    dsbranch = objbs.Branchfrom(lblUserID.Text);
-                //    ddlBranch.DataSource = dsbranch.Tables[0];
-                //    ddlBranch.DataTextField = "branchcode";
-                //    ddlBranch.DataValueField = "Userid";
-                //    ddlBranch.DataBind();
-                //    ddlBranch.Enabled = false;
-                //}
-
-                DataSet dsbranch;
-                if (AllBranchAccess == "True")
-                    dsbranch = objbs.GetBranch_New("All");
+                if (sadmin == "1")
+                {
+                    ddlBranch.Enabled = true;
+                    DataSet dsbranchto = objbs.Branchto();
+                    ddlBranch.DataSource = dsbranchto.Tables[0];
+                    ddlBranch.DataTextField = "branchcode";
+                    ddlBranch.DataValueField = "Userid";
+                    ddlBranch.DataBind();
+                    //  ddlBranch.Items.Insert(0, "All");
+                }
                 else
-                    dsbranch = objbs.GetBranch_New(sTableName);
-
-                ddlBranch.DataSource = dsbranch;
-                ddlBranch.DataTextField = "BranchName";
-                ddlBranch.DataValueField = "Branchcode";
-                ddlBranch.DataBind();
-                if (AllBranchAccess == "True")
-                    ddlBranch.Items.Insert(0, "All");
-                else
+                {
+                    DataSet dsbranch = new DataSet();
+                    string stable = "tblSales_" + sTableName + "";
+                    dsbranch = objbs.Branchfrom(lblUserID.Text);
+                    ddlBranch.DataSource = dsbranch.Tables[0];
+                    ddlBranch.DataTextField = "branchcode";
+                    ddlBranch.DataValueField = "Userid";
+                    ddlBranch.DataBind();
                     ddlBranch.Enabled = false;
+                }
 
-                //if (sTableName == "admin")
-                //{
-                //    ddlBranch.Enabled = true;
-                //    txtfromdate.Enabled = true;
-                //    txttodate.Enabled = true;
-
-
-
-                //}
-                //else
-                //{
+                if (sTableName == "admin")
+                {
+                    ddlBranch.Enabled = true;
+                    txtfromdate.Enabled = true;
+                    txttodate.Enabled = true;
 
 
-                //}
+
+                }
+                else
+                {
+
+
+                }
 
             }
         }
@@ -159,48 +137,30 @@ namespace Billing.Accountsbootstrap
             gvdetailed.Visible = false;
             gvsummary.Visible = false;
             gvdatewise.Visible = false;
+            gvempwise.Visible = false;
 
-            //   int sbranch = Convert.ToInt32(ddlBranch.SelectedValue);
-            //   DataSet dsbranch1 = objbs.selectbranchmaster(sbranch);
+            int sbranch = Convert.ToInt32(ddlBranch.SelectedValue);
+            DataSet dsbranch1 = objbs.selectbranchmaster(sbranch);
 
             // if (chkDiscout.Checked == true)
             if (radbtnlist.SelectedValue == "2")
             {
                 gvdetailed.Visible = true;
-                //  if (dsbranch1.Tables[0].Rows.Count > 0)
+                if (dsbranch1.Tables[0].Rows.Count > 0)
                 {
-                    //    string sales = dsbranch1.Tables[0].Rows[0]["sales"].ToString();
-                    //    string[] wordArray = sales.Split('_');
+                    string sales = dsbranch1.Tables[0].Rows[0]["sales"].ToString();
+                    string[] wordArray = sales.Split('_');
 
-                    //   brach = wordArray[1];
-                    //   string name = string.Empty;
+                    brach = wordArray[1];
+                    string name = string.Empty;
 
 
                     DateTime sFrom = Convert.ToDateTime(txtfromdate.Text);
 
                     DateTime sTo = Convert.ToDateTime(txttodate.Text);
 
-                    lblCaption.Text = "Store :  " + ddlBranch.SelectedValue + " Employee Wise Sales Summary Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
-
-                    DataSet dcustbranch = new DataSet();
-                    DataSet dsgrid = new DataSet();
-                    DataSet dss = new DataSet();
-                    // Label123.Text = Convert.ToString(dcustbranch.Tables[0].Rows[0]["Branch"]);
-                    if (ddlBranch.SelectedValue == "All")
-                    {
-                        DataSet ds1 = objbs.GetBranch_New("All");
-                        for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
-                        {
-                            dsgrid = objbs.salesempItemwisereports(ds1.Tables[0].Rows[i]["BranchCode"].ToString(), sFrom, sTo, drplogin.SelectedValue);
-                            dss.Merge(dsgrid);
-                        }
-                    }
-                    else
-                    {
-                        dss = objbs.salesempItemwisereports(ddlBranch.SelectedValue, sFrom, sTo, drplogin.SelectedValue);
-                    }
-
-
+                    lblCaption.Text = "Store :  " + BranchNAme + " " + StoreName + " Employee Wise Sales Summary Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
+                    DataSet dss = objbs.salesempItemwisereports(brach, sFrom, sTo, drplogin.SelectedValue, "Y");
                     if (dss.Tables[0].Rows.Count > 0)
                     {
                         gvdetailed.DataSource = dss.Tables[0];
@@ -218,41 +178,73 @@ namespace Billing.Accountsbootstrap
             else if (radbtnlist.SelectedValue == "1")
             {
                 gvsummary.Visible = true;
-                //  if (dsbranch1.Tables[0].Rows.Count > 0)
+                if (dsbranch1.Tables[0].Rows.Count > 0)
                 {
-                    //   string sales = dsbranch1.Tables[0].Rows[0]["sales"].ToString();
-                    // string[] wordArray = sales.Split('_');
+                    string sales = dsbranch1.Tables[0].Rows[0]["sales"].ToString();
+                    string[] wordArray = sales.Split('_');
 
-                    //   brach = wordArray[1];
-                    //   string name = string.Empty;
+                    brach = wordArray[1];
+                    string name = string.Empty;
 
 
                     DateTime sFrom = Convert.ToDateTime(txtfromdate.Text);
 
                     DateTime sTo = Convert.ToDateTime(txttodate.Text);
 
-                    lblCaption.Text = "Store :  " + ddlBranch.SelectedValue + " Employee Wise Sales Summary Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
-                    DataSet dcustbranch = new DataSet();
-                    DataSet dsgrid = new DataSet();
-                    DataSet dss = new DataSet();
-                    // Label123.Text = Convert.ToString(dcustbranch.Tables[0].Rows[0]["Branch"]);
-                    if (ddlBranch.SelectedValue == "All")
-                    {
-                        DataSet ds1 = objbs.GetBranch_New("All");
-                        for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
-                        {
-                            dsgrid = objbs.salesempsummaryreports(ds1.Tables[0].Rows[i]["BranchCode"].ToString(), sFrom, sTo, drplogin.SelectedValue);
-                            dss.Merge(dsgrid);
-                        }
-                    }
-                    else
-                    {
-                        dss = objbs.salesempsummaryreports(ddlBranch.SelectedValue, sFrom, sTo, drplogin.SelectedValue);
-                    }
+                    lblCaption.Text = "Store :  " + BranchNAme + " " + StoreName + " Employee Wise Sales Summary Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
+                    DataSet dss = objbs.salesempsummaryreports(brach, sFrom, sTo, drplogin.SelectedValue, "Y");
+
+                    DataTable dtsum = new DataTable();
+                    DataSet dssum = new DataSet();
+                    DataRow drsum;
+
+                    dtsum.Columns.Add("billtype");
+                    dtsum.Columns.Add("name");
+                    dtsum.Columns.Add("tot");
+                    dtsum.Columns.Add("dic");
+                    dtsum.Columns.Add("qty");
+                    dtsum.Columns.Add("cnt");
+                    dssum.Tables.Add(dtsum);
+
 
                     if (dss.Tables[0].Rows.Count > 0)
                     {
-                        gvsummary.DataSource = dss.Tables[0];
+
+                        for (int i = 0; i < dss.Tables[0].Rows.Count; i++)
+                        {
+
+                            string billtype = dss.Tables[0].Rows[i]["billtype"].ToString();
+                            string name1 = dss.Tables[0].Rows[i]["name"].ToString();
+                            string tot = Convert.ToDouble(dss.Tables[0].Rows[i]["tot"]).ToString("0.00");
+                            string dic = Convert.ToDouble(dss.Tables[0].Rows[i]["dic"]).ToString("0.00");
+                            string qty = Convert.ToDouble(dss.Tables[0].Rows[i]["qty"]).ToString("0.000");
+                            string biller = dss.Tables[0].Rows[i]["biller"].ToString();
+
+
+
+                            drsum = dtsum.NewRow();
+                            drsum["billtype"] = billtype;
+                            drsum["name"] = name1;
+                            drsum["tot"] = tot;
+                            drsum["dic"] = dic;
+                            drsum["qty"] = qty;
+
+
+                            DataSet dfromtobill = objbs.getSalesBillCount_firsttobill_code(sTableName, sFrom, sTo, biller, "Y");
+                            if (dfromtobill.Tables[0].Rows.Count > 0)
+                            {
+                                drsum["cnt"] = dfromtobill.Tables[0].Rows[0]["BillCount"].ToString();
+                            }
+                            else
+                            {
+                                drsum["cnt"] = "0";
+                            }
+
+                            dssum.Tables[0].Rows.Add(drsum);
+                        }
+
+
+                        gvsummary.DataSource = dssum.Tables[0];
                         gvsummary.DataBind();
 
                     }
@@ -266,42 +258,74 @@ namespace Billing.Accountsbootstrap
             else if (radbtnlist.SelectedValue == "3")
             {
                 gvdatewise.Visible = true;
-                //  if (dsbranch1.Tables[0].Rows.Count > 0)
+                if (dsbranch1.Tables[0].Rows.Count > 0)
                 {
-                    //   string sales = dsbranch1.Tables[0].Rows[0]["sales"].ToString();
-                    //    string[] wordArray = sales.Split('_');
+                    string sales = dsbranch1.Tables[0].Rows[0]["sales"].ToString();
+                    string[] wordArray = sales.Split('_');
 
-                    //    brach = wordArray[1];
-                    //    string name = string.Empty;
+                    brach = wordArray[1];
+                    string name = string.Empty;
 
 
                     DateTime sFrom = Convert.ToDateTime(txtfromdate.Text);
 
                     DateTime sTo = Convert.ToDateTime(txttodate.Text);
 
-                    lblCaption.Text = "Store :  " + ddlBranch.SelectedValue + " Employee Wise Sales Summary Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
-                    DataSet dcustbranch = new DataSet();
-                    DataSet dsgrid = new DataSet();
-                    DataSet dss = new DataSet();
-                    // Label123.Text = Convert.ToString(dcustbranch.Tables[0].Rows[0]["Branch"]);
-                    if (ddlBranch.SelectedValue == "All")
-                    {
-                        DataSet ds1 = objbs.GetBranch_New("All");
-                        for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
-                        {
-                            dsgrid = objbs.salesempsummarydatereports(ds1.Tables[0].Rows[i]["BranchCode"].ToString(), sFrom, sTo, drplogin.SelectedValue);
-                            dss.Merge(dsgrid);
-                        }
-                    }
-                    else
-                    {
-                        dss = objbs.salesempsummarydatereports(ddlBranch.SelectedValue, sFrom, sTo, drplogin.SelectedValue);
+                    lblCaption.Text = "Store :  " + BranchNAme + " " + StoreName + " Employee Wise Sales Summary Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
+                    DataSet dss = objbs.salesempsummarydatereports(brach, sFrom, sTo, drplogin.SelectedValue, "Y");
+                    DataTable dtsum = new DataTable();
+                    DataSet dssum = new DataSet();
+                    DataRow drsum;
 
-                    }
+                    dtsum.Columns.Add("billtype");
+                    dtsum.Columns.Add("name");
+                    dtsum.Columns.Add("bdate");
+                    dtsum.Columns.Add("tot");
+                    dtsum.Columns.Add("dic");
+                    dtsum.Columns.Add("qty");
+                    dtsum.Columns.Add("cnt");
+                    dssum.Tables.Add(dtsum);
+
 
                     if (dss.Tables[0].Rows.Count > 0)
                     {
-                        gvdatewise.DataSource = dss.Tables[0];
+
+                        for (int i = 0; i < dss.Tables[0].Rows.Count; i++)
+                        {
+
+                            string billtype = dss.Tables[0].Rows[i]["billtype"].ToString();
+                            string name1 = dss.Tables[0].Rows[i]["name"].ToString();
+                            string bdate = dss.Tables[0].Rows[i]["bdate"].ToString();
+                            DateTime sbdate = Convert.ToDateTime(bdate);
+                            string tot = Convert.ToDouble(dss.Tables[0].Rows[i]["tot"]).ToString("0.00");
+                            string dic = Convert.ToDouble(dss.Tables[0].Rows[i]["dic"]).ToString("0.00");
+                            string qty = Convert.ToDouble(dss.Tables[0].Rows[i]["qty"]).ToString("0.000");
+                            string biller = dss.Tables[0].Rows[i]["biller"].ToString();
+
+
+
+                            drsum = dtsum.NewRow();
+                            drsum["billtype"] = billtype;
+                            drsum["name"] = name1;
+                            drsum["tot"] = tot;
+                            drsum["dic"] = dic;
+                            drsum["qty"] = qty;
+                            drsum["bdate"] = sbdate.ToString("dd/MM/yyyy");
+
+
+                            DataSet dfromtobill = objbs.getSalesBillCount_firsttobill_code(sTableName, sbdate, sbdate, biller, "Y");
+                            if (dfromtobill.Tables[0].Rows.Count > 0)
+                            {
+                                drsum["cnt"] = dfromtobill.Tables[0].Rows[0]["BillCount"].ToString();
+                            }
+                            else
+                            {
+                                drsum["cnt"] = "0";
+                            }
+
+                            dssum.Tables[0].Rows.Add(drsum);
+                        }
+                        gvdatewise.DataSource = dssum.Tables[0];
                         gvdatewise.DataBind();
 
                     }
@@ -311,6 +335,157 @@ namespace Billing.Accountsbootstrap
                         gvdatewise.DataBind();
                     }
                 }
+            }
+
+            else if (radbtnlist.SelectedValue == "4")
+            {
+                gvempwise.Visible = true;
+                if (dsbranch1.Tables[0].Rows.Count > 0)
+                {
+                    string sales = dsbranch1.Tables[0].Rows[0]["sales"].ToString();
+                    string[] wordArray = sales.Split('_');
+
+                    brach = wordArray[1];
+                    string name = string.Empty;
+
+
+                    DateTime sFrom = Convert.ToDateTime(txtfromdate.Text);
+
+                    DateTime sTo = Convert.ToDateTime(txttodate.Text);
+
+                    lblCaption.Text = "Store - Pos Billing Details :  " + BranchNAme + " " + StoreName + " Employee Wise Sales Summary Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
+                    DataSet dss = objbs.Emp_WiseSummary(brach, sFrom, sTo, drplogin.SelectedValue, "Y");
+                    DataTable dtsum = new DataTable();
+                    DataSet dssum = new DataSet();
+                    DataRow drsum;
+
+                    dtsum.Columns.Add("attendername");
+                    dtsum.Columns.Add("tot");
+                    dtsum.Columns.Add("dic");
+                    dtsum.Columns.Add("qty");
+                    dtsum.Columns.Add("cnt");
+                    dssum.Tables.Add(dtsum);
+
+
+                    if (dss.Tables[0].Rows.Count > 0)
+                    {
+
+                        for (int i = 0; i < dss.Tables[0].Rows.Count; i++)
+                        {
+
+                            string attendername = dss.Tables[0].Rows[i]["attendername"].ToString();
+                            string tot = Convert.ToDouble(dss.Tables[0].Rows[i]["tot"]).ToString("0.00");
+                            string dic = Convert.ToDouble(dss.Tables[0].Rows[i]["dic"]).ToString("0.00");
+                            string qty = Convert.ToDouble(dss.Tables[0].Rows[i]["qty"]).ToString("0.000");
+                            string Attender = dss.Tables[0].Rows[i]["Attender"].ToString();
+
+
+
+                            drsum = dtsum.NewRow();
+                            drsum["attendername"] = attendername;
+                            drsum["tot"] = tot;
+                            drsum["dic"] = dic;
+                            drsum["qty"] = qty;
+
+
+                            DataSet dfromtobill = objbs.getSalesBillCount_firsttobill_code_attender(sTableName, sFrom, sTo, Attender, "Y");
+                            if (dfromtobill.Tables[0].Rows.Count > 0)
+                            {
+                                drsum["cnt"] = dfromtobill.Tables[0].Rows[0]["BillCount"].ToString();
+                            }
+                            else
+                            {
+                                drsum["cnt"] = "0";
+                            }
+
+                            dssum.Tables[0].Rows.Add(drsum);
+                        }
+                        gvempwise.DataSource = dssum.Tables[0];
+                        gvempwise.DataBind();
+
+                    }
+                    else
+                    {
+                        gvempwise.DataSource = null;
+                        gvempwise.DataBind();
+                    }
+                }
+
+            }
+            else if (radbtnlist.SelectedValue == "5")
+            {
+                gvempwise.Visible = true;
+                if (dsbranch1.Tables[0].Rows.Count > 0)
+                {
+                    string sales = dsbranch1.Tables[0].Rows[0]["sales"].ToString();
+                    string[] wordArray = sales.Split('_');
+
+                    brach = wordArray[1];
+                    string name = string.Empty;
+
+
+                    DateTime sFrom = Convert.ToDateTime(txtfromdate.Text);
+
+                    DateTime sTo = Convert.ToDateTime(txttodate.Text);
+
+                    lblCaption.Text = "Store - Cake Order Details :  " + BranchNAme + " " + StoreName + " Employee Wise Sales Summary Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
+                    DataSet dss = objbs.Emp_WiseOrderSummary(brach, sFrom, sTo, drplogin.SelectedValue);
+                    DataTable dtsum = new DataTable();
+                    DataSet dssum = new DataSet();
+                    DataRow drsum;
+
+                    dtsum.Columns.Add("attendername");
+                    dtsum.Columns.Add("tot");
+                    dtsum.Columns.Add("dic");
+                    dtsum.Columns.Add("qty");
+                    dtsum.Columns.Add("cnt");
+                    dssum.Tables.Add(dtsum);
+
+
+                    if (dss.Tables[0].Rows.Count > 0)
+                    {
+
+                        for (int i = 0; i < dss.Tables[0].Rows.Count; i++)
+                        {
+
+                            string attendername = dss.Tables[0].Rows[i]["attendername"].ToString();
+                            string tot = Convert.ToDouble(dss.Tables[0].Rows[i]["tot"]).ToString("0.00");
+                            string dic = Convert.ToDouble(dss.Tables[0].Rows[i]["dic"]).ToString("0.00");
+                            string qty = Convert.ToDouble(dss.Tables[0].Rows[i]["qty"]).ToString("0.000");
+                            string Attender = dss.Tables[0].Rows[i]["Attender"].ToString();
+
+
+
+                            drsum = dtsum.NewRow();
+                            drsum["attendername"] = attendername;
+                            drsum["tot"] = tot;
+                            drsum["dic"] = dic;
+                            drsum["qty"] = qty;
+
+
+                            DataSet dfromtobill = objbs.getOrderBillCount_firsttobill_code_attender(sTableName, sFrom, sTo, Attender, "Y");
+                            if (dfromtobill.Tables[0].Rows.Count > 0)
+                            {
+                                drsum["cnt"] = dfromtobill.Tables[0].Rows[0]["BillCount"].ToString();
+                            }
+                            else
+                            {
+                                drsum["cnt"] = "0";
+                            }
+
+                            dssum.Tables[0].Rows.Add(drsum);
+                        }
+                        gvempwise.DataSource = dssum.Tables[0];
+                        gvempwise.DataBind();
+
+                    }
+                    else
+                    {
+                        gvempwise.DataSource = null;
+                        gvempwise.DataBind();
+                    }
+                }
+
             }
         }
 
@@ -323,19 +498,19 @@ namespace Billing.Accountsbootstrap
 
         protected void btnExport_ClickOld(object sender, EventArgs e)
         {
-            DataSet dt = new DataSet();
-            GridView gridview = new GridView();
+            //DataSet dt = new DataSet();
+            //GridView gridview = new GridView();
 
-            // gridview.Caption = "Store :  " + BranchNAme + " " + StoreName + " Employee Wise Sales Summary Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy");
+            //// gridview.Caption = "Store :  " + BranchNAme + " " + StoreName + " Employee Wise Sales Summary Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy");
 
-            gvdetailed.Visible = false;
-            gvsummary.Visible = false;
-            gvdatewise.Visible = false;
+            //gvdetailed.Visible = false;
+            //gvsummary.Visible = false;
+            //gvdatewise.Visible = false;
 
-            int sbranch = Convert.ToInt32(ddlBranch.SelectedValue);
-            DataSet dsbranch1 = objbs.selectbranchmaster(sbranch);
+            //int sbranch = Convert.ToInt32(ddlBranch.SelectedValue);
+            //DataSet dsbranch1 = objbs.selectbranchmaster(sbranch);
 
-            // if (chkDiscout.Checked == true)
+            //// if (chkDiscout.Checked == true)
             //if (radbtnlist.SelectedValue == "2")
             //{
             //    gvdetailed.Visible = true;
@@ -353,7 +528,7 @@ namespace Billing.Accountsbootstrap
             //        DateTime sTo = Convert.ToDateTime(txttodate.Text);
 
             //        lblCaption.Text = "Store :  " + BranchNAme + " " + StoreName + " Employee Item Wise Sales Summary Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
-            //        dt = objbs.salesempItemwisereports(brach, sFrom, sTo, drplogin.SelectedValue);
+            //        dt = objbs.salesempItemwisereports(brach, sFrom, sTo, drplogin.SelectedValue, "Y");
             //        if (dt.Tables[0].Rows.Count > 0)
             //        {
             //            gvdetailed.DataSource = dt.Tables[0];
@@ -385,7 +560,7 @@ namespace Billing.Accountsbootstrap
             //        DateTime sTo = Convert.ToDateTime(txttodate.Text);
 
             //        lblCaption.Text = "Store :  " + BranchNAme + " " + StoreName + " Employee Wise Sales Summary Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
-            //        dt = objbs.salesempsummaryreports(brach, sFrom, sTo, drplogin.SelectedValue);
+            //        dt = objbs.salesempsummaryreports(brach, sFrom, sTo, drplogin.SelectedValue, "Y");
             //        if (dt.Tables[0].Rows.Count > 0)
             //        {
             //            gvsummary.DataSource = dt.Tables[0];
@@ -416,7 +591,7 @@ namespace Billing.Accountsbootstrap
             //        DateTime sTo = Convert.ToDateTime(txttodate.Text);
 
             //        lblCaption.Text = "Store :  " + BranchNAme + " " + StoreName + " Employee Date Wise Sales Summary Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
-            //        dt = objbs.salesempsummarydatereports(brach, sFrom, sTo, drplogin.SelectedValue);
+            //        dt = objbs.salesempsummarydatereports(brach, sFrom, sTo, drplogin.SelectedValue, "Y");
             //        if (dt.Tables[0].Rows.Count > 0)
             //        {
             //            gvdatewise.DataSource = dt.Tables[0];
@@ -431,188 +606,39 @@ namespace Billing.Accountsbootstrap
             //    }
             //}
 
-            if (radbtnlist.SelectedValue == "2")
-            {
-                gvdetailed.Visible = true;
-                //  if (dsbranch1.Tables[0].Rows.Count > 0)
-                {
-                    //    string sales = dsbranch1.Tables[0].Rows[0]["sales"].ToString();
-                    //    string[] wordArray = sales.Split('_');
+            //string filename = "";
+            //if (radbtnlist.SelectedValue == "1")
+            //{
+            //    filename = "EmpployeeWisesalesSummary.xls";
+            //}
+            //else if (radbtnlist.SelectedValue == "2")
+            //{
+            //    filename = "EmployeeItemWisesalesreport.xls";
 
-                    //   brach = wordArray[1];
-                    //   string name = string.Empty;
+            //}
+            //else if (radbtnlist.SelectedValue == "3")
+            //{
+            //    filename = "EmployeeDateWise.xls";
 
-
-                    DateTime sFrom = Convert.ToDateTime(txtfromdate.Text);
-
-                    DateTime sTo = Convert.ToDateTime(txttodate.Text);
-
-                    lblCaption.Text = "Store :  " + ddlBranch.SelectedValue + " Employee Wise Sales Summary Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
-
-                    DataSet dcustbranch = new DataSet();
-                    DataSet dsgrid = new DataSet();
-                    DataSet dss = new DataSet();
-                    // Label123.Text = Convert.ToString(dcustbranch.Tables[0].Rows[0]["Branch"]);
-                    if (ddlBranch.SelectedValue == "All")
-                    {
-                        DataSet ds1 = objbs.GetBranch_New("All");
-                        for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
-                        {
-                            dsgrid = objbs.salesempItemwisereports(ds1.Tables[0].Rows[i]["BranchCode"].ToString(), sFrom, sTo, drplogin.SelectedValue);
-                            dss.Merge(dsgrid);
-                        }
-                    }
-                    else
-                    {
-                        dsgrid = objbs.salesempItemwisereports(ddlBranch.SelectedValue, sFrom, sTo, drplogin.SelectedValue);
-                    }
-
-
-                    if (dss.Tables[0].Rows.Count > 0)
-                    {
-                        gvdetailed.DataSource = dss.Tables[0];
-                        gvdetailed.DataBind();
-
-                    }
-                    else
-                    {
-                        gvdetailed.DataSource = null;
-                        gvdetailed.DataBind();
-                    }
-                }
-
-            }
-            else if (radbtnlist.SelectedValue == "1")
-            {
-                gvsummary.Visible = true;
-                //  if (dsbranch1.Tables[0].Rows.Count > 0)
-                {
-                    //   string sales = dsbranch1.Tables[0].Rows[0]["sales"].ToString();
-                    // string[] wordArray = sales.Split('_');
-
-                    //   brach = wordArray[1];
-                    //   string name = string.Empty;
-
-
-                    DateTime sFrom = Convert.ToDateTime(txtfromdate.Text);
-
-                    DateTime sTo = Convert.ToDateTime(txttodate.Text);
-
-                    lblCaption.Text = "Store :  " + ddlBranch.SelectedValue + " Employee Wise Sales Summary Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
-                    DataSet dcustbranch = new DataSet();
-                    DataSet dsgrid = new DataSet();
-                    DataSet dss = new DataSet();
-                    // Label123.Text = Convert.ToString(dcustbranch.Tables[0].Rows[0]["Branch"]);
-                    if (ddlBranch.SelectedValue == "All")
-                    {
-                        DataSet ds1 = objbs.GetBranch_New("All");
-                        for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
-                        {
-                            dsgrid = objbs.salesempsummaryreports(ds1.Tables[0].Rows[i]["BranchCode"].ToString(), sFrom, sTo, drplogin.SelectedValue);
-                            dss.Merge(dsgrid);
-                        }
-                    }
-                    else
-                    {
-                        dss = objbs.salesempsummaryreports(ddlBranch.SelectedValue, sFrom, sTo, drplogin.SelectedValue);
-                    }
-
-                    if (dss.Tables[0].Rows.Count > 0)
-                    {
-                        gvsummary.DataSource = dss.Tables[0];
-                        gvsummary.DataBind();
-
-                    }
-                    else
-                    {
-                        gvsummary.DataSource = null;
-                        gvsummary.DataBind();
-                    }
-                }
-            }
-            else if (radbtnlist.SelectedValue == "3")
-            {
-                gvdatewise.Visible = true;
-                //  if (dsbranch1.Tables[0].Rows.Count > 0)
-                {
-                    //   string sales = dsbranch1.Tables[0].Rows[0]["sales"].ToString();
-                    //    string[] wordArray = sales.Split('_');
-
-                    //    brach = wordArray[1];
-                    //    string name = string.Empty;
-
-
-                    DateTime sFrom = Convert.ToDateTime(txtfromdate.Text);
-
-                    DateTime sTo = Convert.ToDateTime(txttodate.Text);
-
-                    lblCaption.Text = "Store :  " + ddlBranch.SelectedValue + " Employee Wise Sales Summary Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
-                    DataSet dcustbranch = new DataSet();
-                    DataSet dsgrid = new DataSet();
-                    DataSet dss = new DataSet();
-                    // Label123.Text = Convert.ToString(dcustbranch.Tables[0].Rows[0]["Branch"]);
-                    if (ddlBranch.SelectedValue == "All")
-                    {
-                        DataSet ds1 = objbs.GetBranch_New("All");
-                        for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
-                        {
-                            dsgrid = objbs.salesempsummarydatereports(ds1.Tables[0].Rows[i]["BranchCode"].ToString(), sFrom, sTo, drplogin.SelectedValue);
-                            dss.Merge(dsgrid);
-                        }
-                    }
-                    else
-                    {
-                        dss = objbs.salesempsummarydatereports(ddlBranch.SelectedValue, sFrom, sTo, drplogin.SelectedValue);
-
-                    }
-
-                    if (dss.Tables[0].Rows.Count > 0)
-                    {
-                        gvdatewise.DataSource = dss.Tables[0];
-                        gvdatewise.DataBind();
-
-                    }
-                    else
-                    {
-                        gvdatewise.DataSource = null;
-                        gvdatewise.DataBind();
-                    }
-                }
-            }
-
-            string filename = "";
-            if (radbtnlist.SelectedValue == "1")
-            {
-                filename = "EmpployeeWisesalesSummary.xls";
-            }
-            else if (radbtnlist.SelectedValue == "2")
-            {
-                filename = "EmployeeItemWisesalesreport.xls";
-
-            }
-            else if (radbtnlist.SelectedValue == "3")
-            {
-                filename = "EmployeeDateWise.xls";
-
-            }
-            System.IO.StringWriter tw = new System.IO.StringWriter();
-            System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(tw);
-            DataGrid dgGrid = new DataGrid();
-            dgGrid.Caption = "Store :  " + ddlBranch.SelectedValue + " Sales Type Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy");
-            dgGrid.DataSource = dt;
-            dgGrid.DataBind();
-            dgGrid.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            dgGrid.HeaderStyle.BackColor = System.Drawing.Color.LightSkyBlue;
-            dgGrid.HeaderStyle.BorderColor = System.Drawing.Color.RoyalBlue;
-            dgGrid.HeaderStyle.Font.Bold = true;
-            //Get the HTML for the control.
-            dgGrid.RenderControl(hw);
-            //Write the HTML back to the browser.
-            Response.ContentType = "application/vnd.ms-excel";
-            Response.AppendHeader("Content-Disposition", "attachment; filename=" + filename + "");
-            this.EnableViewState = false;
-            Response.Write(tw.ToString());
-            Response.End();
+            //}
+            //System.IO.StringWriter tw = new System.IO.StringWriter();
+            //System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(tw);
+            //DataGrid dgGrid = new DataGrid();
+            //dgGrid.Caption = "Store :  " + BranchNAme + " " + StoreName + " Sales Type Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("MM/dd/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("MM/dd/yyyy");
+            //dgGrid.DataSource = dt;
+            //dgGrid.DataBind();
+            //dgGrid.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            //dgGrid.HeaderStyle.BackColor = System.Drawing.Color.LightSkyBlue;
+            //dgGrid.HeaderStyle.BorderColor = System.Drawing.Color.RoyalBlue;
+            //dgGrid.HeaderStyle.Font.Bold = true;
+            ////Get the HTML for the control.
+            //dgGrid.RenderControl(hw);
+            ////Write the HTML back to the browser.
+            //Response.ContentType = "application/vnd.ms-excel";
+            //Response.AppendHeader("Content-Disposition", "attachment; filename=" + filename + "");
+            //this.EnableViewState = false;
+            //Response.Write(tw.ToString());
+            //Response.End();
         }
 
         protected void btnExport_Click(object sender, EventArgs e)
@@ -635,6 +661,14 @@ namespace Billing.Accountsbootstrap
                 //filename = "EmployeeDateWise.xls";
                 Response.AddHeader("content-disposition", "attachment;filename= EmployeeDateWise.xls");
 
+            }
+            else if (radbtnlist.SelectedValue == "4")
+            {
+                Response.AddHeader("content-disposition", "attachment;filename= EmployeeWiseSales.xls");
+            }
+            else if (radbtnlist.SelectedValue == "5")
+            {
+                Response.AddHeader("content-disposition", "attachment;filename= EmployeeWiseorder.xls");
             }
             Response.Charset = "";
             Response.ContentType = "application/vnd.ms-excel";
@@ -682,7 +716,7 @@ namespace Billing.Accountsbootstrap
         {
 
 
-            lblCaption.Text = "Store :" + ddlBranch.SelectedValue + " Customer Sales Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
+            lblCaption.Text = "Store :" + BranchNAme + " Customer Sales Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
             if (radbtnlist.SelectedValue == "1")
             {
                 ScriptManager.RegisterStartupScript(this, typeof(Page), "printGridSummary", "printGridSummary();", true);
@@ -721,11 +755,11 @@ namespace Billing.Accountsbootstrap
 
             if (e.Row.RowType == DataControlRowType.Footer)
             {
-                e.Row.Cells[4].Text = "Total :-";
+                e.Row.Cells[5].Text = "Total :-";
 
-                e.Row.Cells[7].Text = Qty.ToString("f3");
-                e.Row.Cells[6].Text = discvalue.ToString("f2");
-                e.Row.Cells[5].Text = totalvalue.ToString("f2");
+                e.Row.Cells[6].Text = Qty.ToString("f3");
+                e.Row.Cells[5].Text = discvalue.ToString("f2");
+                e.Row.Cells[4].Text = totalvalue.ToString("f2");
 
             }
 
@@ -739,16 +773,17 @@ namespace Billing.Accountsbootstrap
                 Qty += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "qty"));
                 totalvalue += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "tot"));
                 discvalue += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "dic"));
+                cnt += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "cnt"));
 
             }
 
             if (e.Row.RowType == DataControlRowType.Footer)
             {
                 e.Row.Cells[1].Text = "Total :";
-                e.Row.Cells[3].Text = totalvalue.ToString("f2");
-                e.Row.Cells[4].Text = discvalue.ToString("f2");
-                e.Row.Cells[5].Text = Qty.ToString("f3");
-                //e.Row.Cells[11].Text = commamount.ToString("f2");
+                e.Row.Cells[2].Text = totalvalue.ToString("f2");
+                e.Row.Cells[3].Text = discvalue.ToString("f2");
+                e.Row.Cells[4].Text = Qty.ToString("f3");
+                e.Row.Cells[5].Text = cnt.ToString("0");
                 //e.Row.Cells[13].Text = commgstamnt.ToString("f2");
                 //e.Row.Cells[15].Text = gatwaycharge.ToString("f2");
                 //e.Row.Cells[16].Text = grandtot.ToString("f2");
@@ -765,19 +800,45 @@ namespace Billing.Accountsbootstrap
                 Qty += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "qty"));
                 totalvalue += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "tot"));
                 discvalue += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "dic"));
+                cnt += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "cnt"));
 
             }
 
             if (e.Row.RowType == DataControlRowType.Footer)
             {
-                e.Row.Cells[3].Text = "Total :";
-                e.Row.Cells[4].Text = totalvalue.ToString("f2");
-                e.Row.Cells[5].Text = discvalue.ToString("f2");
-                e.Row.Cells[6].Text = Qty.ToString("f3");
+                e.Row.Cells[2].Text = "Total :";
+                e.Row.Cells[3].Text = totalvalue.ToString("f2");
+                e.Row.Cells[4].Text = discvalue.ToString("f2");
+                e.Row.Cells[5].Text = Qty.ToString("f3");
+                e.Row.Cells[6].Text = cnt.ToString("0");
                 //e.Row.Cells[11].Text = commamount.ToString("f2");
                 //e.Row.Cells[13].Text = commgstamnt.ToString("f2");
                 //e.Row.Cells[15].Text = gatwaycharge.ToString("f2");
                 //e.Row.Cells[16].Text = grandtot.ToString("f2");
+            }
+
+        }
+
+        public void gvempwise_rowdatabound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                Qty += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "qty"));
+                totalvalue += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "tot"));
+                discvalue += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "dic"));
+                cnt += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "cnt"));
+
+            }
+
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                e.Row.Cells[0].Text = "Total :";
+                e.Row.Cells[1].Text = totalvalue.ToString("f2");
+                e.Row.Cells[2].Text = discvalue.ToString("f2");
+                e.Row.Cells[3].Text = Qty.ToString("f3");
+                e.Row.Cells[4].Text = cnt.ToString("0");
             }
 
         }

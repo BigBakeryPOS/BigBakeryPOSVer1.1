@@ -491,7 +491,7 @@ color:White;
                                     <%--<FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
                                                         <HeaderStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                                 </asp:GridView>
-                                <asp:GridView ID="gvitems" runat="server" AutoGenerateColumns="false" 
+                                <asp:GridView ID="gvitems" runat="server" AutoGenerateColumns="false"  OnRowDataBound="onrowdatabound"
                                    cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" Width="100%">
                                     <Columns>
                                         <%--<asp:TemplateField HeaderText="Category">
@@ -520,6 +520,7 @@ color:White;
                                                 <asp:HiddenField ID="hideCategoryID" runat="server" Value='<%#Eval("CategoryID") %>' />
                                                 <asp:HiddenField ID="hideCategoryUserID" runat="server" Value='<%#Eval("CategoryUserID") %>' />
                                                 <asp:HiddenField ID="hideUOMID" runat="server" Value='<%#Eval("UOMID") %>' />
+                                                <asp:Label ID="lblqtytype" Visible="false" runat="server" Text='<%#Eval("qtytype") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Code">
@@ -530,6 +531,11 @@ color:White;
                                         <asp:TemplateField HeaderText="Item">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblDefinition" runat="server" Text='<%#Eval("Definition") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Stock In Hand">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblProd_Qty" runat="server" Text='<%#Eval("Prod_Qty")%>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Qty">
@@ -601,7 +607,7 @@ color:White;
                                                 <asp:HiddenField ID="hideUOMID" runat="server" Value='<%#Eval("UOMID") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="Serial No">
+                                         <asp:TemplateField HeaderText="Code">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblserial" runat="server"  Text='<%#Eval("serial") %>'></asp:Label>
                                             </ItemTemplate>

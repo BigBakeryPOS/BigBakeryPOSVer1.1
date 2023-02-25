@@ -287,6 +287,22 @@ namespace Billing.Accountsbootstrap
                 DataSet ds = objbs.RequestDetprod(Breqno, Branch, sCode, ReqNo);
                 gvDetails.DataSource = ds;
                 gvDetails.DataBind();
+                DataTable dt = ds.Tables[0];
+                DataTable dtw = new DataTable();
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    dtw = RemoveDuplicatesRecords(dt);
+                    // DataTable dt = ds.Tables[0];
+                    //DataTable uniqueCols = dt.DefaultView.ToTable(true, "Production_To", "RequestNO", "branchno", "Branch", "RequestDate", "RequestEntryTime", "Status", "RequestBy");
+
+                    gvDetails.DataSource = dtw;
+                    gvDetails.DataBind();
+                }
+                else
+                {
+                    gvDetails.DataSource = null;
+                    gvDetails.DataBind();
+                }
                 //  gvDetails.Caption = Branch+""+"Store"+"-"+"Order Details";
                 gvDetails.Caption = "Stock Request from " + Branch + " Store On " + Convert.ToDateTime(ReportDate).ToString("dd/MM/yyyy") + "-" + ds.Tables[0].Rows[0]["RequestEntryTime"].ToString();
             }
@@ -520,19 +536,35 @@ namespace Billing.Accountsbootstrap
             DateTime sDate = DateTime.ParseExact(txtDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
             DataSet ds = objbs.getStockRequestFromBranchsQty(sCode, sDate);
+            DataTable dt = ds.Tables[0];
+            DataTable dtw = new DataTable();
             if (ds.Tables[0].Rows.Count > 0)
             {
+                dtw = RemoveDuplicatesRecords(dt);
+                // DataTable dt = ds.Tables[0];
+                //DataTable uniqueCols = dt.DefaultView.ToTable(true, "Production_To", "RequestNO", "branchno", "Branch", "RequestDate", "RequestEntryTime", "Status", "RequestBy");
                 string Caption = "All Branches Qty on :- " + sDate.ToString("dd/MM/yyyy");
                 gvbranchqty.Caption = Caption;
-                gvbranchqty.DataSource = ds;
+                gvbranchqty.DataSource = dtw;
                 gvbranchqty.DataBind();
             }
             else
             {
-                gvbranchqty.Caption = "";
                 gvbranchqty.DataSource = null;
                 gvbranchqty.DataBind();
             }
+            //if (ds.Tables[0].Rows.Count > 0)
+            //{
+                
+            //    gvbranchqty.DataSource = ds;
+            //    gvbranchqty.DataBind();
+            //}
+            //else
+            //{
+            //    gvbranchqty.Caption = "";
+            //    gvbranchqty.DataSource = null;
+            //    gvbranchqty.DataBind();
+            //}
 
         }
 
@@ -763,19 +795,35 @@ namespace Billing.Accountsbootstrap
                 TimeSpan totime = Convert.ToDateTime(Totime).TimeOfDay;
 
                 DataSet ds = objbs.getStockRequestFromBranchsQtyDC(sCode, sDate, Fromtime.ToString(), totime.ToString(), drpstorelist.SelectedValue);
+                DataTable dt = ds.Tables[0];
+                DataTable dtw = new DataTable();
                 if (ds.Tables[0].Rows.Count > 0)
                 {
+                    dtw = RemoveDuplicatesRecords(dt);
+                    // DataTable dt = ds.Tables[0];
+                    //DataTable uniqueCols = dt.DefaultView.ToTable(true, "Production_To", "RequestNO", "branchno", "Branch", "RequestDate", "RequestEntryTime", "Status", "RequestBy");
                     string Caption = "Branches Wise DC on :- " + sDate.ToString("dd/MM/yyyy");
                     Griddc.Caption = Caption;
-                    Griddc.DataSource = ds;
+                    Griddc.DataSource = dtw;
                     Griddc.DataBind();
                 }
                 else
                 {
-                    Griddc.Caption = "";
                     Griddc.DataSource = null;
                     Griddc.DataBind();
                 }
+                //if (ds.Tables[0].Rows.Count > 0)
+                //{
+                    
+                //    Griddc.DataSource = ds;
+                //    Griddc.DataBind();
+                //}
+                //else
+                //{
+                //    Griddc.Caption = "";
+                //    Griddc.DataSource = null;
+                //    Griddc.DataBind();
+                //}
             }
             else
             {

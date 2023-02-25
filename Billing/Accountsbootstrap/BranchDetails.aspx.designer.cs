@@ -204,6 +204,15 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
 
         /// <summary>
+        /// drpcurrency control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList drpcurrency;
+
+        /// <summary>
         /// txtcurrency control.
         /// </summary>
         /// <remarks>
@@ -519,6 +528,15 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.DropDownList drpattednercheck;
 
         /// <summary>
+        /// drpitemmergeornot control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList drpitemmergeornot;
+
+        /// <summary>
         /// Rdltype control.
         /// </summary>
         /// <remarks>
@@ -553,6 +571,15 @@ namespace Billing.Accountsbootstrap
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList RdlStocktype;
+
+        /// <summary>
+        /// rdlproductionstocktype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rdlproductionstocktype;
 
         /// <summary>
         /// img_Photo control.

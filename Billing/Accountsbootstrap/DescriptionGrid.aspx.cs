@@ -38,7 +38,7 @@ namespace Billing.Accountsbootstrap
             ratesetting = Request.Cookies["userInfo"]["Ratesetting"].ToString();
             if (!IsPostBack)
             {
-                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Item");
+                DataSet dacess1 = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "Item");
                 if (dacess1.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -48,7 +48,7 @@ namespace Billing.Accountsbootstrap
                 }
 
                 DataSet dacess = new DataSet();
-                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Item");
+                dacess = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "Item");
                 if (dacess.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
@@ -116,25 +116,25 @@ namespace Billing.Accountsbootstrap
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                if (superadmin == "1" || superadmin == "2")
-                {
-                    ((LinkButton)e.Row.FindControl("btnedit")).Enabled = true;
-                    ((LinkButton)e.Row.FindControl("btndel")).Enabled = true;
+                //if (superadmin == "1" || superadmin == "2")
+                //{
+                //    ((LinkButton)e.Row.FindControl("btnedit")).Enabled = true;
+                //    ((LinkButton)e.Row.FindControl("btndel")).Enabled = true;
 
-                    ((Image)e.Row.FindControl("imdedit")).Enabled = true;
-                    ((Image)e.Row.FindControl("Image1")).Enabled = true;
-                }
-                else
-                {
-                    ((LinkButton)e.Row.FindControl("btnedit")).Enabled = false;
-                    ((LinkButton)e.Row.FindControl("btndel")).Visible = false;
+                //    ((Image)e.Row.FindControl("imdedit")).Enabled = true;
+                //    ((Image)e.Row.FindControl("Image1")).Enabled = true;
+                //}
+                //else
+                //{
+                //    ((LinkButton)e.Row.FindControl("btnedit")).Enabled = false;
+                //    ((LinkButton)e.Row.FindControl("btndel")).Visible = false;
 
-                    ((Image)e.Row.FindControl("imdedit")).Enabled = false;
-                    ((Image)e.Row.FindControl("Image1")).Visible = false;
+                //    ((Image)e.Row.FindControl("imdedit")).Enabled = false;
+                //    ((Image)e.Row.FindControl("Image1")).Visible = false;
 
-                    ((Image)e.Row.FindControl("imgdisable1321")).Enabled = false;
-                    ((Image)e.Row.FindControl("imgdisable1321")).Visible = true;
-                }
+                //    ((Image)e.Row.FindControl("imgdisable1321")).Enabled = false;
+                //    ((Image)e.Row.FindControl("imgdisable1321")).Visible = true;
+                //}
 
 
                 //
@@ -492,6 +492,7 @@ namespace Billing.Accountsbootstrap
                     string CategoryName = dr["Item"].ToString();
                     string ProdType = dr["ProductionType"].ToString();
                     string RateType = dr["RateType"].ToString();
+                    string QtyType = dr["QtyType"].ToString();
 
                     if ((Convert.ToString(dr["Category"]) == null) || (Convert.ToString(dr["Category"]) == ""))
                     {
@@ -499,12 +500,12 @@ namespace Billing.Accountsbootstrap
                         // ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Plz Check Category  in  " + CategoryName + " ');", true);
                         return;
                     }
-                    if ((Convert.ToString(dr["CategoryCode"]) == null) || (Convert.ToString(dr["CategoryCode"]) == ""))
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Plz Check CategoryCode  in  " + CategoryName + " ');", true);
-                        // ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Plz Check Category  in  " + CategoryName + " ');", true);
-                        return;
-                    }
+                    //if ((Convert.ToString(dr["CategoryCode"]) == null) || (Convert.ToString(dr["CategoryCode"]) == ""))
+                    //{
+                    //    ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Plz Check CategoryCode  in  " + CategoryName + " ');", true);
+                    //    // ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Plz Check Category  in  " + CategoryName + " ');", true);
+                    //    return;
+                    //}
                     if ((Convert.ToString(dr["ProductionType"]) == null) || (Convert.ToString(dr["ProductionType"]) == ""))
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Plz Check ProductionType  in  " + CategoryName + " ');", true);
@@ -530,6 +531,17 @@ namespace Billing.Accountsbootstrap
                     }
 
 
+                    if (QtyType == "E" || QtyType == "D")
+                    {
+
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Plz Check Qty Type  in " + QtyType + ".It may be E/D.Thank You');", true);
+                        return;
+                    }
+
+
                     if (RateType == "I" || RateType == "E")
                     {
                     }
@@ -542,12 +554,12 @@ namespace Billing.Accountsbootstrap
 
                     if (ProdType != "I")
                     {
-                        if ((Convert.ToString(dr["HSNCode"]) == null) || (Convert.ToString(dr["HSNCode"]) == ""))
-                        {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Plz Check HSNCode in  " + CategoryName + "');", true);
-                            //  ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Plz Check Item in  " + CategoryName + "');", true);
-                            return;
-                        }
+                        //if ((Convert.ToString(dr["HSNCode"]) == null) || (Convert.ToString(dr["HSNCode"]) == ""))
+                        //{
+                        //    ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Plz Check HSNCode in  " + CategoryName + "');", true);
+                        //    //  ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Plz Check Item in  " + CategoryName + "');", true);
+                        //    return;
+                        //}
 
 
                         //if ((Convert.ToString(dr["Rate"]) == null) || (Convert.ToString(dr["Rate"]) == "") || (Convert.ToString(dr["Rate"]) == "0"))
@@ -641,6 +653,7 @@ namespace Billing.Accountsbootstrap
 
                     string description = ds.Tables[0].Rows[j]["Description"].ToString();
                     string RateType = ds.Tables[0].Rows[j]["RateType"].ToString();
+                    string QtyType = ds.Tables[0].Rows[j]["QtyType"].ToString();
 
 
 
@@ -781,7 +794,7 @@ namespace Billing.Accountsbootstrap
                     else
                     {
                         int iStatus = objBs.InsertitemforAll(categoryid, Item, Convert.ToDouble(ORate), Convert.ToDouble(Tax), TaxId, UOMid, Empcode, 
-                            Minimumstock, HSNCode, Foodtype, BarCode, MRP, SerialNo, description,RateType);
+                            Minimumstock, HSNCode, Foodtype, BarCode, MRP, SerialNo, description,RateType,QtyType);
                         int ibrachinsert = objBs.insertbranchitemvalues();
                     }
 

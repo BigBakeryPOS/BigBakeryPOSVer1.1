@@ -32,7 +32,7 @@ namespace Billing.Accountsbootstrap
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             if (!IsPostBack)
             {
-                DataSet dacess1 = ks.getuseraccessscreen(Session["EmpId"].ToString(), "oprawentry");
+                DataSet dacess1 = ks.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "oprawentry");
                 if (dacess1.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -42,7 +42,7 @@ namespace Billing.Accountsbootstrap
                 }
 
                 DataSet dacess = new DataSet();
-                dacess = ks.getuseraccessscreen(Session["EmpId"].ToString(), "oprawentry");
+                dacess = ks.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "oprawentry");
                 if (dacess.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)

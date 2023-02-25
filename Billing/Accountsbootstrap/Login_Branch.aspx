@@ -74,7 +74,7 @@
 				<div class="postel">
 				<span class="glyphicon glyphicon-headphones pos-color pos-list-icons" aria-hidden="true"></span>
 				<b class="pos-color uppercase">Support</b><br>
-				<b>+91 91235 15998</b>
+				<b>+91 72009 28169</b>
 				</div>
 			</div>
 			<div class="col-sm-6 margin-x-md">

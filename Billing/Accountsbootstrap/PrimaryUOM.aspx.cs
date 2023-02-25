@@ -33,7 +33,7 @@ namespace Billing.Accountsbootstrap
 
                 txtuom.Text = "";
 
-                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "PrimaryUOMmaster");
+                DataSet dacess1 = objbs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "PrimaryUOMmaster");
                 if (dacess1.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -43,7 +43,7 @@ namespace Billing.Accountsbootstrap
                 }
 
                 DataSet dacess = new DataSet();
-                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "PrimaryUOMmaster");
+                dacess = objbs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "PrimaryUOMmaster");
                 if (dacess.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
