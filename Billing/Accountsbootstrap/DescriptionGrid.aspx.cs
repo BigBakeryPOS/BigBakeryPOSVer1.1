@@ -11,6 +11,10 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.IO;
 using System.Data.OleDb;
+using System.Reflection;
+using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Bibliography;
+
 
 namespace Billing.Accountsbootstrap
 {
@@ -1393,10 +1397,78 @@ namespace Billing.Accountsbootstrap
 
             }
         }
-        //catch (Exception ex)
-        //{
-        //    throw;
-        //}
-        //}
+        protected DataTable BindDatatable()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("CategoryId", typeof(Int32));
+            dt.Columns.Add("ItemName", typeof(string));
+            dt.Columns.Add("PrintItemName", typeof(string));
+            dt.Columns.Add("SerialNo", typeof(string));
+          
+            return dt;
+        }
+       
+        protected void btndownload_Click(object sender, EventArgs e)
+        {
+
+
+           //your datatable
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                DataTable dt1 = BindDatatable();
+                wb.Worksheets.Add(dt1);
+              
+                
+                Response.Clear();
+                Response.Buffer = true;
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.AddHeader("content-disposition", "attachment;filename=UploadItems.xlsx");
+                using (MemoryStream MyMemoryStream = new MemoryStream())
+                {
+                    wb.SaveAs(MyMemoryStream);
+                    MyMemoryStream.WriteTo(Response.OutputStream);
+                    Response.Flush();
+                    Response.End();
+                }
+            }
+
+            ////Response.ClearContent();
+            ////    Response.Buffer = true;
+            ////    Response.AddHeader("content-disposition", string.Format("attachment; filename={0}", "UploadItems.xls"));
+            ////    Response.ContentType = "application/ms-excel";
+          
+            ////    DataTable dt = BindDatatable();
+            ////    string str = string.Empty;
+            ////    foreach (DataColumn dtcol in dt.Columns)
+            ////   {
+            ////        Response.Write(str + Convert.ToString(dtcol));
+            ////        str = "\t";
+            ////    dtcol.ReadOnly = true;
+               
+            ////   }
+            ////    Response.Write("\n");
+          
+            ////    foreach (DataRow dr in dt.Rows)
+            ////   {
+            ////    str = "";
+            ////    for (int j = 0; j < dt.Columns.Count; j++)
+            ////    {
+            ////        Response.Write(str + Convert.ToString(dr[j]));
+                   
+            ////        str = "\t";
+            ////    }
+            ////    Response.Write("\n");
+            ////}
+                
+            ////Response.End();
+            //this.Application
+            //this.Application.Cells.Locked = false;
+            //this.Application.get_Range("A1", "C3").Locked = true;
+            //Excel.Worksheet Sheet1 = (Excel.Worksheet)this.Application.ActiveSheet;
+            //Sheet1.Protect(missing, missing, missing, missing, missing, missing, missing,
+            //missing, missing, missing, missing, missing, missing, missing, missing, missing);
+        }
     }
 }
+    
