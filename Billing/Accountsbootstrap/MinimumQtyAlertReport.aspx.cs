@@ -197,13 +197,13 @@ namespace Billing.Accountsbootstrap
             //else
             //{
             ds = objBs.getMinstockdetgrid(sTableName, ddlcategory.SelectedValue, logintype);
-            if (Convert.ToInt32(ds.Tables[0].Rows[0]["MinimumStock"]) > Convert.ToInt32(ds.Tables[0].Rows[0]["Available_Qty"]))
-            {
+            //if (Convert.ToInt32(ds.Tables[0].Rows[0]["MinimumStock"]) > Convert.ToInt32(ds.Tables[0].Rows[0]["Available_Qty"]))
+            //{
 
 
                 gvstock.DataSource = ds;
                 gvstock.DataBind();
-            }
+            //}
             //  }
         }
 

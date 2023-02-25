@@ -5917,7 +5917,7 @@ namespace BusinessLayer
 
                 //if (logintype == "5" || logintype == "4")
                 //{
-                string sQry = "select c.Category,cu.Definition,cu.MinimumStock,s.Available_QTY,(s.Available_Qty-cu.MinimumStock) as Balance,cu.qtytype from tblCategory c inner join tblCategoryUser cu on c.CategoryId=cu.CategoryId inner join tblstock_"+stable + " s on s.SubCategoryId=cu.ItemId group by c.category,cu.definition,cu.MinimumStock,s.Available_Qty,cu.qtytype ";
+                string sQry = "select c.Category,cu.Definition,cu.MinimumStock,s.Available_QTY,(cu.MinimumStock-s.Available_Qty) as Balance,cu.qtytype from tblCategory c inner join tblCategoryUser cu on c.CategoryId=cu.CategoryId inner join tblstock_" + stable + " s on s.SubCategoryId=cu.ItemId where s.Available_QTY<=cu.MinimumStock group by c.category,cu.definition,cu.MinimumStock,s.Available_Qty,cu.qtytype ";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 //}
                 //else
@@ -5931,7 +5931,7 @@ namespace BusinessLayer
             {
                 //if (logintype == "5" || logintype == "4")
                 //{
-                string sQry = "select c.Category,cu.Definition,cu.MinimumStock,s.Available_QTY,(s.Available_Qty-cu.MinimumStock) as Balance,cu.qtytype from tblCategory c inner join tblCategoryUser cu on c.CategoryId=cu.CategoryId inner join tblstock_"+stable+" s on s.SubCategoryId=cu.ItemId where c.CategoryId='" + Categoryid + "' group by c.category,cu.definition,cu.MinimumStock,s.Available_Qty,cu.qtytype"; 
+                string sQry = "select c.Category,cu.Definition,cu.MinimumStock,s.Available_QTY,(cu.MinimumStock-s.Available_Qty) as Balance,cu.qtytype from tblCategory c inner join tblCategoryUser cu on c.CategoryId=cu.CategoryId inner join tblstock_" + stable+" s on s.SubCategoryId=cu.ItemId where c.CategoryId='" + Categoryid + "' and s.Available_QTY<=cu.MinimumStock group by c.category,cu.definition,cu.MinimumStock,s.Available_Qty,cu.qtytype"; 
                 ds = dbObj.InlineExecuteDataSet(sQry);
                 //}
                 //else
@@ -22617,7 +22617,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
 
-            string sqry = "select BranchCode as  BranchName,Branchname as Name,BranchId,'0' as Margin from tblbranch where IsActive='Yes' and BranchType=0";
+            string sqry = "select BranchCode as  BranchName,isnull(Branchname,'')+'-'+isnull(BranchCode,'') as Name,BranchId,'0' as Margin from tblbranch where IsActive='Yes' and BranchType=0";
             ds = dbObj.InlineExecuteDataSet(sqry);
 
             return ds;

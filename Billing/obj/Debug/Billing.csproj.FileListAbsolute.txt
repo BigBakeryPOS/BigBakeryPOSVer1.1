@@ -1387,6 +1387,7 @@ D:\BigBakeryPOSVer1.1\Billing\bin\CommonLayer.dll
 D:\BigBakeryPOSVer1.1\Billing\bin\DataLayer.dll
 D:\BigBakeryPOSVer1.1\Billing\bin\Microsoft.Office.Interop.Excel.dll
 D:\BigBakeryPOSVer1.1\Billing\bin\Office.dll
+D:\BigBakeryPOSVer1.1\Billing\bin\System.Web.DataVisualization.dll
 D:\BigBakeryPOSVer1.1\Billing\bin\Microsoft.Vbe.Interop.dll
 D:\BigBakeryPOSVer1.1\Billing\bin\stdole.dll
 D:\BigBakeryPOSVer1.1\Billing\bin\BusinessLayer.pdb
@@ -1401,3 +1402,4 @@ D:\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.CoreCompileInputs.cache
 D:\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.CopyComplete
 D:\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.dll
 D:\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.pdb
+D:\BigBakeryPOSVer1.1\Billing\bin\ClosedXML.dll

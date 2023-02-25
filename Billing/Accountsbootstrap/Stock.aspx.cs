@@ -472,7 +472,9 @@ namespace Billing.Accountsbootstrap
                                 }
 
                                 txtQty.Text = "";
-                                lblerror.Text = "saved";
+                                txtname.Text = "";
+                               
+                               // lblerror.Text = "saved";
                             }
                             else
                             {

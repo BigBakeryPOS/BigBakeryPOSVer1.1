@@ -205,7 +205,10 @@
                                 <label>
                                     Tax
                                 </label>
-                                <asp:DropDownList CssClass="form-control" ID="ddltax" AutoPostBack="true" OnTextChanged="mrp_calculation"
+                               <%-- <asp:DropDownList CssClass="form-control" ID="ddltax" AutoPostBack="true" OnTextChanged="mrp_calculation"
+                                    runat="server">
+                                </asp:DropDownList>--%>
+                                 <asp:DropDownList CssClass="form-control" ID="ddltax" AutoPostBack="true" 
                                     runat="server">
                                 </asp:DropDownList>
                                 <br />
