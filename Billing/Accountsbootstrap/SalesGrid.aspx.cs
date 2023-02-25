@@ -69,7 +69,7 @@ namespace Billing
 
             if (!IsPostBack)
             {
-                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Sales");
+                DataSet dacess1 = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "Sales");
                 if (dacess1.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -79,7 +79,7 @@ namespace Billing
                 }
 
                 DataSet dacess = new DataSet();
-                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Sales");
+                dacess = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "Sales");
                 if (dacess.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
@@ -91,14 +91,14 @@ namespace Billing
                         addbutton.Visible = false;
                     }
 
-                    if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
-                    {
-                        gvsales.Columns[10].Visible = true;
-                    }
-                    else
-                    {
-                        gvsales.Columns[10].Visible = false;
-                    }
+                    //if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Edit"]) == true)
+                    //{
+                    //    gvsales.Columns[10].Visible = true;
+                    //}
+                    //else
+                    //{
+                    //    gvsales.Columns[10].Visible = false;
+                    //}
 
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Delete"]) == true)
                     {
@@ -263,7 +263,8 @@ namespace Billing
             {
                 if (e.CommandArgument.ToString() != "")
                 {
-                    Response.Redirect("cashsales.aspx?iSalesID=" + e.CommandArgument.ToString());
+                    // Response.Redirect("cashsales.aspx?iSalesID=" + e.CommandArgument.ToString());
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Not Allow To Edit');", true);
                 }
             }
             else if (e.CommandName == "cancel")
@@ -336,7 +337,9 @@ namespace Billing
 
                 if (PrintOption == "1")
                 {
-                    yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + salestypeid + "&iSalesID=" + billno + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString();
+                    bool chkkot = false;
+
+                    yourUrl = "SalesPrint.aspx?Mode=Sales&Type=" + salestypeid + "&iSalesID=" + billno + "&User=" + Request.Cookies["userInfo"]["User"].ToString() + "&Store=" + Request.Cookies["userInfo"]["Store"].ToString() + "&StoreNo=" + Request.Cookies["userInfo"]["StoreNo"].ToString() + "&Address=" + Request.Cookies["userInfo"]["Address"].ToString() + "&TIN=" + Request.Cookies["userInfo"]["TIN"].ToString() + "&fssaino=" + Request.Cookies["userInfo"]["fssaino"].ToString() + "&KOTPrint=" + chkkot + "&Country=" + Request.Cookies["userInfo"]["Country"].ToString() + "&Currency=" + Request.Cookies["userInfo"]["Currency"].ToString() + "&TaxSetting=" + Request.Cookies["userInfo"]["TaxSetting"].ToString() + "&Billtaxsplitupshown=" + Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString() + "&BillPrintLogo=" + Request.Cookies["userInfo"]["BillPrintLogo"].ToString() + "&Ratesetting=" + Request.Cookies["userInfo"]["Ratesetting"].ToString() + "&Qtysetting=" + Request.Cookies["userInfo"]["Qtysetting"].ToString() + "&BillGenerateSetting=" + Request.Cookies["userInfo"]["BillGenerateSetting"].ToString() + "&Printtype=" + Request.Cookies["userInfo"]["Printtype"].ToString();
                 }
 
                 if (PrintOption == "2")

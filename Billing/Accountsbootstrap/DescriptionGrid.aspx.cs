@@ -42,7 +42,7 @@ namespace Billing.Accountsbootstrap
             ratesetting = Request.Cookies["userInfo"]["Ratesetting"].ToString();
             if (!IsPostBack)
             {
-                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Item");
+                DataSet dacess1 = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "Item");
                 if (dacess1.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -52,7 +52,7 @@ namespace Billing.Accountsbootstrap
                 }
 
                 DataSet dacess = new DataSet();
-                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "Item");
+                dacess = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "Item");
                 if (dacess.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
@@ -120,25 +120,25 @@ namespace Billing.Accountsbootstrap
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                if (superadmin == "1" || superadmin == "2")
-                {
-                    ((LinkButton)e.Row.FindControl("btnedit")).Enabled = true;
-                    ((LinkButton)e.Row.FindControl("btndel")).Enabled = true;
+                //if (superadmin == "1" || superadmin == "2")
+                //{
+                //    ((LinkButton)e.Row.FindControl("btnedit")).Enabled = true;
+                //    ((LinkButton)e.Row.FindControl("btndel")).Enabled = true;
 
-                    ((Image)e.Row.FindControl("imdedit")).Enabled = true;
-                    ((Image)e.Row.FindControl("Image1")).Enabled = true;
-                }
-                else
-                {
-                    ((LinkButton)e.Row.FindControl("btnedit")).Enabled = false;
-                    ((LinkButton)e.Row.FindControl("btndel")).Visible = false;
+                //    ((Image)e.Row.FindControl("imdedit")).Enabled = true;
+                //    ((Image)e.Row.FindControl("Image1")).Enabled = true;
+                //}
+                //else
+                //{
+                //    ((LinkButton)e.Row.FindControl("btnedit")).Enabled = false;
+                //    ((LinkButton)e.Row.FindControl("btndel")).Visible = false;
 
-                    ((Image)e.Row.FindControl("imdedit")).Enabled = false;
-                    ((Image)e.Row.FindControl("Image1")).Visible = false;
+                //    ((Image)e.Row.FindControl("imdedit")).Enabled = false;
+                //    ((Image)e.Row.FindControl("Image1")).Visible = false;
 
-                    ((Image)e.Row.FindControl("imgdisable1321")).Enabled = false;
-                    ((Image)e.Row.FindControl("imgdisable1321")).Visible = true;
-                }
+                //    ((Image)e.Row.FindControl("imgdisable1321")).Enabled = false;
+                //    ((Image)e.Row.FindControl("imgdisable1321")).Visible = true;
+                //}
 
 
                 //

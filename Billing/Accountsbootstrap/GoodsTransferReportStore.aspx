@@ -137,6 +137,7 @@
                                                     <asp:BoundField HeaderText="Transfer Qty" DataField="SentQty" />
                                                     <asp:BoundField HeaderText="Damage Qty" DataField="damageQty" />
                                                     <asp:BoundField HeaderText="Missing Qty" DataField="MissingQty" />
+                                                    <asp:BoundField HeaderText="Total" DataField="Trate" DataFormatString='{0:f2}' />
                                                 </Columns>
                                                 <%--<FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
                                                 <HeaderStyle BackColor="#428bca" ForeColor="White" HorizontalAlign="Center" />--%>

@@ -46,6 +46,11 @@
     <script type="text/javascript" language="javascript">
         window.print();
     </script>
+    <style>
+    @page { size: 58mm 100mm } /* output size */
+    body.receipt .sheet { width: 58mm; height: 100mm } /* sheet size */ca
+    @media print { body.receipt { width: 58mm } } /* fix for Chrome */
+  </style>
 </head>
 <body style="text-transform:uppercase;font-family:Monospace" onload="window.print()">
     <form id="Form1" runat="server">
@@ -64,7 +69,7 @@
                     <td colspan="2" align="center" style="font-size: x-large;">
                         <asp:Label ID="l2" runat="server" Style="font-weight: bolder; font-size: x-large"
                             Visible="false">INVOICE</asp:Label>
-                        <div id="idimglog" runat="server" visible="true">
+                        <div id="idimglog" runat="server" visible="false">
                             <asp:Image ID="log" src='<%#Eval("Image")%>' Style="width: 10pc; margin-left: 0px;"
                                 runat="server" />
                             <br />
@@ -165,7 +170,7 @@
                                         <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Item / Hsncode" ItemStyle-Font-Size="18px" HeaderStyle-Width="30%"
+                                <asp:TemplateField HeaderText="Item " ItemStyle-Font-Size="18px" HeaderStyle-Width="30%"
                                     ItemStyle-Font-Bold="true" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <%# Eval("printite")%>
@@ -268,13 +273,16 @@
                     </td>
                     
                     <td colspan="1" align="right" style="padding-right: 17px">
+                        <div id="divsubtotal" runat="server" visible="true" >
                         <label style="font-size: 20px">
                             SubTotal:
                         </label>
                         <asp:Label ID="lblsubttl" runat="server" Font-Bold="true" Font-Size="20px"></asp:Label>
+                            </div>
                     </td>
                 </tr>
-                <tr style="" border="1" id="PCGST" runat="server">
+                <tr style="" border="1" id="PCGST" visible="false" runat="server">
+
                     <td colspan="1" align="left" style="padding-right: 17px">
                         <label style="font-size: 20px">
                             CGST:

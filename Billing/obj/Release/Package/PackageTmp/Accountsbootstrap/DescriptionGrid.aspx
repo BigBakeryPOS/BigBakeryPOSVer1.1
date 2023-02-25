@@ -174,7 +174,7 @@
                                             </asp:GridView>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4" runat="server" visible="false">
                                         <div class="form-group">
                                             <label>
                                                 Upload Data From Excel (HSNCODE/TAX/RATE)

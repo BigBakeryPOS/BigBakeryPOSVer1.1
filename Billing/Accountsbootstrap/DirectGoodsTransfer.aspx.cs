@@ -21,6 +21,8 @@ namespace Billing.Accountsbootstrap
         string sTableName = "";
         string sCode = "";
         string qtysetting = "";
+        string ProdStockOption = "1";
+        string itemmergeornot = "Y";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,6 +32,12 @@ namespace Billing.Accountsbootstrap
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
             sCode = Request.Cookies["userInfo"]["BranchCode"].ToString();
             qtysetting = Request.Cookies["userInfo"]["Qtysetting"].ToString();
+
+            ProdStockOption = Request.Cookies["userInfo"]["ProdStockOption"].ToString();
+            itemmergeornot = Request.Cookies["userInfo"]["itemmergeornot"].ToString();
+
+
+
 
 
 
@@ -63,6 +71,276 @@ namespace Billing.Accountsbootstrap
                     ddlBranch.Items.Insert(0, "Select Branch");
                 }
 
+                string dc_no = Request.QueryString.Get("dc_no");
+                string branch = Request.QueryString.Get("branch");
+                if (dc_no != null)
+                {
+                    // get goods transfer 
+                    DataSet getgoodstransfer = objbs.getgoodstransferbyid(dc_no, sTableName, branch);
+                    if (getgoodstransfer.Tables[0].Rows.Count > 0)
+                    {
+                        txtTransferNo.Text = getgoodstransfer.Tables[0].Rows[0]["DC_No"].ToString();
+                        txtTransferDate.Text = Convert.ToDateTime(getgoodstransfer.Tables[0].Rows[0]["DC_Date"]).ToString("dd/MM/yyyy hh:mm tt");
+                        txtTransferDate.Enabled = false;
+                        ddlBranch.SelectedValue = getgoodstransfer.Tables[0].Rows[0]["branchcode"].ToString();
+                        ddlBranch.Enabled = false;
+                        txtEntryBy.Text = getgoodstransfer.Tables[0].Rows[0]["sentby"].ToString();
+
+                        //  get item list 
+                        DataSet getitemlist = objbs.gettransgoodstransferbyid(dc_no, sTableName, branch);
+                        if (getitemlist.Tables[0].Rows.Count > 0)
+                        {
+
+
+                            DataSet dstd = new DataSet();
+                            DataTable dtddd = new DataTable();
+
+
+                            DataTable dttt;
+                            DataRow drNew;
+                            DataColumn dct;
+                            dttt = new DataTable();
+
+                            dct = new DataColumn("CategoryID");
+                            dttt.Columns.Add(dct);
+                            dct = new DataColumn("CategoryUserID");
+                            dttt.Columns.Add(dct);
+                            dct = new DataColumn("UOMID");
+                            dttt.Columns.Add(dct);
+                            dct = new DataColumn("Category");
+                            dttt.Columns.Add(dct);
+                            dct = new DataColumn("Definition");
+                            dttt.Columns.Add(dct);
+                            dct = new DataColumn("Qty");
+                            dttt.Columns.Add(dct);
+                            dct = new DataColumn("UOM");
+                            dttt.Columns.Add(dct);
+
+                            dct = new DataColumn("serial");
+                            dttt.Columns.Add(dct);
+
+                            dct = new DataColumn("Rate");
+                            dttt.Columns.Add(dct);
+                            dct = new DataColumn("GST");
+                            dttt.Columns.Add(dct);
+
+                            dstd.Tables.Add(dttt);
+
+
+                            if (ViewState["CurrentTable1"] != null)
+                            {
+                                DataTable dt = (DataTable)ViewState["CurrentTable1"];
+
+
+                                for (int i = 0; i < getitemlist.Tables[0].Rows.Count; i++)
+                                {
+                                    string hideCategoryID = getitemlist.Tables[0].Rows[i]["categoryid"].ToString();
+                                    string hideCategoryUserID = getitemlist.Tables[0].Rows[i]["categoryuserid"].ToString();
+                                    string hideUOMID = getitemlist.Tables[0].Rows[i]["UOMID"].ToString();
+
+                                    string hdRate = getitemlist.Tables[0].Rows[i]["rate"].ToString();
+                                    string hdGST = getitemlist.Tables[0].Rows[i]["GST"].ToString();
+
+                                    string lblCategory = getitemlist.Tables[0].Rows[i]["category"].ToString();
+                                    string lblDefinition = getitemlist.Tables[0].Rows[i]["definition"].ToString();
+
+                                    string lblom = getitemlist.Tables[0].Rows[i]["UOM"].ToString();
+
+                                    string lblserial = getitemlist.Tables[0].Rows[i]["serial"].ToString();
+
+                                    string txtQty = getitemlist.Tables[0].Rows[i]["Qty"].ToString();
+
+                                    if (txtQty == "")
+                                        txtQty = "0";
+
+                                    if (Convert.ToDouble(txtQty) > 0)
+                                    {
+                                        drNew = dttt.NewRow();
+                                        drNew["CategoryID"] = hideCategoryID;
+                                        drNew["CategoryUserID"] = hideCategoryUserID;
+                                        drNew["UOMID"] = hideUOMID;
+
+                                        drNew["Rate"] = hdRate;
+                                        drNew["GST"] = hdGST;
+
+                                        drNew["Category"] = lblCategory;
+                                        drNew["Definition"] = lblDefinition;
+
+                                        drNew["Qty"] = Convert.ToDouble(txtQty).ToString("" + qtysetting + "");
+                                        drNew["UOM"] = lblom;
+
+                                        drNew["serial"] = lblserial;
+
+                                        dstd.Tables[0].Rows.Add(drNew);
+                                        dtddd = dstd.Tables[0];
+
+
+                                    }
+                                }
+
+                                dtddd.Merge(dt);
+                                ViewState["CurrentTable1"] = dtddd;
+                            }
+                            else
+                            {
+                                for (int i = 0; i < getitemlist.Tables[0].Rows.Count; i++)
+                                {
+                                    string hideCategoryID = getitemlist.Tables[0].Rows[i]["categoryid"].ToString();
+                                    string hideCategoryUserID = getitemlist.Tables[0].Rows[i]["categoryuserid"].ToString();
+                                    string hideUOMID = getitemlist.Tables[0].Rows[i]["UOMID"].ToString();
+
+                                    string hdRate = getitemlist.Tables[0].Rows[i]["rate"].ToString();
+                                    string hdGST = getitemlist.Tables[0].Rows[i]["GST"].ToString();
+
+                                    string lblCategory = getitemlist.Tables[0].Rows[i]["category"].ToString();
+                                    string lblDefinition = getitemlist.Tables[0].Rows[i]["definition"].ToString();
+
+                                    string lblom = getitemlist.Tables[0].Rows[i]["UOM"].ToString();
+
+                                    string lblserial = getitemlist.Tables[0].Rows[i]["serial"].ToString();
+
+                                    string txtQty = getitemlist.Tables[0].Rows[i]["Qty"].ToString();
+
+                                    if (txtQty == "")
+                                        txtQty = "0";
+
+                                    if (Convert.ToDouble(txtQty) > 0)
+                                    {
+                                        drNew = dttt.NewRow();
+                                        drNew["CategoryID"] = hideCategoryID;
+                                        drNew["CategoryUserID"] = hideCategoryUserID;
+                                        drNew["UOMID"] = hideUOMID;
+
+                                        drNew["Rate"] = hdRate;
+                                        drNew["GST"] = hdGST;
+
+                                        drNew["Category"] = lblCategory;
+                                        drNew["Definition"] = lblDefinition;
+
+                                        drNew["Qty"] = Convert.ToDouble(txtQty).ToString("" + qtysetting + "");
+                                        drNew["UOM"] = lblom;
+
+                                        drNew["serial"] = lblserial;
+
+                                        dstd.Tables[0].Rows.Add(drNew);
+                                        dtddd = dstd.Tables[0];
+
+
+                                    }
+                                }
+
+                                ViewState["CurrentTable1"] = dtddd;
+                            }
+
+                            if (itemmergeornot == "Y")
+                            {
+                                gvqueueitems.DataSource = dstd;
+                                gvqueueitems.DataBind();
+                            }
+                            else if (itemmergeornot == "N")
+                            {
+                                #region Summary
+
+                                DataTable dtraw = new DataTable();
+                                DataSet dsraw = new DataSet();
+                                DataRow drraw;
+
+                                dtraw.Columns.Add("CategoryID");
+                                dtraw.Columns.Add("CategoryUserID");
+                                dtraw.Columns.Add("UOMID");
+
+                                dtraw.Columns.Add("Category");
+                                dtraw.Columns.Add("Definition");
+
+                                dtraw.Columns.Add("Qty");
+                                dtraw.Columns.Add("UOM");
+
+                                dtraw.Columns.Add("serial");
+
+                                dtraw.Columns.Add("Rate");
+                                dtraw.Columns.Add("GST");
+
+                                dsraw.Tables.Add(dtraw);
+
+                                if (dstd.Tables[0].Rows.Count > 0)
+                                {
+                                    #region
+
+                                    // DataTable dtraws = dsrawmerge.Tables[0];
+
+                                    var result1 = from r in dtddd.AsEnumerable()
+                                                  group r by new { CategoryID = r["CategoryID"], CategoryUserID = r["CategoryUserID"], UOMID = r["UOMID"], Category = r["Category"], Definition = r["Definition"], UOM = r["UOM"], Rate = r["Rate"], GST = r["GST"], serial = r["serial"] } into raw
+                                                  select new
+                                                  {
+                                                      CategoryID = raw.Key.CategoryID,
+                                                      CategoryUserID = raw.Key.CategoryUserID,
+                                                      UOMID = raw.Key.UOMID,
+                                                      Category = raw.Key.Category,
+                                                      Definition = raw.Key.Definition,
+                                                      Qty = raw.Sum(x => Convert.ToDouble(x["Qty"])),
+                                                      UOM = raw.Key.UOM,
+                                                      serial = raw.Key.serial,
+                                                      Rate = raw.Key.Rate,
+                                                      GST = raw.Key.GST,
+
+                                                  };
+
+
+                                    foreach (var g in result1)
+                                    {
+                                        drraw = dtraw.NewRow();
+
+                                        drraw["CategoryID"] = g.CategoryID;
+                                        drraw["CategoryUserID"] = g.CategoryUserID;
+                                        drraw["UOMID"] = g.UOMID;
+                                        drraw["Category"] = g.Category;
+                                        drraw["Definition"] = g.Definition;
+
+                                        drraw["Qty"] = Convert.ToDouble(g.Qty).ToString("" + qtysetting + "");
+                                        drraw["UOM"] = g.UOM;
+                                        drraw["serial"] = g.serial;
+
+                                        drraw["Rate"] = g.Rate;
+                                        drraw["GST"] = g.GST;
+
+                                        dsraw.Tables[0].Rows.Add(drraw);
+                                    }
+                                    gvqueueitems.DataSource = dsraw;
+                                    gvqueueitems.DataBind();
+
+                                    #endregion
+                                }
+
+
+                                #endregion
+                            }
+
+
+
+                            
+                            ddlrequestno_OnSelectedIndexChanged(sender, e);
+                            btnPreview.Text = "Update";
+
+
+
+
+
+                        }
+
+
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('This Entry is Accepted by Branch.Thank You!!!');", true);
+                        return;
+
+                    }
+
+                }
+                else
+                {
+                    btnPreview.Text = "Send ";
+                }
             }
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$('.chzn-select').chosen(); $('.chzn-select-deselect').chosen({ allow_single_deselect: true });", true);
         }
@@ -303,7 +581,7 @@ namespace Billing.Accountsbootstrap
                 searchitemlist_OnClick(Server, e);
                 //ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Enter Valid Category.Thank You!!!');", true);
                 //return;
-                DataSet dsitems = objbs.itemforreqestNew_DirectTransfer((ddlcategory.SelectedValue), sTableName, lblcatid.Text);
+                DataSet dsitems = objbs.itemforreqestNew_DirectTransfer((ddlcategory.SelectedValue), sTableName, lblcatid.Text,ProdStockOption);
                 if (dsitems.Tables[0].Rows.Count > 0)
                 {
                     gvitems.DataSource = dsitems;
@@ -365,7 +643,7 @@ namespace Billing.Accountsbootstrap
             else
             {
 
-                DataSet dsitems = objbs.itemforreqestNew_DirectTransfer((ddlcategory.SelectedValue), sTableName, lblcatid.Text);
+                DataSet dsitems = objbs.itemforreqestNew_DirectTransfer((ddlcategory.SelectedValue), sTableName, lblcatid.Text,ProdStockOption);
                 if (dsitems.Tables[0].Rows.Count > 0)
                 {
                     gvitems.DataSource = dsitems;
@@ -740,87 +1018,94 @@ namespace Billing.Accountsbootstrap
                 ViewState["CurrentTable1"] = dtddd;
             }
 
-
-            #region Summary
-
-            DataTable dtraw = new DataTable();
-            DataSet dsraw = new DataSet();
-            DataRow drraw;
-
-            dtraw.Columns.Add("CategoryID");
-            dtraw.Columns.Add("CategoryUserID");
-            dtraw.Columns.Add("UOMID");
-
-            dtraw.Columns.Add("Category");
-            dtraw.Columns.Add("Definition");
-
-            dtraw.Columns.Add("Qty");
-            dtraw.Columns.Add("UOM");
-
-            dtraw.Columns.Add("serial");
-
-            dtraw.Columns.Add("Rate");
-            dtraw.Columns.Add("GST");
-
-            dsraw.Tables.Add(dtraw);
-
-            if (dstd.Tables[0].Rows.Count > 0)
+            if (itemmergeornot == "Y")
             {
-                #region
-
-                // DataTable dtraws = dsrawmerge.Tables[0];
-
-                var result1 = from r in dtddd.AsEnumerable()
-                              group r by new { CategoryID = r["CategoryID"], CategoryUserID = r["CategoryUserID"], UOMID = r["UOMID"], Category = r["Category"], Definition = r["Definition"], UOM = r["UOM"], Rate = r["Rate"], GST = r["GST"], serial = r["serial"] } into raw
-                              select new
-                              {
-                                  CategoryID = raw.Key.CategoryID,
-                                  CategoryUserID = raw.Key.CategoryUserID,
-                                  UOMID = raw.Key.UOMID,
-                                  Category = raw.Key.Category,
-                                  Definition = raw.Key.Definition,
-                                  Qty = raw.Sum(x => Convert.ToDouble(x["Qty"])),
-                                  UOM = raw.Key.UOM,
-                                  serial = raw.Key.serial,
-                                  Rate = raw.Key.Rate,
-                                  GST = raw.Key.GST,
-
-                              };
-
-
-                foreach (var g in result1)
-                {
-                    drraw = dtraw.NewRow();
-
-                    drraw["CategoryID"] = g.CategoryID;
-                    drraw["CategoryUserID"] = g.CategoryUserID;
-                    drraw["UOMID"] = g.UOMID;
-                    drraw["Category"] = g.Category;
-                    drraw["Definition"] = g.Definition;
-
-                    drraw["Qty"] = Convert.ToDouble(g.Qty).ToString(""+qtysetting+"");
-                    drraw["UOM"] = g.UOM;
-                    drraw["serial"] = g.serial;
-
-                    drraw["Rate"] = g.Rate;
-                    drraw["GST"] = g.GST;
-
-                    dsraw.Tables[0].Rows.Add(drraw);
-                }
-                gvqueueitems.DataSource = dsraw;
+                gvqueueitems.DataSource = dstd;
                 gvqueueitems.DataBind();
+            }
+            else if (itemmergeornot == "N")
+            {
+                #region Summary
+
+                DataTable dtraw = new DataTable();
+                DataSet dsraw = new DataSet();
+                DataRow drraw;
+
+                dtraw.Columns.Add("CategoryID");
+                dtraw.Columns.Add("CategoryUserID");
+                dtraw.Columns.Add("UOMID");
+
+                dtraw.Columns.Add("Category");
+                dtraw.Columns.Add("Definition");
+
+                dtraw.Columns.Add("Qty");
+                dtraw.Columns.Add("UOM");
+
+                dtraw.Columns.Add("serial");
+
+                dtraw.Columns.Add("Rate");
+                dtraw.Columns.Add("GST");
+
+                dsraw.Tables.Add(dtraw);
+
+                if (dstd.Tables[0].Rows.Count > 0)
+                {
+                    #region
+
+                    // DataTable dtraws = dsrawmerge.Tables[0];
+
+                    var result1 = from r in dtddd.AsEnumerable()
+                                  group r by new { CategoryID = r["CategoryID"], CategoryUserID = r["CategoryUserID"], UOMID = r["UOMID"], Category = r["Category"], Definition = r["Definition"], UOM = r["UOM"], Rate = r["Rate"], GST = r["GST"], serial = r["serial"] } into raw
+                                  select new
+                                  {
+                                      CategoryID = raw.Key.CategoryID,
+                                      CategoryUserID = raw.Key.CategoryUserID,
+                                      UOMID = raw.Key.UOMID,
+                                      Category = raw.Key.Category,
+                                      Definition = raw.Key.Definition,
+                                      Qty = raw.Sum(x => Convert.ToDouble(x["Qty"])),
+                                      UOM = raw.Key.UOM,
+                                      serial = raw.Key.serial,
+                                      Rate = raw.Key.Rate,
+                                      GST = raw.Key.GST,
+
+                                  };
+
+
+                    foreach (var g in result1)
+                    {
+                        drraw = dtraw.NewRow();
+
+                        drraw["CategoryID"] = g.CategoryID;
+                        drraw["CategoryUserID"] = g.CategoryUserID;
+                        drraw["UOMID"] = g.UOMID;
+                        drraw["Category"] = g.Category;
+                        drraw["Definition"] = g.Definition;
+
+                        drraw["Qty"] = Convert.ToDouble(g.Qty).ToString("" + qtysetting + "");
+                        drraw["UOM"] = g.UOM;
+                        drraw["serial"] = g.serial;
+
+                        drraw["Rate"] = g.Rate;
+                        drraw["GST"] = g.GST;
+
+                        dsraw.Tables[0].Rows.Add(drraw);
+                    }
+                    gvqueueitems.DataSource = dsraw;
+                    gvqueueitems.DataBind();
+
+                    #endregion
+                }
+
 
                 #endregion
             }
 
 
-            #endregion
-
-
 
             gvitems.DataSource = null;
             gvitems.DataBind();
-            //ddlrequestno_OnSelectedIndexChanged(sender, e);
+            ddlrequestno_OnSelectedIndexChanged(sender, e);
 
         }
         protected void btnPrev_Click(object sender, EventArgs e)
@@ -839,60 +1124,98 @@ namespace Billing.Accountsbootstrap
                 return;
             }
 
-
-            for (int vLoop = 0; vLoop < gvqueueitems.Rows.Count; vLoop++)
+            if (ProdStockOption == "1")
             {
-                #region
-                HiddenField hideCategoryUserID = (HiddenField)gvqueueitems.Rows[vLoop].FindControl("hideCategoryUserID");
-                Label lblDefinition = (Label)gvqueueitems.Rows[vLoop].FindControl("lblDefinition");
-                TextBox txtQty = (TextBox)gvqueueitems.Rows[vLoop].FindControl("txtQty");
 
-                if (txtQty.Text == "")
-                    txtQty.Text = "0";
-
-                if (Convert.ToDouble(txtQty.Text) > 0)
+                for (int vLoop = 0; vLoop < gvqueueitems.Rows.Count; vLoop++)
                 {
-                    DataSet ds = objbs.CheckDirectGoodTrasnfer(sCode, Convert.ToInt32(hideCategoryUserID.Value), Convert.ToDouble(txtQty.Text));
-                    if (ds.Tables[0].Rows.Count == 0)
+                    #region
+                    HiddenField hideCategoryUserID = (HiddenField)gvqueueitems.Rows[vLoop].FindControl("hideCategoryUserID");
+                    Label lblDefinition = (Label)gvqueueitems.Rows[vLoop].FindControl("lblDefinition");
+                    TextBox txtQty = (TextBox)gvqueueitems.Rows[vLoop].FindControl("txtQty");
+
+                    if (txtQty.Text == "")
+                        txtQty.Text = "0";
+
+                    if (Convert.ToDouble(txtQty.Text) > 0)
                     {
-                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Check Qty in  Item " + lblDefinition.Text + "');", true);
-                        return;
+                        DataSet ds = objbs.CheckDirectGoodTrasnfer(sCode, Convert.ToInt32(hideCategoryUserID.Value), Convert.ToDouble(txtQty.Text));
+                        if (ds.Tables[0].Rows.Count == 0)
+                        {
+                            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Check Qty in  Item " + lblDefinition.Text + "');", true);
+                            return;
+                        }
+
                     }
 
+                    #endregion
                 }
-
-                #endregion
             }
 
-            //string sDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm tt");
-            //DateTime Date = Convert.ToDateTime(sDate);
-            txtTransferDate.Text = DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
-
-            DateTime Date = DateTime.ParseExact(txtTransferDate.Text, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
-
-            int DC_No = objbs.InsertDirectGoodTrasnfer(sCode, ddlBranch.SelectedValue, Date, txtEntryBy.Text, lblUserID.Text);
-
-            for (int vLoop = 0; vLoop < gvqueueitems.Rows.Count; vLoop++)
+            if (btnPreview.Text == "Send ")
             {
-                #region
 
-                HiddenField hideCategoryID = (HiddenField)gvqueueitems.Rows[vLoop].FindControl("hideCategoryID");
-                HiddenField hideCategoryUserID = (HiddenField)gvqueueitems.Rows[vLoop].FindControl("hideCategoryUserID");
+                //string sDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm tt");
+                //DateTime Date = Convert.ToDateTime(sDate);
+                txtTransferDate.Text = DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
 
-                HiddenField hdRate = (HiddenField)gvqueueitems.Rows[vLoop].FindControl("hdRate");
-                HiddenField hdGST = (HiddenField)gvqueueitems.Rows[vLoop].FindControl("hdGST");
+                DateTime Date = DateTime.ParseExact(txtTransferDate.Text, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
 
-                TextBox txtQty = (TextBox)gvqueueitems.Rows[vLoop].FindControl("txtQty");
+                int DC_No = objbs.InsertDirectGoodTrasnfer(sCode, ddlBranch.SelectedValue, Date, txtEntryBy.Text, lblUserID.Text);
 
-                if (txtQty.Text == "")
-                    txtQty.Text = "0";
-
-                if (Convert.ToDouble(txtQty.Text) > 0)
+                for (int vLoop = 0; vLoop < gvqueueitems.Rows.Count; vLoop++)
                 {
-                    int MainRequestID = objbs.InsertDirectTransGoodTrasnfer(sCode, DC_No, ddlBranch.SelectedValue, Convert.ToInt32(hideCategoryID.Value), Convert.ToInt32(hideCategoryUserID.Value), Convert.ToDouble(txtQty.Text), Convert.ToDouble(hdRate.Value), Convert.ToDouble(hdGST.Value));
+                    #region
+
+                    HiddenField hideCategoryID = (HiddenField)gvqueueitems.Rows[vLoop].FindControl("hideCategoryID");
+                    HiddenField hideCategoryUserID = (HiddenField)gvqueueitems.Rows[vLoop].FindControl("hideCategoryUserID");
+
+                    HiddenField hdRate = (HiddenField)gvqueueitems.Rows[vLoop].FindControl("hdRate");
+                    HiddenField hdGST = (HiddenField)gvqueueitems.Rows[vLoop].FindControl("hdGST");
+
+                    TextBox txtQty = (TextBox)gvqueueitems.Rows[vLoop].FindControl("txtQty");
+
+                    if (txtQty.Text == "")
+                        txtQty.Text = "0";
+
+                    if (Convert.ToDouble(txtQty.Text) > 0)
+                    {
+                        int MainRequestID = objbs.InsertDirectTransGoodTrasnfer(sCode, DC_No, ddlBranch.SelectedValue, Convert.ToInt32(hideCategoryID.Value), Convert.ToInt32(hideCategoryUserID.Value), Convert.ToDouble(txtQty.Text), Convert.ToDouble(hdRate.Value), Convert.ToDouble(hdGST.Value));
+                    }
+
+                    #endregion
+                }
+            }
+            else if(btnPreview.Text == "Update")
+            {
+                string dc_no = Request.QueryString.Get("dc_no");
+                //delete and update sent by 
+                int iupdate = objbs.UpdateDirectGoodTrasnfer(sTableName, txtEntryBy.Text, lblUserID.Text, dc_no);
+
+                for (int vLoop = 0; vLoop < gvqueueitems.Rows.Count; vLoop++)
+                {
+                    #region
+
+                    HiddenField hideCategoryID = (HiddenField)gvqueueitems.Rows[vLoop].FindControl("hideCategoryID");
+                    HiddenField hideCategoryUserID = (HiddenField)gvqueueitems.Rows[vLoop].FindControl("hideCategoryUserID");
+
+                    HiddenField hdRate = (HiddenField)gvqueueitems.Rows[vLoop].FindControl("hdRate");
+                    HiddenField hdGST = (HiddenField)gvqueueitems.Rows[vLoop].FindControl("hdGST");
+
+                    TextBox txtQty = (TextBox)gvqueueitems.Rows[vLoop].FindControl("txtQty");
+
+                    if (txtQty.Text == "")
+                        txtQty.Text = "0";
+
+                    if (Convert.ToDouble(txtQty.Text) > 0)
+                    {
+                        int MainRequestID = objbs.InsertDirectTransGoodTrasnfer(sCode, Convert.ToInt32(dc_no), ddlBranch.SelectedValue, Convert.ToInt32(hideCategoryID.Value), Convert.ToInt32(hideCategoryUserID.Value), Convert.ToDouble(txtQty.Text), Convert.ToDouble(hdRate.Value), Convert.ToDouble(hdGST.Value));
+                    }
+
+                    #endregion
                 }
 
-                #endregion
+
             }
 
             Response.Redirect("DirectGoodsTransferGrid.aspx");
@@ -910,7 +1233,18 @@ namespace Billing.Accountsbootstrap
 
                 //TextBox txtQty = ((TextBox)e.Row.FindControl("txtQty"));
                 Label lbqty = ((Label)e.Row.FindControl("lbqty"));
-                lbqty.Text = Convert.ToDouble(lbqty.Text).ToString("" + qtysetting + "");
+                
+
+                Label lblqtytype = ((Label)e.Row.FindControl("lblqtytype"));
+                if (lblqtytype.Text == "D")
+                {
+                    lbqty.Text = Convert.ToDouble(lbqty.Text).ToString("" + qtysetting + "");
+                }
+                else
+                {
+                    lbqty.Text = Convert.ToDouble(lbqty.Text).ToString("0");
+                }
+
                 //lblreceived_Qty.Text = Convert.ToDouble(lblreceived_Qty.Text).ToString("" + qtysetting + "");
 
             }
@@ -923,7 +1257,7 @@ namespace Billing.Accountsbootstrap
             {
                 searchitemlist_OnClick(Server, e);
                
-                DataSet dsitems = objbs.itemforreqestNew_DirectTransfer((ddlcategory.SelectedValue), sTableName, lblcatid.Text);
+                DataSet dsitems = objbs.itemforreqestNew_DirectTransfer((ddlcategory.SelectedValue), sTableName, lblcatid.Text, ProdStockOption);
                 if (dsitems.Tables[0].Rows.Count > 0)
                 {
                     gvitems.DataSource = dsitems;
@@ -943,7 +1277,7 @@ namespace Billing.Accountsbootstrap
 
                 searchitemlist_OnClick(Server, e);
 
-                DataSet dsitems = objbs.itemforreqestNew_DirectTransfer_Barcodesearch((ddlcategory.SelectedValue), sTableName, txtbarcode.Text);
+                DataSet dsitems = objbs.itemforreqestNew_DirectTransfer_Barcodesearch((ddlcategory.SelectedValue), sTableName, txtbarcode.Text,ProdStockOption);
                 if (dsitems.Tables[0].Rows.Count > 0)
                 {
                     gvitems.DataSource = dsitems;

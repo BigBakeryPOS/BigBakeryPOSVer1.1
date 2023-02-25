@@ -38,7 +38,7 @@ namespace Billing.Accountsbootstrap
             {
                 // goodsentrytype(sender, e);
 
-                DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "directstorestock");
+                DataSet dacess1 = objbs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "directstorestock");
                 if (dacess1.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -48,7 +48,7 @@ namespace Billing.Accountsbootstrap
                 }
 
                 DataSet dacess = new DataSet();
-                dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "directstorestock");
+                dacess = objbs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "directstorestock");
                 if (dacess.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
@@ -327,7 +327,7 @@ namespace Billing.Accountsbootstrap
                 searchitemlist_OnClick(Server, e);
                 //ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Enter Valid Category.Thank You!!!');", true);
                 //return;
-                DataSet dsitems = objbs.itemforreqestNew_DirectTransfer((ddlcategory.SelectedValue), sTableName, lblcatid.Text);
+                DataSet dsitems = objbs.itemforreqestNew_DirectTransferStore((ddlcategory.SelectedValue), sTableName, lblcatid.Text);
                 if (dsitems.Tables[0].Rows.Count > 0)
                 {
                     gvitems.DataSource = dsitems;

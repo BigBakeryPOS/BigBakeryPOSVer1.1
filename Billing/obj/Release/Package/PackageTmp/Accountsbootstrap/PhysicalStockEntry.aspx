@@ -140,7 +140,7 @@
                                             <asp:BoundField HeaderText="id" DataField="IngridID" />
                                             <asp:BoundField HeaderText="Category Name" DataField="IngreCategory" />
                                             <asp:BoundField HeaderText="Item Name" DataField="IngredientName" />
-                                            <asp:BoundField HeaderText="Op Stock" DataField="Qty" />
+                                            <asp:BoundField HeaderText="Op Stock" DataField="Qty"  DataFormatString='{0:f3}' />
                                             <asp:BoundField HeaderText="UOM" DataField="uom" />
                                             <asp:TemplateField HeaderText="Physical Stock">
                                                 <ItemTemplate>

@@ -44,7 +44,7 @@ namespace Billing.Accountsbootstrap
                 sbranchname = ds.Tables[0].Rows[0]["branchname"].ToString();
                 lblbranch.Text = sbranchname;
                 DataSet dacess = new DataSet();
-                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "attender");
+                dacess = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "attender");
                 if (dacess.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)

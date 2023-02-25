@@ -132,7 +132,7 @@ namespace Billing.Accountsbootstrap
                 DataSet ds = new DataSet();
 
                 //ds = objBs.PrintingSalesLiveKitchen(iD, sTableName, sMode, type);
-                ds = objBs.PrintingSalesLiveKitchen1(iD, sTableName, sMode);
+                ds = objBs.PrintingSalesLiveKitchen1(iD, sTableName, type);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     if (ds.Tables[0].Rows[0]["ipaymode"].ToString() != "1" || ds.Tables[0].Rows[0]["ipaymode"].ToString() != "4")

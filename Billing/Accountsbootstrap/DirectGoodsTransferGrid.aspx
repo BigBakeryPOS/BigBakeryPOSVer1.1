@@ -51,7 +51,7 @@
             }
         }
 
-        
+
     </script>
     <script type="text/javascript">
         function Search_Gridview(strKey, strGV) {
@@ -71,7 +71,7 @@
                 }
                 tblData.rows[i].style.display = styleDisplay;
             }
-        }    
+        }
     </script>
     <script type="text/javascript" src="../js/jquery-1.7.2.js"></script>
     <script type="text/javascript">
@@ -87,135 +87,154 @@
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <usc:Header ID="Header" runat="server" />
     <form runat="server" id="form1" method="post">
-<div class="container-fluid">
-	<div class="row">
-    <div class="col-lg-12">
-     <div class="row panel-custom1">
-        <div class="panel-header">
-          <h1 class="page-header"> Item Request
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row panel-custom1">
+                        <div class="panel-header">
+                            <h1 class="page-header">Item Request
            <span class="pull-right">
-          <asp:LinkButton ID="addbtn" runat="server" PostBackUrl="~/Accountsbootstrap/DirectGoodsTransfer.aspx">
+               <asp:LinkButton ID="addbtn" runat="server" PostBackUrl="~/Accountsbootstrap/DirectGoodsTransfer.aspx">
             <button type="button" class="btn btn-primary btn-md pos-btn1">
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD
 			</button>
-          </asp:LinkButton>
-                </span>
-                </h1>
-	    </div>
+               </asp:LinkButton>
+           </span>
+                            </h1>
+                        </div>
 
-                <div class="panel-body">
-                    
-                     
-                            
+                        <div class="panel-body">
+
+
+
                             <asp:UpdatePanel ID="updatepanel" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
                                     <asp:ScriptManager ID="script" runat="server" EnablePartialRendering="true">
                                     </asp:ScriptManager>
-                                   
-                                        <div id="Div1" class="col-lg-12" runat="server" visible="false">
-                                            <div class="col-lg-3">
-                                                <div class="form-group">
-                                                    <label>
-                                                        Cusromer Name</label><br />
-                                                    <asp:DropDownList runat="server" ID="ddlcustomer" CssClass="chzn-select" Width="150px">
-                                                    </asp:DropDownList>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <asp:Button ID="btnrefresh" runat="server" class="btn btn-warning" Text="Reset" Style="margin-top: 10px;" />
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <div class="form-group">
-                                                    <label>
-                                                        Enter Billno</label>
-                                                    <asp:TextBox ID="txtAutoName" runat="server" CssClass="form-control" Width="200px"
-                                                        placeholder="Enter Billno and Press Tab" onkeyup="Search_Gridview(this, 'gvsales')"></asp:TextBox>
-                                                </div>
+
+                                    <div id="Div1" class="col-lg-12" runat="server" visible="false">
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label>
+                                                    Customer Name</label><br />
+                                                <asp:DropDownList runat="server" ID="ddlcustomer" CssClass="chzn-select" Width="150px">
+                                                </asp:DropDownList>
                                             </div>
                                         </div>
-                                        <div class="row">
                                         <div class="col-lg-3">
-                                        <div class="form-group has-feedback">
+                                            <asp:Button ID="btnrefresh" runat="server" class="btn btn-warning" Text="Reset" Style="margin-top: 10px;" />
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <label>
+                                                    Enter Billno</label>
+                                                <asp:TextBox ID="txtAutoName" runat="server" CssClass="form-control" Width="200px"
+                                                    placeholder="Enter Billno and Press Tab" onkeyup="Search_Gridview(this, 'gvsales')"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <div class="form-group has-feedback">
                                                 <asp:TextBox ID="txtsearch" CssClass="form-control" runat="server" Placeholder="Search Details.."
                                                     onkeyup="Search_Gridview(this, 'gvsales')"></asp:TextBox>
-                                                     <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                                                     </div>
-                                                     </div>
+                                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                            </div>
                                         </div>
-                                            
-                                    
-                                        <div class="row">
-                                            <div class="col-lg-6">
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
                                             <div class="table-responsive panel-grid-left">
-                                                <asp:GridView ID="gvsales"  EmptyDataText="No Records Found" runat="server"
-                                                    Caption="Request Details" AllowPaging="true" PageSize="50" AutoGenerateColumns="false"
-                                                     cssClass="table table-striped pos-table" OnRowCommand="gvsales_RowCommand"  padding="0" spacing="0" border="0">
+                                                <asp:GridView ID="gvsales" EmptyDataText="No Records Found" runat="server"
+                                                    Caption="Request Details" AllowPaging="false" PageSize="100" AutoGenerateColumns="false"
+                                                    CssClass="table table-striped pos-table" OnRowCommand="gvsales_RowCommand" padding="0" spacing="0" border="0">
                                                     <%--<PagerSettings FirstPageText="1" Mode="Numeric" />--%>
-                                                      <PagerStyle CssClass="pos-paging" />
+                                                    <PagerStyle CssClass="pos-paging" />
                                                     <Columns>
                                                         <asp:BoundField HeaderText="DC No" DataField="DC_NO" />
                                                         <asp:BoundField HeaderText="DC_Date" DataField="DC_Date" />
                                                         <asp:BoundField HeaderText="Transferd To" DataField="Branch" />
-                                                        <asp:BoundField HeaderText="Qty" DataField="Qty" DataFormatString="{0:f}" />
+                                                        <asp:BoundField HeaderText="Qty" DataField="Qty" DataFormatString="{0:f3}" />
                                                         <asp:BoundField HeaderText="Status" DataField="Status" />
                                                         <asp:TemplateField HeaderText="View Details">
                                                             <ItemTemplate>
                                                                 <asp:LinkButton ID="btnview" runat="server" CommandArgument='<%#Eval("DC_NO") %>'
                                                                     CommandName="view">
-                                                                    <asp:Image ID="vie" runat="server" ImageAlign="Middle" ImageUrl="~/images/info_button.png" visible="false"/>
+                                                                    <asp:Image ID="vie" runat="server" ImageAlign="Middle" ImageUrl="~/images/info_button.png" Visible="false" />
                                                                     <button type="button" class="btn btn-primary btn-md">
-						                                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-					                                            </button>
+                                                                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                                                    </button>
                                                                 </asp:LinkButton>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Print">
                                                             <ItemTemplate>
-                                                                 <asp:LinkButton ID="btnPrint" runat="server" CommandName="Print" CommandArgument='<%#Eval("DC_NO")+";"+Eval("Branch")+";"+Eval("DC_Date") %>'>
-                                                                <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png" visible="false" Width="55px"
-                                                                    Height="40px" />
+                                                                <asp:LinkButton ID="btnPrint" runat="server" CommandName="Print" CommandArgument='<%#Eval("DC_NO")+";"+Eval("Branch")+";"+Eval("DC_Date") %>'>
+                                                                    <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png" Visible="false" Width="55px"
+                                                                        Height="40px" />
                                                                     <button type="button" class="btn btn-default btn-md">
-						                                                <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-					                                                </button>
-                                                                    </asp:LinkButton>
+                                                                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+                                                                    </button>
+                                                                </asp:LinkButton>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Edit">
+                                                            <ItemTemplate>
+                                                                <asp:LinkButton ID="btnedit" runat="server" CommandName="EDT" CommandArgument='<%#Eval("DC_NO")+";"+Eval("Branch")+";"+Eval("DC_Date")+";"+Eval("isstocked")+";"+Eval("RequestNO") %>'>
+                                                                    <asp:Image ID="imgprintt" runat="server" ImageUrl="~/images/edit.png" Visible="false" Width="55px"
+                                                                        Height="40px" />
+                                                                    <button type="button" class="btn btn-default btn-md">
+                                                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                                    </button>
+                                                                </asp:LinkButton>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <%--<asp:TemplateField Visible="false" >
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblistocked" runat="server" Text='<%#Eval("isstocked") %>' ></asp:Label>
+                                                                <asp:Label ID="lblbranchreqno" runat="server" ='<%#Eval("RequestNO") %>' ></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>--%>
                                                     </Columns>
-                                                   <%-- <FooterStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />--%>
+                                                    <%-- <FooterStyle BackColor="#990000" ForeColor="Black" HorizontalAlign="Center" />--%>
                                                 </asp:GridView>
                                             </div>
-                                            </div>
-                                            <div class="col-lg-6">
+                                        </div>
+                                        <div class="col-lg-6">
                                             <div class="table-responsive panel-grid-left">
-                                                <asp:GridView ID="gvCustsales" runat="server" ShowFooter="true" Caption="Request Items Details" cssClass="table table-striped pos-table"
+                                                <asp:GridView ID="gvCustsales" runat="server" ShowFooter="true" Caption="Request Items Details" CssClass="table table-striped pos-table"
                                                     EmptyDataText="No Records Found" AutoGenerateColumns="false" ShowHeaderWhenEmpty="True" padding="0" spacing="0" border="0" PageSize="50">
-                                                     <PagerStyle CssClass="pos-paging" />
+                                                    <PagerStyle CssClass="pos-paging" />
                                                     <Columns>
                                                         <asp:BoundField HeaderText="Transfer No" DataField="DC_NO" />
                                                         <asp:BoundField HeaderText="Transfer Date" DataField="DC_Date" DataFormatString="{0:d}" />
                                                         <asp:BoundField HeaderText="Entry By" DataField="SentBY" Visible="true" />
                                                         <asp:BoundField HeaderText="Category" DataField="Category" Visible="true" />
                                                         <asp:BoundField HeaderText="Definition" DataField="Definition" Visible="true" />
-                                                        <asp:BoundField HeaderText="Qty" DataField="Qty" DataFormatString='{0:f}' />
+                                                        <asp:BoundField HeaderText="Qty" DataField="Qty" DataFormatString='{0:f3}' />
                                                         <asp:BoundField HeaderText="Unit" DataField="Unit" />
                                                     </Columns>
-                                                   <%-- <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
+                                                    <%-- <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
                                                         NextPageText="Next" PreviousPageText="Previous" />--%>
                                                 </asp:GridView>
                                             </div>
-                                            </div>
-                                      
                                         </div>
+
+                                    </div>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
-                            <asp:Panel Width="30%" class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none;
-                                background: #fffbd6" runat="server">
+                            <asp:Panel Width="30%" class="popupConfirmation" ID="DivDeleteConfirmation" Style="display: none; background: #fffbd6"
+                                runat="server">
                                 <div class="popup_Container">
                                     <div class="popup_Titlebar" id="PopupHeader">
                                         <div align="center" style="color: Red" class="TitlebarLeft">
-                                            Warning Message!!!</div>
+                                            Warning Message!!!
+                                        </div>
                                         <div align="center" style="color: Red" class="TitlebarLeft">
-                                            Please use 1234567890 as Reference No for Demo version</div>
+                                            Please use 1234567890 as Reference No for Demo version
+                                        </div>
                                         <div class="TitlebarRight" onclick="$get('ButtonDeleteCancel').click();">
                                         </div>
                                     </div>
@@ -236,14 +255,14 @@
                                     </div>
                                 </div>
                             </asp:Panel>
-                            
-                    
-                  </div>
 
-    </div>
-    </div>
-    </div>
-</div>
-</form>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </body>
 </html>

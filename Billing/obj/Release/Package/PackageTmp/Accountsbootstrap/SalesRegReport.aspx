@@ -104,7 +104,7 @@
                     <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="phono" ControlToValidate="txtfrmdate"
                         ErrorMessage="Please enter From Date!" Text="" Style="color: White" />
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txtfrmdate"
-                        Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
+                        Format="yyyy/MM/dd" runat="server" CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
                
             </div>
@@ -117,7 +117,7 @@
                     <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="RequiredFieldValidator1"
                         ControlToValidate="txttodate" ErrorMessage="Please enter To Date!" Text="" Style="color: White" />
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txttodate"
-                        Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
+                        Format="yyyy/MM/dd" runat="server" CssClass="cal_Theme1">
                     </ajaxToolkit:CalendarExtender>
               
             </div>

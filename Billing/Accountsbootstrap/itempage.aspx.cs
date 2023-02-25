@@ -22,6 +22,7 @@ namespace Billing.Accountsbootstrap
         string Rate = "";
         string superadmin = "";
         string ratesetting = "";
+        string defaultcurrency = "";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -33,13 +34,41 @@ namespace Billing.Accountsbootstrap
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
             Rate = Request.Cookies["userInfo"]["Rate"].ToString();
             ratesetting = Request.Cookies["userInfo"]["Ratesetting"].ToString();
+            defaultcurrency = Request.Cookies["userInfo"]["defaultcurrency"].ToString();
+
             if (sTableName == "admin")
             {
 
             }
             if (!IsPostBack)
             {
-              //  if (sTableName == "admin")
+
+                //if (superadmin != "0")
+                //{
+                //    ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Not Allow To Currency Master.Thank You!!!.')", true);
+                //    return;
+                //}
+                //else
+                {
+                    DataSet getdefaultcur = objBs.getidefaultCurrencyvalues(defaultcurrency);
+                    if (getdefaultcur.Tables[0].Rows.Count > 0)
+                    {
+                        string curname = getdefaultcur.Tables[0].Rows[0]["CurrencyName"].ToString();
+                        string curvalue = getdefaultcur.Tables[0].Rows[0]["value"].ToString();
+
+
+                        string fullvalu = curname + " - " + curvalue;
+                        lbldefaultcurrencyname.Text = fullvalu;
+                        lbldefaultcurrencyid.Text = getdefaultcur.Tables[0].Rows[0]["DefaultCurrencyid"].ToString();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Not Allow To Add Currency Master.Kindly Set Default currency.Thank You!!!.')", true);
+                        return;
+                    }
+
+                }
+                //  if (sTableName == "admin")
                 {
                     //purchase.Visible = true;
 
@@ -93,7 +122,130 @@ namespace Billing.Accountsbootstrap
 
                 }
 
+                // get rate setting
 
+                DataSet getratesetting = objBs.GetRateSettingbind();
+                if (getratesetting.Tables[0].Rows.Count > 0)
+                {
+                    mrp1.Visible = true;
+                    rate1.Visible = true;
+                    mrp2.Visible = true;
+                    rate2.Visible = true;
+                    mrp3.Visible = true;
+                    rate3.Visible = true;
+                    mrp4.Visible = true;
+                    rate4.Visible = true;
+                    mrp5.Visible = true;
+                    rate5.Visible = true;
+
+
+
+                    int count = getratesetting.Tables[0].Rows.Count;
+
+                    for (int i = 0; i < getratesetting.Tables[0].Rows.Count; i++)
+                    {
+                        string currencyname = getratesetting.Tables[0].Rows[i]["CurrencyName"].ToString();
+
+
+                        if (i == 0)
+                        {
+                            lblpricename.Text = currencyname;
+                            mrp1.Visible = false;
+                            rate1.Visible = false;
+                            mrp2.Visible = false;
+                            rate2.Visible = false;
+                            mrp3.Visible = false;
+                            rate3.Visible = false;
+                            mrp4.Visible = false;
+                            rate4.Visible = false;
+                            mrp5.Visible = false;
+                            rate5.Visible = false;
+                        }
+                        if (i == 1)
+                        {
+                            lblpricename1.Text = currencyname;
+                            mrp1.Visible = true;
+                            rate1.Visible = true;
+                            mrp2.Visible = false;
+                            rate2.Visible = false;
+                            mrp3.Visible = false;
+                            rate3.Visible = false;
+                            mrp4.Visible = false;
+                            rate4.Visible = false;
+                            mrp5.Visible = false;
+                            rate5.Visible = false;
+                        }
+                        if (i == 2)
+                        {
+                            lblpricename2.Text = currencyname;
+                            mrp1.Visible = true;
+                            rate1.Visible = true;
+                            mrp2.Visible = true;
+                            rate2.Visible = true;
+                            mrp3.Visible = false;
+                            rate3.Visible = false;
+                            mrp4.Visible = false;
+                            rate4.Visible = false;
+                            mrp5.Visible = false;
+                            rate5.Visible = false;
+
+                        }
+                        if (i == 3)
+                        {
+                            lblpricename3.Text = currencyname;
+                            mrp1.Visible = true;
+                            rate1.Visible = true;
+                            mrp2.Visible = true;
+                            rate2.Visible = true;
+                            mrp3.Visible = true;
+                            rate3.Visible = true;
+
+                            mrp4.Visible = false;
+                            rate4.Visible = false;
+                            mrp5.Visible = false;
+                            rate5.Visible = false;
+                        }
+                        if (i == 4)
+                        {
+                            lblpricename4.Text = currencyname;
+                            mrp1.Visible = true;
+                            rate1.Visible = true;
+                            mrp2.Visible = true;
+                            rate2.Visible = true;
+                            mrp3.Visible = true;
+                            rate3.Visible = true;
+
+                            mrp4.Visible = true;
+                            rate4.Visible = true;
+
+
+
+
+
+                            mrp5.Visible = false;
+                            rate5.Visible = false;
+                        }
+                        if (i == 5)
+                        {
+                            lblpricename5.Text = currencyname;
+
+
+                            mrp1.Visible = true;
+                            rate1.Visible = true;
+                            mrp2.Visible = true;
+                            rate2.Visible = true;
+                            mrp3.Visible = true;
+                            rate3.Visible = true;
+
+                            mrp4.Visible = true;
+                            rate4.Visible = true;
+                            mrp5.Visible = true;
+                            rate5.Visible = true;
+
+                        }
+
+                    }
+                }
 
 
 
@@ -160,8 +312,31 @@ namespace Billing.Accountsbootstrap
                             txtSerialNo.Text = ds.Tables[0].Rows[0]["Serial_No"].ToString();
                             txtSerial.Text = ds.Tables[0].Rows[0]["Serial"].ToString();
                             txtSize.Text = ds.Tables[0].Rows[0]["Size"].ToString();
-                            txtRate.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["Rate"]).ToString(""+ratesetting+"");
-                            txtMRPPrice.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["MRP"]).ToString(""+ ratesetting + "");
+                            txtRate.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["Rate"]).ToString("" + ratesetting + "");
+                            txtMRPPrice.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["MRP"]).ToString("" + ratesetting + "");
+
+                            txtRate1.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["Rate1"]).ToString("" + ratesetting + "");
+                            txtMRPPrice1.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["MRP1"]).ToString("" + ratesetting + "");
+
+                            txtRate2.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["Rate2"]).ToString("" + ratesetting + "");
+                            txtMRPPrice2.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["MRP2"]).ToString("" + ratesetting + "");
+
+                            txtRate3.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["Rate3"]).ToString("" + ratesetting + "");
+                            txtMRPPrice3.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["MRP3"]).ToString("" + ratesetting + "");
+
+                            txtRate4.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["Rate4"]).ToString("" + ratesetting + "");
+                            txtMRPPrice4.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["MRP4"]).ToString("" + ratesetting + "");
+
+                            txtRate5.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["Rate5"]).ToString("" + ratesetting + "");
+                            txtMRPPrice5.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["MRP5"]).ToString("" + ratesetting + "");
+
+
+
+
+
+
+
+
                             txtHSNCode.Text = ds.Tables[0].Rows[0]["HSNCode"].ToString();
                             txtprintitemname.Text = ds.Tables[0].Rows[0]["Printitem"].ToString();
                             drpfoodtype.SelectedValue = ds.Tables[0].Rows[0]["FoodType"].ToString();
@@ -212,6 +387,26 @@ namespace Billing.Accountsbootstrap
                             lblFile_Path.Text = ds.Tables[0].Rows[0]["ImageUpload"].ToString();
                             img_Photo.ImageUrl = ds.Tables[0].Rows[0]["ImageUpload"].ToString();
 
+                            lbldefaultcurrencyid.Text = ds.Tables[0].Rows[0]["defaultcurrencyid"].ToString();
+
+                            DataSet getdefaultcur = objBs.getidefaultCurrencyvalues(lbldefaultcurrencyid.Text);
+                            if (getdefaultcur.Tables[0].Rows.Count > 0)
+                            {
+                                string curname = getdefaultcur.Tables[0].Rows[0]["CurrencyName"].ToString();
+                                string curvalue = getdefaultcur.Tables[0].Rows[0]["value"].ToString();
+
+
+                                string fullvalu = curname + " - " + curvalue;
+                                lbldefaultcurrencyname.Text = fullvalu;
+                                lbldefaultcurrencyid.Text = getdefaultcur.Tables[0].Rows[0]["DefaultCurrencyid"].ToString();
+                            }
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Not Allow To Add Currency Master.Kindly Set Default currency.Thank You!!!.')", true);
+                                //Button1.Enabled = false;
+                                return;
+                            }
+
 
                             DataSet dgetcategorybranch = objBs.getcategorybranchforid(lblitemid.Text);
                             if (dgetcategorybranch.Tables[0].Rows.Count > 0)
@@ -261,13 +456,102 @@ namespace Billing.Accountsbootstrap
             double mrp = 0;
             double tax = 0;
             double bA = 0;
+
+            double mrp1 = 0;
+            double tax1 = 0;
+            double bA1 = 0;
+
+            double mrp2 = 0;
+            double tax2 = 0;
+            double bA2 = 0;
+
+            double mrp3 = 0;
+            double tax3 = 0;
+            double bA3 = 0;
+
+            double mrp4 = 0;
+            double tax4 = 0;
+            double bA4 = 0;
+
+            double mrp5 = 0;
+            double tax5 = 0;
+            double bA5 = 0;
+
+
+
+
+
+
             txtMRPPrice.Enabled = false;
             txtRate.Enabled = false;
+
+            txtMRPPrice1.Enabled = false;
+            txtRate1.Enabled = false;
+
+            txtMRPPrice2.Enabled = false;
+            txtRate2.Enabled = false;
+
+            txtMRPPrice3.Enabled = false;
+            txtRate3.Enabled = false;
+
+            txtMRPPrice4.Enabled = false;
+            txtRate4.Enabled = false;
+
+            txtMRPPrice5.Enabled = false;
+            txtRate5.Enabled = false;
+
+
+
+
+
+
+
+
+
+
+
             if (txtMRPPrice.Text == "")
                 txtMRPPrice.Text = "0";
 
+            if (txtMRPPrice1.Text == "")
+                txtMRPPrice1.Text = "0";
+
+            if (txtMRPPrice2.Text == "")
+                txtMRPPrice2.Text = "0";
+
+            if (txtMRPPrice3.Text == "")
+                txtMRPPrice3.Text = "0";
+
+            if (txtMRPPrice4.Text == "")
+                txtMRPPrice4.Text = "0";
+
+            if (txtMRPPrice5.Text == "")
+                txtMRPPrice5.Text = "0";
+
+
             if (txtRate.Text == "")
                 txtRate.Text = "0";
+
+            if (txtRate1.Text == "")
+                txtRate1.Text = "0";
+
+            if (txtRate2.Text == "")
+                txtRate2.Text = "0";
+
+            if (txtRate3.Text == "")
+                txtRate3.Text = "0";
+
+            if (txtRate4.Text == "")
+                txtRate4.Text = "0";
+
+            if (txtRate5.Text == "")
+                txtRate5.Text = "0";
+
+
+
+
+
+
 
             if (drpratetype.SelectedValue == "1")
             {
@@ -279,24 +563,126 @@ namespace Billing.Accountsbootstrap
                 //  decimal result = Math.Truncate( Convert.ToDecimal(bA) * multiplier) / multiplier;
                 txtRate.Text = bA.ToString("0.00");
                 txtMRPPrice.Enabled = true;
+
+
+                mrp1 = Convert.ToDouble(txtMRPPrice1.Text);
+                tax1 = Convert.ToDouble(ddltax.SelectedItem.Text);
+                bA1 = (mrp1 / (100 + tax1)) * 100;
+                // var multiplier = (decimal)Math.Pow(10, places);
+                //  decimal result = Math.Truncate( Convert.ToDecimal(bA) * multiplier) / multiplier;
+                txtRate1.Text = bA1.ToString("0.00");
+                txtMRPPrice1.Enabled = true;
+
+
+                mrp2 = Convert.ToDouble(txtMRPPrice2.Text);
+                tax2 = Convert.ToDouble(ddltax.SelectedItem.Text);
+                bA2 = (mrp2 / (100 + tax2)) * 100;
+                // var multiplier = (decimal)Math.Pow(10, places);
+                //  decimal result = Math.Truncate( Convert.ToDecimal(bA) * multiplier) / multiplier;
+                txtRate2.Text = bA2.ToString("0.00");
+                txtMRPPrice2.Enabled = true;
+
+
+                mrp3 = Convert.ToDouble(txtMRPPrice3.Text);
+                tax3 = Convert.ToDouble(ddltax.SelectedItem.Text);
+                bA3 = (mrp3 / (100 + tax3)) * 100;
+                // var multiplier = (decimal)Math.Pow(10, places);
+                //  decimal result = Math.Truncate( Convert.ToDecimal(bA) * multiplier) / multiplier;
+                txtRate3.Text = bA3.ToString("0.00");
+                txtMRPPrice3.Enabled = true;
+
+
+                mrp4 = Convert.ToDouble(txtMRPPrice4.Text);
+                tax4 = Convert.ToDouble(ddltax.SelectedItem.Text);
+                bA4 = (mrp4 / (100 + tax4)) * 100;
+                // var multiplier = (decimal)Math.Pow(10, places);
+                //  decimal result = Math.Truncate( Convert.ToDecimal(bA) * multiplier) / multiplier;
+                txtRate4.Text = bA4.ToString("0.00");
+                txtMRPPrice4.Enabled = true;
+
+
+                mrp5 = Convert.ToDouble(txtMRPPrice5.Text);
+                tax5 = Convert.ToDouble(ddltax.SelectedItem.Text);
+                bA5 = (mrp5 / (100 + tax5)) * 100;
+                // var multiplier = (decimal)Math.Pow(10, places);
+                //  decimal result = Math.Truncate( Convert.ToDecimal(bA) * multiplier) / multiplier;
+                txtRate5.Text = bA5.ToString("0.00");
+                txtMRPPrice5.Enabled = true;
+
             }
             else if (drpratetype.SelectedValue == "2")
             {
                 //  txtRate.Text = txtmrp.Text ;
                 txtRate.Enabled = true;
                 mrp = Convert.ToDouble(txtRate.Text);
-
                 tax = Convert.ToDouble(ddltax.SelectedItem.Text);
-
                 double totalrate = (mrp * tax) / 100;
-
                 double total = mrp + totalrate;
-
                 //    double result = Math.Truncate(total * 10.000) / 10.000;
                 var multiplier = (decimal)Math.Pow(10, places);
                 decimal result = Math.Truncate(Convert.ToDecimal(total) * multiplier) / multiplier;
-
                 txtMRPPrice.Text = result.ToString();// Convert.ToDouble(total).ToString("f2");
+
+
+                //  txtRate.Text = txtmrp.Text ;
+                txtRate1.Enabled = true;
+                mrp1 = Convert.ToDouble(txtRate1.Text);
+                tax1 = Convert.ToDouble(ddltax.SelectedItem.Text);
+                double totalrate1 = (mrp1 * tax1) / 100;
+                double total1 = mrp1 + totalrate1;
+                //    double result = Math.Truncate(total * 10.000) / 10.000;
+                var multiplier1 = (decimal)Math.Pow(10, places);
+                decimal result1 = Math.Truncate(Convert.ToDecimal(total1) * multiplier1) / multiplier1;
+                txtMRPPrice1.Text = result1.ToString();// Convert.ToDouble(total).ToString("f2");
+
+
+                //  txtRate.Text = txtmrp.Text ;
+                txtRate2.Enabled = true;
+                mrp2 = Convert.ToDouble(txtRate2.Text);
+                tax2 = Convert.ToDouble(ddltax.SelectedItem.Text);
+                double totalrate2 = (mrp2 * tax2) / 100;
+                double total2 = mrp2 + totalrate2;
+                //    double result = Math.Truncate(total * 10.000) / 10.000;
+                var multiplier2 = (decimal)Math.Pow(10, places);
+                decimal result2 = Math.Truncate(Convert.ToDecimal(total2) * multiplier2) / multiplier2;
+                txtMRPPrice2.Text = result2.ToString();// Convert.ToDouble(total).ToString("f2");
+
+
+                //  txtRate.Text = txtmrp.Text ;
+                txtRate3.Enabled = true;
+                mrp3 = Convert.ToDouble(txtRate3.Text);
+                tax3 = Convert.ToDouble(ddltax.SelectedItem.Text);
+                double totalrate3 = (mrp3 * tax3) / 100;
+                double total3 = mrp3 + totalrate3;
+                //    double result = Math.Truncate(total * 10.000) / 10.000;
+                var multiplier3 = (decimal)Math.Pow(10, places);
+                decimal result3 = Math.Truncate(Convert.ToDecimal(total3) * multiplier3) / multiplier3;
+                txtMRPPrice3.Text = result3.ToString();// Convert.ToDouble(total).ToString("f2");
+
+
+                //  txtRate.Text = txtmrp.Text ;
+                txtRate4.Enabled = true;
+                mrp4 = Convert.ToDouble(txtRate4.Text);
+                tax4 = Convert.ToDouble(ddltax.SelectedItem.Text);
+                double totalrate4 = (mrp4 * tax4) / 100;
+                double total4 = mrp4 + totalrate4;
+                //    double result = Math.Truncate(total * 10.000) / 10.000;
+                var multiplier4 = (decimal)Math.Pow(10, places);
+                decimal result4 = Math.Truncate(Convert.ToDecimal(total4) * multiplier4) / multiplier4;
+                txtMRPPrice4.Text = result4.ToString();// Convert.ToDouble(total).ToString("f2");
+
+                //  txtRate.Text = txtmrp.Text ;
+                txtRate5.Enabled = true;
+                mrp5 = Convert.ToDouble(txtRate5.Text);
+                tax5 = Convert.ToDouble(ddltax.SelectedItem.Text);
+                double totalrate5 = (mrp5 * tax5) / 100;
+                double total5 = mrp5 + totalrate5;
+                //    double result = Math.Truncate(total * 10.000) / 10.000;
+                var multiplier5 = (decimal)Math.Pow(10, places);
+                decimal result5 = Math.Truncate(Convert.ToDecimal(total5) * multiplier5) / multiplier5;
+                txtMRPPrice5.Text = result5.ToString();// Convert.ToDouble(total).ToString("f2");
+
+
             }
 
 
@@ -586,7 +972,7 @@ namespace Billing.Accountsbootstrap
                         }
                         else
                         {
-                            int iStatus = objBs.InsertitemforAll(categoryid, Item, Convert.ToDouble(Rate), Convert.ToDouble(Tax), TaxId, UOMid, Empcode, Minimumstock, HSNCode, Foodtype, SerialNo, "", "", "", "","");
+                            int iStatus = objBs.InsertitemforAll(categoryid, Item, Convert.ToDouble(Rate), Convert.ToDouble(Tax), TaxId, UOMid, Empcode, Minimumstock, HSNCode, Foodtype, SerialNo, "", "", "", "", "");
 
                             DataSet dss = objBs.GetItemID();
 
@@ -642,7 +1028,7 @@ namespace Billing.Accountsbootstrap
 
 
             cust = Request.QueryString.Get("cust");
-           // if (cust != "" || cust != null)
+            // if (cust != "" || cust != null)
             {
                 DataSet ndstt = new DataSet();
                 DataTable ndttt = new DataTable();
@@ -725,7 +1111,7 @@ namespace Billing.Accountsbootstrap
 
 
                             //iStatus = objBs.insertcategory(Convert.ToInt32(ddlcategory.SelectedValue), txtcatdescription.Text, txtdescription.Text, txtSerialNo.Text, txtSerial.Text, txtSize.Text, Convert.ToInt32(1), Convert.ToDouble(ddltax.SelectedItem.Text), Convert.ToDouble(txtRate.Text), "Rate", ddltax.SelectedItem.Text, Convert.ToInt32(ddltax.SelectedValue), Convert.ToInt32(ddluom.SelectedValue), Empcode);
-                            iStatus = objBs.insertitem(Convert.ToInt32(ddlcategory.SelectedValue), txtcatdescription.Text, txtdescription.Text, txtSerial.Text, ddltax.SelectedValue, (txtRate.Text), (ddluom.SelectedValue), txtminumumstock.Text, raddisplay.SelectedValue, lblFile_Path.Text, Empcode, ddltax.SelectedItem.Text, ddluom.SelectedItem.Text, txtprintitemname.Text, drpfoodtype.SelectedValue, txtHSNCode.Text, txtMRPPrice.Text, txtBarcode.Text, txtDetails.Text, Pagepath, drpratetype.SelectedValue, radbnsalestype.SelectedValue);
+                            iStatus = objBs.insertitem(Convert.ToInt32(ddlcategory.SelectedValue), txtcatdescription.Text, txtdescription.Text, txtSerial.Text, ddltax.SelectedValue, (txtRate.Text), (ddluom.SelectedValue), txtminumumstock.Text, raddisplay.SelectedValue, lblFile_Path.Text, Empcode, ddltax.SelectedItem.Text, ddluom.SelectedItem.Text, txtprintitemname.Text, drpfoodtype.SelectedValue, txtHSNCode.Text, txtMRPPrice.Text, txtBarcode.Text, txtDetails.Text, Pagepath, drpratetype.SelectedValue, radbnsalestype.SelectedValue, lbldefaultcurrencyid.Text, txtRate1.Text, txtMRPPrice1.Text, txtRate2.Text, txtMRPPrice2.Text, txtRate3.Text, txtMRPPrice3.Text, txtRate4.Text, txtMRPPrice4.Text, txtRate5.Text, txtMRPPrice5.Text);
                             int ibrachinsert = objBs.insertbranchitem(ndstt);
                             int isubcatinsert = objBs.insertsubcategoryitem(ndstt1);
 
@@ -743,7 +1129,7 @@ namespace Billing.Accountsbootstrap
                         else
                         {
                             //iStatus = objBs.insertcategory(Convert.ToInt32(ddlcategory.SelectedValue), txtcatdescription.Text, txtdescription.Text, txtSerialNo.Text, txtSerial.Text, txtSize.Text, Convert.ToInt32(1), Convert.ToDouble(ddltax.SelectedItem.Text), Convert.ToDouble(txtRate.Text), "Rate", ddltax.SelectedItem.Text, Convert.ToInt32(ddltax.SelectedValue), Convert.ToInt32(ddluom.SelectedValue), Empcode);
-                            iStatus = objBs.insertitem(Convert.ToInt32(ddlcategory.SelectedValue), txtcatdescription.Text, txtdescription.Text, txtSerial.Text, ddltax.SelectedValue, (txtRate.Text), (ddluom.SelectedValue), txtminumumstock.Text, raddisplay.SelectedValue, lblFile_Path.Text, Empcode, ddltax.SelectedItem.Text, ddluom.SelectedItem.Text, txtprintitemname.Text, drpfoodtype.SelectedValue, txtHSNCode.Text, txtMRPPrice.Text, txtBarcode.Text, txtDetails.Text, Pagepath, drpratetype.SelectedValue, radbnsalestype.SelectedValue);
+                            iStatus = objBs.insertitem(Convert.ToInt32(ddlcategory.SelectedValue), txtcatdescription.Text, txtdescription.Text, txtSerial.Text, ddltax.SelectedValue, (txtRate.Text), (ddluom.SelectedValue), txtminumumstock.Text, raddisplay.SelectedValue, lblFile_Path.Text, Empcode, ddltax.SelectedItem.Text, ddluom.SelectedItem.Text, txtprintitemname.Text, drpfoodtype.SelectedValue, txtHSNCode.Text, txtMRPPrice.Text, txtBarcode.Text, txtDetails.Text, Pagepath, drpratetype.SelectedValue, radbnsalestype.SelectedValue, lbldefaultcurrencyid.Text,txtRate1.Text,txtMRPPrice1.Text,txtRate2.Text,txtMRPPrice2.Text,txtRate3.Text,txtMRPPrice3.Text,txtRate4.Text,txtMRPPrice4.Text,txtRate5.Text,txtMRPPrice5.Text);
                             int ibrachinsert = objBs.insertbranchitem(ndstt);
                             int isubcatinsert = objBs.insertsubcategoryitem(ndstt1);
 
@@ -791,7 +1177,7 @@ namespace Billing.Accountsbootstrap
                     //  cust = Request.QueryString.Get("cust");
                     if (sTableName == "admin")
                     {
-                        objBs.updateitementry(txtcatdescription.Text, txtdescription.Text, cust, txtSerial.Text, ddltax.SelectedValue, ddltax.SelectedItem.Text, Convert.ToDouble(txtRate.Text), ddluom.SelectedValue, ddluom.SelectedItem.Text, txtminumumstock.Text, raddisplay.SelectedValue, lblFile_Path.Text, Empcode, txtprintitemname.Text, drpfoodtype.SelectedValue, superadmin, ddlcategory.SelectedValue, lblitemid.Text, txtHSNCode.Text, txtMRPPrice.Text, txtBarcode.Text, txtDetails.Text, Pagepath, drpratetype.SelectedValue, radbnsalestype.SelectedValue);
+                        objBs.updateitementry(txtcatdescription.Text, txtdescription.Text, cust, txtSerial.Text, ddltax.SelectedValue, ddltax.SelectedItem.Text, Convert.ToDouble(txtRate.Text), ddluom.SelectedValue, ddluom.SelectedItem.Text, txtminumumstock.Text, raddisplay.SelectedValue, lblFile_Path.Text, Empcode, txtprintitemname.Text, drpfoodtype.SelectedValue, superadmin, ddlcategory.SelectedValue, lblitemid.Text, txtHSNCode.Text, txtMRPPrice.Text, txtBarcode.Text, txtDetails.Text, Pagepath, drpratetype.SelectedValue, radbnsalestype.SelectedValue, txtRate1.Text, txtMRPPrice1.Text, txtRate2.Text, txtMRPPrice2.Text, txtRate3.Text, txtMRPPrice3.Text, txtRate4.Text, txtMRPPrice4.Text, txtRate5.Text, txtMRPPrice5.Text);
                         int ibrachinsert = objBs.updatebranchitem(ndstt, cust);
                         int isubcatinsert = objBs.Updatesubcategoryitem(ndstt1, cust);
 
@@ -800,7 +1186,7 @@ namespace Billing.Accountsbootstrap
                     else
                     {
                         ///objBs.updateitementry(txtcatdescription.Text, txtdescription.Text, cust, txtSerialNo.Text, txtSerial.Text, txtSize.Text, Convert.ToInt32(sValue), Convert.ToDouble(ddltax.SelectedItem.Text), Convert.ToDouble(txtRate.Text), "Rate", ddltax.SelectedItem.Text, Convert.ToInt32(ddltax.SelectedValue), Convert.ToInt32(ddluom.SelectedValue), Empcode);
-                        objBs.updateitementry(txtcatdescription.Text, txtdescription.Text, cust, txtSerial.Text, ddltax.SelectedValue, ddltax.SelectedItem.Text, Convert.ToDouble(txtRate.Text), ddluom.SelectedValue, ddluom.SelectedItem.Text, txtminumumstock.Text, raddisplay.SelectedValue, lblFile_Path.Text, Empcode, txtprintitemname.Text, drpfoodtype.SelectedValue, superadmin, ddlcategory.SelectedValue, lblitemid.Text, txtHSNCode.Text, txtMRPPrice.Text, txtBarcode.Text, txtDetails.Text, Pagepath, drpratetype.SelectedValue, radbnsalestype.SelectedValue);
+                        objBs.updateitementry(txtcatdescription.Text, txtdescription.Text, cust, txtSerial.Text, ddltax.SelectedValue, ddltax.SelectedItem.Text, Convert.ToDouble(txtRate.Text), ddluom.SelectedValue, ddluom.SelectedItem.Text, txtminumumstock.Text, raddisplay.SelectedValue, lblFile_Path.Text, Empcode, txtprintitemname.Text, drpfoodtype.SelectedValue, superadmin, ddlcategory.SelectedValue, lblitemid.Text, txtHSNCode.Text, txtMRPPrice.Text, txtBarcode.Text, txtDetails.Text, Pagepath, drpratetype.SelectedValue, radbnsalestype.SelectedValue, txtRate1.Text, txtMRPPrice1.Text, txtRate2.Text, txtMRPPrice2.Text, txtRate3.Text, txtMRPPrice3.Text, txtRate4.Text, txtMRPPrice4.Text, txtRate5.Text, txtMRPPrice5.Text);
                         int ibrachinsert = objBs.updatebranchitem(ndstt, cust);
                         int isubcatinsert = objBs.Updatesubcategoryitem(ndstt1, cust);
 

@@ -21,7 +21,7 @@ namespace Billing.Accountsbootstrap
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             sCode = Request.Cookies["userInfo"]["BranchCode"].ToString();
 
-            DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "storerequest");
+            DataSet dacess1 = objbs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "storerequest");
             if (dacess1.Tables[0].Rows.Count > 0)
             {
                 if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -31,7 +31,7 @@ namespace Billing.Accountsbootstrap
             }
 
             DataSet dacess = new DataSet();
-            dacess = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "storerequest");
+            dacess = objbs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "storerequest");
             if (dacess.Tables[0].Rows.Count > 0)
             {
                 if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)

@@ -23,7 +23,7 @@ namespace Billing.Accountsbootstrap
             else
                 Response.Redirect("Login_Branch.aspx");
 
-            DataSet dacess1 = objbs.getuseraccessscreen(Session["EmpId"].ToString(), "combo");
+            DataSet dacess1 = objbs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "combo");
             if (dacess1.Tables[0].Rows.Count > 0)
             {
                 if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)

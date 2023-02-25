@@ -41,7 +41,7 @@ namespace Billing.Accountsbootstrap
             Type = Request.QueryString.Get("Type");
             if (!IsPostBack)
             {
-                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "SemiRaw");
+                DataSet dacess1 = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "SemiRaw");
                 if (dacess1.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -51,7 +51,7 @@ namespace Billing.Accountsbootstrap
                 }
 
                 DataSet dacess = new DataSet();
-                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "SemiRaw");
+                dacess = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "SemiRaw");
                 if (dacess.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)

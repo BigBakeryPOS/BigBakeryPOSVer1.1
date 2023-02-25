@@ -210,6 +210,7 @@
     <Content Include="Accountsbootstrap\css\TableCSSCode.css" />
     <Content Include="Accountsbootstrap\css\test.css" />
     <Content Include="Accountsbootstrap\css\TimePicker.css" />
+    <Content Include="Accountsbootstrap\CurrencyMaster.aspx" />
     <Content Include="Accountsbootstrap\CustomerBillReport.aspx" />
     <Content Include="Accountsbootstrap\customercancelreport.aspx" />
     <Content Include="Accountsbootstrap\CustomerCeremoniesReminder.aspx" />
@@ -429,6 +430,7 @@
     <Content Include="Accountsbootstrap\Purchase_OrderGrid.aspx" />
     <Content Include="Accountsbootstrap\Purchase_Return.aspx" />
     <Content Include="Accountsbootstrap\Purchase_ReturnGrid.aspx" />
+    <Content Include="Accountsbootstrap\RateSettingMaster.aspx" />
     <Content Include="Accountsbootstrap\RawReceivedReport.aspx" />
     <Content Include="Accountsbootstrap\RawSales.aspx" />
     <Content Include="Accountsbootstrap\ReceiveProductionStock.aspx" />
@@ -494,6 +496,7 @@
     <Content Include="Accountsbootstrap\Tax.aspx" />
     <Content Include="Accountsbootstrap\TodaysDeliveryOrder.aspx" />
     <Content Include="Accountsbootstrap\TrailDatewise.aspx" />
+    <Content Include="Accountsbootstrap\twoinchprint.aspx" />
     <Content Include="Accountsbootstrap\TwoReports.aspx" />
     <Content Include="Accountsbootstrap\Uom.aspx" />
     <Content Include="Accountsbootstrap\usercreate.aspx" />
@@ -525,6 +528,12 @@
     <Content Include="css\LoginProd.css" />
     <Content Include="css\LoginStore.css" />
     <Content Include="css\Pos_style.css" />
+    <Content Include="css\select2-bootstrap.css" />
+    <Content Include="css\select2-spinner.gif" />
+    <Content Include="css\select2.css" />
+    <Content Include="css\select2.js" />
+    <Content Include="css\select2.png" />
+    <Content Include="css\select2x2.png" />
     <Content Include="css\SMSBg.jpg" />
     <Content Include="css\toastr.css" />
     <Content Include="HeaderMaster\NewHeader.ascx" />
@@ -1276,6 +1285,13 @@
     </Compile>
     <Compile Include="Accountsbootstrap\CRMReturns.aspx.designer.cs">
       <DependentUpon>CRMReturns.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\CurrencyMaster.aspx.cs">
+      <DependentUpon>CurrencyMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\CurrencyMaster.aspx.designer.cs">
+      <DependentUpon>CurrencyMaster.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\CustomerBillReport.aspx.cs">
       <DependentUpon>CustomerBillReport.aspx</DependentUpon>
@@ -3006,6 +3022,13 @@
     <Compile Include="Accountsbootstrap\Purchase_ReturnGrid.aspx.designer.cs">
       <DependentUpon>Purchase_ReturnGrid.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accountsbootstrap\RateSettingMaster.aspx.cs">
+      <DependentUpon>RateSettingMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\RateSettingMaster.aspx.designer.cs">
+      <DependentUpon>RateSettingMaster.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accountsbootstrap\RawReceivedReport.aspx.cs">
       <DependentUpon>RawReceivedReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3742,6 +3765,13 @@
     <Compile Include="Accountsbootstrap\TransferBills.aspx.designer.cs">
       <DependentUpon>TransferBills.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accountsbootstrap\twoinchprint.aspx.cs">
+      <DependentUpon>twoinchprint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\twoinchprint.aspx.designer.cs">
+      <DependentUpon>twoinchprint.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accountsbootstrap\TwoReports.aspx.cs">
       <DependentUpon>TwoReports.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4325,6 +4355,7 @@
       <DependentUpon>BlackForestProdDataSet.xsd</DependentUpon>
     </None>
     <None Include="ClassDiagram1.cd" />
+    <Content Include="css\select2_locale_en.js.template" />
     <None Include="font-awesome-4.1.0\fonts\fontawesome-webfont.eot" />
     <None Include="font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />
     <None Include="font-awesome-4.1.0\fonts\fontawesome-webfont.ttf" />
