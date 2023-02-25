@@ -1403,3 +1403,9 @@ D:\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.CopyComplete
 D:\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.dll
 D:\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.pdb
 D:\BigBakeryPOSVer1.1\Billing\bin\ClosedXML.dll
+C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1New\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.AssemblyReference.cache
+C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1New\BigBakeryPOSVer1.1\Billing\obj\Debug\UChat.Global.resources
+C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1New\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.GenerateResource.cache
+C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1New\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1New\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.dll
+C:\Users\ADMIN\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1New\BigBakeryPOSVer1.1\Billing\obj\Debug\Billing.pdb
