@@ -481,7 +481,7 @@
                         <asp:Button ID="btnadd" Text="Save" runat="server" class="btn btn-primary pos-btn1" ValidationGroup="val1" 
                                 Width="110px" OnClick="btnadd_Click" />
                          <asp:Button ID="btnExit" Text="Exit" runat="server" class="btn btn-link" Width="110px" 
-                                PostBackUrl="~/Accountsbootstrap/WholeSalesGrid.aspx" />
+                                PostBackUrl="~/Accountsbootstrap/WholeSalesQuotationGrid.aspx" />
                     </div>
                 </div>
                    

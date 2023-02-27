@@ -118,7 +118,7 @@ namespace Billing.Accountsbootstrap
 
                     #region Edit
 
-                    DataSet ds1 = objbs.GetSalesEdit("tblWholesales_" + sTableName, iSalesID);
+                    DataSet ds1 = objbs.GetSalesQuotationEdit("tblWholesalesQuotation_" + sTableName, iSalesID);
                     if (ds1.Tables[0].Rows.Count > 0)
                     {
                         btnadd.Text = "Update";
@@ -162,7 +162,7 @@ namespace Billing.Accountsbootstrap
 
                         ddlcustomer_OnSelectedIndexChanged(sender, e);
 
-                        DataSet ds2 = objbs.GetTransSalesEditNew("tblTransWholeSales_" + sTableName, iSalesID,sTableName);
+                        DataSet ds2 = objbs.GetTransSalesQuotationEditNew("tblTransWholeSalesQuotation_" + sTableName, iSalesID,sTableName);
                         {
                             if (ds2.Tables[0].Rows.Count > 0)
                             {
@@ -569,6 +569,8 @@ namespace Billing.Accountsbootstrap
 
                         TextBox txtStock =
                      (TextBox)GridView2.Rows[rowIndex].Cells[4].FindControl("txtStock");
+                        DropDownList drpPackType = (DropDownList)GridView2.Rows[rowIndex].Cells[4].FindControl("drpPackType");
+
 
                         hdtype.Value = dt.Rows[i]["Type"].ToString();
 
@@ -584,7 +586,7 @@ namespace Billing.Accountsbootstrap
                         txtAmount.Text = dt.Rows[i]["Amount"].ToString();
 
                         txtStock.Text = dt.Rows[i]["Stock"].ToString();
-
+                        drpPackType.SelectedValue = dt.Rows[i]["PackType"].ToString();
                         txtSQty.Focus();
                         rowIndex++;
 
@@ -1075,10 +1077,6 @@ namespace Billing.Accountsbootstrap
         {
             #region Validation
 
-        
-
-
-
             if (ddlcustomer.SelectedValue == "0" || ddlcustomer.SelectedValue == "" || ddlcustomer.SelectedValue == "Select Dealer")
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Please Select Customer.');", true);
@@ -1156,7 +1154,7 @@ namespace Billing.Accountsbootstrap
             {
                 #region
 
-                DataSet dsdcno = objbs.CheckduplicateDC(sTableName, txtbillno.Text);
+                DataSet dsdcno = objbs.CheckduplicateDCquotation(sTableName, txtbillno.Text);
                 if (dsdcno.Tables[0].Rows.Count > 0)
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Bill.No Already Exists. Please Enter Different Bill No.');", true);
@@ -1164,7 +1162,7 @@ namespace Billing.Accountsbootstrap
                     return;
                 }
 
-                int salesid = objbs.insertwholesales(sTableName,txtbillno.Text, date, Convert.ToInt32(ddlPayMode.SelectedValue), txtNarrations.Text, Convert.ToInt32(ddlcustomer.SelectedValue), txtmbl.Text, txtAddress.Text, Convert.ToDouble(txtgrandamount.Text), Convert.ToDouble(txtTaxamt.Text), Convert.ToDouble(txtgrandtotal.Text), Convert.ToInt32(0), Convert.ToDouble(txttdiscper.Text), Convert.ToDouble(txttdiscamt.Text), Convert.ToDouble(lbltotalitems.InnerText), txtdcno.Text, Convert.ToDouble(txtdiscamt.Text), Convert.ToInt32(rdbtype.SelectedValue), Convert.ToDouble(txtDeliverCharge.Text), Convert.ToInt32(txtorderno.Text), Convert.ToInt32(lblUserID.Text), Logintypeid, Convert.ToDouble(txtcgst.Text), Convert.ToDouble(txtsgst.Text), Convert.ToDouble(txtigst.Text), rbdsalestype.SelectedValue, lblPrefix.Text,yearss.Text,txtVehicleNo.Text);
+                int salesid = objbs.insertwholesalesquotation(sTableName,txtbillno.Text, date, Convert.ToInt32(ddlPayMode.SelectedValue), txtNarrations.Text, Convert.ToInt32(ddlcustomer.SelectedValue), txtmbl.Text, txtAddress.Text, Convert.ToDouble(txtgrandamount.Text), Convert.ToDouble(txtTaxamt.Text), Convert.ToDouble(txtgrandtotal.Text), Convert.ToInt32(0), Convert.ToDouble(txttdiscper.Text), Convert.ToDouble(txttdiscamt.Text), Convert.ToDouble(lbltotalitems.InnerText), txtdcno.Text, Convert.ToDouble(txtdiscamt.Text), Convert.ToInt32(rdbtype.SelectedValue), Convert.ToDouble(txtDeliverCharge.Text), Convert.ToInt32(txtorderno.Text), Convert.ToInt32(lblUserID.Text), Logintypeid, Convert.ToDouble(txtcgst.Text), Convert.ToDouble(txtsgst.Text), Convert.ToDouble(txtigst.Text), rbdsalestype.SelectedValue, lblPrefix.Text,yearss.Text,txtVehicleNo.Text);
 
                 for (int vLoop = 0; vLoop < GridView2.Rows.Count; vLoop++)
                 {
@@ -1186,7 +1184,7 @@ namespace Billing.Accountsbootstrap
 
                     if (Convert.ToDouble(txtSQty.Text) > 0)
                     {
-                        int transsales = objbs.inserttranswholesales(sTableName, salesid, Convert.ToInt32(drpItem.SelectedValue), Convert.ToDouble(txtSQty.Text), Convert.ToDouble(txtRate.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtTaxamount.Text), Convert.ToDouble(txtAmount.Text), Convert.ToDouble(txttdiscper.Text), Convert.ToDouble(txttdiscamt.Text), Convert.ToDouble(txtDeliverCharge.Text), "", txtorderno.Text, hdtype.Value, Logintypeid, Convert.ToInt32(drpPackType.SelectedValue), Convert.ToDouble(txtMRP.Text),Logintypeid);
+                        int transsales = objbs.inserttranswholesalesquotation(sTableName, salesid, Convert.ToInt32(drpItem.SelectedValue), Convert.ToDouble(txtSQty.Text), Convert.ToDouble(txtRate.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtTaxamount.Text), Convert.ToDouble(txtAmount.Text), Convert.ToDouble(txttdiscper.Text), Convert.ToDouble(txttdiscamt.Text), Convert.ToDouble(txtDeliverCharge.Text), "", txtorderno.Text, hdtype.Value, Logintypeid, Convert.ToInt32(drpPackType.SelectedValue), Convert.ToDouble(txtMRP.Text),Logintypeid);
                     }
                 }
 
@@ -1204,7 +1202,7 @@ namespace Billing.Accountsbootstrap
                 }
                 else
                 {
-                    Response.Redirect("WholeSalesGrid.aspx");
+                    Response.Redirect("WholeSalesQuotationGrid.aspx");
                 }
 
                 #endregion
@@ -1213,7 +1211,7 @@ namespace Billing.Accountsbootstrap
             {
                 iSalesID = Request.QueryString.Get("iSalesID");
 
-                DataSet dsdcno = objbs.CheckduplicateDC_edit(sTableName, txtbillno.Text, iSalesID);
+                DataSet dsdcno = objbs.CheckduplicateDCquotation_edit(sTableName, txtbillno.Text, iSalesID);
                 if (dsdcno.Tables[0].Rows.Count > 0)
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Bill.No Already Exists. Please Enter Different Bill No.');", true);
@@ -1221,35 +1219,35 @@ namespace Billing.Accountsbootstrap
                     return;
                 }
 
-                int salesid = objbs.updatewholesalesnew(iSalesID, lblPrefix.Text, yearss.Text, sTableName, date, Convert.ToInt32(ddlPayMode.SelectedValue), txtNarrations.Text, Convert.ToInt32(ddlcustomer.SelectedValue), txtmbl.Text, txtAddress.Text, Convert.ToDouble(txtgrandamount.Text), Convert.ToDouble(txtTaxamt.Text), Convert.ToDouble(txtgrandtotal.Text), Convert.ToInt32(0), Convert.ToDouble(txttdiscper.Text), Convert.ToDouble(txttdiscamt.Text), Convert.ToDouble(lbltotalitems.InnerText), txtdcno.Text, Convert.ToDouble(txtdiscamt.Text), Convert.ToInt32(rdbtype.SelectedValue), Convert.ToDouble(txtDeliverCharge.Text), txtbillno.Text, Logintypeid, Convert.ToDouble(txtcgst.Text), Convert.ToDouble(txtsgst.Text), Convert.ToDouble(txtigst.Text), rbdsalestype.SelectedValue, txtVehicleNo.Text);
+                int salesid = objbs.updatewholesalesquotationnew(iSalesID, lblPrefix.Text, yearss.Text, sTableName, date, Convert.ToInt32(ddlPayMode.SelectedValue), txtNarrations.Text, Convert.ToInt32(ddlcustomer.SelectedValue), txtmbl.Text, txtAddress.Text, Convert.ToDouble(txtgrandamount.Text), Convert.ToDouble(txtTaxamt.Text), Convert.ToDouble(txtgrandtotal.Text), Convert.ToInt32(0), Convert.ToDouble(txttdiscper.Text), Convert.ToDouble(txttdiscamt.Text), Convert.ToDouble(lbltotalitems.InnerText), txtdcno.Text, Convert.ToDouble(txtdiscamt.Text), Convert.ToInt32(rdbtype.SelectedValue), Convert.ToDouble(txtDeliverCharge.Text), txtbillno.Text, Logintypeid, Convert.ToDouble(txtcgst.Text), Convert.ToDouble(txtsgst.Text), Convert.ToDouble(txtigst.Text), rbdsalestype.SelectedValue, txtVehicleNo.Text);
 
                 #region
 
-                DataSet dsTransSaless = objbs.GetTransSalesEdit("tblTransWholeSales_" + sTableName, salesid);
-                if (dsTransSaless.Tables[0].Rows.Count > 0)
-                {
-                    for (int i = 0; i < dsTransSaless.Tables[0].Rows.Count; i++)
-                    {
-                        string Type = dsTransSaless.Tables[0].Rows[i]["Type"].ToString();
-                        int ddldef = Convert.ToInt32(dsTransSaless.Tables[0].Rows[i]["Item"]);
-                        string Amount = Convert.ToString(dsTransSaless.Tables[0].Rows[i]["Amount"]);
-                        if (Amount != "")
-                        {
-                            double qty = Convert.ToDouble(dsTransSaless.Tables[0].Rows[i]["Qty"].ToString());
-                            int update = objbs.updateSalesStock1(qty, Convert.ToInt32(ddldef),  sTableName,Logintypeid);
+                //DataSet dsTransSaless = objbs.GetTransSalesQuotationEdit("tblTransWholeSalesQuotation_" + sTableName, salesid);
+                //if (dsTransSaless.Tables[0].Rows.Count > 0)
+                //{
+                //    for (int i = 0; i < dsTransSaless.Tables[0].Rows.Count; i++)
+                //    {
+                //        string Type = dsTransSaless.Tables[0].Rows[i]["Type"].ToString();
+                //        int ddldef = Convert.ToInt32(dsTransSaless.Tables[0].Rows[i]["Item"]);
+                //        string Amount = Convert.ToString(dsTransSaless.Tables[0].Rows[i]["Amount"]);
+                //        if (Amount != "")
+                //        {
+                //            double qty = Convert.ToDouble(dsTransSaless.Tables[0].Rows[i]["Qty"].ToString());
+                //            int update = objbs.updateSalesStock1(qty, Convert.ToInt32(ddldef),  sTableName,Logintypeid);
 
-                            if (txtorderno.Text == "")
-                                txtorderno.Text = "0";
-                            if (Convert.ToInt32(txtorderno.Text) != 0 && Type != "N")
-                            {
-                                int updateOrderqty = objbs.updateorderqty(Convert.ToInt32(txtorderno.Text), qty, Convert.ToInt32(ddldef));
-                            }
+                //            if (txtorderno.Text == "")
+                //                txtorderno.Text = "0";
+                //            if (Convert.ToInt32(txtorderno.Text) != 0 && Type != "N")
+                //            {
+                //                int updateOrderqty = objbs.updateorderqty(Convert.ToInt32(txtorderno.Text), qty, Convert.ToInt32(ddldef));
+                //            }
 
-                        }
-                    }
-                }
+                //        }
+                //    }
+                //}
 
-                int iTransDelete = objbs.DeleteTransSalesNew("tblTransWholeSales_" + sTableName, salesid);
+                int iTransDelete = objbs.DeleteTransSalesQuotationNew("tblTransWholeSalesQuotation_" + sTableName, salesid);
 
                 for (int vLoop = 0; vLoop < GridView2.Rows.Count; vLoop++)
                 {
@@ -1270,7 +1268,7 @@ namespace Billing.Accountsbootstrap
 
                     if (Convert.ToDouble(txtSQty.Text) > 0)
                     {
-                        int transsales = objbs.inserttranswholesales(sTableName, salesid, Convert.ToInt32(drpItem.SelectedValue), Convert.ToDouble(txtSQty.Text), Convert.ToDouble(txtRate.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtTaxamount.Text), Convert.ToDouble(txtAmount.Text), Convert.ToDouble(txttdiscper.Text), Convert.ToDouble(txttdiscamt.Text), Convert.ToDouble(txtDeliverCharge.Text), "", txtorderno.Text, hdtype.Value, Logintypeid, Convert.ToInt32(drpPackType.SelectedValue), Convert.ToDouble(txtMRP.Text),Logintypeid);
+                        int transsales = objbs.inserttranswholesalesquotation(sTableName, salesid, Convert.ToInt32(drpItem.SelectedValue), Convert.ToDouble(txtSQty.Text), Convert.ToDouble(txtRate.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtTaxamount.Text), Convert.ToDouble(txtAmount.Text), Convert.ToDouble(txttdiscper.Text), Convert.ToDouble(txttdiscamt.Text), Convert.ToDouble(txtDeliverCharge.Text), "", txtorderno.Text, hdtype.Value, Logintypeid, Convert.ToInt32(drpPackType.SelectedValue), Convert.ToDouble(txtMRP.Text),Logintypeid);
                     }
                 }
 
@@ -1283,7 +1281,7 @@ namespace Billing.Accountsbootstrap
 
                 if (btnadd.Text == "Update")
                 {
-                    Response.Redirect("WholeSalesGrid.aspx");
+                    Response.Redirect("WholeSalesQuotationGrid.aspx");
                 }
                 else if (txtorderno.Text == "" || txtorderno.Text == "0")
                 {
@@ -1291,7 +1289,7 @@ namespace Billing.Accountsbootstrap
                 }
                 else
                 {
-                    Response.Redirect("WholeSalesGrid.aspx");
+                    Response.Redirect("WholeSalesQuotationGrid.aspx");
                 }
 
                 #endregion
