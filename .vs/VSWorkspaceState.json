@@ -1,10 +1,6 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Billing",
-    "\\Billing\\Accountsbootstrap",
-    "\\BusinessLayer"
+    ""
   ],
-  "SelectedNode": "\\Billing\\Web.config",
   "PreviewInSolutionExplorer": false
 }
