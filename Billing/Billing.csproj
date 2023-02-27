@@ -513,6 +513,7 @@
     <Content Include="Accountsbootstrap\WholeSalesPrint.aspx" />
     <Content Include="Accountsbootstrap\WholeSalesPrintnew.aspx" />
     <Content Include="Accountsbootstrap\WholeSalesQtyPrint.aspx" />
+    <Content Include="Accountsbootstrap\WholeSalesQuotation.aspx" />
     <Content Include="Accountsbootstrap\WholeSalesReport.aspx" />
     <Content Include="Accountsbootstrap\WholeSalesRet.aspx" />
     <Content Include="Accountsbootstrap\WholeSalesReturnGrid.aspx" />
@@ -3932,6 +3933,13 @@
     </Compile>
     <Compile Include="Accountsbootstrap\WholeSalesQtyPrint.aspx.designer.cs">
       <DependentUpon>WholeSalesQtyPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\WholeSalesQuotation.aspx.cs">
+      <DependentUpon>WholeSalesQuotation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\WholeSalesQuotation.aspx.designer.cs">
+      <DependentUpon>WholeSalesQuotation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\WholeSalesReport.aspx.cs">
       <DependentUpon>WholeSalesReport.aspx</DependentUpon>

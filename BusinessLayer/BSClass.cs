@@ -17176,7 +17176,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
 
-            string sqry = "select * from tblbranch where IsActive='Yes' and BranchType='" + branchtype + "'";
+            string sqry = "select brancharea + ' - ' + GSTIN as brancharea, * from tblbranch where IsActive='Yes' and BranchType='" + branchtype + "'";
             ds = dbObj.InlineExecuteDataSet(sqry);
 
             return ds;
@@ -17217,7 +17217,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
 
-            string sqry = "select b.* from tblbranchsetting as a inner join tblbranch as b on b.branchid=a.branchid where (productioncode='" + productioncode + "' or IcingCode='" + productioncode + "')";
+            string sqry = "select b.brancharea + ' - ' + b.GSTIN as brancharea,b.* from tblbranchsetting as a inner join tblbranch as b on b.branchid=a.branchid where (productioncode='" + productioncode + "' or IcingCode='" + productioncode + "')";
             ds = dbObj.InlineExecuteDataSet(sqry);
 
             return ds;
@@ -21800,6 +21800,24 @@ namespace BusinessLayer
         }
         #endregion
 
+        #region WholeSalesQuotation
+        public DataSet getcrsalesquotationno(string Table)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select isnull(max(BillNo + 1),1) as BillNo from tblWholesalesQuotation_" + Table + "  ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+
+        public DataSet getsalesdcquotationno(string Table)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select isnull(max(cast(DCNo AS int) + 1),1) as DCNo from tblWholesalesQuotation_" + Table + "  ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+        #endregion
+
         #region WholeSales
         //public int insertwholesales(string sTableName, DateTime BillDate, string PayMode, string Narration, string CustomerName, string Mobile, string Address, double Amount, double Tax, double GrandTotal, int TaxVal, string DiscPer, string DiscAmount, double TotalItems, string logintype)
         //{
@@ -22628,7 +22646,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
 
-            string sqry = "select BranchCode as  BranchName,isnull(Branchname,'')+'-'+isnull(BranchCode,'') as Name,BranchId,'0' as Margin from tblbranch where IsActive='Yes' and BranchType=0";
+            string sqry = "select BranchCode as  BranchName,isnull(Branchname,'')+'-'+isnull(BranchCode,'')+'-'+isnull(GSTIN,'') as Name,BranchId,'0' as Margin from tblbranch where IsActive='Yes' and BranchType=0";
             ds = dbObj.InlineExecuteDataSet(sqry);
 
             return ds;
@@ -23081,6 +23099,26 @@ namespace BusinessLayer
             DataSet ds = new DataSet();
             if (categoryid == "All")
             {
+                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.serial,isnull(ps.Prod_Qty,0) as Prod_Qty,b.qtytype  " +
+                    " from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblProductionQty_" + stable + " ps on ps.DescriptionId=b.CategoryUserID " +
+                    " inner join tblUOM u on u.UOMID=b.unit  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1'  order by category asc";
+                ds = dbObj.InlineExecuteDataSet(sqry);
+            }
+            else
+            {
+                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.serial,isnull(ps.Prod_Qty,0) as Prod_Qty,b.qtytype from tblcategory a " +
+                    " inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblProductionQty_" + stable + " ps on ps.DescriptionId=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit  " +
+                    " where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + " order by category asc";
+                ds = dbObj.InlineExecuteDataSet(sqry);
+            }
+            return ds;
+        }
+
+        public DataSet itemforreqestNew_OLD(string categoryid, string stable)
+        {
+            DataSet ds = new DataSet();
+            if (categoryid == "All")
+            {
                 string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.serial  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1'  order by category asc";
                 ds = dbObj.InlineExecuteDataSet(sqry);
             }
@@ -23141,7 +23179,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
             // string sqry = "select * from tbllogin l inner join tblBranch b on b.BranchCode=l.BranchCode";
-            string sqry = "select * from  tblBranch where BranchType=0";
+            string sqry = "select brancharea + ' - ' + GSTIN as brancharea, * from  tblBranch where BranchType=0";
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
         }
