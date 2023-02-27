@@ -32,8 +32,9 @@ namespace Billing.Accountsbootstrap
 
                 if (ISalesId != null)
                 {
-                    lblAddres.Text = TIN;
+                    lblAddres.Text = sAddress;
                     lblstore.Text = sStore;
+                    lblgstno.Text = TIN;
 
 
 

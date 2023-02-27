@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StockReport.aspx.cs" Inherits="Billing.Accountsbootstrap.StockReport" %>
+﻿<%--<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StockReport.aspx.cs" Inherits="Billing.Accountsbootstrap.StockReport" %>--%>
 
 <%@ Register TagPrefix="usc" TagName="Header" Src="~/HeaderMaster/Header.ascx" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
@@ -86,17 +86,17 @@
                     
                         <div class="col-lg-12">
                            
-                            <div class="col-lg-3">
+                           <%-- <div class="col-lg-3">
                                 <label>
                                     Admin PassWord</label>
                                 <asp:TextBox ID="txtpassword" runat="server" CssClass="form-control"
                                     TextMode="Password" placeholder="Enter your Password" AutoPostBack="true" OnTextChanged="txtpassword_OnTextChanged"></asp:TextBox>
-                            </div>
+                            </div>--%>
                             <div class="col-lg-3">
                                
                                     <label>
                                         Type</label>
-                                    <asp:RadioButtonList ID="rdbtype" runat="server" Enabled="false" RepeatColumns="2"
+                                    <asp:RadioButtonList ID="rdbtype" runat="server" Enabled="true" RepeatColumns="2"
                                          AutoPostBack="true" OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged">
                                         <asp:ListItem Text="Qty Details" Value="1" Selected="True"></asp:ListItem>
                                         <asp:ListItem Text="Qty Value Details" Value="2"></asp:ListItem>

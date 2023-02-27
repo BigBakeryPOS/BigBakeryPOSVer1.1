@@ -17,14 +17,20 @@ namespace Billing.Accountsbootstrap
         string Sort_Direction = "AttenderName ASC";
         string sTableName = "";
         string superadmin = "";
+        string sbranchname = "";
+        string  sbranchid = "";
         protected void Page_Load(object sender, EventArgs e)
         {
 
             superadmin = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
-           
+           sbranchid = Request.Cookies["userInfo"]["BranchID"].ToString();
+            //sbranchid = Session["BranchID"].ToString();
+          //  Session["Store"] = dsbranch.Tables[0].Rows[0]["BranchName"].ToString();
+
             if (!IsPostBack)
             {
+
                 DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "attender");
                 if (dacess1.Tables[0].Rows.Count > 0)
                 {
@@ -33,9 +39,12 @@ namespace Billing.Accountsbootstrap
                         Response.Redirect("Login_branch.aspx");
                     }
                 }
-
+                DataSet ds = new DataSet();
+                ds = objBs.getbranchid(sbranchid);
+                sbranchname = ds.Tables[0].Rows[0]["branchname"].ToString();
+                lblbranch.Text = sbranchname;
                 DataSet dacess = new DataSet();
-                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "attender");
+                dacess = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "attender");
                 if (dacess.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
@@ -67,15 +76,16 @@ namespace Billing.Accountsbootstrap
                 }
 
                 ViewState["SortExpr"] = Sort_Direction;
+                lblbranch.Text = sbranchname.ToString();
 
-                DataSet getbranch = objBs.getbranch();
-                if (getbranch.Tables[0].Rows.Count > 0)
-                {
-                    drpbranch.DataSource = getbranch.Tables[0];
-                    drpbranch.DataTextField = "brancharea";
-                    drpbranch.DataValueField = "branchID";
-                    drpbranch.DataBind();
-                }
+                //DataSet getbranch = objBs.getbranch();
+                //if (getbranch.Tables[0].Rows.Count > 0)
+                //{
+                //    drpbranch.DataSource = getbranch.Tables[0];
+                //    drpbranch.DataTextField = "brancharea";
+                //    drpbranch.DataValueField = "branchID";
+                //    drpbranch.DataBind();
+                //}
 
                 DataSet getAttender = objBs.getattendertype();
                 if (getAttender.Tables[0].Rows.Count > 0)
@@ -136,17 +146,18 @@ namespace Billing.Accountsbootstrap
 
                 string iCat = e.CommandArgument.ToString();
 
+
                 if (iCat != "" || iCat != null)
                 {
-
-                    DataSet getbranch = objBs.getbranch();
-                    if (getbranch.Tables[0].Rows.Count > 0)
-                    {
-                        drpbranch.DataSource = getbranch.Tables[0];
-                        drpbranch.DataTextField = "brancharea";
-                        drpbranch.DataValueField = "branchID";
-                        drpbranch.DataBind();
-                    }
+                   
+                    //DataSet getbranch = objBs.getbranch();
+                    //if (getbranch.Tables[0].Rows.Count > 0)
+                    //{
+                    //    drpbranch.DataSource = getbranch.Tables[0];
+                    //    drpbranch.DataTextField = "brancharea";
+                    //    drpbranch.DataValueField = "branchID";
+                    //    drpbranch.DataBind();
+                    //}
 
                     DataSet disc = objBs.chkdiscvalue();
                     if (disc.Tables[0].Rows.Count > 0)
@@ -175,11 +186,32 @@ namespace Billing.Accountsbootstrap
                     DataSet ds = objBs.getupdateattendermaster(iCat);
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        btnSave.Text = "Update";
 
+                        btnSave.Text = "Update";
+                        if (ds.Tables[0].Rows[0]["type"].ToString() == "2")
+                        {
+                            lblattender.Visible = true;
+                            txtpwd.Visible = true;
+                            lblchk.Visible = true;
+                            chkdisc.Visible = true;
+
+                        }
+                        else
+                        {
+                            lblattender.Visible = false;
+                            txtpwd.Visible = false;
+                            lblchk.Visible = false;
+                            chkdisc.Visible = false;
+                        }
+                        DataSet dsbranch = new DataSet(); 
+                        dsbranch = objBs.getbranchid(ds.Tables[0].Rows[0]["branch"].ToString());
+                        sbranchname = dsbranch.Tables[0].Rows[0]["branchname"].ToString();
+                       // lblbranch.Text = sbranchname;
+                        lblbranch.Text = sbranchname.ToString();
                         txtattenderid.Text = ds.Tables[0].Rows[0]["attenderid"].ToString();
                         txtattendername.Text = ds.Tables[0].Rows[0]["attendername"].ToString();
-                        drpbranch.SelectedValue = ds.Tables[0].Rows[0]["branch"].ToString();
+                        //lblbranch.Text = ds.Tables[0].Rows[0]["branch"].ToString();
+                        //drpbranch.SelectedValue = ds.Tables[0].Rows[0]["branch"].ToString();
                         drpattendertype.SelectedValue = ds.Tables[0].Rows[0]["type"].ToString();
                         txtpwd.Text = ds.Tables[0].Rows[0]["PWD"].ToString();
                         txtdisc.Text = ds.Tables[0].Rows[0]["disc"].ToString();
@@ -264,33 +296,33 @@ namespace Billing.Accountsbootstrap
         protected void gridview_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
 
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                if (superadmin == "1" || sTableName == "Pro")
-                {
-                    ((LinkButton)e.Row.FindControl("btnedit")).Enabled = true;
-                    ((LinkButton)e.Row.FindControl("btndel")).Enabled = true;
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+            //    if (superadmin == "1" || sTableName == "Pro")
+            //    {
+            //        ((LinkButton)e.Row.FindControl("btnedit")).Enabled = true;
+            //        ((LinkButton)e.Row.FindControl("btndel")).Enabled = true;
 
-                    ((Image)e.Row.FindControl("imdedit")).Enabled = true;
-                    ((Image)e.Row.FindControl("Image1")).Enabled = true;
-                }
-                else
-                {
-                    ((LinkButton)e.Row.FindControl("btnedit")).Enabled = false;
-                    ((LinkButton)e.Row.FindControl("btndel")).Visible = false;
+            //        ((Image)e.Row.FindControl("imdedit")).Enabled = true;
+            //        ((Image)e.Row.FindControl("Image1")).Enabled = true;
+            //    }
+            //    else
+            //    {
+            //        ((LinkButton)e.Row.FindControl("btnedit")).Enabled = false;
+            //        ((LinkButton)e.Row.FindControl("btndel")).Visible = false;
 
-                    ((Image)e.Row.FindControl("imdedit")).Enabled = false;
-                    ((Image)e.Row.FindControl("Image1")).Visible = false;
+            //        ((Image)e.Row.FindControl("imdedit")).Enabled = false;
+            //        ((Image)e.Row.FindControl("Image1")).Visible = false;
 
-                    ((Image)e.Row.FindControl("imgdisable1321")).Enabled = false;
-                    ((Image)e.Row.FindControl("imgdisable1321")).Visible = true;
-                }
+            //        ((Image)e.Row.FindControl("imgdisable1321")).Enabled = false;
+            //        ((Image)e.Row.FindControl("imgdisable1321")).Visible = true;
+            //    }
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-            }
+            //}
 
         }
 
@@ -356,7 +388,8 @@ namespace Billing.Accountsbootstrap
                 }
                 else
                 {
-                    int iStatus = objBs.InsertAttenderName(txtattendername.Text, drpbranch.SelectedValue, drpattendertype.SelectedValue, txtpwd.Text,txtdisc.Text);
+                    int iStatus = objBs.InsertAttenderName(txtattendername.Text,sbranchid.ToString(), drpattendertype.SelectedValue, txtpwd.Text, txtdisc.Text);
+                   // int iStatus = objBs.InsertAttenderName(txtattendername.Text, drpbranch.SelectedValue, drpattendertype.SelectedValue, txtpwd.Text,txtdisc.Text);
 
                     foreach (ListItem listItem in chkdisc.Items)
                     {
@@ -377,8 +410,8 @@ namespace Billing.Accountsbootstrap
             {
 
                 int idelete = objBs.Ideletetransdisctype(txtattenderid.Text);
-
-                objBs.updateattendername(Convert.ToInt32(txtattenderid.Text), txtattendername.Text, drpbranch.SelectedValue, drpattendertype.SelectedValue, txtpwd.Text,txtdisc.Text);
+                objBs.updateattendername(Convert.ToInt32(txtattenderid.Text), txtattendername.Text, sbranchid.ToString(), drpattendertype.SelectedValue, txtpwd.Text, txtdisc.Text);
+               // objBs.updateattendername(Convert.ToInt32(txtattenderid.Text), txtattendername.Text, drpbranch.SelectedValue, drpattendertype.SelectedValue, txtpwd.Text,txtdisc.Text);
 
                 foreach (ListItem listItem in chkdisc.Items)
                 {
@@ -399,5 +432,24 @@ namespace Billing.Accountsbootstrap
         {
 
         }
-    }
+        protected void drpattendertype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (drpattendertype.SelectedItem.Text   == "Discount Authority")
+            {
+                lblattender.Visible = true;
+                txtpwd.Visible = true;
+                lblchk.Visible = true;
+                chkdisc.Visible = true;
+            }
+            else
+            {
+                lblattender.Visible = false;
+                txtpwd.Visible = false;
+                lblchk.Visible = false;
+                chkdisc.Visible = false;
+            }
+             
+           
+        }
+        }
 }

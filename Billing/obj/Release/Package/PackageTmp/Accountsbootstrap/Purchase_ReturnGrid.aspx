@@ -51,7 +51,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Bank Grid Master - bootsrap</title>
+    <title>Purchase Return - bootsrap</title>
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="../Styles/chosen.css" />
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
@@ -281,7 +281,7 @@
         <div class="popup_Container">
             <div class="popup_Titlebar" id="PopupHeader">
                 <div class="TitlebarLeft">
-                    Delete Purchase Invoice</div>
+                    Delete Purchase Return Invoice</div>
                 <div class="TitlebarRight" onclick="$get('ButtonDeleteCancel').click();">
                 </div>
             </div>

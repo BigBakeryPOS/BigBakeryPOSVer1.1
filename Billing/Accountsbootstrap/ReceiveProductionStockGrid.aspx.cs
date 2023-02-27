@@ -30,7 +30,7 @@ namespace Billing.Accountsbootstrap
 
             if (!IsPostBack)
             {
-                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "ReceiveProductionStock");
+                DataSet dacess1 = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "ReceiveProductionStock");
                 if (dacess1.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -40,7 +40,7 @@ namespace Billing.Accountsbootstrap
                 }
 
                 DataSet dacess = new DataSet();
-                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "ReceiveProductionStock");
+                dacess = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "ReceiveProductionStock");
                 if (dacess.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)

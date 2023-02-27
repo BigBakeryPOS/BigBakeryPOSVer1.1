@@ -62,22 +62,23 @@ namespace Billing.Accountsbootstrap
                 }
 
                 DataSet ds = new DataSet();
-                if (sTableName == "admin")
-                {
-                    ds = objBs.getstockdetgrid(sTableName, ddlcategory.SelectedValue, logintype);
-                    gvstock.DataSource = ds;
-                    gvstock.DataBind();
+                //if (sTableName == "admin")
+                //{
+                //    ds = objBs.getstockdetgrid(sTableName, ddlcategory.SelectedValue, logintype);
+                //    gvstock.DataSource = ds;
+                //    gvstock.DataBind();
 
-                }
-                else
-                {
+                //}
+                //else
+                //{
                     admin.Visible = false;
                     ds = objBs.getstockdetgrid(sTableName, ddlcategory.SelectedValue, logintype);
                     string caption1 = " <h4><b>" + " Store :  " + BranchNAme + " " + StoreName + " Generate On " + DateTime.Now.ToString("MM/dd/yyyy hh:mm tt") + " </b></h4> ";
                     gvstock.Caption = caption1;
                     gvstock.DataSource = ds;
                     gvstock.DataBind();
-                }
+                rdbtype.Enabled  = true;
+                //}
             }
 
         }
@@ -168,27 +169,27 @@ namespace Billing.Accountsbootstrap
         protected void btnreset_Click(object sender, EventArgs e)
         {
             DataSet ds = new DataSet();
-            if (sTableName == "admin")
-            {
+            //if (sTableName == "admin")
+            //{
+            //    ds = objBs.getstockdetgrid(sTableName, ddlcategory.SelectedValue, logintype);
+            //    gvstock.DataSource = ds;
+            //    gvstock.DataBind();
+
+            //    //decimal dtotal = 0;
+            //    //decimal Qty = 0;
+            //    //for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            //    //{
+            //    //    dtotal += Convert.ToDecimal(ds.Tables[0].Rows[i]["StockAmount"].ToString());
+            //    //    Qty += Convert.ToDecimal(ds.Tables[0].Rows[i]["Available_QTY"].ToString());
+            //    //}
+
+            //}
+            //else
+            //{
                 ds = objBs.getstockdetgrid(sTableName, ddlcategory.SelectedValue, logintype);
                 gvstock.DataSource = ds;
                 gvstock.DataBind();
-
-                //decimal dtotal = 0;
-                //decimal Qty = 0;
-                //for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                //{
-                //    dtotal += Convert.ToDecimal(ds.Tables[0].Rows[i]["StockAmount"].ToString());
-                //    Qty += Convert.ToDecimal(ds.Tables[0].Rows[i]["Available_QTY"].ToString());
-                //}
-
-            }
-            else
-            {
-                ds = objBs.getstockdetgrid(sTableName, ddlcategory.SelectedValue, logintype);
-                gvstock.DataSource = ds;
-                gvstock.DataBind();
-            }
+          //  }
         }
 
         protected void gvstock_RowCreated(object sender, GridViewRowEventArgs e)
@@ -381,29 +382,29 @@ namespace Billing.Accountsbootstrap
         }
 
         // Admin PassWord
-        protected void txtpassword_OnTextChanged(object sender, EventArgs e)
-        {
-            DataSet adminpass = objBs.GetadminCode(lblUser.Text, Password, txtpassword.Text);
-            if (adminpass.Tables[0].Rows.Count > 0)
-            {
-                rdbtype.Enabled = true;
-                txtpassword.Attributes.Add("value", adminpass.Tables[0].Rows[0]["AdminPass"].ToString());
-            }
-            else
-            {
-                rdbtype.SelectedValue = "1";
-                rdbtype.Enabled = false;
-                //txtpassword.Attributes.Add("value", "");
-                txtpassword.Attributes.Clear();
+        //protected void txtpassword_OnTextChanged(object sender, EventArgs e)
+        //{
+        //    DataSet adminpass = objBs.GetadminCode(lblUser.Text, Password, txtpassword.Text);
+        //    if (adminpass.Tables[0].Rows.Count > 0)
+        //    {
+        //        rdbtype.Enabled = true;
+        //        txtpassword.Attributes.Add("value", adminpass.Tables[0].Rows[0]["AdminPass"].ToString());
+        //    }
+        //    else
+        //    {
+        //        rdbtype.SelectedValue = "1";
+        //        rdbtype.Enabled = false;
+        //        //txtpassword.Attributes.Add("value", "");
+        //        txtpassword.Attributes.Clear();
 
-                gvStockValue.DataSource = null;
-                gvStockValue.DataBind();
+        //        gvStockValue.DataSource = null;
+        //        gvStockValue.DataBind();
 
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Enter Correct Password.');", true);
-                return;
+        //        ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Enter Correct Password.');", true);
+        //        return;
 
-            }
-        }
+        //    }
+        //}
 
         public override void VerifyRenderingInServerForm(Control control)
         {

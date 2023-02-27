@@ -492,6 +492,24 @@ namespace Billing.HeaderMaster
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl subcompany;
 
         /// <summary>
+        /// currencymaster control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl currencymaster;
+
+        /// <summary>
+        /// Ratesettingmaster control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Ratesettingmaster;
+
+        /// <summary>
         /// OrderFormMenu control.
         /// </summary>
         /// <remarks>
@@ -1498,6 +1516,15 @@ namespace Billing.HeaderMaster
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl PurchaseReport;
+
+        /// <summary>
+        /// PurchaseReturnReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PurchaseReturnReport;
 
         /// <summary>
         /// storepurchasedetailed control.

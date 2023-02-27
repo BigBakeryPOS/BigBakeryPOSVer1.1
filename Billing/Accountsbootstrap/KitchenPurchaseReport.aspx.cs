@@ -64,12 +64,22 @@ namespace Billing.Accountsbootstrap
                     ddlraw.Items.Insert(0, "All");
                 }
 
+                DataSet dssubcompany = objBs.GetsubCompanyDetails();
+                if (dssubcompany.Tables[0].Rows.Count > 0)
+                {
+                    drpsubcompany.DataSource = dssubcompany.Tables[0];
+                    drpsubcompany.DataTextField = "CustomerName";
+                    drpsubcompany.DataValueField = "subComapanyID";
+                    drpsubcompany.DataBind();
+                    drpsubcompany.Items.Insert(0, "All");
+                }
+
                 txtfromdate.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 txttodate.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
 
 
-             //   string FromDate = txtfromdate.ToString("dd/MM/yyyy");
+             // string FromDate = txtfromdate.ToString("dd/MM/yyyy");
 
                 DateTime From1 = new DateTime();
                 DateTime To1 = new DateTime();
@@ -87,7 +97,7 @@ namespace Billing.Accountsbootstrap
                 //string ToDate = sTO.ToString("yyyy-MM-dd");
 
 
-                DataSet pending = objBs.getpurchasedetails(sTableName, ddlsuplier.SelectedValue, Convert.ToDateTime(From1).ToString("yyyy/MM/dd"), Convert.ToDateTime(To1).ToString("yyyy/MM/dd"), ddlraw.SelectedValue);
+                DataSet pending = objBs.getpurchasedetails(sTableName, ddlsuplier.SelectedValue, Convert.ToDateTime(From1).ToString("yyyy/MM/dd"), Convert.ToDateTime(To1).ToString("yyyy/MM/dd"), ddlraw.SelectedValue, drpsubcompany.SelectedValue);
                 if (pending.Tables[0].Rows.Count > 0)
                 {
                     BankGrid.DataSource = pending;
@@ -153,7 +163,7 @@ namespace Billing.Accountsbootstrap
             From1 = DateTime.ParseExact(txtfromdate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             To1 = DateTime.ParseExact(txttodate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-            DataSet pending = objBs.getpurchasedetails(sTableName, ddlsuplier.SelectedValue, Convert.ToDateTime(From1).ToString("yyyy/MM/dd"), Convert.ToDateTime(To1).ToString("yyyy/MM/dd"), ddlraw.SelectedValue);
+            DataSet pending = objBs.getpurchasedetails(sTableName, ddlsuplier.SelectedValue, Convert.ToDateTime(From1).ToString("yyyy/MM/dd"), Convert.ToDateTime(To1).ToString("yyyy/MM/dd"), ddlraw.SelectedValue, drpsubcompany.SelectedValue);
             if (pending.Tables[0].Rows.Count > 0)
             {
                 BankGrid.DataSource = pending;
@@ -196,14 +206,14 @@ namespace Billing.Accountsbootstrap
 
                     From1 = DateTime.Parse(Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy"), Cul, System.Globalization.DateTimeStyles.NoCurrentDateDefault);
                     To1 = DateTime.Parse(Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy"), Cul, System.Globalization.DateTimeStyles.NoCurrentDateDefault);
-                    ds = objBs.getpurchasedetails(sTableName, ddlsuplier.SelectedValue, Convert.ToDateTime(From1).ToString("yyyy/MM/dd"), Convert.ToDateTime(To1).ToString("yyyy/MM/dd"), ddlraw.SelectedValue);
+                    ds = objBs.getpurchasedetails(sTableName, ddlsuplier.SelectedValue, Convert.ToDateTime(From1).ToString("yyyy/MM/dd"), Convert.ToDateTime(To1).ToString("yyyy/MM/dd"), ddlraw.SelectedValue, drpsubcompany.SelectedValue);
                     gridview.Caption = " Store Stock Report  Generated on " + DateTime.Now.ToString();
                     gridview.DataSource = ds;
                     gridview.DataBind();
                 }
                 Response.ClearContent();
                 Response.AddHeader("content-disposition",
-                    "attachment;filename=StockReport.xls");
+                    "attachment;filename=PurchaseReport.xls");
                 //Response.ContentType = "applicatio/excel";
                 Response.ContentType = "application/vnd.ms-excel";
                 StringWriter sw = new StringWriter(); ;
@@ -249,7 +259,7 @@ namespace Billing.Accountsbootstrap
                             XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
                             pdfDoc.Close();
                             Response.ContentType = "application/pdf";
-                            Response.AddHeader("content-disposition", "attachment;filename=StockReport.pdf");
+                            Response.AddHeader("content-disposition", "attachment;filename=PurchaseReport.pdf");
                             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
                             Response.Write(pdfDoc);

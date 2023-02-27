@@ -110,7 +110,7 @@
                              <br />
                                 <asp:Button ID="btnsearch" runat="server" class="btn btn-primary pos-btn1" Text="Search" 
                                     OnClick="btnsearch_Click" />
-                               &nbsp;&nbsp;&nbsp; <asp:Button ID="btnrefresh" runat="server" class="btn btn-secondary" Text="Reset"  />
+                               &nbsp;&nbsp;&nbsp; <asp:Button ID="btnrefresh" runat="server" class="btn btn-secondary" Text="Reset" OnClick="btnrefresh_Click"  />
                                 &nbsp;&nbsp;&nbsp;<asp:LinkButton ID="btnPrint" runat="server"  onclick="btnPrint_Click">
                                 <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png"  Width="50px" Height="50px" Visible="false"/>
                                 <button type="button" class="btn btn-default btn-md">
@@ -137,6 +137,7 @@
                                                     <asp:BoundField HeaderText="Transfer Qty" DataField="SentQty" />
                                                     <asp:BoundField HeaderText="Damage Qty" DataField="damageQty" />
                                                     <asp:BoundField HeaderText="Missing Qty" DataField="MissingQty" />
+                                                    <asp:BoundField HeaderText="Total" DataField="Trate" DataFormatString='{0:f2}' />
                                                 </Columns>
                                                 <%--<FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
                                                 <HeaderStyle BackColor="#428bca" ForeColor="White" HorizontalAlign="Center" />--%>

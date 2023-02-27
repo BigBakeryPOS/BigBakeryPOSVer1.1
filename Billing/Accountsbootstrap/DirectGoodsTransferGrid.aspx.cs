@@ -31,7 +31,7 @@ namespace Billing.Accountsbootstrap
 
             if (!IsPostBack)
             {
-                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "DirectStockReceive");
+                DataSet dacess1 = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "DirectStockReceive");
                 if (dacess1.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -41,7 +41,7 @@ namespace Billing.Accountsbootstrap
                 }
 
                 DataSet dacess = new DataSet();
-                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "DirectStockReceive");
+                dacess = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "DirectStockReceive");
                 if (dacess.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
@@ -193,6 +193,34 @@ namespace Billing.Accountsbootstrap
                 string yourUrl = "DirectGoodsTransferPrint.aspx?ISalesId=" + e.CommandArgument.ToString();
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow1", "window.open('" + yourUrl + "');", true);
 
+            }
+            else if (e.CommandName == "EDT")
+            {
+                string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ';' });
+                string DC_NO = commandArgs[0];
+                string Branch = commandArgs[1];
+                string DC_Date = commandArgs[2];
+                string isstocked = commandArgs[3];
+                string RequestNO = commandArgs[4];
+
+                if(isstocked == "1")
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Not Allow To Edit.Branch Already Accept this Entry.Thank You!!!');", true);
+
+                }
+                else
+                {
+
+                    if (RequestNO == "0")
+                    {
+
+                        Response.Redirect("DirectGoodsTransfer.aspx?dc_no="+DC_NO+"&branch=" + Branch);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('This Request Number Not a Direct Transfer.Thank You!!!');", true);
+                    }
+                }
             }
         }
 

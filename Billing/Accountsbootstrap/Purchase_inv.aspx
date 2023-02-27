@@ -11,8 +11,13 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Invoice </title>
-    <link rel="stylesheet" href="../Styles/chosen.css" />
-    <link href="../Accountsbootstrap/css/chosen.min.css" rel="stylesheet" type="text/css" />
+    <%--<link rel="stylesheet" href="../Styles/chosen.css" />
+    <link href="../Accountsbootstrap/css/chosen.min.css" rel="stylesheet" type="text/css" />--%>
+
+
+     
+
+
     <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
@@ -169,7 +174,7 @@
                                                 Supplier&nbsp;&nbsp;<asp:CheckBox ID="chksupplier" runat="server" Text="New Supplier"
                                                     OnCheckedChanged="chk_chksupplier" AutoPostBack="true" />
                                             </label>
-                                            <asp:DropDownList ID="ddlsuplier" runat="server" TabIndex="2" CssClass="form-control"
+                                            <asp:DropDownList ID="ddlsuplier" runat="server" TabIndex="2"  Width="100%"
                                                 AutoPostBack="true" OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged">
                                             </asp:DropDownList>
                                             <asp:TextBox ID="txtsupplier" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>
@@ -216,7 +221,7 @@
                                                 <td>
                                                     <label>
                                                         Select ingredents</label><br /><%--CssClass="chzn-select"--%>
-                                                    <asp:DropDownList ID="drpmingredents" runat="server" TabIndex="5" CssClass="chzn-select"
+                                                    <asp:DropDownList ID="drpmingredents" runat="server" TabIndex="5" 
                                                         Height="30px" Width="280px" AutoPostBack="true" OnSelectedIndexChanged="ddlDef_OnSelectedIndexChanged">
                                                     </asp:DropDownList>
                                                 </td>
@@ -662,13 +667,15 @@
                     </div>
                 </div>
                 </div>     
-            <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
-                <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
-                <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
-                <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
-                <script type="text/javascript">
-                $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); 
-                </script>
+            
+                <script type="text/javascript" src="ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                        <script type="text/javascript" src="../css/select2.js"></script>
+                        <link href="../css/select2.css" rel="stylesheet" />
+                        
+                        <script type="text/javascript">
+                            $(document).ready(function () { $("#ddlsuplier").select2(); });
+                            $(document).ready(function () { $("#drpmingredents").select2(); });
+                        </script>
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="gvcustomerorder" EventName="RowCommand" />

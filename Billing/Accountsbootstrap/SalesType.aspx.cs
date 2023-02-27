@@ -26,7 +26,7 @@ namespace Billing.Accountsbootstrap
             if (!IsPostBack)
             {
 
-                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "saletypemaster");
+                DataSet dacess1 = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "saletypemaster");
                 if (dacess1.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -36,7 +36,7 @@ namespace Billing.Accountsbootstrap
                 }
 
                 DataSet dacess = new DataSet();
-                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "saletypemaster");
+                dacess = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "saletypemaster");
                 if (dacess.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
@@ -76,6 +76,16 @@ namespace Billing.Accountsbootstrap
                         chkpaylist.DataBind();
 
                     }
+                }
+
+
+                DataSet ratetype = objBs.GetRateSettingbind();
+                if (ratetype.Tables[0].Rows.Count > 0)
+                {
+                    chkratetype.DataSource = ratetype.Tables[0];
+                    chkratetype.DataTextField = "CurrencyName";
+                    chkratetype.DataValueField = "RateSettingid";
+                    chkratetype.DataBind();
                 }
 
                 // bind billtype
@@ -212,6 +222,28 @@ namespace Billing.Accountsbootstrap
                                 {
                                     //Find the checkbox list items using FindByValue and select it.
                                     chkpaylist.Items.FindByValue(dsize.Tables[0].Rows[i]["value"].ToString()).Selected = true;
+                                }
+
+                            }
+                        }
+
+
+                        DataSet dsrate = objBs.EditratesmodeType(Convert.ToInt32(idEdit));
+
+                        if ((dsrate.Tables[0].Rows.Count > 0))
+                        {
+                            //Select the checkboxlist items those values are true in database
+                            //Loop through the DataTable
+                            for (int i = 0; i <= dsrate.Tables[0].Rows.Count - 1; i++)
+                            {
+                                //You need to change this as per your DB Design
+                                string size = dsrate.Tables[0].Rows[i]["ratevalue"].ToString();
+                                {
+                                    if (chkratetype.Items.FindByValue(dsrate.Tables[0].Rows[i]["ratevalue"].ToString()) != null)
+                                    {
+                                        //Find the checkbox list items using FindByValue and select it.
+                                        chkratetype.Items.FindByValue(dsrate.Tables[0].Rows[i]["ratevalue"].ToString()).Selected = true;
+                                    }
                                 }
 
                             }
@@ -538,6 +570,22 @@ namespace Billing.Accountsbootstrap
                                 }
                             }
                         }
+
+                        foreach (ListItem listItem1 in chkratetype.Items)
+                        {
+                            if (listItem1.Text != "All")
+                            {
+                                if (listItem1.Selected)
+                                {
+                                    int idd = kbs.insert_TransRateType(listItem1.Value);
+                                }
+                            }
+                        }
+
+
+                        
+
+
                         Response.Redirect("../Accountsbootstrap/SalesType.aspx");
                     }
                 }
@@ -563,6 +611,17 @@ namespace Billing.Accountsbootstrap
                             if (listItem.Selected)
                             {
                                 int idd = kbs.insert_TransSalesType(listItem.Value);
+                            }
+                        }
+                    }
+
+                    foreach (ListItem listItem1 in chkratetype.Items)
+                    {
+                        if (listItem1.Text != "All")
+                        {
+                            if (listItem1.Selected)
+                            {
+                                int idd = kbs.insert_TransRateType(listItem1.Value);
                             }
                         }
                     }
@@ -612,6 +671,19 @@ namespace Billing.Accountsbootstrap
                                 }
                             }
                         }
+
+                        foreach (ListItem listItem1 in chkratetype.Items)
+                        {
+                            if (listItem1.Text != "All")
+                            {
+                                if (listItem1.Selected)
+                                {
+                                    int idd = kbs.insert_TransRateTypeUpdate(listItem1.Value, idEdit);
+                                }
+                            }
+                        }
+
+                        
 
                         Response.Redirect("../Accountsbootstrap/SalesType.aspx");
                     }

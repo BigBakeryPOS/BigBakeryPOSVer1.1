@@ -60,6 +60,9 @@
     <Reference Include="ASPSnippets.SmsAPI">
       <HintPath>..\..\..\..\..\Desktop\sms\Bin\ASPSnippets.SmsAPI.dll</HintPath>
     </Reference>
+    <Reference Include="ClosedXML">
+      <HintPath>..\..\SNP Diary\Billing\bin\ClosedXML.dll</HintPath>
+    </Reference>
     <Reference Include="DocumentFormat.OpenXml">
       <HintPath>..\..\New folder\Bin\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
@@ -103,7 +106,7 @@
     <Reference Include="System.Management" />
     <Reference Include="System.Web.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\System.Web.DataVisualization.dll</HintPath>
+      <HintPath>..\..\Shanthi\9.1.23 eve back\source\repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\System.Web.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DataVisualization.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -207,8 +210,10 @@
     <Content Include="Accountsbootstrap\css\TableCSSCode.css" />
     <Content Include="Accountsbootstrap\css\test.css" />
     <Content Include="Accountsbootstrap\css\TimePicker.css" />
+    <Content Include="Accountsbootstrap\CurrencyMaster.aspx" />
     <Content Include="Accountsbootstrap\CustomerBillReport.aspx" />
     <Content Include="Accountsbootstrap\customercancelreport.aspx" />
+    <Content Include="Accountsbootstrap\CustomerCeremoniesReminder.aspx" />
     <Content Include="Accountsbootstrap\CustomerHistory.aspx" />
     <Content Include="Accountsbootstrap\customerKotReport.aspx" />
     <Content Include="Accountsbootstrap\CustomerOutStanding.aspx" />
@@ -356,7 +361,9 @@
     <Content Include="Accountsbootstrap\ItemStockRequestStoreDept.aspx" />
     <Content Include="Accountsbootstrap\ItemUpdateScreen.aspx" />
     <Content Include="Accountsbootstrap\KitchenOrders.aspx" />
+    <Content Include="Accountsbootstrap\KitchenPurchaseOrderReport.aspx" />
     <Content Include="Accountsbootstrap\KitchenPurchaseReport.aspx" />
+    <Content Include="Accountsbootstrap\KitchenPurchaseReturnReport.aspx" />
     <Content Include="Accountsbootstrap\KitchenUsageGrid.aspx" />
     <Content Include="Accountsbootstrap\KitchenUsageReport.aspx" />
     <Content Include="Accountsbootstrap\KitPrint.aspx" />
@@ -369,6 +376,7 @@
     <Content Include="Accountsbootstrap\Login_Store.aspx" />
     <Content Include="Accountsbootstrap\MarginSetting.aspx" />
     <Content Include="Accountsbootstrap\MenuSync.aspx" />
+    <Content Include="Accountsbootstrap\MinimumQtyAlertReport.aspx" />
     <Content Include="Accountsbootstrap\ModelScreen.aspx" />
     <Content Include="Accountsbootstrap\NewButton.aspx" />
     <Content Include="Accountsbootstrap\NewDashboard.aspx" />
@@ -422,6 +430,7 @@
     <Content Include="Accountsbootstrap\Purchase_OrderGrid.aspx" />
     <Content Include="Accountsbootstrap\Purchase_Return.aspx" />
     <Content Include="Accountsbootstrap\Purchase_ReturnGrid.aspx" />
+    <Content Include="Accountsbootstrap\RateSettingMaster.aspx" />
     <Content Include="Accountsbootstrap\RawReceivedReport.aspx" />
     <Content Include="Accountsbootstrap\RawSales.aspx" />
     <Content Include="Accountsbootstrap\ReceiveProductionStock.aspx" />
@@ -487,6 +496,7 @@
     <Content Include="Accountsbootstrap\Tax.aspx" />
     <Content Include="Accountsbootstrap\TodaysDeliveryOrder.aspx" />
     <Content Include="Accountsbootstrap\TrailDatewise.aspx" />
+    <Content Include="Accountsbootstrap\twoinchprint.aspx" />
     <Content Include="Accountsbootstrap\TwoReports.aspx" />
     <Content Include="Accountsbootstrap\Uom.aspx" />
     <Content Include="Accountsbootstrap\usercreate.aspx" />
@@ -503,6 +513,7 @@
     <Content Include="Accountsbootstrap\WholeSalesPrint.aspx" />
     <Content Include="Accountsbootstrap\WholeSalesPrintnew.aspx" />
     <Content Include="Accountsbootstrap\WholeSalesQtyPrint.aspx" />
+    <Content Include="Accountsbootstrap\WholeSalesQuotation.aspx" />
     <Content Include="Accountsbootstrap\WholeSalesReport.aspx" />
     <Content Include="Accountsbootstrap\WholeSalesRet.aspx" />
     <Content Include="Accountsbootstrap\WholeSalesReturnGrid.aspx" />
@@ -518,6 +529,12 @@
     <Content Include="css\LoginProd.css" />
     <Content Include="css\LoginStore.css" />
     <Content Include="css\Pos_style.css" />
+    <Content Include="css\select2-bootstrap.css" />
+    <Content Include="css\select2-spinner.gif" />
+    <Content Include="css\select2.css" />
+    <Content Include="css\select2.js" />
+    <Content Include="css\select2.png" />
+    <Content Include="css\select2x2.png" />
     <Content Include="css\SMSBg.jpg" />
     <Content Include="css\toastr.css" />
     <Content Include="HeaderMaster\NewHeader.ascx" />
@@ -1270,6 +1287,13 @@
     <Compile Include="Accountsbootstrap\CRMReturns.aspx.designer.cs">
       <DependentUpon>CRMReturns.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accountsbootstrap\CurrencyMaster.aspx.cs">
+      <DependentUpon>CurrencyMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\CurrencyMaster.aspx.designer.cs">
+      <DependentUpon>CurrencyMaster.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accountsbootstrap\CustomerBillReport.aspx.cs">
       <DependentUpon>CustomerBillReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1283,6 +1307,13 @@
     </Compile>
     <Compile Include="Accountsbootstrap\customercancelreport.aspx.designer.cs">
       <DependentUpon>customercancelreport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\CustomerCeremoniesReminder.aspx.cs">
+      <DependentUpon>CustomerCeremoniesReminder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\CustomerCeremoniesReminder.aspx.designer.cs">
+      <DependentUpon>CustomerCeremoniesReminder.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\CustomerHistory.aspx.cs">
       <DependentUpon>CustomerHistory.aspx</DependentUpon>
@@ -2201,12 +2232,26 @@
     <Compile Include="Accountsbootstrap\KitchenOrders.aspx.designer.cs">
       <DependentUpon>KitchenOrders.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accountsbootstrap\KitchenPurchaseOrderReport.aspx.cs">
+      <DependentUpon>KitchenPurchaseOrderReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\KitchenPurchaseOrderReport.aspx.designer.cs">
+      <DependentUpon>KitchenPurchaseOrderReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accountsbootstrap\KitchenPurchaseReport.aspx.cs">
       <DependentUpon>KitchenPurchaseReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Accountsbootstrap\KitchenPurchaseReport.aspx.designer.cs">
       <DependentUpon>KitchenPurchaseReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\KitchenPurchaseReturnReport.aspx.cs">
+      <DependentUpon>KitchenPurchaseReturnReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\KitchenPurchaseReturnReport.aspx.designer.cs">
+      <DependentUpon>KitchenPurchaseReturnReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\KitchenUsageGrid.aspx.cs">
       <DependentUpon>KitchenUsageGrid.aspx</DependentUpon>
@@ -2333,6 +2378,13 @@
     </Compile>
     <Compile Include="Accountsbootstrap\MenuSync.aspx.designer.cs">
       <DependentUpon>MenuSync.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\MinimumQtyAlertReport.aspx.cs">
+      <DependentUpon>MinimumQtyAlertReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\MinimumQtyAlertReport.aspx.designer.cs">
+      <DependentUpon>MinimumQtyAlertReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\MinQty.aspx.cs">
       <DependentUpon>MinQty.aspx</DependentUpon>
@@ -2970,6 +3022,13 @@
     </Compile>
     <Compile Include="Accountsbootstrap\Purchase_ReturnGrid.aspx.designer.cs">
       <DependentUpon>Purchase_ReturnGrid.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\RateSettingMaster.aspx.cs">
+      <DependentUpon>RateSettingMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\RateSettingMaster.aspx.designer.cs">
+      <DependentUpon>RateSettingMaster.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\RawReceivedReport.aspx.cs">
       <DependentUpon>RawReceivedReport.aspx</DependentUpon>
@@ -3707,6 +3766,13 @@
     <Compile Include="Accountsbootstrap\TransferBills.aspx.designer.cs">
       <DependentUpon>TransferBills.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accountsbootstrap\twoinchprint.aspx.cs">
+      <DependentUpon>twoinchprint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\twoinchprint.aspx.designer.cs">
+      <DependentUpon>twoinchprint.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accountsbootstrap\TwoReports.aspx.cs">
       <DependentUpon>TwoReports.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3867,6 +3933,13 @@
     </Compile>
     <Compile Include="Accountsbootstrap\WholeSalesQtyPrint.aspx.designer.cs">
       <DependentUpon>WholeSalesQtyPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\WholeSalesQuotation.aspx.cs">
+      <DependentUpon>WholeSalesQuotation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\WholeSalesQuotation.aspx.designer.cs">
+      <DependentUpon>WholeSalesQuotation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\WholeSalesReport.aspx.cs">
       <DependentUpon>WholeSalesReport.aspx</DependentUpon>
@@ -4290,6 +4363,7 @@
       <DependentUpon>BlackForestProdDataSet.xsd</DependentUpon>
     </None>
     <None Include="ClassDiagram1.cd" />
+    <Content Include="css\select2_locale_en.js.template" />
     <None Include="font-awesome-4.1.0\fonts\fontawesome-webfont.eot" />
     <None Include="font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />
     <None Include="font-awesome-4.1.0\fonts\fontawesome-webfont.ttf" />

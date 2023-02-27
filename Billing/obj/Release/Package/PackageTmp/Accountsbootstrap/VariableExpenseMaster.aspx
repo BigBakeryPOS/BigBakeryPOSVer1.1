@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Fixed Expense Master Grid </title>
+    <title>Variable Expense Master Grid </title>
     <link rel="Stylesheet" type="text/css" href="../Styles/AjaxPopUp.css" />
     <script language="javascript" type="text/javascript" src="../js/Validation.js"></script>
     <link href="css/mGrid.css" rel="stylesheet" type="text/css" />
@@ -91,7 +91,7 @@
                     <div class="row panel-custom1">
                         <div class="panel-header">
                             <h1 class="page-header">
-                                Fixed Expense Master</h1>
+                                Variable Expense Master</h1>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -167,7 +167,7 @@
                         <%--           <blink> <label  style="color:Green; font-size:12px">Please Fill Ingredient Details  </label></blink>--%>
                         <div class="panel-header">
                             <h1 class="page-header">
-                                Add Fixed Expense</h1>
+                                Add Variable Expense</h1>
                         </div>
                         <div class="panel-body panel-form-right">
                             <div class="list-group">

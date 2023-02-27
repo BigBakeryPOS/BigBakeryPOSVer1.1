@@ -354,11 +354,14 @@ color:White;
                                 &nbsp;&nbsp;&nbsp;<asp:Button ID="btnPreview" runat="server" CssClass="btn btn-success"
                                     OnClientClick="ClientSideClick(this)" UseSubmitBehavior="false" Text="Send "
                                     OnClick="btnPrev_Click" />
+                                &nbsp;&nbsp;&nbsp;<asp:Button ID="Button1" runat="server" CssClass="btn btn-danger" PostBackUrl="~/Accountsbootstrap/DirectGoodsTransferGrid.aspx"
+                                     Text="Exit "
+                                     />
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-7">
                     <div class="row panel-custom1">
                         <div class="panel-header">
                             <h1 class="page-header">
@@ -479,7 +482,7 @@ color:White;
                                                         <HeaderStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                                 </asp:GridView>
                                 <asp:GridView ID="gvitems" runat="server" AutoGenerateColumns="false" CssClass="table table-striped pos-table"
-                                    padding="0" spacing="0" border="0" Width="100%">
+                                 OnRowDataBound="onrowdatabound"    padding="0" spacing="0" border="0" Width="100%">
                                     <Columns>
                                         <%--<asp:TemplateField HeaderText="Category">
                                                 <ItemTemplate>
@@ -509,6 +512,7 @@ color:White;
                                                 <asp:HiddenField ID="hideUOMID" runat="server" Value='<%#Eval("UOMID") %>' />
                                                 <asp:HiddenField ID="hdRate" runat="server" Value='<%#Eval("Rate") %>' />
                                                 <asp:HiddenField ID="hdGST" runat="server" Value='<%#Eval("GST") %>' />
+                                                <asp:Label ID="lblqtytype" Visible="false" runat="server" Text='<%#Eval("qtytype") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Code">
@@ -523,7 +527,7 @@ color:White;
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Rate">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblrate" runat="server" Text='<%#Eval("MRP") %>'></asp:Label>
+                                                <asp:Label ID="lblrate" runat="server" Text='<%#Eval("MRP","{0:f2}") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Avl.Qty">
@@ -533,9 +537,9 @@ color:White;
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Qty">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtQty" onBlur="ResetColor()" onFocus="ChangeColor()" runat="server"
+                                                <asp:TextBox ID="txtQty" onBlur="ResetColor()" onFocus="ChangeColor()" runat="server" 
                                                     Width="200px" AutoPostBack="false"></asp:TextBox>
-                                                <ajaxToolkit:FilteredTextBoxExtender ID="ftbe" runat="server" TargetControlID="txtQty"
+                                                <ajaxToolkit:FilteredTextBoxExtender ID="ftbe" runat="server" TargetControlID="txtQty" 
                                                     FilterType="Custom,Numbers" ValidChars="." />
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -578,7 +582,7 @@ color:White;
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-5">
                     <div class="row panel-custom1">
                         <div class="panel-header">
                             <h1 class="page-header">
@@ -597,14 +601,15 @@ color:White;
                                                 <%#Container.DataItemIndex+1 %>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Category">
+                                        <asp:TemplateField HeaderText="Item Code">
                                             <ItemTemplate>
                                                 <asp:HiddenField ID="hideCategoryID" runat="server" Value='<%#Eval("CategoryID") %>' />
                                                 <asp:HiddenField ID="hideCategoryUserID" runat="server" Value='<%#Eval("CategoryUserID") %>' />
                                                 <asp:HiddenField ID="hideUOMID" runat="server" Value='<%#Eval("UOMID") %>' />
-                                                <asp:Label ID="lblCategory" runat="server" Text='<%#Eval("Category") %>'></asp:Label>
+                                                <asp:Label ID="lblCategory" Visible="false" runat="server" Text='<%#Eval("Category") %>'></asp:Label>
                                                 <asp:HiddenField ID="hdRate" runat="server" Value='<%#Eval("Rate") %>' />
                                                 <asp:HiddenField ID="hdGST" runat="server" Value='<%#Eval("GST") %>' />
+                                                <asp:Label ID="lblserial" runat="server" Text='<%#Eval("serial") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Item">

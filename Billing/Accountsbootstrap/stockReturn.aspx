@@ -253,14 +253,15 @@
                                     AutoPostBack="true">
                                 </asp:DropDownList>
                            <br />
+                    <div class="col-lg-12">
+                        <div class="col-lg-6">
                                 <label>
                                     Available Qty</label>
                                 <asp:TextBox ID="txtAvalQty" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server"
                                     FilterType="Numbers,custom" TargetControlID="txtAvalQty" ValidChars=".">
                                 </ajaxToolkit:FilteredTextBoxExtender>
-                            <br />
-                                <label>
+                                 <label>
                                     Return Qty</label>
                                 <asp:TextBox ID="txtretQty" runat="server" CssClass="form-control" AutoPostBack="true"
                                     OnTextChanged="txtretQty_TextChanged"></asp:TextBox>
@@ -268,20 +269,22 @@
                                     FilterType="Numbers,custom" TargetControlID="txtretQty" ValidChars=".">
                                 </ajaxToolkit:FilteredTextBoxExtender>
                             <br />
+                            </div>
+                        <div class="col-lg-6">
                                 <label>
                                     Rate</label>
                                 <asp:TextBox ID="txtRate" runat="server" CssClass="form-control"></asp:TextBox>
                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
                                     FilterType="Numbers,custom" TargetControlID="txtRate" ValidChars=".">
                                 </ajaxToolkit:FilteredTextBoxExtender>
-                           <br />
-                                <label>
+                                  <label>
                                     Amount</label>
                                 <asp:TextBox ID="txtAmount" runat="server" CssClass="form-control"></asp:TextBox>
                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
                                     FilterType="Numbers,custom" TargetControlID="txtAmount" ValidChars=".">
                                 </ajaxToolkit:FilteredTextBoxExtender>
-                            
+                            </div>
+                            </div>
                                 <asp:Label ID="lblcatid" runat="server" Style="display: none"></asp:Label>
                                 <asp:Label ID="lblSubcatid" runat="server" Style="display: none"></asp:Label>
                                 <asp:Label ID="stockid" runat="server" Style="display: none"></asp:Label>
@@ -339,7 +342,7 @@
         </div>
         </div>
         </div>
-        </div>
+       
    <%-- </ContentTemplate>
     </asp:UpdatePanel>--%>
     </form>

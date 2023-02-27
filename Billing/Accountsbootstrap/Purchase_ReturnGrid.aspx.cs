@@ -28,7 +28,7 @@ namespace Billing.Accountsbootstrap
 
             if (!IsPostBack)
             {
-                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "PurRtn");
+                DataSet dacess1 = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "PurRtn");
                 if (dacess1.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)
@@ -38,7 +38,7 @@ namespace Billing.Accountsbootstrap
                 }
 
                 DataSet dacess = new DataSet();
-                dacess = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "PurRtn");
+                dacess = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "PurRtn");
                 if (dacess.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess.Tables[0].Rows[0]["Save"]) == true)
@@ -131,7 +131,7 @@ namespace Billing.Accountsbootstrap
 
             else if (e.CommandName == "delete")
             {
-                int iSucess = objBs.deletePURmaster(e.CommandArgument.ToString(),sTableName);
+                int iSucess = objBs.deletePURRtnmaster(e.CommandArgument.ToString(),sTableName);
                 Response.Redirect("Purchase_ReturnGrid.aspx");
             }
             else if (e.CommandName == "Print")

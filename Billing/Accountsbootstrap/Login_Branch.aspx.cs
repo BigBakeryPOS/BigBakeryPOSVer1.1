@@ -215,7 +215,7 @@ namespace Billing.Accountsbootstrap
         protected void btnSeeting_OnClick(object sender, EventArgs e)
         {
             txtEmail.Visible = false;
-            txtEmail.Text= "rajaram@bigdbiz.in";
+            txtEmail.Text = "rajaram@bigdbiz.in";
             UserName_OnTextChanged(sender, e);
         }
 
@@ -255,8 +255,8 @@ namespace Billing.Accountsbootstrap
                     Session["UserName"] = username.Text;
                     Session["Password"] = password.Text;
                     Session["IsSuperAdmin"] = dsLogin.Tables[0].Rows[0]["IsSuperAdmin"].ToString();
-                   // Session["Billcode"] = dsLogin.Tables[0].Rows[0]["Billcode"].ToString();
-                    
+                    // Session["Billcode"] = dsLogin.Tables[0].Rows[0]["Billcode"].ToString();
+
 
                     //Session["Store"] = dsLogin.Tables[0].Rows[0]["StoreName"].ToString();
                     //Session["Address"] = dsLogin.Tables[0].Rows[0]["Address"].ToString();
@@ -325,8 +325,8 @@ namespace Billing.Accountsbootstrap
                         userInfo["TIN"] = dsbranch.Tables[0].Rows[0]["GSTIN"].ToString();
                         userInfo["Country"] = dsbranch.Tables[0].Rows[0]["Country"].ToString();
 
-                         
-                       
+
+
                     }
 
                     else
@@ -381,6 +381,9 @@ namespace Billing.Accountsbootstrap
                         userInfo["StockOption"] = getbranch.Tables[0].Rows[0]["StockOption"].ToString();
                         Session["StockOption"] = getbranch.Tables[0].Rows[0]["StockOption"].ToString();
 
+                        userInfo["ProdStockOption"] = getbranch.Tables[0].Rows[0]["ProdStockOption"].ToString();
+                        Session["ProdStockOption"] = getbranch.Tables[0].Rows[0]["ProdStockOption"].ToString();
+
 
                         userInfo["BillCode"] = getbranch.Tables[0].Rows[0]["BillCode"].ToString();
                         Session["BillCode"] = getbranch.Tables[0].Rows[0]["BillCode"].ToString();
@@ -434,6 +437,16 @@ namespace Billing.Accountsbootstrap
                         Session["OrderBookcheck"] = getbranch.Tables[0].Rows[0]["OrderBookcheck"].ToString();
 
 
+                        userInfo["ProdStockOption"] = getbranch.Tables[0].Rows[0]["ProdStockOption"].ToString();
+                        Session["ProdStockOption"] = getbranch.Tables[0].Rows[0]["ProdStockOption"].ToString();
+
+                        userInfo["itemmergeornot"] = getbranch.Tables[0].Rows[0]["itemmergeornot"].ToString();
+                        Session["itemmergeornot"] = getbranch.Tables[0].Rows[0]["itemmergeornot"].ToString();
+
+                        userInfo["defaultcurrency"] = getbranch.Tables[0].Rows[0]["defaultcurrency"].ToString();
+                        Session["defaultcurrency"] = getbranch.Tables[0].Rows[0]["defaultcurrency"].ToString();
+
+
 
                     }
                     else
@@ -461,6 +474,9 @@ namespace Billing.Accountsbootstrap
 
                         userInfo["StockOption"] = "Nil";
                         Session["StockOption"] = "Nil";
+
+                        userInfo["ProdStockOption"] = "Nil";
+                        Session["ProdStockOption"] = "Nil";
 
 
                         userInfo["BillCode"] = "Big";
@@ -493,7 +509,7 @@ namespace Billing.Accountsbootstrap
                         userInfo["BigVersion"] = "1";
                         Session["BigVersion"] = "1";
 
-                        userInfo["Currency"] ="INR(Rs.)";
+                        userInfo["Currency"] = "INR(Rs.)";
                         Session["Currency"] = "INR(Rs.)";
 
                         userInfo["possalessetting"] = "D";
@@ -514,6 +530,15 @@ namespace Billing.Accountsbootstrap
 
                         userInfo["OrderBookcheck"] = "N";
                         Session["OrderBookcheck"] = "N";
+
+                        userInfo["ProdStockOption"] = "1";
+                        Session["ProdStockOption"] = "1";
+
+                        userInfo["itemmergeornot"] = "Y";
+                        Session["itemmergeornot"] = "Y";
+
+                        userInfo["defaultcurrency"] = "1";
+                        Session["defaultcurrency"] = "1";
 
 
                     }
@@ -685,7 +710,7 @@ namespace Billing.Accountsbootstrap
 
             }
 
-          
+
         }
 
 
@@ -830,7 +855,7 @@ namespace Billing.Accountsbootstrap
 
                     /////////raja
 
-                    
+
 
                     txtOTP.Text = "";
                     txtOTP.Visible = false;

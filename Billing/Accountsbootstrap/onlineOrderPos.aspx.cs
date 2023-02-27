@@ -2326,620 +2326,620 @@ namespace Billing.Accountsbootstrap
 
         protected void btnPrint_Click(object sender, EventArgs e)
         {
-            string OnlineOrderId = "0";
+            //string OnlineOrderId = "0";
 
-            #region CHECK QTY
+            //#region CHECK QTY
 
-            DataTable dtraw = new DataTable();
-            DataSet dsraw = new DataSet();
-            DataRow drraw;
-            dtraw.Columns.Add("Categoryid");
-            dtraw.Columns.Add("Categoryuserid");
-            dtraw.Columns.Add("Item");
-            dtraw.Columns.Add("Aqty");
-            dtraw.Columns.Add("Sqty");
-            dtraw.Columns.Add("Hqty");
-            dsraw.Tables.Add(dtraw);
+            //DataTable dtraw = new DataTable();
+            //DataSet dsraw = new DataSet();
+            //DataRow drraw;
+            //dtraw.Columns.Add("Categoryid");
+            //dtraw.Columns.Add("Categoryuserid");
+            //dtraw.Columns.Add("Item");
+            //dtraw.Columns.Add("Aqty");
+            //dtraw.Columns.Add("Sqty");
+            //dtraw.Columns.Add("Hqty");
+            //dsraw.Tables.Add(dtraw);
 
-            dt = (DataTable)ViewState["Newdt"];
-            if (dt.Rows.Count > 0)
-            {
+            //dt = (DataTable)ViewState["Newdt"];
+            //if (dt.Rows.Count > 0)
+            //{
 
-                var result1 = from r in dt.AsEnumerable()
-                              group r by new { Categoryuserid = r["CategoryUserid"], Categoryid = r["Categoryid"], item = r["Definition"] } into raw
-                              select new
-                              {
-                                  Categoryuserid = raw.Key.Categoryuserid,
-                                  Categoryid = raw.Key.Categoryid,
-                                  item = raw.Key.item,
-                                  total = raw.Sum(x => Convert.ToDouble(x["Qty"])),
-                                //  Htotal = raw.Sum(x => Convert.ToDouble(x["HQty"])),
-                              };
-
-
-                foreach (var g in result1)
-                {
-                    drraw = dtraw.NewRow();
-                    double avlqty = 0;
-                    double sqty = 0;
-                    double hqty = 0;
-                    drraw["Categoryuserid"] = g.Categoryuserid;
-                    drraw["Categoryid"] = g.Categoryid;
-                    drraw["item"] = g.item;
-                    DataSet getstock = objbs.GetStockAvailable(Convert.ToInt32(g.Categoryuserid), sTableName);
-                    if (getstock.Tables[0].Rows.Count > 0)
-                    {
-                        drraw["Aqty"] = Convert.ToDouble(getstock.Tables[0].Rows[0]["Available_QTY"]).ToString("0");
-                        avlqty = Convert.ToDouble(drraw["Aqty"]);
-                    }
-                    else
-                    {
-                        drraw["Aqty"] = Convert.ToDouble(0).ToString("0");
-                        avlqty = Convert.ToDouble(0);
-                    }
-                    drraw["Sqty"] = Convert.ToDouble(g.total).ToString("0");
-                   // drraw["Hqty"] = Convert.ToDouble(g.Htotal).ToString("0");
-                    sqty = Convert.ToDouble(drraw["Sqty"]);
-                   // hqty = Convert.ToDouble(drraw["Hqty"]);
-                    // if (lbltempsalesid.Text == "0" || lbltempsalesid.Text == "")
-                    {
-                        if ((avlqty) >= sqty)
-                        {
-                            dsraw.Tables[0].Rows.Add(drraw);
-                        }
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Insuffient Avaliable Qty For this item Name " + g.item + " .Thank you!!!');", true);
-                            return;
-                        }
-                    }
-
-                }
-            }
-            else
-            {
-                ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Sales Invoice Not Generated For this hold/Invoice.Thank you!!!');", true);
-                return;
-            }
-
-            #endregion
-
-            string narration = string.Empty;
-            // int totqtyy = 0;
-            for (int i = 0; i < GridView1all.Rows.Count; i++)
-            {
-                TextBox Qty = (TextBox)GridView1all.Rows[i].FindControl("txtQty");
-                TextBox Definition = (TextBox)GridView1all.Rows[i].FindControl("Definition");
-
-                if (narration == "")
-                {
-                    // narration = "Sales Bill No :" + txtbillno.Text;
-                    //narration = narration + "(Category: " + inara.ToString();
-                    narration = narration + "Product: " + Definition.Text.ToString();
-                    narration = narration + "-Qty: " + Qty.Text + ",";
-                }
-                else
-                {
-                    narration = narration + " " + Definition.Text.ToString();
-                    narration = narration + "-Qty: " + Qty.Text + ",";
-                }
-            }
-            narration = narration.TrimEnd(',');
-            narration = "(" + narration.ToString() + ")";
+            //    var result1 = from r in dt.AsEnumerable()
+            //                  group r by new { Categoryuserid = r["CategoryUserid"], Categoryid = r["Categoryid"], item = r["Definition"] } into raw
+            //                  select new
+            //                  {
+            //                      Categoryuserid = raw.Key.Categoryuserid,
+            //                      Categoryid = raw.Key.Categoryid,
+            //                      item = raw.Key.item,
+            //                      total = raw.Sum(x => Convert.ToDouble(x["Qty"])),
+            //                    //  Htotal = raw.Sum(x => Convert.ToDouble(x["HQty"])),
+            //                  };
 
 
-            string Approved = string.Empty;
-            string ApprovedID = string.Empty;
+            //    foreach (var g in result1)
+            //    {
+            //        drraw = dtraw.NewRow();
+            //        double avlqty = 0;
+            //        double sqty = 0;
+            //        double hqty = 0;
+            //        drraw["Categoryuserid"] = g.Categoryuserid;
+            //        drraw["Categoryid"] = g.Categoryid;
+            //        drraw["item"] = g.item;
+            //        DataSet getstock = objbs.GetStockAvailable(Convert.ToInt32(g.Categoryuserid), sTableName);
+            //        if (getstock.Tables[0].Rows.Count > 0)
+            //        {
+            //            drraw["Aqty"] = Convert.ToDouble(getstock.Tables[0].Rows[0]["Available_QTY"]).ToString("0");
+            //            avlqty = Convert.ToDouble(drraw["Aqty"]);
+            //        }
+            //        else
+            //        {
+            //            drraw["Aqty"] = Convert.ToDouble(0).ToString("0");
+            //            avlqty = Convert.ToDouble(0);
+            //        }
+            //        drraw["Sqty"] = Convert.ToDouble(g.total).ToString("0");
+            //       // drraw["Hqty"] = Convert.ToDouble(g.Htotal).ToString("0");
+            //        sqty = Convert.ToDouble(drraw["Sqty"]);
+            //       // hqty = Convert.ToDouble(drraw["Hqty"]);
+            //        // if (lbltempsalesid.Text == "0" || lbltempsalesid.Text == "")
+            //        {
+            //            if ((avlqty) >= sqty)
+            //            {
+            //                dsraw.Tables[0].Rows.Add(drraw);
+            //            }
+            //            else
+            //            {
+            //                ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Insuffient Avaliable Qty For this item Name " + g.item + " .Thank you!!!');", true);
+            //                return;
+            //            }
+            //        }
 
-            if (lblisnormal.Text == "N")
-            {
-                int lnght = txtorderno.Text.Length;
+            //    }
+            //}
+            //else
+            //{
+            //    ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Sales Invoice Not Generated For this hold/Invoice.Thank you!!!');", true);
+            //    return;
+            //}
 
-                if (lnght.ToString() == lblordercount.Text)
-                {
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Check Order No Count.Thank You!!!');", true);
-                    txtorderno.Focus();
-                    return;
-                }
+            //#endregion
 
+            //string narration = string.Empty;
+            //// int totqtyy = 0;
+            //for (int i = 0; i < GridView1all.Rows.Count; i++)
+            //{
+            //    TextBox Qty = (TextBox)GridView1all.Rows[i].FindControl("txtQty");
+            //    TextBox Definition = (TextBox)GridView1all.Rows[i].FindControl("Definition");
 
-                Regex r = new Regex("[ ^ 0-9]");
-
-                if (lblordertype.Text == "1")
-                {
-
-                    bool containsInt = txtorderno.Text.All(char.IsDigit);
-                    if (containsInt == true)
-                    {
-                    }
-                    else
-                    {
-                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Check and Type Order No.Thank You!!!');", true);
-                        txtorderno.Focus();
-                        return;
-                    }
-
-                }
-
-
-            }
-
-            int cntt = GridView1all.Rows.Count;
-
-            if (cntt == 0)
-            {
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Add Item.Thank You!!!');", true);
-                return;
-            }
-
-
-            txtBillDate.Text = DateTime.Now.ToString("yyyy-MM-dd hh:mm tt");
-            // AFter Denomination Check Sales bill
-            DataSet checkdenomaiantiondone = objbs.checkdenomination_Previousday(sTableName);
-            if (checkdenomaiantiondone.Tables[0].Rows.Count > 0)
-            {
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Branch Done Denomination.Not Allow To Make Any Bill.Please Contact Administrator.Thank You!!!');", true);
-                return;
-            }
-            else
-            {
-
-            }
-
-            DataSet checkdayclose = objbs.checkinser_Previousday(sTableName);
-            if (checkdayclose.Tables[0].Rows.Count > 0)
-            {
-            }
-            else
-            {
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Make Sure Your branch Done day Close Or Not Else Not Allow To Make Any Bill.Please Contact Administrator.Thank You!!!');", true);
-                return;
-            }
-
-            if (chkdisc.Checked == true)
-            {
-                if (txtCustomerName.Text == "")
-                {
-                    ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "SelectGiven();", true);
-                    return;
-                }
-                else if (txtmobile.Text == "")
-                {
-
-                    ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "Mobile();", true);
-                    return;
-                }
+            //    if (narration == "")
+            //    {
+            //        // narration = "Sales Bill No :" + txtbillno.Text;
+            //        //narration = narration + "(Category: " + inara.ToString();
+            //        narration = narration + "Product: " + Definition.Text.ToString();
+            //        narration = narration + "-Qty: " + Qty.Text + ",";
+            //    }
+            //    else
+            //    {
+            //        narration = narration + " " + Definition.Text.ToString();
+            //        narration = narration + "-Qty: " + Qty.Text + ",";
+            //    }
+            //}
+            //narration = narration.TrimEnd(',');
+            //narration = "(" + narration.ToString() + ")";
 
 
-                if (attednertype.SelectedValue == "Select Disc-Att")
-                {
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Select Approval Attender.Please Contact Administrator.Thank You!!!');", true);
-                    return;
-                }
-                else
-                {
-                    Approved = attednertype.SelectedItem.Text;
-                    ApprovedID = attednertype.SelectedValue;
+            //string Approved = string.Empty;
+            //string ApprovedID = string.Empty;
 
-                }
-            }
-            else
-            {
-                Approved = "Nil";
-                ApprovedID = "0";
-            }
+            //if (lblisnormal.Text == "N")
+            //{
+            //    int lnght = txtorderno.Text.Length;
 
-
-            if (lblisnormal.Text == "Y")
-            {
-                txtorderno.Text = "No";
-            }
-            else
-            {
-                if (txtorderno.Text == "")
-                {
-                    ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Please Enter Order No.Thank You!!!');", true);
-                    return;
-                }
-                else
-                {
-
-                    if (OnliOrder == "Y")
-                    {
-                        // Check With Live SERVER
-                        if (objbs.IsConnectedToInternet())
-                        {
-                            DataSet dcheck = objbs.checkLiveordernumber(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status");
-                            if (dcheck.Tables[0].Rows.Count > 0)
-                            {
-                                OnlineOrderId = dcheck.Tables[0].Rows[0]["OnlineID"].ToString();
-                            }
-                            else
-                            {
-                                ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Please Check Online Order no Mismatched/Duplicate Occur.Plaese Check it Again.Thank You!!!');", true);
-                                return;
-                            }
-                        }
-                    }
-                    else
-                    {
-
-                    }
+            //    if (lnght.ToString() == lblordercount.Text)
+            //    {
+            //    }
+            //    else
+            //    {
+            //        ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Check Order No Count.Thank You!!!');", true);
+            //        txtorderno.Focus();
+            //        return;
+            //    }
 
 
-                    //CHeck  Order Number Already Exists
-                    DataSet dchekk = objbs.checkordernumber(drpsalestype.SelectedValue, txtorderno.Text, "tblsales_" + sTableName + "", "SalesOrder", "S");
-                    if (dchekk.Tables[0].Rows.Count > 0)
-                    {
-                        ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Entered Order No is Duplicate.Plaese Check it Again.Thank You!!!');", true);
-                        return;
+            //    Regex r = new Regex("[ ^ 0-9]");
 
-                    }
-                    else
-                    {
+            //    if (lblordertype.Text == "1")
+            //    {
 
-                    }
-                }
-            }
+            //        bool containsInt = txtorderno.Text.All(char.IsDigit);
+            //        if (containsInt == true)
+            //        {
+            //        }
+            //        else
+            //        {
+            //            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Check and Type Order No.Thank You!!!');", true);
+            //            txtorderno.Focus();
+            //            return;
+            //        }
 
-            #region
-
-            //string Approved = "";
-            if (ddlApproved.SelectedValue != "Select")
-            {
-                Approved = ddlApproved.SelectedValue;
-            }
-            int iStockSuccess = 0;
-
-            int iCustid = 0;
-
-            if (txtbilled.Text.Trim() == "")
-            {
-                ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Enter Billed by Name');", true);
-            }
-            else if (drpPayment.SelectedItem.Text.Trim() == "Select")
-            {
-                ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Please Choose Cash/Credit');", true);
-            }
-            else
-            {
-
-                #region Start
-                if (drpPayment.SelectedValue == "2" || drpPayment.SelectedValue == "5")
-                {
-                    if (txtCustomerName.Text == "")
-                    {
-                        ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "SelectGiven();", true);
-                    }
-                    else if (txtmobile.Text == "")
-                    {
-
-                        ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "Mobile();", true);
-                    }
-                    else
-                    {
-                        if (txtmobile.Text != "")
-                        {
-                            DataSet dCustid = objbs.GerCustID(txtmobile.Text);
-                            if (dCustid.Tables[0].Rows.Count > 0)
-                            {
-                                if (dCustid.Tables[0].Rows[0]["CustomerID"].ToString() != "")
-                                {
-                                    iCustid = Convert.ToInt32(dCustid.Tables[0].Rows[0]["CustomerID"].ToString());
-                                }
-                                else
-                                {
-                                    iCustid = objbs.InsertCustBill(Convert.ToInt32(lblUserID.Text), txtCustomerName.Text, txtmobile.Text, "0", "", "", "", Convert.ToInt32(drpPayment.SelectedValue), "0");
-                                }
-                            }
-                            else
-                            {
-                                iCustid = objbs.InsertCustBill(Convert.ToInt32(lblUserID.Text), txtCustomerName.Text, txtmobile.Text, "0", "", "", "", Convert.ToInt32(drpPayment.SelectedValue), "0");
-                            }
-                        }
-
-                        if (txtReceived.Text == "")
-                        {
-                            txtReceived.Text = "0.00";
-                        }
-                        if (txtBal.Text == "")
-                        {
-                            txtBal.Text = "0.00";
-                        }
-                        if (txtDiscount1g.Text == "0")
-                        {
-                            //  int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, ddlApproved.SelectedValue, ddattender.SelectedValue, Session["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text),Convert.ToDouble(lblsgst.Text),Convert.ToDouble(lblsubttl.Text));
-
-                            int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal1g.Text), Convert.ToDouble(lblGrandTotal1g.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount1g.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, ddattender.SelectedValue, Session["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgstg.Text), Convert.ToDouble(lblsgstg.Text), Convert.ToDouble(lblsubttlg.Text), lblmargin.Text, lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, "0", "0", txtDiscount1.Text, ApprovedID, txtonlineamount.Text,"","","","",lblRoundoff.Text, "tblTranssalesAmount_" + sTableName + "", Billerid);
+            //    }
 
 
-                            int isalesid = Convert.ToInt32(OrderBill);
+            //}
 
-                            dt = (DataTable)ViewState["Newdt"];
-                            for (int i = 0; i < GridView1all.Rows.Count; i++)
-                            {
+            //int cntt = GridView1all.Rows.Count;
 
-                                Label catid = (Label)GridView1all.Rows[i].FindControl("categoryid");
-                                Label CategoryUserid = (Label)GridView1all.Rows[i].FindControl("CategoryUserid");
-                                Label StockID = (Label)GridView1all.Rows[i].FindControl("StockID");
-
-                                TextBox Qty = (TextBox)GridView1all.Rows[i].FindControl("txtQty");
-                                //TextBox SHWQty = (TextBox)gvlist.Rows[i].FindControl("ShwQty");
-                                TextBox rate = (TextBox)GridView1all.Rows[i].FindControl("Rate");
-                                TextBox Amt = (TextBox)GridView1all.Rows[i].FindControl("Amount");
-                                //  TextBox combo = (TextBox)gvlist.Rows[i].FindControl("Combo");
-                                Label tax = (Label)GridView1all.Rows[i].FindControl("txttax");
-                                // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
-                                Label lblkotid = (Label)GridView1all.Rows[i].FindControl("lblkotid");
-                                Label lblkotNo = (Label)GridView1all.Rows[i].FindControl("lblkotNo");
+            //if (cntt == 0)
+            //{
+            //    ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Add Item.Thank You!!!');", true);
+            //    return;
+            //}
 
 
+            //txtBillDate.Text = DateTime.Now.ToString("yyyy-MM-dd hh:mm tt");
+            //// AFter Denomination Check Sales bill
+            //DataSet checkdenomaiantiondone = objbs.checkdenomination_Previousday(sTableName);
+            //if (checkdenomaiantiondone.Tables[0].Rows.Count > 0)
+            //{
+            //    ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Branch Done Denomination.Not Allow To Make Any Bill.Please Contact Administrator.Thank You!!!');", true);
+            //    return;
+            //}
+            //else
+            //{
 
-                                //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
-                                //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
+            //}
 
-                                int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, lblkotid.Text, drpsalestype.SelectedValue, Convert.ToDouble(1), "N", "0", Convert.ToDouble(1));
-                                double Istock = Convert.ToDouble(Qty.Text);
-                                iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
+            //DataSet checkdayclose = objbs.checkinser_Previousday(sTableName);
+            //if (checkdayclose.Tables[0].Rows.Count > 0)
+            //{
+            //}
+            //else
+            //{
+            //    ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Make Sure Your branch Done day Close Or Not Else Not Allow To Make Any Bill.Please Contact Administrator.Thank You!!!');", true);
+            //    return;
+            //}
+
+            //if (chkdisc.Checked == true)
+            //{
+            //    if (txtCustomerName.Text == "")
+            //    {
+            //        ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "SelectGiven();", true);
+            //        return;
+            //    }
+            //    else if (txtmobile.Text == "")
+            //    {
+
+            //        ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "Mobile();", true);
+            //        return;
+            //    }
 
 
-                            }
-                            // Update OnlineOrder Fresh
-                            if (objbs.IsConnectedToInternet())
-                            {
-                                if (OnliOrder == "Y")
-                                {
-                                    int onineupdare = objbs.onlineupdate(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status", "kotNo", OrderBill.ToString(), "kotDate", txtBillDate.Text, narration);
+            //    if (attednertype.SelectedValue == "Select Disc-Att")
+            //    {
+            //        ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Select Approval Attender.Please Contact Administrator.Thank You!!!');", true);
+            //        return;
+            //    }
+            //    else
+            //    {
+            //        Approved = attednertype.SelectedItem.Text;
+            //        ApprovedID = attednertype.SelectedValue;
 
-                                    for (int i = 0; i < GridView1all.Rows.Count; i++)
-                                    {
-                                        Label lblkotid = (Label)GridView1all.Rows[i].FindControl("lblkotid");
-                                        Label lblkotNo = (Label)GridView1all.Rows[i].FindControl("lblkotNo");
-                                        int iupdate = objbs.Transonlineupdate(lblkotid.Text);
-                                    }
-                                }
+            //    }
+            //}
+            //else
+            //{
+            //    Approved = "Nil";
+            //    ApprovedID = "0";
+            //}
 
-                                if (OnliOrder == "N")
-                                {
-                                    if (MOnliOrder == "Y")
-                                    {
-                                        // Check With Live SERVER
-                                        DataSet dcheck = objbs.checkLiveordernumber(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status");
-                                        if (dcheck.Tables[0].Rows.Count > 0)
-                                        {
-                                            OnlineOrderId = dcheck.Tables[0].Rows[0]["OnlineID"].ToString();
-                                            int onineupdare = objbs.onlineupdate(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status", "kotNo", OrderBill.ToString(), "kotDate", txtBillDate.Text, narration);
-                                        }
-                                        else
-                                        {
-                                            int iss = objbs.insertonlineorder(drpsalestype.SelectedValue, txtorderno.Text, sTableName, BranchID, lblUser.Text, "N", "0", "Y", OrderBill.ToString(), "DIR ORD", "Sale", txtBillDate.Text, narration);
-                                        }
-                                    }
-                                }
-                            }
+
+            //if (lblisnormal.Text == "Y")
+            //{
+            //    txtorderno.Text = "No";
+            //}
+            //else
+            //{
+            //    if (txtorderno.Text == "")
+            //    {
+            //        ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Please Enter Order No.Thank You!!!');", true);
+            //        return;
+            //    }
+            //    else
+            //    {
+
+            //        if (OnliOrder == "Y")
+            //        {
+            //            // Check With Live SERVER
+            //            if (objbs.IsConnectedToInternet())
+            //            {
+            //                DataSet dcheck = objbs.checkLiveordernumber(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status");
+            //                if (dcheck.Tables[0].Rows.Count > 0)
+            //                {
+            //                    OnlineOrderId = dcheck.Tables[0].Rows[0]["OnlineID"].ToString();
+            //                }
+            //                else
+            //                {
+            //                    ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Please Check Online Order no Mismatched/Duplicate Occur.Plaese Check it Again.Thank You!!!');", true);
+            //                    return;
+            //                }
+            //            }
+            //        }
+            //        else
+            //        {
+
+            //        }
+
+
+            //        //CHeck  Order Number Already Exists
+            //        DataSet dchekk = objbs.checkordernumber(drpsalestype.SelectedValue, txtorderno.Text, "tblsales_" + sTableName + "", "SalesOrder", "S");
+            //        if (dchekk.Tables[0].Rows.Count > 0)
+            //        {
+            //            ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Entered Order No is Duplicate.Plaese Check it Again.Thank You!!!');", true);
+            //            return;
+
+            //        }
+            //        else
+            //        {
+
+            //        }
+            //    }
+            //}
+
+            //#region
+
+            ////string Approved = "";
+            //if (ddlApproved.SelectedValue != "Select")
+            //{
+            //    Approved = ddlApproved.SelectedValue;
+            //}
+            //int iStockSuccess = 0;
+
+            //int iCustid = 0;
+
+            //if (txtbilled.Text.Trim() == "")
+            //{
+            //    ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Enter Billed by Name');", true);
+            //}
+            //else if (drpPayment.SelectedItem.Text.Trim() == "Select")
+            //{
+            //    ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Please Choose Cash/Credit');", true);
+            //}
+            //else
+            //{
+
+            //    #region Start
+            //    if (drpPayment.SelectedValue == "2" || drpPayment.SelectedValue == "5")
+            //    {
+            //        if (txtCustomerName.Text == "")
+            //        {
+            //            ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "SelectGiven();", true);
+            //        }
+            //        else if (txtmobile.Text == "")
+            //        {
+
+            //            ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "Mobile();", true);
+            //        }
+            //        else
+            //        {
+            //            if (txtmobile.Text != "")
+            //            {
+            //                DataSet dCustid = objbs.GerCustID(txtmobile.Text);
+            //                if (dCustid.Tables[0].Rows.Count > 0)
+            //                {
+            //                    if (dCustid.Tables[0].Rows[0]["CustomerID"].ToString() != "")
+            //                    {
+            //                        iCustid = Convert.ToInt32(dCustid.Tables[0].Rows[0]["CustomerID"].ToString());
+            //                    }
+            //                    else
+            //                    {
+            //                        iCustid = objbs.InsertCustBill(Convert.ToInt32(lblUserID.Text), txtCustomerName.Text, txtmobile.Text, "0", "", "", "", Convert.ToInt32(drpPayment.SelectedValue), "0");
+            //                    }
+            //                }
+            //                else
+            //                {
+            //                    iCustid = objbs.InsertCustBill(Convert.ToInt32(lblUserID.Text), txtCustomerName.Text, txtmobile.Text, "0", "", "", "", Convert.ToInt32(drpPayment.SelectedValue), "0");
+            //                }
+            //            }
+
+            //            if (txtReceived.Text == "")
+            //            {
+            //                txtReceived.Text = "0.00";
+            //            }
+            //            if (txtBal.Text == "")
+            //            {
+            //                txtBal.Text = "0.00";
+            //            }
+            //            if (txtDiscount1g.Text == "0")
+            //            {
+            //                //  int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, ddlApproved.SelectedValue, ddattender.SelectedValue, Session["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text),Convert.ToDouble(lblsgst.Text),Convert.ToDouble(lblsubttl.Text));
+
+            //                int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal1g.Text), Convert.ToDouble(lblGrandTotal1g.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount1g.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, ddattender.SelectedValue, Session["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgstg.Text), Convert.ToDouble(lblsgstg.Text), Convert.ToDouble(lblsubttlg.Text), lblmargin.Text, lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, "0", "0", txtDiscount1.Text, ApprovedID, txtonlineamount.Text,"","","","",lblRoundoff.Text, "tblTranssalesAmount_" + sTableName + "", Billerid);
+
+
+            //                int isalesid = Convert.ToInt32(OrderBill);
+
+            //                dt = (DataTable)ViewState["Newdt"];
+            //                for (int i = 0; i < GridView1all.Rows.Count; i++)
+            //                {
+
+            //                    Label catid = (Label)GridView1all.Rows[i].FindControl("categoryid");
+            //                    Label CategoryUserid = (Label)GridView1all.Rows[i].FindControl("CategoryUserid");
+            //                    Label StockID = (Label)GridView1all.Rows[i].FindControl("StockID");
+
+            //                    TextBox Qty = (TextBox)GridView1all.Rows[i].FindControl("txtQty");
+            //                    //TextBox SHWQty = (TextBox)gvlist.Rows[i].FindControl("ShwQty");
+            //                    TextBox rate = (TextBox)GridView1all.Rows[i].FindControl("Rate");
+            //                    TextBox Amt = (TextBox)GridView1all.Rows[i].FindControl("Amount");
+            //                    //  TextBox combo = (TextBox)gvlist.Rows[i].FindControl("Combo");
+            //                    Label tax = (Label)GridView1all.Rows[i].FindControl("txttax");
+            //                    // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
+            //                    Label lblkotid = (Label)GridView1all.Rows[i].FindControl("lblkotid");
+            //                    Label lblkotNo = (Label)GridView1all.Rows[i].FindControl("lblkotNo");
+
+
+
+            //                    //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
+            //                    //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
+
+            //                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, lblkotid.Text, drpsalestype.SelectedValue, Convert.ToDouble(1), "N", "0", Convert.ToDouble(1));
+            //                    double Istock = Convert.ToDouble(Qty.Text);
+            //                    iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
+
+
+            //                }
+            //                // Update OnlineOrder Fresh
+            //                if (objbs.IsConnectedToInternet())
+            //                {
+            //                    if (OnliOrder == "Y")
+            //                    {
+            //                        int onineupdare = objbs.onlineupdate(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status", "kotNo", OrderBill.ToString(), "kotDate", txtBillDate.Text, narration);
+
+            //                        for (int i = 0; i < GridView1all.Rows.Count; i++)
+            //                        {
+            //                            Label lblkotid = (Label)GridView1all.Rows[i].FindControl("lblkotid");
+            //                            Label lblkotNo = (Label)GridView1all.Rows[i].FindControl("lblkotNo");
+            //                            int iupdate = objbs.Transonlineupdate(lblkotid.Text);
+            //                        }
+            //                    }
+
+            //                    if (OnliOrder == "N")
+            //                    {
+            //                        if (MOnliOrder == "Y")
+            //                        {
+            //                            // Check With Live SERVER
+            //                            DataSet dcheck = objbs.checkLiveordernumber(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status");
+            //                            if (dcheck.Tables[0].Rows.Count > 0)
+            //                            {
+            //                                OnlineOrderId = dcheck.Tables[0].Rows[0]["OnlineID"].ToString();
+            //                                int onineupdare = objbs.onlineupdate(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status", "kotNo", OrderBill.ToString(), "kotDate", txtBillDate.Text, narration);
+            //                            }
+            //                            else
+            //                            {
+            //                                int iss = objbs.insertonlineorder(drpsalestype.SelectedValue, txtorderno.Text, sTableName, BranchID, lblUser.Text, "N", "0", "Y", OrderBill.ToString(), "DIR ORD", "Sale", txtBillDate.Text, narration);
+            //                            }
+            //                        }
+            //                    }
+            //                }
                            
-                            Refersh();
+            //                Refersh();
 
-                        }
+            //            }
 
-                    }
-                }
-                else
-                {
-
-
-                    if (txtmobile.Text != "")
-                    {
-                        DataSet dCustid = objbs.GerCustID(txtmobile.Text);
-                        if (dCustid.Tables[0].Rows.Count > 0)
-                        {
-                            if (dCustid.Tables[0].Rows[0]["CustomerID"].ToString() != "")
-                            {
-                                iCustid = Convert.ToInt32(dCustid.Tables[0].Rows[0]["CustomerID"].ToString());
-                            }
-                            else
-                            {
-                                iCustid = objbs.InsertCustBill(Convert.ToInt32(lblUserID.Text), txtCustomerName.Text, txtmobile.Text, "0", "", "", "", Convert.ToInt32(drpPayment.SelectedValue), "0");
-                            }
-                        }
-                        else
-                        {
-                            iCustid = objbs.InsertCustBill(Convert.ToInt32(lblUserID.Text), txtCustomerName.Text, txtmobile.Text, "0", "", "", "", Convert.ToInt32(drpPayment.SelectedValue), "0");
-                        }
-                    }
-
-                    else
-                    {
-                        txtmobile.Text = "0000000000";
-                        DataSet dCustid = objbs.GerCustID(txtmobile.Text);
-                        //if (dCustid.Tables[0].Rows[0]["CustomerID"].ToString() != "")
-                        if (dCustid.Tables[0].Rows.Count > 0)
-                        {
-                            iCustid = Convert.ToInt32(dCustid.Tables[0].Rows[0]["CustomerID"].ToString());
-                        }
-                        else
-                        {
-                            iCustid = objbs.InsertCustBill(Convert.ToInt32(lblUserID.Text), txtCustomerName.Text, txtmobile.Text, "0", "", "", "", Convert.ToInt32(drpPayment.SelectedValue), "0");
-                        }
-
-                    }
+            //        }
+            //    }
+            //    else
+            //    {
 
 
-                    if (txtReceived.Text == "")
-                    {
-                        txtReceived.Text = "0.00";
-                    }
-                    if (txtBal.Text == "")
-                    {
-                        txtBal.Text = "0.00";
-                    }
-                    if (txtDiscount1g.Text == "0")
-                    {
-                        //int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, ddlApproved.SelectedValue, ddattender.SelectedValue, Session["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text));
+            //        if (txtmobile.Text != "")
+            //        {
+            //            DataSet dCustid = objbs.GerCustID(txtmobile.Text);
+            //            if (dCustid.Tables[0].Rows.Count > 0)
+            //            {
+            //                if (dCustid.Tables[0].Rows[0]["CustomerID"].ToString() != "")
+            //                {
+            //                    iCustid = Convert.ToInt32(dCustid.Tables[0].Rows[0]["CustomerID"].ToString());
+            //                }
+            //                else
+            //                {
+            //                    iCustid = objbs.InsertCustBill(Convert.ToInt32(lblUserID.Text), txtCustomerName.Text, txtmobile.Text, "0", "", "", "", Convert.ToInt32(drpPayment.SelectedValue), "0");
+            //                }
+            //            }
+            //            else
+            //            {
+            //                iCustid = objbs.InsertCustBill(Convert.ToInt32(lblUserID.Text), txtCustomerName.Text, txtmobile.Text, "0", "", "", "", Convert.ToInt32(drpPayment.SelectedValue), "0");
+            //            }
+            //        }
 
-                        int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal1g.Text), Convert.ToDouble(lblGrandTotal1g.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount1g.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, ddattender.SelectedValue, Session["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgstg.Text), Convert.ToDouble(lblsgstg.Text), Convert.ToDouble(lblsubttlg.Text), lblmargin.Text, lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, "0", "0", txtDiscount1.Text, ApprovedID, txtonlineamount.Text, "", "", "", "", lblRoundoff.Text, "tblTranssalesAmount_" + sTableName + "", Billerid);
+            //        else
+            //        {
+            //            txtmobile.Text = "0000000000";
+            //            DataSet dCustid = objbs.GerCustID(txtmobile.Text);
+            //            //if (dCustid.Tables[0].Rows[0]["CustomerID"].ToString() != "")
+            //            if (dCustid.Tables[0].Rows.Count > 0)
+            //            {
+            //                iCustid = Convert.ToInt32(dCustid.Tables[0].Rows[0]["CustomerID"].ToString());
+            //            }
+            //            else
+            //            {
+            //                iCustid = objbs.InsertCustBill(Convert.ToInt32(lblUserID.Text), txtCustomerName.Text, txtmobile.Text, "0", "", "", "", Convert.ToInt32(drpPayment.SelectedValue), "0");
+            //            }
 
-
-                        int isalesid = Convert.ToInt32(OrderBill);
-
-                        dt = (DataTable)ViewState["Newdt"];
-                        for (int i = 0; i < GridView1all.Rows.Count; i++)
-                        {
-
-                            Label catid = (Label)GridView1all.Rows[i].FindControl("categoryid");
-                            Label CategoryUserid = (Label)GridView1all.Rows[i].FindControl("CategoryUserid");
-                            Label StockID = (Label)GridView1all.Rows[i].FindControl("StockID");
-
-                            TextBox Qty = (TextBox)GridView1all.Rows[i].FindControl("txtQty");
-                            //TextBox SHWQty = (TextBox)gvlist.Rows[i].FindControl("ShwQty");
-                            TextBox rate = (TextBox)GridView1all.Rows[i].FindControl("Rate");
-                            TextBox Amt = (TextBox)GridView1all.Rows[i].FindControl("Amount");
-                            //  TextBox combo = (TextBox)gvlist.Rows[i].FindControl("Combo");
-                            Label tax = (Label)GridView1all.Rows[i].FindControl("txttax");
-                            // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
-                            Label lblkotid = (Label)GridView1all.Rows[i].FindControl("lblkotid");
-                            Label lblkotNo = (Label)GridView1all.Rows[i].FindControl("lblkotNo");
-
-
-
-                            //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
-                            //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
-
-                            int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, lblkotid.Text, drpsalestype.SelectedValue, Convert.ToDouble(1), "N", "0", Convert.ToDouble(1));
-                            double Istock = Convert.ToDouble(Qty.Text);
-                            iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
+            //        }
 
 
-                        }
+            //        if (txtReceived.Text == "")
+            //        {
+            //            txtReceived.Text = "0.00";
+            //        }
+            //        if (txtBal.Text == "")
+            //        {
+            //            txtBal.Text = "0.00";
+            //        }
+            //        if (txtDiscount1g.Text == "0")
+            //        {
+            //            //int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, ddlApproved.SelectedValue, ddattender.SelectedValue, Session["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text));
 
-                        // Update OnlineOrder Fresh
-                        if (objbs.IsConnectedToInternet())
-                        {
-                            if (OnliOrder == "Y")
-                            {
-                                int onineupdare = objbs.onlineupdate(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status", "kotNo", OrderBill.ToString(), "kotDate", txtBillDate.Text, narration);
-
-                                for (int i = 0; i < GridView1all.Rows.Count; i++)
-                                {
-                                    Label lblkotid = (Label)GridView1all.Rows[i].FindControl("lblkotid");
-                                    Label lblkotNo = (Label)GridView1all.Rows[i].FindControl("lblkotNo");
-                                    int iupdate = objbs.Transonlineupdate(lblkotid.Text);
-                                }
-                            }
-
-                            if (OnliOrder == "N")
-                            {
-                                if (MOnliOrder == "Y")
-                                {
-                                    // Check With Live SERVER
-                                    DataSet dcheck = objbs.checkLiveordernumber(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status");
-                                    if (dcheck.Tables[0].Rows.Count > 0)
-                                    {
-                                        OnlineOrderId = dcheck.Tables[0].Rows[0]["OnlineID"].ToString();
-                                        int onineupdare = objbs.onlineupdate(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status", "kotNo", OrderBill.ToString(), "kotDate", txtBillDate.Text, narration);
-                                    }
-                                    else
-                                    {
-                                        int iss = objbs.insertonlineorder(drpsalestype.SelectedValue, txtorderno.Text, sTableName, BranchID, lblUser.Text, "N", "0", "Y", OrderBill.ToString(), "DIR ORD", "Sale", txtBillDate.Text, narration);
-                                    }
-                                }
-                            }
-                        }
-
-                        Refersh();
-                    }
-
-                    else
-                    {
-                        if (txtgiven.Text == "")
-                        {
-                            ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "SelectGiven();", true);
-                        }
+            //            int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal1g.Text), Convert.ToDouble(lblGrandTotal1g.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount1g.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, ddattender.SelectedValue, Session["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgstg.Text), Convert.ToDouble(lblsgstg.Text), Convert.ToDouble(lblsubttlg.Text), lblmargin.Text, lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, "0", "0", txtDiscount1.Text, ApprovedID, txtonlineamount.Text, "", "", "", "", lblRoundoff.Text, "tblTranssalesAmount_" + sTableName + "", Billerid);
 
 
-                        else
-                        {
-                            int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal1g.Text), Convert.ToDouble(lblGrandTotal1g.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount1g.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, ddattender.SelectedValue, Session["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgstg.Text), Convert.ToDouble(lblsgstg.Text), Convert.ToDouble(lblsubttlg.Text), lblmargin.Text, lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, "0", "0", txtDiscount1.Text, ApprovedID, txtonlineamount.Text, "", "", "", "", lblRoundoff.Text, "tblTranssalesAmount_" + sTableName + "", Billerid);
+            //            int isalesid = Convert.ToInt32(OrderBill);
 
+            //            dt = (DataTable)ViewState["Newdt"];
+            //            for (int i = 0; i < GridView1all.Rows.Count; i++)
+            //            {
 
-                            int isalesid = Convert.ToInt32(OrderBill);
+            //                Label catid = (Label)GridView1all.Rows[i].FindControl("categoryid");
+            //                Label CategoryUserid = (Label)GridView1all.Rows[i].FindControl("CategoryUserid");
+            //                Label StockID = (Label)GridView1all.Rows[i].FindControl("StockID");
 
-                            dt = (DataTable)ViewState["Newdt"];
-                            for (int i = 0; i < GridView1all.Rows.Count; i++)
-                            {
-
-                                Label catid = (Label)GridView1all.Rows[i].FindControl("categoryid");
-                                Label CategoryUserid = (Label)GridView1all.Rows[i].FindControl("CategoryUserid");
-                                Label StockID = (Label)GridView1all.Rows[i].FindControl("StockID");
-
-                                TextBox Qty = (TextBox)GridView1all.Rows[i].FindControl("txtQty");
-                                //TextBox SHWQty = (TextBox)gvlist.Rows[i].FindControl("ShwQty");
-                                TextBox rate = (TextBox)GridView1all.Rows[i].FindControl("Rate");
-                                TextBox Amt = (TextBox)GridView1all.Rows[i].FindControl("Amount");
-                                //  TextBox combo = (TextBox)gvlist.Rows[i].FindControl("Combo");
-                                Label tax = (Label)GridView1all.Rows[i].FindControl("txttax");
-                                // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
-                                Label lblkotid = (Label)GridView1all.Rows[i].FindControl("lblkotid");
-                                Label lblkotNo = (Label)GridView1all.Rows[i].FindControl("lblkotNo");
+            //                TextBox Qty = (TextBox)GridView1all.Rows[i].FindControl("txtQty");
+            //                //TextBox SHWQty = (TextBox)gvlist.Rows[i].FindControl("ShwQty");
+            //                TextBox rate = (TextBox)GridView1all.Rows[i].FindControl("Rate");
+            //                TextBox Amt = (TextBox)GridView1all.Rows[i].FindControl("Amount");
+            //                //  TextBox combo = (TextBox)gvlist.Rows[i].FindControl("Combo");
+            //                Label tax = (Label)GridView1all.Rows[i].FindControl("txttax");
+            //                // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
+            //                Label lblkotid = (Label)GridView1all.Rows[i].FindControl("lblkotid");
+            //                Label lblkotNo = (Label)GridView1all.Rows[i].FindControl("lblkotNo");
 
 
 
-                                //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
-                                //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
+            //                //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
+            //                //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
-                                int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, lblkotid.Text, drpsalestype.SelectedValue, Convert.ToDouble(1), "N", "0", Convert.ToDouble(1));
-                                double Istock = Convert.ToDouble(Qty.Text);
-                                iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
+            //                int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, lblkotid.Text, drpsalestype.SelectedValue, Convert.ToDouble(1), "N", "0", Convert.ToDouble(1));
+            //                double Istock = Convert.ToDouble(Qty.Text);
+            //                iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
 
 
-                            }
-                            // Update OnlineOrder Fresh
-                            if (objbs.IsConnectedToInternet())
-                            {
-                                if (OnliOrder == "Y")
-                                {
-                                    int onineupdare = objbs.onlineupdate(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status", "kotNo", OrderBill.ToString(), "kotDate", txtBillDate.Text, narration);
+            //            }
 
-                                    for (int i = 0; i < GridView1all.Rows.Count; i++)
-                                    {
-                                        Label lblkotid = (Label)GridView1all.Rows[i].FindControl("lblkotid");
-                                        Label lblkotNo = (Label)GridView1all.Rows[i].FindControl("lblkotNo");
-                                        int iupdate = objbs.Transonlineupdate(lblkotid.Text);
-                                    }
-                                }
+            //            // Update OnlineOrder Fresh
+            //            if (objbs.IsConnectedToInternet())
+            //            {
+            //                if (OnliOrder == "Y")
+            //                {
+            //                    int onineupdare = objbs.onlineupdate(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status", "kotNo", OrderBill.ToString(), "kotDate", txtBillDate.Text, narration);
 
-                                if (OnliOrder == "N")
-                                {
-                                    if (MOnliOrder == "Y")
-                                    {
-                                        // Check With Live SERVER
-                                        DataSet dcheck = objbs.checkLiveordernumber(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status");
-                                        if (dcheck.Tables[0].Rows.Count > 0)
-                                        {
-                                            OnlineOrderId = dcheck.Tables[0].Rows[0]["OnlineID"].ToString();
-                                            int onineupdare = objbs.onlineupdate(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status", "kotNo", OrderBill.ToString(), "kotDate", txtBillDate.Text, narration);
-                                        }
-                                        else
-                                        {
-                                            int iss = objbs.insertonlineorder(drpsalestype.SelectedValue, txtorderno.Text, sTableName, BranchID, lblUser.Text, "N", "0", "Y", OrderBill.ToString(), "DIR ORD", "Sale", txtBillDate.Text, narration);
-                                        }
-                                    }
-                                }
-                            }
+            //                    for (int i = 0; i < GridView1all.Rows.Count; i++)
+            //                    {
+            //                        Label lblkotid = (Label)GridView1all.Rows[i].FindControl("lblkotid");
+            //                        Label lblkotNo = (Label)GridView1all.Rows[i].FindControl("lblkotNo");
+            //                        int iupdate = objbs.Transonlineupdate(lblkotid.Text);
+            //                    }
+            //                }
 
-                            Refersh();
-                        }
+            //                if (OnliOrder == "N")
+            //                {
+            //                    if (MOnliOrder == "Y")
+            //                    {
+            //                        // Check With Live SERVER
+            //                        DataSet dcheck = objbs.checkLiveordernumber(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status");
+            //                        if (dcheck.Tables[0].Rows.Count > 0)
+            //                        {
+            //                            OnlineOrderId = dcheck.Tables[0].Rows[0]["OnlineID"].ToString();
+            //                            int onineupdare = objbs.onlineupdate(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status", "kotNo", OrderBill.ToString(), "kotDate", txtBillDate.Text, narration);
+            //                        }
+            //                        else
+            //                        {
+            //                            int iss = objbs.insertonlineorder(drpsalestype.SelectedValue, txtorderno.Text, sTableName, BranchID, lblUser.Text, "N", "0", "Y", OrderBill.ToString(), "DIR ORD", "Sale", txtBillDate.Text, narration);
+            //                        }
+            //                    }
+            //                }
+            //            }
 
-                    }
-                }
+            //            Refersh();
+            //        }
 
-                #endregion
-            }
+            //        else
+            //        {
+            //            if (txtgiven.Text == "")
+            //            {
+            //                ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "SelectGiven();", true);
+            //            }
 
-            #endregion
+
+            //            else
+            //            {
+            //                int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal1g.Text), Convert.ToDouble(lblGrandTotal1g.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount1g.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, ddattender.SelectedValue, Session["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgstg.Text), Convert.ToDouble(lblsgstg.Text), Convert.ToDouble(lblsubttlg.Text), lblmargin.Text, lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, "0", "0", txtDiscount1.Text, ApprovedID, txtonlineamount.Text, "", "", "", "", lblRoundoff.Text, "tblTranssalesAmount_" + sTableName + "", Billerid);
+
+
+            //                int isalesid = Convert.ToInt32(OrderBill);
+
+            //                dt = (DataTable)ViewState["Newdt"];
+            //                for (int i = 0; i < GridView1all.Rows.Count; i++)
+            //                {
+
+            //                    Label catid = (Label)GridView1all.Rows[i].FindControl("categoryid");
+            //                    Label CategoryUserid = (Label)GridView1all.Rows[i].FindControl("CategoryUserid");
+            //                    Label StockID = (Label)GridView1all.Rows[i].FindControl("StockID");
+
+            //                    TextBox Qty = (TextBox)GridView1all.Rows[i].FindControl("txtQty");
+            //                    //TextBox SHWQty = (TextBox)gvlist.Rows[i].FindControl("ShwQty");
+            //                    TextBox rate = (TextBox)GridView1all.Rows[i].FindControl("Rate");
+            //                    TextBox Amt = (TextBox)GridView1all.Rows[i].FindControl("Amount");
+            //                    //  TextBox combo = (TextBox)gvlist.Rows[i].FindControl("Combo");
+            //                    Label tax = (Label)GridView1all.Rows[i].FindControl("txttax");
+            //                    // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
+            //                    Label lblkotid = (Label)GridView1all.Rows[i].FindControl("lblkotid");
+            //                    Label lblkotNo = (Label)GridView1all.Rows[i].FindControl("lblkotNo");
+
+
+
+            //                    //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
+            //                    //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
+
+            //                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, lblkotid.Text, drpsalestype.SelectedValue, Convert.ToDouble(1), "N", "0", Convert.ToDouble(1));
+            //                    double Istock = Convert.ToDouble(Qty.Text);
+            //                    iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
+
+
+            //                }
+            //                // Update OnlineOrder Fresh
+            //                if (objbs.IsConnectedToInternet())
+            //                {
+            //                    if (OnliOrder == "Y")
+            //                    {
+            //                        int onineupdare = objbs.onlineupdate(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status", "kotNo", OrderBill.ToString(), "kotDate", txtBillDate.Text, narration);
+
+            //                        for (int i = 0; i < GridView1all.Rows.Count; i++)
+            //                        {
+            //                            Label lblkotid = (Label)GridView1all.Rows[i].FindControl("lblkotid");
+            //                            Label lblkotNo = (Label)GridView1all.Rows[i].FindControl("lblkotNo");
+            //                            int iupdate = objbs.Transonlineupdate(lblkotid.Text);
+            //                        }
+            //                    }
+
+            //                    if (OnliOrder == "N")
+            //                    {
+            //                        if (MOnliOrder == "Y")
+            //                        {
+            //                            // Check With Live SERVER
+            //                            DataSet dcheck = objbs.checkLiveordernumber(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status");
+            //                            if (dcheck.Tables[0].Rows.Count > 0)
+            //                            {
+            //                                OnlineOrderId = dcheck.Tables[0].Rows[0]["OnlineID"].ToString();
+            //                                int onineupdare = objbs.onlineupdate(drpsalestype.SelectedValue, txtorderno.Text, sTableName, "status", "kotNo", OrderBill.ToString(), "kotDate", txtBillDate.Text, narration);
+            //                            }
+            //                            else
+            //                            {
+            //                                int iss = objbs.insertonlineorder(drpsalestype.SelectedValue, txtorderno.Text, sTableName, BranchID, lblUser.Text, "N", "0", "Y", OrderBill.ToString(), "DIR ORD", "Sale", txtBillDate.Text, narration);
+            //                            }
+            //                        }
+            //                    }
+            //                }
+
+            //                Refersh();
+            //            }
+
+            //        }
+            //    }
+
+            //    #endregion
+            //}
+
+            //#endregion
 
         }
 
