@@ -1319,6 +1319,7 @@ namespace Billing.Accountsbootstrap
             gvcustomerorder.DataBind();
 
             totcalculate();
+          
         }
 
         public void totcalculate()
@@ -1855,7 +1856,7 @@ namespace Billing.Accountsbootstrap
                             //else
                             //{
                             int Transpurchase = kbs.insertTransPurchase(sTableName, insertPurchase, idef, dQty, DRate, dAmount, Convert.ToDecimal(billno.Text), Convert.ToInt32(lblUserID.Text), lblunitsid.Text, Convert.ToDecimal(billno.Text), Convert.ToInt32(0), "", txtexpireddate.Text, txtnarrations.Text, Convert.ToDouble(txtDisCount.Text), Convert.ToDouble(txtDisCountAmount.Text), lblprimarynamevalue.Text, Convert.ToDouble(lblprimaryvalue.Text), Convert.ToDouble(txtpqty.Text));
-
+                            txtexpireddate.Text = "";
                             if (BillingType == "Purchase Order")
                             {
                                 int iSucess = kbs.UpdatePOSTk(PONo, sTableName, dQty, idef);
@@ -3479,6 +3480,32 @@ namespace Billing.Accountsbootstrap
                         ddlbank.SelectedValue = dagent.Tables[0].Rows[0]["Bank"].ToString();
                     }
                     txtcheque.Text = dagent.Tables[0].Rows[0]["ChequeNo"].ToString();
+
+                    //---------------Shanthi 27/2/23  for Additems in purchase order option
+                    DataSet dsCategory = kbs.GetSupplierIngredient(Convert.ToInt32(ddlsuplier.SelectedValue), drpitemload.SelectedValue);
+
+                    if (dsCategory.Tables[0].Rows.Count > 0)
+                    {
+                        drpmingredents.DataSource = dsCategory.Tables[0];
+                        drpmingredents.DataTextField = "IngredientName";
+                        drpmingredents.DataValueField = "IngridID";
+                        drpmingredents.DataBind();
+                        drpmingredents.Items.Insert(0, "Select IngredientName");
+                    }
+                    DataSet dprimary = kbs.PrimaryUNITS();
+                    if (dprimary.Tables[0].Rows.Count > 0)
+                    {
+                        ddlmprimaryunits.DataSource = dprimary.Tables[0];
+                        ddlmprimaryunits.DataTextField = "Primaryname";
+                        ddlmprimaryunits.DataValueField = "PrimaryUOMID";
+                        ddlmprimaryunits.DataBind();
+                        ddlmprimaryunits.Items.Insert(0, "Select PrimaryUom");
+                    }
+                    txtbillno.Enabled = false;
+                    txtsdate1.Enabled = false;
+                    ddlpaymode.Enabled = false;
+                    //-------------------
+
                     // Button1.Text = "update";
 
                     DataSet transpur = kbs.getpotranslist(drpPO.SelectedValue, sTableName);
@@ -3976,7 +4003,13 @@ namespace Billing.Accountsbootstrap
             {
                 supplier = Convert.ToInt32(ddlsuplier.SelectedValue);
             }
-
+            if(rbtype.SelectedValue=="2")
+            {
+                txtsdate1.Enabled = false;
+                txtbillno.Enabled = false;
+                ddlpaymode.Enabled = false;
+                drpitemload.Enabled = false;
+            }
 
             DataSet dss = kbs.getingreUnits(drpmingredents.SelectedValue, supplier.ToString(), drpitemload.SelectedValue);
             if (dss.Tables[0].Rows.Count > 0)
@@ -4019,6 +4052,7 @@ namespace Billing.Accountsbootstrap
 
                 txtmpqty.Text = (Convert.ToDouble(txtmQty.Text) * Convert.ToDouble(lblmprimaryvalue.Text)).ToString("0.00");
             }
+            
         }
 
         protected void ddlDef_OnSelectedIndexChangedOLD(object sender, EventArgs e)

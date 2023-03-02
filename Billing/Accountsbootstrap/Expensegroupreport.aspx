@@ -111,7 +111,7 @@
                                             <tr>
                                                 <td>
                                                     <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
-                                                    <asp:GridView ID="gvCustsales" runat="server" AllowPaging="true" PageSize="100" CssClass="myGridStyle"
+                                                    <asp:GridView ID="gvCustsales" runat="server" AllowPaging="true" PageSize="100" cssClass="table table-striped pos-table"
                                                         DataKeyNames="LedgerID" ShowFooter="true" OnPageIndexChanging="Page_Change" OnRowDataBound="gvCustsales_RowDataBound"
                                                         AutoGenerateColumns="false" EmptyDataText="No data found!" ShowHeaderWhenEmpty="True">
                                                         <Columns>
@@ -145,11 +145,12 @@
                                                             
                                                            
                                                         </Columns>
-                                                        <HeaderStyle BackColor="#990000" />
+                                                       <%-- <HeaderStyle BackColor="#990000" />--%>
+                                                        <HeaderStyle BackColor=" #afc3dd" />
                                                         <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
                                                             NextPageText="Next" PreviousPageText="Previous" />
                                                         <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
-                                                        <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                                                        <HeaderStyle BackColor="#afc3dd" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
                                                     </asp:GridView>
                                                 </td>
                                             </tr>

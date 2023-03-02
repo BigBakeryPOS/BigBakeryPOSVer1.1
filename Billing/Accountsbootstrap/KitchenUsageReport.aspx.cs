@@ -25,6 +25,7 @@ namespace Billing.Accountsbootstrap
         double grandRecQty = 0;
         double GrandTotalmssing = 0;
         double GrandTotaldamage = 0;
+        double GrandTotalAmount = 0;
         double GrandDamage = 0;
         double Discount = 0; double Receipt = 0;
         double EGrandTotal = 0; double EDiscount = 0; double EReceipt = 0;
@@ -265,8 +266,7 @@ namespace Billing.Accountsbootstrap
                 grandRecQty += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "Recqty"));
                 GrandTotalmssing += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "MissingQty"));
                 GrandTotaldamage += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "DamageQty"));
-
-
+                GrandTotalAmount += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "TotalAmount"));
             }
             if (e.Row.RowType == DataControlRowType.Footer)
             {
@@ -275,7 +275,7 @@ namespace Billing.Accountsbootstrap
                 e.Row.Cells[8].Text = grandRecQty.ToString("f2");
                 e.Row.Cells[9].Text = GrandTotalmssing.ToString("f2");
                 e.Row.Cells[10].Text = GrandTotaldamage.ToString("f2");
-
+                e.Row.Cells[13].Text = GrandTotalAmount.ToString("f2");
 
             }
         }

@@ -272,6 +272,7 @@
     <Content Include="Accountsbootstrap\EmployeeMaster.aspx" />
     <Content Include="Accountsbootstrap\Error_Page.aspx" />
     <Content Include="Accountsbootstrap\Expense.aspx" />
+    <Content Include="Accountsbootstrap\ExpenseDetails.aspx" />
     <Content Include="Accountsbootstrap\Expensegrid.aspx" />
     <Content Include="Accountsbootstrap\Expensegroupreport.aspx" />
     <Content Include="Accountsbootstrap\Expenses.htm" />
@@ -1702,6 +1703,13 @@
     </Compile>
     <Compile Include="Accountsbootstrap\Expense.aspx.designer.cs">
       <DependentUpon>Expense.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\ExpenseDetails.aspx.cs">
+      <DependentUpon>ExpenseDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\ExpenseDetails.aspx.designer.cs">
+      <DependentUpon>ExpenseDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\Expensegrid.aspx.cs">
       <DependentUpon>Expensegrid.aspx</DependentUpon>

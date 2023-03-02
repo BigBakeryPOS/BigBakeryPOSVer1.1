@@ -21,6 +21,15 @@ namespace Billing.Accountsbootstrap
         string sTableName = "";
         double ttlNetAmount = 0;
 
+        int intSubTotalIndex = 1;
+        string PreviousRowID = string.Empty;
+
+        double SubTotalQuantity = 0;
+        double SubTotalAmount = 0;
+
+        double GrandTotalQuantity = 0;
+        double GrandTotalAmont = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
@@ -53,6 +62,8 @@ namespace Billing.Accountsbootstrap
                     ddlsupplier.Items.Insert(0, "All");
                 }
 
+               
+
 
             }
 
@@ -63,22 +74,161 @@ namespace Billing.Accountsbootstrap
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                PreviousRowID = DataBinder.Eval(e.Row.DataItem, "PaymentNo").ToString();
                 ttlNetAmount += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "NetAmount"));
+                // }
+                //if (e.Row.RowType == DataControlRowType.Footer)
+                //{
+
+                //    e.Row.Cells[6].Text = "Total :";
+                //    e.Row.Cells[7].Text = ttlNetAmount.ToString("f2");
+
+                //}
+                SubTotalQuantity += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "NetAmount").ToString());
+                GrandTotalQuantity += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "NetAmount").ToString());
             }
-            if (e.Row.RowType == DataControlRowType.Footer)
-            {
-
-                e.Row.Cells[6].Text = "Total :";
-                e.Row.Cells[7].Text = ttlNetAmount.ToString("f2");
-
-            }
-
         }
 
+        protected void gvReport_OnRowCreated(object sender, GridViewRowEventArgs e)
+        {
+            if (ddltype.SelectedValue == "2")
+            {
+                #region
+
+                bool IsSubTotalRowNeedToAdd = false;
+                bool IsGrandTotalRowNeedtoAdd = false;
+                if ((PreviousRowID != string.Empty) && (DataBinder.Eval(e.Row.DataItem, "PaymentNo") != null))
+                    if (PreviousRowID != DataBinder.Eval(e.Row.DataItem, "PaymentNo").ToString())
+                        IsSubTotalRowNeedToAdd = true;
+                if ((PreviousRowID != string.Empty) && (DataBinder.Eval(e.Row.DataItem, "PaymentNo") == null))
+                {
+                    IsSubTotalRowNeedToAdd = true;
+                    IsGrandTotalRowNeedtoAdd = true;
+                    intSubTotalIndex = 0;
+                }
+
+                //Inserting first Row and populating fist Group Header details
+                if ((PreviousRowID == string.Empty) && (DataBinder.Eval(e.Row.DataItem, "PaymentNo") != null))
+                {
+                    GridView gridPurchase = (GridView)sender;
+                    GridViewRow row = new GridViewRow(0, 0, DataControlRowType.DataRow, DataControlRowState.Insert);
+                    TableCell cell = new TableCell();
+                    cell.Text = "Supplier Name : " + DataBinder.Eval(e.Row.DataItem, "LedgerName").ToString();
+                    cell.ColumnSpan = 15;
+                    cell.CssClass = "GroupHeaderStyle";
+                    row.Cells.Add(cell);
+                    gridPurchase.Controls[0].Controls.AddAt(e.Row.RowIndex + intSubTotalIndex, row);
+                    intSubTotalIndex++;
+                }
 
 
+                if (IsSubTotalRowNeedToAdd)
+                {
+                    GridView gridPurchase = (GridView)sender;
+                    GridViewRow row = new GridViewRow(0, 0, DataControlRowType.DataRow, DataControlRowState.Insert);
 
-        protected void btnExcel_Click(object sender, EventArgs e)
+                    TableCell cell = new TableCell();
+                    cell.ColumnSpan =4;
+                    cell.CssClass = "SubTotalRowStyle";
+                    row.Cells.Add(cell);
+
+                    cell = new TableCell();
+                    cell.Text = "SUB TOTAL";
+                    cell.HorizontalAlign = HorizontalAlign.Center;
+                    cell.CssClass = "SubTotalRowStyle";
+                    row.Cells.Add(cell);
+
+                    cell = new TableCell();
+                    cell.Text = string.Format("{0:0.00}", SubTotalQuantity);
+                    cell.HorizontalAlign = HorizontalAlign.Right;
+                    cell.CssClass = "SubTotalRowStyle";
+                    row.Cells.Add(cell);
+
+                    cell = new TableCell();
+                    cell.ColumnSpan = 4;
+                    cell.CssClass = "SubTotalRowStyle";
+                    row.Cells.Add(cell);
+
+                    //cell = new TableCell();
+                    //cell.Text = string.Format("{0:0.00}", SubTotalAmount);
+                    //cell.HorizontalAlign = HorizontalAlign.Right;
+                    //cell.CssClass = "SubTotalRowStyle";
+                    //row.Cells.Add(cell);
+
+                    //cell = new TableCell();
+                    //cell.ColumnSpan = 2;
+                    //cell.CssClass = "SubTotalRowStyle";
+                    //row.Cells.Add(cell);
+
+                    gridPurchase.Controls[0].Controls.AddAt(e.Row.RowIndex + intSubTotalIndex, row);
+                    intSubTotalIndex++;
+
+                    if (DataBinder.Eval(e.Row.DataItem, "PaymentNo") != null)
+                    {
+                        row = new GridViewRow(0, 0, DataControlRowType.DataRow, DataControlRowState.Insert);
+                        cell = new TableCell();
+                        cell.Text = "Supplier Name : " + DataBinder.Eval(e.Row.DataItem, "LedgerName").ToString();
+                        cell.ColumnSpan =15;
+                        cell.CssClass = "GroupHeaderStyle";
+                        row.Cells.Add(cell);
+                        gridPurchase.Controls[0].Controls.AddAt(e.Row.RowIndex + intSubTotalIndex, row);
+                        intSubTotalIndex++;
+                    }
+
+                    SubTotalAmount = 0;
+                    SubTotalQuantity = 0;
+
+                }
+                if (IsGrandTotalRowNeedtoAdd)
+                {
+
+                    GridView gridPurchase = (GridView)sender;
+                    GridViewRow row = new GridViewRow(0, 0, DataControlRowType.DataRow, DataControlRowState.Insert);
+
+                    TableCell cell = new TableCell();
+                    cell.ColumnSpan = 5;
+                    cell.CssClass = "GrandTotalRowStyle";
+                    row.Cells.Add(cell);
+
+                    cell = new TableCell();
+                    cell.Text = "Grand Total";
+                    cell.HorizontalAlign = HorizontalAlign.Center;
+                    cell.CssClass = "GrandTotalRowStyle";
+                    row.Cells.Add(cell);
+
+                    cell = new TableCell();
+                    cell.Text = string.Format("{0:0.00}", GrandTotalQuantity);
+                    cell.HorizontalAlign = HorizontalAlign.Right;
+                    cell.CssClass = "GrandTotalRowStyle";
+                    row.Cells.Add(cell);
+
+                    cell = new TableCell();
+                    cell.ColumnSpan = 4;
+                    cell.CssClass = "GrandTotalRowStyle";
+                    row.Cells.Add(cell);
+
+                    //cell = new TableCell();
+                    //cell.Text = string.Format("{0:0.00}", GrandTotalAmont);
+                    //cell.HorizontalAlign = HorizontalAlign.Right;
+                    //cell.CssClass = "GrandTotalRowStyle";
+                    //row.Cells.Add(cell);
+
+                    cell = new TableCell();
+                    cell.ColumnSpan = 2;
+                    cell.CssClass = "GrandTotalRowStyle";
+                    row.Cells.Add(cell);
+
+                    gridPurchase.Controls[0].Controls.AddAt(e.Row.RowIndex, row);
+
+                }
+            }
+
+                #endregion
+            }
+        
+
+
+            protected void btnExcel_Click(object sender, EventArgs e)
         {
             Response.Clear();
             Response.AddHeader("content-disposition", "attachment;filename= PaymentEntryReport.xls");

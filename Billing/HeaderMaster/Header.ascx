@@ -429,7 +429,7 @@
                 <li id="ISGRG" runat="server" visible="false"><a href="../Accountsbootstrap/InterstoreGoodsReceivedGrid.aspx">Inter Production Stock Received</a> </li>
             </ul>
         </li>
-        <li id="Payments" visible="true" runat="server" class='has-sub'><a href="javascript:;" style="color: White">Receipts </a>
+        <li id="Payments" visible="false" runat="server" class='has-sub'><a href="javascript:;" style="color: White">Receipts </a>
             <ul>
                 <li id="CustomerSalesReceipts" runat="server" visible="false"><a href="../Accountsbootstrap/CashReceipts.aspx">Dealer Sales Receipts</a></li>
                 <li id="CusSalesReceipts" runat="server" visible="false"><a href="../Accountsbootstrap/CashReceiptsGrid.aspx">Customer Sales Receipts</a></li>
