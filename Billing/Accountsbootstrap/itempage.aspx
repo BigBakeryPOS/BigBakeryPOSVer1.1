@@ -16,8 +16,8 @@
     <script type="text/javascript" language="javascript">
         function valchk() {
             if (dropdownchk(document.getElementById('ddlcategory'), "Select Category")
-            //&& dropdownchk(document.getElementById('ddlgroup'), "Account Group")  
-        && blankchk(document.getElementById('txtdescription'), "Description")) {
+                //&& dropdownchk(document.getElementById('ddlgroup'), "Account Group")  
+                && blankchk(document.getElementById('txtdescription'), "Description")) {
                 alert("true");
             }
             else {
@@ -25,7 +25,7 @@
                 return false;
             }
         }
-        
+
 
     </script>
     <script type="text/javascript">
@@ -129,7 +129,7 @@
                     <div class="panel-body">
                         <asp:ScriptManager ID="sc" runat="server">
                         </asp:ScriptManager>
-                        <div style="display: none" >
+                        <div style="display: none">
                             <%--  <blink><label style="color:Red; font-size:10px;>Please Be CareFul.Selecting Below Multiselect CheckBox </label></blink>--%>
                             <div class="form-group">
                                 <label>
@@ -193,6 +193,23 @@
                                     <asp:ListItem Text="Each" Selected="True" Value="E"></asp:ListItem>
                                     <asp:ListItem Text="Decimal Value" Value="D"></asp:ListItem>
                                 </asp:RadioButtonList>
+                                <br />
+                                <label>
+                                    Tax
+                                </label>
+                                <asp:DropDownList CssClass="form-control" ID="ddltax" AutoPostBack="true" OnTextChanged="mrp_calculation"
+                                    runat="server">
+                                </asp:DropDownList>
+                                <br />
+                                <label>
+                                    Rate Type
+                                </label>
+                                <asp:DropDownList ID="drpratetype" runat="server" CssClass="form-control" OnSelectedIndexChanged="mrp_calculation"
+                                    AutoPostBack="true">
+                                    <asp:ListItem Text="Inclusive of Tax" Value="1"></asp:ListItem>
+                                    <asp:ListItem Text="Exclusive of Tax" Selected="True" Value="2"></asp:ListItem>
+                                </asp:DropDownList>
+                                <br />
                                 <%--<button type="submit" class="btn btn-success" onclick="Add_Click">Add</button>--%>
                             </div>
                         </div>
@@ -203,39 +220,12 @@
                                 <asp:TextBox CssClass="form-control" ID="txtSize" runat="server" Visible="false"
                                     MaxLength="150">0</asp:TextBox>
                                 <label>
-                                    Tax
-                                </label>
-                               <%-- <asp:DropDownList CssClass="form-control" ID="ddltax" AutoPostBack="true" OnTextChanged="mrp_calculation"
-                                    runat="server">
-                                </asp:DropDownList>--%>
-                                 <asp:DropDownList CssClass="form-control" ID="ddltax" AutoPostBack="true" 
-                                    runat="server">
-                                </asp:DropDownList>
+                                    Default Currency</label><br />
+                                <asp:Label ID="lbldefaultcurrencyid" runat="server" Text="0" Visible="false"></asp:Label>
+                                <asp:Label ID="lbldefaultcurrencyname" runat="server"></asp:Label>
+                                <br />
                                 <br />
 
-                                <label>
-                                    Rate Type
-                                </label>
-                                <asp:DropDownList ID="drpratetype" runat="server" CssClass="form-control" OnSelectedIndexChanged="mrp_calculation"
-                                    AutoPostBack="true">
-                                    <asp:ListItem Text="Inclusive of Tax" Value="1"></asp:ListItem>
-                                    <asp:ListItem Text="Exclusive of Tax" Selected="True" Value="2"></asp:ListItem>
-                                </asp:DropDownList>
-                                <br />
-
-                                <label>
-                                    MRP Price
-                                </label>
-                                <asp:TextBox CssClass="form-control" ID="txtMRPPrice" Enabled="false" AutoPostBack="true"
-                                    OnTextChanged="mrp_calculation" runat="server" MaxLength="150"></asp:TextBox>
-                                <br />
-
-                                <label>
-                                    Rate *(Exclusive of Tax)
-                                </label>
-                                <asp:TextBox ID="txtRate" runat="server" Enabled="false" AutoPostBack="true" OnTextChanged="mrp_calculation"
-                                    CssClass="form-control"></asp:TextBox>
-                                <br />
                                 <div class="form-group" id="purchase" runat="server" visible="false">
                                     <label>
                                         Expiry Date Required</label>
@@ -252,12 +242,7 @@
                                     Minimum Stock Alert
                                 </label>
                                 <asp:TextBox CssClass="form-control" ID="txtminumumstock" runat="server" MaxLength="150">0</asp:TextBox>
-                            </div>
-                        </div>
-
-
-                        <div class="col-lg-4">
-                            <div class="list-group">
+                                <br />
                                 <label>
                                     Display Online
                                 </label>
@@ -266,9 +251,6 @@
                                     <asp:ListItem Text="No" Value="N"></asp:ListItem>
                                 </asp:RadioButtonList>
                                 <br />
-
-
-
                                 <label>
                                     Image Upload</label>
                                 <asp:UpdatePanel ID="UpdatePanel" runat="server">
@@ -305,6 +287,67 @@
                                     Description
                                 </label>
                                 <asp:TextBox CssClass="form-control" ID="txtDetails" TextMode="MultiLine" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-2">
+                            <div class="list-group">
+                                <div class="form-group">
+                                    <label>
+                                        MRP Price :
+                                        <asp:Label ID="lblpricename" Text="" runat="server"></asp:Label>
+                                    </label>
+                                    <asp:TextBox CssClass="form-control" ID="txtMRPPrice" Enabled="false" AutoPostBack="true"
+                                        OnTextChanged="mrp_calculation" runat="server" MaxLength="150"></asp:TextBox>
+                                </div>
+                                <br />
+                                <div id="mrp1" runat="server" visible="false" class="form-group">
+                                    <label>
+                                        MRP Price :
+                                        <asp:Label ID="lblpricename1" Text="" runat="server"></asp:Label>
+                                    </label>
+                                    <asp:TextBox CssClass="form-control" ID="txtMRPPrice1" Enabled="false" AutoPostBack="true"
+                                        OnTextChanged="mrp_calculation" runat="server" MaxLength="150"></asp:TextBox>
+                                </div>
+                                <br />
+                                <div id="mrp2" runat="server" visible="false" class="form-group">
+                                    <label>
+                                        MRP Price :
+                                        <asp:Label ID="lblpricename2" Text="" runat="server"></asp:Label>
+                                    </label>
+                                    <asp:TextBox CssClass="form-control" ID="txtMRPPrice2" Enabled="false" AutoPostBack="true"
+                                        OnTextChanged="mrp_calculation" runat="server" MaxLength="150"></asp:TextBox>
+                                </div>
+                                <br />
+                                <div id="mrp3" runat="server" visible="false" class="form-group">
+                                    <label>
+                                        MRP Price :
+                                        <asp:Label ID="lblpricename3" Text="KSH" runat="server"></asp:Label>
+                                    </label>
+                                    <asp:TextBox CssClass="form-control" ID="txtMRPPrice3" Enabled="false" AutoPostBack="true"
+                                        OnTextChanged="mrp_calculation" runat="server" MaxLength="150"></asp:TextBox>
+                                </div>
+                                <br />
+                                <div id="mrp4" runat="server" visible="false" class="form-group">
+                                    <label>
+                                        MRP Price :
+                                        <asp:Label ID="lblpricename4" runat="server"></asp:Label>
+                                    </label>
+                                    <asp:TextBox CssClass="form-control" ID="txtMRPPrice4" Enabled="false" AutoPostBack="true"
+                                        OnTextChanged="mrp_calculation" runat="server" MaxLength="150"></asp:TextBox>
+                                </div>
+                                <br />
+                                <div id="mrp5" runat="server" visible="false" class="form-group">
+                                    <label>
+                                        MRP Price :
+                                        <asp:Label ID="lblpricename5" runat="server"></asp:Label>
+                                    </label>
+                                    <asp:TextBox CssClass="form-control" ID="txtMRPPrice5" Enabled="false" AutoPostBack="true"
+                                        OnTextChanged="mrp_calculation" runat="server" MaxLength="150"></asp:TextBox>
+                                </div>
+                                <br />
+
 
                                 <div class="form-group" runat="server" visible="false">
                                     <label>
@@ -324,29 +367,80 @@
                                     </asp:UpdatePanel>
                                     <asp:GridView ID="GridView2" runat="server">
                                         <Columns>
-                                           <asp:TemplateField HeaderText="Rate Name">
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="lblCategory" runat="server" Text='<%#Eval("Category") %>'></asp:Label>
-                                                            <asp:HiddenField ID="hideCategoryID" runat="server" Value='<%#Eval("CategoryID") %>' />
-                                                            <asp:HiddenField ID="hideCategoryUserID" runat="server" Value='<%#Eval("CategoryUserID") %>' />
-                                                            <asp:HiddenField ID="hideUOMID" runat="server" Value='<%#Eval("UOMID") %>' />
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Enter Rate">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox ID="txtrate" runat="server" CssClass="form-control" ></asp:TextBox>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Rate Name">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblCategory" runat="server" Text='<%#Eval("Category") %>'></asp:Label>
+                                                    <asp:HiddenField ID="hideCategoryID" runat="server" Value='<%#Eval("CategoryID") %>' />
+                                                    <asp:HiddenField ID="hideCategoryUserID" runat="server" Value='<%#Eval("CategoryUserID") %>' />
+                                                    <asp:HiddenField ID="hideUOMID" runat="server" Value='<%#Eval("UOMID") %>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Enter Rate">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtrate" runat="server" CssClass="form-control"></asp:TextBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
                                 </div>
-                                <br />
+
                                 <asp:Button ID="btnadd" runat="server" class="btn btn-lg btn-primary pos-btn1" Text="Save" OnClick="btnadd_Click" Width="150px" />
-                                <asp:Button ID="btnexit" runat="server" class="btn btn-lg btn-link" Text="Clear" OnClick="btnexit_Click" Width="100px" />
+
 
 
 
                             </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <label>
+                                    Rate *(Exclusive of Tax)
+                                </label>
+                                <asp:TextBox ID="txtRate" runat="server" Enabled="false" AutoPostBack="true" OnTextChanged="mrp_calculation"
+                                    CssClass="form-control"></asp:TextBox>
+                            </div>
+                            <br />
+                            <div id="rate1" runat="server" visible="false" class="form-group">
+                                <label>
+                                    Rate *(Exclusive of Tax)
+                                </label>
+                                <asp:TextBox ID="txtRate1" runat="server" Enabled="false" AutoPostBack="true" OnTextChanged="mrp_calculation"
+                                    CssClass="form-control"></asp:TextBox>
+                            </div>
+                            <br />
+                            <div id="rate2" runat="server" visible="false" class="form-group">
+                                <label>
+                                    Rate *(Exclusive of Tax)
+                                </label>
+                                <asp:TextBox ID="txtRate2" runat="server" Enabled="false" AutoPostBack="true" OnTextChanged="mrp_calculation"
+                                    CssClass="form-control"></asp:TextBox>
+                            </div>
+                            <br />
+                            <div id="rate3" runat="server" visible="false" class="form-group">
+                                <label>
+                                    Rate *(Exclusive of Tax)
+                                </label>
+                                <asp:TextBox ID="txtRate3" runat="server" Enabled="false" AutoPostBack="true" OnTextChanged="mrp_calculation"
+                                    CssClass="form-control"></asp:TextBox>
+                            </div>
+                            <br />
+                            <div id="rate4" runat="server" visible="false" class="form-group">
+                                <label>
+                                    Rate *(Exclusive of Tax)
+                                </label>
+                                <asp:TextBox ID="txtRate4" runat="server" Enabled="false" AutoPostBack="true" OnTextChanged="mrp_calculation"
+                                    CssClass="form-control"></asp:TextBox>
+                            </div>
+                            <br />
+                            <div id="rate5" runat="server" visible="false" class="form-group">
+                                <label>
+                                    Rate *(Exclusive of Tax)
+                                </label>
+                                <asp:TextBox ID="txtRate5" runat="server" Enabled="false" AutoPostBack="true" OnTextChanged="mrp_calculation"
+                                    CssClass="form-control"></asp:TextBox>
+                            </div>
+                            <br />
+                            <asp:Button ID="btnexit" runat="server" class="btn btn-lg btn-warning pos-btn3" Text="Clear" OnClick="btnexit_Click" Width="100px" />
                         </div>
 
                         <div runat="server" visible="false" class="col-lg-3">
@@ -357,8 +451,8 @@
                                 <div class="table-responsive panel-grid-left">
 
                                     <asp:GridView ID="gridratesetting" runat="server" AllowPaging="false" Width="100%" AutoGenerateColumns="false"
-                                        CssClass="table table-striped pos-table" EmptyDataText="No Records Found" AllowSorting="true" 
-                                         padding="0" spacing="0" border="0">
+                                        CssClass="table table-striped pos-table" EmptyDataText="No Records Found" AllowSorting="true"
+                                        padding="0" spacing="0" border="0">
                                         <Columns>
                                         </Columns>
                                     </asp:GridView>

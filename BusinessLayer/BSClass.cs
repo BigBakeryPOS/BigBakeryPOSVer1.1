@@ -17177,7 +17177,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
 
-            string sqry = "select * from tblbranch where IsActive='Yes' and BranchType='" + branchtype + "'";
+            string sqry = "select brancharea + ' - ' + GSTIN as brancharea, * from tblbranch where IsActive='Yes' and BranchType='" + branchtype + "'";
             ds = dbObj.InlineExecuteDataSet(sqry);
 
             return ds;
@@ -17218,7 +17218,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
 
-            string sqry = "select b.* from tblbranchsetting as a inner join tblbranch as b on b.branchid=a.branchid where (productioncode='" + productioncode + "' or IcingCode='" + productioncode + "')";
+            string sqry = "select b.brancharea + ' - ' + b.GSTIN as brancharea,b.* from tblbranchsetting as a inner join tblbranch as b on b.branchid=a.branchid where (productioncode='" + productioncode + "' or IcingCode='" + productioncode + "')";
             ds = dbObj.InlineExecuteDataSet(sqry);
 
             return ds;
@@ -21801,6 +21801,250 @@ namespace BusinessLayer
         }
         #endregion
 
+        #region WholeSalesQuotation
+        public DataSet getcrsalesquotationno(string Table)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select isnull(max(BillNo + 1),1) as BillNo from tblWholesalesQuotation_" + Table + "  ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+
+        public DataSet getsalesdcquotationno(string Table)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select isnull(max(cast(DCNo AS int) + 1),1) as DCNo from tblWholesalesQuotation_" + Table + "  ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+
+        public DataSet GetSalesQuotation(string Stable, int SalesId)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select *  from  tblWholesalesQuotation_" + Stable + " s inner join  tblTransWholeSalesQuotation_" + Stable + " ts on s.Salesid=ts.Salesid inner join  tblCategoryUser c on c.CategoryUserID=ts.Item inner join tblCustomer cc on cc.Ledgerid=s.CustomerName inner join tblPaymode p on p.PayModeId=s.PayMode  Where s.SalesID=" + SalesId + " ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+
+        }
+
+        public DataSet GetSalesQuotationEdit(string Stable, string SalesId)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select *  from  " + Stable + " s Where s.SalesID='" + SalesId + "'";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+
+        }
+
+        public DataSet getwholeSaleQuotationprint(string sTableName, string salesid)
+        {
+            DataSet ds = new DataSet();
+            string sQry = "select s.*,c.*  from  tblWholesalesQuotation_" + sTableName + " s inner join tblcustomer c on s.customerName=c.ledgerid Where s.SalesID='" + salesid + "'";
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
+        public DataSet getTranswholeSaleQuotationprint(string sTableName, string salesid)
+        {
+            DataSet ds = new DataSet();
+            string sQry = "select u.uom,uu.UOM as per,t.*,i.* from tblTransWholesalesQuotation_Prod t inner join tblcategoryuser i on t.Item=i.CategoryUserID inner join tbluom u on u.UOMID=t.UOMID inner join tblUOM uu on uu.UOMID=i.unit where salesid='" + salesid + "'";
+
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
+    
+        public DataSet GetTransSalesQuotationEditNew(string Stable, string SalesId, string table)
+        {
+            DataSet ds = new DataSet();
+            string sqry = string.Empty;
+            sqry = "select s.UOMID as PackType,s.*  from  " + Stable + " s " +
+                "  Where s.SalesID='" + SalesId + "'";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+
+        }
+
+        public DataSet CheckduplicateDCquotation(string sTableName, string DCno)
+        {
+            DataSet ds = new DataSet();
+            string sQry = "select * from tblwholesalesQuotation_" + sTableName + " where billno='" + DCno + "'";
+
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
+        public DataSet CheckduplicateDCquotation_edit(string sTableName, string BillNo, string iSalesID)
+        {
+            DataSet ds = new DataSet();
+            string sQry = "select * from tblwholesalesQuotation_" + sTableName + " where BillNo='" + BillNo + "' and SalesId<>'" + iSalesID + "'";
+
+
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
+        public int insertwholesalesquotation(string sTableName, string billno, DateTime BillDate, int PayMode, string Narration, int CustomerName, string Mobile, string Address, double Amount, double Tax, double GrandTotal, int TaxVal, double DiscPer, double DiscAmount, double TotalItems, string DCNo, double Disc, int DiscType, double DeliveryVal, int OrderNo, int userId, string Logintype, double CGST, double SGST, double IGST, string SalesType, string Prefix, string Years, string VehicleNo)
+        {
+            int i = 0;
+            int BillNo = 0;
+            string billseries;
+
+            DataSet ds = new DataSet();
+            string sQry = "select isnull(max(BillNo+1),1) as BillNo from tblWholesalesquotation_" + sTableName + "";
+            ds = dbObj.InlineExecuteDataSet(sQry);
+
+            //  BillNo = Convert.ToInt32(ds.Tables[0].Rows[0]["BillNo"].ToString());
+            BillNo = Convert.ToInt32(billno);
+            billseries = Prefix + BillNo + Years;
+
+            string sQry1 = "insert into tblWholesalesquotation_" + sTableName + " (BillNo,BillDate,PayMode,Narration,CustomerName,Mobile,Address,Amount,Tax,GrandTotal,TaxVal,DiscPer,DiscAmount,TotalItems,DCNo,Disc,DiscType,DeliveryVal,StaticPayMode,OrderNo,userId,Logintype,CGST,SGST,IGST,SalesType,FullBillNo,VehicleNo) Values(" + BillNo + ",'" + Convert.ToDateTime(BillDate).ToString("yyyy/MM/dd hh:mm tt") + "'," + PayMode + ",'" + Narration + "','" + CustomerName + "','" + Mobile + "','" + Address + "'," + Amount + "," + Tax + "," + GrandTotal + "," + TaxVal + ",'" + DiscPer + "','" + DiscAmount + "'," + TotalItems + ",'" + DCNo + "'," + Disc + "," + DiscType + "," + DeliveryVal + "," + PayMode + "," + OrderNo + "," + userId + ",'" + Logintype + "','" + CGST + "','" + SGST + "','" + IGST + "','" + SalesType + "','" + billseries + "','" + VehicleNo + "')";
+            i = dbObj.InlineExecuteNonQuery(sQry1);
+
+            DataSet ds1 = new DataSet();
+            string sQry3 = "select max(SalesId) as SalesId from tblWholesalesquotation_" + sTableName + "";
+            ds1 = dbObj.InlineExecuteDataSet(sQry3);
+
+            i = Convert.ToInt32(ds1.Tables[0].Rows[0]["SalesId"].ToString());
+            return i;
+        }
+
+        public int inserttranswholesalesquotation(string sTableName, int SalesId, int Item, double Qty, double Rate, double Tax, double TaxAmount, double Amount, double Disc, double DiscAmount, double DeliveryCharge, string narration, string orderno, string Type, string logintype, int packtype, double MRP, string Logintypeid)
+        {
+            int i = 0;
+            int iSucess = 0;
+            string sQry = "insert into tblTransWholeSalesquotation_" + sTableName + " (SalesId,Item,Qty,Rate,Tax,TaxAmount,Amount,Disc,DiscAmount,DeliveryCharge,Narration,Type,UOMID,MRP) Values(" + SalesId + "," + Item + "," + Qty + "," + Rate + "," + Tax + "," + TaxAmount + ",'" + Amount + "'," + Disc + ",'" + DiscAmount + "'," + DeliveryCharge + ",'" + narration + "','" + Type + "'," + packtype + "," + MRP + ")";
+
+            i = dbObj.InlineExecuteNonQuery(sQry);
+
+            if (Logintypeid == "3")
+            {
+
+                //string sQry1 = "Update tblstock_" + sTableName + " set Available_QTY=Available_QTY-" + Qty + " where SubCategoryID=" + Item + " ";
+                //i = dbObj.InlineExecuteNonQuery(sQry1);
+
+                //string AuditQty = "Insert into TblAuditQty_" + sTableName + "(Screen,Qty,RefId,Sign,Itemid,stockid)VAlues('Whole Sales','" + Qty + "','0','-','" + Item + "','0')";
+                //i = dbObj.InlineExecuteNonQuery(AuditQty);
+
+            }
+            else
+            {
+                //string sQry1 = "Update tblProductionQty_" + sTableName + " set Prod_Qty=Prod_Qty-" + Qty + " where DescriptionId=" + Item + " ";
+                //i = dbObj.InlineExecuteNonQuery(sQry1);
+            }
+
+
+
+
+            //  i = dbObj.InlineExecuteNonQuery(sQry1);
+            //if (logintype == "5")
+            //{
+            //    string sQry1 = "Update tblProductionQty_" + sTableName + " set Prod_Qty=Prod_Qty-" + Qty + " where DescriptionId=" + Item + " ";
+            //   i = dbObj.InlineExecuteNonQuery(sQry1);
+            //
+            //}
+            //else if (logintype == "3" || logintype == "6")
+            //{
+            //    string sQry1 = "Update tblStock_" + sTableName + " set Available_QTY=Available_QTY-" + Qty + " where SubCategoryID=" + Item + " ";
+            //
+            ////    string AuditQty = "Insert into TblAuditQty_" + sTableName + "(Screen,Qty,RefId,Sign,Itemid,stockid)VAlues('Whole Sales','" + Qty + "','0','-','" + Item + "','0')";
+            ////    i = dbObj.InlineExecuteNonQuery(AuditQty);
+            //
+            //}
+            //
+            //if (orderno != "0")
+            //{
+            //    if (Type == "O")
+            //    {
+            //        string sQry11 = "Update transorder set salesqty=salesqty+" + Qty + " where OrderID=" + orderno + " and ProductID=" + Item + "";
+            //        i = dbObj.InlineExecuteNonQuery(sQry11);
+
+            //        DataSet ds12 = new DataSet();
+            //        string qy12 = "select qty-salesqty as qty from transorder where orderid=" + orderno + " group by qty-salesqty";
+            //        ds12 = dbObj.InlineExecuteDataSet(qy12);
+
+            //        if (ds12.Tables[0].Rows.Count == 1)
+            //        {
+            //            if (ds12.Tables[0].Rows[0]["qty"].ToString() == "0")
+            //            {
+            //                string sQry111 = " update orders set InvoiceStatus = 'true'  where  orderid='" + orderno + "' ";
+            //                iSucess = dbObj.InlineExecuteNonQuery(sQry111);
+            //            }
+            //        }
+            //    }
+            //}
+
+            return i;
+        }
+
+        public int updatewholesalesquotationnew(string salesid, string Prefix, string Years, string sTableName, DateTime BillDate, int PayMode, string Narration, int CustomerName, string Mobile, string Address, double Amount, double Tax, double GrandTotal, int TaxVal, double DiscPer, double DiscAmount, double TotalItems, string DCNo, double Disc, int DiscType, double DeliveryVal, string billno, string Logintype, double CGST, double SGST, double IGST, string SalesType, string VehicleNo)
+        {
+            int i = 0;
+            billno = Convert.ToInt32(billno).ToString();
+            string billseries = Prefix + billno + Years;
+
+
+            string sQry1 = "Update tblWholesalesquotation_" + sTableName + " set BillDate='" + Convert.ToDateTime(BillDate).ToString("yyyy/MM/dd hh:mm tt") + "',PayMode=" + PayMode + ",Narration='" + Narration + "',CustomerName='" + CustomerName + "',Mobile='" + Mobile + "',Address='" + Address + "',Amount=" + Amount + ",Tax=" + Tax + ",GrandTotal=" + GrandTotal + ",TaxVal=" + TaxVal + ",DiscPer='" + DiscPer + "',DiscAmount='" + DiscAmount + "',TotalItems=" + TotalItems + ",DCNo='" + DCNo + "',Disc=" + Disc + ",DiscType=" + DiscType + ",DeliveryVal=" + DeliveryVal + ",Logintype='" + Logintype + "',CGST='" + CGST + "', SGST='" + SGST + "', IGST='" + IGST + "', SalesType='" + SalesType + "',VehicleNo='" + VehicleNo + "',BillNO='" + billno + "',FullBillNo='" + billseries + "' where salesid='" + salesid + "'";
+
+            i = dbObj.InlineExecuteNonQuery(sQry1);
+
+            DataSet ds1 = new DataSet();
+            string sQry3 = "select SalesId from tblWholesalesquotation_" + sTableName + " where Billno='" + billno + "'";
+            ds1 = dbObj.InlineExecuteDataSet(sQry3);
+
+            i = Convert.ToInt32(ds1.Tables[0].Rows[0]["SalesId"].ToString());
+
+            return i;
+
+        }
+
+        public DataSet GetTransSalesQuotationEdit(string Stable, int SalesId)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select *  from  " + Stable + "  Where SalesID='" + SalesId + "'";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+
+        }
+
+        public int DeleteTransSalesQuotationNew(string Stable, int SalesId)
+        {
+            int iSucess = 0;
+            string sqry = "delete  from  " + Stable + "  Where SalesID='" + SalesId + "'";
+            iSucess = dbObj.InlineExecuteNonQuery(sqry);
+            return iSucess;
+
+        }
+
+        public DataSet GetSalesallQuotation(string Stable)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select *  from  tblWholesalesQuotation_" + Stable + " s inner join tblCustomer c on c.Ledgerid=s.CustomerName inner join tblPaymode p on p.PayModeId=s.PayMode  order by Billdate desc ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+
+        }
+
+        public DataSet GetSalesallQuotation_Filter(string Stable, DateTime From, DateTime to, string ledgerid)
+        {
+            DataSet ds = new DataSet();
+            string sqry;
+            if (ledgerid == "All")
+            {
+                sqry = "select *  from  tblWholesalesQuotation_" + Stable + " s inner join tblCustomer c on c.Ledgerid=s.CustomerName inner join tblPaymode p on p.PayModeId=s.PayMode where cast(BillDate as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(BillDate as Date)<='" + to.ToString("yyyy/MM/dd") + "' order by Billdate desc ";
+            }
+            else
+            {
+                sqry = "select *  from  tblWholesalesQuotation_" + Stable + " s inner join tblCustomer c on c.Ledgerid=s.CustomerName inner join tblPaymode p on p.PayModeId=s.PayMode where cast(BillDate as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(BillDate as Date)<='" + to.ToString("yyyy/MM/dd") + "' and s.Customername = '" + ledgerid + "' order by Billdate desc ";
+            }
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+
+        }
+
+
+        #endregion
+
         #region WholeSales
         //public int insertwholesales(string sTableName, DateTime BillDate, string PayMode, string Narration, string CustomerName, string Mobile, string Address, double Amount, double Tax, double GrandTotal, int TaxVal, string DiscPer, string DiscAmount, double TotalItems, string logintype)
         //{
@@ -22630,7 +22874,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
 
-            string sqry = "select BranchCode as  BranchName,isnull(Branchname,'')+'-'+isnull(BranchCode,'') as Name,BranchId,'0' as Margin from tblbranch where IsActive='Yes' and BranchType=0";
+            string sqry = "select BranchCode as  BranchName,isnull(Branchname,'')+'-'+isnull(BranchCode,'')+'-'+isnull(GSTIN,'') as Name,BranchId,'0' as Margin from tblbranch where IsActive='Yes' and BranchType=0";
             ds = dbObj.InlineExecuteDataSet(sqry);
 
             return ds;
@@ -23083,6 +23327,26 @@ namespace BusinessLayer
             DataSet ds = new DataSet();
             if (categoryid == "All")
             {
+                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.serial,isnull(ps.Prod_Qty,0) as Prod_Qty,b.qtytype  " +
+                    " from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblProductionQty_" + stable + " ps on ps.DescriptionId=b.CategoryUserID " +
+                    " inner join tblUOM u on u.UOMID=b.unit  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1'  order by category asc";
+                ds = dbObj.InlineExecuteDataSet(sqry);
+            }
+            else
+            {
+                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.serial,isnull(ps.Prod_Qty,0) as Prod_Qty,b.qtytype from tblcategory a " +
+                    " inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblProductionQty_" + stable + " ps on ps.DescriptionId=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit  " +
+                    " where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + " order by category asc";
+                ds = dbObj.InlineExecuteDataSet(sqry);
+            }
+            return ds;
+        }
+
+        public DataSet itemforreqestNew_OLD(string categoryid, string stable)
+        {
+            DataSet ds = new DataSet();
+            if (categoryid == "All")
+            {
                 string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.serial  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1'  order by category asc";
                 ds = dbObj.InlineExecuteDataSet(sqry);
             }
@@ -23143,7 +23407,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
             // string sqry = "select * from tbllogin l inner join tblBranch b on b.BranchCode=l.BranchCode";
-            string sqry = "select * from  tblBranch where BranchType=0";
+            string sqry = "select brancharea + ' - ' + GSTIN as brancharea, * from  tblBranch where BranchType=0";
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
         }

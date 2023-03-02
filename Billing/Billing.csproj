@@ -351,6 +351,7 @@
     <Content Include="Accountsbootstrap\InvoiceUpload.aspx" />
     <Content Include="Accountsbootstrap\Invoice_print.aspx" />
     <Content Include="Accountsbootstrap\Invoice_print1.aspx" />
+    <Content Include="Accountsbootstrap\Invoice_print1_Quotation.aspx" />
     <Content Include="Accountsbootstrap\ItemDetReport.aspx" />
     <Content Include="Accountsbootstrap\itempage.aspx" />
     <Content Include="Accountsbootstrap\ItemReport.aspx" />
@@ -514,6 +515,9 @@
     <Content Include="Accountsbootstrap\WholeSalesPrint.aspx" />
     <Content Include="Accountsbootstrap\WholeSalesPrintnew.aspx" />
     <Content Include="Accountsbootstrap\WholeSalesQtyPrint.aspx" />
+    <Content Include="Accountsbootstrap\WholeSalesQuotation.aspx" />
+    <Content Include="Accountsbootstrap\WholeSalesQuotationGrid.aspx" />
+    <Content Include="Accountsbootstrap\WholeSalesQuotationQtyPrint.aspx" />
     <Content Include="Accountsbootstrap\WholeSalesReport.aspx" />
     <Content Include="Accountsbootstrap\WholeSalesRet.aspx" />
     <Content Include="Accountsbootstrap\WholeSalesReturnGrid.aspx" />
@@ -2161,6 +2165,13 @@
     </Compile>
     <Compile Include="Accountsbootstrap\Invoice_print1.aspx.designer.cs">
       <DependentUpon>Invoice_print1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\Invoice_print1_Quotation.aspx.cs">
+      <DependentUpon>Invoice_print1_Quotation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\Invoice_print1_Quotation.aspx.designer.cs">
+      <DependentUpon>Invoice_print1_Quotation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\ItemDetReport.aspx.cs">
       <DependentUpon>ItemDetReport.aspx</DependentUpon>
@@ -3940,6 +3951,27 @@
     </Compile>
     <Compile Include="Accountsbootstrap\WholeSalesQtyPrint.aspx.designer.cs">
       <DependentUpon>WholeSalesQtyPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\WholeSalesQuotation.aspx.cs">
+      <DependentUpon>WholeSalesQuotation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\WholeSalesQuotation.aspx.designer.cs">
+      <DependentUpon>WholeSalesQuotation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\WholeSalesQuotationGrid.aspx.cs">
+      <DependentUpon>WholeSalesQuotationGrid.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\WholeSalesQuotationGrid.aspx.designer.cs">
+      <DependentUpon>WholeSalesQuotationGrid.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\WholeSalesQuotationQtyPrint.aspx.cs">
+      <DependentUpon>WholeSalesQuotationQtyPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\WholeSalesQuotationQtyPrint.aspx.designer.cs">
+      <DependentUpon>WholeSalesQuotationQtyPrint.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\WholeSalesReport.aspx.cs">
       <DependentUpon>WholeSalesReport.aspx</DependentUpon>
