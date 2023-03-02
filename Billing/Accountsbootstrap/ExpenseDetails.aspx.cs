@@ -130,6 +130,8 @@ namespace Billing.Accountsbootstrap
                     gvsales.DataSource = null;
                     gvsales.DataBind();
                 }
+                btnPrintDetails.Visible = true;
+                btnPrintSummary.Visible = false;
                 Details.Visible = true;
                 gvsales.Visible = true;
                 Summary.Visible = false;
@@ -157,6 +159,8 @@ namespace Billing.Accountsbootstrap
                 gvsales.Visible = false;
                 Details.Visible = false;
                 Summary.Visible = true;
+                btnPrintDetails.Visible = false;
+                btnPrintSummary.Visible = true;
             }
         }
 
