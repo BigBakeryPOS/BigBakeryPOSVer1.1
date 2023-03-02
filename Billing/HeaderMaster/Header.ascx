@@ -371,6 +371,7 @@
                 <li id="KitchenOrders" runat="server" visible="false"><a href="../Accountsbootstrap/KitchenOrders.aspx">Kitchen Orders</a></li>
                 <li id="oprawentry" runat="server" visible="false"><a href="../Accountsbootstrap/PhysicalStockEntry.aspx">Store Opening Stock Entry</a></li>
                 <li id="Sales" runat="server" visible="false"><a href="../Accountsbootstrap/SalesGrid.aspx">Sales</a></li>
+                <li id="wholesalequotation" runat="server" visible="false"><a href="../Accountsbootstrap/WholeSalesQuotationGrid.aspx">Whole Sales Quotation Entry</a></li>
                 <li id="wholesale" runat="server" visible="false"><a href="../Accountsbootstrap/WholeSalesGrid.aspx">Whole Sales Entry</a></li>
                 <li id="wholesaleReturn" runat="server" visible="false"><a href="../Accountsbootstrap/WholeSalesReturnGrid.aspx">Whole Sales Return Entry</a></li>
                 <li id="StockReturn" runat="server" visible="false"><a href="../Accountsbootstrap/ItemReturngrid.aspx">Stock Return</a></li>

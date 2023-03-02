@@ -1550,6 +1550,11 @@ namespace Billing.HeaderMaster
                                         InventoryMenu.Visible = true;
                                         wholesale.Visible = true;
                                     }
+                                    if (screen == "wholesalequotation")
+                                    {
+                                        InventoryMenu.Visible = true;
+                                        wholesalequotation.Visible = true;
+                                    }
                                     if (screen == "wholesaleReturn")
                                     {
                                         InventoryMenu.Visible = true;
@@ -2836,6 +2841,11 @@ namespace Billing.HeaderMaster
                                 {
                                     InventoryMenu.Visible = true;
                                     wholesale.Visible = true;
+                                }
+                                if (screen == "wholesalequotation")
+                                {
+                                    InventoryMenu.Visible = true;
+                                    wholesalequotation.Visible = true;
                                 }
                                 if (screen == "wholesaleReturn")
                                 {
@@ -4136,6 +4146,11 @@ namespace Billing.HeaderMaster
                             {
                                 InventoryMenu.Visible = true;
                                 wholesale.Visible = true;
+                            }
+                            if (screen == "wholesalequotation")
+                            {
+                                InventoryMenu.Visible = true;
+                                wholesalequotation.Visible = true;
                             }
                             if (screen == "wholesaleReturn")
                             {
