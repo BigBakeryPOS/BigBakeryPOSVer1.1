@@ -414,7 +414,7 @@ namespace Billing.Accountsbootstrap
                     grid.Caption = "Goods Transfer Details for " + Branch + "On " + Date + "-" + "DC.No" + DcNo;
                     //ScriptManager.RegisterStartupScript(this, typeof(Page), "printGrid", "printGrid();", true);
 
-                    //grid.Visible = false;
+                    grid.Visible = true;
 
                 }
                 catch

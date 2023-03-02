@@ -24508,13 +24508,13 @@ namespace BusinessLayer
             if (categoryuserid == "All")
             {
 
-                sQry = "select a.dc_NO,a.DC_Date,a.BranchReqNo,a.branchcode,c.Category,d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty,b.damage_Qty as damageQty,b.Missing_Qty as MissingQty " +
+                sQry = "select a.dc_NO,a.DC_Date,a.BranchReqNo,a.branchcode,c.Category,d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty,b.damage_Qty as damageQty,b.Missing_Qty as MissingQty,d.MRP " +
                         " from tblGoodTransfer_" + stable + " a,tbltransGoodsTransfer_" + stable + " b,tblcategory c,tblCategoryUser d  " +
   " where convert(date,a.Dc_Date) between '" + Fromdate + "' and '" + Todate + "' and a.DC_NO=b.DC_No and b.CategoryId=c.categoryid and b.DescriptionId=d.CategoryUserID  and  a.BranchCode=b.BranchCode order by a.dc_No desc  ";
             }
             else
             {
-                sQry = "select a.dc_NO,a.DC_Date,a.BranchReqNo,a.branchcode,c.Category,d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty,b.damage_Qty as damageQty,b.Missing_Qty as MissingQty " +
+                sQry = "select a.dc_NO,a.DC_Date,a.BranchReqNo,a.branchcode,c.Category,d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty,b.damage_Qty as damageQty,b.Missing_Qty as MissingQty,d.MRP " +
           " from tblGoodTransfer_" + stable + " a,tbltransGoodsTransfer_" + stable + " b,tblcategory c,tblCategoryUser d  " +
 " where convert(date,a.Dc_Date) between '" + Fromdate + "' and '" + Todate + "' and a.DC_NO=b.DC_No and b.CategoryId=c.categoryid and b.DescriptionId=d.CategoryUserID  and  a.BranchCode=b.BranchCode and d.categoryid='" + categoryuserid + "' order by a.dc_No desc ";
             }
