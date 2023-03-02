@@ -68,7 +68,7 @@ namespace Billing.Accountsbootstrap
                 if (dssubcompany.Tables[0].Rows.Count > 0)
                 {
                     drpsubcompany.DataSource = dssubcompany.Tables[0];
-                    drpsubcompany.DataTextField = "CustomerName";
+                    drpsubcompany.DataTextField = "CustomerName1";
                     drpsubcompany.DataValueField = "subComapanyID";
                     drpsubcompany.DataBind();
                     drpsubcompany.Items.Insert(0, "All");

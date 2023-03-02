@@ -44,6 +44,16 @@ namespace Billing.Accountsbootstrap
                     ddlcustomerrep.DataBind();
                     ddlcustomerrep.Items.Insert(0, "All");
                 }
+                DataSet dssubcompany = objbs.GetsubCompanyDetails();
+                if (dssubcompany.Tables[0].Rows.Count > 0)
+                {
+                    ddlCompany.DataSource = dssubcompany.Tables[0];
+                    ddlCompany.DataTextField = "CustomerName1";
+                    ddlCompany.DataValueField = "subComapanyID";
+                    ddlCompany.DataBind();
+                    ddlCompany.Items.Insert(0, "All");
+                }
+
             }
 
         }
@@ -83,9 +93,11 @@ namespace Billing.Accountsbootstrap
         {
 
             DateTime sFrom = DateTime.ParseExact(txtfromdate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-          //  DateTime sTo = DateTime.ParseExact(txttodate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            //  DateTime sTo = DateTime.ParseExact(txttodate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-            DataSet ds = objbs.getSupplierOutStanding_report(ddltype.SelectedValue, sTableName, ddlcustomerrep.SelectedValue, sFrom);
+            // shanthi 28.2.23 DataSet ds = objbs.getSupplierOutStanding_report(ddltype.SelectedValue, sTableName, ddlcustomerrep.SelectedValue, sFrom);
+
+            DataSet ds = objbs.getSupplierOutStandingwithCompany_report(ddltype.SelectedValue, sTableName, ddlcustomerrep.SelectedValue, sFrom,ddlCompany.SelectedValue );
 
 
             if (ds.Tables[0].Rows.Count > 0)

@@ -196,19 +196,20 @@ namespace Billing.Accountsbootstrap
             if (e.CommandName == "edite")
             {
                // Response.Redirect("bankmaster.aspx?iCusID=" + e.CommandArgument.ToString());
-                DataSet getaccess = objBs.getuseraccessforeditaccess(Empid, "contactedit");
-                if (getaccess.Tables[0].Rows.Count > 0)
-                {
+               //shanthi 25.2.23 
+                //DataSet getaccess = objBs.getuseraccessforeditaccess(Empid, "contactedit");
+                //if (getaccess.Tables[0].Rows.Count > 0)
+                //{
                     if (e.CommandArgument.ToString() != "")
                     {
                         Response.Redirect("bankmaster.aspx?iCusID=" + e.CommandArgument.ToString());
                     }
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(this, typeof(Page), "alertMessage", "alert('Do Not Have Rights To Edit This Contact Master.Thank you!!!.');", true);
-                    return;
-                }
+              //  }
+                //else
+                //{
+                //    ScriptManager.RegisterStartupScript(this, typeof(Page), "alertMessage", "alert('Do Not Have Rights To Edit This Contact Master.Thank you!!!.');", true);
+                //    return;
+                //}
             }
             else if (e.CommandName == "delete")
             {

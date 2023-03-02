@@ -1440,6 +1440,7 @@ namespace Billing.HeaderMaster
                                         Waiter.Visible = true;
                                     }
                                     #endregion
+
                                     #region UserMenu
                                     if (screen == "UserRole")
                                     {
@@ -2776,12 +2777,14 @@ namespace Billing.HeaderMaster
                                     CustomerSalesReceipts.Visible = true;
                                     Payments.Visible = true;
                                 }
+                               
 
                                 if (screen == "CusSalesReceipts")
                                 {
                                     CusSalesReceipts.Visible = true;
                                     Payments.Visible = true;
                                 }
+                               
 
                                 #endregion
 
