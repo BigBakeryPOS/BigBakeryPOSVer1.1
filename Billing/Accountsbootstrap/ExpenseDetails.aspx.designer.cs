@@ -177,13 +177,22 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.Button btnexcel;
 
         /// <summary>
-        /// btn control.
+        /// btnPrintDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn;
+        protected global::System.Web.UI.WebControls.Button btnPrintDetails;
+
+        /// <summary>
+        /// btnPrintSummary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPrintSummary;
 
         /// <summary>
         /// Details control.

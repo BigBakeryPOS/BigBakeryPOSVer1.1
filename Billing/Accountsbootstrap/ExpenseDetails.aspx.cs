@@ -130,6 +130,8 @@ namespace Billing.Accountsbootstrap
                     gvsales.DataSource = null;
                     gvsales.DataBind();
                 }
+                btnPrintDetails.Visible = true;
+                btnPrintSummary.Visible = false;
                 Details.Visible = true;
                 gvsales.Visible = true;
                 Summary.Visible = false;
@@ -157,6 +159,8 @@ namespace Billing.Accountsbootstrap
                 gvsales.Visible = false;
                 Details.Visible = false;
                 Summary.Visible = true;
+                btnPrintDetails.Visible = false;
+                btnPrintSummary.Visible = true;
             }
         }
 
@@ -300,7 +304,7 @@ namespace Billing.Accountsbootstrap
             }
             if (e.Row.RowType == DataControlRowType.Footer)
             {
-                e.Row.Cells[2].Text = "Total";
+                e.Row.Cells[1].Text = "Total";
                // e.Row.Cells[3].Text = GrandTotal.ToString("f2");
                 e.Row.Cells[2].Text = TotalAmount.ToString("f2");
 

@@ -162,7 +162,8 @@ namespace Billing.Accountsbootstrap
 
                 gvsales.Visible = true;
                 gvsummary.Visible = false;
-
+                btnSummary.Visible = false;
+                btnDetails.Visible = true;
                 gvsales.Caption = "Kitchen Transfer Report From " + frmdate + " To " + todate;
             }
             else if (rdosummary.Checked == true)
@@ -181,6 +182,8 @@ namespace Billing.Accountsbootstrap
                 gvsummary.Caption = "Kitchen Transfer Report From " + frmdate + " To " + todate;
                 gvsummary.Visible = true;
                 gvsales.Visible = false;
+                btnSummary.Visible = true;
+                btnDetails.Visible = false;
             }
         }
 
@@ -190,16 +193,24 @@ namespace Billing.Accountsbootstrap
 
             DateTime frmdate = DateTime.ParseExact(txtfromdate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             DateTime todate = DateTime.ParseExact(txttodate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-
-            DataSet ds1 = objBs.getreportforkitchenusage(sTableName, ddltype.SelectedValue, ddldcno.SelectedValue, frmdate, todate, ddlCategory.SelectedValue, ddlIngridients.SelectedValue,drpdept.SelectedValue);
-            //update 22/10/21
-            if (ds1.Tables[0].Rows.Count > 0)
+            DataSet ds1 = new DataSet();
+            if (rdodetailed.Checked == true)
             {
-                for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
+                 ds1 = objBs.getreportforkitchenusage(sTableName, ddltype.SelectedValue, ddldcno.SelectedValue, frmdate, todate, ddlCategory.SelectedValue, ddlIngridients.SelectedValue, drpdept.SelectedValue);
+                //update 22/10/21
+                if (ds1.Tables[0].Rows.Count > 0)
                 {
-                    ds1.Tables[0].Rows[i]["RequestDate"] = Convert.ToDateTime(ds1.Tables[0].Rows[i]["RequestDate"]).ToString("dd/MMM/yyyy");
+                    for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
+                    {
+                        ds1.Tables[0].Rows[i]["RequestDate"] = Convert.ToDateTime(ds1.Tables[0].Rows[i]["RequestDate"]).ToString("dd/MMM/yyyy");
+                    }
                 }
             }
+            if(rdosummary.Checked==true )
+            {
+                 ds1 = objBs.getreportforkitchenusage_Summary(sTableName, ddltype.SelectedValue, ddldcno.SelectedValue, frmdate, todate, ddlCategory.SelectedValue, ddlIngridients.SelectedValue, drpdept.SelectedValue);
+            }
+
             //end update
             if (ds1.Tables[0].Rows.Count > 0)
             {

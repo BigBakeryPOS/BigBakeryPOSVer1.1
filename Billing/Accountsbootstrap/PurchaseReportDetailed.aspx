@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PurchaseReportDetailed.aspx.cs"
-    Inherits="Billing.Accountsbootstrap.PurchaseReportDetailed" %>
+    Inherits="Billing.Accountsbootstrap.PurchaseReportDetailed" EnableEventValidation="true"  %>
 
 <%@ Register TagPrefix="usc" TagName="Header" Src="~/HeaderMaster/Header.ascx" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
@@ -161,8 +161,8 @@
                                         </div>
                                     </div>
 
-                                    <div id="Excel" runat="server">
-                                        <div class="table-responsive panel-grid-left">
+                                    <div id="Excel1" runat="server" class="table-responsive panel-grid-left">
+                                       
 
 
                                             <asp:GridView ID="gvReport" runat="server" EmptyDataText="Sorry Data Not Found!"
@@ -188,7 +188,7 @@
                                             </asp:GridView>
 
                                         </div>
-                                    </div>
+                                   
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                             <asp:UpdateProgress ID="UpdateProgress" runat="server" AssociatedUpdatePanelID="update">

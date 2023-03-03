@@ -996,6 +996,11 @@ namespace Billing.HeaderMaster
 
                                     }
 
+                                    if (screen == "ExpenseDetails")
+                                    {
+                                        Reports.Visible = true;
+                                        ExpenseDetails.Visible = true;
+                                    }
 
                                     /////////////////////////////////////////////
                                     if (screen == "ChartReport")
@@ -2299,7 +2304,11 @@ namespace Billing.HeaderMaster
                                         SupplierOutStanding.Visible = true;
 
                                     }
-
+                                    if (screen == "ExpenseDetails")
+                                    {
+                                        Reports.Visible = true;
+                                        ExpenseDetails.Visible = true;
+                                    }
 
                                     /////////////////////////////////////////////
                                     if (screen == "ChartReport")
@@ -3614,6 +3623,12 @@ namespace Billing.HeaderMaster
 
                                 }
 
+                                if (screen == "ExpenseDetails")
+                                {
+                                    Reports.Visible = true;
+                                    ExpenseDetails.Visible = true;
+                                }
+
                                 /////////////////////////////////////////////
                                 if (screen == "ChartReport")
                                 {
@@ -4920,7 +4935,11 @@ namespace Billing.HeaderMaster
                             }
 
 
-
+                            if (screen == "ExpenseDetails")
+                            {
+                                Reports.Visible = true;
+                                ExpenseDetails.Visible = true;
+                            }
 
 
                             /////////////////////////////////////////////
