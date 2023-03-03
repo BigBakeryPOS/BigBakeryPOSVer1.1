@@ -738,7 +738,7 @@ namespace Billing.Accountsbootstrap
             Response.ContentType = "application/vnd.ms-excel";
             System.IO.StringWriter stringWrite = new System.IO.StringWriter();
             System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
-            Excel.RenderControl(htmlWrite);
+            Excel1.RenderControl(htmlWrite);
             Response.Write(stringWrite.ToString());
             Response.End();
         }

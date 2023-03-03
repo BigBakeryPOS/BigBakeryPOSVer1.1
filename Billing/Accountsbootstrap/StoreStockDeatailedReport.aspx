@@ -32,7 +32,7 @@
     <![endif]-->
     <script type="text/javascript">
         function printGrid() {
-            var gridData = document.getElementById("tbl");
+            var gridData = document.getElementById("GVStockAlert");
             var windowUrl = 'about:blank';
             //set print document name for gridview
             var uniqueName = new Date();

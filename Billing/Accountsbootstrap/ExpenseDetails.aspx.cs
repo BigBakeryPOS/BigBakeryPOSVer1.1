@@ -304,7 +304,7 @@ namespace Billing.Accountsbootstrap
             }
             if (e.Row.RowType == DataControlRowType.Footer)
             {
-                e.Row.Cells[2].Text = "Total";
+                e.Row.Cells[1].Text = "Total";
                // e.Row.Cells[3].Text = GrandTotal.ToString("f2");
                 e.Row.Cells[2].Text = TotalAmount.ToString("f2");
 
