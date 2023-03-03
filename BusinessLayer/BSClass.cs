@@ -18770,7 +18770,7 @@ namespace BusinessLayer
             DataSet ds = new DataSet();
             //  string sQry = " select c.ledgername as CustomerName,kp.*,case kp.Paymode when 1 then 'Cash' when 2 then 'Credit' else 'Cheque' end as PaymentMode from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier order by kp.OrderNo desc";
             // paymode mismatch still not merge so kindly check that
-            string sQry = " select isnull(d.CustomerName,'Not Assign') as companyname,c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsalespaymode sp on kp.Paymode=sp.value  left join tblsubCompanyDetails as d on d.subComapanyID=kp.Companyid order by kp.OrderNo desc";
+            string sQry = " select isnull(d.CustomerName,'Not Assign')+'-'+d.GSTNo as companyname,c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsalespaymode sp on kp.Paymode=sp.value  left join tblsubCompanyDetails as d on d.subComapanyID=kp.Companyid order by kp.OrderNo desc";
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
         }
@@ -19213,12 +19213,12 @@ namespace BusinessLayer
             DataSet ds = new DataSet();
             if (Supplier == "All")
             {
-                string sQry = " select isnull(d.CustomerName,'Not Assign') as companyname,c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode  from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier left join tblsubCompanyDetails as d on d.subComapanyID=kp.Companyid inner join tblsalespaymode sp on kp.Paymode=sp.value where  CAST(kp.OrderDate AS DATE) >= '" + Convert.ToDateTime(from).ToString("yyyy/MM/dd") + "'  AND CAST(kp.OrderDate AS DATE) <= '" + Convert.ToDateTime(to).ToString("yyyy/MM/dd") + "' order by kp.OrderNo desc";
+                string sQry = " select isnull(d.CustomerName,'Not Assign')+'-'+d.GSTNo as companyname,c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode  from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier left join tblsubCompanyDetails as d on d.subComapanyID=kp.Companyid inner join tblsalespaymode sp on kp.Paymode=sp.value where  CAST(kp.OrderDate AS DATE) >= '" + Convert.ToDateTime(from).ToString("yyyy/MM/dd") + "'  AND CAST(kp.OrderDate AS DATE) <= '" + Convert.ToDateTime(to).ToString("yyyy/MM/dd") + "' order by kp.OrderNo desc";
                 ds = dbObj.InlineExecuteDataSet(sQry);
             }
             else
             {
-                string sQry = " select isnull(d.CustomerName,'Not Assign') as companyname,c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode  from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier left join tblsubCompanyDetails as d on d.subComapanyID=kp.Companyid inner join tblsalespaymode sp on kp.Paymode=sp.value where Supplier=" + Supplier + "  and CAST(kp.OrderDate AS DATE) >= '" + Convert.ToDateTime(from).ToString("yyyy/MM/dd") + "'  AND CAST(kp.OrderDate AS DATE) <= '" + Convert.ToDateTime(to).ToString("yyyy/MM/dd") + "' order by kp.OrderNo desc";
+                string sQry = " select isnull(d.CustomerName,'Not Assign')+'-'+d.GSTNo as companyname,c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode  from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier left join tblsubCompanyDetails as d on d.subComapanyID=kp.Companyid inner join tblsalespaymode sp on kp.Paymode=sp.value where Supplier=" + Supplier + "  and CAST(kp.OrderDate AS DATE) >= '" + Convert.ToDateTime(from).ToString("yyyy/MM/dd") + "'  AND CAST(kp.OrderDate AS DATE) <= '" + Convert.ToDateTime(to).ToString("yyyy/MM/dd") + "' order by kp.OrderNo desc";
                 ds = dbObj.InlineExecuteDataSet(sQry);
             }
             return ds;

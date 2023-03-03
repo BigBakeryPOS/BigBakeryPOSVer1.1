@@ -1319,7 +1319,28 @@ namespace Billing.Accountsbootstrap
             gvcustomerorder.DataBind();
 
             totcalculate();
-          
+            GridClear();
+        }
+        protected void GridClear()
+        {
+            txtmAmount.Text = "0";
+            drpmingredents.SelectedItem.Text = "Select IngredientName";
+            ddlmprimaryunits.SelectedItem.Text = "Select PrimaryUom";
+            lblmprimaryvalue.Text = "0";
+            txtmbillingname.Text = "";
+            txtmBillNo.Text = "";
+            txtmDisCount.Text = "0";
+            txtmDisCountAmount.Text = "0";
+            txtmexpireddate.Text = "";
+            txtmhsncode.Text = "";
+            txtmnarrations.Text = "";
+            txtmpqty.Text = "0";
+            txtmRate.Text = "0";
+            txtmsupplier.Text = "";
+            txtmQty.Text = "0";
+            lblmunits.Text = "0";
+
+
         }
 
         public void totcalculate()
