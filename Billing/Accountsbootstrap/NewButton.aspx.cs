@@ -1606,6 +1606,7 @@ namespace Billing.Accountsbootstrap
                         upcus.Update();
                         drpitemsearch.Focus();
                         txtmanualqty.Text = "";
+                        txtCusName1.Focus();
 
 
 

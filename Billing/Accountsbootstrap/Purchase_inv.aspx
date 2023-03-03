@@ -440,12 +440,12 @@
                                                         </ItemTemplate>
                                                         <%--<FooterStyle HorizontalAlign="Right" />
                                         <FooterTemplate>
-                                        </FooterTemplate>--%>
+                                        </FooterTemplate> "txtdefCatID_TextChanged"--%>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Rate">
                                                         <ItemTemplate>
-                                                            <asp:TextBox Width="100px" Style="text-align: right" placeholder="Enter Rate" Enabled="false" class="form-control" Text='<%#Eval("Rate") %>'
-                                                                ID="txtRate" runat="server" OnTextChanged="txtdefCatID_TextChanged" AutoPostBack="true"
+                                                            <asp:TextBox Width="100px" Style="text-align: right" placeholder="Enter Rate" Enabled="true" class="form-control" Text='<%#Eval("Rate") %>'
+                                                                ID="txtRate" runat="server" OnTextChanged="txtdefQty_TextChangedOLD" AutoPostBack="true"
                                                                 MaxLength="10">0</asp:TextBox>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>

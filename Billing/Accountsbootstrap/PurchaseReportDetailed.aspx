@@ -169,7 +169,14 @@
                                                 OnRowDataBound="gvReport_OnRowDataBound" OnRowCreated="gvReport_OnRowCreated"
                                                 CssClass="table table-striped pos-table" padding="0" spacing="0" border="0" AutoGenerateColumns="false">
                                                 <Columns>
-                                                    <asp:BoundField DataField="compname" HeaderText="Company Name" />
+                                                    <asp:TemplateField HeaderText="Company Name">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblcompname" runat="server" Text='<%#Eval("compname") %>'></asp:Label>
+                                                             <asp:Label ID="lblgst" runat="server" Text='<%#Eval("GSTNO") %>'></asp:Label>
+                                                        </ItemTemplate>
+
+                                                    </asp:TemplateField>
+                                                   <%-- <asp:BoundField DataField="compname" HeaderText="Company Name" />--%>
                                                     <asp:BoundField DataField="BillNo" HeaderText="Bill No" />
                                                     <asp:BoundField DataField="BillDate" HeaderText="Bill Date"
                                                         DataFormatString='{0:dd/MMM/yyyy}' />
