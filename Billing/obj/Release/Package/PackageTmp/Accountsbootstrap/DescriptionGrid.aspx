@@ -151,9 +151,18 @@
                                 </div>
                                 <br />
                                 <br />
+                     <div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <asp:Button ID="btndownload" runat="server" Text="Download" OnClick="btndownload_Click" />
+                                            </div>
+                                        </div>
+                         </div>
+                   
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <div class="form-group">
+                                            
                                             <label>
                                                 Upload Data From Excel
                                             </label><br /><br />
