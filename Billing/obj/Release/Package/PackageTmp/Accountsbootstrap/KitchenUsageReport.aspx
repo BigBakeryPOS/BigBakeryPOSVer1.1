@@ -235,6 +235,8 @@
                                             <asp:BoundField HeaderText="Received Qty" DataField="RecQty" DataFormatString="{0:f}" />
                                             <asp:BoundField HeaderText="Missing Qty" DataField="MissingQty" DataFormatString="{0:f}" />
                                             <asp:BoundField HeaderText="Damage Qty" DataField="DamageQty" DataFormatString="{0:f}" />
+                                            <asp:BoundField HeaderText="Rate" DataField="AvgRate" DataFormatString="{0:f}" />
+                                            <asp:BoundField HeaderText="TotalAmount" DataField="TotalAmount" DataFormatString="{0:f}" />
                                             <asp:BoundField HeaderText="Narration" DataField="narration" />
                                         </Columns>
                                     </asp:GridView>

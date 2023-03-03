@@ -154,13 +154,13 @@
                                         <PagerSettings FirstPageText="1" Mode="Numeric" />--%>
                                         <Columns>
                                        <%-- <asp:BoundField HeaderText="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S.No" DataField="serial"  Visible="true" />--%>
-                                            <asp:BoundField HeaderText="Category " DataField="Category" Visible="true" />
+                                            <asp:BoundField HeaderText="Category " DataField="Category" />
                                             <asp:BoundField HeaderText="Item Name" DataField="Definition" />
                                             <asp:BoundField HeaderText="Quantity" Visible="false" DataField="Quantity" DataFormatString='{0:f3}' />
                                              <asp:BoundField HeaderText="Min Quantity" Visible="true" DataFormatString="{0:f}" DataField="MinimumStock" />
                                             <asp:BoundField HeaderText="Available Quantity" DataField="Available_QTY"  />
                                            
-                                           <asp:BoundField HeaderText="Balance" DataField="Balance" DataFormatString="{0:f} />
+                                           <asp:BoundField HeaderText="Required Quantity" DataField="Balance"  DataFormatString='{0:f}' />
                                            
                                             <asp:BoundField HeaderText="QtyTYpe" Visible="false"  DataField="Qtytype" />
                                         </Columns>

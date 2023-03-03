@@ -97,6 +97,39 @@
     </script>
 </head>
 <style type="text/css">
+     .GroupHeaderStyle {
+            background-color: #afc3dd;
+            color: Black;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .SubTotalRowStyle {
+            background-color: #cccccc;
+            color: Black;
+            font-weight: bold;
+        }
+
+        .GrandTotalRowStyle {
+            background-color: #0073e4;
+            color: white;
+            font-weight: bold;
+        }
+
+        .align1 {
+            text-align: right;
+        }
+
+        .myGridStyle1 tr th {
+            padding: 8px;
+            color: #afc3dd;
+            background-color: #000000;
+            border: 1px solid gray;
+            font-family: Arial;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+        }
     body
     {
         font-family: Arial;
@@ -226,6 +259,7 @@
                 </div>
             </div>
             <div class="row">
+                
                 <div class="col-lg-3">
                     
                         <label>
@@ -259,7 +293,7 @@
         <div id="IDValues" runat="server">
      <div class="table-responsive panel-grid-left">
                     <asp:GridView ID="gvreceiptamt" EmptyDataText="Oops! No Activity Performed." cssClass="table table-striped pos-table"
-                         Caption="Customer Payment Details" OnRowDataBound="gvreceiptamt_OnRowDataBound"
+                         Caption="Customer Payment Details" OnRowCreated="gvReport_OnRowCreated" OnRowDataBound="gvreceiptamt_OnRowDataBound"
                         runat="server" AutoGenerateColumns="false" ShowFooter="true" padding="0" spacing="0" border="0">
                         <Columns>
                             <asp:TemplateField HeaderText="S.No">

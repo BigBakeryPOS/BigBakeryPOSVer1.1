@@ -116,6 +116,9 @@
     <asp:BoundField HeaderText="Customer Name" DataField="CustomerName"    />
     <asp:BoundField HeaderText="Mobile No" DataField="MobileNo" />
     <%--<asp:BoundField HeaderText="Area" DataField="Area" />--%>
+        <asp:BoundField HeaderText="Ceremony" DataField="ceremonies" />
+        <asp:BoundField HeaderText="Last Delivery Date" DataField="Date" DataFormatString="{0:dd/MM/yyyy}" />
+ 
     <asp:BoundField HeaderText="Email" DataField="Email" />
      <asp:TemplateField HeaderText="Select All" AccessibleHeaderText="Select">
        <HeaderTemplate>

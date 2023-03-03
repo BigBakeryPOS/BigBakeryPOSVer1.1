@@ -96,7 +96,40 @@
         }    
     </script>
 </head>
-<style type="text/css">
+ <style type="text/css">
+        .GroupHeaderStyle {
+            background-color: #afc3dd;
+            color: Black;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .SubTotalRowStyle {
+            background-color: #cccccc;
+            color: Black;
+            font-weight: bold;
+        }
+
+        .GrandTotalRowStyle {
+            background-color: #0073e4;
+            color: white;
+            font-weight: bold;
+        }
+
+        .align1 {
+            text-align: right;
+        }
+
+        .myGridStyle1 tr th {
+            padding: 8px;
+            color: #afc3dd;
+            background-color: #000000;
+            border: 1px solid gray;
+            font-family: Arial;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+        }
     body
     {
         font-family: Arial;
@@ -211,7 +244,13 @@
                             Format="dd/MM/yyyy" PopupButtonID="txtfromdate" runat="server" CssClass="cal_Theme1">
                         </ajaxToolkit:CalendarExtender>
                     </div>
-                  
+                   <div class="col-lg-3">
+                        <label>
+                            Company
+                        </label>
+                        <asp:DropDownList runat="server" ID="ddlCompany" CssClass="form-control" >
+                        </asp:DropDownList>
+                    </div>
                     <div class="col-lg-3">
                         <label>
                             Supplier
@@ -220,7 +259,7 @@
                         </asp:DropDownList>
                     </div>
                   
-                    <div class="col-lg-6">
+                    <div class="col-lg-9">
                       
                             <br />
                             <asp:Button ID="btnsearch" runat="server" class="btn btn-info pos-btn1" Text="View Report" Width="100px"
@@ -265,6 +304,7 @@
                                     <asp:BoundField HeaderText="DCNo" DataField="DCNo" />
                                     <asp:BoundField HeaderText="BillNo" DataField="BillNo" />
                                     <asp:BoundField HeaderText="BillDate" DataField="BillDate" DataFormatString="{0:dd/MMM/yyyy}" />
+                                      <asp:BoundField HeaderText="CompanyName" DataField="CompanyName" />
                                     <asp:BoundField HeaderText="SupplierName" DataField="CustomerName" />
                                     <asp:BoundField HeaderText="MobileNo" DataField="MobileNo" />
                                     <asp:BoundField HeaderText="NetAmount" DataField="NetAmount" DataFormatString="{0:f}" />
