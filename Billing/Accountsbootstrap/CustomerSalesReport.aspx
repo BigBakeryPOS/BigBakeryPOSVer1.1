@@ -201,13 +201,14 @@
                                                     AutoGenerateColumns="false" EmptyDataText="No data found!" ShowHeaderWhenEmpty="True" padding="0" spacing="0" border="0">
                                                     <Columns>
                                                         <asp:BoundField HeaderText="Branch" DataField="Branch" Visible="true" />
+                                                        
                                                         <asp:TemplateField HeaderText="BillNo.">
                                                             <ItemTemplate>
                                                                 <a href="javascript:switchViews('dv<%# Eval("salesid") %>', 'imdiv<%# Eval("salesid") %>');"
                                                                     style="text-decoration: none;">
                                                                     <img id="imdiv<%# Eval("salesid") %>" alt="Show" border="0" src="../images/plus.gif" />
                                                                 </a>
-                                                                <%# Eval("BillNo")%>
+                                                                <%# Eval("fullbill")%>
                                                                 <div id="dv<%# Eval("salesid") %>" style="display: none; position: relative;">
                                                                     <asp:GridView runat="server" ID="gvLiaLedger"
                                                                         CssClass="table table-striped pos-table" GridLines="Both" AutoGenerateColumns="false"
@@ -225,6 +226,7 @@
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:BoundField HeaderText="Bill No" DataField="BillNo" Visible="false" />
+                                                        
                                                         <asp:BoundField HeaderText="Customer Name" DataField="CustomerName" Visible="false" />
                                                         <asp:BoundField HeaderText="Bill Date" DataField="BillDate" DataFormatString='{0:dd/MMM/yyyy}' />
                                                         <asp:BoundField HeaderText="Tax" DataField="Tax" DataFormatString='{0:f}' />

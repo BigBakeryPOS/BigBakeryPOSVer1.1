@@ -1218,6 +1218,7 @@ namespace Billing.Accountsbootstrap
                     int groupID = Convert.ToInt32(gvGroup.DataKeys[e.Row.RowIndex].Values[0]);
                     string salestype = gvGroup.DataKeys[e.Row.RowIndex].Values[1].ToString();
                     string branch = gvGroup.DataKeys[e.Row.RowIndex].Values[2].ToString();
+                    string billno = gvGroup.DataKeys[e.Row.RowIndex].Value.ToString();
                     DataSet ds = objbs.CustomerSalesdetailed(groupID, branch, salestype);
                     //if (ds.Tables[0].Rows.Count > 0)
                     //{
@@ -1251,11 +1252,11 @@ namespace Billing.Accountsbootstrap
 
                 //////GTax = GTax + Tax;
                 //////GNetAmount = GNetAmount + NetAmount;
-
-
+                //comment by shanthi 8/3/23
                 decimal dtotal = 0;
                 decimal ddiscamnt = 0;
                 decimal dtotalamt = 0;
+               
                 for (int i = 0; i < gvCustsales.Rows.Count; i++)
                 {
                     dtotal += Convert.ToDecimal(gvCustsales.Rows[i].Cells[8].Text);

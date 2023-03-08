@@ -6355,12 +6355,13 @@ namespace Billing.Accountsbootstrap
                                     //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
                                     int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
+                                   // int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
 
                                     // if (StockOption == "1")
-                                    {
+                                  //  {
                                         double Istock = Convert.ToDouble(Qty.Text) * Convert.ToDouble(txtcqty.Text);
                                         iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
-                                    }
+                                   // }
                                     // iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(stock.Text)); 
                                     //7 dec
                                 }
