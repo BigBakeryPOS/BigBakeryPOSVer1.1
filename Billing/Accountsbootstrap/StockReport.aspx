@@ -3,6 +3,49 @@
 <%@ Register TagPrefix="usc" TagName="Header" Src="~/HeaderMaster/Header.ascx" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<script runat="server">
+
+    Protected Sub ddlcategory_SelectedIndexChanged(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Protected Sub btnPrint_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Protected Sub btnpdf_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Protected Sub btnExport_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Protected Sub btnsearch_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Protected Sub btnreset_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Protected Sub btnitemsync_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Protected Sub btnApp_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Protected Sub gvstock_RowDataBound(sender As Object, e As GridViewRowEventArgs)
+
+    End Sub
+
+    Protected Sub gvstock_RowCreated(sender As Object, e As GridViewRowEventArgs)
+
+    End Sub
+</script>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1">
     <meta content="" charset="utf-8" />
@@ -97,7 +140,7 @@
                                     <label>
                                         Type</label>
                                     <asp:RadioButtonList ID="rdbtype" runat="server" Enabled="true" RepeatColumns="2"
-                                         AutoPostBack="true" OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged">
+                                         AutoPostBack="true" >
                                         <asp:ListItem Text="Qty Details" Value="1" Selected="True"></asp:ListItem>
                                         <asp:ListItem Text="Qty Value Details" Value="2"></asp:ListItem>
                                     </asp:RadioButtonList>
@@ -107,16 +150,17 @@
 
                                     <label>
                                         Category</label>
-                                    <asp:DropDownList ID="ddlcategory" AutoPostBack="true" runat="server" class="form-control"
-                                        OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddlcategory" AutoPostBack="true" runat="server" class="form-control" OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged"
+                                        >
+                                        
                                     </asp:DropDownList>
                                
                             </div>
                             <div class="col-lg-3">
                                
                                     <br />
-                                    <asp:Button ID="btnPrint" runat="server" CssClass="btn btn-secondary" 
-                                        Text="Print" OnClick="btnPrintFromCodeBehind_Click" />
+                                    <asp:Button ID="btnPrint" runat="server" CssClass="btn btn-secondary"  Text="Print" OnClick="btnPrint_Click"
+                                        />
                                         &nbsp;&nbsp;&nbsp;<asp:Button ID="btnpdf" runat="server" Text="PDF" CssClass="btn btn-info" OnClick="btnpdf_Click"
                                     />
                                 
@@ -136,7 +180,7 @@
                                 <asp:Button ID="Button1" runat="server" Text="Print From Client-side" Visible="false"
                                     OnClientClick="printGrid()" />&nbsp;&nbsp;
                                 <asp:Button ID="btnitemsync" runat="server" class="btn btn-warning" Text="Sync. to Production"
-                                    Visible="false" OnClick="btnsyncclick" Width="170px" />
+                                    Visible="false" OnClick="btnitemsync_Click" Width="170px" />
                                 <asp:Button ID="btnreset" runat="server" Visible="false" Text="Reset" CssClass="btn btn-success"
                                     OnClick="btnreset_Click" />
                                 <asp:Button ID="btnApp" runat="server" Text="exe" OnClick="btnApp_Click" Visible="false" />
@@ -148,7 +192,7 @@
                         <div class="row">
                                     <asp:GridView ID="gvstock" runat="server" AutoGenerateColumns="false" AllowPaging="false"
                                         cssClass="table table-striped pos-table" PageSize="50" OnPageIndexChanging="page_change" OnRowDataBound="gvstock_RowDataBound" Caption="Store Stock Details"
-                                        OnRowCreated="gvstock_RowCreated" padding="0" spacing="0" border="0">
+                                        OnRowCreated="gvstock_RowCreated"  padding="0" spacing="0" border="0">
                                          <PagerStyle CssClass="pos-paging" />
                                         <%--<HeaderStyle BackColor="#3366FF" />
                                         <PagerSettings FirstPageText="1" Mode="Numeric" />--%>

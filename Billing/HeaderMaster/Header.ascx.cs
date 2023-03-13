@@ -1001,6 +1001,11 @@ namespace Billing.HeaderMaster
                                         Reports.Visible = true;
                                         ExpenseDetails.Visible = true;
                                     }
+                                    if (screen == "RawMaterialStock")
+                                    {
+                                        Reports.Visible = true;
+                                        RawMaterialStock.Visible = true;
+                                    }
 
                                     /////////////////////////////////////////////
                                     if (screen == "ChartReport")
@@ -2308,6 +2313,11 @@ namespace Billing.HeaderMaster
                                     {
                                         Reports.Visible = true;
                                         ExpenseDetails.Visible = true;
+                                    }
+                                    if (screen == "RawMaterialStock")
+                                    {
+                                        Reports.Visible = true;
+                                        RawMaterialStock.Visible = true;
                                     }
 
                                     /////////////////////////////////////////////
@@ -3629,6 +3639,12 @@ namespace Billing.HeaderMaster
                                     ExpenseDetails.Visible = true;
                                 }
 
+
+                                if (screen == "RawMaterialStock")
+                                {
+                                    Reports.Visible = true;
+                                    RawMaterialStock.Visible = true;
+                                }
                                 /////////////////////////////////////////////
                                 if (screen == "ChartReport")
                                 {
@@ -4940,7 +4956,11 @@ namespace Billing.HeaderMaster
                                 Reports.Visible = true;
                                 ExpenseDetails.Visible = true;
                             }
-
+                            if (screen == "RawMaterialStock")
+                            {
+                                Reports.Visible = true;
+                                RawMaterialStock.Visible = true;
+                            }
 
                             /////////////////////////////////////////////
                             if (screen == "ChartReport")

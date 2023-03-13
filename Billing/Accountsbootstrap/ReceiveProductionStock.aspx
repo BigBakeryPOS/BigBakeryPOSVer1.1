@@ -220,9 +220,9 @@
             padding-top: 50px;
         }
     </style>
-    <style type="text/css">
-        .overl
-                        ay {
+    <style type="text/css" >
+       
+                         .overlay {
                             position: fixed;
                             z-index: 999;
                             height: 100%;
@@ -249,9 +249,9 @@
                             text-align: center;
                         }
 
-                        </style >
-                        <s
-                    cript type="text/javascript">
+                       </style>
+                        
+                    <script type="text/javascript">
 
     </script>
     <meta content="" charset="utf-8" />
@@ -475,6 +475,12 @@
                                                     <asp:TextBox ID="txtfinal" runat="server" Width="100px" Enabled="false">0</asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
+                                                             
+                                            <asp:TemplateField Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblqtytype" runat="server" Width="100px" Visible="false" Enabled="false">0</asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                         </Columns>
                                         <%--<FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
                                                         <HeaderStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
@@ -508,7 +514,7 @@
                                                     <asp:HiddenField ID="hideCategoryID" runat="server" Value='<%#Eval("CategoryID") %>' />
                                                     <asp:HiddenField ID="hideCategoryUserID" runat="server" Value='<%#Eval("CategoryUserID") %>' />
                                                     <asp:HiddenField ID="hideUOMID" runat="server" Value='<%#Eval("UOMID") %>' />
-                                                    <asp:Label ID="lblqtytype" Visible="false" runat="server" Text='<%#Eval("qtytype") %>'></asp:Label>
+                                                   <%-- <asp:Label ID="lblqtytype" Visible="false" runat="server" Text='<%#Eval("qtytype") %>'></asp:Label>--%>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Code">
@@ -537,6 +543,11 @@
                                             <asp:TemplateField HeaderText="Unit">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblom" runat="server" Width="50px" Text='<%#Eval("UOM") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                             <asp:TemplateField Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblqtytype" runat="server" Width="50px" Text='<%#Eval("qtytype") %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>

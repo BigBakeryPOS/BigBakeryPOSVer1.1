@@ -433,6 +433,7 @@
     <Content Include="Accountsbootstrap\Purchase_Return.aspx" />
     <Content Include="Accountsbootstrap\Purchase_ReturnGrid.aspx" />
     <Content Include="Accountsbootstrap\RateSettingMaster.aspx" />
+    <Content Include="Accountsbootstrap\RawMaterialStockReport.aspx" />
     <Content Include="Accountsbootstrap\RawReceivedReport.aspx" />
     <Content Include="Accountsbootstrap\RawSales.aspx" />
     <Content Include="Accountsbootstrap\ReceiveProductionStock.aspx" />
@@ -3047,6 +3048,13 @@
     </Compile>
     <Compile Include="Accountsbootstrap\RateSettingMaster.aspx.designer.cs">
       <DependentUpon>RateSettingMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accountsbootstrap\RawMaterialStockReport.aspx.cs">
+      <DependentUpon>RawMaterialStockReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accountsbootstrap\RawMaterialStockReport.aspx.designer.cs">
+      <DependentUpon>RawMaterialStockReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accountsbootstrap\RawReceivedReport.aspx.cs">
       <DependentUpon>RawReceivedReport.aspx</DependentUpon>
