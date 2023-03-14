@@ -1,49 +1,11 @@
-﻿<%--<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StockReport.aspx.cs" Inherits="Billing.Accountsbootstrap.StockReport" %>--%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StockReport.aspx.cs" Inherits="Billing.Accountsbootstrap.StockReport" %>
 
 <%@ Register TagPrefix="usc" TagName="Header" Src="~/HeaderMaster/Header.ascx" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <script runat="server">
 
-    Protected Sub ddlcategory_SelectedIndexChanged(sender As Object, e As EventArgs)
 
-    End Sub
-
-    Protected Sub btnPrint_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Protected Sub btnpdf_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Protected Sub btnExport_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Protected Sub btnsearch_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Protected Sub btnreset_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Protected Sub btnitemsync_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Protected Sub btnApp_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Protected Sub gvstock_RowDataBound(sender As Object, e As GridViewRowEventArgs)
-
-    End Sub
-
-    Protected Sub gvstock_RowCreated(sender As Object, e As GridViewRowEventArgs)
-
-    End Sub
 </script>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -150,8 +112,8 @@
 
                                     <label>
                                         Category</label>
-                                    <asp:DropDownList ID="ddlcategory" AutoPostBack="true" runat="server" class="form-control" OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged"
-                                        >
+                                    <asp:DropDownList ID="ddlcategory" AutoPostBack="true" runat="server" class="form-control" OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged" >
+                                       
                                         
                                     </asp:DropDownList>
                                
