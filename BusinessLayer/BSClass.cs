@@ -9,7 +9,7 @@ using System.Globalization;
 using System.Net.NetworkInformation;
 using System.Data.SqlClient;
 using System.Net;
-
+using System.Runtime.CompilerServices;
 
 namespace BusinessLayer
 {
@@ -1851,7 +1851,7 @@ namespace BusinessLayer
 
         }
 
-        public int insertOrdersalesnewKot(string sSalesTable, int UserID, string BillNo, string BillDate, int CustomerID, double NetAmount, double Total, double Tax, double Discount, int iEdit, int Icnt, double dAdvance, int Ordeeno, string msg, string takenBy, string DeliveryDate, string DeliveryTime, string Notes, int iPayMode, decimal cash, decimal bal, string Provider, string Approved, string attender, string Biller, string cashier, double cgst, double sgst, double stotal, string Saletypemargin, string GstMargin, string Gateway, string salestype, string salesorderno, string isnormal, string attender1, string kottblno, string transamounttable)
+        public int insertOrdersalesnewKot(string sSalesTable, int UserID, string BillNo, string BillDate, int CustomerID, double NetAmount, double Total, double Tax, double Discount, int iEdit, int Icnt, double dAdvance, int Ordeeno, string msg, string takenBy, string DeliveryDate, string DeliveryTime, string Notes, int iPayMode, decimal cash, decimal bal, string Provider, string Approved, string attender, string Biller, string cashier, double cgst, double sgst, double stotal, string Saletypemargin, string GstMargin, string Gateway, string salestype, string salesorderno, string isnormal, string attender1, string kottblno,string transamounttable)
         {
             int iSuccess = 0;
             DataSet billnonew = new DataSet();
@@ -1960,6 +1960,8 @@ namespace BusinessLayer
             return iSuccess;
 
         }
+
+
         public int insertTransSalesOrder(string sTransSalesTable, int SalesID, int CategoryID, double Quantity, double UnitPrice, double dDiscItem, double Amount, int iSubCategoryID)
         {
             int iSuccess = 0;
@@ -3640,18 +3642,7 @@ namespace BusinessLayer
             string sQry = "update tblTransGoodsTransfer_" + stable + " set isStocked=1,Damage_Qty=" + dmgqty + ",Missing_Qty=" + missqty + " where DC_No=" + DC_No + " and DescriptionId=" + DescriptionId + " ";
             iSuccess = dbObj.InlineExecuteNonQueryMain(sQry);
 
-            // string sQry1 = "update tblGoodTransfer_" + stable + " set status='" + remarks + "',IsReceived=1 where DC_No=" + DC_No + " ";
-            // iSuccess = dbObj.InlineExecuteNonQueryMain(sQry1);
-
-
-            return iSuccess;
-        }
-
-        public int updateRecQty_maintable(string stable, string DC_No, string remarks)
-        {
-            int iSuccess = 0;
-
-            string sQry1 = "update tblGoodTransfer_" + stable + " set status='" + remarks + "',IsReceived=1 where DC_No=" + DC_No + " ";
+            string sQry1 = "update tblGoodTransfer_" + stable + " set status='" + remarks + "' where DC_No=" + DC_No + " ";
             iSuccess = dbObj.InlineExecuteNonQueryMain(sQry1);
 
 
@@ -4177,33 +4168,12 @@ namespace BusinessLayer
             string sQry = string.Empty;
             if (stockoption == "1")
             {
-                //sQry = " select *,'0' as comboo,'1' as QTY,round(a.RATE+(a.RATE*((a.GST)/100)),0) AS RATE1 from tblcategoryuser a,tblStock_" + stable + " b where  a.CategoryUserID=b.SubCategoryID and " +
-                sQry = " select *,'0' as comboo,'1' as QTY,round(a.RATE+(a.RATE*((a.GST)/100)),2) AS RATE1 from tblcategoryuser a,tblStock_" + stable + " b where  a.CategoryUserID=b.SubCategoryID and " +
+                sQry = " select *,'0' as comboo,'1' as QTY,round(a.RATE+(a.RATE*((a.GST)/100)),0) AS RATE1 from tblcategoryuser a,tblStock_" + stable + " b where  a.CategoryUserID=b.SubCategoryID and " +
                     " b.StockID=" + iSubCatID + "  and isdelete=0 ";
             }
             else
             {
                 sQry = " select *,'0' as comboo,'1' as QTY,CategoryUserID as stockid,CAST('0' AS MONEY)  as Available_QTY,cast('2019-04-01' as date) as Expirydate,round(a.RATE+(a.RATE*((a.GST)/100)),0) AS RATE1 " +
-                    " from tblcategoryuser a where  " +
-                    " a.CategoryUserID=" + iSubCatID + "  and isdelete=0 ";
-            }
-            ds = dbObj.InlineExecuteDataSet(sQry);
-            return ds;
-        }
-
-        public DataSet GetStockDetails_Ratetype(int iSubCatID, int UserID, string stable, string stockoption, string columnname1, string columnname2)
-        {
-            DataSet ds = new DataSet();
-            string sQry = string.Empty;
-            if (stockoption == "1")
-            {
-                //sQry = " select *,'0' as comboo,'1' as QTY,round(a.RATE+(a.RATE*((a.GST)/100)),0) AS RATE1 from tblcategoryuser a,tblStock_" + stable + " b where  a.CategoryUserID=b.SubCategoryID and " +
-                sQry = " select  " + columnname2 + " as mrp, *,'0' as comboo,'1' as QTY,round(a." + columnname1 + "+(a." + columnname1 + "*((a.GST)/100)),2) AS RATE1 from tblcategoryuser a,tblStock_" + stable + " b where  a.CategoryUserID=b.SubCategoryID and " +
-                    " b.StockID=" + iSubCatID + "  and isdelete=0 ";
-            }
-            else
-            {
-                sQry = " select " + columnname2 + " as mrp,*,'0' as comboo,'1' as QTY,CategoryUserID as stockid,CAST('0' AS MONEY)  as Available_QTY,cast('2019-04-01' as date) as Expirydate,round(a." + columnname1 + "+(a." + columnname1 + "*((a.GST)/100)),0) AS RATE1 " +
                     " from tblcategoryuser a where  " +
                     " a.CategoryUserID=" + iSubCatID + "  and isdelete=0 ";
             }
@@ -5950,21 +5920,21 @@ namespace BusinessLayer
 
                 //if (logintype == "5" || logintype == "4")
                 //{
-                string sQry = "select c.Category,cu.Definition,cu.MinimumStock,s.Available_QTY,(s.Available_Qty-cu.MinimumStock) as Balance,cu.qtytype from tblCategory c inner join tblCategoryUser cu on c.CategoryId=cu.CategoryId inner join tblstock_" + stable + " s on s.SubCategoryId=cu.ItemId group by c.category,cu.definition,cu.MinimumStock,s.Available_Qty,cu.qtytype ";
-                ds = dbObj.InlineExecuteDataSet(sQry);
+                string sQry = "select c.Category,cu.Definition,cu.MinimumStock,s.Available_QTY,(cu.MinimumStock-s.Available_Qty) as Balance,cu.qtytype from tblCategory c inner join tblCategoryUser cu on c.CategoryId=cu.CategoryId inner join tblstock_" + stable + " s on s.SubCategoryId=cu.ItemId where s.Available_QTY<=cu.MinimumStock group by c.category,cu.definition,cu.MinimumStock,s.Available_Qty,cu.qtytype ";
+                    ds = dbObj.InlineExecuteDataSet(sQry);
                 //}
                 //else
                 //{
                 //    //string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.Available_QTY) as Available_Qty,c.Serial  from tblStock_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.SubCategoryID=c.CategoryUserID and a.Available_QTY>0 and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial   order by cast(c.serial as int) asc";
                 //    string sQry = "select c.CategoryUserID,b.category,c.Definition,sum(a.Available_QTY) as Available_Qty,c.Serial,c.qtytype  from tblStock_" + stable + "  a,tblcategory b,tblCategoryUser c  where b.categoryid=c.CategoryID  and c.IsDelete=0 and a.SubCategoryID=c.CategoryUserID and a.Available_QTY>0 and isnull(b.IsLiveKitchen,0) = 0  group by c.CategoryUserID,b.category,c.Definition,c.serial,c.qtytype   order by b.category,c.definition asc";
                 //    ds = dbObj.InlineExecuteDataSet(sQry);
-                // }
+               // }
             }
             else
             {
                 //if (logintype == "5" || logintype == "4")
                 //{
-                string sQry = "select c.Category,cu.Definition,cu.MinimumStock,s.Available_QTY,(s.Available_Qty-cu.MinimumStock) as Balance,cu.qtytype from tblCategory c inner join tblCategoryUser cu on c.CategoryId=cu.CategoryId inner join tblstock_" + stable + " s on s.SubCategoryId=cu.ItemId where c.CategoryId='" + Categoryid + "' group by c.category,cu.definition,cu.MinimumStock,s.Available_Qty,cu.qtytype";
+                string sQry = "select c.Category,cu.Definition,cu.MinimumStock,s.Available_QTY,(cu.MinimumStock-s.Available_Qty) as Balance,cu.qtytype from tblCategory c inner join tblCategoryUser cu on c.CategoryId=cu.CategoryId inner join tblstock_" + stable+" s on s.SubCategoryId=cu.ItemId where c.CategoryId='" + Categoryid + "' and s.Available_QTY<=cu.MinimumStock group by c.category,cu.definition,cu.MinimumStock,s.Available_Qty,cu.qtytype"; 
                 ds = dbObj.InlineExecuteDataSet(sQry);
                 //}
                 //else
@@ -6155,7 +6125,7 @@ namespace BusinessLayer
             return iSuccess;
         }
 
-        public int SubEditCompanyDetails(string CompanyName, string MobileNo, string PhoneNo, string Area, string Address, string City, string Pincode, string Email, string GSTNo, string WebSite, string Social, int CompID, string Imagepath, string Imagepath2, string Imagepath3, string Imagepath4, string Username, string Passwprd, string EmpCode, string NoOfBranch, string BranchType, string Aboutus, string DigitalMenu, string Ecommerce, string subcompanyid)
+        public int SubEditCompanyDetails(string CompanyName, string MobileNo, string PhoneNo, string Area, string Address, string City, string Pincode, string Email, string GSTNo, string WebSite, string Social, int CompID, string Imagepath, string Imagepath2, string Imagepath3, string Imagepath4, string Username, string Passwprd, string EmpCode, string NoOfBranch, string BranchType, string Aboutus, string DigitalMenu, string Ecommerce,string subcompanyid)
         {
             int iSuccess = 0;
             int iSuccess1 = 0;
@@ -6200,7 +6170,7 @@ namespace BusinessLayer
             DataSet ds = new DataSet();
             //string paygird = "select A.CustomerID,B.CategoryID,B.SubCategoryID,A.BillNo,convert(date,a.BillDate) as BillDate,E.CustomerName as LedgerName,'brand' as BrandName,D.category,C.Definition,B.Quantity,B.UnitPrice ,(B.Quantity *B.UnitPrice) as NetAmount ,F.Payment_Mode,( ((B.Amount * c. GST) / 100 ) + B.Amount ) as SalesAmount,C.GST from tblsales_" + sTableName + " A,tblTransSales_" + sTableName + " B,tblCategoryUser C,tblcategory D,tblCustomer E,tblPaymentMode F where A.BillNo=b.SalesID  and B.CategoryID=D.categoryid and B.SubCategoryID=C.CategoryUserID and f.Payment_ID=a.ContactTypeID and A.CustomerID=E.CustomerID and convert(date, A.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and cancelstatus='NO' order by B.SubCategoryID";
             string paygird = "select '" + sTableName + "' as bnch,A.CustomerID,B.CategoryID,B.SubCategoryID,A.BillNo,convert(date,a.BillDate) as BillDate,E.CustomerName as LedgerName,'brand' as BrandName,D.category,C.Definition,B.Quantity,B.UnitPrice ,(B.Quantity *B.UnitPrice) as NetAmount ,F.paymode  as Payment_Mode,( ((B.Amount * c. GST) / 100 ) + B.Amount ) as SalesAmount,C.GST from tblsales_" + sTableName + " A,tblTransSales_" + sTableName + " B,tblCategoryUser C,tblcategory D,tblCustomer E,tblsalespaymode F where A.BillNo=b.SalesID and a.salesid=b.salesuniqueid and B.CategoryID=D.categoryid and B.SubCategoryID=C.CategoryUserID and f.value=a.ipaymode and A.CustomerID=E.CustomerID and convert(date, A.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and cancelstatus='NO' order by B.SubCategoryID";
-
+           
             ds = dbObj.InlineExecuteDataSet(paygird);
             return ds;
         }
@@ -6307,7 +6277,7 @@ namespace BusinessLayer
                 " from tbltranssales_" + sTableName + " a,tblcategoryuser b,tblsales_" + sTableName + " c " +
                 " where a.subcategoryid=b.categoryuserid and  cancelstatus='No' and a.SalesID=c.BillNo and c.salesid=a.salesuniqueid " +
                 " and Convert(date,c.Billdate) between '" + sFmdate + "' and '" + sToDate + "' group by b.definition ";
-            // union all select distinct(b.definition) as Item, sum(convert(money,a.Qty)) as Qty,'" + sTableName + "' as Branch from tblTransOrder_" + sTableName + " a,tblcategoryuser b,tblOrder_" + sTableName + " c where a.subcategoryid=b.categoryuserid and a.BillNo=c.BillNo and c.isCancel=0 and Convert(date,c.OrderDate) between '" + sFmdate + "' and '" + sToDate + "' group by b.Definition";
+                // union all select distinct(b.definition) as Item, sum(convert(money,a.Qty)) as Qty,'" + sTableName + "' as Branch from tblTransOrder_" + sTableName + " a,tblcategoryuser b,tblOrder_" + sTableName + " c where a.subcategoryid=b.categoryuserid and a.BillNo=c.BillNo and c.isCancel=0 and Convert(date,c.OrderDate) between '" + sFmdate + "' and '" + sToDate + "' group by b.Definition";
             ds = dbObj.InlineExecuteDataSet(sqr);
             //if (dcat.Tables[0].Rows.Count > 0)
             //{
@@ -6329,12 +6299,12 @@ namespace BusinessLayer
             // string paygird = "select A.CustomerID,B.CategoryID,B.SubCategoryID,A.BillNo,convert(date,a.BillDate) as BillDate,E.CustomerName as LedgerName,'brand' as BrandName,D.category,C.Definition,B.Quantity,B.UnitPrice ,(B.Quantity *B.UnitPrice) as NetAmount ,F.Payment_Mode,( ((B.Amount * c. GST) / 100 ) + B.Amount ) as SalesAmount,C.GST from tblsales_" + sTableName + " A,tblTransSales_" + sTableName + " B,tblCategoryUser C,tblcategory D,tblCustomer E,tblPaymentMode F where A.BillNo=b.SalesID  and B.CategoryID=D.categoryid and B.SubCategoryID=C.CategoryUserID and f.Payment_ID=a.ContactTypeID and A.CustomerID=E.CustomerID and convert(date, A.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and cancelstatus='NO' order by B.SubCategoryID";
             if (Subcompany == "All")
             {
-                string paygird = "select cm.customername as compname,A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_" + sTableName + " A,tbltranskitchenPurchase_" + sTableName + " B,tblIngridents D,tblledger E,tblsalespaymode F,tblsubCompanyDetails cm  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and cm.subComapanyID = a.subcompanyid  and convert(date,b.ExpiryDate)  >= '" + sFmdate.ToString("yyyy/MM/dd") + "' and b.ExpiryDate <> '1900-01-01 00:00:00.000' order by b.ExpiryDate ";
+                string paygird = "select cm.customername as compname,cm.GSTNO,A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_" + sTableName + " A,tbltranskitchenPurchase_" + sTableName + " B,tblIngridents D,tblledger E,tblsalespaymode F,tblsubCompanyDetails cm  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and cm.subComapanyID = a.subcompanyid  and convert(date,b.ExpiryDate)  >= '" + sFmdate.ToString("yyyy/MM/dd") + "' and b.ExpiryDate <> '1900-01-01 00:00:00.000' order by b.ExpiryDate ";
                 ds = dbObj.InlineExecuteDataSet(paygird);
             }
             else
             {
-                string paygird = "select cm.customername as compname,A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_" + sTableName + " A,tbltranskitchenPurchase_" + sTableName + " B,tblIngridents D,tblledger E,tblsalespaymode F,tblsubCompanyDetails cm  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and cm.subComapanyID = a.subcompanyid and convert(date,b.ExpiryDate)  >= '" + sFmdate.ToString("yyyy/MM/dd") + "' and b.ExpiryDate <> '1900-01-01 00:00:00.000' and cm.subComapanyID='" + Subcompany + "' order by b.ExpiryDate ";
+                string paygird = "select cm.customername as compname,cm.GSTNO,A.Supplier,B.IngredientID,B.IngredientID,A.BillNo,convert(date,a.BillDate) as BillDate,E.LedgerName as LedgerName,'brand' as BrandName,D.Ingredientname,B.Qty,B.Rate ,(B.Amount) as NetAmount ,F.paymode as Payment_Mode,( B.Amount ) as SalesAmount,B.Tax,b.ExpiryDate from tblkitchenPurchase_" + sTableName + " A,tbltranskitchenPurchase_" + sTableName + " B,tblIngridents D,tblledger E,tblsalespaymode F,tblsubCompanyDetails cm  where A.purchaseID=b.purchaseID  and B.IngredientID=D.ingridid   and f.value=a.Paymode and A.Supplier=E.LedgerID and cm.subComapanyID = a.subcompanyid and convert(date,b.ExpiryDate)  >= '" + sFmdate.ToString("yyyy/MM/dd") + "' and b.ExpiryDate <> '1900-01-01 00:00:00.000' and cm.subComapanyID='" + Subcompany + "' order by b.ExpiryDate ";
                 ds = dbObj.InlineExecuteDataSet(paygird);
             }
             return ds;
@@ -8762,13 +8732,13 @@ namespace BusinessLayer
 
             else
             {
-                sqry = "select a.salestype,a.FullBill as FullBill,a.billno,b.SubCategoryID,d.HSNCode,g.PayMode,d.printitem,a.isnormal,a.SalesOrder,f.paymenttype,d.gst/2 as cg, d.gst/2 as sg, " +
+                sqry = "select a.FullBill as FullBill,a.billno,b.SubCategoryID,d.HSNCode,g.PayMode,d.printitem,a.isnormal,a.SalesOrder,f.paymenttype,d.gst/2 as cg, d.gst/2 as sg, " +
                     " e.CustomerName,e.MobileNo,e.address,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,a.Discount,b.UnitPrice,c.category,d.Definition,SUM(b.Amount) as Amount " +
-                " ,SUM(b.Quantity) as Quantity,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,a.NetAmount,isnull(a.Roundoff,0.00)as Roundoff,Gstno " +
+                " ,SUM(b.Quantity) as Quantity,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,a.NetAmount,isnull(a.Roundoff,0.00)as Roundoff,Gstno,a.salestype " +
                 " from tblsales_" + sTable + "  a,tblTransSales_" + sTable + " b,tblcategory c,tblCategoryUser d,tblCustomer e,tblsalestype f, tblSalesPaymode g ,tbluom k " +
                 " where a.salesid=b.salesuniqueid and  f.salestypeid=a.salestype and  a.BillNo=b.SalesID and c.categoryid=d.CategoryID and a.isnormal=b.isnormal " +
                 " and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and a.CustomerID=e.CustomerID and a.BillNo=" + ID + " and " +
-                " (a.salestype='" + salestypeid + "') and a.iPayMode = g.value   group by b.SubCategoryID,d.HSNCode,g.PayMode,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount,f.paymenttype,a.isnormal,a.SalesOrder,d.printitem,a.Roundoff,a.FullBill,Gstno,e.address,a.salestype ";
+                " (a.salestype='" + salestypeid + "') and a.iPayMode = g.value   group by b.SubCategoryID,d.HSNCode,g.PayMode,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount,f.paymenttype,a.isnormal,a.SalesOrder,d.printitem,a.Roundoff,a.FullBill,Gstno,e.address ";
             }
 
             ds = dbObj.InlineExecuteDataSet(sqry);
@@ -8846,57 +8816,6 @@ namespace BusinessLayer
                 dmerge.Merge(ds1);
 
 
-            }
-
-            //ds = dbObj.InlineExecuteDataSet(sqry);
-            return dmerge;
-        }
-
-
-
-        public DataSet PrintingSalesNew_twoinchprint(int ID, string sTable, string Mode, string salestypeid)
-        {
-            DataSet ds = new DataSet();
-            DataSet dmerge = new DataSet();
-
-            string sqry = "";
-
-            {
-                //sqry = "select d.printitem as printitem,b.cattype,cast(0 as int) as ComboId,d.printitem+' / '+d.hsncode as printite,a.isnormal,a.SalesOrder,f.paymenttype,d.gst/2 as cg, d.gst/2 as sg,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate, " +
-                //    " a.NetAmount,a.Advance,a.Total,a.Discount,b.UnitPrice,c.category,d.Definition,SUM(b.Amount) as Amount,SUM(b.Quantity) as Quantity, " +
-                //    " a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,a.NetAmount,d.mrp,(d.mrp * sum(b.quantity)) as amo,cast(d.gst as nvarchar)+' % '  as gst from tblsales_" + sTable + "  a,tblTransSales_" + sTable + " b, " +
-                //    " tblcategory c,tblCategoryUser d,tblCustomer e,tblsalestype f where a.salesid=b.salesuniqueid and  f.salestypeid=a.salestype and  a.BillNo=b.SalesID " +
-                //    " and c.categoryid=d.CategoryID and a.isnormal=b.isnormal and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and " +
-                //    " a.CustomerID=e.CustomerID and a.BillNo=" + ID + " and (a.salestype='" + salestypeid + "') and b.cattype='N'  " +
-                //    " group by b.cattype,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount,f.paymenttype,a.isnormal,a.SalesOrder,d.printitem,d.hsncode,d.mrp ";
-
-                if (salestypeid == " 3" || salestypeid == " 4" || salestypeid == "3" || salestypeid == "4")
-                {
-                    sqry = "select d.printitem as Itemname,SUM(b.Quantity) as Qty " +
-                      //" a.NetAmount,a.Advance,a.Total,a.Discount,b.UnitPrice,c.category,d.Definition,SUM(b.Amount) as Amount, " +
-                      "  from tblsales_" + sTable + "  a,tblTransSales_" + sTable + " b, " +
-                      " tblcategory c,tblCategoryUser d,tblCustomer e,tblsalestype f where a.salesid=b.salesuniqueid and  f.salestypeid=a.salestype and  a.BillNo=b.SalesID " +
-                      " and c.categoryid=d.CategoryID and a.isnormal=b.isnormal and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and " +
-                      " a.CustomerID=e.CustomerID and a.BillNo=" + ID + " and (a.salestype='" + salestypeid + "') and b.cattype='N'  " +
-                      " group by b.cattype,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount,f.paymenttype,a.isnormal,a.SalesOrder,d.printitem,d.hsncode,d.mrp ";
-
-                    ds = dbObj.InlineExecuteDataSet(sqry);
-                }
-                else
-                {
-
-                    sqry = "select d.printitem as Itemname,SUM(b.Quantity) as Qty,d.mrp as Rate,(d.mrp * sum(b.quantity)) as Amount " +
-                       //" a.NetAmount,a.Advance,a.Total,a.Discount,b.UnitPrice,c.category,d.Definition,SUM(b.Amount) as Amount, " +
-                       "  from tblsales_" + sTable + "  a,tblTransSales_" + sTable + " b, " +
-                       " tblcategory c,tblCategoryUser d,tblCustomer e,tblsalestype f where a.salesid=b.salesuniqueid and  f.salestypeid=a.salestype and  a.BillNo=b.SalesID " +
-                       " and c.categoryid=d.CategoryID and a.isnormal=b.isnormal and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and " +
-                       " a.CustomerID=e.CustomerID and a.BillNo=" + ID + " and (a.salestype='" + salestypeid + "') and b.cattype='N'  " +
-                       " group by b.cattype,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount,f.paymenttype,a.isnormal,a.SalesOrder,d.printitem,d.hsncode,d.mrp ";
-
-                    ds = dbObj.InlineExecuteDataSet(sqry);
-                }
-
-                dmerge.Merge(ds);
             }
 
             //ds = dbObj.InlineExecuteDataSet(sqry);
@@ -9040,7 +8959,7 @@ namespace BusinessLayer
             // string sqry = "select 'Narayana Puram' as Branch, cu.CustomerName,s.BillNo,s.BillDate,s.Tax,s.Advance,s.NetAmount,s.Total from tblsales_CO4 as s inner join tblCustomer as cu  on s.CustomerID=cu.CustomerID where (OrderNo=0 or OrderNo <>0) and s.ContactTypeID=1  order by s.BillDate desc ";
             //  string sqry = "select 'Narayana Puram' as Branch, cu.CustomerName,s.BillNo,s.BillDate,s.Tax,s.Advance as 'NetAmount',s.Total,case s.ContactTypeID when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' end as SalesType from tblsales_" + sBranch + " as s inner join tblCustomer as cu  on s.CustomerID=cu.CustomerID where OrderNo>0  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' union all select 'Narayana Puram' as Branch, cu.CustomerName,s.BillNo,s.BillDate,s.Tax,s.NetAmount,s.Total,case s.ContactTypeID when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' end as SalesType from tblsales_" + sBranch + " as s inner join tblCustomer as cu  on s.CustomerID=cu.CustomerID where OrderNo=0   and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "'  order by s.BillDate desc ";
             //  string sqry = "select 'Narayana Puram' as Branch, cu.CustomerName,s.BillNo,s.BillDate,s.Tax,s.NetAmount,(s.netamount*(s.discount/100)) as discount,s.Total,'Sales' as type,case s.iPayMode when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' when 5 then 'Date Bared' when 6 then 'Wastage' when 7 then 'BB KULAM' end as SalesType from tblsales_" + sBranch + " as s inner join tblCustomer as cu  on s.CustomerID=cu.CustomerID where OrderNo=0  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and s.cancelstatus='No' union all select 'Narayana Puram' as Branch, cu.CustomerName,s.BillNo,s.BillDate,s.Tax,s.NetAmount,(s.netamount*(s.discount/100)) as discount,s.Total,'Sales' as type,case s.iPayMode when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' when 5 then 'Date Bared' when 6 then 'Wastage' when 7 then 'BB KULAM'  end as SalesType from tblsales_" + sBranch + " as s inner join tblCustomer as cu  on s.CustomerID=cu.CustomerID where OrderNo=0   and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "'  order by s.BillDate desc ";
-            string sqry = "select s.salesid,s.salestype as typeid,'" + sBranch + "' as Branch, cu.CustomerName,s.BillNo,s.BillDate,(s.CGST + s.SGST) as Tax,s.NetAmount,((s.Discount )) as discount,s.Total,'Sales' as type, " +
+            string sqry = "select s.salesid,s.salestype as typeid,'" + sBranch + "' as Branch, cu.CustomerName,s.BillNo,s.fullbill,s.BillDate,(s.CGST + s.SGST) as Tax,s.NetAmount,((s.Discount )) as discount,s.Total,'Sales' as type, " +
             " sp.PayMode as SalesType,s.Provider,s.Approved,'' as Mobileno from tblsales_" + sBranch + " as s inner join tblCustomer as cu  on s.CustomerID=cu.CustomerID inner join tblSalesPaymode as sp on sp.Value=s.iPayMode where OrderNo=0  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and s.cancelstatus='No'   order by s.BillDate desc ";
             //string sqry = "select 'Narayana Puram' as Branch,'normal sales' as type, cu.CustomerName,s.BillNo,s.BillDate,s.Tax,s.NetAmount,s.Total,s.orderno,s.advance,case s.iPayMode when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' end as SalesType from tblsales_" + sBranch + " as s inner join tblCustomer as cu  on s.CustomerID=cu.CustomerID where OrderNo=0  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' order by s.BillDate desc ";
             ds = dbObj.InlineExecuteDataSet(sqry);
@@ -9223,7 +9142,7 @@ namespace BusinessLayer
                 //  old string sqry = "select '" + store + "' as Branch,s.BillNo,s.BillDate,(s.CGST + s.SGST) as Tax,s.NetAmount,((s.discount/100)*s.total) as discount,s.Total,'Sales' as type,case s.iPayMode when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' when 5 then 'Staff Credit' when 6 then 'Wastage' when 7 then 'BB KULAM' when 8 then 'Byepass'  when 9 then 'KK Nagar'  when 10 then 'NP' when 11 then 'Bank' when 12 then 'Staff Consumption' end as SalesType,s.Provider,s.Approved,c.customername,c.mobileNo from tblsales_" + sBranch + " as s,tblcustomer c where s.customerid=c.customerid and OrderNo=0  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and s.cancelstatus='No'  order by s.BillDate desc ";
                 //string sqry = "select s.salesid,s.salestype as typeid,'" + store + "' as Branch,s.BillNo,CONVERT(VARCHAR(20), [BillDate], 103) AS DATEPART,CONVERT(VARCHAR(20), [BillDate], 108) AS TIMEPART,s.BillDate,sum((((b.Amount) * cc.GST) / 100 )) as tax ,s.NetAmount,((s.Discount )) as discount,s.Total,'Sales' as type, " +
                 //" sp.PayMode as SalesType,s.Provider,s.Approved,c.customername,c.mobileNo from tblsales_" + sBranch + " s, tblcustomer c,tblTransSales_" + sBranch + " b,tblCategoryUser cc,tblSalesPaymode as sp  where sp.Value=s.iPayMode and  s.customerid=c.customerid and s.BillNo=b.Salesid and b.subcategoryid=cc.categoryuserid  and OrderNo=0  and convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and s.cancelstatus='No' group by s.BillNo,s.BillDate,s.NetAmount,s.discount,s.total,s.iPayMode,s.Provider,s.Approved, c.customername,c.mobileNo,sp.paymode,s.salesid,s.salestype  order by s.BillDate desc  ";
-                string sqry = "select s.salesid,s.salestype as typeid,'" + sBranch + "' as Branch,s.BillNo,CONVERT(VARCHAR(20), [BillDate], 103) AS DATEPART,CONVERT(VARCHAR(20), [BillDate], 108) AS TIMEPART,s.BillDate,(s.CGST + s.SGST) as Tax,s.NetAmount,((s.Discount)) as discount,s.Total,'Sales' as type, " +
+                string sqry = "select s.salesid,s.salestype as typeid,'" + sBranch + "' as Branch,s.BillNo,s.fullbill,CONVERT(VARCHAR(20), [BillDate], 103) AS DATEPART,CONVERT(VARCHAR(20), [BillDate], 108) AS TIMEPART,s.BillDate,(s.CGST + s.SGST) as Tax,s.NetAmount,((s.Discount)) as discount,s.Total,'Sales' as type, " +
                " sp.PayMode  as SalesType,s.Provider,s.Approved ,c.customername,c.mobileNo from tblsales_" + sBranch + " as s,tblcustomer c,tblSalesPaymode as sp where sp.Value=s.iPayMode and s.customerid=c.customerid and OrderNo=0   and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and s.cancelstatus='No'  order by s.BillDate desc ";
                 ds = dbObj.InlineExecuteDataSet(sqry);
             }
@@ -9231,7 +9150,7 @@ namespace BusinessLayer
             {
                 // string sqry = "select 'Narayana Puram' as Branch, cu.CustomerName,s.BillNo,s.BillDate,s.Tax,s.Advance as 'NetAmount',s.Total,'Order Form' as type,case s.iPayMode when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' when 5 then 'Date Bared' when 6 then 'Wastage'  when 7 then 'BB KULAM' end as SalesType from tblsales_" + sBranch + " as s inner join tblCustomer as cu  on s.CustomerID=cu.CustomerID where OrderNo>0 and s.ipaymode='" + paymode + "'  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and s.cancelstatus='No' union all select 'Narayana Puram' as Branch, cu.CustomerName,s.BillNo,s.BillDate,s.Tax,s.NetAmount,s.Total,'Sales' as type,case s.iPayMode when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' when 5 then 'Date Bared' when 6 then 'Wastage'  when 7 then 'BB KULAM'  end as SalesType from tblsales_" + sBranch + " as s inner join tblCustomer as cu  on s.CustomerID=cu.CustomerID where OrderNo=0 and s.ipaymode='" + paymode + "'  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "'  order by s.BillDate desc ";
                 //  string sqry = "select 'Narayana Puram' as Branch, cu.CustomerName,s.BillNo,s.BillDate,s.Tax,s.NetAmount,(s.netamount*(s.discount/100)) as discount,s.Total,'Sales' as type,case s.iPayMode when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' when 5 then 'Date Bared' when 6 then 'Wastage'  when 7 then 'BB KULAM' end as SalesType from tblsales_" + sBranch + " as s inner join tblCustomer as cu  on s.CustomerID=cu.CustomerID where OrderNo=0 and s.ipaymode='" + paymode + "'  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and s.cancelstatus='No' union all select 'Narayana Puram' as Branch, cu.CustomerName,s.BillNo,s.BillDate,s.Tax,s.NetAmount,(s.netamount*(s.discount/100)) as discount,s.Total,'Sales' as type,case s.iPayMode when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' when 5 then 'Date Bared' when 6 then 'Wastage'  when 7 then 'BB KULAM'  end as SalesType from tblsales_" + sBranch + " as s inner join tblCustomer as cu  on s.CustomerID=cu.CustomerID where OrderNo=0 and s.ipaymode='" + paymode + "'  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "'  order by s.BillDate desc ";
-                string sqry = "select s.salesid,s.salestype as typeid,'" + sBranch + "' as Branch,s.BillNo,CONVERT(VARCHAR(20), [BillDate], 103) AS DATEPART,CONVERT(VARCHAR(20), [BillDate], 108) AS TIMEPART,s.BillDate,(s.CGST + s.SGST) as Tax,s.NetAmount,((s.Discount)) as discount,s.Total,'Sales' as type, " +
+                string sqry = "select s.salesid,s.salestype as typeid,'" + sBranch + "' as Branch,s.BillNo,s.fullbill,CONVERT(VARCHAR(20), [BillDate], 103) AS DATEPART,CONVERT(VARCHAR(20), [BillDate], 108) AS TIMEPART,s.BillDate,(s.CGST + s.SGST) as Tax,s.NetAmount,((s.Discount)) as discount,s.Total,'Sales' as type, " +
                 " sp.PayMode  as SalesType,s.Provider,s.Approved ,c.customername,c.mobileNo from tblsales_" + sBranch + " as s,tblcustomer c,tblSalesPaymode as sp where sp.Value=s.iPayMode and s.customerid=c.customerid and OrderNo=0 and s.ipaymode='" + paymode + "'  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and s.cancelstatus='No'  order by s.BillDate desc ";
                 //string sqry = "select 'Narayana Puram' as Branch,'normal sales' as type, cu.CustomerName,s.BillNo,s.BillDate,s.Tax,s.NetAmount,s.Total,s.orderno,s.advance,case s.iPayMode when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' end as SalesType from tblsales_" + sBranch + " as s inner join tblCustomer as cu  on s.CustomerID=cu.CustomerID where OrderNo=0  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' order by s.BillDate desc ";
                 ds = dbObj.InlineExecuteDataSet(sqry);
@@ -9335,7 +9254,7 @@ namespace BusinessLayer
 
                 //  old  string sqry = "select '" + store + "' as Branch,s.BillNo,s.BillDate,(s.CGST + s.SGST) as Tax,s.NetAmount,((s.discount/100)*s.NetAmount) as discount,round(s.Total,0) as Total,'Sales' as type,case s.iPayMode when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' when 5 then 'Staff Credit' when 6 then 'Wastage' when 7 then 'BB KULAM' when 8 then 'Byepass'  when 9 then 'KK Nagar'  when 10 then 'NP' when 11 then 'Bank' when 12 then 'Staff Consumption' end as SalesType ,s.Provider,s.Approved,'' as customername,'' as mobileno from tblsales_" + sBranch + " as s where OrderNo=0  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and s.cancelstatus='No' and Discount>0  order by s.BillDate desc ";
 
-                string sqry = "select s.salesid,s.salestype as typeid,'" + sBranch + "' as Branch,s.BillNo,s.BillDate,sum((((b.Amount) * cc.GST) / 100 )) as tax ,s.NetAmount,((s.Discount)) as discount,round(s.Total,0) as Total,'Sales' as type, " +
+                string sqry = "select s.salesid,s.salestype as typeid,'" + sBranch + "' as Branch,s.BillNo,s.FullBill,s.BillDate,sum((((b.Amount) * cc.GST) / 100 )) as tax ,s.NetAmount,((s.Discount)) as discount,round(s.Total,0) as Total,'Sales' as type, " +
                 " sp.PayMode  as SalesType ,s.Provider,s.Approved,'' as customername,'' as mobileno from tblsales_" + sBranch + " s ,tblcustomer c,tblTransSales_" + sBranch + " b,tblCategoryUser cc,tblSalesPaymode as sp where sp.Value=s.iPayMode and s.customerid=c.customerid and s.BillNo=b.Salesid and b.subcategoryid=cc.categoryuserid  and OrderNo=0  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and s.cancelstatus='No' and s.Discount>0  group by s.BillNo,s.BillDate,s.NetAmount,s.discount,s.total,s.iPayMode,s.Provider,s.Approved, c.customername,c.mobileNo,sp.paymode,s.salesid,s.salestype  order by s.BillDate desc  ";
 
                 ds = dbObj.InlineExecuteDataSet(sqry);
@@ -9344,7 +9263,7 @@ namespace BusinessLayer
             {
                 // string sqry = "select 'Narayana Puram' as Branch, cu.CustomerName,s.BillNo,s.BillDate,s.Tax,s.Advance as 'NetAmount',s.Total,'Order Form' as type,case s.iPayMode when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' when 5 then 'Date Bared' when 6 then 'Wastage'  when 7 then 'BB KULAM' end as SalesType from tblsales_" + sBranch + " as s inner join tblCustomer as cu  on s.CustomerID=cu.CustomerID where OrderNo>0 and s.ipaymode='" + paymode + "'  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and s.cancelstatus='No' union all select 'Narayana Puram' as Branch, cu.CustomerName,s.BillNo,s.BillDate,s.Tax,s.NetAmount,s.Total,'Sales' as type,case s.iPayMode when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' when 5 then 'Date Bared' when 6 then 'Wastage'  when 7 then 'BB KULAM'  end as SalesType from tblsales_" + sBranch + " as s inner join tblCustomer as cu  on s.CustomerID=cu.CustomerID where OrderNo=0 and s.ipaymode='" + paymode + "'  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "'  order by s.BillDate desc ";
                 //  string sqry = "select 'Narayana Puram' as Branch, cu.CustomerName,s.BillNo,s.BillDate,s.Tax,s.NetAmount,(s.netamount*(s.discount/100)) as discount,s.Total,'Sales' as type,case s.iPayMode when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' when 5 then 'Date Bared' when 6 then 'Wastage'  when 7 then 'BB KULAM' end as SalesType from tblsales_" + sBranch + " as s inner join tblCustomer as cu  on s.CustomerID=cu.CustomerID where OrderNo=0 and s.ipaymode='" + paymode + "'  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and s.cancelstatus='No' union all select 'Narayana Puram' as Branch, cu.CustomerName,s.BillNo,s.BillDate,s.Tax,s.NetAmount,(s.netamount*(s.discount/100)) as discount,s.Total,'Sales' as type,case s.iPayMode when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' when 5 then 'Date Bared' when 6 then 'Wastage'  when 7 then 'BB KULAM'  end as SalesType from tblsales_" + sBranch + " as s inner join tblCustomer as cu  on s.CustomerID=cu.CustomerID where OrderNo=0 and s.ipaymode='" + paymode + "'  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "'  order by s.BillDate desc ";
-                string sqry = "select s.salesid,s.salestype as typeid,'" + sBranch + "' as Branch,s.BillNo,s.BillDate,(s.CGST + s.SGST) as Tax,s.NetAmount,((s.Discount )) as discount,round(s.Total,0) as Total,'Sales' as type, " +
+                string sqry = "select s.salesid,s.salestype as typeid,'" + sBranch + "' as Branch,s.BillNo,s.fullbill,s.BillDate,(s.CGST + s.SGST) as Tax,s.NetAmount,((s.Discount )) as discount,round(s.Total,0) as Total,'Sales' as type, " +
                 " sp.PayMode as  SalesType,s.Provider,s.Approved,'' as customername,'' as mobileno from tblsales_" + sBranch + " as s,tblSalesPaymode as sp where sp.Value=s.iPayMode and OrderNo=0 and s.ipaymode='" + paymode + "'  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and s.cancelstatus='No'  and s.Discount>0  order by s.BillDate desc ";
                 //string sqry = "select 'Narayana Puram' as Branch,'normal sales' as type, cu.CustomerName,s.BillNo,s.BillDate,s.Tax,s.NetAmount,s.Total,s.orderno,s.advance,case s.iPayMode when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' end as SalesType from tblsales_" + sBranch + " as s inner join tblCustomer as cu  on s.CustomerID=cu.CustomerID where OrderNo=0  and  convert(date,s.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' and convert(date,s.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' order by s.BillDate desc ";
                 ds = dbObj.InlineExecuteDataSet(sqry);
@@ -9390,7 +9309,21 @@ namespace BusinessLayer
             //string sqry = "(select 'Branch 1' as Branch, b.CustomerName,a.BillNo,a.BillDate,a.Tax,a.Advance,a.NetAmount,a.Total from tblsales_"+sBranch+" a,tblCustomer b where a.CustomerID=b.CustomerID and a.ContactTypeID=1) order by a.BillDate desc";
             // string sqry = "select 'Narayana Puram' as Branch, b.CustomerName,a.BillNo,a.BillDate,a.Tax,a.Advance,a.NetAmount,a.Total from tblsales_CO4 a,tblCustomer b where a.CustomerID=b.CustomerID and a.ContactTypeID=1 and a.orderno=0 union select 'Narayana Puram' as Branch, b.CustomerName,a.BillNo,a.BillDate,a.Tax,a.Advance,a.Advance as NetAmount,a.Total from tblsales_CO4 a,tblCustomer b where a.CustomerID=b.CustomerID and a.ContactTypeID=1 and a.orderno<>0  order by a.BillDate desc";
             // string sqry = "select s.salesid,s.Billdate,ts.Quantity,ts.unitPrice,ts.Amount,cu.Definition,s.NetAmount,case s.iPayMode when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' when 5 then 'Staff Credit' when 6 then 'Wastage' when 7 then 'BB KULAM' when 8 then 'Byepass'  when 9 then 'KK Nagar'  when 10 then 'NP' when 11 then 'Bank' when 12 then 'Staff Consumption' end as SalesType,s.Provider,s.Approved from tblsales_" + sTable + " as s inner join tblTranssales_" + sTable + " as ts on s.BillNo=ts.salesid inner join tblCategoryUser as cu on cu.CategoryUserID=ts.SubCategoryID where s.BillNo=" + sBillno + " ";
-            string sqry = "select cu.printitem,s.salesid,s.Billdate,ts.Quantity,ts.unitPrice,ts.Amount,cu.Definition,s.NetAmount,i.paymode  as SalesType,s.Provider,s.Approved from tblsales_" + sTable + " as s inner join tblTranssales_" + sTable + " as ts on s.BillNo=ts.salesid inner join tblsalespaymode as i on i.value=s.ipaymode inner join tblCategoryUser as cu on cu.CategoryUserID=ts.SubCategoryID where s.salesid=ts.salesuniqueid and  s.BillNo=" + sBillno + " and s.salestype='" + salestype + "' ";
+            //Comment by shanthi for FullBill 
+            //string sqry = "select cu.printitem,s.salesid,s.Billdate,ts.Quantity,ts.unitPrice,ts.Amount,cu.Definition,s.NetAmount,i.paymode  as SalesType,s.Provider,s.Approved from tblsales_" + sTable + " as s inner join tblTranssales_" + sTable + " as ts on s.BillNo=ts.salesid inner join tblsalespaymode as i on i.value=s.ipaymode inner join tblCategoryUser as cu on cu.CategoryUserID=ts.SubCategoryID where s.salesid=ts.salesuniqueid and  s.BillNo=" + sBillno + " and s.salestype='" + salestype + "' ";
+            string sqry = "select cu.printitem,s.salesid,s.Billdate,ts.Quantity,ts.unitPrice,ts.Amount,cu.Definition,s.NetAmount,i.paymode  as SalesType,s.Provider,s.Approved from tblsales_" + sTable + " as s inner join tblTranssales_" + sTable + " as ts on s.BillNo=ts.salesid inner join tblsalespaymode as i on i.value=s.ipaymode inner join tblCategoryUser as cu on cu.CategoryUserID=ts.SubCategoryID where s.salesid=ts.salesuniqueid and  s.billno=" + sBillno + " and s.salestype='" + salestype + "'  ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+        public DataSet CustomerSalesdetailed1(int sfullBillno, string sTable, string salestype, string billno)
+        {
+            DataSet ds = new DataSet();
+            //string sqry = "(select 'Branch 1' as Branch, b.CustomerName,a.BillNo,a.BillDate,a.Tax,a.Advance,a.NetAmount,a.Total from tblsales_"+sBranch+" a,tblCustomer b where a.CustomerID=b.CustomerID and a.ContactTypeID=1) order by a.BillDate desc";
+            // string sqry = "select 'Narayana Puram' as Branch, b.CustomerName,a.BillNo,a.BillDate,a.Tax,a.Advance,a.NetAmount,a.Total from tblsales_CO4 a,tblCustomer b where a.CustomerID=b.CustomerID and a.ContactTypeID=1 and a.orderno=0 union select 'Narayana Puram' as Branch, b.CustomerName,a.BillNo,a.BillDate,a.Tax,a.Advance,a.Advance as NetAmount,a.Total from tblsales_CO4 a,tblCustomer b where a.CustomerID=b.CustomerID and a.ContactTypeID=1 and a.orderno<>0  order by a.BillDate desc";
+            // string sqry = "select s.salesid,s.Billdate,ts.Quantity,ts.unitPrice,ts.Amount,cu.Definition,s.NetAmount,case s.iPayMode when 1 then 'cash' when 2 then 'Customer Credit' when 3 then 'Compliment' when 4 then 'Card' when 5 then 'Staff Credit' when 6 then 'Wastage' when 7 then 'BB KULAM' when 8 then 'Byepass'  when 9 then 'KK Nagar'  when 10 then 'NP' when 11 then 'Bank' when 12 then 'Staff Consumption' end as SalesType,s.Provider,s.Approved from tblsales_" + sTable + " as s inner join tblTranssales_" + sTable + " as ts on s.BillNo=ts.salesid inner join tblCategoryUser as cu on cu.CategoryUserID=ts.SubCategoryID where s.BillNo=" + sBillno + " ";
+            //Comment by shanthi for FullBill 
+            //string sqry = "select cu.printitem,s.salesid,s.Billdate,ts.Quantity,ts.unitPrice,ts.Amount,cu.Definition,s.NetAmount,i.paymode  as SalesType,s.Provider,s.Approved from tblsales_" + sTable + " as s inner join tblTranssales_" + sTable + " as ts on s.BillNo=ts.salesid inner join tblsalespaymode as i on i.value=s.ipaymode inner join tblCategoryUser as cu on cu.CategoryUserID=ts.SubCategoryID where s.salesid=ts.salesuniqueid and  s.BillNo=" + sBillno + " and s.salestype='" + salestype + "' ";
+            string sqry = "select cu.printitem,s.salesid,s.Billdate,ts.Quantity,ts.unitPrice,ts.Amount,cu.Definition,s.NetAmount,i.paymode  as SalesType,s.Provider,s.Approved from tblsales_" + sTable + " as s inner join tblTranssales_" + sTable + " as ts on s.BillNo=ts.salesid inner join tblsalespaymode as i on i.value=s.ipaymode inner join tblCategoryUser as cu on cu.CategoryUserID=ts.SubCategoryID where s.salesid=ts.salesuniqueid and  s.fullbill=" + sfullBillno  + " and s.salestype='" + salestype + "' and s.billno='" + billno  + "' ";
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
         }
@@ -11785,7 +11718,7 @@ namespace BusinessLayer
         }
 
 
-        public int insertCakeOrderNew(string sSalesTable, string BillNo, string BillDate, int CustomerID, double NetAmount, double Total, int Icnt, double dAdvance, int Ordeeno, string msg, string takenBy, string DeliveryDate, string DeliveryTime, int iPayMode, string BkNo, string paytype, string place, string pay, string ordertime, double CGST, double SGST, double STotal, string ordertype, string pickup, string delivercharge, int Ceremonies, bool checkedtype, string branchcode, double balance, string status, string discper, string discamount, string transamounttable, string discemp, string Fullbookno, string pbranch, string onlinecomment)
+        public int insertCakeOrderNew(string sSalesTable, string BillNo, string   BillDate, int CustomerID, double NetAmount, double Total, int Icnt, double dAdvance, int Ordeeno, string msg, string takenBy, string   DeliveryDate, string DeliveryTime, int iPayMode, string BkNo, string paytype, string place, string pay, string ordertime, double CGST, double SGST, double STotal, string ordertype, string pickup, string delivercharge, int Ceremonies, bool checkedtype, string branchcode, double balance, string status, string discper, string discamount, string transamounttable, string discemp, string Fullbookno, string pbranch, string onlinecomment)
         {
             int iSuccess = 0;
             string onlinesync = "N";
@@ -11833,7 +11766,7 @@ namespace BusinessLayer
         public int EditCakeOrderNew(string sSalesTable, string BillNo, string BillDate, int CustomerID, double NetAmount, double Total, int Icnt, double dAdvance, int Ordeeno, string msg, string takenBy, string DeliveryDate, string DeliveryTime, int iPayMode, string BkNo, string paytype, string place, string pay, string ordertime, double CGST, double SGST, double STotal, string ordertype, string pickup, string delivercharge, int Ceremonies, bool checkedtype, string branchcode, double balance, string status, string discper, string discamount, string refundamount, string transamounttable, string Epaymode, string entryby, string discemp)
         {
             int iSuccess = 0;
-            string Balancedate = DateTime.Now.ToString("yyyy-MM-dd hh:mm tt"); ;
+            string Balancedate = DateTime.Now.ToString("yyyy-MM-dd hh:mm tt"); 
             //  string sQry = "insert into " + sSalesTable + "( BillNo, OrderDate, CustomerID, NetAmount, Total,isCancel,ContactID,Advance,AdvanceDate,OrderNo,Messege,OrderTakenBy,DeliveryDate,Deliverytime,iPayMode,BookNo,PayType,Place,Paybill,OrderTime,CGST,SGST,STotal,OrderType,PickUpLocation,DeliveryCharge,Ceremonies,BalancePaid,Balance,Status,DiscountPer,DiscountAmount) values ('" + BillNo + "','" + BillDate + "','" + CustomerID + "','" + NetAmount + "','" + Total + "',0,1,'" + dAdvance + "','" + BillDate + "','" + Ordeeno + "','" + msg + "','" + takenBy + "','" + DeliveryDate + "','" + DeliveryTime + "'," + iPayMode + "," + BkNo + ",'" + paytype + "','" + place + "','" + pay + "','" + ordertime + "','" + CGST + "','" + SGST + "','" + STotal + "','" + ordertype + "','" + pickup + "','" + delivercharge + "'," + Ceremonies + ",'" + balance + "','" + balance + "','" + status + "','" + discper + "','" + discamount + "')";
             if (refundamount != "0")
             {
@@ -12746,7 +12679,7 @@ namespace BusinessLayer
         public DataSet getdenominationmaster(string cur)
         {
             DataSet ds = new DataSet();
-            string s = "select * from tbldenominationmaster where Isactive='Yes' and Currency='" + cur + "' order by ordertype asc ";
+            string s = "select * from tbldenominationmaster where Isactive='Yes' and Currency='"+cur+"' order by ordertype asc ";
             ds = dbObj.InlineExecuteDataSet(s);
             return ds;
         }
@@ -13913,7 +13846,8 @@ namespace BusinessLayer
 
                     // SGRNSTOCKP = " select distinct CategoryUserID,sum(GRN_Qty) as GRNQty from tblGRNmp  where signa='+' and  cast(Date as Date) = '" + date + "' and categoryuserid='" + categoryuserid + "'  " +
                     //           " group by CategoryUserID ";
-                    SGRNSTOCKP = "select distinct itemid,sum(stock) as GRNQty from tblPhysicalstock_" + scode + " where stock > 0 and cast(Date as Date)='" + date + "' and itemid='" + categoryuserid + "' group by itemid";
+                   // Shanthi for datetime error SGRNSTOCKP = "select distinct itemid,sum(stock) as GRNQty from tblPhysicalstock_" + scode + " where stock > 0 and cast(Date as Date)='" + date + "' and itemid='" + categoryuserid + "' group by itemid";
+                    SGRNSTOCKP = "select distinct itemid,sum(stock) as GRNQty from tblPhysicalstock_" + scode + " where stock > 0 and  Date='" + date + "' and itemid='" + categoryuserid + "' group by itemid";
 
                     GRNSTOCKP = dbObj.InlineExecuteDataSet(SGRNSTOCKP);
 
@@ -14483,15 +14417,6 @@ namespace BusinessLayer
         {
             DataSet save = new DataSet();
             string sQry = "select * from  tbltranssalestype as ts inner join tblsalespaymode as s on s.value=ts.value   where salestypeid='" + sid + "' order by s.orderwise desc ";
-            save = dbObj.InlineExecuteDataSet(sQry);
-            return save;
-
-        }
-
-        public DataSet getratetype(string sid)
-        {
-            DataSet save = new DataSet();
-            string sQry = "select * from  tbltransRatetype as ts inner join tblRatesetting as s on s.RateSettingid=ts.RateValue   where salestypeid='" + sid + "'  ";
             save = dbObj.InlineExecuteDataSet(sQry);
             return save;
 
@@ -16569,7 +16494,7 @@ namespace BusinessLayer
             iSucess = dbObj.InlineExecuteNonQuery(sQry);
 
 
-            // if (superadmin == "1" || superadmin == "2")
+            if (superadmin == "1" || superadmin == "2")
             {
                 // FOR SYNC OPTION
 
@@ -16922,6 +16847,7 @@ namespace BusinessLayer
         }
 
 
+
         public DataSet updateitementry(string catDefinition, string Definition, string CategoryID, string sSerial, string gsttax, string taxvalue, double rate,
             string uom, string uomname, string mnimumstock, string displayonline, string image, string sEmpCode, string printname, string foodtype, string superadmin,
             string catid, string itemid, string HSNCode, string MRP, string Barcode, string Details, string Pagepath, string ratetype, string Qtytype, string Rate1, string mrp1, string Rate2, string mrp2, string Rate3, string mrp3, string Rate4, string mrp4, string Rate5, string mrp5)
@@ -17265,7 +17191,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
 
-            string sqry = "select * from tblbranch where IsActive='Yes' and BranchType='" + branchtype + "'";
+            string sqry = "select brancharea + ' - ' + GSTIN as brancharea, * from tblbranch where IsActive='Yes' and BranchType='" + branchtype + "'";
             ds = dbObj.InlineExecuteDataSet(sqry);
 
             return ds;
@@ -17306,7 +17232,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
 
-            string sqry = "select b.* from tblbranchsetting as a inner join tblbranch as b on b.branchid=a.branchid where (productioncode='" + productioncode + "' or IcingCode='" + productioncode + "')";
+            string sqry = "select b.brancharea + ' - ' + b.GSTIN as brancharea,b.* from tblbranchsetting as a inner join tblbranch as b on b.branchid=a.branchid where (productioncode='" + productioncode + "' or IcingCode='" + productioncode + "')";
             ds = dbObj.InlineExecuteDataSet(sqry);
 
             return ds;
@@ -17844,7 +17770,42 @@ namespace BusinessLayer
             }
             return ds;
         }
+        public DataSet GetSupplierIngredient1(string LedgerId, string loadallitem)
+        {
+            DataSet ds = new DataSet();
 
+            DataSet dss = new DataSet();
+            string qr = string.Empty;
+            int cnt = 0;
+            string sqry = string.Empty;
+
+            if (loadallitem == "2")
+            {
+                sqry = "select count(*) as cnt from  tblLedgerIngredient where ledgerid='" + LedgerId + "'";
+                dss = dbObj.InlineExecuteDataSet(sqry);
+                if (dss.Tables[0].Rows.Count > 0)
+                {
+                    cnt = Convert.ToInt32(dss.Tables[0].Rows[0]["cnt"]);
+                }
+
+                if (cnt > 0)
+                {
+                    qr = "select b.ingrecategory+' - '+i.ingredientname as IngredientName,b.ingrecategory+' - '+li.BIngredientName as BIngredientName,* from tblLedgerIngredient li inner join  tblIngridents i on i.IngridID=li.IngredientId inner join tblIngridentscategory as b on b.ingcatid=i.ingcatid inner join tblUOM u on u.UOMID=i.Units where i.IsActive='Yes' and LedgerId=" + LedgerId + " ";
+                    ds = dbObj.InlineExecuteDataSet(qr);
+                }
+                else
+                {
+                    qr = "select b.ingrecategory+' - '+i.ingredientname as IngredientName,*,'' as BIngredientName from  tblIngridents as i inner join tblIngridentscategory as b on b.ingcatid=i.ingcatid  inner join tblUOM u on u.UOMID=i.Units where i.IsActive='Yes' ";
+                    ds = dbObj.InlineExecuteDataSet(qr);
+                }
+            }
+            else
+            {
+                qr = "select b.ingrecategory+' - '+i.ingredientname as IngredientName,*,'' as BIngredientName from  tblIngridents as i inner join tblIngridentscategory as b on b.ingcatid=i.ingcatid  inner join tblUOM u on u.UOMID=i.Units where i.IsActive='Yes' ";
+                ds = dbObj.InlineExecuteDataSet(qr);
+            }
+            return ds;
+        }
 
         public DataSet GetIngredientVal(int Units)
         {
@@ -17919,14 +17880,14 @@ namespace BusinessLayer
                 cont = "and ct.contacttype='Customer'";
             else if (ID == "2")
                 cont = "and ct.contacttype='Dealer'";
-            else if (ID == "3")
+            else if (ID=="3")
                 cont = "and ct.contacttype='Supplier'";
-            else if (ID == "4")
+            else if (ID=="4")
                 cont = "and ct.contacttype='icing Employee'";
-            else
-                cont = "and ct.contacttype='dispatch Employee'";
+            else 
+                cont= "and ct.contacttype='dispatch Employee'";
 
-            string sQry = "select top 200 ct.ContactType,c.* from tblCustomer c inner join tblContactType ct on ct.ContactID=c.ContactTypeID  where c.IsActive='Yes' " + cont + "  order by idcust desc";//  order by CustomerName asc";
+                string sQry = "select top 50 ct.ContactType,c.* from tblCustomer c inner join tblContactType ct on ct.ContactID=c.ContactTypeID  where c.IsActive='Yes' " + cont + "  order by idcust desc";//  order by CustomerName asc";
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
         }
@@ -17957,7 +17918,7 @@ namespace BusinessLayer
         }
 
 
-        public int insertcontact(int UserID, string CustomerName, string MobileNo, string PhoneNo, string Area, string Address, string City, string Pincode, string Email, int iContactTypeid, int GroupId, string disc, string gstno, string paymentdays, string username, string password, int branchid, double opbalancecridit, double opbalancDebit, string contactType, string Province)
+        public int insertcontact(int UserID, string CustomerName, string MobileNo, string PhoneNo, string Area, string Address, string City, string Pincode, string Email, int iContactTypeid, int GroupId, string disc, string gstno, string paymentdays, string username, string password, int branchid, double opbalancecridit, double opbalancDebit, string contactType,string Province)
         {
             int iSuccess = 0;
 
@@ -18049,7 +18010,7 @@ namespace BusinessLayer
         }
 
 
-        public int updatecontact(string Ledgerid, string customername, string MobileNo, string PhoneNo, string Area, string Address, string City, string Pincode, string Email, int iContactType, int GroupId, string disc, string gstno, string paymentdays, string username, string passwor, int branchid, double opbalancecridit, double opbalancDebit, string contactType, string Province)
+        public int updatecontact(string Ledgerid, string customername, string MobileNo, string PhoneNo, string Area, string Address, string City, string Pincode, string Email, int iContactType, int GroupId, string disc, string gstno, string paymentdays, string username, string passwor, int branchid, double opbalancecridit, double opbalancDebit, string contactType,string Province)
         {
             int iSucess = 0;
             string customerid = "0";
@@ -18131,10 +18092,10 @@ namespace BusinessLayer
             return ds;
         }
 
-        public int insert_SalesType(string PaymentType, string margin, string gst, string paygateway, string total, string isactive, string isnormal, string isdiscount, string isinclusiverate, string OrderCount, string OrderType, int Attenderid, string attenderpwd, int Discid, double discper, string billtype, string billwisedisc)
+        public int insert_SalesType(string PaymentType, string margin, string gst, string paygateway, string total, string isactive, string isnormal, string isdiscount, string isinclusiverate, string OrderCount, string OrderType, int Attenderid, string attenderpwd, int Discid, double discper,string billtype,string billwisedisc)
         {
             int i = 0;
-            string sqry = "insert into tblsalestype (PaymentType,Margin,GST, PaymentGatway,Total,IsActive,IsNormal,Isdiscount,IsInclusiveRate,OrderCount,OrderType,Attenderid,attenderpwd,Discid,discper,billtype,Isbillwisedisc) values('" + PaymentType + "'," + margin + ",'" + gst + "', '" + paygateway + "', '" + total + "','YES','" + isnormal + "','" + isdiscount + "','" + isinclusiverate + "','" + OrderCount + "','" + OrderType + "','" + Attenderid + "','" + attenderpwd + "','" + Discid + "','" + discper + "','" + billtype + "','" + billwisedisc + "')";
+            string sqry = "insert into tblsalestype (PaymentType,Margin,GST, PaymentGatway,Total,IsActive,IsNormal,Isdiscount,IsInclusiveRate,OrderCount,OrderType,Attenderid,attenderpwd,Discid,discper,billtype,Isbillwisedisc) values('" + PaymentType + "'," + margin + ",'" + gst + "', '" + paygateway + "', '" + total + "','YES','" + isnormal + "','" + isdiscount + "','" + isinclusiverate + "','" + OrderCount + "','" + OrderType + "','" + Attenderid + "','" + attenderpwd + "','" + Discid + "','" + discper + "','"+ billtype + "','"+ billwisedisc + "')";
             i = dbObj.InlineExecuteNonQuery(sqry);
             return i;
         }
@@ -18150,22 +18111,6 @@ namespace BusinessLayer
                 string id = ds.Tables[0].Rows[0]["id"].ToString();
 
                 string sqry = "insert into tbltranssalestype (Salestypeid,Value) values('" + id + "','" + value + "')";
-                i = dbObj.InlineExecuteNonQuery(sqry);
-            }
-            return i;
-        }
-
-        public int insert_TransRateType(string value)
-        {
-            int i = 0;
-
-            string maxid = "Select MAX(Salestypeid) as id from tblsalestype ";
-            DataSet ds = dbObj.InlineExecuteDataSet(maxid);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                string id = ds.Tables[0].Rows[0]["id"].ToString();
-
-                string sqry = "insert into tbltransRatetype (Salestypeid,RateValue) values('" + id + "','" + value + "')";
                 i = dbObj.InlineExecuteNonQuery(sqry);
             }
             return i;
@@ -18216,16 +18161,6 @@ namespace BusinessLayer
             return i;
         }
 
-
-        public int insert_TransRateTypeUpdate(string value, string id)
-        {
-            int i = 0;
-            string sqry = "insert into tbltransRatetype (Salestypeid,RateValue) values('" + id + "','" + value + "')";
-            i = dbObj.InlineExecuteNonQuery(sqry);
-
-            return i;
-        }
-
         public int insert_TransdiscTypeUpdate(string discid, string discper, string attenderid)
         {
             int i = 0;
@@ -18241,12 +18176,6 @@ namespace BusinessLayer
 
             string idel = "Delete from tbltranssalestype where salestypeid='" + salesid + "'";
             i = dbObj.InlineExecuteNonQuery(idel);
-
-
-            string idel1 = "Delete from tbltransRatetype where salestypeid='" + salesid + "'";
-            i = dbObj.InlineExecuteNonQuery(idel1);
-
-
             return i;
         }
 
@@ -18317,14 +18246,6 @@ namespace BusinessLayer
             return ds;
         }
 
-        public DataSet EditratesmodeType(int id)
-        {
-            DataSet ds = new DataSet();
-            string sqry = "select * from tbltransRatetype  where  SalesTypeID=" + id + "";
-            ds = dbObj.InlineExecuteDataSet(sqry);
-            return ds;
-        }
-
         public DataSet Editdisctype(int id)
         {
             DataSet ds = new DataSet();
@@ -18349,10 +18270,10 @@ namespace BusinessLayer
             return ds;
         }
 
-        public int update_salestype(string PaymentType, string margin, string gst, string paygateway, string total, string isactive, int id, string isnormal, string isdicount, string isinclusiverate, string OrderCount, string OrderType, int Attenderid, string attenderpwd, int Discid, double discper, string billtype, string isbillwisediscount)
+        public int update_salestype(string PaymentType, string margin, string gst, string paygateway, string total, string isactive, int id, string isnormal, string isdicount, string isinclusiverate, string OrderCount, string OrderType, int Attenderid, string attenderpwd, int Discid, double discper,string billtype,string isbillwisediscount)
         {
             int i = 0;
-            string sqry = "update tblsalestype set Isbillwisedisc='" + isbillwisediscount + "', billtype='" + billtype + "',Attenderid='" + Attenderid + "',attenderpwd='" + attenderpwd + "',Discid='" + Discid + "',discper='" + discper + "', OrderCount='" + OrderCount + "',OrderType='" + OrderType + "',IsInclusiveRate='" + isinclusiverate + "',Isdiscount='" + isdicount + "',IsNormal='" + isnormal + "',PaymentType='" + PaymentType + "',Margin='" + margin + "', GST='" + gst + "', PaymentGatway='" + paygateway + "',Total='" + total + "',IsActive='" + isactive + "' where SalesTypeID=" + id + "";
+            string sqry = "update tblsalestype set Isbillwisedisc='"+ isbillwisediscount + "', billtype='" + billtype+"',Attenderid='" + Attenderid + "',attenderpwd='" + attenderpwd + "',Discid='" + Discid + "',discper='" + discper + "', OrderCount='" + OrderCount + "',OrderType='" + OrderType + "',IsInclusiveRate='" + isinclusiverate + "',Isdiscount='" + isdicount + "',IsNormal='" + isnormal + "',PaymentType='" + PaymentType + "',Margin='" + margin + "', GST='" + gst + "', PaymentGatway='" + paygateway + "',Total='" + total + "',IsActive='" + isactive + "' where SalesTypeID=" + id + "";
             i = dbObj.InlineExecuteNonQuery(sqry);
             return i;
         }
@@ -18550,7 +18471,7 @@ namespace BusinessLayer
             DateTime date1 = DateTime.ParseExact(Date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
 
-            string sQry = "Update tblkitchenPurchaseorder_" + Table + " set Companyid='" + companyid + "',OrderNo=" + dcno + ",OrderDate='" + Convert.ToDateTime(BillDate).ToString("yyyy/MM/dd") + "',EntryDate='" + Convert.ToDateTime(date1).ToString("yyyy/MM/dd") + "',Subtotal=" + Subtotal + ",Tax=" + Tax + ",Total=" + Total + ",Supplier=" + Supplier + ",Paymode=" + Paymode + ",Bank=" + bank + ",ChequeNo='" + chequeno + "',CGST='" + cgst + "',SGST='" + sgst + "',IGST='" + igst + "',DCNO='" + dcno + "',EntryUserID=" + EntryUserID + ",Province='" + province + "' where Orderno=" + dcno + "";
+            string sQry = "Update tblkitchenPurchaseorder_" + Table + " set Companyid='"+companyid+"',OrderNo=" + dcno + ",OrderDate='" + Convert.ToDateTime(BillDate).ToString("yyyy/MM/dd") + "',EntryDate='" + Convert.ToDateTime(date1).ToString("yyyy/MM/dd") + "',Subtotal=" + Subtotal + ",Tax=" + Tax + ",Total=" + Total + ",Supplier=" + Supplier + ",Paymode=" + Paymode + ",Bank=" + bank + ",ChequeNo='" + chequeno + "',CGST='" + cgst + "',SGST='" + sgst + "',IGST='" + igst + "',DCNO='" + dcno + "',EntryUserID=" + EntryUserID + ",Province='" + province + "' where Orderno=" + dcno + "";
             save = dbObj.InlineExecuteNonQuery(sQry);
 
             DataSet ds = new DataSet();
@@ -18560,7 +18481,7 @@ namespace BusinessLayer
             return save;
         }
 
-        public int insertPurchaseOrder(string Table, int ledgerid, int CreditorID1, string BillNo, DateTime BillDate, string EntryDate, decimal Subtotal, decimal Tax, decimal Total, int Supplier, int Paymode, int bank, string chequeno, string cgst, string sgst, string igst, string dcno, int EntryUserID, string province, string companyid)
+        public int insertPurchaseOrder(string Table, int ledgerid, int CreditorID1, string BillNo, DateTime BillDate, string EntryDate, decimal Subtotal, decimal Tax, decimal Total, int Supplier, int Paymode, int bank, string chequeno, string cgst, string sgst, string igst, string dcno, int EntryUserID, string province,string companyid)
         {
             int TransNo = 0;
             int Bn0 = 0;
@@ -18587,7 +18508,7 @@ namespace BusinessLayer
             //ds2 = dbObj.InlineExecuteDataSet(qy2);
             //TransNo = Convert.ToInt32(ds2.Tables[0].Rows[0]["TransNo"].ToString());
 
-            string sQry = "insert into tblkitchenPurchaseorder_" + Table + "(OrderNo,OrderDate,EntryDate,Subtotal,Tax,Total,Supplier,Paymode,Bank,ChequeNo,CGST,SGST,IGST,DCNO,EntryUserID,Province,Companyid) values(" + dcno + ",'" + Convert.ToDateTime(BillDate).ToString("yyyy/MM/dd") + "','" + Convert.ToDateTime(date1).ToString("yyyy/MM/dd") + "'," + Subtotal + "," + Tax + "," + Total + "," + Supplier + "," + Paymode + "," + bank + ",'" + chequeno + "','" + cgst + "','" + sgst + "','" + igst + "','" + dcno + "'," + EntryUserID + ",'" + province + "','" + companyid + "')";
+            string sQry = "insert into tblkitchenPurchaseorder_" + Table + "(OrderNo,OrderDate,EntryDate,Subtotal,Tax,Total,Supplier,Paymode,Bank,ChequeNo,CGST,SGST,IGST,DCNO,EntryUserID,Province,Companyid) values(" + dcno + ",'" + Convert.ToDateTime(BillDate).ToString("yyyy/MM/dd") + "','" + Convert.ToDateTime(date1).ToString("yyyy/MM/dd") + "'," + Subtotal + "," + Tax + "," + Total + "," + Supplier + "," + Paymode + "," + bank + ",'" + chequeno + "','" + cgst + "','" + sgst + "','" + igst + "','" + dcno + "'," + EntryUserID + ",'" + province + "','"+companyid+"')";
             save = dbObj.InlineExecuteNonQuery(sQry);
 
             DataSet ds = new DataSet();
@@ -18617,7 +18538,7 @@ namespace BusinessLayer
             return save;
         }
 
-        public int insertPurchase(string Table, int ledgerid, int CreditorID1, string BillNo, DateTime BillDate, string EntryDate, decimal Subtotal, decimal Tax, decimal Total, int Supplier, int Paymode, int bank, string chequeno, string cgst, string sgst, string igst, string dcno, int EntryUserID, string billingtype, int pono, string Province, double DiscountAmount, double FreightCharge, double FreightChargeTax, int FreightChargeTaxId, double FreightChargeTaxValue, double Roundoff, string itemloadtype, string itemload, string subcompanyid)
+        public int insertPurchase(string Table, int ledgerid, int CreditorID1, string BillNo, DateTime BillDate, string EntryDate, decimal Subtotal, decimal Tax, decimal Total, int Supplier, int Paymode, int bank, string chequeno, string cgst, string sgst, string igst, string dcno, int EntryUserID, string billingtype, int pono, string Province, double DiscountAmount, double FreightCharge, double FreightChargeTax, int FreightChargeTaxId, double FreightChargeTaxValue, double Roundoff, string itemloadtype, string itemload,string subcompanyid)
         {
             int TransNo = 0;
             int Bn0 = 0;
@@ -18644,7 +18565,7 @@ namespace BusinessLayer
             ds2 = dbObj.InlineExecuteDataSet(qy2);
             TransNo = Convert.ToInt32(ds2.Tables[0].Rows[0]["TransNo"].ToString());
 
-            string sQry = "insert into tblkitchenPurchase_" + Table + "(BillNo,BillDate,EntryDate,Subtotal,Tax,Total,Supplier,Paymode,Bank,ChequeNo,Daybookid,CGST,SGST,IGST,DCNO,EntryUserID,BillingType,POOrderNo,Province,Status,DiscountAmount,FreightCharge,FreightChargeTax,FreightChargeTaxId,FreightChargeTaxValue,RoundOff,itemloadtype,itemload,subcompanyid) values(" + Bn0 + ",'" + Convert.ToDateTime(BillDate).ToString("yyyy/MM/dd") + "','" + Convert.ToDateTime(date1).ToString("yyyy/MM/dd hh:mm ") + "'," + Subtotal + "," + Tax + "," + Total + "," + Supplier + "," + Paymode + "," + bank + ",'" + chequeno + "'," + TransNo + ",'" + cgst + "','" + sgst + "','" + igst + "','" + dcno + "'," + EntryUserID + ",'" + billingtype + "','" + pono + "','" + Province + "','NO'," + DiscountAmount + "," + FreightCharge + "," + FreightChargeTax + "," + FreightChargeTaxId + "," + FreightChargeTaxValue + "," + Roundoff + ",'" + itemloadtype + "','" + itemload + "','" + subcompanyid + "')";
+            string sQry = "insert into tblkitchenPurchase_" + Table + "(BillNo,BillDate,EntryDate,Subtotal,Tax,Total,Supplier,Paymode,Bank,ChequeNo,Daybookid,CGST,SGST,IGST,DCNO,EntryUserID,BillingType,POOrderNo,Province,Status,DiscountAmount,FreightCharge,FreightChargeTax,FreightChargeTaxId,FreightChargeTaxValue,RoundOff,itemloadtype,itemload,subcompanyid) values(" + Bn0 + ",'" + Convert.ToDateTime(BillDate).ToString("yyyy/MM/dd") + "','" + Convert.ToDateTime(date1).ToString("yyyy/MM/dd hh:mm ") + "'," + Subtotal + "," + Tax + "," + Total + "," + Supplier + "," + Paymode + "," + bank + ",'" + chequeno + "'," + TransNo + ",'" + cgst + "','" + sgst + "','" + igst + "','" + dcno + "'," + EntryUserID + ",'" + billingtype + "','" + pono + "','" + Province + "','NO'," + DiscountAmount + "," + FreightCharge + "," + FreightChargeTax + "," + FreightChargeTaxId + "," + FreightChargeTaxValue + "," + Roundoff + ",'" + itemloadtype + "','" + itemload + "','"+ subcompanyid + "')";
             save = dbObj.InlineExecuteNonQuery(sQry);
 
             //if (billingtype == "Purchase Order")
@@ -18660,7 +18581,8 @@ namespace BusinessLayer
             return save;
         }
 
-        public int insertTransPurchase(string Table, int PurchaseID, int IngredientID, decimal Qty, decimal Rate, decimal Amount, decimal Tax, int userid, string Units, decimal billno, int supplier, string pay, string ExpiryDate, string Narrations, double Disc, double discamount, string Punitsid, double Pvalue, double PUqty)
+       
+        public int insertTransPurchase(string Table, int PurchaseID, int IngredientID, decimal Qty, decimal Rate, decimal Amount, decimal Tax, int userid, string Units, decimal billno, int supplier, string pay, string ExpiryDate, string Narrations, double Disc, double discamount, string Punitsid, double Pvalue, double PUqty,double PerkgRate)
         {
             int save = 0;
 
@@ -18669,7 +18591,7 @@ namespace BusinessLayer
 
 
             DateTime ExpiryDate1;
-            if (ExpiryDate == "" || ExpiryDate == "0" || ExpiryDate == "01/01/1900 12:00:00 AM")
+            if (ExpiryDate == "" || ExpiryDate == "0" || ExpiryDate == "01/01/1900 00:00:00")
             {
                 ExpiryDate1 = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture);
             }
@@ -18677,8 +18599,8 @@ namespace BusinessLayer
             {
                 ExpiryDate1 = DateTime.ParseExact(ExpiryDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             }
-
-            string sQry = "insert into tbltranskitchenPurchase_" + Table + "(PurchaseID,IngredientID,Qty,Rate,Amount,Tax,Units,BillNo,SupplierID,Paymode,ExpiryDate,Narrations,Status,RQty,Disc,DiscountAmnt,Punitsid,Pvalue,PUqty) values(" + PurchaseID + "," + IngredientID + "," + Qty + "," + Rate + "," + Amount + "," + Tax + ",'" + Units + "'," + billno + "," + supplier + ",'" + pay + "','" + ExpiryDate1.ToString("yyyy-MM-dd") + "','" + Narrations + "','NO',0," + Disc + "," + discamount + ",'" + Punitsid + "','" + Pvalue + "','" + PUqty + "')";
+            //ExpiryDate = "";
+            string sQry = "insert into tbltranskitchenPurchase_" + Table + "(PurchaseID,IngredientID,Qty,Rate,Amount,Tax,Units,BillNo,SupplierID,Paymode,ExpiryDate,Narrations,Status,RQty,Disc,DiscountAmnt,Punitsid,Pvalue,PUqty,PerkgRate) values(" + PurchaseID + "," + IngredientID + "," + Qty + "," + Rate + "," + Amount + "," + Tax + ",'" + Units + "'," + billno + "," + supplier + ",'" + pay + "','" + ExpiryDate1.ToString("yyyy-MM-dd") + "','" + Narrations + "','NO',0," + Disc + "," + discamount + ",'" + Punitsid + "','" + Pvalue + "','" + PUqty + "','" + PerkgRate + "')";
             save = dbObj.InlineExecuteNonQuery(sQry);
 
 
@@ -18706,18 +18628,21 @@ namespace BusinessLayer
                 //  decimal dQty = AvlQty + Qty;
 
                 // Query = " update tblRawMatlStock_" + Table + " set Qty=" + dQty + ",Rate=" + ttlQtyrate + " where IngredientID=" + IngredientID + " and userID=" + userid + "  ";
-                Query = " update tblRawMatlStock_" + Table + " set Qty=" + dQty + ",Rate=" + ttlQtyrate + " where IngredientID=" + IngredientID + "";
+                Query = " update tblRawMatlStock_" + Table + " set Qty=" + dQty + ",Rate=" + ttlQtyrate + ",PerkgRate='"+PerkgRate+"' where IngredientID=" + IngredientID + "";
             }
             else
             {
-                Query = "insert into tblRawMatlStock_" + Table + " (IngredientID,Qty,UserID,idDelete,units,Rate)values(" + IngredientID + "," + PUqty + "," + userid + ",0,'" + Units + "'," + Rate + " )";
+                Query = "insert into tblRawMatlStock_" + Table + " (IngredientID,Qty,UserID,idDelete,units,Rate,perkgRate)values(" + IngredientID + "," + PUqty + "," + userid + ",0,'" + Units + "'," + Rate + " ,'"+PerkgRate +"')";
             }
 
             stock = dbObj.InlineExecuteNonQuery(Query);
+            string qry = "update tblingridents set suppliername='" + supplier + "' ,costperkg='" + PerkgRate + "' where ingridid='" + IngredientID + "'";
+            save = dbObj.InlineExecuteNonQuery(qry);
 
             // insert stock - expiry date  
             string sQry11 = "insert into tblRawMatlStockExp_" + Table + " (IngredientID,Qty,ExpiredDate,PurchaseID)values(" + IngredientID + "," + PUqty + ",'" + ExpiryDate1.ToString("yyyy-MM-dd") + "'," + PurchaseID + ") ";
             save = dbObj.InlineExecuteNonQuery(sQry11);
+
 
             return save;
         }
@@ -18898,7 +18823,7 @@ namespace BusinessLayer
             DataSet ds = new DataSet();
             //  string sQry = " select c.ledgername as CustomerName,kp.*,case kp.Paymode when 1 then 'Cash' when 2 then 'Credit' else 'Cheque' end as PaymentMode from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier order by kp.OrderNo desc";
             // paymode mismatch still not merge so kindly check that
-            string sQry = " select isnull(d.CustomerName,'Not Assign') as companyname,c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsalespaymode sp on kp.Paymode=sp.value  left join tblsubCompanyDetails as d on d.subComapanyID=kp.Companyid order by kp.OrderNo desc";
+            string sQry = " select isnull(d.CustomerName,'Not Assign')+'-'+d.GSTNo as companyname,c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsalespaymode sp on kp.Paymode=sp.value  left join tblsubCompanyDetails as d on d.subComapanyID=kp.Companyid order by kp.OrderNo desc";
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
         }
@@ -19317,7 +19242,7 @@ namespace BusinessLayer
             ds = dbObj.InlineExecuteDataSet(qr);
             return ds;
         }
-
+        
 
         public DataSet getpurchaseMasterdate(string Table, string Supplier, DateTime from, DateTime to)
         {
@@ -19325,7 +19250,7 @@ namespace BusinessLayer
             if (Supplier == "All")
             {
                 string sQry = " select c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode  from  tblkitchenPurchase_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier inner join tblsalespaymode sp on kp.Paymode=sp.value where  CAST(kp.BillDate AS DATE) >= '" + Convert.ToDateTime(from).ToString("yyyy/MM/dd") + "'  AND CAST(kp.BillDate AS DATE) <= '" + Convert.ToDateTime(to).ToString("yyyy/MM/dd") + "' order by kp.BillNo desc";
-
+              
                 ds = dbObj.InlineExecuteDataSet(sQry);
             }
             else
@@ -19341,12 +19266,12 @@ namespace BusinessLayer
             DataSet ds = new DataSet();
             if (Supplier == "All")
             {
-                string sQry = " select isnull(d.CustomerName,'Not Assign') as companyname,c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode  from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier left join tblsubCompanyDetails as d on d.subComapanyID=kp.Companyid inner join tblsalespaymode sp on kp.Paymode=sp.value where  CAST(kp.OrderDate AS DATE) >= '" + Convert.ToDateTime(from).ToString("yyyy/MM/dd") + "'  AND CAST(kp.OrderDate AS DATE) <= '" + Convert.ToDateTime(to).ToString("yyyy/MM/dd") + "' order by kp.OrderNo desc";
+                string sQry = " select isnull(d.CustomerName,'Not Assign')+'-'+d.GSTNo as companyname,c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode  from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier left join tblsubCompanyDetails as d on d.subComapanyID=kp.Companyid inner join tblsalespaymode sp on kp.Paymode=sp.value where  CAST(kp.OrderDate AS DATE) >= '" + Convert.ToDateTime(from).ToString("yyyy/MM/dd") + "'  AND CAST(kp.OrderDate AS DATE) <= '" + Convert.ToDateTime(to).ToString("yyyy/MM/dd") + "' order by kp.OrderNo desc";
                 ds = dbObj.InlineExecuteDataSet(sQry);
             }
             else
             {
-                string sQry = " select isnull(d.CustomerName,'Not Assign') as companyname,c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode  from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier left join tblsubCompanyDetails as d on d.subComapanyID=kp.Companyid inner join tblsalespaymode sp on kp.Paymode=sp.value where Supplier=" + Supplier + "  and CAST(kp.OrderDate AS DATE) >= '" + Convert.ToDateTime(from).ToString("yyyy/MM/dd") + "'  AND CAST(kp.OrderDate AS DATE) <= '" + Convert.ToDateTime(to).ToString("yyyy/MM/dd") + "' order by kp.OrderNo desc";
+                string sQry = " select isnull(d.CustomerName,'Not Assign')+'-'+d.GSTNo as companyname,c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode  from  tblkitchenPurchaseOrder_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier left join tblsubCompanyDetails as d on d.subComapanyID=kp.Companyid inner join tblsalespaymode sp on kp.Paymode=sp.value where Supplier=" + Supplier + "  and CAST(kp.OrderDate AS DATE) >= '" + Convert.ToDateTime(from).ToString("yyyy/MM/dd") + "'  AND CAST(kp.OrderDate AS DATE) <= '" + Convert.ToDateTime(to).ToString("yyyy/MM/dd") + "' order by kp.OrderNo desc";
                 ds = dbObj.InlineExecuteDataSet(sQry);
             }
             return ds;
@@ -19378,12 +19303,12 @@ namespace BusinessLayer
                 {
                     if (subcompany == "All")
                     {
-                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchase_" + Table + " kp inner join tblTranskitchenPurchase_" + Table + " tkp on kp.purchaseID=tkp.PurchaseID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where  convert(date,kp.BillDate) between '" + sFmdate + "' and '" + sToDate + "' order by kp.BillNo desc";
+                        string sQry = " select cm.customername as compname,cm.CustomerName+'-'+cm.GSTNO as CustomerName1, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchase_" + Table + " kp inner join tblTranskitchenPurchase_" + Table + " tkp on kp.purchaseID=tkp.PurchaseID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where  convert(date,kp.BillDate) between '" + sFmdate + "' and '" + sToDate + "' order by kp.BillNo desc";
                         ds = dbObj.InlineExecuteDataSet(sQry);
                     }
                     else
                     {
-                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchase_" + Table + " kp inner join tblTranskitchenPurchase_" + Table + " tkp on kp.purchaseID=tkp.PurchaseID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where  convert(date,kp.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and kp.subcompanyid='" + subcompany + "' order by kp.BillNo desc";
+                        string sQry = " select cm.customername as compname,cm.CustomerName+'-'+cm.GSTNO as CustomerName1, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchase_" + Table + " kp inner join tblTranskitchenPurchase_" + Table + " tkp on kp.purchaseID=tkp.PurchaseID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where  convert(date,kp.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and kp.subcompanyid='" + subcompany + "' order by kp.BillNo desc";
                         ds = dbObj.InlineExecuteDataSet(sQry);
                     }
 
@@ -19392,12 +19317,12 @@ namespace BusinessLayer
                 {
                     if (subcompany == "All")
                     {
-                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchase_" + Table + " kp inner join tblTranskitchenPurchase_" + Table + " tkp on kp.purchaseID=tkp.PurchaseID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where  convert(date,kp.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and tkp.IngredientID=" + Raw + " order by kp.BillNo desc";
+                        string sQry = " select cm.customername as compname,cm.CustomerName+'-'+cm.GSTNO as CustomerName1, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchase_" + Table + " kp inner join tblTranskitchenPurchase_" + Table + " tkp on kp.purchaseID=tkp.PurchaseID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where  convert(date,kp.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and tkp.IngredientID=" + Raw + " order by kp.BillNo desc";
                         ds = dbObj.InlineExecuteDataSet(sQry);
                     }
                     else
                     {
-                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchase_" + Table + " kp inner join tblTranskitchenPurchase_" + Table + " tkp on kp.purchaseID=tkp.PurchaseID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where  convert(date,kp.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and tkp.IngredientID=" + Raw + " and kp.subcompanyid='" + subcompany + "' order by kp.BillNo desc";
+                        string sQry = " select cm.customername as compname,cm.CustomerName+'-'+cm.GSTNO as CustomerName1, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchase_" + Table + " kp inner join tblTranskitchenPurchase_" + Table + " tkp on kp.purchaseID=tkp.PurchaseID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where  convert(date,kp.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and tkp.IngredientID=" + Raw + " and kp.subcompanyid='" + subcompany + "' order by kp.BillNo desc";
                         ds = dbObj.InlineExecuteDataSet(sQry);
                     }
                 }
@@ -19408,12 +19333,12 @@ namespace BusinessLayer
                 {
                     if (subcompany == "All")
                     {
-                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchase_" + Table + " kp inner join tblTranskitchenPurchase_" + Table + " tkp on kp.purchaseID=tkp.PurchaseID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where Supplier=" + Supplier + "  and convert(date,kp.BillDate) between '" + sFmdate + "' and '" + sToDate + "' order by kp.BillNo desc";
+                        string sQry = " select cm.customername as compname,cm.CustomerName+'-'+cm.GSTNO as CustomerName1, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchase_" + Table + " kp inner join tblTranskitchenPurchase_" + Table + " tkp on kp.purchaseID=tkp.PurchaseID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where Supplier=" + Supplier + "  and convert(date,kp.BillDate) between '" + sFmdate + "' and '" + sToDate + "' order by kp.BillNo desc";
                         ds = dbObj.InlineExecuteDataSet(sQry);
                     }
                     else
                     {
-                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchase_" + Table + " kp inner join tblTranskitchenPurchase_" + Table + " tkp on kp.purchaseID=tkp.PurchaseID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where Supplier=" + Supplier + "  and convert(date,kp.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and kp.subcompanyid='" + subcompany + "' order by kp.BillNo desc";
+                        string sQry = " select cm.customername as compname,cm.CustomerName+'-'+cm.GSTNO as CustomerName1, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchase_" + Table + " kp inner join tblTranskitchenPurchase_" + Table + " tkp on kp.purchaseID=tkp.PurchaseID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where Supplier=" + Supplier + "  and convert(date,kp.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and kp.subcompanyid='" + subcompany + "' order by kp.BillNo desc";
                         ds = dbObj.InlineExecuteDataSet(sQry);
                     }
                 }
@@ -19422,12 +19347,12 @@ namespace BusinessLayer
                 {
                     if (subcompany == "All")
                     {
-                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchase_" + Table + " kp inner join tblTranskitchenPurchase_" + Table + " tkp on kp.purchaseID=tkp.PurchaseID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where Supplier=" + Supplier + "  and tkp.IngredientID=" + Raw + " and  convert(date,kp.BillDate) between '" + sFmdate + "' and '" + sToDate + "' order by kp.BillNo desc";
+                        string sQry = " select cm.customername as compname,cm.CustomerName+'-'+cm.GSTNO as CustomerName1, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchase_" + Table + " kp inner join tblTranskitchenPurchase_" + Table + " tkp on kp.purchaseID=tkp.PurchaseID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where Supplier=" + Supplier + "  and tkp.IngredientID=" + Raw + " and  convert(date,kp.BillDate) between '" + sFmdate + "' and '" + sToDate + "' order by kp.BillNo desc";
                         ds = dbObj.InlineExecuteDataSet(sQry);
                     }
                     else
                     {
-                        string sQry = " select cm.customername as compname, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchase_" + Table + " kp inner join tblTranskitchenPurchase_" + Table + " tkp on kp.purchaseID=tkp.PurchaseID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where Supplier=" + Supplier + "  and tkp.IngredientID=" + Raw + " and  convert(date,kp.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and kp.subcompanyid='" + subcompany + "' order by kp.BillNo desc";
+                        string sQry = " select cm.customername as compname,cm.CustomerName+'-'+cm.GSTNO as CustomerName1, c.ledgername as CustomerName,sp.paymode as PaymentMode,* from  tblkitchenPurchase_" + Table + " kp inner join tblTranskitchenPurchase_" + Table + " tkp on kp.purchaseID=tkp.PurchaseID  inner join tblsalespaymode sp on kp.Paymode=sp.value inner join tblIngridents i on i.IngridID=tkp.IngredientID inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsubCompanyDetails cm on cm.subComapanyID = kp.subcompanyid where Supplier=" + Supplier + "  and tkp.IngredientID=" + Raw + " and  convert(date,kp.BillDate) between '" + sFmdate + "' and '" + sToDate + "' and kp.subcompanyid='" + subcompany + "' order by kp.BillNo desc";
                         ds = dbObj.InlineExecuteDataSet(sQry);
                     }
                 }
@@ -20228,11 +20153,11 @@ namespace BusinessLayer
         }
 
         public int insertOrdersalesnew123(string sSalesTable, int UserID, string BillNo, string BillDate, int CustomerID, double NetAmount, double Total, double Tax,
-            double Discount, int iEdit, int Icnt, double dAdvance, int Ordeeno, string msg, string takenBy, string DeliveryDate, string DeliveryTime, string Notes,
-            int iPayMode, decimal cash, decimal bal, string Provider, string Approved, string attender, string Biller, string cashier, double cgst, double sgst, double stotal,
-            int iIsAccountsBill, string roundoff, string Saletypemargin, string GstMargin, string Gateway, string salestype, string salesorderno, string isnormal,
-            string kottableno, string isprint, string discper, string attednertypeid, string onlineamount, string Billcode, string BillGeneratesetting,
-            string Billtaxsetting, string currencytype, string transamounttable, string BillerId, string excurrencyname, string excurrencyid, string excurrencyvalue, string extotalrate)
+              double Discount, int iEdit, int Icnt, double dAdvance, int Ordeeno, string msg, string takenBy, string DeliveryDate, string DeliveryTime, string Notes,
+              int iPayMode, decimal cash, decimal bal, string Provider, string Approved, string attender, string Biller, string cashier, double cgst, double sgst, double stotal,
+              int iIsAccountsBill, string roundoff, string Saletypemargin, string GstMargin, string Gateway, string salestype, string salesorderno, string isnormal,
+              string kottableno, string isprint, string discper, string attednertypeid, string onlineamount, string Billcode, string BillGeneratesetting,
+              string Billtaxsetting, string currencytype, string transamounttable, string BillerId, string excurrencyname, string excurrencyid, string excurrencyvalue, string extotalrate)
         {
             int iSuccess = 0;
             DataSet billnonew = new DataSet();
@@ -20304,6 +20229,7 @@ namespace BusinessLayer
             return billno1;
 
         }
+
 
 
 
@@ -20747,7 +20673,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
             //string sqry = "select * from tblCustomer  where ContactTypeID='1' and IsActive='Yes' ";
-            string sqry = "select distinct(CustomerName),c.CustomerId from tblCustomer c inner  join tblContactType on c.ContactTypeID = tblContactType.ContactID inner join  tblOrder_" + stablename + " s on s.customerid=c.customerid where  IsActive = 'Yes' order by CustomerName asc";
+            string sqry = "select distinct(CustomerName),c.CustomerId from tblCustomer c inner  join tblContactType on c.ContactTypeID = tblContactType.ContactID inner join  tblOrder_"+ stablename +" s on s.customerid=c.customerid where  IsActive = 'Yes' order by CustomerName asc";
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
         }
@@ -20848,7 +20774,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
             //string sqry = " select u.UOM,ts.Semiitemid,cu.Definition,i.IngredientName,s.TotalQty,ts.RecQty,((ts.RecQty/s.TotalQty) * " + Qty + ") as WantedRaw from tblSemiSetting s inner join tbltranssemisetting ts on ts.Settingid=s.SettingId inner join tblCategoryUser cu on    cu.CategoryUserID=s.Itemid inner join tblIngridents i on i.IngridID=ts.Semiitemid inner join tblUOM u on u.UOMID=i.Units where s.Itemid=" + ItemId + " ";
-            string sqry = " select ISNULL(r.Qty,0) as RawStock,u.UOM,ts.Semiitemid,cu.Definition,i.IngredientName,s.TotalQty,ts.RecQty,((ts.RecQty/s.TotalQty) * " + Qty + ") as WantedRaw from tblSemiSetting s inner join tbltranssemisetting ts on ts.Settingid=s.SettingId inner join tblCategoryUser cu on    cu.CategoryUserID=s.Itemid inner join tblIngridents i on i.IngridID=ts.Semiitemid inner join tblUOM u on u.UOMID=i.Units  left join tblRawMatlStockProduction_" + Table + " r on r.IngredientID=i.IngridID  where s.Itemid=" + ItemId + " ";
+            string sqry = " select ISNULL(r.Qty,0) as RawStock,u.UOM,ts.Semiitemid,cu.Definition,i.IngredientName,s.TotalQty,ts.RecQty,((ts.RecQty/s.TotalQty) * " + Qty + ") as WantedRaw,cu.qtytype from tblSemiSetting s inner join tbltranssemisetting ts on ts.Settingid=s.SettingId inner join tblCategoryUser cu on    cu.CategoryUserID=s.Itemid inner join tblIngridents i on i.IngridID=ts.Semiitemid inner join tblUOM u on u.UOMID=i.Units  left join tblRawMatlStockProduction_" + Table + " r on r.IngredientID=i.IngridID  where s.Itemid=" + ItemId + " ";
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
 
@@ -21315,12 +21241,12 @@ namespace BusinessLayer
             //////   string sqry = "select (ts.qty- ts.Pending) as qty,ts.Itemid,cu.Definition,ISNULL(f.Qty,0) as FrozenQty  from tblReceiveRawMaterials_" + scode + " s inner join tbltransReceiveRawMaterials_" + scode + " ts on ts.RequestID=s.RequestNo inner join tblCategoryUser cu on cu.CategoryUserID=ts.ItemId left join tblFrozenStock_Prod f on f.ItemID=ts.ItemId where s.RequestNo=" + RequestNo + "";
             if (Categoryid == "All" || Categoryid == "Select")
             {
-                string sqry = " select isnull(ps.Prod_Qty,0) as Prod_Qty,c.Category,(ts.qty- ts.Pending) as qty,ts.Itemid,cu.Definition,ISNULL(f.Qty,0) as FrozenQty,cu.serial  from tblReceiveRawMaterials_" + scode + " s inner join tbltransReceiveRawMaterials_" + scode + " ts on ts.RequestID=s.RequestNo inner join tblCategoryUser cu on cu.CategoryUserID=ts.ItemId left join tblFrozenStock_" + scode + " f on f.ItemID=ts.ItemId  inner join tblcategory c on c.Categoryid=cu.CategoryID left join tblProductionQty_" + scode + " ps on ps.DescriptionId=cu.CategoryUserID where s.RequestNo=" + RequestNo + " and (ts.Qty-ts.Pending)>0 order by c.Category asc";
+                string sqry = " select isnull(ps.Prod_Qty,0) as Prod_Qty,c.Category,(ts.qty- ts.Pending) as qty,ts.Itemid,cu.Definition,ISNULL(f.Qty,0) as FrozenQty,cu.serial,cu.qtytytpe  from tblReceiveRawMaterials_" + scode + " s inner join tbltransReceiveRawMaterials_" + scode + " ts on ts.RequestID=s.RequestNo inner join tblCategoryUser cu on cu.CategoryUserID=ts.ItemId left join tblFrozenStock_" + scode + " f on f.ItemID=ts.ItemId  inner join tblcategory c on c.Categoryid=cu.CategoryID left join tblProductionQty_" + scode + " ps on ps.DescriptionId=cu.CategoryUserID where s.RequestNo=" + RequestNo + " and (ts.Qty-ts.Pending)>0 order by c.Category asc";
                 ds = dbObj.InlineExecuteDataSet(sqry);
             }
             else
             {
-                string sqry = " select isnull(ps.Prod_Qty,0) as Prod_Qty,c.Category,(ts.qty- ts.Pending) as qty,ts.Itemid,cu.Definition,ISNULL(f.Qty,0) as FrozenQty,cu.serial  from tblReceiveRawMaterials_" + scode + " s inner join tbltransReceiveRawMaterials_" + scode + " ts on ts.RequestID=s.RequestNo inner join tblCategoryUser cu on cu.CategoryUserID=ts.ItemId left join tblFrozenStock_" + scode + " f on f.ItemID=ts.ItemId  inner join tblcategory c on c.Categoryid=cu.CategoryID left join tblProductionQty_" + scode + " ps on ps.DescriptionId=cu.CategoryUserID where s.RequestNo=" + RequestNo + "  and c.Categoryid='" + Categoryid + "' and (ts.Qty-ts.Pending)>0 order by c.Category asc";
+                string sqry = " select isnull(ps.Prod_Qty,0) as Prod_Qty,c.Category,(ts.qty- ts.Pending) as qty,ts.Itemid,cu.Definition,ISNULL(f.Qty,0) as FrozenQty,cu.serial,cu.qtytype  from tblReceiveRawMaterials_" + scode + " s inner join tbltransReceiveRawMaterials_" + scode + " ts on ts.RequestID=s.RequestNo inner join tblCategoryUser cu on cu.CategoryUserID=ts.ItemId left join tblFrozenStock_" + scode + " f on f.ItemID=ts.ItemId  inner join tblcategory c on c.Categoryid=cu.CategoryID left join tblProductionQty_" + scode + " ps on ps.DescriptionId=cu.CategoryUserID where s.RequestNo=" + RequestNo + "  and c.Categoryid='" + Categoryid + "' and (ts.Qty-ts.Pending)>0 order by c.Category asc";
                 ds = dbObj.InlineExecuteDataSet(sqry);
             }
             return ds;
@@ -21510,12 +21436,12 @@ namespace BusinessLayer
             return ds;
         }
 
-
+        
         public DataSet getfinishraw_new(string Table)
         {
             DataSet ds = new DataSet();
-            string sqry = "select distinct s.RequestNo from tblRequestRawMaterials_" + Table + " s " +
-                        " inner join tbltransRequestRawMaterials_" + Table + " ts on s.RequestNo=ts.RequestID where (ts.PendingQty)>0 ";
+            string sqry = "select distinct s.RequestNo from tblRequestRawMaterials_"+Table+" s " +
+                        " inner join tbltransRequestRawMaterials_"+Table+" ts on s.RequestNo=ts.RequestID where (ts.PendingQty)>0 ";
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
         }
@@ -21523,7 +21449,7 @@ namespace BusinessLayer
 
 
         //select distinct s.RequestNo from tblRequestRawMaterials_prod s 
-        //inner join tbltransRequestRawMaterials_prod ts on s.RequestNo=ts.RequestID where (ts.PendingQty)>0 
+//inner join tbltransRequestRawMaterials_prod ts on s.RequestNo=ts.RequestID where (ts.PendingQty)>0 
 
         public DataSet getbranchCode()
         {
@@ -21928,6 +21854,250 @@ namespace BusinessLayer
         }
         #endregion
 
+        #region WholeSalesQuotation
+        public DataSet getcrsalesquotationno(string Table)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select isnull(max(BillNo + 1),1) as BillNo from tblWholesalesQuotation_" + Table + "  ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+
+        public DataSet getsalesdcquotationno(string Table)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select isnull(max(cast(DCNo AS int) + 1),1) as DCNo from tblWholesalesQuotation_" + Table + "  ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+
+        public DataSet GetSalesQuotation(string Stable, int SalesId)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select *  from  tblWholesalesQuotation_" + Stable + " s inner join  tblTransWholeSalesQuotation_" + Stable + " ts on s.Salesid=ts.Salesid inner join  tblCategoryUser c on c.CategoryUserID=ts.Item inner join tblCustomer cc on cc.Ledgerid=s.CustomerName inner join tblPaymode p on p.PayModeId=s.PayMode  Where s.SalesID=" + SalesId + " ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+
+        }
+
+        public DataSet GetSalesQuotationEdit(string Stable, string SalesId)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select *  from  " + Stable + " s Where s.SalesID='" + SalesId + "'";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+
+        }
+
+        public DataSet getwholeSaleQuotationprint(string sTableName, string salesid)
+        {
+            DataSet ds = new DataSet();
+            string sQry = "select s.*,c.*  from  tblWholesalesQuotation_" + sTableName + " s inner join tblcustomer c on s.customerName=c.ledgerid Where s.SalesID='" + salesid + "'";
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
+        public DataSet getTranswholeSaleQuotationprint(string sTableName, string salesid)
+        {
+            DataSet ds = new DataSet();
+            string sQry = "select u.uom,uu.UOM as per,t.*,i.* from tblTransWholesalesQuotation_Prod t inner join tblcategoryuser i on t.Item=i.CategoryUserID inner join tbluom u on u.UOMID=t.UOMID inner join tblUOM uu on uu.UOMID=i.unit where salesid='" + salesid + "'";
+
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
+    
+        public DataSet GetTransSalesQuotationEditNew(string Stable, string SalesId, string table)
+        {
+            DataSet ds = new DataSet();
+            string sqry = string.Empty;
+            sqry = "select s.UOMID as PackType,s.*  from  " + Stable + " s " +
+                "  Where s.SalesID='" + SalesId + "'";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+
+        }
+
+        public DataSet CheckduplicateDCquotation(string sTableName, string DCno)
+        {
+            DataSet ds = new DataSet();
+            string sQry = "select * from tblwholesalesQuotation_" + sTableName + " where billno='" + DCno + "'";
+
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
+        public DataSet CheckduplicateDCquotation_edit(string sTableName, string BillNo, string iSalesID)
+        {
+            DataSet ds = new DataSet();
+            string sQry = "select * from tblwholesalesQuotation_" + sTableName + " where BillNo='" + BillNo + "' and SalesId<>'" + iSalesID + "'";
+
+
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
+        public int insertwholesalesquotation(string sTableName, string billno, DateTime BillDate, int PayMode, string Narration, int CustomerName, string Mobile, string Address, double Amount, double Tax, double GrandTotal, int TaxVal, double DiscPer, double DiscAmount, double TotalItems, string DCNo, double Disc, int DiscType, double DeliveryVal, int OrderNo, int userId, string Logintype, double CGST, double SGST, double IGST, string SalesType, string Prefix, string Years, string VehicleNo)
+        {
+            int i = 0;
+            int BillNo = 0;
+            string billseries;
+
+            DataSet ds = new DataSet();
+            string sQry = "select isnull(max(BillNo+1),1) as BillNo from tblWholesalesquotation_" + sTableName + "";
+            ds = dbObj.InlineExecuteDataSet(sQry);
+
+            //  BillNo = Convert.ToInt32(ds.Tables[0].Rows[0]["BillNo"].ToString());
+            BillNo = Convert.ToInt32(billno);
+            billseries = Prefix + BillNo + Years;
+
+            string sQry1 = "insert into tblWholesalesquotation_" + sTableName + " (BillNo,BillDate,PayMode,Narration,CustomerName,Mobile,Address,Amount,Tax,GrandTotal,TaxVal,DiscPer,DiscAmount,TotalItems,DCNo,Disc,DiscType,DeliveryVal,StaticPayMode,OrderNo,userId,Logintype,CGST,SGST,IGST,SalesType,FullBillNo,VehicleNo) Values(" + BillNo + ",'" + Convert.ToDateTime(BillDate).ToString("yyyy/MM/dd hh:mm tt") + "'," + PayMode + ",'" + Narration + "','" + CustomerName + "','" + Mobile + "','" + Address + "'," + Amount + "," + Tax + "," + GrandTotal + "," + TaxVal + ",'" + DiscPer + "','" + DiscAmount + "'," + TotalItems + ",'" + DCNo + "'," + Disc + "," + DiscType + "," + DeliveryVal + "," + PayMode + "," + OrderNo + "," + userId + ",'" + Logintype + "','" + CGST + "','" + SGST + "','" + IGST + "','" + SalesType + "','" + billseries + "','" + VehicleNo + "')";
+            i = dbObj.InlineExecuteNonQuery(sQry1);
+
+            DataSet ds1 = new DataSet();
+            string sQry3 = "select max(SalesId) as SalesId from tblWholesalesquotation_" + sTableName + "";
+            ds1 = dbObj.InlineExecuteDataSet(sQry3);
+
+            i = Convert.ToInt32(ds1.Tables[0].Rows[0]["SalesId"].ToString());
+            return i;
+        }
+
+        public int inserttranswholesalesquotation(string sTableName, int SalesId, int Item, double Qty, double Rate, double Tax, double TaxAmount, double Amount, double Disc, double DiscAmount, double DeliveryCharge, string narration, string orderno, string Type, string logintype, int packtype, double MRP, string Logintypeid)
+        {
+            int i = 0;
+            int iSucess = 0;
+            string sQry = "insert into tblTransWholeSalesquotation_" + sTableName + " (SalesId,Item,Qty,Rate,Tax,TaxAmount,Amount,Disc,DiscAmount,DeliveryCharge,Narration,Type,UOMID,MRP) Values(" + SalesId + "," + Item + "," + Qty + "," + Rate + "," + Tax + "," + TaxAmount + ",'" + Amount + "'," + Disc + ",'" + DiscAmount + "'," + DeliveryCharge + ",'" + narration + "','" + Type + "'," + packtype + "," + MRP + ")";
+
+            i = dbObj.InlineExecuteNonQuery(sQry);
+
+            if (Logintypeid == "3")
+            {
+
+                //string sQry1 = "Update tblstock_" + sTableName + " set Available_QTY=Available_QTY-" + Qty + " where SubCategoryID=" + Item + " ";
+                //i = dbObj.InlineExecuteNonQuery(sQry1);
+
+                //string AuditQty = "Insert into TblAuditQty_" + sTableName + "(Screen,Qty,RefId,Sign,Itemid,stockid)VAlues('Whole Sales','" + Qty + "','0','-','" + Item + "','0')";
+                //i = dbObj.InlineExecuteNonQuery(AuditQty);
+
+            }
+            else
+            {
+                //string sQry1 = "Update tblProductionQty_" + sTableName + " set Prod_Qty=Prod_Qty-" + Qty + " where DescriptionId=" + Item + " ";
+                //i = dbObj.InlineExecuteNonQuery(sQry1);
+            }
+
+
+
+
+            //  i = dbObj.InlineExecuteNonQuery(sQry1);
+            //if (logintype == "5")
+            //{
+            //    string sQry1 = "Update tblProductionQty_" + sTableName + " set Prod_Qty=Prod_Qty-" + Qty + " where DescriptionId=" + Item + " ";
+            //   i = dbObj.InlineExecuteNonQuery(sQry1);
+            //
+            //}
+            //else if (logintype == "3" || logintype == "6")
+            //{
+            //    string sQry1 = "Update tblStock_" + sTableName + " set Available_QTY=Available_QTY-" + Qty + " where SubCategoryID=" + Item + " ";
+            //
+            ////    string AuditQty = "Insert into TblAuditQty_" + sTableName + "(Screen,Qty,RefId,Sign,Itemid,stockid)VAlues('Whole Sales','" + Qty + "','0','-','" + Item + "','0')";
+            ////    i = dbObj.InlineExecuteNonQuery(AuditQty);
+            //
+            //}
+            //
+            //if (orderno != "0")
+            //{
+            //    if (Type == "O")
+            //    {
+            //        string sQry11 = "Update transorder set salesqty=salesqty+" + Qty + " where OrderID=" + orderno + " and ProductID=" + Item + "";
+            //        i = dbObj.InlineExecuteNonQuery(sQry11);
+
+            //        DataSet ds12 = new DataSet();
+            //        string qy12 = "select qty-salesqty as qty from transorder where orderid=" + orderno + " group by qty-salesqty";
+            //        ds12 = dbObj.InlineExecuteDataSet(qy12);
+
+            //        if (ds12.Tables[0].Rows.Count == 1)
+            //        {
+            //            if (ds12.Tables[0].Rows[0]["qty"].ToString() == "0")
+            //            {
+            //                string sQry111 = " update orders set InvoiceStatus = 'true'  where  orderid='" + orderno + "' ";
+            //                iSucess = dbObj.InlineExecuteNonQuery(sQry111);
+            //            }
+            //        }
+            //    }
+            //}
+
+            return i;
+        }
+
+        public int updatewholesalesquotationnew(string salesid, string Prefix, string Years, string sTableName, DateTime BillDate, int PayMode, string Narration, int CustomerName, string Mobile, string Address, double Amount, double Tax, double GrandTotal, int TaxVal, double DiscPer, double DiscAmount, double TotalItems, string DCNo, double Disc, int DiscType, double DeliveryVal, string billno, string Logintype, double CGST, double SGST, double IGST, string SalesType, string VehicleNo)
+        {
+            int i = 0;
+            billno = Convert.ToInt32(billno).ToString();
+            string billseries = Prefix + billno + Years;
+
+
+            string sQry1 = "Update tblWholesalesquotation_" + sTableName + " set BillDate='" + Convert.ToDateTime(BillDate).ToString("yyyy/MM/dd hh:mm tt") + "',PayMode=" + PayMode + ",Narration='" + Narration + "',CustomerName='" + CustomerName + "',Mobile='" + Mobile + "',Address='" + Address + "',Amount=" + Amount + ",Tax=" + Tax + ",GrandTotal=" + GrandTotal + ",TaxVal=" + TaxVal + ",DiscPer='" + DiscPer + "',DiscAmount='" + DiscAmount + "',TotalItems=" + TotalItems + ",DCNo='" + DCNo + "',Disc=" + Disc + ",DiscType=" + DiscType + ",DeliveryVal=" + DeliveryVal + ",Logintype='" + Logintype + "',CGST='" + CGST + "', SGST='" + SGST + "', IGST='" + IGST + "', SalesType='" + SalesType + "',VehicleNo='" + VehicleNo + "',BillNO='" + billno + "',FullBillNo='" + billseries + "' where salesid='" + salesid + "'";
+
+            i = dbObj.InlineExecuteNonQuery(sQry1);
+
+            DataSet ds1 = new DataSet();
+            string sQry3 = "select SalesId from tblWholesalesquotation_" + sTableName + " where Billno='" + billno + "'";
+            ds1 = dbObj.InlineExecuteDataSet(sQry3);
+
+            i = Convert.ToInt32(ds1.Tables[0].Rows[0]["SalesId"].ToString());
+
+            return i;
+
+        }
+
+        public DataSet GetTransSalesQuotationEdit(string Stable, int SalesId)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select *  from  " + Stable + "  Where SalesID='" + SalesId + "'";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+
+        }
+
+        public int DeleteTransSalesQuotationNew(string Stable, int SalesId)
+        {
+            int iSucess = 0;
+            string sqry = "delete  from  " + Stable + "  Where SalesID='" + SalesId + "'";
+            iSucess = dbObj.InlineExecuteNonQuery(sqry);
+            return iSucess;
+
+        }
+
+        public DataSet GetSalesallQuotation(string Stable)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select *  from  tblWholesalesQuotation_" + Stable + " s inner join tblCustomer c on c.Ledgerid=s.CustomerName inner join tblPaymode p on p.PayModeId=s.PayMode  order by Billdate desc ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+
+        }
+
+        public DataSet GetSalesallQuotation_Filter(string Stable, DateTime From, DateTime to, string ledgerid)
+        {
+            DataSet ds = new DataSet();
+            string sqry;
+            if (ledgerid == "All")
+            {
+                sqry = "select *  from  tblWholesalesQuotation_" + Stable + " s inner join tblCustomer c on c.Ledgerid=s.CustomerName inner join tblPaymode p on p.PayModeId=s.PayMode where cast(BillDate as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(BillDate as Date)<='" + to.ToString("yyyy/MM/dd") + "' order by Billdate desc ";
+            }
+            else
+            {
+                sqry = "select *  from  tblWholesalesQuotation_" + Stable + " s inner join tblCustomer c on c.Ledgerid=s.CustomerName inner join tblPaymode p on p.PayModeId=s.PayMode where cast(BillDate as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(BillDate as Date)<='" + to.ToString("yyyy/MM/dd") + "' and s.Customername = '" + ledgerid + "' order by Billdate desc ";
+            }
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+
+        }
+
+
+        #endregion
+
         #region WholeSales
         //public int insertwholesales(string sTableName, DateTime BillDate, string PayMode, string Narration, string CustomerName, string Mobile, string Address, double Amount, double Tax, double GrandTotal, int TaxVal, string DiscPer, string DiscAmount, double TotalItems, string logintype)
         //{
@@ -21955,7 +22125,7 @@ namespace BusinessLayer
 
         //}
 
-        public int inserttranswholesales(string sTableName, int SalesId, int Item, double Qty, double Rate, double Tax, double TaxAmount, double Amount, double Disc, double DiscAmount, double DeliveryCharge, string narration, string orderno, string Type, string logintype, int packtype, double MRP, string Logintypeid)
+        public int inserttranswholesales(string sTableName, int SalesId, int Item, double Qty, double Rate, double Tax, double TaxAmount, double Amount, double Disc, double DiscAmount, double DeliveryCharge, string narration, string orderno, string Type, string logintype, int packtype, double MRP,string Logintypeid)
         {
             int i = 0;
             int iSucess = 0;
@@ -21963,7 +22133,7 @@ namespace BusinessLayer
 
             i = dbObj.InlineExecuteNonQuery(sQry);
 
-            if (Logintypeid == "3")
+            if(Logintypeid == "3")
             {
 
                 string sQry1 = "Update tblstock_" + sTableName + " set Available_QTY=Available_QTY-" + Qty + " where SubCategoryID=" + Item + " ";
@@ -21980,9 +22150,9 @@ namespace BusinessLayer
             }
 
 
+            
 
-
-            //  i = dbObj.InlineExecuteNonQuery(sQry1);
+              //  i = dbObj.InlineExecuteNonQuery(sQry1);
             //if (logintype == "5")
             //{
             //    string sQry1 = "Update tblProductionQty_" + sTableName + " set Prod_Qty=Prod_Qty-" + Qty + " where DescriptionId=" + Item + " ";
@@ -22152,7 +22322,7 @@ namespace BusinessLayer
             return i;
 
         }
-        public int inserttranswholesalesret(string sTableName, int SalesId, int Item, double Qty, double Rate, double Tax, double TaxAmount, double Amount, int ID, string logintypeid)
+        public int inserttranswholesalesret(string sTableName, int SalesId, int Item, double Qty, double Rate, double Tax, double TaxAmount, double Amount, int ID,string logintypeid)
         {
             int i = 0;
             string sQry = "insert into tblTransWholeSalesReturn_" + sTableName + " (SalesId,Item,Qty,Rate,Tax,TaxAmount,Amount) Values(" + SalesId + "," + Item + "," + Qty + "," + Rate + "," + Tax + "," + TaxAmount + ",'" + Amount + "')";
@@ -22199,14 +22369,14 @@ namespace BusinessLayer
 
         public DataSet selectitems_wholesales(string Table, int ledgerid)
         {
-
+           
             DataSet ds = new DataSet();
             //string sQry = "select * from tblCategoryUser order by Definition asc";
             // string sQry = "select * from tblCategoryUser c inner join tblStock_" + Table + " s on s.SubCategoryID=c.CategoryUserID where Available_QTY>0 AND  WholeSalesRate>0  order by Definition asc";
             //string sQry = "select * from tblCategoryUser c inner join tblproductionqty_" + Table + " s " +
-            //  " on s.descriptionid=c.CategoryUserID inner join tblLedgerIngredient l on l.IngredientId=c.CategoryUserId where  l.ledgerId=" + ledgerid + " order by Definition asc";
-
-            string sQry = "select * from tblCustomer inner  join tblLedgerIngredient on tblcustomer.ledgerid = tblLedgerIngredient.LedgerId where tblcustomer.ledgerid=" + ledgerid + "";
+              //  " on s.descriptionid=c.CategoryUserID inner join tblLedgerIngredient l on l.IngredientId=c.CategoryUserId where  l.ledgerId=" + ledgerid + " order by Definition asc";
+             
+              string sQry = "select * from tblCustomer inner  join tblLedgerIngredient on tblcustomer.ledgerid = tblLedgerIngredient.LedgerId where tblcustomer.ledgerid=" + ledgerid + "";
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
         }
@@ -22246,13 +22416,13 @@ namespace BusinessLayer
             return ds;
         }
 
-        public DataSet selectitemsgrid_wholesales(string Table, string logintypeid)
+        public DataSet selectitemsgrid_wholesales(string Table,string logintypeid)
         {
             DataSet ds = new DataSet();
             string sQry = string.Empty;
             //string sQry = "select * from tblCategoryUser order by Definition asc";
 
-            if (logintypeid == "3")
+            if(logintypeid == "3")
             {
                 sQry = "select * from tblCategoryUser c inner join tblstock_" + Table + " s on s.SubCategoryID=c.CategoryUserID   order by Definition asc";
             }
@@ -22260,7 +22430,7 @@ namespace BusinessLayer
             {
                 sQry = "select * from tblCategoryUser c inner join tblProductionQty_" + Table + " s on s.DescriptionId=c.CategoryUserID   order by Definition asc";
             }
-
+            
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
         }
@@ -22305,9 +22475,9 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
             //string sQry = "select c.Rate as MRP,c.gst as Tax,s.Prod_Qty as Available_QTY from tblCstring sQry = "select  * from tblLedgerIngredient where LedgerId= '" + ledgerid + "'";egoryUser c inner join tblProductionQty_" + Table + " s on s.DescriptionId=c.CategoryUserID inner join tblLedgerIngredient l on l.IngredientId=c.CategoryUserId  inner join tblLedger ld on ld.LedgerID=l.LedgerId where  Prod_Qty>0  and c.CategoryUserID=" + CategoryUserID + "  and ld.LedgerID=" + ledgerid + "  order by Definition asc";
-            string sQry = "select  Rate as MRP from tblLedgerIngredient where IngredientId= '" + IngredientId + "' and LedgerID='" + ledgerid + "'";
+            string sQry = "select  Rate as MRP from tblLedgerIngredient where IngredientId= '" + IngredientId + "' and LedgerID='" + ledgerid + "'"; 
             ds = dbObj.InlineExecuteDataSet(sQry);
-
+            
             return ds;
         }
 
@@ -22477,10 +22647,11 @@ namespace BusinessLayer
         public DataSet GetsubCompanyDetails()
         {
             DataSet ds = new DataSet();
-            string sQry = "select * from tblsubCompanyDetails  order by CustomerName asc";
+            string sQry = "select *,CustomerName+'-'+GSTNO as CustomerName1 from tblsubCompanyDetails  order by CustomerName asc";
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
         }
+      
 
         #endregion
 
@@ -22548,12 +22719,7 @@ namespace BusinessLayer
         }
 
         public int Updatebranch(string BranchId, string BranchName, string ContactName, string Country, string State, string City, string Address, string MobileNo,
-            string LandLine, string Email, string Currency, string BranchCode, string BranchArea, string GSTIN, string loginid, string Pincode, string Pemail,
-            string Iemail, string Oemail, string BranchOwnType, string FranchiseeName, string OnlineSalesActive, string Mtype, string Printtype,
-            string OnlineCakeSync, string Fssaino, string onlinepos, string PrintOption, string StockOption, string Imagepath, string Username,
-            string Password, string BillCode, string BillGenerateSetting, string Billtaxsplitupshown, string BillPrintLogo, string BigVersion,
-            string TaxSetting, string ratesetting, string qtysetting, string possalessetting, string RoundoffSetting, string dipatchDirectly,
-            string QtyFillSetting, string Posattendercheck, string posPrintsetting, string OrderBookcheck, string prodstockoption, string itemmergeornot, string defaultcurrency)
+            string LandLine, string Email, string Currency, string BranchCode, string BranchArea, string GSTIN, string loginid, string Pincode, string Pemail, string Iemail, string Oemail, string BranchOwnType, string FranchiseeName, string OnlineSalesActive, string Mtype, string Printtype, string OnlineCakeSync, string Fssaino, string onlinepos, string PrintOption, string StockOption, string Imagepath, string Username, string Password, string BillCode, string BillGenerateSetting, string Billtaxsplitupshown, string BillPrintLogo, string BigVersion, string TaxSetting, string ratesetting, string qtysetting, string possalessetting, string RoundoffSetting, string dipatchDirectly, string QtyFillSetting, string Posattendercheck, string posPrintsetting, string OrderBookcheck)
         {
             int iSucess = 0;
             int iSucess1 = 0;
@@ -22563,7 +22729,7 @@ namespace BusinessLayer
             ////string branchid1 = branchid[0].ToString();
 
             //string sQry1 = "update tblbranch set BranchName='" + BranchName + "',ContactName='" + ContactName + "',Country='" + Country + "',State='" + State + "',City='" + City + "',Address='" + Address + "',MobileNo='" + MobileNo + "',LandLine='" + LandLine + "',Email='" + Email + "',BranchCode='" + BranchCode + "',BranchArea='" + BranchArea + "',GSTIN='" + GSTIN + "' where Branchid='" + BranchId + "'";
-            string sQry1 = "update tblbranch set defaultcurrency='" + defaultcurrency + "',itemmergeornot='" + itemmergeornot + "',ProdStockOption='" + prodstockoption + "', QtyFillSetting='" + QtyFillSetting + "',Posattendercheck='" + Posattendercheck + "',posPrintsetting='" + posPrintsetting + "',OrderBookcheck='" + OrderBookcheck + "',dipatchDirectly='" + dipatchDirectly + "',RoundoffSetting='" + RoundoffSetting + "',possalessetting='" + possalessetting + "',Currency='" + Currency + "',TaxSetting='" + TaxSetting + "',Ratesetting='" + ratesetting + "',Qtysetting='" + qtysetting + "',BigVersion='" + BigVersion + "',BillCode = '" + BillCode + "' ,BillGenerateSetting='" + BillGenerateSetting + "',Billtaxsplitupshown='" + Billtaxsplitupshown + "',BillPrintLogo='" + BillPrintLogo + "',onlinepos='" + onlinepos + "', Fssaino='" + Fssaino + "',OnlineCakeSync='" + OnlineCakeSync + "',Printtype='" + Printtype + "',Mtype='" + Mtype + "', BranchOwnType='" + BranchOwnType + "',FranchiseeName='" + FranchiseeName + "',OnlineSalesActive='" + OnlineSalesActive + "', Pemail='" + Pemail + "', Iemail='" + Iemail + "', Oemail='" + Oemail + "',BranchName='" + BranchName + "',ContactName='" + ContactName + "',Country='" + Country + "',State='" + State + "',City='" + City + "',Address='" + Address + "',MobileNo='" + MobileNo + "',LandLine='" + LandLine + "',Email='" + Email + "',BranchArea='" + BranchArea + "',GSTIN='" + GSTIN + "',Pincode='" + Pincode + "',PrintOption='" + PrintOption + "',StockOption='" + StockOption + "',Imagepath='" + Imagepath + "' ,Username='" + Username + "' ,Password='" + Password + "'   where Branchid='" + BranchId + "'";
+            string sQry1 = "update tblbranch set QtyFillSetting='"+QtyFillSetting+"',Posattendercheck='"+Posattendercheck+"',posPrintsetting='"+posPrintsetting+"',OrderBookcheck='"+OrderBookcheck+"',dipatchDirectly='" + dipatchDirectly + "',RoundoffSetting='" + RoundoffSetting + "',possalessetting='" + possalessetting + "',Currency='" + Currency + "',TaxSetting='" + TaxSetting + "',Ratesetting='" + ratesetting + "',Qtysetting='" + qtysetting + "',BigVersion='" + BigVersion + "',BillCode = '" + BillCode + "' ,BillGenerateSetting='" + BillGenerateSetting + "',Billtaxsplitupshown='" + Billtaxsplitupshown + "',BillPrintLogo='" + BillPrintLogo + "',onlinepos='" + onlinepos + "', Fssaino='" + Fssaino + "',OnlineCakeSync='" + OnlineCakeSync + "',Printtype='" + Printtype + "',Mtype='" + Mtype + "', BranchOwnType='" + BranchOwnType + "',FranchiseeName='" + FranchiseeName + "',OnlineSalesActive='" + OnlineSalesActive + "', Pemail='" + Pemail + "', Iemail='" + Iemail + "', Oemail='" + Oemail + "',BranchName='" + BranchName + "',ContactName='" + ContactName + "',Country='" + Country + "',State='" + State + "',City='" + City + "',Address='" + Address + "',MobileNo='" + MobileNo + "',LandLine='" + LandLine + "',Email='" + Email + "',BranchArea='" + BranchArea + "',GSTIN='" + GSTIN + "',Pincode='" + Pincode + "',PrintOption='" + PrintOption + "',StockOption='" + StockOption + "',Imagepath='" + Imagepath + "' ,Username='" + Username + "' ,Password='" + Password + "'   where Branchid='" + BranchId + "'";
             iSucess = dbObj.InlineExecuteNonQuery(sQry1);
 
             string sQry2 = "update tbllogin set  Imagepath='" + Imagepath + "' ,username = '" + Username + "',password = '" + Password + "',BranchCode = '" + BranchCode + "',StoreName = '" + BranchName + "',Address = '" + Address + "',TIN = '" + GSTIN + "',Place = '" + BranchArea + "',StoreNo = '" + MobileNo + "',TableCode = '" + BranchCode + "'  where BranchCode='" + BranchCode + "'";
@@ -22583,7 +22749,7 @@ namespace BusinessLayer
             string BranchOwnType, string FranchiseeName, string OnlineSalesActive, string Mtype, string Printtype, string OnlineCakeSync, string Fssaino,
             string onlinepos, string PrintOption, string StockOption, string Imagepath, string BranchType, string Username, string Password, string BillCode, string BillGenerateSetting, string Billtaxsplitupshown, string BillPrintLogo, string Bversion,
             string TaxSetting, string ratesetting, string qtysetting, string possalessetting, string RoundoffSetting,
-            string QtyFillSetting, string Posattendercheck, string posPrintsetting, string OrderBookcheck, string prodstockoption, string itemmergeornot, string defaultcur)
+            string QtyFillSetting,string Posattendercheck,string posPrintsetting,string OrderBookcheck)
         {
             int iSucess = 0;
             int iSucess1 = 0;
@@ -22594,13 +22760,13 @@ namespace BusinessLayer
             string sQry1 = "insert into tblbranch ( onlinepos,Fssaino,OnlineCakeSync,Printtype,Mtype,BranchOwnType,FranchiseeName,OnlineSalesActive,Pemail,Iemail, " +
                 " Oemail,BranchName,ContactName,Country,State,City,Address,MobileNo,LandLine,Email,BranchArea,GSTIN,Pincode,PrintOption,StockOption,Imagepath, " +
                 " BranchCode,BranchType,Username,Password,BillCode,BillGenerateSetting,Billtaxsplitupshown,BillPrintLogo,BigVersion,TaxSetting,Ratesetting, " +
-                " Qtysetting,Currency,possalessetting,RoundoffSetting,QtyFillSetting,Posattendercheck,posPrintsetting,OrderBookcheck,ProdStockOption,itemmergeornot,defaultcurrency) values('" + onlinepos + "','" + Fssaino + "','" + OnlineCakeSync + "','" + Printtype + "','" + Mtype + "', '" + BranchOwnType + "','" + FranchiseeName + "','" + OnlineSalesActive + "', " +
+                " Qtysetting,Currency,possalessetting,RoundoffSetting,QtyFillSetting,Posattendercheck,posPrintsetting,OrderBookcheck) values('" + onlinepos + "','" + Fssaino + "','" + OnlineCakeSync + "','" + Printtype + "','" + Mtype + "', '" + BranchOwnType + "','" + FranchiseeName + "','" + OnlineSalesActive + "', " +
                 " '" + Pemail + "', '" + Iemail + "', '" + Oemail + "','" + BranchName + "','" + ContactName + "','" + Country + "','" + State + "', " +
                 " '" + City + "','" + Address + "','" + MobileNo + "','" + LandLine + "','" + Email + "','" + BranchArea + "','" + GSTIN + "','" + Pincode + "', " +
                 " '" + PrintOption + "','" + StockOption + "','" + Imagepath + "','" + BranchCode + "','" + BranchType + "','" + Username + "','" + Password + "', " +
                 " '" + BillCode + "','" + BillGenerateSetting + "','" + Billtaxsplitupshown + "','" + BillPrintLogo + "','" + Bversion + "','" + TaxSetting + "' " +
                 " ,'" + ratesetting + "','" + qtysetting + "','" + Currency + "','" + possalessetting + "','" + RoundoffSetting + "' " +
-                " ,'" + QtyFillSetting + "','" + Posattendercheck + "','" + posPrintsetting + "','" + OrderBookcheck + "','" + prodstockoption + "','" + itemmergeornot + "','" + defaultcur + "')";
+                " ,'" + QtyFillSetting + "','" + Posattendercheck + "','" + posPrintsetting + "','" + OrderBookcheck + "')";
             iSucess = dbObj.InlineExecuteNonQuery(sQry1);
 
             string sQry2 = "insert into tblbookcode (BranchCode,Bookcode) values('" + BranchCode + "','" + BranchCode + "-')";
@@ -22761,7 +22927,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
 
-            string sqry = "select BranchCode as  BranchName,Branchname as Name,BranchId,'0' as Margin from tblbranch where IsActive='Yes' and BranchType=0";
+            string sqry = "select BranchCode as  BranchName,isnull(Branchname,'')+'-'+isnull(BranchCode,'')+'-'+isnull(GSTIN,'') as Name,BranchId,'0' as Margin from tblbranch where IsActive='Yes' and BranchType=0";
             ds = dbObj.InlineExecuteDataSet(sqry);
 
             return ds;
@@ -22894,7 +23060,7 @@ namespace BusinessLayer
 
 
 
-        public int InsertitemforAll(int categoryid, string Item, Double Rate, Double Tax, int TaxId, int UOMid, string Empcode, double Minimumstock, string HSNCode, string foodtype, string BarCode, string mrp, string serial_no, string Description, string ratetype, string qtytype)
+        public int InsertitemforAll(int categoryid, string Item, Double Rate, Double Tax, int TaxId, int UOMid, string Empcode, double Minimumstock, string HSNCode, string foodtype, string BarCode, string mrp, string serial_no, string Description, string ratetype,string qtytype)
         {
             int iSuccess = 0;
             DataSet ds = new DataSet();
@@ -22906,7 +23072,7 @@ namespace BusinessLayer
                 subcat = Convert.ToInt32(ds.Tables[0].Rows[0]["categoryUserId"].ToString());
             }
             string sQry = "insert into tblCategoryUser( CategoryID,Definition,IsDelete,Serial_No,Serial,Size,isChecked,Tax,GST,TaxVal,unit,Rate,categoryUserId,Minimumstock,DisplayOnline,IsActive,Empcode,HSNCode,Printitem,FoodType,BarCode,mrp,Description,ratetype,QtyType) values "
-                + "('" + categoryid + "',N'" + Item + "',0,'" + serial_no + "','" + serial_no + "','0',1,'" + Tax + "','" + Tax + "','" + TaxId + "','" + UOMid + "','" + Rate + "'," + subcat + "," + Minimumstock + ",'Y','Yes','" + Empcode + "','" + HSNCode + "',N'" + Item + "','" + foodtype + "','" + BarCode + "','" + mrp + "','" + Description + "','" + ratetype + "','" + qtytype + "')";
+                + "('" + categoryid + "',N'" + Item + "',0,'" + serial_no + "','" + serial_no + "','0',1,'" + Tax + "','" + Tax + "','" + TaxId + "','" + UOMid + "','" + Rate + "'," + subcat + "," + Minimumstock + ",'Y','Yes','" + Empcode + "','" + HSNCode + "',N'" + Item + "','" + foodtype + "','" + BarCode + "','" + mrp + "','" + Description + "','" + ratetype + "','"+qtytype+"')";
             iSuccess = dbObj.InlineExecuteNonQuery(sQry);
 
             //  DateTime Date = DateTime.ParseExact(DateTime.Now.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -23016,11 +23182,11 @@ namespace BusinessLayer
                 if (type == "BLK")
                 {
 
-                    sqry = "select distinct b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,isnull(c.Available_qty,0) as Available_qty, UOM,u.UOMID,b.serial,b.barcode,b.gst,serial+' / '+Definition as defi  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "'  and ManualGrn='1'  order by category,Definition asc";
+                    sqry = "select distinct b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,case when b.qtytype='E' then isnull(cast(c.Available_qty as int),0) when b.qtytype='D' then isnull(cast(c.Available_qty as decimal),0) end as Available_qty, UOM,u.UOMID,b.serial,b.barcode,b.qtytype  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "'  and ManualGrn='1'  order by category,Definition asc";
                 }
                 else
                 {
-                    sqry = "select  b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,isnull(c.Available_qty,0) as Available_qty, UOM,u.UOMID,b.serial,b.barcode,b.gst,serial+' / '+Definition as defi  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "'   order by c.Available_qty  asc";
+                    sqry = "select  b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,case when b.qtytype='E' then isnull(cast(c.Available_qty as int),0) when qtytype='D' then isnull(cast(c.Available_qty as decimal),0) end as Available_qty, UOM,u.UOMID,b.serial,b.barcode,b.qtytype  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "'   order by c.Available_qty  asc";
                 }
             }
             else
@@ -23029,11 +23195,11 @@ namespace BusinessLayer
                 if (type == "BLK")
                 {
 
-                    sqry = "select distinct b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,isnull(c.Available_qty,0) as Available_qty, UOM,u.UOMID,b.serial,b.barcode,b.gst,serial+' / '+Definition as defi  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "' and a.categoryid=" + categoryid + " order by category,Definition asc";
+                    sqry = "select distinct b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,case when b.qtytype='E' then isnull(cast(c.Available_qty as int),0) when b.qtytype='D' then isnull(cast(c.Available_qty as decimal),0) end as Available_qty, UOM,u.UOMID,b.serial,b.barcode,b.qtytype  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "' and a.categoryid=" + categoryid + " order by category,Definition asc";
                 }
                 else
                 {
-                    sqry = "select  b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,isnull(c.Available_qty,0) as Available_qty, UOM,u.UOMID,b.serial,b.barcode,b.gst,serial+' / '+Definition as defi  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "' and a.categoryid=" + categoryid + " order by c.Available_qty  asc";
+                    sqry = "select  b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,case when b.qtytype='E' then isnull(cast(c.Available_qty as int),0) when b.qtytype='D' then isnull(cast(c.Available_qty as decimal),0) end as Available_qty, UOM,u.UOMID,b.serial,b.barcode,b.qtytype  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "' and a.categoryid=" + categoryid + " order by c.Available_qty  asc";
                 }
             }
             ds = dbObj.InlineExecuteDataSet(sqry);
@@ -23051,13 +23217,13 @@ namespace BusinessLayer
                 {
 
                     //sqry = "select  b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,isnull(c.Available_qty,0) as Available_qty, UOM,u.UOMID  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "'  and Request='1'  order by category,Definition,c.Available_qty asc";
-                    sqry = "select  b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,isnull(c.Available_qty,0) as Available_qty, UOM,u.UOMID,m.delaydays from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tbltransRequestStockSettings t on t.categoryid=a.Categoryid inner join tblRequestStockSettingsMaster m on m.requeststockid=t.requeststocksettingsid inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "' and Request='1'  and  (convert(varchar(8), m.FromTime, 108)) <  (convert(varchar(8), getdate(), 108)) and (convert(varchar(8), m.totime, 108)) >  (convert(varchar(8), getdate(), 108)) order by category,Definition,c.Available_qty  asc";
+                    sqry = "select  b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,case when b.qtytype='E' then isnull(cast(c.Available_qty as int),0) when b.qtytype='D' then isnull(cast(c.Available_qty as decimal),0) end as Available_qty, UOM,u.UOMID,m.delaydays,b.qtytype from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tbltransRequestStockSettings t on t.categoryid=a.Categoryid inner join tblRequestStockSettingsMaster m on m.requeststockid=t.requeststocksettingsid inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "' and Request='1'  and  (convert(varchar(8), m.FromTime, 108)) <  (convert(varchar(8), getdate(), 108)) and (convert(varchar(8), m.totime, 108)) >  (convert(varchar(8), getdate(), 108)) order by category,Definition,c.Available_qty  asc";
 
                 }
                 else
                 {
                     //sqry = "select  b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,isnull(c.Available_qty,0) as Available_qty, UOM,u.UOMID  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "' and productiontype='" + Ptype + "' and Request='1'   order by category,Definition,c.Available_qty  asc";
-                    sqry = "select  b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,isnull(c.Available_qty,0) as Available_qty, UOM,u.UOMID,m.delaydays from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tbltransRequestStockSettings t on t.categoryid=a.Categoryid inner join tblRequestStockSettingsMaster m on m.requeststockid=t.requeststocksettingsid inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "' and productiontype='" + Ptype + "' and Request='1'  and  (convert(varchar(8), m.FromTime, 108)) <  (convert(varchar(8), getdate(), 108)) and (convert(varchar(8), m.totime, 108)) >  (convert(varchar(8), getdate(), 108)) order by category,Definition,c.Available_qty  asc";
+                    sqry = "select  b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,case when b.qtytype='E' then isnull(cast(c.Available_qty as int),0) when b.qtytype='D' then isnull(cast(c.Available_qty as decimal),0) end as Available_qty, UOM,u.UOMID,m.delaydays,b.qtytype from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tbltransRequestStockSettings t on t.categoryid=a.Categoryid inner join tblRequestStockSettingsMaster m on m.requeststockid=t.requeststocksettingsid inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "' and productiontype='" + Ptype + "' and Request='1'  and  (convert(varchar(8), m.FromTime, 108)) <  (convert(varchar(8), getdate(), 108)) and (convert(varchar(8), m.totime, 108)) >  (convert(varchar(8), getdate(), 108)) order by category,Definition,c.Available_qty  asc";
 
                 }
             }
@@ -23068,12 +23234,12 @@ namespace BusinessLayer
                 {
 
                     //sqry = "select  b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,isnull(c.Available_qty,0) as Available_qty, UOM,u.UOMID  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "' and a.categoryid=" + categoryid + " and Request='1' order by category,Definition,c.Available_qty asc";
-                    sqry = "select  b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,isnull(c.Available_qty,0) as Available_qty, UOM,u.UOMID,m.delaydays from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tbltransRequestStockSettings t on t.categoryid=a.Categoryid inner join tblRequestStockSettingsMaster m on m.requeststockid=t.requeststocksettingsid inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "' and Request='1' and a.categoryid=" + categoryid + " and  (convert(varchar(8), m.FromTime, 108)) <  (convert(varchar(8), getdate(), 108)) and (convert(varchar(8), m.totime, 108)) >  (convert(varchar(8), getdate(), 108)) order by category,Definition,c.Available_qty  asc";
+                    sqry = "select  b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,case when b.qtytype='E' then isnull(cast(c.Available_qty as int),0) when b.qtytype='D' then isnull(cast(c.Available_qty as decimal),0) end as Available_qty, UOM,u.UOMID,m.delaydays,b.qtytype from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tbltransRequestStockSettings t on t.categoryid=a.Categoryid inner join tblRequestStockSettingsMaster m on m.requeststockid=t.requeststocksettingsid inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "' and Request='1' and a.categoryid=" + categoryid + " and  (convert(varchar(8), m.FromTime, 108)) <  (convert(varchar(8), getdate(), 108)) and (convert(varchar(8), m.totime, 108)) >  (convert(varchar(8), getdate(), 108)) order by category,Definition,c.Available_qty  asc";
                 }
                 else
                 {
                     //       sqry = "select  b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,isnull(c.Available_qty,0) as Available_qty, UOM,u.UOMID  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "' and a.categoryid=" + categoryid + " and productiontype='" + Ptype + "' and Request='1' order by category,Definition,c.Available_qty  asc";
-                    sqry = "select  b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,isnull(c.Available_qty,0) as Available_qty, UOM,u.UOMID,m.delaydays from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tbltransRequestStockSettings t on t.categoryid=a.Categoryid inner join tblRequestStockSettingsMaster m on m.requeststockid=t.requeststocksettingsid inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "' and productiontype='" + Ptype + "' and Request='1' and a.categoryid=" + categoryid + " and  (convert(varchar(8), m.FromTime, 108)) <  (convert(varchar(8), getdate(), 108)) and (convert(varchar(8), m.totime, 108)) >  (convert(varchar(8), getdate(), 108)) order by category,Definition,c.Available_qty  asc";
+                    sqry = "select  b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,case when b.qtytype='E' then isnull(cast(c.Available_qty as int),0) when b.qtytype='D' then isnull(cast(c.Available_qty as decimal),0) end as Available_qty,UOM,u.UOMID,m.delaydays,b.qtytype from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tbltransRequestStockSettings t on t.categoryid=a.Categoryid inner join tblRequestStockSettingsMaster m on m.requeststockid=t.requeststocksettingsid inner join tblUOM u on u.UOMID=b.unit where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "' and productiontype='" + Ptype + "' and Request='1' and a.categoryid=" + categoryid + " and  (convert(varchar(8), m.FromTime, 108)) <  (convert(varchar(8), getdate(), 108)) and (convert(varchar(8), m.totime, 108)) >  (convert(varchar(8), getdate(), 108)) order by category,Definition,c.Available_qty  asc";
                 }
             }
             ds = dbObj.InlineExecuteDataSet(sqry);
@@ -23229,6 +23395,22 @@ namespace BusinessLayer
             return ds;
         }
 
+        public DataSet itemforreqestNew_OLD(string categoryid, string stable)
+        {
+            DataSet ds = new DataSet();
+            if (categoryid == "All")
+            {
+                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.serial  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1'  order by category asc";
+                ds = dbObj.InlineExecuteDataSet(sqry);
+            }
+            else
+            {
+                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.serial from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + " order by category asc";
+                ds = dbObj.InlineExecuteDataSet(sqry);
+            }
+            return ds;
+        }
+
         public DataSet itemforreqestNew_Semi(string categoryid, string stable)
         {
             DataSet ds = new DataSet();
@@ -23278,7 +23460,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
             // string sqry = "select * from tbllogin l inner join tblBranch b on b.BranchCode=l.BranchCode";
-            string sqry = "select * from  tblBranch where BranchType=0";
+            string sqry = "select brancharea + ' - ' + GSTIN as brancharea, * from  tblBranch where BranchType=0";
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
         }
@@ -24379,13 +24561,13 @@ namespace BusinessLayer
             if (categoryuserid == "All")
             {
 
-                sQry = "select a.dc_NO,a.DC_Date,a.BranchReqNo,a.branchcode,c.Category,d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty,b.damage_Qty as damageQty,b.Missing_Qty as MissingQty " +
+                sQry = "select a.dc_NO,a.DC_Date,a.BranchReqNo,a.branchcode,c.Category,d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty,b.damage_Qty as damageQty,b.Missing_Qty as MissingQty,d.MRP " +
                         " from tblGoodTransfer_" + stable + " a,tbltransGoodsTransfer_" + stable + " b,tblcategory c,tblCategoryUser d  " +
   " where convert(date,a.Dc_Date) between '" + Fromdate + "' and '" + Todate + "' and a.DC_NO=b.DC_No and b.CategoryId=c.categoryid and b.DescriptionId=d.CategoryUserID  and  a.BranchCode=b.BranchCode order by a.dc_No desc  ";
             }
             else
             {
-                sQry = "select a.dc_NO,a.DC_Date,a.BranchReqNo,a.branchcode,c.Category,d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty,b.damage_Qty as damageQty,b.Missing_Qty as MissingQty " +
+                sQry = "select a.dc_NO,a.DC_Date,a.BranchReqNo,a.branchcode,c.Category,d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty,b.damage_Qty as damageQty,b.Missing_Qty as MissingQty,d.MRP " +
           " from tblGoodTransfer_" + stable + " a,tbltransGoodsTransfer_" + stable + " b,tblcategory c,tblCategoryUser d  " +
 " where convert(date,a.Dc_Date) between '" + Fromdate + "' and '" + Todate + "' and a.DC_NO=b.DC_No and b.CategoryId=c.categoryid and b.DescriptionId=d.CategoryUserID  and  a.BranchCode=b.BranchCode and d.categoryid='" + categoryuserid + "' order by a.dc_No desc ";
             }
@@ -24401,14 +24583,14 @@ namespace BusinessLayer
             if (categoryuserid == "All")
             {
 
-                sQry = "select a.dc_NO,a.DC_Date,a.BranchReqNo,a.branchcode,c.IngreCategory as Category,d.IngredientName as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty,b.damage_Qty as damageQty,b.Missing_Qty as MissingQty,b.trate,b.tgst " +
-                        " from tblGoodTransferstore_" + stable + " a,tbltransGoodsTransferstore_" + stable + " b,tblingridentscategory c,tblingridents d  " +
+                sQry = "select a.dc_NO,a.DC_Date,a.BranchReqNo,a.branchcode,c.IngreCategory as Category,d.IngredientName as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty,b.damage_Qty as damageQty,b.Missing_Qty as MissingQty,b.Trate,b.Tgst " +
+                        " from tblGoodTransfer_" + stable + " a,tbltransGoodsTransfer_" + stable + " b,tblingridentscategory c,tblingridents d  " +
   " where convert(date,a.Dc_Date) between '" + Fromdate + "' and '" + Todate + "' and a.DC_NO=b.DC_No and d.IngCatID=c.IngCatID  and b.DescriptionId=d.IngridID  and  a.BranchCode=b.BranchCode order by a.dc_No desc  ";
             }
             else
             {
-                sQry = "select a.dc_NO,a.DC_Date,a.BranchReqNo,a.branchcode,c.IngreCategory as Category,d.IngredientName as  Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty,b.damage_Qty as damageQty,b.Missing_Qty as MissingQty,b.trate,b.tgst " +
-          " from tblGoodTransferstore_" + stable + " a,tbltransGoodsTransferstore_" + stable + " b,tblingridentscategory c,tblingridents d  " +
+                sQry = "select a.dc_NO,a.DC_Date,a.BranchReqNo,a.branchcode,c.IngreCategory as Category,d.IngredientName as  Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty,b.damage_Qty as damageQty,b.Missing_Qty as MissingQty,b.Trate,b.Tgst " +
+          " from tblGoodTransfer_" + stable + " a,tbltransGoodsTransfer_" + stable + " b,tblingridentscategory c,tblingridents d  " +
 " where convert(date,a.Dc_Date) between '" + Fromdate + "' and '" + Todate + "' and a.DC_NO=b.DC_No and d.IngCatID=c.IngCatID  and b.DescriptionId=d.IngridID  and  a.BranchCode=b.BranchCode and c.IngCatID='" + categoryuserid + "' order by a.dc_No desc ";
             }
             ds = dbObj.InlineExecuteDataSet(sQry);
@@ -24676,11 +24858,11 @@ namespace BusinessLayer
             return ds;
         }
 
-        public int updatecategoryitemquick(string itemname, string taxid, string tax, string rate, string uom, string itemid, string printitem, string hsncode, string isactive, string active, string superadmin, string unitname, string dispalyonline, string MRP)
+        public int updatecategoryitemquick(string itemname, string taxid, string tax, string rate, string uom, string itemid, string printitem, string hsncode, string isactive, string active, string superadmin, string unitname, string dispalyonline,string MRP)
         {
             int iStatus = 0;
             string sqry = "update tblCategoryUser set UnitName='" + unitname + "',isactive='" + active + "',HSNCode='" + hsncode + "',printitem=N'" + printitem + "',isdelete='" + isactive + "', " +
-                " Definition=N'" + itemname + "',Rate='" + rate + "',unit=" + uom + " ,Tax=" + tax + "  ,GST=" + tax + ",TaxVal=" + taxid + " ,DisplayOnline ='" + dispalyonline + "',mrp='" + MRP + "'  where itemid='" + itemid + "'";
+                " Definition=N'" + itemname + "',Rate='" + rate + "',unit=" + uom + " ,Tax=" + tax + "  ,GST=" + tax + ",TaxVal=" + taxid + " ,DisplayOnline ='" + dispalyonline + "',mrp='"+MRP+"'  where itemid='" + itemid + "'";
             iStatus = dbObj.InlineExecuteNonQuery(sqry);
 
             if (superadmin == "1" || superadmin == "2")
@@ -24720,7 +24902,7 @@ namespace BusinessLayer
 
 
                     string sqr = "Insert into tblcategoryuserhistory(itemid,CategoryID,Definition,Serial,Tax,Rate,CategoryUserID,GST,TaxVal,unit,empcode,MinimumStock, " +
-                        " DisplayOnline,ImageUpload,UnitName,Printitem,FoodType,HSNCode,Isactive,Barcode,Mrp,Pagepath,Description,ratetype) " +
+                        " DisplayOnline,ImageUpload,UnitName,Printitem,FoodType,HSNCode,Isactive,Barcode,Mrp,Pagepath,Description,ratetype) " + 
                         " values('" + itemidd + "','" + CategoryID + "','" + Definition + "','" + Serial + "','" + Tax + "','" + Rate + "','" + CategoryUserID + "', " +
                         " '" + GST + "','" + TaxVal + "','" + unit + "','" + empcode + "','" + MinimumStock + "','" + DisplayOnline + "','" + ImageUpload + "', " +
                         " '" + UnitName + "','" + Printitem + "','" + FoodType + "','" + HSNCode + "','" + Isactive + "','" + Barcode + "','" + Mrp + "','" + Pagepath + "','" + Description + "','" + ratetype + "')";
@@ -24953,7 +25135,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
             string sqry = "select * from tbltablemaster where IsActive='Yes' order by tableid desc  ";
-
+           
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
 
@@ -26559,17 +26741,15 @@ namespace BusinessLayer
             return i;
         }
 
-        public int syncinsertitem(int ItemID, string CategoryID, string Definition, string IsDelete, string Serial_No, string Serial, string Size, string isChecked, string Tax, string Rate, string CategoryUserID, string GST, string TaxVal, string unit, string empcode, string MinimumStock,
-            string DisplayOnline, string ImageUpload, string IsActive, string hsncode, string Printname, string foodtype, string Barcode, string Mrp, string Pagepath, string Description, string ratetype, string Qtytype, string defaultcurrencyid, string Rate1, string mrp1, string Rate2, string mrp2, string Rate3, string mrp3, string Rate4, string mrp4, string Rate5, string mrp5)
+        public int syncinsertitem(int ItemID, string CategoryID, string Definition, string IsDelete, string Serial_No, string Serial, string Size, string isChecked, string Tax, string Rate, string CategoryUserID, string GST, string TaxVal, string unit, string empcode, string MinimumStock, string DisplayOnline, string ImageUpload, string IsActive, string hsncode, string Printname, string foodtype, string Barcode, string Mrp, string Pagepath, string Description, string ratetype)
         {
             int i = 0;
             string sqry = "SET IDENTITY_INSERT [dbo].[tblCategoryUser] ON  " +
                //" Insert into tblcategory Categoryid='" + Categoryid + "',Category='" + Category + "',CategoryCode='" + CategoryCode + "',IsActive='" + IsActive + "',IsLiveKitchen='" + IsLiveKitchen + "',ProductionType='" + ProductionType + "',Request='" + Request + "',poduction='" + poduction + "',PrintCategory='" + PrintCategory + "',ManualGrn='" + ManualGrn + "' where catid='" + catid + "'";
                " INSERT [dbo].[tblCategoryUser] ([ItemID], [CategoryID], [Definition], [IsDelete], [Serial_No], [Serial], [Size], [isChecked], [CustomerID], [Tax], [IsExpiry], " +
-            " [Rate], [CategoryUserID], [GST], [TaxVal], [unit], [empcode], [MinimumStock], [DisplayOnline], [ImageUpload], [IsActive], [UnitName], [HSNCode], [Common], " +
-            " [Printitem],[FoodType],[Barcode],[Mrp],[Pagepath],[Description],[ratetype],[QtyType],[defaultcurrencyid] ,[Rate1] ,[MRP1], [Rate2] ,[MRP2] ,[Rate3] ,[MRP3] ,[Rate4] ,[MRP4] ,[Rate5] ,[MRP5]) VALUES (" + ItemID + ", " + CategoryID + ", '" + Definition + "', " + IsDelete + ", '" + Serial_No + "', '" + Serial + "', '" + Size + "', " + isChecked + ", NULL, " + Tax + ", NULL, " +
-            " " + Rate + ", " + CategoryUserID + ", " + GST + ", " + TaxVal + ", " + unit + ", '" + empcode + "', '" + MinimumStock + "', '" + DisplayOnline + "', '" + ImageUpload + "', '" + IsActive + "', NULL, '" + hsncode + "', NULL, '" + Printname + "', " +
-            " '" + foodtype + "','" + Barcode + "','" + Mrp + "','" + Pagepath + "','" + Description + "','" + ratetype + "','" + Qtytype + "','" + defaultcurrencyid + "','" + Rate1 + "','" + mrp1 + "','" + Rate2 + "','" + mrp2 + "','" + Rate3 + "','" + mrp3 + "','" + Rate4 + "','" + mrp4 + "','" + Rate5 + "','" + mrp5 + "') " +
+            " [Rate], [CategoryUserID], [Rate2], [GST], [TaxVal], [unit], [empcode], [MinimumStock], [DisplayOnline], [ImageUpload], [IsActive], [UnitName], [HSNCode], [Common], " +
+            " [Printitem],[FoodType],[Barcode],[Mrp],[Pagepath],[Description],[ratetype]) VALUES (" + ItemID + ", " + CategoryID + ", '" + Definition + "', " + IsDelete + ", '" + Serial_No + "', '" + Serial + "', '" + Size + "', " + isChecked + ", NULL, " + Tax + ", NULL, " +
+            " " + Rate + ", " + CategoryUserID + ", NULL, " + GST + ", " + TaxVal + ", " + unit + ", '" + empcode + "', '" + MinimumStock + "', '" + DisplayOnline + "', '" + ImageUpload + "', '" + IsActive + "', NULL, '" + hsncode + "', NULL, '" + Printname + "','" + foodtype + "','" + Barcode + "','" + Mrp + "','" + Pagepath + "','" + Description + "','" + ratetype + "') " +
             " SET IDENTITY_INSERT [dbo].[tblCategoryUser] OFF ";
             i = dbObj.InlineExecuteNonQuery(sqry);
             return i;
@@ -26944,7 +27124,7 @@ namespace BusinessLayer
         //      public int InsertphysicalDatas(int Ingredientid, string TransferDate, double OpStock, double physical, string scode, string uomid, string ExpiryDate, string userid)
         //      {
 
-        //          DateTime ExpiryDate1;
+       //          DateTime ExpiryDate1;
         //          if (ExpiryDate == "" || ExpiryDate == "0")
         //          {
         //              ExpiryDate1 = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -27443,6 +27623,45 @@ namespace BusinessLayer
             return ds;
         }
 
+        // Shanthi 1/3/23  getting TotalAmount purpose
+        // public DataSet getreportforkitchenusage(string sTablename, string Type, string DCNo, DateTime From, DateTime to, string Category, string Ingridients, string deptid)
+        //{
+
+        //    DataSet ds = new DataSet();
+        //    string sqry = string.Empty;
+        //    if (Ingridients == "All" && deptid == "All")
+        //    {
+        //        sqry = "select case b.isaccept when 1 then 'Accepted' else 'Pending' end as status,b.MissingQty,b.DamageQty,(b.acceptqty - b.missingqty - b.damageqty) as RecQty,isnull(e.deptname,'No Dept.') as deptname, a.requestno,a.requestdate,a.prepared,a.reqtype,c.ingredientname,b.acceptqty,b.narration,d.uom from tblAcceptRawMaterials_" + sTablename + "  as a inner join tbltransAcceptRawItem_" + sTablename + " as b on b.requestid=a.requestno " +
+        //               " inner join tblIngridents as c on b.rawitemid=c.IngridID inner join tbluom as d on d.uomid=c.Units left join tbldepartment as e on e.deptid=a.deptid where  " +
+        //               " cast(a.requestdate as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(a.requestdate as Date)<='" + to.ToString("yyyy/MM/dd") + "'";
+
+        //    }
+        //    else if (Ingridients == "All" && deptid != "All")
+        //    {
+        //        sqry = "select case b.isaccept when 1 then 'Accepted' else 'Pending' end as status,b.MissingQty,b.DamageQty,(b.acceptqty - b.missingqty - b.damageqty) as RecQty,isnull(e.deptname,'No Dept.') as deptname,a.requestno,a.requestdate,a.prepared,a.reqtype,c.ingredientname,b.acceptqty,b.narration,d.uom from tblAcceptRawMaterials_" + sTablename + "  as a inner join tbltransAcceptRawItem_" + sTablename + " as b on b.requestid=a.requestno " +
+        //               " inner join tblIngridents as c on b.rawitemid=c.IngridID inner join tbluom as d on d.uomid=c.Units inner join tbldepartment as e on e.deptid=a.deptid where e.deptid='" + deptid + "'  and  " +
+        //               " cast(a.requestdate as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(a.requestdate as Date)<='" + to.ToString("yyyy/MM/dd") + "'";
+
+        //    }
+        //    else if (Ingridients != "All" && deptid == "All")
+        //    {
+        //        sqry = "select case b.isaccept when 1 then 'Accepted' else 'Pending' end as status,b.MissingQty,b.DamageQty,(b.acceptqty - b.missingqty - b.damageqty) as RecQty,isnull(e.deptname,'No Dept.') as deptname,a.requestno,a.requestdate,a.prepared,a.reqtype,c.ingredientname,b.acceptqty,b.narration,d.uom from tblAcceptRawMaterials_" + sTablename + "  as a inner join tbltransAcceptRawItem_" + sTablename + " as b on b.requestid=a.requestno " +
+        //               " inner join tblIngridents as c on b.rawitemid=c.IngridID inner join tbluom as d on d.uomid=c.Units left join tbldepartment as e on e.deptid=a.deptid where c.ingridid='" + Ingridients + "' and  " +
+        //               " cast(a.requestdate as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(a.requestdate as Date)<='" + to.ToString("yyyy/MM/dd") + "'";
+
+        //    }
+        //    else if (Ingridients != "All" && deptid != "All")
+        //    {
+        //        sqry = "select case b.isaccept when 1 then 'Accepted' else 'Pending' end as status,b.MissingQty,b.DamageQty,(b.acceptqty - b.missingqty - b.damageqty) as RecQty,isnull(e.deptname,'No Dept.') as deptname,a.requestno,a.requestdate,a.prepared,a.reqtype,c.ingredientname,b.acceptqty,b.narration,d.uom from tblAcceptRawMaterials_" + sTablename + "  as a inner join tbltransAcceptRawItem_" + sTablename + " as b on b.requestid=a.requestno " +
+        //               " inner join tblIngridents as c on b.rawitemid=c.IngridID inner join tbluom as d on d.uomid=c.Units left join tbldepartment as e on e.deptid=a.deptid where e.deptid='" + deptid + "' and c.ingridid='" + Ingridients + "' and  " +
+        //               " cast(a.requestdate as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(a.requestdate as Date)<='" + to.ToString("yyyy/MM/dd") + "'";
+
+        //    }
+
+        //    ds = dbObj.InlineExecuteDataSet(sqry);
+
+        //    return ds;
+        //}
         public DataSet getreportforkitchenusage(string sTablename, string Type, string DCNo, DateTime From, DateTime to, string Category, string Ingridients, string deptid)
         {
 
@@ -27450,30 +27669,30 @@ namespace BusinessLayer
             string sqry = string.Empty;
             if (Ingridients == "All" && deptid == "All")
             {
-                sqry = "select case b.isaccept when 1 then 'Accepted' else 'Pending' end as status,b.MissingQty,b.DamageQty,(b.acceptqty - b.missingqty - b.damageqty) as RecQty,isnull(e.deptname,'No Dept.') as deptname, a.requestno,a.requestdate,a.prepared,a.reqtype,c.ingredientname,b.acceptqty,b.narration,d.uom from tblAcceptRawMaterials_" + sTablename + "  as a inner join tbltransAcceptRawItem_" + sTablename + " as b on b.requestid=a.requestno " +
-                       " inner join tblIngridents as c on b.rawitemid=c.IngridID inner join tbluom as d on d.uomid=c.Units left join tbldepartment as e on e.deptid=a.deptid where  " +
-                       " cast(a.requestdate as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(a.requestdate as Date)<='" + to.ToString("yyyy/MM/dd") + "'";
+                sqry = "select case b.isaccept when 1 then 'Accepted' else 'Pending' end as status,b.MissingQty,b.DamageQty,(b.acceptqty - b.missingqty - b.damageqty) as RecQty,isnull(e.deptname,'No Dept.') as deptname, a.requestno,a.requestdate,a.prepared,a.reqtype,c.ingredientname,b.acceptqty,b.narration,d.uom,s.Rate as AvgRate,sum(b.acceptqty)*s.Rate as TotalAmount from tblAcceptRawMaterials_" + sTablename + "  as a inner join tbltransAcceptRawItem_" + sTablename + " as b on b.requestid=a.requestno " +
+                       " inner join tblIngridents as c on b.rawitemid=c.IngridID inner join tbluom as d on d.uomid=c.Units left join tbldepartment as e on e.deptid=a.deptid  inner join tblRawMatlStock_prod s on s.IngredientID=b.rawitemid where  " +
+                       " cast(a.requestdate as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(a.requestdate as Date)<='" + to.ToString("yyyy/MM/dd") + "' group by b.isaccept,b.Missingqty,b.damageqty,b.acceptqty,e.deptname,a.requestno,a.requestdate,a.prepared,a.reqtype,c.ingredientname,b.acceptqty,b.narration,d.uom,s.Rate";
 
             }
             else if (Ingridients == "All" && deptid != "All")
             {
-                sqry = "select case b.isaccept when 1 then 'Accepted' else 'Pending' end as status,b.MissingQty,b.DamageQty,(b.acceptqty - b.missingqty - b.damageqty) as RecQty,isnull(e.deptname,'No Dept.') as deptname,a.requestno,a.requestdate,a.prepared,a.reqtype,c.ingredientname,b.acceptqty,b.narration,d.uom from tblAcceptRawMaterials_" + sTablename + "  as a inner join tbltransAcceptRawItem_" + sTablename + " as b on b.requestid=a.requestno " +
-                       " inner join tblIngridents as c on b.rawitemid=c.IngridID inner join tbluom as d on d.uomid=c.Units inner join tbldepartment as e on e.deptid=a.deptid where e.deptid='" + deptid + "'  and  " +
-                       " cast(a.requestdate as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(a.requestdate as Date)<='" + to.ToString("yyyy/MM/dd") + "'";
+                sqry = "select case b.isaccept when 1 then 'Accepted' else 'Pending' end as status,b.MissingQty,b.DamageQty,(b.acceptqty - b.missingqty - b.damageqty) as RecQty,isnull(e.deptname,'No Dept.') as deptname,a.requestno,a.requestdate,a.prepared,a.reqtype,c.ingredientname,b.acceptqty,b.narration,d.uom,s.Rate as AvgRate,sum(b.acceptqty)*s.Rate as TotalAmount from tblAcceptRawMaterials_" + sTablename + "  as a inner join tbltransAcceptRawItem_" + sTablename + " as b on b.requestid=a.requestno " +
+                       " inner join tblIngridents as c on b.rawitemid=c.IngridID inner join tbluom as d on d.uomid=c.Units inner join tbldepartment as e on e.deptid=a.deptid  inner join tblRawMatlStock_prod s on s.IngredientID=b.rawitemid where e.deptid='" + deptid + "'  and  " +
+                       " cast(a.requestdate as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(a.requestdate as Date)<='" + to.ToString("yyyy/MM/dd") + "' group by b.isaccept,b.Missingqty,b.damageqty,b.acceptqty,e.deptname,a.requestno,a.requestdate,a.prepared,a.reqtype,c.ingredientname,b.acceptqty,b.narration,d.uom,s.Rate";
 
             }
             else if (Ingridients != "All" && deptid == "All")
             {
-                sqry = "select case b.isaccept when 1 then 'Accepted' else 'Pending' end as status,b.MissingQty,b.DamageQty,(b.acceptqty - b.missingqty - b.damageqty) as RecQty,isnull(e.deptname,'No Dept.') as deptname,a.requestno,a.requestdate,a.prepared,a.reqtype,c.ingredientname,b.acceptqty,b.narration,d.uom from tblAcceptRawMaterials_" + sTablename + "  as a inner join tbltransAcceptRawItem_" + sTablename + " as b on b.requestid=a.requestno " +
-                       " inner join tblIngridents as c on b.rawitemid=c.IngridID inner join tbluom as d on d.uomid=c.Units left join tbldepartment as e on e.deptid=a.deptid where c.ingridid='" + Ingridients + "' and  " +
-                       " cast(a.requestdate as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(a.requestdate as Date)<='" + to.ToString("yyyy/MM/dd") + "'";
+                sqry = "select case b.isaccept when 1 then 'Accepted' else 'Pending' end as status,b.MissingQty,b.DamageQty,(b.acceptqty - b.missingqty - b.damageqty) as RecQty,isnull(e.deptname,'No Dept.') as deptname,a.requestno,a.requestdate,a.prepared,a.reqtype,c.ingredientname,b.acceptqty,b.narration,d.uom,s.Rate as AvgRate,sum(b.acceptqty)*s.Rate as TotalAmount from tblAcceptRawMaterials_" + sTablename + "  as a inner join tbltransAcceptRawItem_" + sTablename + " as b on b.requestid=a.requestno " +
+                       " inner join tblIngridents as c on b.rawitemid=c.IngridID inner join tbluom as d on d.uomid=c.Units left join tbldepartment as e on e.deptid=a.deptid  inner join tblRawMatlStock_prod s on s.IngredientID=b.rawitemid where c.ingridid='" + Ingridients + "' and  " +
+                       " cast(a.requestdate as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(a.requestdate as Date)<='" + to.ToString("yyyy/MM/dd") + "' group by b.isaccept,b.Missingqty,b.damageqty,b.acceptqty,e.deptname,a.requestno,a.requestdate,a.prepared,a.reqtype,c.ingredientname,b.acceptqty,b.narration,d.uom,s.Rate";
 
             }
             else if (Ingridients != "All" && deptid != "All")
             {
-                sqry = "select case b.isaccept when 1 then 'Accepted' else 'Pending' end as status,b.MissingQty,b.DamageQty,(b.acceptqty - b.missingqty - b.damageqty) as RecQty,isnull(e.deptname,'No Dept.') as deptname,a.requestno,a.requestdate,a.prepared,a.reqtype,c.ingredientname,b.acceptqty,b.narration,d.uom from tblAcceptRawMaterials_" + sTablename + "  as a inner join tbltransAcceptRawItem_" + sTablename + " as b on b.requestid=a.requestno " +
-                       " inner join tblIngridents as c on b.rawitemid=c.IngridID inner join tbluom as d on d.uomid=c.Units left join tbldepartment as e on e.deptid=a.deptid where e.deptid='" + deptid + "' and c.ingridid='" + Ingridients + "' and  " +
-                       " cast(a.requestdate as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(a.requestdate as Date)<='" + to.ToString("yyyy/MM/dd") + "'";
+                sqry = "select case b.isaccept when 1 then 'Accepted' else 'Pending' end as status,b.MissingQty,b.DamageQty,(b.acceptqty - b.missingqty - b.damageqty) as RecQty,isnull(e.deptname,'No Dept.') as deptname,a.requestno,a.requestdate,a.prepared,a.reqtype,c.ingredientname,b.acceptqty,b.narration,d.uom,s.Rate as AvgRate,sum(b.acceptqty)*s.Rate as TotalAmount from tblAcceptRawMaterials_" + sTablename + "  as a inner join tbltransAcceptRawItem_" + sTablename + " as b on b.requestid=a.requestno " +
+                       " inner join tblIngridents as c on b.rawitemid=c.IngridID inner join tbluom as d on d.uomid=c.Units left join tbldepartment as e on e.deptid=a.deptid  inner join tblRawMatlStock_prod s on s.IngredientID=b.rawitemid where e.deptid='" + deptid + "' and c.ingridid='" + Ingridients + "' and  " +
+                       " cast(a.requestdate as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(a.requestdate as Date)<='" + to.ToString("yyyy/MM/dd") + "' group by b.isaccept,b.Missingqty,b.damageqty,b.acceptqty,e.deptname,a.requestno,a.requestdate,a.prepared,a.reqtype,c.ingredientname,b.acceptqty,b.narration,d.uom,s.Rate";
 
             }
 
@@ -27481,7 +27700,6 @@ namespace BusinessLayer
 
             return ds;
         }
-
 
         public DataSet getreportforkitchenusage_old(string sTablename, string Type, string DCNo, DateTime From, DateTime to, string Category, string Ingridients)
         {
@@ -27730,11 +27948,11 @@ namespace BusinessLayer
 
         }
 
-        public int syncupdateitemNEW(int ItemID, string CategoryID, string Definition, string IsDelete, string Serial_No, string Serial, string Tax, string Rate, string CategoryUserID, string GST, string TaxVal, string unit, string MinimumStock, string DisplayOnline, string ImageUpload, string IsActive, string hsncode, string printname, string foodtype, string Barcode, string Mrp, string Pagepath, string Description, string ratetype, string Qtytype, string Rate1, string mrp1, string Rate2, string mrp2, string Rate3, string mrp3, string Rate4, string mrp4, string Rate5, string mrp5)
+        public int syncupdateitemNEW(int ItemID, string CategoryID, string Definition, string IsDelete, string Serial_No, string Serial, string Tax, string Rate, string CategoryUserID, string GST, string TaxVal, string unit, string MinimumStock, string DisplayOnline, string ImageUpload, string IsActive, string hsncode, string printname, string foodtype, string Barcode, string Mrp, string Pagepath, string Description, string ratetype)
         {
             int i = 0;
 
-            string sqry = "Update tblcategoryuser set Rate1='" + Rate1 + "',mrp1='" + mrp1 + "',rate2='" + Rate2 + "',mrp2='" + mrp2 + "',rate3='" + Rate3 + "',mrp3='" + mrp3 + "',rate4='" + Rate4 + "',mrp4='" + mrp4 + "',rate5='" + Rate5 + "',mrp5='" + mrp5 + "', Qtytype='" + Qtytype + "',Barcode='" + Barcode + "',Mrp='" + Mrp + "',Pagepath='" + Pagepath + "',Description='" + Description + "',ratetype='" + ratetype + "',FoodType='" + foodtype + "',CategoryID='" + CategoryID + "',Definition='" + Definition + "',IsDelete='" + IsDelete + "',Serial_No='" + Serial_No + "',Serial='" + Serial + "',Tax='" + Tax + "',Rate='" + Rate + "',CategoryUserID='" + CategoryUserID + "',GST='" + GST + "',TaxVal='" + TaxVal + "',unit='" + unit + "',MinimumStock='" + MinimumStock + "',DisplayOnline='" + DisplayOnline + "',ImageUpload='" + ImageUpload + "',IsActive='" + IsActive + "',HSNCode='" + hsncode + "',Printitem='" + printname + "' where ItemID='" + ItemID + "'";
+            string sqry = "Update tblcategoryuser set Barcode='" + Barcode + "',Mrp='" + Mrp + "',Pagepath='" + Pagepath + "',Description='" + Description + "',ratetype='" + ratetype + "',FoodType='" + foodtype + "',CategoryID='" + CategoryID + "',Definition='" + Definition + "',IsDelete='" + IsDelete + "',Serial_No='" + Serial_No + "',Serial='" + Serial + "',Tax='" + Tax + "',Rate='" + Rate + "',CategoryUserID='" + CategoryUserID + "',GST='" + GST + "',TaxVal='" + TaxVal + "',unit='" + unit + "',MinimumStock='" + MinimumStock + "',DisplayOnline='" + DisplayOnline + "',ImageUpload='" + ImageUpload + "',IsActive='" + IsActive + "',HSNCode='" + hsncode + "',Printitem='" + printname + "' where ItemID='" + ItemID + "'";
             i = dbObj.InlineExecuteNonQuery(sqry);
             return i;
         }
@@ -28745,7 +28963,6 @@ namespace BusinessLayer
 
         }
 
-
         public DataSet salesempsummaryreports(string sBranch, DateTime sFmdate, DateTime sToDate, string emptype, string gstbill)
         {
             string store = "";
@@ -28762,121 +28979,6 @@ namespace BusinessLayer
                 sqry = "select sum(c.quantity * c.unitprice) as tot,sum(disc) as dic,sum(quantity) as qty,b.name,b.billtype,a.biller from tblsales_" + sBranch + " as a  inner join tbltranssales_" + sBranch + " as c on c.salesid=a.billno  " +
                        " inner join tblworkers as b on a.billerid=b.empid where a.salesid=c.salesuniqueid and a.biller='" + emptype + "' and OrderNo=0  and  convert(date,a.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' " +
                   " and convert(date,a.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and a.cancelstatus='No'  and a.gstbill ='" + gstbill + "'  group by a.biller,b.name,b.billtype Order by b.name asc";
-            }
-            ds = dbObj.InlineExecuteDataSet(sqry);
-
-            return ds;
-        }
-
-        public DataSet getSalesBillCount_firsttobill_code(string sTableName, DateTime From, DateTime To, string code, string gstbill)
-        {
-            DataSet ds = new DataSet();
-            string sQry = string.Empty;
-
-            sQry = "select  COUNT(BillNo) as BillCount from tblsales_" + sTableName + " as a inner join tblworkers as b on a.billerid=b.empid " +
-                " where    a.gstbill ='" + gstbill + "' and cast(BillDate as date)>='" + Convert.ToDateTime(From).ToString("yyyy/MM/dd") + "' and cast(BillDate as date)<='" + Convert.ToDateTime(To).ToString("yyyy/MM/dd") + "' and a.biller='" + code + "'  having COUNT(BillNo)>0 ";
-            ds = dbObj.InlineExecuteDataSet(sQry);
-            return ds;
-        }
-
-        public DataSet Emp_WiseSummary(string sBranch, DateTime sFmdate, DateTime sToDate, string emptype, string gstbill)
-        {
-            string store = "";
-            string sqry = string.Empty;
-            DataSet ds = new DataSet();
-
-            {
-                sqry = " Select a.Attender,b.AttenderName,sum(c.quantity * c.unitprice) as tot,sum(c.disc) as dic,sum(quantity) as qty from tblsales_" + sBranch + " as a  inner join tbltranssales_" + sBranch + " as c on c.salesid=a.billno  " +
-                       " inner join tblAttender as b on a.Attender=b.attenderid where a.salesid=c.salesuniqueid and OrderNo=0    and  convert(date,a.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' " +
-                  " and convert(date,a.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and a.cancelstatus='No'  and a.gstbill ='" + gstbill + "'  group by a.Attender,b.attendername,b.attenderid Order by b.attendername asc";
-            }
-            ds = dbObj.InlineExecuteDataSet(sqry);
-
-            return ds;
-        }
-
-        public DataSet getSalesBillCount_firsttobill_code_attender(string sTableName, DateTime From, DateTime To, string attednerid, string gstbill)
-        {
-            DataSet ds = new DataSet();
-            string sQry = string.Empty;
-
-            sQry = "select  COUNT(BillNo) as BillCount from tblsales_" + sTableName + " as a inner join tblAttender as b on a.Attender=b.attenderid " +
-                " where  a.gstbill ='" + gstbill + "' and cast(BillDate as date)>='" + Convert.ToDateTime(From).ToString("yyyy/MM/dd") + "' and cast(BillDate as date)<='" + Convert.ToDateTime(To).ToString("yyyy/MM/dd") + "' and a.attender='" + attednerid + "'  having COUNT(BillNo)>0 ";
-            ds = dbObj.InlineExecuteDataSet(sQry);
-            return ds;
-        }
-
-        public DataSet Emp_WiseOrderSummary(string sBranch, DateTime sFmdate, DateTime sToDate, string emptype)
-        {
-            string store = "";
-            string sqry = string.Empty;
-            DataSet ds = new DataSet();
-
-            {
-                //sqry = " Select a.Attender,b.AttenderName,sum(c.quantity * c.unitprice) as tot,sum(c.disc) as dic,sum(quantity) as qty from tblsales_" + sBranch + " as a  inner join tbltranssales_" + sBranch + " as c on c.salesid=a.billno  " +
-                //       " inner join tblAttender as b on a.Attender=b.attenderid where a.salesid=c.salesuniqueid and OrderNo=0    and  convert(date,a.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' " +
-                //  " and convert(date,a.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and a.cancelstatus='No'  and a.gstbill ='" + gstbill + "'  group by a.Attender,b.attendername,b.attenderid Order by b.attendername asc";
-
-                sqry = "Select a.attenderid as Attender,b.AttenderName,sum(cast(c.qty as decimal) * cast(c.RTE as decimal)) as tot,sum(c.disc) as dic,sum(cast(qty as decimal)) as qty  " +
- " from tblOrder_" + sBranch + " as a  inner join tblTransOrder_" + sBranch + " as c on c.billno=a.billno   inner join tblAttender as b  on a.Attenderid=b.attenderid where  " +
-   " convert(date,a.OrderDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd hh:mm") + "'  and convert(date,a.OrderDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and a.iscancel='0' " +
-     " group by a.attenderid,b.attendername,b.attenderid Order by b.attendername asc";
-
-            }
-            ds = dbObj.InlineExecuteDataSet(sqry);
-
-            return ds;
-        }
-
-        public DataSet getOrderBillCount_firsttobill_code_attender(string sTableName, DateTime From, DateTime To, string attednerid, string gstbill)
-        {
-            DataSet ds = new DataSet();
-            string sQry = string.Empty;
-
-            sQry = "select  COUNT(orderNo) as BillCount from tblorder_" + sTableName + " as a inner join tblAttender as b on a.Attenderid=b.attenderid " +
-                " where   cast(orderDate as date)>='" + Convert.ToDateTime(From).ToString("yyyy/MM/dd") + "' and cast(orderDate as date)<='" + Convert.ToDateTime(To).ToString("yyyy/MM/dd") + "' and a.attenderid='" + attednerid + "'  having COUNT(orderNo)>0 ";
-            ds = dbObj.InlineExecuteDataSet(sQry);
-            return ds;
-        }
-
-        public DataSet salesempsummaryreports_old(string sBranch, DateTime sFmdate, DateTime sToDate, string emptype)
-        {
-            string store = "";
-            string sqry = string.Empty;
-            DataSet ds = new DataSet();
-            if (emptype == "All")
-            {
-                sqry = "select '" + sBranch + "' as bnch, sum(c.quantity * c.unitprice) as tot,sum(disc) as dic,sum(quantity) as qty,b.name,b.billtype from tblsales_" + sBranch + " as a  inner join tbltranssales_" + sBranch + " as c on c.salesid=a.billno  " +
-                       " inner join tblworkers as b on a.biller=b.code where a.salesid=c.salesuniqueid and OrderNo=0  and  convert(date,a.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' " +
-                  " and convert(date,a.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and a.cancelstatus='No'  group by b.name,b.billtype Order by b.name asc";
-            }
-            else
-            {
-                sqry = "select '" + sBranch + "' as bnch, sum(c.quantity * c.unitprice) as tot,sum(disc) as dic,sum(quantity) as qty,b.name,b.billtype from tblsales_" + sBranch + " as a  inner join tbltranssales_" + sBranch + " as c on c.salesid=a.billno  " +
-                       " inner join tblworkers as b on a.biller=b.code where a.salesid=c.salesuniqueid and a.biller='" + emptype + "' and OrderNo=0  and  convert(date,a.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' " +
-                  " and convert(date,a.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and a.cancelstatus='No'  group by b.name,b.billtype Order by b.name asc";
-            }
-            ds = dbObj.InlineExecuteDataSet(sqry);
-
-            return ds;
-        }
-
-        public DataSet salesempsummarydatereports_old(string sBranch, DateTime sFmdate, DateTime sToDate, string emptype)
-        {
-            string store = "";
-            string sqry = string.Empty;
-            DataSet ds = new DataSet();
-            if (emptype == "All")
-            {
-                sqry = "select '" + sBranch + "' as bnch,cast(a.billdate as date) as bdate,sum(c.quantity * c.unitprice) as tot,sum(disc) as dic,sum(quantity) as qty,b.name,b.billtype from tblsales_" + sBranch + " as a  inner join tbltranssales_" + sBranch + " as c on c.salesid=a.billno  " +
-                       " inner join tblworkers as b on a.biller=b.code where a.salesid=c.salesuniqueid and OrderNo=0  and  convert(date,a.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' " +
-                  " and convert(date,a.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and a.cancelstatus='No'  group by b.name,b.billtype,cast(a.billdate as date) Order by b.name asc";
-            }
-            else
-            {
-                sqry = "select '" + sBranch + "' as bnch,cast(a.billdate as date) as bdate,sum(c.quantity * c.unitprice) as tot,sum(disc) as dic,sum(quantity) as qty,b.name,b.billtype from tblsales_" + sBranch + " as a  inner join tbltranssales_" + sBranch + " as c on c.salesid=a.billno  " +
-                       " inner join tblworkers as b on a.biller=b.code where a.salesid=c.salesuniqueid and a.biller='" + emptype + "' and OrderNo=0  and  convert(date,a.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' " +
-                  " and convert(date,a.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and a.cancelstatus='No'  group by b.name,b.billtype,cast(a.billdate as date) Order by b.name asc";
             }
             ds = dbObj.InlineExecuteDataSet(sqry);
 
@@ -28905,27 +29007,6 @@ namespace BusinessLayer
             return ds;
         }
 
-        public DataSet salesempItemwisereports_old(string sBranch, DateTime sFmdate, DateTime sToDate, string emptype)
-        {
-            string store = "";
-            string sqry = string.Empty;
-            DataSet ds = new DataSet();
-            if (emptype == "All")
-            {
-                sqry = "select '" + sBranch + "' as bnch, e.category,d.definition,sum(c.quantity * c.unitprice) as tot,sum(disc) as dic,sum(quantity) as qty,b.name,b.billtype from tblsales_" + sBranch + " as a  inner join tbltranssales_" + sBranch + " as c on c.salesid=a.billno  " +
-                       " inner join tblworkers as b on a.biller=b.code inner join tblcategoryuser as d on d.categoryuserid=c.subcategoryid inner join tblcategory as e on e.categoryid=d.categoryid where a.salesid=c.salesuniqueid and OrderNo=0  and  convert(date,a.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' " +
-                  " and convert(date,a.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and a.cancelstatus='No'  group by b.name,b.billtype,e.category,d.definition Order by b.name asc";
-            }
-            else
-            {
-                sqry = "select '" + sBranch + "' as bnch, e.category,d.definition,sum(c.quantity * c.unitprice) as tot,sum(disc) as dic,sum(quantity) as qty,b.name,b.billtype from tblsales_" + sBranch + " as a  inner join tbltranssales_" + sBranch + " as c on c.salesid=a.billno  " +
-                       " inner join tblworkers as b on a.biller=b.code inner join tblcategoryuser as d on d.categoryuserid=c.subcategoryid inner join tblcategory as e on e.categoryid=d.categoryid where a.salesid=c.salesuniqueid and a.biller='" + emptype + "' and OrderNo=0  and  convert(date,a.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' " +
-                  " and convert(date,a.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and a.cancelstatus='No'  group by b.name,b.billtype,e.category,d.definition Order by b.name asc";
-            }
-            ds = dbObj.InlineExecuteDataSet(sqry);
-
-            return ds;
-        }
 
         public DataSet salesempItemwisereports(string sBranch, DateTime sFmdate, DateTime sToDate, string emptype, string gstbill)
         {
@@ -29584,7 +29665,7 @@ namespace BusinessLayer
 
 
         #region Purchase Report
-
+        //shanthi add orderby BillDate
         public DataSet GetPurchaseReport(string sTableName, string From, string To, string Group, string ListItems, string Subcompany)
         {
             DataSet ds = new DataSet();
@@ -29594,12 +29675,12 @@ namespace BusinessLayer
                 {
                     if (Subcompany == "All")
                     {
-                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID  inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' order by LedgerName,IngreCategory,IngredientName asc ";
+                        string qry = "select cm.customername as compname,cm.GSTNO,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID  inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' order by BillDate,LedgerName,IngreCategory,IngredientName asc ";
                         ds = dbObj.InlineExecuteDataSet(qry);
                     }
                     else
                     {
-                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and p.subcompanyid='" + Subcompany + "' order by LedgerName,IngreCategory,IngredientName asc ";
+                        string qry = "select cm.customername as compname,cm.GSTNO,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and p.subcompanyid='" + Subcompany + "' order by BillDate,LedgerName,IngreCategory,IngredientName asc ";
                         ds = dbObj.InlineExecuteDataSet(qry);
                     }
                 }
@@ -29607,12 +29688,12 @@ namespace BusinessLayer
                 {
                     if (Subcompany == "All")
                     {
-                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and LedgerId=" + ListItems + " order by LedgerName,IngreCategory,IngredientName asc ";
+                        string qry = "select cm.customername as compname,cm.GSTNO,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and LedgerId=" + ListItems + " order by BillDate,LedgerName,IngreCategory,IngredientName asc ";
                         ds = dbObj.InlineExecuteDataSet(qry);
                     }
                     else
                     {
-                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and LedgerId=" + ListItems + "  and p.subcompanyid='" + Subcompany + "' order by LedgerName,IngreCategory,IngredientName asc ";
+                        string qry = "select cm.customername as compname,cm.GSTNO,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and LedgerId=" + ListItems + "  and p.subcompanyid='" + Subcompany + "' order by BillDate,LedgerName,IngreCategory,IngredientName asc ";
                         ds = dbObj.InlineExecuteDataSet(qry);
                     }
                 }
@@ -29623,12 +29704,12 @@ namespace BusinessLayer
                 {
                     if (Subcompany == "All")
                     {
-                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID  inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' order by cm.customername,LedgerName,IngreCategory,IngredientName asc ";
+                        string qry = "select cm.customername as compname,cm.GSTNO,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID  inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' order by cm.customername,LedgerName,IngreCategory,IngredientName,p.BillDate asc ";
                         ds = dbObj.InlineExecuteDataSet(qry);
                     }
                     else
                     {
-                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and p.subcompanyid='" + Subcompany + "' order by cm.customername,LedgerName,IngreCategory,IngredientName asc ";
+                        string qry = "select cm.customername as compname,cm.GSTNO,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and p.subcompanyid='" + Subcompany + "' order by cm.customername,LedgerName,IngreCategory,IngredientName,p.BillDate asc ";
                         ds = dbObj.InlineExecuteDataSet(qry);
                     }
                 }
@@ -29636,12 +29717,12 @@ namespace BusinessLayer
                 {
                     if (Subcompany == "All")
                     {
-                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and p.subcompanyid=" + ListItems + " order by cm.customername,LedgerName,IngreCategory,IngredientName asc ";
+                        string qry = "select cm.customername as compname,cm.GSTNO,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and p.subcompanyid=" + ListItems + " order by cm.customername,LedgerName,IngreCategory,IngredientName,p.BillDate asc ";
                         ds = dbObj.InlineExecuteDataSet(qry);
                     }
                     else
                     {
-                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and p.subcompanyid=" + ListItems + "  and p.subcompanyid='" + Subcompany + "' order by cm.customername,LedgerName,IngreCategory,IngredientName asc ";
+                        string qry = "select cm.customername as compname,cm.GSTNO,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and p.subcompanyid=" + ListItems + "  and p.subcompanyid='" + Subcompany + "' order by cm.customername,LedgerName,IngreCategory,IngredientName,p.BillDate asc ";
                         ds = dbObj.InlineExecuteDataSet(qry);
                     }
                 }
@@ -29652,12 +29733,12 @@ namespace BusinessLayer
                 {
                     if (Subcompany == "All")
                     {
-                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' order by IngreCategory,IngredientName,LedgerName asc ";
+                        string qry = "select cm.customername as compname,cm.GSTNO,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' order by IngreCategory,IngredientName,LedgerName,p.BillDate asc ";
                         ds = dbObj.InlineExecuteDataSet(qry);
                     }
                     else
                     {
-                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "'  and p.subcompanyid='" + Subcompany + "' order by IngreCategory,IngredientName,LedgerName asc ";
+                        string qry = "select cm.customername as compname,cm.GSTNO,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "'  and p.subcompanyid='" + Subcompany + "' order by IngreCategory,IngredientName,LedgerName,p.BillDate asc ";
                         ds = dbObj.InlineExecuteDataSet(qry);
                     }
                 }
@@ -29665,12 +29746,12 @@ namespace BusinessLayer
                 {
                     if (Subcompany == "All")
                     {
-                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and ic.IngCatID=" + ListItems + "  order by IngreCategory,IngredientName,LedgerName asc ";
+                        string qry = "select cm.customername as compname,cm.GSTNO,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and ic.IngCatID=" + ListItems + "  order by IngreCategory,IngredientName,LedgerName,p.BillDate asc ";
                         ds = dbObj.InlineExecuteDataSet(qry);
                     }
                     else
                     {
-                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and ic.IngCatID=" + ListItems + "   and p.subcompanyid='" + Subcompany + "'  order by IngreCategory,IngredientName,LedgerName asc ";
+                        string qry = "select cm.customername as compname,cm.GSTNO,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and ic.IngCatID=" + ListItems + "   and p.subcompanyid='" + Subcompany + "'  order by IngreCategory,IngredientName,LedgerName,p.BillDate asc ";
                         ds = dbObj.InlineExecuteDataSet(qry);
                     }
                 }
@@ -29681,12 +29762,12 @@ namespace BusinessLayer
                 {
                     if (Subcompany == "All")
                     {
-                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "'   order by IngredientName,IngreCategory,LedgerName asc ";
+                        string qry = "select cm.customername as compname,cm.GSTNO,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "'   order by IngredientName,IngreCategory,LedgerName,p.BillDate asc ";
                         ds = dbObj.InlineExecuteDataSet(qry);
                     }
                     else
                     {
-                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "'   and p.subcompanyid='" + Subcompany + "'  order by IngredientName,IngreCategory,LedgerName asc ";
+                        string qry = "select cm.customername as compname,cm.GSTNO,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "'   and p.subcompanyid='" + Subcompany + "'  order by IngredientName,IngreCategory,LedgerName,p.BillDate asc ";
                         ds = dbObj.InlineExecuteDataSet(qry);
                     }
                 }
@@ -29694,12 +29775,12 @@ namespace BusinessLayer
                 {
                     if (Subcompany == "All")
                     {
-                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and IngridID=" + ListItems + " order by IngredientName,IngreCategory,LedgerName asc ";
+                        string qry = "select cm.customername as compname,cm.GSTNO,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and IngridID=" + ListItems + " order by IngredientName,IngreCategory,LedgerName,p.BillDate asc ";
                         ds = dbObj.InlineExecuteDataSet(qry);
                     }
                     else
                     {
-                        string qry = "select cm.customername as compname,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and IngridID=" + ListItems + "   and p.subcompanyid='" + Subcompany + "'  order by IngredientName,IngreCategory,LedgerName asc ";
+                        string qry = "select cm.customername as compname,cm.GSTNO,cm.subComapanyID, p.BillNo,BillDate,EntryDate,p.BillingType,LedgerId,LedgerName,ic.IngCatID,IngreCategory,IngridID,IngredientName,Qty,tp.Rate,Amount,tp.Tax,tp.Disc from tblkitchenPurchase_" + sTableName + " p inner join tbltranskitchenPurchase_" + sTableName + " tp on tp.PurchaseID=p.purchaseID inner join tblLedger l on l.LedgerID=p.supplier inner join tblIngridents i on i.IngridID=tp.IngredientID inner join tblIngridentsCategory ic on ic.IngCatID=i.IngCatID   inner join tblsubCompanyDetails cm on cm.subComapanyID = p.subcompanyid where convert(date,p.BillDate) >= '" + From + "' and convert(date,p.BillDate) <= '" + To + "' and IngridID=" + ListItems + "   and p.subcompanyid='" + Subcompany + "'  order by IngredientName,IngreCategory,LedgerName,p.BillDate asc ";
                         ds = dbObj.InlineExecuteDataSet(qry);
                     }
                 }
@@ -29707,7 +29788,7 @@ namespace BusinessLayer
             return ds;
         }
 
-
+        
         #endregion
 
 
@@ -30725,7 +30806,7 @@ namespace BusinessLayer
             }
             return ds;
         }
-
+       
         public DataSet getPaymentrecorddetail(string sTableName, string CustomerID, DateTime From, DateTime To, string Pay)
         {
             DataSet ds = new DataSet();
@@ -30797,6 +30878,77 @@ namespace BusinessLayer
             return ds;
         }
 
+
+        //Shanthi 28/2/23 For Outstanding with Company Report
+        public DataSet getSupplierOutStandingwithCompany(string Type, string sTableName, string CustomerID, DateTime From, DateTime To,string SubCompanyId)
+        {
+            DataSet ds = new DataSet();
+            string sQry = "";
+
+            if (Type == "2")
+            {
+                if (SubCompanyId == "All")
+                {
+                    if (CustomerID == "All")
+                    {
+                        //sQry = "select DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount,Total as NetAmount,isnull(ReceiptAmount,0) as Receipt ,ReturnAmount,0 as CloseDiscount, round((Total - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance ,case w.PayMode when '1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier where IsHide='N' and cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and w.PayMode=2  and  (round(Total,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0  order by c.LedgerName asc ";
+                        sQry = "select DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount,roundoff as NetAmount,isnull(ReceiptAmount,0) as Receipt ,ReturnAmount,0 as CloseDiscount, round((isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance ,p.paymode as PayType,sc.CustomerName+'-'+sc.GSTNO as CompanyName,c.LedgerId from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier inner join tblsalespaymode as p on p.value=w.paymode inner join tblSubCompanydetails sc on sc.subComapanyId=w.subCompanyId where  cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and w.PayMode=18  and  (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0   order by c.LedgerName asc ";
+                    }
+                    else
+                    {
+                        //sQry = "select DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount,Total  as NetAmount,isnull(ReceiptAmount,0) as Receipt,ReturnAmount,0 as CloseDiscount, round((Total - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance ,case w.PayMode when '1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier where IsHide='N' and cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "'  and w.PayMode=2   and  (round(Total,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0 and w.supplier='" + CustomerID + "' order by c.LedgerName asc ";
+                        sQry = "select DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount,roundoff  as NetAmount,isnull(ReceiptAmount,0) as Receipt,ReturnAmount,0 as CloseDiscount, round((isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance ,p.paymode as PayType,sc.CustomerName+'-'+sc.GSTNO as CompanyName,c.LedgerId from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier inner join tblsalespaymode as p on p.value=w.paymode inner join tblsubCompanydetails sc on sc.SubComapanyId=w.subComapanyId where  cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "'  and w.PayMode=18   and  (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0 and w.supplier='" + CustomerID + "'  order by c.LedgerName asc ";
+                    }
+                }
+                else
+                {
+                    if (CustomerID == "All")
+                    {
+                        //sQry = "select DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount,Total as NetAmount,isnull(ReceiptAmount,0) as Receipt ,ReturnAmount,0 as CloseDiscount, round((Total - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance ,case w.PayMode when '1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier where IsHide='N' and cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and w.PayMode=2  and  (round(Total,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0  order by c.LedgerName asc ";
+                        sQry = "select DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount,roundoff as NetAmount,isnull(ReceiptAmount,0) as Receipt ,ReturnAmount,0 as CloseDiscount, round((isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance ,p.paymode as PayType,sc.CustomerName+'-'+sc.GSTNO as CompanyName,c.LedgerId from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier inner join tblsalespaymode as p on p.value=w.paymode inner join tblSubCompanyDetails sc on sc.subcomapanyId=w.SubcompanyId where  cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and w.PayMode=18  and  (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0 and w.SubcompanyId='" + SubCompanyId + "'  order by c.LedgerName asc ";
+                    }
+                    else
+                    {
+                        //sQry = "select DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount,Total  as NetAmount,isnull(ReceiptAmount,0) as Receipt,ReturnAmount,0 as CloseDiscount, round((Total - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance ,case w.PayMode when '1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier where IsHide='N' and cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "'  and w.PayMode=2   and  (round(Total,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0 and w.supplier='" + CustomerID + "' order by c.LedgerName asc ";
+                        sQry = "select DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount,roundoff  as NetAmount,isnull(ReceiptAmount,0) as Receipt,ReturnAmount,0 as CloseDiscount, round((isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance ,p.paymode as PayType,sc.CustomerName+'-'+sc.GSTNO as CompanyName,c.LedgerId from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier inner join tblsalespaymode as p on p.value=w.paymode inner join tblsubCompanydetails sc on sc.SubcomapanyId=w.subcompanyID where  cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "'  and w.PayMode=18   and  (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0 and w.supplier='" + CustomerID + "' and w.subCompanyId='" + SubCompanyId + "'  order by c.LedgerName asc ";
+                    }
+                }
+            }
+            else
+            {
+                if (SubCompanyId == "All")
+                {
+                    if (CustomerID == "All")
+                    {
+                        //sQry = "select '-' as DCNo,'-' as BillNo,'-' as BillDate,COUNT(c.LedgerName) as BillCount,c.LedgerName as CustomerName,c.MobileNo,sum(Total) as NetAmount,sum(isnull(ReceiptAmount,0)) as Receipt ,sum(ReturnAmount) as ReturnAmount,0 as CloseDiscount,round((sum(Total) - (sum(isnull(ReceiptAmount,0))+sum(ReturnAmount))),0) as Balance  ,case w.PayMode when '1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier where IsHide='N' and cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "'  and '" + To.ToString("yyyy/MM/dd") + "' and w.PayMode=2  and  (round(Total,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0 group by c.LedgerName,c.MobileNo,PayMode  order by c.LedgerName asc ";
+                        sQry = "select '-' as DCNo,'-' as BillNo,'-' as BillDate,COUNT(c.LedgerName) as BillCount,c.LedgerName as CustomerName,c.MobileNo,sum(roundoff) as NetAmount,sum(isnull(ReceiptAmount,0)) as Receipt ,sum(ReturnAmount) as ReturnAmount,0 as CloseDiscount,round((sum(isnull(roundoff,0)) - (sum(isnull(ReceiptAmount,0))+sum(ReturnAmount))),0) as Balance  ,p.paymode as PayType,sc.CustomerName+'-'+sc.GSTNO as CompanyName from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier inner join tblsalespaymode as p on p.value=w.paymode inner join tblSubCompanyDetails sc on sc.subcomapanyId=w.SubcompanyId  where  cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "'  and '" + To.ToString("yyyy/MM/dd") + "' and w.PayMode=18  and  (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0 group by c.LedgerName,c.MobileNo,p.PayMode,sc.CustomerName,sc.GStNo  order by c.LedgerName asc ";
+                    }
+                    else
+                    {
+                        //sQry = "select '-' as DCNo,'-' as BillNo,'-' as BillDate,COUNT(c.LedgerName)  as BillCount,c.LedgerName as CustomerName,c.MobileNo,sum(Total) as NetAmount,sum(isnull(ReceiptAmount,0)) as Receipt,sum(ReturnAmount) as ReturnAmount,0 as CloseDiscount,round((sum(Total) - (sum(isnull(ReceiptAmount,0))+sum(ReturnAmount))),0) as Balance  ,case w.PayMode when '1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier where IsHide='N' and cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "'   and '" + To.ToString("yyyy/MM/dd") + "' and w.PayMode=2  and  (round(Total,0) -(isnull(ReceiptAmount,0)+ReturnAmount)) >0 and w.supplier='" + CustomerID + "' group by c.LedgerName,c.MobileNo,PayMode  order by c.LedgerName asc ";
+                        sQry = "select '-' as DCNo,'-' as BillNo,'-' as BillDate,COUNT(c.LedgerName)  as BillCount,c.LedgerName as CustomerName,c.MobileNo,sum(roundoff) as NetAmount,sum(isnull(ReceiptAmount,0)) as Receipt,sum(ReturnAmount) as ReturnAmount,0 as CloseDiscount,round((sum(isnull(roundoff,0)) - (sum(isnull(ReceiptAmount,0))+sum(ReturnAmount))),0) as Balance  ,p.paymode as PayType,sc.CustomerName+'-'+sc.GSTNO as CompanyName from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier inner join tblsalespaymode as p on p.value=w.paymode inner join tblSubCompanyDetails sc on sc.subcomapanyId=w.SubcompanyId  where cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "'   and '" + To.ToString("yyyy/MM/dd") + "' and w.PayMode=18  and  (isnull(roundoff,0) -(isnull(ReceiptAmount,0)+ReturnAmount)) >0 and w.supplier='" + CustomerID + "' group by c.LedgerName,c.MobileNo,p.PayMode,sc.CustomerName,sc.GStNo  order by c.LedgerName asc ";
+                    }
+                }
+                else
+                {
+                    if (CustomerID == "All")
+                    {
+                        //sQry = "select '-' as DCNo,'-' as BillNo,'-' as BillDate,COUNT(c.LedgerName) as BillCount,c.LedgerName as CustomerName,c.MobileNo,sum(Total) as NetAmount,sum(isnull(ReceiptAmount,0)) as Receipt ,sum(ReturnAmount) as ReturnAmount,0 as CloseDiscount,round((sum(Total) - (sum(isnull(ReceiptAmount,0))+sum(ReturnAmount))),0) as Balance  ,case w.PayMode when '1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier where IsHide='N' and cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "'  and '" + To.ToString("yyyy/MM/dd") + "' and w.PayMode=2  and  (round(Total,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0 group by c.LedgerName,c.MobileNo,PayMode  order by c.LedgerName asc ";
+                        sQry = "select '-' as DCNo,'-' as BillNo,'-' as BillDate,COUNT(c.LedgerName) as BillCount,c.LedgerName as CustomerName,c.MobileNo,sum(roundoff) as NetAmount,sum(isnull(ReceiptAmount,0)) as Receipt ,sum(ReturnAmount) as ReturnAmount,0 as CloseDiscount,round((sum(isnull(roundoff,0)) - (sum(isnull(ReceiptAmount,0))+sum(ReturnAmount))),0) as Balance  ,p.paymode as PayType,sc.CustomerName+'-'+sc.GSTNO as CompanyName from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier inner join tblsalespaymode as p on p.value=w.paymode inner join tblsubcompanydetails sc on sc.subcomapanyId=w.SubCompanyId where  cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "'  and '" + To.ToString("yyyy/MM/dd") + "' and w.PayMode=18  and  (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0 and w.subCompanyId='" + SubCompanyId + "'  group by c.LedgerName,c.MobileNo,p.PayMode,sc.CustomerName,sc.gstNo  order by c.LedgerName asc ";
+                    }
+                    else
+                    {
+                        //sQry = "select '-' as DCNo,'-' as BillNo,'-' as BillDate,COUNT(c.LedgerName)  as BillCount,c.LedgerName as CustomerName,c.MobileNo,sum(Total) as NetAmount,sum(isnull(ReceiptAmount,0)) as Receipt,sum(ReturnAmount) as ReturnAmount,0 as CloseDiscount,round((sum(Total) - (sum(isnull(ReceiptAmount,0))+sum(ReturnAmount))),0) as Balance  ,case w.PayMode when '1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier where IsHide='N' and cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "'   and '" + To.ToString("yyyy/MM/dd") + "' and w.PayMode=2  and  (round(Total,0) -(isnull(ReceiptAmount,0)+ReturnAmount)) >0 and w.supplier='" + CustomerID + "' group by c.LedgerName,c.MobileNo,PayMode  order by c.LedgerName asc ";
+                        sQry = "select '-' as DCNo,'-' as BillNo,'-' as BillDate,COUNT(c.LedgerName)  as BillCount,c.LedgerName as CustomerName,c.MobileNo,sum(roundoff) as NetAmount,sum(isnull(ReceiptAmount,0)) as Receipt,sum(ReturnAmount) as ReturnAmount,0 as CloseDiscount,round((sum(isnull(roundoff,0)) - (sum(isnull(ReceiptAmount,0))+sum(ReturnAmount))),0) as Balance  ,p.paymode as PayType,sc.CustomerName+'-'+sc.GSTNO as CompanyName from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier inner join tblsalespaymode as p on p.value=w.paymode  inner join tblsubcompanydetails sc on sc.subcomapanyId=w.SubCompanyId where cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "'   and '" + To.ToString("yyyy/MM/dd") + "' and w.PayMode=18  and  (isnull(roundoff,0) -(isnull(ReceiptAmount,0)+ReturnAmount)) >0 and w.supplier='" + CustomerID + "' and w.subCompanyId='" + SubCompanyId + "' group by c.LedgerName,c.MobileNo,p.PayMode,sc.CustomerName,sc.GSTNo  order by c.LedgerName asc ";
+                    }
+
+                }
+            }
+                ds = dbObj.InlineExecuteDataSet(sQry);
+           
+            return ds;
+        }
+
         public DataSet getSupplierOutStanding_report(string Type, string sTableName, string CustomerID, DateTime From)
         {
             DataSet ds = new DataSet();
@@ -30804,7 +30956,89 @@ namespace BusinessLayer
 
             if (Type == "2")
             {
-                if (CustomerID == "All")
+               
+                    if (CustomerID == "All")
+                    {
+                        ////sQry = "select DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount,Total as NetAmount,isnull(ReceiptAmount,0) as Receipt ,ReturnAmount,0 as CloseDiscount, round((Total - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance ,case w.PayMode when '1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier where IsHide='N' and cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and w.PayMode=2  and  (round(Total,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0  order by c.LedgerName asc ";
+                        //                    sQry = "select DATEDIFF(day,billdate, ('" + From.ToString("yyyy/MM/dd") + "')) AS DateDiff,paymentdays, " +
+                        //" (BillDate+(CAST(paymentdays AS INT))) as real_dt, DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount, " +
+                        //" roundoff as NetAmount,isnull(ReceiptAmount,0) as Receipt ,ReturnAmount,0 as CloseDiscount, round((isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance , " +
+                        // " case w.PayMode when '1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier " +
+                        //   " where (BillDate+(CAST(paymentdays AS INT))) <= '" + From.ToString("yyyy/MM/dd") + "'  and w.PayMode=2  and  " +
+                        //     " (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0  order by c.LedgerName,Billdate asc";
+                        sQry = "select DATEDIFF(day,billdate, ('" + From.ToString("yyyy/MM/dd") + "')) AS DateDiff,paymentdays, " +
+         " (BillDate+(CAST(paymentdays AS INT))) as real_dt, DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount, " +
+         " roundoff as NetAmount,isnull(ReceiptAmount,0) as Receipt ,ReturnAmount,0 as CloseDiscount, round((isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance , " +
+          " p.paymode as PayType,sc.CustomerName as CompanyName from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier " +
+          " inner join tblsalespaymode as p on p.value=w.paymode inner join tblSubCompanyDetails sc on sc.SubcomapanyId=w.subcompanyId" +
+            " where (BillDate+(CAST(paymentdays AS INT))) <= '" + From.ToString("yyyy/MM/dd") + "'  and w.PayMode=18  and  " +
+              " (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0  order by c.LedgerName,Billdate asc";
+                    }
+                    else
+                    {
+                        //sQry = "select DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount,Total  as NetAmount,isnull(ReceiptAmount,0) as Receipt,ReturnAmount,0 as CloseDiscount, round((Total - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance ,case w.PayMode when '1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier where IsHide='N' and cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "'  and w.PayMode=2   and  (round(Total,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0 and w.supplier='" + CustomerID + "' order by c.LedgerName asc ";
+                        //sQry = "select DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount,roundoff  as NetAmount,isnull(ReceiptAmount,0) as Receipt,ReturnAmount,0 as CloseDiscount, round((isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance ,case w.PayMode when '1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier where  cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "'  and w.PayMode=2   and  (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0 and w.supplier='" + CustomerID + "' order by c.LedgerName asc ";
+                        sQry = "select DATEDIFF(day,billdate, ('" + From.ToString("yyyy/MM/dd") + "')) AS DateDiff,paymentdays, " +
+    " (BillDate+(CAST(paymentdays AS INT))) as real_dt, DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount, " +
+    " roundoff as NetAmount,isnull(ReceiptAmount,0) as Receipt ,ReturnAmount,0 as CloseDiscount, round((isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance , " +
+    " p.paymode as PayType,sc.CustomerName as CompanyName from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier " +
+    " inner join tblsalespaymode as p on p.value=w.paymode inner join tblSubCompanydetails sc on sc.subcomapanyId=w.subcompanyId " +
+    " where (BillDate+(CAST(paymentdays AS INT))) <= '" + From.ToString("yyyy/MM/dd") + "'  and w.PayMode=18  and  " +
+    " (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0  and w.supplier='" + CustomerID + "' order by c.LedgerName,Billdate asc";
+                    }
+               
+               
+                ds = dbObj.InlineExecuteDataSet(sQry);
+            }
+          
+
+          
+
+            return ds;
+        }
+
+
+        public DataSet getSupplierOutStandingwithCompany_report(string Type, string sTableName, string CustomerID, DateTime From, string SubCompanyId)
+        {
+            DataSet ds = new DataSet();
+            string sQry = "";
+
+            if (Type == "2")
+            {
+                if (SubCompanyId == "All")
+                {
+                    if (CustomerID == "All")
+                    {
+                        ////sQry = "select DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount,Total as NetAmount,isnull(ReceiptAmount,0) as Receipt ,ReturnAmount,0 as CloseDiscount, round((Total - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance ,case w.PayMode when '1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier where IsHide='N' and cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and w.PayMode=2  and  (round(Total,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0  order by c.LedgerName asc ";
+                        //                    sQry = "select DATEDIFF(day,billdate, ('" + From.ToString("yyyy/MM/dd") + "')) AS DateDiff,paymentdays, " +
+                        //" (BillDate+(CAST(paymentdays AS INT))) as real_dt, DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount, " +
+                        //" roundoff as NetAmount,isnull(ReceiptAmount,0) as Receipt ,ReturnAmount,0 as CloseDiscount, round((isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance , " +
+                        // " case w.PayMode when '1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier " +
+                        //   " where (BillDate+(CAST(paymentdays AS INT))) <= '" + From.ToString("yyyy/MM/dd") + "'  and w.PayMode=2  and  " +
+                        //     " (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0  order by c.LedgerName,Billdate asc";
+                        sQry = "select DATEDIFF(day,billdate, ('" + From.ToString("yyyy/MM/dd") + "')) AS DateDiff,paymentdays, " +
+         " (BillDate+(CAST(paymentdays AS INT))) as real_dt, DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount, " +
+         " roundoff as NetAmount,isnull(ReceiptAmount,0) as Receipt ,ReturnAmount,0 as CloseDiscount, round((isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance , " +
+          " p.paymode as PayType,sc.CustomerName+'-'+sc.GSTNO as CompanyName from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier " +
+          " inner join tblsalespaymode as p on p.value=w.paymode inner join tblSubCompanyDetails sc on sc.SubcomapanyId=w.subcompanyId" +
+            " where (BillDate+(CAST(paymentdays AS INT))) <= '" + From.ToString("yyyy/MM/dd") + "'  and w.PayMode=18  and  " +
+              " (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0  order by c.LedgerName,Billdate asc";
+                    }
+                    else
+                    {
+                        //sQry = "select DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount,Total  as NetAmount,isnull(ReceiptAmount,0) as Receipt,ReturnAmount,0 as CloseDiscount, round((Total - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance ,case w.PayMode when '1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier where IsHide='N' and cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "'  and w.PayMode=2   and  (round(Total,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0 and w.supplier='" + CustomerID + "' order by c.LedgerName asc ";
+                        //sQry = "select DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount,roundoff  as NetAmount,isnull(ReceiptAmount,0) as Receipt,ReturnAmount,0 as CloseDiscount, round((isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance ,case w.PayMode when '1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier where  cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "'  and w.PayMode=2   and  (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0 and w.supplier='" + CustomerID + "' order by c.LedgerName asc ";
+                        sQry = "select DATEDIFF(day,billdate, ('" + From.ToString("yyyy/MM/dd") + "')) AS DateDiff,paymentdays, " +
+    " (BillDate+(CAST(paymentdays AS INT))) as real_dt, DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount, " +
+    " roundoff as NetAmount,isnull(ReceiptAmount,0) as Receipt ,ReturnAmount,0 as CloseDiscount, round((isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance , " +
+    " p.paymode as PayType,sc.CustomerName+'-'+sc.GSTNO as CompanyName from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier " +
+    " inner join tblsalespaymode as p on p.value=w.paymode inner join tblSubCompanydetails sc on sc.subcomapanyId=w.subcompanyId " +
+    " where (BillDate+(CAST(paymentdays AS INT))) <= '" + From.ToString("yyyy/MM/dd") + "'  and w.PayMode=18  and  " +
+    " (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0  and w.supplier='" + CustomerID + "' order by c.LedgerName,Billdate asc";
+                    }
+                }
+                else
+                     if (CustomerID == "All")
                 {
                     ////sQry = "select DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount,Total as NetAmount,isnull(ReceiptAmount,0) as Receipt ,ReturnAmount,0 as CloseDiscount, round((Total - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance ,case w.PayMode when '1' then 'cash' when '2' then 'Credit' else '' end as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier where IsHide='N' and cast(w.BillDate as DATE) between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and w.PayMode=2  and  (round(Total,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0  order by c.LedgerName asc ";
                     //                    sQry = "select DATEDIFF(day,billdate, ('" + From.ToString("yyyy/MM/dd") + "')) AS DateDiff,paymentdays, " +
@@ -30816,10 +31050,10 @@ namespace BusinessLayer
                     sQry = "select DATEDIFF(day,billdate, ('" + From.ToString("yyyy/MM/dd") + "')) AS DateDiff,paymentdays, " +
      " (BillDate+(CAST(paymentdays AS INT))) as real_dt, DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount, " +
      " roundoff as NetAmount,isnull(ReceiptAmount,0) as Receipt ,ReturnAmount,0 as CloseDiscount, round((isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance , " +
-      " p.paymode as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier " +
-      " inner join tblsalespaymode as p on p.value=w.paymode " +
+      " p.paymode as PayType,sc.CustomerName+'-'+sc.GSTNO as CompanyName from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier " +
+      " inner join tblsalespaymode as p on p.value=w.paymode inner join tblSubCompanyDetails sc on sc.SubcomapanyId=w.subcompanyId" +
         " where (BillDate+(CAST(paymentdays AS INT))) <= '" + From.ToString("yyyy/MM/dd") + "'  and w.PayMode=18  and  " +
-          " (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0  order by c.LedgerName,Billdate asc";
+          " (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0 and w.SubcompanyId='" + SubCompanyId + "'  order by c.LedgerName,Billdate asc";
                 }
                 else
                 {
@@ -30828,14 +31062,16 @@ namespace BusinessLayer
                     sQry = "select DATEDIFF(day,billdate, ('" + From.ToString("yyyy/MM/dd") + "')) AS DateDiff,paymentdays, " +
 " (BillDate+(CAST(paymentdays AS INT))) as real_dt, DCNo,BillNo,BillDate,c.LedgerName as CustomerName,c.MobileNo,'1' as BillCount, " +
 " roundoff as NetAmount,isnull(ReceiptAmount,0) as Receipt ,ReturnAmount,0 as CloseDiscount, round((isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)),0) as Balance , " +
-" p.paymode as PayType from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier " +
-" inner join tblsalespaymode as p on p.value=w.paymode " +
+" p.paymode as PayType,sc.CustomerName+'-'+sc.GSTNO as CompanyName from tblkitchenPurchase_" + sTableName + " w inner join tblLedger c on c.LedgerID=w.supplier " +
+" inner join tblsalespaymode as p on p.value=w.paymode inner join tblSubCompanydetails sc on sc.subcomapanyId=w.subcompanyId " +
 " where (BillDate+(CAST(paymentdays AS INT))) <= '" + From.ToString("yyyy/MM/dd") + "'  and w.PayMode=18  and  " +
-" (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0  and w.supplier='" + CustomerID + "' order by c.LedgerName,Billdate asc";
+" (isnull(roundoff,0) - (isnull(ReceiptAmount,0)+ReturnAmount)) >0  and w.subCompanyId='" + SubCompanyId + "' and w.supplier='" + CustomerID + "' order by c.LedgerName,Billdate asc";
                 }
+                ds = dbObj.InlineExecuteDataSet(sQry);
             }
 
-            ds = dbObj.InlineExecuteDataSet(sQry);
+
+
 
             return ds;
         }
@@ -33418,7 +33654,7 @@ namespace BusinessLayer
             return iSucess;
         }
 
-        public int updateSalesStock1(double iQty, int iSubCategoryID, string tblStock, string Logintypeid)
+        public int updateSalesStock1(double iQty, int iSubCategoryID, string tblStock,string Logintypeid)
         {
             int iSucess = 0;
             string sQry = string.Empty;
@@ -33645,19 +33881,19 @@ namespace BusinessLayer
             return ds;
         }
 
-        public DataSet getreceiptrecord(string sTableName, string CustomerID, DateTime From, DateTime To, string Pay, string ReceiptType)
+        public DataSet getreceiptrecord(string sTableName, string CustomerID, DateTime From, DateTime To, string Pay,string ReceiptType)
         {
             DataSet ds = new DataSet();
             if (Pay == "All")
             {
                 if (CustomerID == "All")
                 {
-                    string sQry = "select distinct ReceiptType,COUNT(tr.Receiptid) as BillNo,COUNT(tr.Receiptid) as DCNO,r.CloseDiscount,r.ReceiptDate as BillDate,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,r.NetAmount,p.PayMode,'' as Narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo from tblReceipt_" + sTableName + " r left join tblTransReceipt_" + sTableName + " tr on r.ReceiptID=tr.ReceiptID inner join tblCustomer c on c.LedgerID=r.CustomerID inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID where r.ReceiptDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and ReceiptType='" + ReceiptType + "' group by ReceiptType,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,r.NetAmount,p.PayMode,ChequeNo,r.CloseDiscount order by ReceiptNo desc";
+                    string sQry = "select distinct ReceiptType,COUNT(tr.Receiptid) as BillNo,COUNT(tr.Receiptid) as DCNO,r.CloseDiscount,r.ReceiptDate as BillDate,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,r.NetAmount,p.PayMode,'' as Narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo from tblReceipt_" + sTableName + " r left join tblTransReceipt_" + sTableName + " tr on r.ReceiptID=tr.ReceiptID inner join tblCustomer c on c.LedgerID=r.CustomerID inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID where r.ReceiptDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and ReceiptType='"+ ReceiptType + "' group by ReceiptType,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,r.NetAmount,p.PayMode,ChequeNo,r.CloseDiscount order by ReceiptNo desc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
                 else
                 {
-                    string sQry = "select distinct  ReceiptType,COUNT(tr.Receiptid) as  BillNo,COUNT(tr.Receiptid) as DCNO,r.CloseDiscount,r.ReceiptDate as BillDate,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,r.NetAmount,p.PayMode,'' as Narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo from tblReceipt_" + sTableName + " r left join tblTransReceipt_" + sTableName + " tr on r.ReceiptID=tr.ReceiptID inner join tblCustomer c on c.LedgerID=r.CustomerID  inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID  where r.ReceiptDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and r.CustomerID=" + CustomerID + "  and ReceiptType='" + ReceiptType + "' group by ReceiptType,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,r.NetAmount,p.PayMode,ChequeNo,r.CloseDiscount order by ReceiptNo desc";
+                    string sQry = "select distinct  ReceiptType,COUNT(tr.Receiptid) as  BillNo,COUNT(tr.Receiptid) as DCNO,r.CloseDiscount,r.ReceiptDate as BillDate,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,r.NetAmount,p.PayMode,'' as Narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo from tblReceipt_" + sTableName + " r left join tblTransReceipt_" + sTableName + " tr on r.ReceiptID=tr.ReceiptID inner join tblCustomer c on c.LedgerID=r.CustomerID  inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID  where r.ReceiptDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and r.CustomerID=" + CustomerID + "  and ReceiptType='"+ ReceiptType + "' group by ReceiptType,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,r.NetAmount,p.PayMode,ChequeNo,r.CloseDiscount order by ReceiptNo desc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
             }
@@ -33665,12 +33901,12 @@ namespace BusinessLayer
             {
                 if (CustomerID == "All")
                 {
-                    string sQry = "select distinct  ReceiptType,COUNT(tr.Receiptid) as  BillNo,COUNT(tr.Receiptid) as DCNO,r.CloseDiscount,r.ReceiptDate as BillDate,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,r.NetAmount,p.PayMode,'' as Narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo from tblReceipt_" + sTableName + " r left join tblTransReceipt_" + sTableName + " tr on r.ReceiptID=tr.ReceiptID inner join tblCustomer c on c.LedgerID=r.CustomerID  inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID where r.ReceiptDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and Payment_ID=" + Pay + " and ReceiptType='" + ReceiptType + "' group by ReceiptType,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,r.NetAmount,p.PayMode,ChequeNo,r.CloseDiscount order by ReceiptNo desc";
+                    string sQry = "select distinct  ReceiptType,COUNT(tr.Receiptid) as  BillNo,COUNT(tr.Receiptid) as DCNO,r.CloseDiscount,r.ReceiptDate as BillDate,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,r.NetAmount,p.PayMode,'' as Narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo from tblReceipt_" + sTableName + " r left join tblTransReceipt_" + sTableName + " tr on r.ReceiptID=tr.ReceiptID inner join tblCustomer c on c.LedgerID=r.CustomerID  inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID where r.ReceiptDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and Payment_ID=" + Pay + " and ReceiptType='"+ ReceiptType + "' group by ReceiptType,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,r.NetAmount,p.PayMode,ChequeNo,r.CloseDiscount order by ReceiptNo desc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
                 else
                 {
-                    string sQry = "select distinct  ReceiptType,COUNT(tr.Receiptid) as BillNo,COUNT(tr.Receiptid) as DCNO,r.CloseDiscount,r.ReceiptDate as BillDate,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,r.NetAmount,p.PayMode,'' as Narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo from tblReceipt_" + sTableName + " r left join tblTransReceipt_" + sTableName + " tr on r.ReceiptID=tr.ReceiptID inner join tblCustomer c on c.LedgerID=r.CustomerID  inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID  where r.ReceiptDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and r.CustomerID=" + CustomerID + "  and Payment_ID=" + Pay + " and ReceiptType='" + ReceiptType + "' group by ReceiptType,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,r.NetAmount,p.PayMode,ChequeNo,r.CloseDiscount order by ReceiptNo desc";
+                    string sQry = "select distinct  ReceiptType,COUNT(tr.Receiptid) as BillNo,COUNT(tr.Receiptid) as DCNO,r.CloseDiscount,r.ReceiptDate as BillDate,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,r.NetAmount,p.PayMode,'' as Narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo from tblReceipt_" + sTableName + " r left join tblTransReceipt_" + sTableName + " tr on r.ReceiptID=tr.ReceiptID inner join tblCustomer c on c.LedgerID=r.CustomerID  inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID  where r.ReceiptDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and r.CustomerID=" + CustomerID + "  and Payment_ID=" + Pay + " and ReceiptType='"+ ReceiptType + "' group by ReceiptType,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,r.NetAmount,p.PayMode,ChequeNo,r.CloseDiscount order by ReceiptNo desc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
 
@@ -33734,7 +33970,7 @@ namespace BusinessLayer
             return ds;
         }
 
-        public int insertreceipts(string sTableName, DateTime BillDate, DateTime ChequeDate, string Customer, double NetAmount, string BankName, string ChequeNo, int Payment_ID, int BankId, double CloseDiscount, int userId, string ReceiptType)
+        public int insertreceipts(string sTableName, DateTime BillDate, DateTime ChequeDate, string Customer, double NetAmount, string BankName, string ChequeNo, int Payment_ID, int BankId, double CloseDiscount, int userId,string ReceiptType)
         {
             int save = 0;
             int ReceiptNo = 0;
@@ -33745,7 +33981,7 @@ namespace BusinessLayer
             ds = dbObj.InlineExecuteDataSet(sQry1);
             ReceiptNo = Convert.ToInt32(ds.Tables[0].Rows[0]["ReceiptNo"].ToString());
 
-            string sQry2 = "insert into tblReceipt_" + sTableName + "(ReceiptNo,ReceiptDate,CustomerID,NetAmount,BankName,ChequeNo,Payment_ID,ChequeDate,BankId,CloseDiscount,userId,ReceiptType)values(" + ReceiptNo + ",'" + BillDate.ToString("yyyy/MM/dd") + "','" + Customer + "'," + NetAmount + ",'" + BankName + "','" + ChequeNo + "'," + Payment_ID + ",'" + ChequeDate.ToString("yyyy/MM/dd") + "'," + BankId + "," + CloseDiscount + "," + userId + ",'" + ReceiptType + "')";
+            string sQry2 = "insert into tblReceipt_" + sTableName + "(ReceiptNo,ReceiptDate,CustomerID,NetAmount,BankName,ChequeNo,Payment_ID,ChequeDate,BankId,CloseDiscount,userId,ReceiptType)values(" + ReceiptNo + ",'" + BillDate.ToString("yyyy/MM/dd") + "','" + Customer + "'," + NetAmount + ",'" + BankName + "','" + ChequeNo + "'," + Payment_ID + ",'" + ChequeDate.ToString("yyyy/MM/dd") + "'," + BankId + "," + CloseDiscount + "," + userId + ",'"+ReceiptType+"')";
             save = dbObj.InlineExecuteNonQuery(sQry2);
 
             DataSet ds1 = new DataSet();
@@ -33908,19 +34144,19 @@ namespace BusinessLayer
         }
 
 
-        public DataSet getreceiptrecorddetail(string sTableName, string CustomerID, DateTime From, DateTime To, string Pay, string ReceiptType)
+        public DataSet getreceiptrecorddetail(string sTableName, string CustomerID, DateTime From, DateTime To, string Pay,string ReceiptType)
         {
             DataSet ds = new DataSet();
             if (Pay == "All")
             {
                 if (CustomerID == "All")
                 {
-                    string sQry = " select ReceiptType,r.CloseDiscount,w.DCNo,w.BillNo,w.BillDate,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,tr.Amount as NetAmount,p.PayMode,tr.narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo  from tblReceipt_" + sTableName + " r left join tblTransReceipt_" + sTableName + " tr on r.ReceiptID=tr.ReceiptID inner join tblCustomer c on c.LedgerID=r.CustomerID inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID  inner join tblWholesales_" + sTableName + " w on w.SalesID=tr.BillNo where r.ReceiptDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and ReceiptType='" + ReceiptType + "'  order by ReceiptNo desc";
+                    string sQry = " select ReceiptType,r.CloseDiscount,w.DCNo,w.BillNo,w.BillDate,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,tr.Amount as NetAmount,p.PayMode,tr.narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo  from tblReceipt_" + sTableName + " r left join tblTransReceipt_" + sTableName + " tr on r.ReceiptID=tr.ReceiptID inner join tblCustomer c on c.LedgerID=r.CustomerID inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID  inner join tblWholesales_" + sTableName + " w on w.SalesID=tr.BillNo where r.ReceiptDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and ReceiptType='"+ ReceiptType + "'  order by ReceiptNo desc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
                 else
                 {
-                    string sQry = " select ReceiptType,r.CloseDiscount,w.DCNo,w.BillNo,w.BillDate,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,tr.Amount as NetAmount,p.PayMode,tr.narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo  from tblReceipt_" + sTableName + " r left join tblTransReceipt_" + sTableName + " tr on r.ReceiptID=tr.ReceiptID inner join tblCustomer c on c.LedgerID=r.CustomerID  inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID   inner join tblWholesales_" + sTableName + " w on w.SalesID=tr.BillNo where r.ReceiptDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and r.CustomerID=" + CustomerID + " and ReceiptType='" + ReceiptType + "' order by ReceiptNo desc";
+                    string sQry = " select ReceiptType,r.CloseDiscount,w.DCNo,w.BillNo,w.BillDate,r.ReceiptID,r.ReceiptNo,r.ReceiptDate,c.CustomerName,tr.Amount as NetAmount,p.PayMode,tr.narration,case isnull(ChequeNo,0) when  '0' then '-' else ChequeNo end as ChequeNo  from tblReceipt_" + sTableName + " r left join tblTransReceipt_" + sTableName + " tr on r.ReceiptID=tr.ReceiptID inner join tblCustomer c on c.LedgerID=r.CustomerID  inner join tblSalesPaymode p on p.PayModeId=r.Payment_ID   inner join tblWholesales_" + sTableName + " w on w.SalesID=tr.BillNo where r.ReceiptDate between '" + From.ToString("yyyy/MM/dd") + "' and '" + To.ToString("yyyy/MM/dd") + "' and r.CustomerID=" + CustomerID + " and ReceiptType='"+ ReceiptType + "' order by ReceiptNo desc";
                     ds = dbObj.InlineExecuteDataSet(sQry);
                 }
             }
@@ -34095,9 +34331,9 @@ namespace BusinessLayer
         public DataSet chkEmployeeUsername_Edit(string sUsername, string ledgerid)
         {
             DataSet ds = new DataSet();
-
+           
             //            string sqry = "select * from tblledger where username='" + sUsername + "' and ledgerid<>'" + ledgerid + "'";
-            string sqry = "select * from tblledger where ledgername='" + sUsername + "' and ledgerid<>'" + ledgerid + "'";
+             string sqry = "select * from tblledger where ledgername='" + sUsername + "' and ledgerid<>'" + ledgerid + "'";
 
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
@@ -34889,7 +35125,7 @@ namespace BusinessLayer
 
 
 
-                string sQry = "insert into tblGoodTransfer_" + TableName + " (Branch,DC_NO,DC_Date,RequestNO,Status,isCancel,ProductionName,isTransfer,BranchCode,IsReceived,SentBY,BranchReqNo,UserId,Tripno,Dispatchstatus) values('" + Branch + "'," + ds.Tables[0].Rows[0]["DC_No"].ToString() + ",'" + Convert.ToDateTime(DC_Date).ToString("yyyy/MM/dd hh:mm tt") + "',0,'Goods Sent and waiting For Reply',0,'Production',0,'" + Branch + "',0,'" + SentBY + "','0'," + UserId + ",'" + tripno + "','Y')";
+                string sQry = "insert into tblGoodTransfer_" + TableName + " (Branch,DC_NO,DC_Date,RequestNO,Status,isCancel,ProductionName,isTransfer,BranchCode,IsReceived,SentBY,BranchReqNo,UserId,Tripno,Dispatchstatus) values('" + Branch + "'," + ds.Tables[0].Rows[0]["DC_No"].ToString() + ",'" + Convert.ToDateTime(DC_Date).ToString("yyyy/MM/dd hh:mm tt") + "',0,'',0,'Production',0,'" + Branch + "',0,'" + SentBY + "','0'," + UserId + ",'" + tripno + "','Y')";
                 isave = dbObj.InlineExecuteNonQuery(sQry);
             }
 
@@ -34902,21 +35138,8 @@ namespace BusinessLayer
             string sQry = "insert into tblTransGoodsTransfer_" + TableName + " (DC_No,CategoryId,DescriptionId,Units,Order_Qty,Received_Qty,BranchID,isStocked,RequestNo,BranchCode,Damage_Qty,Missing_Qty,BranchReqNo,TRate,TGST) values('" + DC_No + "','" + CategoryId + "','" + DescriptionId + "','0','" + Order_Qty + "','" + Order_Qty + "',0,0,0,'" + BranchCode + "',0,0,'0'," + TRate + "," + TGST + ")";
             isave = dbObj.InlineExecuteNonQuery(sQry);
 
-            //string sQry1 = "update tblProductionQty_" + TableName + " set Prod_Qty=Prod_Qty-'" + Order_Qty + "' where DescriptionId=" + DescriptionId + "  ";
-            //isave = dbObj.InlineExecuteNonQuery(sQry1);
-            DataSet ds = new DataSet();
-            string sqry = "select * from tblProductionQty_" + TableName + " where DescriptionId=" + DescriptionId + "";
-            ds = dbObj.InlineExecuteDataSet(sqry);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                string sQry1 = "update  tblProductionQty_" + TableName + " set Prod_Qty=Prod_Qty -" + Order_Qty + " where DescriptionId=" + DescriptionId + "";
-                isave = dbObj.InlineExecuteNonQuery(sQry1);
-            }
-            else
-            {
-                string sQry1 = "insert into tblProductionQty_" + TableName + "(DescriptionId,Prod_Qty) values('" + DescriptionId + "','-" + Order_Qty + "')";
-                isave = dbObj.InlineExecuteNonQuery(sQry1);
-            }
+            string sQry1 = "update tblProductionQty_" + TableName + " set Prod_Qty=Prod_Qty-'" + Order_Qty + "' where DescriptionId=" + DescriptionId + "  ";
+            isave = dbObj.InlineExecuteNonQuery(sQry1);
 
             return isave;
         }
@@ -34924,7 +35147,7 @@ namespace BusinessLayer
         public DataSet GetDirectGoodTrasnfer(string TableName)
         {
             DataSet ds = new DataSet();
-            string sqry = "select s.DC_NO,DC_Date,SentBY,SUM(Received_Qty) as Qty,Branch,Status,s.RequestNO,ts.isstocked   from  tblGoodTransfer_" + TableName + " s inner join tblTransGoodsTransfer_" + TableName + " ts  on ts.DC_No=s.DC_NO group by s.DC_NO,DC_Date,SentBY,Branch,Status,s.P_id,s.RequestNO,ts.isstocked  order by s.P_id desc ";
+            string sqry = "select s.DC_NO,DC_Date,SentBY,SUM(Order_Qty) as Qty,Branch,Status,isstocked,ts.RequestNo   from  tblGoodTransfer_" + TableName + " s inner join tblTransGoodsTransfer_" + TableName + " ts  on ts.DC_No=s.DC_NO group by s.DC_NO,DC_Date,SentBY,Branch,Status,isstocked,ts.RequestNo  order by DC_Date desc ";
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
 
@@ -34933,8 +35156,17 @@ namespace BusinessLayer
         public DataSet GetDirectGoodTrasnferDetails(string TableName, int DC_NO)
         {
             DataSet ds = new DataSet();
-            string sqry = "select s.DC_NO,DC_Date,SentBY,c.Category,cu.Definition,Received_Qty as Qty,u.UOM as Unit  from tblGoodTransfer_" + TableName + " s inner join tblTransGoodsTransfer_" + TableName + " ts  on ts.DC_No=s.DC_NO inner join tblCategoryUser cu on cu.CategoryUserID=ts.DescriptionId inner join tblcategory c on c.Categoryid=cu.CategoryID inner join tblUOM u on u.UOMID=cu.unit  where s.DC_No=" + DC_NO + "";
+            string sqry = "select s.DC_NO,DC_Date,SentBY,c.Category,cu.Definition,Order_Qty as Qty,u.UOM as Unit  from tblGoodTransfer_" + TableName + " s inner join tblTransGoodsTransfer_" + TableName + " ts  on ts.DC_No=s.DC_NO inner join tblCategoryUser cu on cu.CategoryUserID=ts.DescriptionId inner join tblcategory c on c.Categoryid=cu.CategoryID inner join tblUOM u on u.UOMID=cu.unit  where s.DC_No=" + DC_NO + "";
             ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+
+        public DataSet itemforreqestNew_DirectTransfer_Barcodesearch(string categoryid, string stable, string searchbarcode)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and  b.barcode ='" + searchbarcode + "' order by category asc";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+
             return ds;
         }
 
@@ -34956,38 +35188,20 @@ namespace BusinessLayer
             return ds;
         }
 
-        public DataSet itemforreqestNew_DirectTransfer(string categoryid, string stable, string catid, string prodstockoption)
+        public DataSet itemforreqestNew_DirectTransfer(string categoryid, string stable, string catid)
         {
             DataSet ds = new DataSet();
-            if (prodstockoption == "1")
+            if (categoryid == "All")
             {
-                if (categoryid == "All")
-                {
-                    // string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and a.categoryid in " + catid + "   order by category asc";
+                // string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and a.categoryid in " + catid + "   order by category asc";
 
-                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp,b.serial,b.qtytype  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0  order by category asc";
-                    ds = dbObj.InlineExecuteDataSet(sqry);
-                }
-                else
-                {
-                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp,b.serial,b.qtytype from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + " and c.Prod_Qty >0  order by category asc";
-                    ds = dbObj.InlineExecuteDataSet(sqry);
-                }
+                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp,b.serial  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0  order by category asc";
+                ds = dbObj.InlineExecuteDataSet(sqry);
             }
-            else if (prodstockoption == "2")
+            else
             {
-                if (categoryid == "All")
-                {
-                    // string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and a.categoryid in " + catid + "   order by category asc";
-
-                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,isnull(c.Prod_Qty,0) as Qty,b.mrp,b.serial,b.qtytype  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit left join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1'  order by category asc";
-                    ds = dbObj.InlineExecuteDataSet(sqry);
-                }
-                else
-                {
-                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,isnull(c.Prod_Qty,0) as Qty,b.mrp,b.serial,b.qtytype from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit left join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + "  order by category asc";
-                    ds = dbObj.InlineExecuteDataSet(sqry);
-                }
+                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp,b.serial from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + " and c.Prod_Qty >0  order by category asc";
+                ds = dbObj.InlineExecuteDataSet(sqry);
             }
             return ds;
         }
@@ -34997,7 +35211,7 @@ namespace BusinessLayer
             DataSet ds = new DataSet();
             //if (categoryid == "All")
             {
-                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp,b.serial,b.qtytype  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and (a.category like '%" + searchtext + "%' or b.definition like '%" + searchtext + "%')   order by category asc";
+                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp,b.serial  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and (a.category like '%" + searchtext + "%' or b.definition like '%" + searchtext + "%')   order by category asc";
 
                 ds = dbObj.InlineExecuteDataSet(sqry);
             }
@@ -35076,7 +35290,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
             // string sqry = "select d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty from tblGoodTransfer a,tblTransGoodsTransfer b,tblcategory c,tblCategoryUser d  where a.DC_NO=b.DC_No and b.CategoryId=c.categoryid and b.DescriptionId=d.CategoryUserID and a.BranchCode='" + BranchID + "' and a.DC_No='" + sDCNO + "' and  a.BranchCode=b.BranchCode ";
-            string sqry = " select a.dc_no,a.dc_date,a.sentby,sum(b.Received_Qty * cast(isnull(d.mrp,0) as float))  as totamnt,c.BranchName,c.BranchArea,c.mobileno,c.LandLine,a.Tripno  from tblgoodtransfer_" + BranchID + " as a  inner join tblTransGoodsTransfer_" + BranchID + " as b on b.dc_no=a.dc_no " +
+            string sqry = " select a.dc_no,a.dc_date,a.sentby,sum(b.order_qty * cast(isnull(d.mrp,0) as float))  as totamnt,c.BranchName,c.BranchArea,c.mobileno,c.LandLine,a.Tripno  from tblgoodtransfer_" + BranchID + " as a  inner join tblTransGoodsTransfer_" + BranchID + " as b on b.dc_no=a.dc_no " +
  " inner join tblbranch as c on c.branchcode=a.branchcode inner join tblcategoryuser as d on d.categoryuserid=b.descriptionid " +
  " where a.DC_No='" + sDCNO + "' group by  a.dc_no,a.dc_date,a.sentby,c.BranchName,c.BranchArea,c.mobileno,c.LandLine,a.Tripno ";
             ds = dbObj.InlineExecuteDataSet(sqry);
@@ -35088,9 +35302,9 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
             // string sqry = "select d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty from tblGoodTransfer a,tblTransGoodsTransfer b,tblcategory c,tblCategoryUser d  where a.DC_NO=b.DC_No and b.CategoryId=c.categoryid and b.DescriptionId=d.CategoryUserID and a.BranchCode='" + BranchID + "' and a.DC_No='" + sDCNO + "' and  a.BranchCode=b.BranchCode ";
-            string sqry = " select b.TransP_Id,a.dc_no,a.dc_date,a.sentby,d.printitem,(b.Received_Qty) as Qty,d.mrp,sum(b.Received_Qty * cast(d.mrp as float))  as totmrp,b.tgst   from tblgoodtransfer_" + BranchID + " as a  inner join tblTransGoodsTransfer_" + BranchID + " as b on b.dc_no=a.dc_no " +
+            string sqry = " select a.dc_no,a.dc_date,a.sentby,d.printitem,sum(b.order_qty) as Qty,d.mrp,sum(b.order_qty * cast(d.mrp as float))  as totmrp   from tblgoodtransfer_" + BranchID + " as a  inner join tblTransGoodsTransfer_" + BranchID + " as b on b.dc_no=a.dc_no " +
  " inner join tblbranch as c on c.branchcode=a.branchcode inner join tblcategoryuser as d on d.categoryuserid=b.descriptionid " +
- " where a.DC_No='" + sDCNO + "' group by b.TransP_Id, a.dc_no,a.dc_date,a.sentby,d.mrp,d.printitem,b.Received_Qty,b.tgst order by d.printitem asc ";
+ " where a.DC_No='" + sDCNO + "' group by  a.dc_no,a.dc_date,a.sentby,d.mrp,d.printitem ";
             ds = dbObj.InlineExecuteDataSet(sqry);
 
             return ds;
@@ -38366,7 +38580,7 @@ namespace BusinessLayer
                 string dbQry = "select r.roleid,r.screen,r.area,us.active as visible,r.screenid,r.screen,[Read] as [Read],Edit as Edit,[Delete] as [Delete],[Save] as [Save]  from tbltransrole as us inner join tblrolemaster as r on r.roleid=us.screenid inner join tblrole rr on us.roleid = rr.roleid where rr.LoginTypeID='" + EmpID + "' and area='" + Types + "'";
                 ds = dbObj.InlineExecuteDataSet(dbQry);
             }
-
+            
             return ds;
         }
         #endregion
@@ -38413,7 +38627,7 @@ namespace BusinessLayer
         public DataSet getcustomersLoadonlyCreditBills(string stablename)
         {
             DataSet ds = new DataSet();
-            string sQry = "select distinct b.customerid , b.*,b.customername + ' - ' +b.mobileno as nmm from  tblSales_" + stablename + " o " +
+            string sQry = "select distinct b.customerid , b.*,b.customername + ' - ' +b.mobileno as nmm from  tblSales_"+ stablename + " o " +
                 " inner join tblcustomer as b on b.customerid=o.customerid     where  iPayMode=18 and (Total-ReceiptAmount)>0 order by b.CustomerName asc";
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
@@ -38525,7 +38739,7 @@ namespace BusinessLayer
         }
 
 
-        public int insert_Salespaymentmode(string payment, string OrderWise, string isDiscountbill, string others)
+        public int insert_Salespaymentmode(string payment, string OrderWise, string isDiscountbill,string others)
         {
             int i = 0;
             int value = 0;
@@ -38540,7 +38754,7 @@ namespace BusinessLayer
                 value = Convert.ToInt32(getmaxno.Tables[0].Rows[0]["value"]);
 
                 string sqry = "insert into tblsalespaymode (PayMode,Value,Branch,BranchCode,OrderWise,Discount,Isactive,others) " +
-                    " values('" + payment + "'," + value + ",'0','All','" + OrderWise + "','" + isDiscountbill + "','Yes','" + others + "')";
+                    " values('" + payment + "'," + value + ",'0','All','" + OrderWise + "','" + isDiscountbill + "','Yes','"+others+"')";
                 i = dbObj.InlineExecuteNonQuery(sqry);
             }
             return i;
@@ -38580,10 +38794,10 @@ namespace BusinessLayer
             return ds;
         }
 
-        public int update_salespaymode(string payment, string OrderWise, string isDiscountbill, string isactive, string paymodeid, string others)
+        public int update_salespaymode(string payment, string OrderWise, string isDiscountbill, string isactive, string paymodeid,string others)
         {
             int i = 0;
-            string sqry = "update tblsalespaymode set Others='" + others + "',PayMode='" + payment + "',OrderWise='" + OrderWise + "',Isactive='" + isactive + "' where PayModeId=" + paymodeid + "";
+            string sqry = "update tblsalespaymode set Others='"+others+"',PayMode='" + payment + "',OrderWise='" + OrderWise + "',Isactive='" + isactive + "' where PayModeId=" + paymodeid + "";
             i = dbObj.InlineExecuteNonQuery(sqry);
             return i;
         }
@@ -38604,7 +38818,7 @@ namespace BusinessLayer
             else
             {
                 //sqry = "select (cast(d.mrp as float) * SUM(b.Quantity)) as tott,  f.Name,d.mrp,a.biller,d.gst/2 as cg, d.gst/2 as sg,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,a.Discount,b.UnitPrice,c.category,d.Definition,SUM(b.Amount) as Amount,SUM(b.Quantity) as Quantity,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,a.NetAmount  from tblsales_" + sTable + "  a,tblTransSales_" + sTable + " b,tblcategory c,tblCategoryUser d,tblCustomer e,tblworkers f where f.EmpID=a.Billerid and a.BillNo=b.SalesID and c.categoryid=d.CategoryID and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and a.CustomerID=e.CustomerID and a.BillNo=" + ID + " group by f.name,d.mrp,a.biller,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount  ";
-                sqry = "select (cast(d.mrp as float) * SUM(b.Quantity)) as tott,  a.biller as Name,d.mrp,a.biller,d.gst/2 as cg, d.gst/2 as sg,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,a.Discount,b.UnitPrice,c.category,d.Definition,SUM(b.Amount) as Amount,SUM(b.Quantity) as Quantity,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,a.NetAmount  from tblsales_" + sTable + "  a,tblTransSales_" + sTable + " b,tblcategory c,tblCategoryUser d,tblCustomer e where  a.BillNo=b.SalesID and a.salesid=b.salesuniqueid  and c.categoryid=d.CategoryID and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and a.CustomerID=e.CustomerID and a.BillNo=" + ID + " and (a.salestype='" + Mode + "') group by d.mrp,a.biller,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount  ";
+                sqry = "select (cast(d.mrp as float) * SUM(b.Quantity)) as tott,  a.biller as Name,d.mrp,a.biller,d.gst/2 as cg, d.gst/2 as sg,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,a.Discount,b.UnitPrice,c.category,d.Definition,SUM(b.Amount) as Amount,SUM(b.Quantity) as Quantity,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,a.NetAmount  from tblsales_" + sTable + "  a,tblTransSales_" + sTable + " b,tblcategory c,tblCategoryUser d,tblCustomer e where  a.BillNo=b.SalesID and c.categoryid=d.CategoryID and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and a.CustomerID=e.CustomerID and a.BillNo=" + ID + " group by d.mrp,a.biller,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount  ";
             }
 
             ds = dbObj.InlineExecuteDataSet(sqry);
@@ -38666,10 +38880,10 @@ namespace BusinessLayer
             return ds;
         }
 
-        public int iupdatesales(string stable, string ipaymode, string salesid, string billno)
+        public int iupdatesales(string stable,string ipaymode,string salesid,string billno)
         {
             int i = 0;
-            string sqry = "update tblsales_" + stable + " set ipaymode='" + ipaymode + "' where salesid='" + salesid + "' and billno='" + billno + "'";
+            string sqry = "update tblsales_" + stable + " set ipaymode='"+ipaymode+"' where salesid='" + salesid + "' and billno='"+billno+"'";
             i = dbObj.InlineExecuteNonQuery(sqry);
 
             string idelete = "delete from tbltranssalesAmount_" + stable + " where salesid='" + salesid + "' and billno='" + billno + "'";
@@ -38677,7 +38891,7 @@ namespace BusinessLayer
             return i;
         }
 
-        public int iupdatetranssalesamount(string stable, string salesuniqueid, string billno1, string BillDate, string salestype, string iPayMode, string Total, string BillerId, string attender1, string PayMode, string currencytype)
+        public int iupdatetranssalesamount(string stable, string salesuniqueid, string billno1, string BillDate,string salestype, string iPayMode, string Total, string BillerId,string attender1,string PayMode, string currencytype)
         {
             int i = 0;
             string strans = "Insert into " + stable + "(Salesid,Billno,Billdate,SalesTypeid,paymode,Amount,BillerId,Attenderid, " +
@@ -38849,8 +39063,8 @@ namespace BusinessLayer
 
 
             // Sales
-            salesamount = "select b.paymode,b.value,cast(sum(amount) as float) as amnt,'Sales' as type,'+' as sign from tblTransSalesAmount_" + sTable + " as a " +
-                " inner join tblsalespaymode as b on b.value=a.paymode where cast(billdate as date)='" + Date + "' group by b.paymode,value";
+            salesamount = "select b.paymode,b.value,cast(sum(amount) as float) as amnt,'Sales' as type,'+' as sign from tblTransSalesAmount_"+sTable+" as a " +
+                " inner join tblsalespaymode as b on b.value=a.paymode where cast(billdate as date)='"+Date+"' group by b.paymode,value";
             getsalesamount = dbObj.InlineExecuteDataSet(salesamount);
             dsmerge.Merge(getsalesamount);
 
@@ -38890,7 +39104,7 @@ namespace BusinessLayer
 
         }
 
-
+       
 
 
         public DataSet getMAXNOformProductionStore(string scode)
@@ -38947,7 +39161,7 @@ namespace BusinessLayer
                        "                   join tblIngridents b on a.ingcatid = b.ingcatid inner join tblUOM u on u.UOMID = b.units inner  " +
                       "                    join tblRawMatlStock_" + stable + " as c on c.IngredientID = b.IngridID " +
                     "  where a.IsActive = 'Yes' and b.IsActive = 'Yes' and b.isallow = 'Y' and c.Qty > 0 and a.ingcatid=" + categoryid + " order by IngreCategory asc";
-
+                
                 ds = dbObj.InlineExecuteDataSet(sqry);
             }
             return ds;
@@ -39051,7 +39265,7 @@ namespace BusinessLayer
             {
                 // qr = "select ic.IngreCategory, a.IngredientName,b.Units,b.Qty,b.rate from tblIngridents a inner join " + stkTable + " s on s.IngredientID=a.IngridID inner join tblRawMatlStock_Prod b on a.ingridid = b.ingredientid inner join tblIngridentscategory ic on ic.IngCatID=a.IngCatID where  b.qty < a.quantity order by a.IngredientName asc";
                 qr = "select ic.IngreCategory, a.IngredientName,u.UOM,a.Quantity as minqty,s.Qty as curqty,s.Rate,(a.Quantity - s.Qty) as Purqty " +
-                    " from tblIngridents a inner join tblRawMatlStock_" + stkTable + " s on s.IngredientID=a.IngridID  inner join tblIngridentscategory " +
+                    " from tblIngridents a inner join tblRawMatlStock_"+ stkTable + " s on s.IngredientID=a.IngridID  inner join tblIngridentscategory " +
                     " ic on ic.IngCatID=a.IngCatID inner join tbluom as u on u.uomid=a.units where  s.qty < a.quantity order by a.IngredientName asc";
                 ds = dbObj.InlineExecuteDataSet(qr);
             }
@@ -39100,18 +39314,22 @@ namespace BusinessLayer
 
         #endregion
 
-        #region check production Qty
 
-        public DataSet checkprodqty(string prod)
+        public DataSet getitembyid(string itemid, string stable)
         {
             DataSet ds = new DataSet();
 
-            string sqry = "select* from tblProductionQty_" + prod + " where Prod_Qty<0";
-            ds = dbObj.InlineExecuteDataSet(sqry);
+            {
+                string sqry = "select distinct b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,isnull(c.Available_qty,0) as Available_qty, " +
+                    " UOM,u.UOMID,b.serial,b.barcode,b.MRP,b.Rate,b.gst,serial+' / '+Definition as defi from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c " +
+                    " on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit " +
+                    " where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "'  and ManualGrn='1'  " +
+                    " and b.categoryuserid='" + itemid + "' order by category,Definition asc ";
+                ds = dbObj.InlineExecuteDataSet(sqry);
+            }
 
             return ds;
         }
-        #endregion
 
         #region CurrencyName
 
@@ -39222,90 +39440,6 @@ namespace BusinessLayer
 
         #endregion
 
-
-        #region ratesetting
-        public DataSet GetRateSetting()
-        {
-            DataSet ds = new DataSet();
-            string sqry = "select * from tblratesetting ";
-            ds = dbObj.InlineExecuteDataSet(sqry);
-            return ds;
-        }
-
-
-        public DataSet GetRateSettingbind()
-        {
-            DataSet ds = new DataSet();
-            string sqry = "select * from tblratesetting where isactive='Yes' ";
-            ds = dbObj.InlineExecuteDataSet(sqry);
-            return ds;
-        }
-
-        public DataSet Ratesettingsearchforupdate(int rateid, string CurrencyName)
-        {
-            DataSet ds = new DataSet();
-            string sqry = "select * from tblratesetting where CurrencyName = '" + CurrencyName + "' and RateSettingid <>" + rateid + " and IsActive='Yes' order by RateSettingid desc";
-
-            ds = dbObj.InlineExecuteDataSet(sqry);
-            return ds;
-
-        }
-        public int updateratesetting(int Rateid, string Curname, string IsActive, string tblAuditMaster, string EditUserID, string EditNarration)
-        {
-            int iSucess = 0;
-            string sQry = "update tblratesetting set CurrencyName='" + Curname + "' where RateSettingid='" + Rateid + "'";
-            iSucess = dbObj.InlineExecuteNonQuery(sQry);
-
-            return iSucess;
-        }
-
-
-        public DataSet editratesetting(int rateid)
-        {
-
-            DataSet ds = new DataSet();
-            string sQry = "select * from tblratesetting  where RateSettingid='" + rateid + "' and IsActive='Yes'";
-            ds = dbObj.InlineExecuteDataSet(sQry);
-            return ds;
-
-        }
-
-        public int deleteratesetting(string rateid)
-        {
-            int iSucess = 0;
-            string sQry = "update  tblratesetting set  IsActive='No'  where RateSettingid='" + rateid + "'";
-            iSucess = dbObj.InlineExecuteNonQuery(sQry);
-            return iSucess;
-        }
-
-
-        #endregion
-
-        public DataSet itemforreqestNew_DirectTransfer_Barcodesearch(string categoryid, string stable, string searchbarcode)
-        {
-            DataSet ds = new DataSet();
-            string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and  b.barcode ='" + searchbarcode + "' order by category asc";
-            ds = dbObj.InlineExecuteDataSet(sqry);
-
-            return ds;
-        }
-
-        public DataSet getitembyid(string itemid, string stable)
-        {
-            DataSet ds = new DataSet();
-
-            {
-                string sqry = "select distinct b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,isnull(c.Available_qty,0) as Available_qty, " +
-                    " UOM,u.UOMID,b.serial,b.barcode,b.MRP,b.Rate,b.gst,serial+' / '+Definition as defi from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c " +
-                    " on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit " +
-                    " where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "'  and ManualGrn='1'  " +
-                    " and b.categoryuserid='" + itemid + "' order by category,Definition asc ";
-                ds = dbObj.InlineExecuteDataSet(sqry);
-            }
-
-            return ds;
-        }
-
         #region Goods Transfer Update Details
 
         public DataSet getgoodstransferbyid(string dcno, string stable, string branch)
@@ -39372,7 +39506,666 @@ namespace BusinessLayer
         }
 
         #endregion
+
+        #region ratesetting
+        public DataSet GetRateSetting()
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select * from tblratesetting ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+
+
+        public DataSet GetRateSettingbind()
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select * from tblratesetting where isactive='Yes' ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+
+        public DataSet Ratesettingsearchforupdate(int rateid, string CurrencyName)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select * from tblratesetting where CurrencyName = '" + CurrencyName + "' and RateSettingid <>" + rateid + " and IsActive='Yes' order by RateSettingid desc";
+
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+
+        }
+        public int updateratesetting(int Rateid, string Curname, string IsActive, string tblAuditMaster, string EditUserID, string EditNarration)
+        {
+            int iSucess = 0;
+            string sQry = "update tblratesetting set CurrencyName='" + Curname + "' where RateSettingid='" + Rateid + "'";
+            iSucess = dbObj.InlineExecuteNonQuery(sQry);
+
+            return iSucess;
+        }
+
+
+        public DataSet editratesetting(int rateid)
+        {
+
+            DataSet ds = new DataSet();
+            string sQry = "select * from tblratesetting  where RateSettingid='" + rateid + "' and IsActive='Yes'";
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+
+        }
+
+        public int deleteratesetting(string rateid)
+        {
+            int iSucess = 0;
+            string sQry = "update  tblratesetting set  IsActive='No'  where RateSettingid='" + rateid + "'";
+            iSucess = dbObj.InlineExecuteNonQuery(sQry);
+            return iSucess;
+        }
+
+
+        #endregion
+
+        public DataSet GetStockDetails_Ratetype(int iSubCatID, int UserID, string stable, string stockoption, string columnname1, string columnname2)
+        {
+            DataSet ds = new DataSet();
+            string sQry = string.Empty;
+            if (stockoption == "1")
+            {
+                //sQry = " select *,'0' as comboo,'1' as QTY,round(a.RATE+(a.RATE*((a.GST)/100)),0) AS RATE1 from tblcategoryuser a,tblStock_" + stable + " b where  a.CategoryUserID=b.SubCategoryID and " +
+                sQry = " select  " + columnname2 + " as mrp, *,'0' as comboo,'1' as QTY,round(a." + columnname1 + "+(a." + columnname1 + "*((a.GST)/100)),2) AS RATE1 from tblcategoryuser a,tblStock_" + stable + " b where  a.CategoryUserID=b.SubCategoryID and " +
+                    " b.StockID=" + iSubCatID + "  and isdelete=0 ";
+            }
+            else
+            {
+                sQry = " select " + columnname2 + " as mrp,*,'0' as comboo,'1' as QTY,CategoryUserID as stockid,CAST('0' AS MONEY)  as Available_QTY,cast('2019-04-01' as date) as Expirydate,round(a." + columnname1 + "+(a." + columnname1 + "*((a.GST)/100)),0) AS RATE1 " +
+                    " from tblcategoryuser a where  " +
+                    " a.CategoryUserID=" + iSubCatID + "  and isdelete=0 ";
+            }
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
+        public int updateRecQty_maintable(string stable, string DC_No, string remarks)
+        {
+            int iSuccess = 0;
+
+            string sQry1 = "update tblGoodTransfer_" + stable + " set status='" + remarks + "',IsReceived=1 where DC_No=" + DC_No + " ";
+            iSuccess = dbObj.InlineExecuteNonQueryMain(sQry1);
+
+
+            return iSuccess;
+        }
+        public int syncinsertitem(int ItemID, string CategoryID, string Definition, string IsDelete, string Serial_No, string Serial, string Size, string isChecked, string Tax, string Rate, string CategoryUserID, string GST, string TaxVal, string unit, string empcode, string MinimumStock,
+        string DisplayOnline, string ImageUpload, string IsActive, string hsncode, string Printname, string foodtype, string Barcode, string Mrp, string Pagepath, string Description, string ratetype, string Qtytype, string defaultcurrencyid, string Rate1, string mrp1, string Rate2, string mrp2, string Rate3, string mrp3, string Rate4, string mrp4, string Rate5, string mrp5)
+        {
+            int i = 0;
+            string sqry = "SET IDENTITY_INSERT [dbo].[tblCategoryUser] ON  " +
+               //" Insert into tblcategory Categoryid='" + Categoryid + "',Category='" + Category + "',CategoryCode='" + CategoryCode + "',IsActive='" + IsActive + "',IsLiveKitchen='" + IsLiveKitchen + "',ProductionType='" + ProductionType + "',Request='" + Request + "',poduction='" + poduction + "',PrintCategory='" + PrintCategory + "',ManualGrn='" + ManualGrn + "' where catid='" + catid + "'";
+               " INSERT [dbo].[tblCategoryUser] ([ItemID], [CategoryID], [Definition], [IsDelete], [Serial_No], [Serial], [Size], [isChecked], [CustomerID], [Tax], [IsExpiry], " +
+            " [Rate], [CategoryUserID], [GST], [TaxVal], [unit], [empcode], [MinimumStock], [DisplayOnline], [ImageUpload], [IsActive], [UnitName], [HSNCode], [Common], " +
+            " [Printitem],[FoodType],[Barcode],[Mrp],[Pagepath],[Description],[ratetype],[QtyType],[defaultcurrencyid] ,[Rate1] ,[MRP1], [Rate2] ,[MRP2] ,[Rate3] ,[MRP3] ,[Rate4] ,[MRP4] ,[Rate5] ,[MRP5]) VALUES (" + ItemID + ", " + CategoryID + ", '" + Definition + "', " + IsDelete + ", '" + Serial_No + "', '" + Serial + "', '" + Size + "', " + isChecked + ", NULL, " + Tax + ", NULL, " +
+            " " + Rate + ", " + CategoryUserID + ", " + GST + ", " + TaxVal + ", " + unit + ", '" + empcode + "', '" + MinimumStock + "', '" + DisplayOnline + "', '" + ImageUpload + "', '" + IsActive + "', NULL, '" + hsncode + "', NULL, '" + Printname + "', " +
+            " '" + foodtype + "','" + Barcode + "','" + Mrp + "','" + Pagepath + "','" + Description + "','" + ratetype + "','" + Qtytype + "','" + defaultcurrencyid + "','" + Rate1 + "','" + mrp1 + "','" + Rate2 + "','" + mrp2 + "','" + Rate3 + "','" + mrp3 + "','" + Rate4 + "','" + mrp4 + "','" + Rate5 + "','" + mrp5 + "') " +
+            " SET IDENTITY_INSERT [dbo].[tblCategoryUser] OFF ";
+            i = dbObj.InlineExecuteNonQuery(sqry);
+            return i;
+        }
+
+        public int syncupdateitemNEW(int ItemID, string CategoryID, string Definition, string IsDelete, string Serial_No, string Serial, string Tax, string Rate, string CategoryUserID, string GST, string TaxVal, string unit, string MinimumStock, string DisplayOnline, string ImageUpload, string IsActive, string hsncode, string printname, string foodtype, string Barcode, string Mrp, string Pagepath, string Description, string ratetype, string Qtytype, string Rate1, string mrp1, string Rate2, string mrp2, string Rate3, string mrp3, string Rate4, string mrp4, string Rate5, string mrp5)
+        {
+            int i = 0;
+
+            string sqry = "Update tblcategoryuser set Rate1='" + Rate1 + "',mrp1='" + mrp1 + "',rate2='" + Rate2 + "',mrp2='" + mrp2 + "',rate3='" + Rate3 + "',mrp3='" + mrp3 + "',rate4='" + Rate4 + "',mrp4='" + mrp4 + "',rate5='" + Rate5 + "',mrp5='" + mrp5 + "', Qtytype='" + Qtytype + "',Barcode='" + Barcode + "',Mrp='" + Mrp + "',Pagepath='" + Pagepath + "',Description='" + Description + "',ratetype='" + ratetype + "',FoodType='" + foodtype + "',CategoryID='" + CategoryID + "',Definition='" + Definition + "',IsDelete='" + IsDelete + "',Serial_No='" + Serial_No + "',Serial='" + Serial + "',Tax='" + Tax + "',Rate='" + Rate + "',CategoryUserID='" + CategoryUserID + "',GST='" + GST + "',TaxVal='" + TaxVal + "',unit='" + unit + "',MinimumStock='" + MinimumStock + "',DisplayOnline='" + DisplayOnline + "',ImageUpload='" + ImageUpload + "',IsActive='" + IsActive + "',HSNCode='" + hsncode + "',Printitem='" + printname + "' where ItemID='" + ItemID + "'";
+            i = dbObj.InlineExecuteNonQuery(sqry);
+            return i;
+        }
+
+        #region check production Qty
+
+        public DataSet checkprodqty(string prod)
+        {
+            DataSet ds = new DataSet();
+
+            string sqry = "select* from tblProductionQty_" + prod + " where Prod_Qty<0";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+
+            return ds;
+        }
+
+        public int Updatebranch(string BranchId, string BranchName, string ContactName, string Country, string State, string City, string Address, string MobileNo,
+          string LandLine, string Email, string Currency, string BranchCode, string BranchArea, string GSTIN, string loginid, string Pincode, string Pemail,
+          string Iemail, string Oemail, string BranchOwnType, string FranchiseeName, string OnlineSalesActive, string Mtype, string Printtype,
+          string OnlineCakeSync, string Fssaino, string onlinepos, string PrintOption, string StockOption, string Imagepath, string Username,
+          string Password, string BillCode, string BillGenerateSetting, string Billtaxsplitupshown, string BillPrintLogo, string BigVersion,
+          string TaxSetting, string ratesetting, string qtysetting, string possalessetting, string RoundoffSetting, string dipatchDirectly,
+          string QtyFillSetting, string Posattendercheck, string posPrintsetting, string OrderBookcheck, string prodstockoption, string itemmergeornot, string defaultcurrency)
+        {
+            int iSucess = 0;
+            int iSucess1 = 0;
+            int iSucess2 = 0;
+
+            ////string[] branchid = sUser.Split('_');
+            ////string branchid1 = branchid[0].ToString();
+
+            //string sQry1 = "update tblbranch set BranchName='" + BranchName + "',ContactName='" + ContactName + "',Country='" + Country + "',State='" + State + "',City='" + City + "',Address='" + Address + "',MobileNo='" + MobileNo + "',LandLine='" + LandLine + "',Email='" + Email + "',BranchCode='" + BranchCode + "',BranchArea='" + BranchArea + "',GSTIN='" + GSTIN + "' where Branchid='" + BranchId + "'";
+            string sQry1 = "update tblbranch set defaultcurrency='" + defaultcurrency + "',itemmergeornot='" + itemmergeornot + "',ProdStockOption='" + prodstockoption + "', QtyFillSetting='" + QtyFillSetting + "',Posattendercheck='" + Posattendercheck + "',posPrintsetting='" + posPrintsetting + "',OrderBookcheck='" + OrderBookcheck + "',dipatchDirectly='" + dipatchDirectly + "',RoundoffSetting='" + RoundoffSetting + "',possalessetting='" + possalessetting + "',Currency='" + Currency + "',TaxSetting='" + TaxSetting + "',Ratesetting='" + ratesetting + "',Qtysetting='" + qtysetting + "',BigVersion='" + BigVersion + "',BillCode = '" + BillCode + "' ,BillGenerateSetting='" + BillGenerateSetting + "',Billtaxsplitupshown='" + Billtaxsplitupshown + "',BillPrintLogo='" + BillPrintLogo + "',onlinepos='" + onlinepos + "', Fssaino='" + Fssaino + "',OnlineCakeSync='" + OnlineCakeSync + "',Printtype='" + Printtype + "',Mtype='" + Mtype + "', BranchOwnType='" + BranchOwnType + "',FranchiseeName='" + FranchiseeName + "',OnlineSalesActive='" + OnlineSalesActive + "', Pemail='" + Pemail + "', Iemail='" + Iemail + "', Oemail='" + Oemail + "',BranchName='" + BranchName + "',ContactName='" + ContactName + "',Country='" + Country + "',State='" + State + "',City='" + City + "',Address='" + Address + "',MobileNo='" + MobileNo + "',LandLine='" + LandLine + "',Email='" + Email + "',BranchArea='" + BranchArea + "',GSTIN='" + GSTIN + "',Pincode='" + Pincode + "',PrintOption='" + PrintOption + "',StockOption='" + StockOption + "',Imagepath='" + Imagepath + "' ,Username='" + Username + "' ,Password='" + Password + "'   where Branchid='" + BranchId + "'";
+            iSucess = dbObj.InlineExecuteNonQuery(sQry1);
+
+            string sQry2 = "update tbllogin set  Imagepath='" + Imagepath + "' ,username = '" + Username + "',password = '" + Password + "',BranchCode = '" + BranchCode + "',StoreName = '" + BranchName + "',Address = '" + Address + "',TIN = '" + GSTIN + "',Place = '" + BranchArea + "',StoreNo = '" + MobileNo + "',TableCode = '" + BranchCode + "'  where BranchCode='" + BranchCode + "'";
+            iSucess1 = dbObj.InlineExecuteNonQuery(sQry2);
+
+            string sQry3 = "update tblbookcode set Bookcode = '" + BranchCode + "-' where BranchCode='" + BranchCode + "' ";
+            iSucess2 = dbObj.InlineExecuteNonQuery(sQry3);
+
+
+
+            return iSucess;
+
+        }
+
+        public int Insertbranch(string BranchName, string ContactName, string Country, string State, string City, string Address, string MobileNo, string LandLine,
+           string Email, string Currency, string BranchCode, string BranchArea, string GSTIN, string loginid, string Pincode, string Pemail, string Iemail, string Oemail,
+           string BranchOwnType, string FranchiseeName, string OnlineSalesActive, string Mtype, string Printtype, string OnlineCakeSync, string Fssaino,
+           string onlinepos, string PrintOption, string StockOption, string Imagepath, string BranchType, string Username, string Password, string BillCode, string BillGenerateSetting, string Billtaxsplitupshown, string BillPrintLogo, string Bversion,
+           string TaxSetting, string ratesetting, string qtysetting, string possalessetting, string RoundoffSetting,
+           string QtyFillSetting, string Posattendercheck, string posPrintsetting, string OrderBookcheck, string prodstockoption, string itemmergeornot, string defaultcur)
+        {
+            int iSucess = 0;
+            int iSucess1 = 0;
+            int iSucess2 = 0;
+
+
+
+            string sQry1 = "insert into tblbranch ( onlinepos,Fssaino,OnlineCakeSync,Printtype,Mtype,BranchOwnType,FranchiseeName,OnlineSalesActive,Pemail,Iemail, " +
+                " Oemail,BranchName,ContactName,Country,State,City,Address,MobileNo,LandLine,Email,BranchArea,GSTIN,Pincode,PrintOption,StockOption,Imagepath, " +
+                " BranchCode,BranchType,Username,Password,BillCode,BillGenerateSetting,Billtaxsplitupshown,BillPrintLogo,BigVersion,TaxSetting,Ratesetting, " +
+                " Qtysetting,Currency,possalessetting,RoundoffSetting,QtyFillSetting,Posattendercheck,posPrintsetting,OrderBookcheck,ProdStockOption,itemmergeornot,defaultcurrency) values('" + onlinepos + "','" + Fssaino + "','" + OnlineCakeSync + "','" + Printtype + "','" + Mtype + "', '" + BranchOwnType + "','" + FranchiseeName + "','" + OnlineSalesActive + "', " +
+                " '" + Pemail + "', '" + Iemail + "', '" + Oemail + "','" + BranchName + "','" + ContactName + "','" + Country + "','" + State + "', " +
+                " '" + City + "','" + Address + "','" + MobileNo + "','" + LandLine + "','" + Email + "','" + BranchArea + "','" + GSTIN + "','" + Pincode + "', " +
+                " '" + PrintOption + "','" + StockOption + "','" + Imagepath + "','" + BranchCode + "','" + BranchType + "','" + Username + "','" + Password + "', " +
+                " '" + BillCode + "','" + BillGenerateSetting + "','" + Billtaxsplitupshown + "','" + BillPrintLogo + "','" + Bversion + "','" + TaxSetting + "' " +
+                " ,'" + ratesetting + "','" + qtysetting + "','" + Currency + "','" + possalessetting + "','" + RoundoffSetting + "' " +
+                " ,'" + QtyFillSetting + "','" + Posattendercheck + "','" + posPrintsetting + "','" + OrderBookcheck + "','" + prodstockoption + "','" + itemmergeornot + "','" + defaultcur + "')";
+            iSucess = dbObj.InlineExecuteNonQuery(sQry1);
+
+            string sQry2 = "insert into tblbookcode (BranchCode,Bookcode) values('" + BranchCode + "','" + BranchCode + "-')";
+            iSucess1 = dbObj.InlineExecuteNonQuery(sQry2);
+
+            string sQry3 = "insert into tbllogin(username,password,Sales,IsSuperAdmin,BranchCode,StoreName,Address,TIN,Place,StoreNo,TableCode,Status,Rate,UserVal,IsmasterLock, " +
+                " LOnlSale,MOnlSale,state,Statecode,Imagepath,BillCode)values " +
+                " ('" + Username + "','" + Password + "','tblSales_" + BranchCode + "','0','" + BranchCode + "','" + BranchName + "','" + Address + "','" + GSTIN + "','" + BranchArea + "','" + MobileNo + "', " +
+                " '" + BranchCode + "','Web','Rate',1,'N','N','N','TN','33','" + Imagepath + "','" + BillCode + "')";
+            iSucess2 = dbObj.InlineExecuteNonQuery(sQry3);
+
+            return iSucess;
+        }
+
+        public DataSet PrintingSalesNew_twoinchprint(int ID, string sTable, string Mode, string salestypeid)
+        {
+            DataSet ds = new DataSet();
+            DataSet dmerge = new DataSet();
+
+            string sqry = "";
+
+            {
+                //sqry = "select d.printitem as printitem,b.cattype,cast(0 as int) as ComboId,d.printitem+' / '+d.hsncode as printite,a.isnormal,a.SalesOrder,f.paymenttype,d.gst/2 as cg, d.gst/2 as sg,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate, " +
+                //    " a.NetAmount,a.Advance,a.Total,a.Discount,b.UnitPrice,c.category,d.Definition,SUM(b.Amount) as Amount,SUM(b.Quantity) as Quantity, " +
+                //    " a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,a.NetAmount,d.mrp,(d.mrp * sum(b.quantity)) as amo,cast(d.gst as nvarchar)+' % '  as gst from tblsales_" + sTable + "  a,tblTransSales_" + sTable + " b, " +
+                //    " tblcategory c,tblCategoryUser d,tblCustomer e,tblsalestype f where a.salesid=b.salesuniqueid and  f.salestypeid=a.salestype and  a.BillNo=b.SalesID " +
+                //    " and c.categoryid=d.CategoryID and a.isnormal=b.isnormal and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and " +
+                //    " a.CustomerID=e.CustomerID and a.BillNo=" + ID + " and (a.salestype='" + salestypeid + "') and b.cattype='N'  " +
+                //    " group by b.cattype,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount,f.paymenttype,a.isnormal,a.SalesOrder,d.printitem,d.hsncode,d.mrp ";
+
+                if (salestypeid == " 3" || salestypeid == " 4" || salestypeid == "3" || salestypeid == "4")
+                {
+                    sqry = "select d.printitem as Itemname,SUM(b.Quantity) as Qty " +
+                      //" a.NetAmount,a.Advance,a.Total,a.Discount,b.UnitPrice,c.category,d.Definition,SUM(b.Amount) as Amount, " +
+                      "  from tblsales_" + sTable + "  a,tblTransSales_" + sTable + " b, " +
+                      " tblcategory c,tblCategoryUser d,tblCustomer e,tblsalestype f where a.salesid=b.salesuniqueid and  f.salestypeid=a.salestype and  a.BillNo=b.SalesID " +
+                      " and c.categoryid=d.CategoryID and a.isnormal=b.isnormal and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and " +
+                      " a.CustomerID=e.CustomerID and a.BillNo=" + ID + " and (a.salestype='" + salestypeid + "') and b.cattype='N'  " +
+                      " group by b.cattype,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount,f.paymenttype,a.isnormal,a.SalesOrder,d.printitem,d.hsncode,d.mrp ";
+
+                    ds = dbObj.InlineExecuteDataSet(sqry);
+                }
+                else
+                {
+
+                    sqry = "select d.printitem as Itemname,SUM(b.Quantity) as Qty,d.mrp as Rate,(d.mrp * sum(b.quantity)) as Amount " +
+                       //" a.NetAmount,a.Advance,a.Total,a.Discount,b.UnitPrice,c.category,d.Definition,SUM(b.Amount) as Amount, " +
+                       "  from tblsales_" + sTable + "  a,tblTransSales_" + sTable + " b, " +
+                       " tblcategory c,tblCategoryUser d,tblCustomer e,tblsalestype f where a.salesid=b.salesuniqueid and  f.salestypeid=a.salestype and  a.BillNo=b.SalesID " +
+                       " and c.categoryid=d.CategoryID and a.isnormal=b.isnormal and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and " +
+                       " a.CustomerID=e.CustomerID and a.BillNo=" + ID + " and (a.salestype='" + salestypeid + "') and b.cattype='N'  " +
+                       " group by b.cattype,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount,f.paymenttype,a.isnormal,a.SalesOrder,d.printitem,d.hsncode,d.mrp ";
+
+                    ds = dbObj.InlineExecuteDataSet(sqry);
+                }
+
+                dmerge.Merge(ds);
+            }
+
+            //ds = dbObj.InlineExecuteDataSet(sqry);
+            return dmerge;
+        }
+
+
+
+        public DataSet itemforreqestNew_DirectTransfer(string categoryid, string stable, string catid, string prodstockoption)
+        {
+            DataSet ds = new DataSet();
+            if (prodstockoption == "1")
+            {
+                if (categoryid == "All")
+                {
+                    // string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and a.categoryid in " + catid + "   order by category asc";
+
+                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then cast(c.Prod_Qty as decimal) when b.qtytype='E' then cast(c.Prod_Qty as int) end  as Qty,b.mrp,b.serial,b.qtytype  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0  order by category asc";
+                    ds = dbObj.InlineExecuteDataSet(sqry);
+                }
+                else
+                {
+                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then cast(c.Prod_Qty as decimal) when b.qtytype='E' then cast(c.Prod_Qty as int) end as Qty,b.mrp,b.serial,b.qtytype from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + " and c.Prod_Qty >0  order by category asc";
+                    ds = dbObj.InlineExecuteDataSet(sqry);
+                }
+            }
+            else if (prodstockoption == "2")
+            {
+                if (categoryid == "All")
+                {
+                    // string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and a.categoryid in " + catid + "   order by category asc";
+
+                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then isnull(cast(c.Prod_Qty as  decimal),0) when b.qtytype='E' then isnull(cast(c.Prod_Qty as int),0) end as Qty,b.mrp,b.serial,b.qtytype  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit left join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1'  order by category asc";
+                    ds = dbObj.InlineExecuteDataSet(sqry);
+                }
+                else
+                {
+                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then isnull(cast(c.Prod_Qty as decimal),0) when b.qtytype='E' then isnll(cast(c.Prod_Qty as int),0) end as Qty,b.mrp,b.serial,b.qtytype from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit left join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + "  order by category asc";
+                    ds = dbObj.InlineExecuteDataSet(sqry);
+                }
+            }
+            return ds;
+        }
+
+        //public DataSet itemforreqestNew_DirectTransfer_Barcodesearch(string categoryid, string stable, string searchbarcode)
+        //{
+        //    DataSet ds = new DataSet();
+        //    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and  b.barcode ='" + searchbarcode + "' order by category asc";
+        //    ds = dbObj.InlineExecuteDataSet(sqry);
+
+        //    return ds;
+        //}
+
+
+        #endregion
+
+        public DataSet getOrderBillCount_firsttobill_code_attender(string sTableName, DateTime From, DateTime To, string attednerid, string gstbill)
+        {
+            DataSet ds = new DataSet();
+            string sQry = string.Empty;
+
+            sQry = "select  COUNT(orderNo) as BillCount from tblorder_" + sTableName + " as a inner join tblAttender as b on a.Attenderid=b.attenderid " +
+                " where   cast(orderDate as date)>='" + Convert.ToDateTime(From).ToString("yyyy/MM/dd") + "' and cast(orderDate as date)<='" + Convert.ToDateTime(To).ToString("yyyy/MM/dd") + "' and a.attenderid='" + attednerid + "'  having COUNT(orderNo)>0 ";
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
+        public DataSet Emp_WiseOrderSummary(string sBranch, DateTime sFmdate, DateTime sToDate, string emptype)
+        {
+            string store = "";
+            string sqry = string.Empty;
+            DataSet ds = new DataSet();
+
+            {
+                //sqry = " Select a.Attender,b.AttenderName,sum(c.quantity * c.unitprice) as tot,sum(c.disc) as dic,sum(quantity) as qty from tblsales_" + sBranch + " as a  inner join tbltranssales_" + sBranch + " as c on c.salesid=a.billno  " +
+                //       " inner join tblAttender as b on a.Attender=b.attenderid where a.salesid=c.salesuniqueid and OrderNo=0    and  convert(date,a.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' " +
+                //  " and convert(date,a.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and a.cancelstatus='No'  and a.gstbill ='" + gstbill + "'  group by a.Attender,b.attendername,b.attenderid Order by b.attendername asc";
+
+                sqry = "Select a.attenderid as Attender,b.AttenderName,sum(cast(c.qty as decimal) * cast(c.RTE as decimal)) as tot,sum(c.disc) as dic,sum(cast(qty as decimal)) as qty  " +
+ " from tblOrder_" + sBranch + " as a  inner join tblTransOrder_" + sBranch + " as c on c.billno=a.billno   inner join tblAttender as b  on a.Attenderid=b.attenderid where  " +
+   " convert(date,a.OrderDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd hh:mm") + "'  and convert(date,a.OrderDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and a.iscancel='0' " +
+     " group by a.attenderid,b.attendername,b.attenderid Order by b.attendername asc";
+
+            }
+            ds = dbObj.InlineExecuteDataSet(sqry);
+
+            return ds;
+        }
+
+        public DataSet Emp_WiseSummary(string sBranch, DateTime sFmdate, DateTime sToDate, string emptype, string gstbill)
+        {
+            string store = "";
+            string sqry = string.Empty;
+            DataSet ds = new DataSet();
+
+            {
+                sqry = " Select a.Attender,b.AttenderName,sum(c.quantity * c.unitprice) as tot,sum(c.disc) as dic,sum(quantity) as qty from tblsales_" + sBranch + " as a  inner join tbltranssales_" + sBranch + " as c on c.salesid=a.billno  " +
+                       " inner join tblAttender as b on a.Attender=b.attenderid where a.salesid=c.salesuniqueid and OrderNo=0    and  convert(date,a.BillDate) >='" + Convert.ToDateTime(sFmdate).ToString("yyyy-MM-dd 00:00") + "' " +
+                  " and convert(date,a.BillDate) <='" + Convert.ToDateTime(sToDate).ToString("yyyy-MM-dd hh:mm") + "' and a.cancelstatus='No'  and a.gstbill ='" + gstbill + "'  group by a.Attender,b.attendername,b.attenderid Order by b.attendername asc";
+            }
+            ds = dbObj.InlineExecuteDataSet(sqry);
+
+            return ds;
+        }
+
+        public DataSet getratetype(string sid)
+        {
+            DataSet save = new DataSet();
+            string sQry = "select * from  tbltransRatetype as ts inner join tblRatesetting as s on s.RateSettingid=ts.RateValue   where salestypeid='" + sid + "'  ";
+            save = dbObj.InlineExecuteDataSet(sQry);
+            return save;
+
+        }
+
+
+        public DataSet getSalesBillCount_firsttobill_code(string sTableName, DateTime From, DateTime To, string code, string gstbill)
+        {
+            DataSet ds = new DataSet();
+            string sQry = string.Empty;
+
+            sQry = "select  COUNT(BillNo) as BillCount from tblsales_" + sTableName + " as a inner join tblworkers as b on a.billerid=b.empid " +
+                " where    a.gstbill ='" + gstbill + "' and cast(BillDate as date)>='" + Convert.ToDateTime(From).ToString("yyyy/MM/dd") + "' and cast(BillDate as date)<='" + Convert.ToDateTime(To).ToString("yyyy/MM/dd") + "' and a.biller='" + code + "'  having COUNT(BillNo)>0 ";
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+
+        public int insert_TransRateType(string value)
+        {
+            int i = 0;
+
+            string maxid = "Select MAX(Salestypeid) as id from tblsalestype ";
+            DataSet ds = dbObj.InlineExecuteDataSet(maxid);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                string id = ds.Tables[0].Rows[0]["id"].ToString();
+
+                string sqry = "insert into tbltransRatetype (Salestypeid,RateValue) values('" + id + "','" + value + "')";
+                i = dbObj.InlineExecuteNonQuery(sqry);
+            }
+            return i;
+        }
+
+        public DataSet EditratesmodeType(int id)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select * from tbltransRatetype  where  SalesTypeID=" + id + "";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+
+        public int insert_TransRateTypeUpdate(string value, string id)
+        {
+            int i = 0;
+            string sqry = "insert into tbltransRatetype (Salestypeid,RateValue) values('" + id + "','" + value + "')";
+            i = dbObj.InlineExecuteNonQuery(sqry);
+
+            return i;
+        }
+
+        public DataSet getSalesBillCount_firsttobill_code_attender(string sTableName, DateTime From, DateTime To, string attednerid, string gstbill)
+        {
+            DataSet ds = new DataSet();
+            string sQry = string.Empty;
+
+            sQry = "select  COUNT(BillNo) as BillCount from tblsales_" + sTableName + " as a inner join tblAttender as b on a.Attender=b.attenderid " +
+                " where  a.gstbill ='" + gstbill + "' and cast(BillDate as date)>='" + Convert.ToDateTime(From).ToString("yyyy/MM/dd") + "' and cast(BillDate as date)<='" + Convert.ToDateTime(To).ToString("yyyy/MM/dd") + "' and a.attender='" + attednerid + "'  having COUNT(BillNo)>0 ";
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
+    
+
+    #region Expesnse Report
+
+
+    public DataSet getreportforExpenseDetails(string sTablename, string Type, string LedgerId, DateTime From, DateTime to)
+    {
+
+        DataSet ds = new DataSet();
+        string sqry = string.Empty;
+        if (LedgerId == "All")
+        {
+            sqry = "select l.LedgerName,p.Date,p.Description,p.Amount as Amount from tblpaymententry_" + sTablename+" p inner join tblledger l on l.LedgerId=p.LedgerId  where  " +
+                   " cast(p.Date as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(p.Date as Date)<='" + to.ToString("yyyy/MM/dd") + "' order by p.LedgerId   ";
+
+        }
+        else
+        {
+           sqry= "select l.LedgerName,p.Date,p.Description,p.Amount as Amount from tblpaymententry_" + sTablename+" p inner join tblledger l on l.LedgerId=p.LedgerId  where  " +
+                  " cast(p.Date as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(p.Date as Date)<='" + to.ToString("yyyy/MM/dd") + "'  and p.LedgerId='"+LedgerId +"' order by p.LedgerId ";
+
+        }
+
+
+
+        ds = dbObj.InlineExecuteDataSet(sqry);
+
+        return ds;
     }
 
 
-}
+
+        public DataSet getreportforExpenseSummary(string sTablename, string Type, string LedgerId, DateTime From, DateTime to)
+        {
+
+            DataSet ds = new DataSet();
+            string sqry = string.Empty;
+            if (LedgerId == "All")
+            {
+                sqry = "select L.LedgerName,sum(p.Amount) as TotalAmount from tblpaymententry_" + sTablename + " p inner join tblledger l on l.LedgerId=p.LedgerId  where  " +
+                       " cast(p.Date as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(p.Date as Date)<='" + to.ToString("yyyy/MM/dd") + "' group by l.LedgerName order by l.LedgerName";
+
+            }
+            else
+            {
+                sqry = "select L.LedgerName,sum(p.Amount) as TotalAmount from tblpaymententry_" + sTablename + " p inner join tblledger l on l.LedgerId=p.LedgerId  where  " +
+                       " cast(p.Date as Date)>='" + From.ToString("yyyy/MM/dd") + "' and cast(p.Date as Date)<='" + to.ToString("yyyy/MM/dd") + "' and p.LedgerId='" + LedgerId + "' group by l.LedgerName order by l.LedgerName ";
+
+            }
+
+
+
+            ds = dbObj.InlineExecuteDataSet(sqry);
+
+            return ds;
+        }
+        #endregion
+
+        public DataTable getreportforRawmaterialstock(string Supplierid,string rawmaterialid,string subcompany, DateTime date,  string stableName)
+        {
+            DataTable dt = new DataTable();
+
+            DateTime addday = Convert.ToDateTime(date).AddDays(-1);
+
+            string extraday = addday.ToString("yyyy-MM-dd");
+
+            DataRow dr;
+            dt.Columns.Add("Product");
+            dt.Columns.Add("OpeningStock");
+            dt.Columns.Add("Purchased Qty");
+            dt.Columns.Add("Rate");
+            dt.Columns.Add("PurchaseAmount");
+            dt.Columns.Add("KitchenIssued Qty");
+            dt.Columns.Add("KitchenAmount");
+            dt.Columns.Add("BranchIssued Qty");
+            dt.Columns.Add("BranchAmount");
+            dt.Columns.Add("ClosingStockQty");
+            dt.Columns.Add("ClosingStockAmount");
+
+
+
+            DataSet ds = new DataSet();
+            string sqry = string.Empty;
+            double pAmount = 0;
+            // GET ITEM
+
+            if (rawmaterialid == "All")
+            {
+                // sqry = "select * from tblcategoryuser as cu inner join tblcategory as c on c.categoryid=cu.categoryid inner join tblCategoryuserBranch as cb on cb.Itemid=cu.ItemID where BranchCode='" + scode + "' order by cu.categoryid asc";
+                sqry = "select * from tblingridents as a inner join tblingridentscategory as b on b.IngCatID=a.IngCatID order by b.IngreCategory asc ";
+            }
+            else
+            {
+                // sqry = "select * from tblcategoryuser as cu inner join tblcategory as c on c.categoryid=cu.categoryid inner join tblCategoryuserBranch as cb on cb.Itemid=cu.ItemID where (" + categoryselect + ") and BranchCode='" + scode + "' order by cu.categoryid asc";
+                sqry = "select * from tblingridents as a inner join tblingridentscategory as b on b.IngCatID=a.IngCatID  where  a.IngridID=(" + rawmaterialid + ") order by b.IngreCategory asc ";
+            }
+
+            DataSet getitem = dbObj.InlineExecuteDataSet(sqry);
+            if (getitem.Tables[0].Rows.Count > 0)
+            {
+                for (int i = 0; i < getitem.Tables[0].Rows.Count; i++)
+                {
+                    // string categoryid = getitem.Tables[0].Rows[i]["IngCatID"].ToString();
+                    string categoryuserid = getitem.Tables[0].Rows[i]["IngridID"].ToString();
+                    string definition = getitem.Tables[0].Rows[i]["IngredientName"].ToString();
+                    //  string category = getitem.Tables[0].Rows[i]["IngreCategory"].ToString();
+                    string Rate = "0";
+                    string Qty = "0";
+                    string sqryrate = "select * from tbltranskitchenpurchase_" + stableName + " tk inner join tblkitchenPurchase_" + stableName + " k on k.PurchaseId=tk.purchaseId  where tk.IngredientID='" + categoryuserid + "' and k.billdate='" + date.ToString("yyyy/MM/dd") + "'  ";
+                    DataSet dsrate = dbObj.InlineExecuteDataSet(sqryrate);
+                    if (dsrate.Tables[0].Rows.Count > 0)
+                    {
+                        Qty = Convert.ToDouble(dsrate.Tables[0].Rows[0]["puQty"]).ToString("0.00");
+                        Rate = Convert.ToDouble(dsrate.Tables[0].Rows[0]["perkgrate"]).ToString("0.00");
+                        pAmount = Convert.ToDouble(Qty) * Convert.ToDouble(Rate);
+
+                    }
+                    else
+                    {
+                        Rate = "0";
+                        Qty = "0";
+                        pAmount = 0;
+                    }
+
+
+                    string qry1 = "select * from tbltransAcceptRawItem_" + stableName + " tR inner join tblAcceptRawmaterials_" + stableName + " R on R.RequestNo=tR.RequestId inner join  tblRawMatlStock_" + stableName + " rm on rm.ingredientid=tR.rawitemid    where rawitemid='" + categoryuserid + "' and R.RequestDate='" + date.ToString("yyyy/MM/dd") + "'";
+                    DataSet ds1 = dbObj.InlineExecuteDataSet(qry1);
+                    string kitchenissueqty = "0";
+                    double kitchenAmount = 0;
+                    if (ds1.Tables[0].Rows.Count > 0)
+                    {
+                        kitchenissueqty = Convert.ToDouble(ds1.Tables[0].Rows[0]["Acceptqty"]).ToString("0.00");
+                        if (ds1.Tables[0].Rows[0]["perkgrate"].ToString() == "NULL" || ds1.Tables[0].Rows[0]["Perkgrate"].ToString()=="")
+                        { Rate = "0"; }
+                        else
+                        {
+                            Rate = Convert.ToDouble(ds1.Tables[0].Rows[0]["Perkgrate"]).ToString();
+                        }
+                //}
+                //    else
+                //{
+                //    Rate = Convert.ToDouble(dsrate.Tables[0].Rows[0]["perkgrate"]).ToString("0.00");
+                //}
+                        kitchenAmount = Convert.ToDouble(kitchenissueqty) * Convert.ToDouble(Rate);
+                    }
+
+
+                    string qry2 = "select * from tblTransGoodsTransfer_" + stableName + " tR inner join tblgoodtransfer_" + stableName + " R on R.DC_No=tR.DC_No inner join tblRawMatlStock_"+stableName+" rm on rm.ingredientid=tr.descriptionid   where Descriptionid='" + categoryuserid + "' and cast(R.DC_Date as date)='" + date.ToString("yyyy/MM/dd") + "'";
+                    DataSet ds2 = dbObj.InlineExecuteDataSet(qry2);
+                    string Branchissueqty = "0";
+                    double BranchAmount = 0;
+                    if (ds2.Tables[0].Rows.Count > 0)
+                    {
+                        Branchissueqty  = Convert.ToDouble(ds2.Tables[0].Rows[0]["Received_qty"]).ToString("0.00");
+
+                       if(ds2.Tables[0].Rows[0]["Perkgrate"].ToString()=="NULL" || ds2.Tables[0].Rows[0]["Perkgrate"].ToString()=="")
+                        { Rate = "0"; }
+                        else { 
+                        Rate = Convert.ToDouble(ds2.Tables[0].Rows[0]["perkgrate"]).ToString("0.00");
+                        }
+
+                        //else
+                        //{
+                        //    Rate = Convert.ToDouble(dsrate.Tables[0].Rows[0]["perkgrate"]).ToString("0.00");
+                        //}
+                        BranchAmount  = Convert.ToDouble(Branchissueqty) * Convert.ToDouble(Rate);
+                    }
+
+                    dr = dt.NewRow();
+
+                    dr["Product"] = definition;
+
+                    dr["Purchased Qty"] = Qty;
+                    dr["Rate"] = Rate;
+                    dr["PurchaseAmount"] = pAmount;
+                    dr["KitchenIssued Qty"] = kitchenissueqty;
+                    dr["KitchenAmount"] = kitchenAmount;
+                    dr["BranchIssued Qty"] = Branchissueqty;
+                    dr["BranchAmount"] = BranchAmount;
+
+                    #region GET OP_STOCK
+
+                    string Sopstock = string.Empty;
+                    DataSet opstock = new DataSet();
+
+
+
+
+                    Sopstock = "select distinct subcategoryid, isnull(sum(Qty),0) as OpQty from tblOpeningStockstore_" + stableName + "  where convert(date,Date)='" + extraday + "' and subcategoryid='" + categoryuserid  + "' " +
+                                           " group by subcategoryid";
+
+                    opstock = dbObj.InlineExecuteDataSet(Sopstock);
+
+
+                    // string qty = "select "
+                    if (opstock.Tables[0].Rows.Count > 0)
+                    {
+                        dr["OpeningStock"] =Convert.ToDouble(opstock.Tables[0].Rows[0]["opQty"]).ToString("f2");
+                    }
+                    else
+                    {
+                        dr["OpeningStock"] = "0";
+
+                    }
+
+                    dr["ClosingStockQty"]=Convert.ToDouble( Convert.ToDouble(Convert.ToDouble(dr["OpeningStock"]) + Convert.ToDouble(Qty))- Convert.ToDouble(kitchenissueqty)- Convert.ToDouble(Branchissueqty)).ToString("f2");
+                    dr["ClosingStockAmount"]= Convert.ToDouble(Convert.ToDouble(Convert.ToDouble(Convert.ToDouble(dr["OpeningStock"]) + Convert.ToDouble(Qty)) - Convert.ToDouble(kitchenissueqty) - Convert.ToDouble(Branchissueqty)) * Convert.ToDouble(dr["Rate"])).ToString("f2");
+                    #region GET CURRENT STOCK
+
+                    string Scurstock = string.Empty;
+                    DataSet curstock = new DataSet();
+
+                    string curdate = DateTime.Now.ToString("yyyy-MM-dd");
+
+                    if (Convert.ToDateTime(curdate) == date)
+                    {
+                        Scurstock = "select distinct subcategoryid,sum(Available_Qty) as AvlQty from tblStock_" + stableName  + " where SubCategoryID='" + categoryuserid + "' group by subcategoryid";
+                    }
+                    else if (Convert.ToDateTime(curdate) < Convert.ToDateTime(date))
+                    {
+                        Scurstock = "select distinct subcategoryid,sum(Available_Qty) as AvlQty from tblStock_" + stableName + " where SubCategoryID='" + categoryuserid + "' group by subcategoryid";
+                    }
+                    else
+                    {
+                        Scurstock = "select distinct subcategoryid, isnull(sum(Qty),0) as AvlQty from tblOpeningStock_" + stableName + " where convert(date,Date)='" + extraday + "' and subcategoryid='" + categoryuserid + "' group by subcategoryid";
+                    }
+                    curstock = dbObj.InlineExecuteDataSet(Scurstock);
+
+                    if (curstock.Tables[0].Rows.Count > 0)
+                    {
+                       // dr["ClosingStockQty"] = curstock.Tables[0].Rows[0]["AvlQty"].ToString();
+                       // dr["Available_QtyRate"] = (Convert.ToDouble(curstock.Tables[0].Rows[0]["AvlQty"]) * Convert.ToDouble(Rate)).ToString();
+
+                    }
+                    else
+                    {
+                        //dr["ClosingStockQty"] = "0";
+                        //dr["Available_QtyRate"] = "0";
+                    }
+                    #endregion
+
+                    dt.Rows.Add(dr);
+
+                }
+               
+
+            }
+
+                return dt;
+                }
+
+
+                #endregion
+            }
+
+        }
+

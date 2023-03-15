@@ -287,7 +287,7 @@
                                                         Rate
                                                     </label>
                                                     <asp:TextBox Width="80px" Style="text-align: right" placeholder="Enter Rate" class="form-control"
-                                                        ID="txtmRate" runat="server" OnTextChanged="txtdefCatID_TextChanged" AutoPostBack="true"
+                                                        ID="txtmRate" runat="server" OnTextChanged="txtdefCatID_TextChangedOLD" AutoPostBack="true"
                                                         MaxLength="10">0</asp:TextBox>
                                                 </td>
                                                 <td>
@@ -314,6 +314,20 @@
                                                     </label>
                                                     <asp:TextBox Width="80px" Style="text-align: right" Enabled="false" class="form-control"
                                                         Height="25px" ID="txtmpqty" runat="server" MaxLength="50">0</asp:TextBox>
+                                                </td>
+                                                  <td>
+                                                    <label>
+                                                       Per Kg
+                                                    </label>
+                                                    <asp:Label Width="20px" Style="text-align: right" Enabled="false" class="form-control"
+                                                        Height="25px" ID="lblperkg" runat="server" MaxLength="50">1</asp:Label>
+                                                </td>
+                                                 <td>
+                                                    <label>
+                                                       Per Kg Rate
+                                                    </label>
+                                                    <asp:TextBox Width="50px" Style="text-align: right" Enabled="false" class="form-control"
+                                                        Height="25px" ID="txtperkgrate" runat="server" MaxLength="70"></asp:TextBox>
                                                 </td>
                                                 <td>
                                                     <label>
@@ -440,11 +454,11 @@
                                                         </ItemTemplate>
                                                         <%--<FooterStyle HorizontalAlign="Right" />
                                         <FooterTemplate>
-                                        </FooterTemplate>--%>
+                                        </FooterTemplate> "txtdefCatID_TextChanged"--%>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Rate">
                                                         <ItemTemplate>
-                                                            <asp:TextBox Width="100px" Style="text-align: right" placeholder="Enter Rate" Enabled="false" class="form-control" Text='<%#Eval("Rate") %>'
+                                                            <asp:TextBox Width="100px" Style="text-align: right" placeholder="Enter Rate" Enabled="true" class="form-control" Text='<%#Eval("Rate") %>'
                                                                 ID="txtRate" runat="server" OnTextChanged="txtdefCatID_TextChanged" AutoPostBack="true"
                                                                 MaxLength="10">0</asp:TextBox>
                                                         </ItemTemplate>
@@ -471,6 +485,12 @@
                                                         <ItemTemplate>
                                                             <asp:TextBox Width="100px" Enabled="false" class="form-control" Text='<%#Eval("PQty") %>'
                                                                 ID="txtpqty" runat="server" MaxLength="50">0</asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                     <asp:TemplateField HeaderText="Rate /kg">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox Width="100px" Enabled="false" class="form-control" Text='<%#Eval("Rateperkg") %>'
+                                                                ID="txtRateperkg" runat="server" MaxLength="70">0</asp:TextBox>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Narrations">

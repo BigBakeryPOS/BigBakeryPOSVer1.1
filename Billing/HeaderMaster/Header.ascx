@@ -371,6 +371,7 @@
                 <li id="KitchenOrders" runat="server" visible="false"><a href="../Accountsbootstrap/KitchenOrders.aspx">Kitchen Orders</a></li>
                 <li id="oprawentry" runat="server" visible="false"><a href="../Accountsbootstrap/PhysicalStockEntry.aspx">Store Opening Stock Entry</a></li>
                 <li id="Sales" runat="server" visible="false"><a href="../Accountsbootstrap/SalesGrid.aspx">Sales</a></li>
+                <li id="wholesalequotation" runat="server" visible="false"><a href="../Accountsbootstrap/WholeSalesQuotationGrid.aspx">Whole Sales Quotation Entry</a></li>
                 <li id="wholesale" runat="server" visible="false"><a href="../Accountsbootstrap/WholeSalesGrid.aspx">Whole Sales Entry</a></li>
                 <li id="wholesaleReturn" runat="server" visible="false"><a href="../Accountsbootstrap/WholeSalesReturnGrid.aspx">Whole Sales Return Entry</a></li>
                 <li id="StockReturn" runat="server" visible="false"><a href="../Accountsbootstrap/ItemReturngrid.aspx">Stock Return</a></li>
@@ -428,7 +429,7 @@
                 <li id="ISGRG" runat="server" visible="false"><a href="../Accountsbootstrap/InterstoreGoodsReceivedGrid.aspx">Inter Production Stock Received</a> </li>
             </ul>
         </li>
-        <li id="Payments" visible="true" runat="server" class='has-sub'><a href="javascript:;" style="color: White">Receipts </a>
+        <li id="Payments" visible="false" runat="server" class='has-sub'><a href="javascript:;" style="color: White">Receipts </a>
             <ul>
                 <li id="CustomerSalesReceipts" runat="server" visible="false"><a href="../Accountsbootstrap/CashReceipts.aspx">Dealer Sales Receipts</a></li>
                 <li id="CusSalesReceipts" runat="server" visible="false"><a href="../Accountsbootstrap/CashReceiptsGrid.aspx">Customer Sales Receipts</a></li>
@@ -605,6 +606,10 @@
                         <li id="SupplierOutStanding" runat="server" visible="false"><a href="../Accountsbootstrap/SupplierOutStanding.aspx">Supplier Summary/Detailed OutStanding </a></li>
                     </ul>
                 </li>
+                 <li id="ExpenseDetails" runat="server" visible="false"><a  href="../Accountsbootstrap/ExpenseDetails.aspx"
+                            runat="server">Expense Summary/Detailed Report</a></li>
+                  <li id="RawMaterialStock" runat="server" visible="false"><a  href="../Accountsbootstrap/RawMaterialStockReport.aspx"
+                            runat="server">Raw Material Stock Report</a></li>
                 <li id="ChartReport" runat="server" visible="false" class='has-sub'><a id="A9" runat="server" href="javascript:;">Chart Report</a>
                     <ul>
                         <li id="AnalysisReport" runat="server" visible="true"><a id="A15" href="../Accountsbootstrap/SalesandReturn_Report.aspx"

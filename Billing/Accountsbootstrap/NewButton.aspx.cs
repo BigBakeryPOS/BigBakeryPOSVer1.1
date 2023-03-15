@@ -335,7 +335,7 @@ namespace Billing.Accountsbootstrap
                     //myDropDownlistID.DataBind();
                     //myDropDownlistID.Items.Insert(0, "Select Item");
 
-                    
+
 
                 }
 
@@ -534,7 +534,7 @@ namespace Billing.Accountsbootstrap
                 }
             }
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$(document).ready(function() { $('#drpitemsearch').select2(); });", true);
-          //  ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$('.chzn-select').chosen(); $('.chzn-select-deselect').chosen({ allow_single_deselect: true });", true);
+            //  ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$('.chzn-select').chosen(); $('.chzn-select-deselect').chosen({ allow_single_deselect: true });", true);
         }
         protected void Default_currency_click(object sender, EventArgs e)
         {
@@ -1017,7 +1017,7 @@ namespace Billing.Accountsbootstrap
                         // dCat = objbs.GetStockDetails(Convert.ToInt32(btn.CommandArgument), Convert.ToInt32(lblUserID.Text), sTableName);
                         if (cattype == "N")
                         {
-                            dCat = objbs.GetStockDetails_Ratetype(Convert.ToInt32(categoryuserid), Convert.ToInt32(lblUserID.Text), sTableName, StockOption,lblratetype.Text,lblmrptype.Text);
+                            dCat = objbs.GetStockDetails_Ratetype(Convert.ToInt32(categoryuserid), Convert.ToInt32(lblUserID.Text), sTableName, StockOption, lblratetype.Text, lblmrptype.Text);
                         }
                         else if (cattype == "C")
                         {
@@ -1277,9 +1277,9 @@ namespace Billing.Accountsbootstrap
                 txtmanualslno.Focus();
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$(document).ready(function() { $('#drpitemsearch').select2(); });", true);
 
-              //  ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$('.chzn-select').chosen(); $('.chzn-select-deselect').chosen({ allow_single_deselect: true });", true);
+                //  ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$('.chzn-select').chosen(); $('.chzn-select-deselect').chosen({ allow_single_deselect: true });", true);
 
-              //  ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$(document).ready(function() { $('#drpitemsearch').select2(); }); ", true);
+                //  ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$(document).ready(function() { $('#drpitemsearch').select2(); }); ", true);
 
                 txtmanualqty.Text = "";
                 DataSet getallitembind = objbs.GetNewSelectDistinctItems("N", Convert.ToInt32(lblUserID.Text), sTableName, StockOption);
@@ -1294,7 +1294,7 @@ namespace Billing.Accountsbootstrap
                 }
 
                 txtbrcode.Text = "";
-              //  drpitemsearch.Focus();
+                //  drpitemsearch.Focus();
 
                 #endregion
             }
@@ -1606,6 +1606,7 @@ namespace Billing.Accountsbootstrap
                         upcus.Update();
                         drpitemsearch.Focus();
                         txtmanualqty.Text = "";
+                        txtCusName1.Focus();
 
 
 
@@ -1614,7 +1615,7 @@ namespace Billing.Accountsbootstrap
                 }
                 //txtmanualslno.Focus();
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$(document).ready(function() { $('#drpitemsearch').select2(); });", true);
-              //  ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$('.chzn-select').chosen(); $('.chzn-select-deselect').chosen({ allow_single_deselect: true });", true);
+                //  ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$('.chzn-select').chosen(); $('.chzn-select-deselect').chosen({ allow_single_deselect: true });", true);
                 txtmanualqty.Text = "";
                 DataSet getallitembind = objbs.GetNewSelectDistinctItems("N", Convert.ToInt32(lblUserID.Text), sTableName, StockOption);
                 if (getallitembind.Tables[0].Rows.Count > 0)
@@ -1897,7 +1898,7 @@ namespace Billing.Accountsbootstrap
                 String cattype = dcatchk.Tables[0].Rows[0]["cattype"].ToString();
 
 
-                DataSet dCat = objbs.SelectDistinctItems(Convert.ToInt32(btn.CommandArgument), Convert.ToInt32(lblUserID.Text), sTableName, cattype, StockOption,lblmrptype.Text);
+                DataSet dCat = objbs.SelectDistinctItems(Convert.ToInt32(btn.CommandArgument), Convert.ToInt32(lblUserID.Text), sTableName, cattype, StockOption, lblmrptype.Text);
                 Session["SubID"] = Convert.ToInt32(btn.CommandArgument);
                 int icount = dCat.Tables[0].Rows.Count;
 
@@ -2628,7 +2629,7 @@ namespace Billing.Accountsbootstrap
             txtmanualqty.Focus();
         }
 
-            
+
 
         protected void Button2_Click(object sender, EventArgs e)
         {
@@ -5028,7 +5029,7 @@ namespace Billing.Accountsbootstrap
                 return;
             }
         }
-            
+
 
         protected void drppayment_selectedindex(object sender, EventArgs e)
         {
@@ -5937,13 +5938,13 @@ namespace Billing.Accountsbootstrap
                 TextBox Definition = (TextBox)gvlist.Rows[i].FindControl("Definition");
                 if (Qty.Text == "0" || Qty.Text == "")
                 {
-                    ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Please Enter Qty in "+Definition+".Thank you!!!');", true);
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Please Enter Qty in " + Definition + ".Thank you!!!');", true);
                     return;
                 }
             }
-                #endregion
+            #endregion
 
-                string narration = string.Empty;
+            string narration = string.Empty;
             // int totqtyy = 0;
             for (int i = 0; i < gvlist.Rows.Count; i++)
             {
@@ -6313,7 +6314,7 @@ namespace Billing.Accountsbootstrap
                                     Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, ddattender.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(),
                                     ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text),
                                     lblmargin.Text, lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, Attenderid, "0",
-                                    txtDiscount.Text, ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, lblRound.Text, "tblTranssalesAmount_" + sTableName + "", Billerid, "","","","");
+                                    txtDiscount.Text, ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, lblRound.Text, "tblTranssalesAmount_" + sTableName + "", Billerid, "", "", "", "");
 
 
                                 int isalesid = Convert.ToInt32(OrderBill);
@@ -6354,12 +6355,13 @@ namespace Billing.Accountsbootstrap
                                     //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
                                     int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
+                                   // int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
 
                                     // if (StockOption == "1")
-                                    {
+                                  //  {
                                         double Istock = Convert.ToDouble(Qty.Text) * Convert.ToDouble(txtcqty.Text);
                                         iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
-                                    }
+                                   // }
                                     // iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(stock.Text)); 
                                     //7 dec
                                 }
@@ -7683,8 +7685,8 @@ namespace Billing.Accountsbootstrap
             lbltotal.Text = "0";
             lblGrandTotal.Text = "0";
             lbldisplay.InnerText = "0";
-          //  lblexdisplay.InnerText = "0";
-          //  lblexcurrency.Text = "";
+            //  lblexdisplay.InnerText = "0";
+            //  lblexcurrency.Text = "";
             txtAdvance.Text = "0";
             txtDiscount.Text = "0";
             txtCustomerName.Text = "";
@@ -9075,7 +9077,7 @@ namespace Billing.Accountsbootstrap
                             {
 
 
-                                int OrderBill = objbs.tempinsertOrdersalesnew("tblTempSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, drpattendername.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, "0", txtorderno.Text, drpsalestype.SelectedValue,lblcurrency.Text, "", "", "", "");
+                                int OrderBill = objbs.tempinsertOrdersalesnew("tblTempSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, drpattendername.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, "0", txtorderno.Text, drpsalestype.SelectedValue, lblcurrency.Text, "", "", "", "");
 
 
                                 int isalesid = Convert.ToInt32(OrderBill);

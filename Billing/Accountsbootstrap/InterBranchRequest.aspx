@@ -321,6 +321,11 @@ color:White;
                                                     <asp:Label ID="lblom" runat="server" Width="50px" Text='<%#Eval("UOM") %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
+                                              <asp:TemplateField Visible="false" >
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblqtytype" runat="server" Visible="false" Width="50px" Text='<%#Eval("qtytype") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                         </Columns>
                                          <RowStyle CssClass="RowStyleBackGroundColor" ForeColor="Black" />
                                        <%-- <AlternatingRowStyle CssClass="RowAlternateStyleBackGroundColor" />
@@ -362,6 +367,11 @@ color:White;
                                             <asp:TemplateField HeaderText="Unit">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblom" runat="server" Width="50px" Text='<%#Eval("UOM") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                             <asp:TemplateField Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblqtytype" runat="server" Visible="false" Width="50px" Text='<%#Eval("qtytype") %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField>

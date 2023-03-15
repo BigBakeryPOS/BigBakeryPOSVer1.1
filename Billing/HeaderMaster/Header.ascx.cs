@@ -996,6 +996,16 @@ namespace Billing.HeaderMaster
 
                                     }
 
+                                    if (screen == "ExpenseDetails")
+                                    {
+                                        Reports.Visible = true;
+                                        ExpenseDetails.Visible = true;
+                                    }
+                                    if (screen == "RawMaterialStock")
+                                    {
+                                        Reports.Visible = true;
+                                        RawMaterialStock.Visible = true;
+                                    }
 
                                     /////////////////////////////////////////////
                                     if (screen == "ChartReport")
@@ -1440,6 +1450,7 @@ namespace Billing.HeaderMaster
                                         Waiter.Visible = true;
                                     }
                                     #endregion
+
                                     #region UserMenu
                                     if (screen == "UserRole")
                                     {
@@ -1549,6 +1560,11 @@ namespace Billing.HeaderMaster
                                     {
                                         InventoryMenu.Visible = true;
                                         wholesale.Visible = true;
+                                    }
+                                    if (screen == "wholesalequotation")
+                                    {
+                                        InventoryMenu.Visible = true;
+                                        wholesalequotation.Visible = true;
                                     }
                                     if (screen == "wholesaleReturn")
                                     {
@@ -2293,7 +2309,16 @@ namespace Billing.HeaderMaster
                                         SupplierOutStanding.Visible = true;
 
                                     }
-
+                                    if (screen == "ExpenseDetails")
+                                    {
+                                        Reports.Visible = true;
+                                        ExpenseDetails.Visible = true;
+                                    }
+                                    if (screen == "RawMaterialStock")
+                                    {
+                                        Reports.Visible = true;
+                                        RawMaterialStock.Visible = true;
+                                    }
 
                                     /////////////////////////////////////////////
                                     if (screen == "ChartReport")
@@ -2776,12 +2801,14 @@ namespace Billing.HeaderMaster
                                     CustomerSalesReceipts.Visible = true;
                                     Payments.Visible = true;
                                 }
+                               
 
                                 if (screen == "CusSalesReceipts")
                                 {
                                     CusSalesReceipts.Visible = true;
                                     Payments.Visible = true;
                                 }
+                               
 
                                 #endregion
 
@@ -2836,6 +2863,11 @@ namespace Billing.HeaderMaster
                                 {
                                     InventoryMenu.Visible = true;
                                     wholesale.Visible = true;
+                                }
+                                if (screen == "wholesalequotation")
+                                {
+                                    InventoryMenu.Visible = true;
+                                    wholesalequotation.Visible = true;
                                 }
                                 if (screen == "wholesaleReturn")
                                 {
@@ -3601,6 +3633,18 @@ namespace Billing.HeaderMaster
 
                                 }
 
+                                if (screen == "ExpenseDetails")
+                                {
+                                    Reports.Visible = true;
+                                    ExpenseDetails.Visible = true;
+                                }
+
+
+                                if (screen == "RawMaterialStock")
+                                {
+                                    Reports.Visible = true;
+                                    RawMaterialStock.Visible = true;
+                                }
                                 /////////////////////////////////////////////
                                 if (screen == "ChartReport")
                                 {
@@ -4136,6 +4180,11 @@ namespace Billing.HeaderMaster
                             {
                                 InventoryMenu.Visible = true;
                                 wholesale.Visible = true;
+                            }
+                            if (screen == "wholesalequotation")
+                            {
+                                InventoryMenu.Visible = true;
+                                wholesalequotation.Visible = true;
                             }
                             if (screen == "wholesaleReturn")
                             {
@@ -4902,8 +4951,16 @@ namespace Billing.HeaderMaster
                             }
 
 
-
-
+                            if (screen == "ExpenseDetails")
+                            {
+                                Reports.Visible = true;
+                                ExpenseDetails.Visible = true;
+                            }
+                            if (screen == "RawMaterialStock")
+                            {
+                                Reports.Visible = true;
+                                RawMaterialStock.Visible = true;
+                            }
 
                             /////////////////////////////////////////////
                             if (screen == "ChartReport")

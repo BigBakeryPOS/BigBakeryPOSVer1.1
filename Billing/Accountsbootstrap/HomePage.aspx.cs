@@ -199,189 +199,190 @@ namespace Billing.Accountsbootstrap
                 lblsales1.Text = ""+currency+" " + "0";
                 lbltotalamountt.Text = ""+currency+" " + "0";
             }
-
-            DataSet dtodaysCash = objBs.GetCashDashBoard(sTableName);
-            DataSet dtodaysCard = objBs.GetCardDashBoard(sTableName);
-            if (dtodaysCash.Tables[0].Rows.Count > 0)
-            {
-                for (int i = 0; i < dtodaysCash.Tables[0].Rows.Count; i++)
+           
+                DataSet dtodaysCash = objBs.GetCashDashBoard(sTableName);
+                DataSet dtodaysCard = objBs.GetCardDashBoard(sTableName);
+                if (dtodaysCash.Tables[0].Rows.Count > 0)
                 {
-                    double amount = Convert.ToDouble(dtodaysCash.Tables[0].Rows[i]["cash"]);
+                    for (int i = 0; i < dtodaysCash.Tables[0].Rows.Count; i++)
+                    {
+                        double amount = Convert.ToDouble(dtodaysCash.Tables[0].Rows[i]["cash"]);
 
-                    lbltotaltodaycashamnt.Text = "" + currency + " " + amount.ToString("" + ratesetting + "");
+                        lbltotaltodaycashamnt.Text = "" + currency + " " + amount.ToString("" + ratesetting + "");
+
+                    }
+
 
                 }
 
-
-            }
-
-            if (dtodaysCard.Tables[0].Rows.Count > 0)
-            {
-                for (int i = 0; i < dtodaysCard.Tables[0].Rows.Count; i++)
+                if (dtodaysCard.Tables[0].Rows.Count > 0)
                 {
-                    double amount = Convert.ToDouble(dtodaysCard.Tables[0].Rows[i]["card"]);
+                    for (int i = 0; i < dtodaysCard.Tables[0].Rows.Count; i++)
+                    {
+                        double amount = Convert.ToDouble(dtodaysCard.Tables[0].Rows[i]["card"]);
 
 
-                    lbltotaltodaycardamnt.Text = "" + currency + " " + amount.ToString("" + ratesetting + "");
+                        lbltotaltodaycardamnt.Text = "" + currency + " " + amount.ToString("" + ratesetting + "");
 
+                    }
                 }
-            }
 
-            else
-            {
-                lbltotaltodaycashamnt.Text = "" + currency + " " + "0";
-                lbltotaltodaycardamnt.Text = "" + currency + " " + "0";
-            }
-
-
-            DataSet dtotbillcount = Abj.TotalBillToday(sTableName);
-            if (dtotbillcount.Tables[0].Rows.Count > 0)
-            {
-                lbltotalsalescount.Text = dtotbillcount.Tables[0].Rows[0]["Cancel"].ToString();
-
-            }
-
-            DataSet dorderAmt = Abj.OrderAmt(sTableName);
-            if (dorderAmt.Tables[0].Rows[0]["Total"].ToString() != "")
-            {
-                lblorder.Text = ""+currency+" " + Convert.ToDecimal(dorderAmt.Tables[0].Rows[0]["Total"]).ToString(""+ratesetting+"");
-
-            }
-            #endregion
-
-            #region Canceled Bills
-            DataSet dcancel = Abj.CanceledBill(sTableName);
-            if (dcancel.Tables[0].Rows.Count > 0)
-            {
-                // lblTotalbillcancel.InnerText = dcancel.Tables[0].Rows[0]["Cancel"].ToString();
-            }
-            DataSet dcancelToday = Abj.CanceledBillToday(sTableName);
-            if (dcancelToday.Tables[0].Rows.Count > 0)
-            {
-                LlblTodaybillcancel.Text = dcancelToday.Tables[0].Rows[0]["Cancel"].ToString();
-            }
-            //By Jothi
-            DataSet dcancelTodayamount = Abj.CanceledBillTodayAmount(sTableName);
-            if (dcancelTodayamount.Tables[0].Rows.Count > 0)
-            {
-                lblcancelamount.Text = ""+currency+" " + Convert.ToDecimal(dcancelTodayamount.Tables[0].Rows[0]["Cancelamount"]).ToString(""+ratesetting+"");
-                //dcancelTodayamount.Tables[0].Rows[0]["Cancelamount"].ToString();
-            }
-
-            #endregion
-
-            #region Order Amount
-
-            DataSet dsalesAmtOrder = Abj.OrderAmt(sTableName);
-            DataSet dsalesBalanceAmtOrder = Abj.OrderBalanceAmt(sTableName);
-            if (dsalesAmtOrder.Tables[0].Rows[0]["Total"].ToString() != "")
-            {
-                lblsales1.Text = ""+currency+" " + Convert.ToDecimal(dsalesAmtOrder.Tables[0].Rows[0]["Total"]).ToString(""+ratesetting+"");
-                lblTotalOrderAmount.Text = ""+currency+" " + Convert.ToDecimal(dsalesAmtOrder.Tables[0].Rows[0]["Total"]).ToString(""+ratesetting+"");
-
-
-
-            }
-            else
-            {
-                lblsales1.Text = ""+currency+" " + "0";
-                lblTotalOrderAmount.Text = ""+currency+" " + "0";
-            }
-
-            if (dsalesBalanceAmtOrder.Tables[0].Rows[0]["TotalBalance"].ToString() != "")
-            {
-                lblOrderBalanceAmount.Text = ""+currency+" " + Convert.ToDecimal(dsalesBalanceAmtOrder.Tables[0].Rows[0]["TotalBalance"]).ToString(""+ratesetting+"");
-            }
-
-            else
-            {
-                lblOrderBalanceAmount.Text = ""+currency+" " + "0";
-            }
-
-
-            DataSet dtodaysCashOrder = objBs.GetOrderCashDashBoard(sTableName);
-            DataSet dtodaysCardOrder = objBs.GetOrderCardDashBoard(sTableName);
-
-            if (dtodaysCashOrder.Tables[0].Rows.Count > 0)
-            {
-                for (int i = 0; i < dtodaysCashOrder.Tables[0].Rows.Count; i++)
+                else
                 {
-                    double amount = Convert.ToDouble(dtodaysCashOrder.Tables[0].Rows[i]["cash"]);
-
-                    lblTotalOrderCash.Text = "" + currency + " " + amount.ToString("" + ratesetting + "");
-
+                    lbltotaltodaycashamnt.Text = "" + currency + " " + "0";
+                    lbltotaltodaycardamnt.Text = "" + currency + " " + "0";
                 }
 
 
-            }
-
-            if (dtodaysCardOrder.Tables[0].Rows.Count > 0)
-            {
-                for (int i = 0; i < dtodaysCardOrder.Tables[0].Rows.Count; i++)
+                DataSet dtotbillcount = Abj.TotalBillToday(sTableName);
+                if (dtotbillcount.Tables[0].Rows.Count > 0)
                 {
-                    double amount = Convert.ToDouble(dtodaysCardOrder.Tables[0].Rows[i]["card"]);
-
-
-                    lblTotalOrderCard.Text = "" + currency + " " + amount.ToString("" + ratesetting + "");
+                    lbltotalsalescount.Text = dtotbillcount.Tables[0].Rows[0]["Cancel"].ToString();
 
                 }
-            }
 
-            else
-            {
-                lblTotalOrderCash.Text = "" + currency + " " + "0";
-                lblTotalOrderCard.Text = "" + currency + " " + "0";
-            }
-
-
-            DataSet dtotbillcountOrder = Abj.TotalOrderBillToday(sTableName);
-            if (dtotbillcountOrder.Tables[0].Rows.Count > 0)
-            {
-                lblOrderCount.Text = dtotbillcountOrder.Tables[0].Rows[0]["Cancel"].ToString();
-
-            }
-
-            DataSet dorderAmtOrder = Abj.OrderAmt(sTableName);
-            if (dorderAmt.Tables[0].Rows[0]["Total"].ToString() != "")
-            {
-                lblorder.Text = ""+currency+" " + Convert.ToDecimal(dorderAmt.Tables[0].Rows[0]["Total"]).ToString(""+ratesetting+"");
-
-            }
-            #endregion
-
-            #region Order Canceled Bills
-            DataSet dcancelOrder = Abj.CanceledOrderBill(sTableName);
-            if (dcancel.Tables[0].Rows.Count > 0)
-            {
-                // lblTotalbillcancel.InnerText = dcancel.Tables[0].Rows[0]["Cancel"].ToString();
-            }
-            DataSet dcancelTodayOrder = Abj.CanceledOrderBillToday(sTableName);
-            if (dcancelTodayOrder.Tables[0].Rows.Count > 0)
-            {
-                lbTodayOrderCancelledCount.Text = dcancelTodayOrder.Tables[0].Rows[0]["Cancel"].ToString();
-            }
-            //By Jothi
-            DataSet dcancelTodayamountOrder = Abj.CanceledOrderBillTodayAmount(sTableName);
-            if (dcancelTodayamountOrder.Tables[0].Rows.Count > 0)
-            {
-                lblOrderCancelAmount.Text = ""+currency+" " + Convert.ToDecimal(dcancelTodayamountOrder.Tables[0].Rows[0]["Cancelamount"]).ToString(""+ratesetting+"");
-                //dcancelTodayamount.Tables[0].Rows[0]["Cancelamount"].ToString();
-            }
-
-            #endregion
-
-            #region Order Canceled Bills
-
-            DataSet dsDeliveryOrder = objBs.GetDeliveryordersDetails(sTableName);
-            if (dsDeliveryOrder.Tables[0].Rows.Count > 0)
-            {
-                for (int i = 0; i < dsDeliveryOrder.Tables[0].Rows.Count; i++)
+                DataSet dorderAmt = Abj.OrderAmt(sTableName);
+                if (dorderAmt.Tables[0].Rows[0]["Total"].ToString() != "")
                 {
-                    lblDeliveryDetails.Text += dsDeliveryOrder.Tables[0].Rows[i]["OrderDetails"].ToString() + "<br/>";
-                }
-            }
+                    lblorder.Text = "" + currency + " " + Convert.ToDecimal(dorderAmt.Tables[0].Rows[0]["Total"]).ToString("" + ratesetting + "");
 
-            #endregion
+                }
+                #endregion
+
+                #region Canceled Bills
+                DataSet dcancel = Abj.CanceledBill(sTableName);
+                if (dcancel.Tables[0].Rows.Count > 0)
+                {
+                    // lblTotalbillcancel.InnerText = dcancel.Tables[0].Rows[0]["Cancel"].ToString();
+                }
+                DataSet dcancelToday = Abj.CanceledBillToday(sTableName);
+                if (dcancelToday.Tables[0].Rows.Count > 0)
+                {
+                    LlblTodaybillcancel.Text = dcancelToday.Tables[0].Rows[0]["Cancel"].ToString();
+                }
+                //By Jothi
+                DataSet dcancelTodayamount = Abj.CanceledBillTodayAmount(sTableName);
+                if (dcancelTodayamount.Tables[0].Rows.Count > 0)
+                {
+                    lblcancelamount.Text = "" + currency + " " + Convert.ToDecimal(dcancelTodayamount.Tables[0].Rows[0]["Cancelamount"]).ToString("" + ratesetting + "");
+                    //dcancelTodayamount.Tables[0].Rows[0]["Cancelamount"].ToString();
+                }
+
+                #endregion
+
+                #region Order Amount
+
+                DataSet dsalesAmtOrder = Abj.OrderAmt(sTableName);
+                DataSet dsalesBalanceAmtOrder = Abj.OrderBalanceAmt(sTableName);
+                if (dsalesAmtOrder.Tables[0].Rows[0]["Total"].ToString() != "")
+                {
+                    lblsales1.Text = "" + currency + " " + Convert.ToDecimal(dsalesAmtOrder.Tables[0].Rows[0]["Total"]).ToString("" + ratesetting + "");
+                    lblTotalOrderAmount.Text = "" + currency + " " + Convert.ToDecimal(dsalesAmtOrder.Tables[0].Rows[0]["Total"]).ToString("" + ratesetting + "");
+
+
+
+                }
+                else
+                {
+                    lblsales1.Text = "" + currency + " " + "0";
+                    lblTotalOrderAmount.Text = "" + currency + " " + "0";
+                }
+
+                if (dsalesBalanceAmtOrder.Tables[0].Rows[0]["TotalBalance"].ToString() != "")
+                {
+                    lblOrderBalanceAmount.Text = "" + currency + " " + Convert.ToDecimal(dsalesBalanceAmtOrder.Tables[0].Rows[0]["TotalBalance"]).ToString("" + ratesetting + "");
+                }
+
+                else
+                {
+                    lblOrderBalanceAmount.Text = "" + currency + " " + "0";
+                }
+
+
+                DataSet dtodaysCashOrder = objBs.GetOrderCashDashBoard(sTableName);
+                DataSet dtodaysCardOrder = objBs.GetOrderCardDashBoard(sTableName);
+
+                if (dtodaysCashOrder.Tables[0].Rows.Count > 0)
+                {
+                    for (int i = 0; i < dtodaysCashOrder.Tables[0].Rows.Count; i++)
+                    {
+                        double amount = Convert.ToDouble(dtodaysCashOrder.Tables[0].Rows[i]["cash"]);
+
+                        lblTotalOrderCash.Text = "" + currency + " " + amount.ToString("" + ratesetting + "");
+
+                    }
+
+
+                }
+
+                if (dtodaysCardOrder.Tables[0].Rows.Count > 0)
+                {
+                    for (int i = 0; i < dtodaysCardOrder.Tables[0].Rows.Count; i++)
+                    {
+                        double amount = Convert.ToDouble(dtodaysCardOrder.Tables[0].Rows[i]["card"]);
+
+
+                        lblTotalOrderCard.Text = "" + currency + " " + amount.ToString("" + ratesetting + "");
+
+                    }
+                }
+
+                else
+                {
+                    lblTotalOrderCash.Text = "" + currency + " " + "0";
+                    lblTotalOrderCard.Text = "" + currency + " " + "0";
+                }
+
+
+                DataSet dtotbillcountOrder = Abj.TotalOrderBillToday(sTableName);
+                if (dtotbillcountOrder.Tables[0].Rows.Count > 0)
+                {
+                    lblOrderCount.Text = dtotbillcountOrder.Tables[0].Rows[0]["Cancel"].ToString();
+
+                }
+
+                DataSet dorderAmtOrder = Abj.OrderAmt(sTableName);
+                if (dorderAmt.Tables[0].Rows[0]["Total"].ToString() != "")
+                {
+                    lblorder.Text = "" + currency + " " + Convert.ToDecimal(dorderAmt.Tables[0].Rows[0]["Total"]).ToString("" + ratesetting + "");
+
+                }
+                #endregion
+
+                #region Order Canceled Bills
+                DataSet dcancelOrder = Abj.CanceledOrderBill(sTableName);
+                if (dcancel.Tables[0].Rows.Count > 0)
+                {
+                    // lblTotalbillcancel.InnerText = dcancel.Tables[0].Rows[0]["Cancel"].ToString();
+                }
+                DataSet dcancelTodayOrder = Abj.CanceledOrderBillToday(sTableName);
+                if (dcancelTodayOrder.Tables[0].Rows.Count > 0)
+                {
+                    lbTodayOrderCancelledCount.Text = dcancelTodayOrder.Tables[0].Rows[0]["Cancel"].ToString();
+                }
+                //By Jothi
+                DataSet dcancelTodayamountOrder = Abj.CanceledOrderBillTodayAmount(sTableName);
+                if (dcancelTodayamountOrder.Tables[0].Rows.Count > 0)
+                {
+                    lblOrderCancelAmount.Text = "" + currency + " " + Convert.ToDecimal(dcancelTodayamountOrder.Tables[0].Rows[0]["Cancelamount"]).ToString("" + ratesetting + "");
+                    //dcancelTodayamount.Tables[0].Rows[0]["Cancelamount"].ToString();
+                }
+
+                #endregion
+
+                #region Order Canceled Bills
+
+                DataSet dsDeliveryOrder = objBs.GetDeliveryordersDetails(sTableName);
+                if (dsDeliveryOrder.Tables[0].Rows.Count > 0)
+                {
+                    for (int i = 0; i < dsDeliveryOrder.Tables[0].Rows.Count; i++)
+                    {
+                        lblDeliveryDetails.Text += dsDeliveryOrder.Tables[0].Rows[i]["OrderDetails"].ToString() + "<br/>";
+                    }
+                }
+
+                #endregion
+            
         }
 
         protected void Delivery_OnClick(object sender, EventArgs e)

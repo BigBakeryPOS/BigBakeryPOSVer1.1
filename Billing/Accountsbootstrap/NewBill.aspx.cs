@@ -552,7 +552,7 @@ namespace Billing.Accountsbootstrap
 
                                 Label lblDefID = (Label)gvcustomerorder.Rows[i].FindControl("lblDescriptionID");
                                 int isalesid = Convert.ToInt32(txtBillNo.Text);// objBs.SalesId("tblSales_" + sTableName);
-                                int iStatus1 = objBs.insertTransSales("tblTransSales_" + sTableName, isalesid, Convert.ToInt32(ddcategory.SelectedValue), dQty, DRate, Convert.ToDouble(0), dAmount, Convert.ToInt32(lblDefID.Text), Convert.ToInt32(ddldef.SelectedValue), 0, "", "", "", Convert.ToDouble(1), "N", "0",Convert.ToDouble(1), Convert.ToDouble(0), Convert.ToDouble(0));
+                                int iStatus1 = objBs.insertTransSales("tblTransSales_" + sTableName, isalesid, Convert.ToInt32(ddcategory.SelectedValue), dQty, DRate, Convert.ToDouble(0), dAmount, Convert.ToInt32(lblDefID.Text), Convert.ToInt32(ddldef.SelectedValue), 0, "", "", "", Convert.ToDouble(1), "N", "0", Convert.ToDouble(1), Convert.ToDouble(0), Convert.ToDouble(0));
                                 DataSet dcheck = objBs.checkCheckBoxCondition(Convert.ToInt32(lblDefID.Text));
                                 if (dcheck.Tables[0].Rows.Count > 0)
                                 {

@@ -27,7 +27,7 @@
     <link href="../css/TableCSSCode.css" rel="stylesheet" type="text/css" />
     <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="../css/chosen.css" />
-    <script type="text/javascript">
+   <script type="text/javascript">
         function Denomination123() {
 
 
@@ -54,7 +54,7 @@
 
 
         }
-    </script>
+   </script>
     <script type="text/javascript">
         $(function () {
             $("[id*=btnShowPopup]").click(function () {
@@ -96,7 +96,45 @@
         }    
     </script>
 </head>
-<style type="text/css">
+
+
+
+     <style type="text/css">
+        .GroupHeaderStyle {
+            background-color: #afc3dd;
+            color: Black;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .SubTotalRowStyle {
+            background-color: #cccccc;
+            color: Black;
+            font-weight: bold;
+        }
+
+        .GrandTotalRowStyle {
+            background-color: #0073e4;
+            color: white;
+            font-weight: bold;
+        }
+
+        .align1 {
+            text-align: right;
+        }
+
+        .myGridStyle1 tr th {
+            padding: 8px;
+            color: #afc3dd;
+            background-color: #000000;
+            border: 1px solid gray;
+            font-family: Arial;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+
     body
     {
         font-family: Arial;
@@ -218,6 +256,14 @@
                             Format="dd/MM/yyyy" PopupButtonID="txttodate" runat="server" CssClass="cal_Theme1">
                         </ajaxToolkit:CalendarExtender>
                     </div>
+                   <div class="col-lg-3">
+                        <label>
+                            Company
+                        </label>
+                        <asp:DropDownList runat="server" ID="ddlCompany" CssClass="form-control" >
+                        </asp:DropDownList>
+                    </div>
+                <div class="row">
                     <div class="col-lg-3">
                         <label>
                             Supplier
@@ -225,7 +271,7 @@
                         <asp:DropDownList runat="server" ID="ddlcustomerrep" CssClass="form-control" >
                         </asp:DropDownList>
                     </div>
-                  
+                  </div>
                     <div class="col-lg-3">
                        
                             <br />
@@ -251,7 +297,7 @@
            
                 <div id="div1" runat="server" class="table-responsive panel-grid-left">
                             <asp:GridView ID="gvreceiptamt" EmptyDataText="Oops! No Activity Performed." cssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
-                                Caption="Supplier OutStanding Details" OnRowDataBound="gvreceiptamt_OnRowDataBound" Width="100%"
+                                Caption="Supplier OutStanding Details"  OnRowCreated="gvReport_OnRowCreated" OnRowDataBound="gvreceiptamt_OnRowDataBound" Width="100%"
                                 runat="server" AutoGenerateColumns="false" ShowFooter="true">
                                 <Columns>
                                     <asp:TemplateField HeaderText="S.No">
@@ -262,6 +308,7 @@
                                     <asp:BoundField HeaderText="DCNo" DataField="DCNo" />
                                     <asp:BoundField HeaderText="BillNo" DataField="BillNo" />
                                     <asp:BoundField HeaderText="BillDate" DataField="BillDate" DataFormatString="{0:dd/MMM/yyyy}" />
+                                    <asp:BoundField HeaderText="CompanyName" DataField="CompanyName" />
                                     <asp:BoundField HeaderText="SupplierName" DataField="CustomerName" />
                                     <asp:BoundField HeaderText="MobileNo" DataField="MobileNo" />
                                     <asp:BoundField HeaderText="NetAmount" DataField="NetAmount" DataFormatString="{0:f}" />

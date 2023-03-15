@@ -25,6 +25,7 @@ namespace Billing.Accountsbootstrap
         double grandRecQty = 0;
         double GrandTotalmssing = 0;
         double GrandTotaldamage = 0;
+        double GrandTotalAmount = 0;
         double GrandDamage = 0;
         double Discount = 0; double Receipt = 0;
         double EGrandTotal = 0; double EDiscount = 0; double EReceipt = 0;
@@ -161,7 +162,8 @@ namespace Billing.Accountsbootstrap
 
                 gvsales.Visible = true;
                 gvsummary.Visible = false;
-
+                btnSummary.Visible = false;
+                btnDetails.Visible = true;
                 gvsales.Caption = "Kitchen Transfer Report From " + frmdate + " To " + todate;
             }
             else if (rdosummary.Checked == true)
@@ -180,6 +182,8 @@ namespace Billing.Accountsbootstrap
                 gvsummary.Caption = "Kitchen Transfer Report From " + frmdate + " To " + todate;
                 gvsummary.Visible = true;
                 gvsales.Visible = false;
+                btnSummary.Visible = true;
+                btnDetails.Visible = false;
             }
         }
 
@@ -189,16 +193,24 @@ namespace Billing.Accountsbootstrap
 
             DateTime frmdate = DateTime.ParseExact(txtfromdate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             DateTime todate = DateTime.ParseExact(txttodate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-
-            DataSet ds1 = objBs.getreportforkitchenusage(sTableName, ddltype.SelectedValue, ddldcno.SelectedValue, frmdate, todate, ddlCategory.SelectedValue, ddlIngridients.SelectedValue,drpdept.SelectedValue);
-            //update 22/10/21
-            if (ds1.Tables[0].Rows.Count > 0)
+            DataSet ds1 = new DataSet();
+            if (rdodetailed.Checked == true)
             {
-                for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
+                 ds1 = objBs.getreportforkitchenusage(sTableName, ddltype.SelectedValue, ddldcno.SelectedValue, frmdate, todate, ddlCategory.SelectedValue, ddlIngridients.SelectedValue, drpdept.SelectedValue);
+                //update 22/10/21
+                if (ds1.Tables[0].Rows.Count > 0)
                 {
-                    ds1.Tables[0].Rows[i]["RequestDate"] = Convert.ToDateTime(ds1.Tables[0].Rows[i]["RequestDate"]).ToString("dd/MMM/yyyy");
+                    for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
+                    {
+                        ds1.Tables[0].Rows[i]["RequestDate"] = Convert.ToDateTime(ds1.Tables[0].Rows[i]["RequestDate"]).ToString("dd/MMM/yyyy");
+                    }
                 }
             }
+            if(rdosummary.Checked==true )
+            {
+                 ds1 = objBs.getreportforkitchenusage_Summary(sTableName, ddltype.SelectedValue, ddldcno.SelectedValue, frmdate, todate, ddlCategory.SelectedValue, ddlIngridients.SelectedValue, drpdept.SelectedValue);
+            }
+
             //end update
             if (ds1.Tables[0].Rows.Count > 0)
             {
@@ -265,8 +277,7 @@ namespace Billing.Accountsbootstrap
                 grandRecQty += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "Recqty"));
                 GrandTotalmssing += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "MissingQty"));
                 GrandTotaldamage += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "DamageQty"));
-
-
+                GrandTotalAmount += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "TotalAmount"));
             }
             if (e.Row.RowType == DataControlRowType.Footer)
             {
@@ -275,7 +286,7 @@ namespace Billing.Accountsbootstrap
                 e.Row.Cells[8].Text = grandRecQty.ToString("f2");
                 e.Row.Cells[9].Text = GrandTotalmssing.ToString("f2");
                 e.Row.Cells[10].Text = GrandTotaldamage.ToString("f2");
-
+                e.Row.Cells[13].Text = GrandTotalAmount.ToString("f2");
 
             }
         }

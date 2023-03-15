@@ -43,7 +43,7 @@ namespace Billing.Accountsbootstrap
                 if (dssubcompany.Tables[0].Rows.Count > 0)
                 {
                     drpsubcompany.DataSource = dssubcompany.Tables[0];
-                    drpsubcompany.DataTextField = "CustomerName";
+                    drpsubcompany.DataTextField = "CustomerName1";
                     drpsubcompany.DataValueField = "subComapanyID";
                     drpsubcompany.DataBind();
                     drpsubcompany.Items.Insert(0, "All");
@@ -94,7 +94,7 @@ namespace Billing.Accountsbootstrap
             if (ds.Tables[0].Rows.Count > 0)
             {
                 ddl.DataSource = ds;
-                ddl.DataTextField = "CustomerName";
+                ddl.DataTextField = "CustomerName1";
                 ddl.DataValueField = "subComapanyID";
                 ddl.DataBind();
                 ddl.Items.Insert(0, "All");
@@ -738,7 +738,7 @@ namespace Billing.Accountsbootstrap
             Response.ContentType = "application/vnd.ms-excel";
             System.IO.StringWriter stringWrite = new System.IO.StringWriter();
             System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
-            Excel.RenderControl(htmlWrite);
+            Excel1.RenderControl(htmlWrite);
             Response.Write(stringWrite.ToString());
             Response.End();
         }

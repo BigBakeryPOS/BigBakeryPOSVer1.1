@@ -1024,6 +1024,7 @@ namespace Billing.Accountsbootstrap
                     int groupID = Convert.ToInt32(gvGroup.DataKeys[e.Row.RowIndex].Values[0]);
                     string salestype = gvGroup.DataKeys[e.Row.RowIndex].Values[1].ToString();
                     string branch = gvGroup.DataKeys[e.Row.RowIndex].Values[2].ToString();
+                    
                     DataSet ds = objbs.CustomerSalesdetailed(groupID, branch, salestype);
                     //if (ds.Tables[0].Rows.Count > 0)
                     //{

@@ -259,7 +259,7 @@
                                     <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
                                         NextPageText="Next" PreviousPageText="Previous" />--%>
                                             <Columns>
-                                                <asp:BoundField HeaderText="CompanyName" DataField="compname" />
+                                                <asp:BoundField HeaderText="CompanyName" DataField="CustomerName1" />
                                                 <asp:BoundField HeaderText="IngredientName" DataField="IngredientName" />
                                                 <asp:BoundField HeaderText="SupplierName" DataField="CustomerName" HeaderStyle-HorizontalAlign="Center" />
                                                 <asp:BoundField HeaderText="BillDate" DataField="BillDate" DataFormatString="{0:dd/MMM/yyyy}" />

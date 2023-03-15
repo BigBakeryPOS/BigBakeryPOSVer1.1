@@ -40,7 +40,7 @@
         }
 
     </script>
-     <script type="text/javascript">
+    <script type="text/javascript">
          function ClientSideClick(myButton) {
              // Client side validation
 
@@ -98,62 +98,50 @@
 
     </script>
     <style type="text/css">
-        
-        .RowStyleBackGroundColor
-{
+        .RowStyleBackGroundColor {
+            background-color: White;
+        }
 
-background-color:White;
+        .RowAlternateStyleBackGroundColor {
+            background-color: White;
+        }
 
-}
+        .HighLightRowColor {
+            background-color: Yellow;
+            font-weight: bold;
+            font-size: xx-large;
+            color: White;
+        }
 
-.RowAlternateStyleBackGroundColor
 
-{
-
-background-color:White;
-
-}
-
-.HighLightRowColor
-
-{
-
-background-color:Yellow;
-font-weight:bold;
-font-size:xx-large;
-color:White;
-
-}
-        
-        
-         blink, .blink {
+        blink, .blink {
             animation: blinker 1s linear infinite;
         }
 
-       @keyframes blinker {  
-            50% { opacity: 0; }
-       }
-      </style>
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
     <link href="css/mGrid.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="../Styles/chosen.css" />
     <style type="text/css">
-        #dialog
-        {
+        #dialog {
             display: none;
         }
-        
-        .ui-dialog-title, .ui-dialog-content, .ui-widget-content
-        {
-            font-family: "Trebuchet MS" , "Helvetica" , "Arial" , "Verdana" , "sans-serif";
+
+        .ui-dialog-title, .ui-dialog-content, .ui-widget-content {
+            font-family: "Trebuchet MS", "Helvetica", "Arial", "Verdana", "sans-serif";
             font-size: 62.5%;
         }
-        body
-        {
+
+        body {
             font-family: Arial;
             font-size: 10pt;
         }
-        .GridPager a, .GridPager span
-        {
+
+        .GridPager a, .GridPager span {
             display: block;
             height: 15px;
             width: 15px;
@@ -161,109 +149,109 @@ color:White;
             text-align: center;
             text-decoration: none;
         }
-        .GridPager a
-        {
+
+        .GridPager a {
             background-color: #f5f5f5;
             color: #969696;
             border: 1px solid #969696;
         }
-        .GridPager span
-        {
+
+        .GridPager span {
             background-color: #A1DCF2;
             color: #000;
             border: 1px solid #3AC0F2;
         }
     </style>
     <style type="text/css">
-        body
-        {
+        body {
             font-family: Arial;
             font-size: 10pt;
         }
-        .modalBackground
-        {
+
+        .modalBackground {
             background-color: Black;
             filter: alpha(opacity=40);
             opacity: 0.4;
         }
-        .modalPopup
-        {
+
+        .modalPopup {
             background-color: #FFFFFF;
             width: 900px;
             text-align: center;
             border: 3px solid #0DA9D0;
         }
-        .modalPopup .header
-        {
-            background-color: #2FBDF1;
-            height: 40px;
-            color: White;
-            line-height: 30px;
-            text-align: center;
-            font-weight: bold;
-        }
-        .modalPopup .body
-        {
-            min-height: 50px;
-            line-height: 30px;
-            text-align: center;
-            padding: 5px;
-        }
-        .modalPopup .footer
-        {
-            padding: 3px;
-        }
-        .modalPopup .button
-        {
-            height: 23px;
-            color: White;
-            line-height: 23px;
-            text-align: center;
-            font-weight: bold;
-            cursor: pointer;
-            background-color: #9F9F9F;
-            border: 1px solid #5C5C5C;
-        }
-        .modalPopup td
-        {
-            text-align: left;
-        }
-        
-        .pad
-        {
+
+            .modalPopup .header {
+                background-color: #2FBDF1;
+                height: 40px;
+                color: White;
+                line-height: 30px;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .modalPopup .body {
+                min-height: 50px;
+                line-height: 30px;
+                text-align: center;
+                padding: 5px;
+            }
+
+            .modalPopup .footer {
+                padding: 3px;
+            }
+
+            .modalPopup .button {
+                height: 23px;
+                color: White;
+                line-height: 23px;
+                text-align: center;
+                font-weight: bold;
+                cursor: pointer;
+                background-color: #9F9F9F;
+                border: 1px solid #5C5C5C;
+            }
+
+            .modalPopup td {
+                text-align: left;
+            }
+
+        .pad {
             padding-top: 50px;
         }
     </style>
     <style type="text/css">
-        .overlay
-        {
-            position: fixed;
-            z-index: 999;
-            height: 100%;
-            width: 100%;
-            top: 0;
-            background-color: Black;
-            filter: alpha(opacity=60);
-            opacity: 0.6;
-            -moz-opacity: 0.8;
-        }
-        .GridviewDiv
-        {
-            font-size: 100%;
-            font-family: 'Lucida Grande' , 'Lucida Sans Unicode' , Verdana, Arial, Helevetica, sans-serif;
-            color: #303933;
-        }
-        .headerstyle
-        {
-            color: #FFFFFF;
-            border-right-color: #abb079;
-            border-bottom-color: #abb079;
-            background-color: #df5015;
-            padding: 0.5em 0.5em 0.5em 0.5em;
-            text-align: center;
-        }
-    </style>
-    <script type="text/javascript">
+        .overl
+                        ay {
+                            position: fixed;
+                            z-index: 999;
+                            height: 100%;
+                            width: 100%;
+                            top: 0;
+                            background-color: Black;
+                            filter: alpha(opacity=60);
+                            opacity: 0.6;
+                            -moz-opacity: 0.8;
+                        }
+
+                        .GridviewDiv {
+                            font-size: 100%;
+                            font-family: 'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helevetica, sans-serif;
+                            color: #303933;
+                        }
+
+                        .headerstyle {
+                            color: #FFFFFF;
+                            border-right-color: #abb079;
+                            border-bottom-color: #abb079;
+                            background-color: #df5015;
+                            padding: 0.5em 0.5em 0.5em 0.5em;
+                            text-align: center;
+                        }
+
+                        </style >
+                        <s
+                    cript type="text/javascript">
 
     </script>
     <meta content="" charset="utf-8" />
@@ -306,195 +294,195 @@ color:White;
     <asp:Label runat="server" ID="lblUser" ForeColor="black" CssClass="label" Visible="false"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="black" CssClass="label" Visible="false"> </asp:Label>
     <form runat="server" id="form1" method="post">
-    <%--  <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+        <%--  <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
     <ContentTemplate>     --%>
-     <div class="container-fluid">
-	<div class="row">
-    <div class="col-lg-12">
-    <div class="row panel-custom1">
-        <div class="panel-header">
-          <h1 class="page-header">Finished Goods Entry</h1>
-	    </div>
-        <div class="panel-body">
-        <div class="row">
-        <div class="col-lg-12">
-                <label>Type</label>
-                <asp:RadioButtonList ID="radentrytype" RepeatColumns="4" runat="server" OnSelectedIndexChanged="goodsentrytype"
-                    AutoPostBack="true">
-                    <asp:ListItem Text="Manual Type/with Stock Reduce" Value="1"></asp:ListItem>
-                    <asp:ListItem Text="From Request" Value="2" Selected="True"></asp:ListItem>
-                    <asp:ListItem Text="Manual Type/with-out Stock Reduce" Value="3"></asp:ListItem>
-                </asp:RadioButtonList>
-            </div>
-            <div class="col-lg-3">
-               <asp:Label runat="server" ID="Label2"><label>Receive No.</label></asp:Label>
-                <asp:DropDownList ID="ddlrequestno" runat="server" CssClass="form-control" 
-                                                AutoPostBack="true" OnSelectedIndexChanged="ddlrequestno_OnSelectedIndexChanged">
-               </asp:DropDownList>
-         </div>
-
-                                <%--    <blink> <label  style="color:Green; font-size:12px">Screen Show Detail as Per Your Goods  To Your raw Material Request Store.Please Be Carefull While Sending Stock Entry.Thank You!!!</label></blink>--%>
-                                    
-                                    <div class="col-lg-3">
-                                       
-                                            <asp:Label runat="server" ID="Label1"><label>Category</label></asp:Label>
-                                            <asp:DropDownList ID="ddlcategory" runat="server" CssClass="form-control" 
-                                                AutoPostBack="true" OnSelectedIndexChanged="ddlrequestno_OnSelectedIndexChanged">
-                                            </asp:DropDownList>
-                                        
-                                    </div>
-                                    <div class="col-lg-3" >
-                                       
-                                            <asp:Label runat="server" ID="lblDcNo"><label>Finish No.</label></asp:Label>
-                                            <asp:TextBox ID="txtDCNo" runat="server" CssClass="form-control" onkeypress="return NumberOnly()"
-                                                Enabled="false"></asp:TextBox>
-                                            <asp:TextBox ID="txtcompanyname" Visible="false" runat="server" CssClass="form-control"></asp:TextBox>
-                                       
-                                    </div>
-                                    <div class="col-lg-3" >
-                                       
-                                            <asp:Label runat="server" ID="lblDCDate"><label>Finish Date</label></asp:Label>
-                                            <asp:TextBox ID="txtDCDate" runat="server" CssClass="form-control" ></asp:TextBox>
-                                            <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txtDCDate"
-                                                Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
-                                            </ajaxToolkit:CalendarExtender>
-                                        
-                                    </div>
-                                    <div class="col-lg-3">
-                                       
-                                            <label>
-                                                Prepared By</label>
-                                            <asp:TextBox ID="txtAccepted" runat="server" CssClass="form-control"></asp:TextBox>
-                                        
-                                    </div>
-                                    <div class="col-lg-6">
-                                    <br />
-                                        <asp:Button ID="btnaddqueue" runat="server" Text="Add to Queue" OnClick="btnaddqueue_OnClick"
-                                            CssClass="btn btn-primary pos-btn1" />
-                                    
-                               
-                                &nbsp;&nbsp;&nbsp;<asp:Button ID="btngenerate" runat="server" Text="Check Qty" CssClass="btn btn-success"
-                                    OnClick="btngenerate_OnClick" />
-                           
-                                &nbsp;&nbsp;&nbsp;<asp:Button ID="btnexecuteraw" runat="server" Text="Execute raw" CssClass="btn btn-warning"
-                                    Visible="true" OnClick="btnexecuteraw_OnClick" />
-                            
-                                &nbsp;&nbsp;&nbsp;<asp:Button ID="btnPreview" runat="server" CssClass="btn btn-primary pos-btn1" OnClientClick="ClientSideClick(this)" UseSubmitBehavior="false"  Text="Finish Raw"
-                                    OnClick="btnPrev_Click" Visible="true" />
-                                    <asp:Label ForeColor="Red" ID="lblMsg" runat="server"></asp:Label>
-                            </div>
-                                </div>
-                                <asp:ScriptManager ID="ScriptManager1" runat="server">
-                                </asp:ScriptManager>
-                 </div>
-           
-        </div>           
-                
-                    <div class="col-lg-8">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
                     <div class="row panel-custom1">
                         <div class="panel-header">
-                          <h1 class="page-header">Finished Goods Details</h1>
-	                    </div>
-                                <asp:RadioButtonList ID="radchk" runat="server" OnSelectedIndexChanged="radchk_checked"
-                                    AutoPostBack="true" Visible="false" RepeatColumns="2">
-                                    <asp:ListItem Text="Single" Value="0"></asp:ListItem>
-                                    <asp:ListItem Text="Bulk" Value="1" Selected="True"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            
-                            <div class="panel-body">
+                            <h1 class="page-header">Finished Goods Entry</h1>
+                        </div>
+                        <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-4">
-                                 <div class="form-group has-feedback">
+                                <div class="col-lg-12">
+                                    <label>Type</label>
+                                    <asp:RadioButtonList ID="radentrytype" RepeatColumns="4" runat="server" OnSelectedIndexChanged="goodsentrytype"
+                                        AutoPostBack="true">
+                                        <asp:ListItem Text="Manual Type/with Stock Reduce" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="From Request" Value="2" Selected="True"></asp:ListItem>
+                                        <asp:ListItem Text="Manual Type/with-out Stock Reduce" Value="3"></asp:ListItem>
+                                    </asp:RadioButtonList>
+                                </div>
+                                <div class="col-lg-3">
+                                    <asp:Label runat="server" ID="Label2"><label>Receive No.</label></asp:Label>
+                                    <asp:DropDownList ID="ddlrequestno" runat="server" CssClass="form-control"
+                                        AutoPostBack="true" OnSelectedIndexChanged="ddlrequestno_OnSelectedIndexChanged">
+                                    </asp:DropDownList>
+                                </div>
+
+                                <%--    <blink> <label  style="color:Green; font-size:12px">Screen Show Detail as Per Your Goods  To Your raw Material Request Store.Please Be Carefull While Sending Stock Entry.Thank You!!!</label></blink>--%>
+
+                                <div class="col-lg-3">
+
+                                    <asp:Label runat="server" ID="Label1"><label>Category</label></asp:Label>
+                                    <asp:DropDownList ID="ddlcategory" runat="server" CssClass="form-control"
+                                        AutoPostBack="true" OnSelectedIndexChanged="ddlrequestno_OnSelectedIndexChanged">
+                                    </asp:DropDownList>
+
+                                </div>
+                                <div class="col-lg-3">
+
+                                    <asp:Label runat="server" ID="lblDcNo"><label>Finish No.</label></asp:Label>
+                                    <asp:TextBox ID="txtDCNo" runat="server" CssClass="form-control" onkeypress="return NumberOnly()"
+                                        Enabled="false"></asp:TextBox>
+                                    <asp:TextBox ID="txtcompanyname" Visible="false" runat="server" CssClass="form-control"></asp:TextBox>
+
+                                </div>
+                                <div class="col-lg-3">
+
+                                    <asp:Label runat="server" ID="lblDCDate"><label>Finish Date</label></asp:Label>
+                                    <asp:TextBox ID="txtDCDate" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender2" TargetControlID="txtDCDate"
+                                        Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
+                                    </ajaxToolkit:CalendarExtender>
+
+                                </div>
+                                <div class="col-lg-3">
+
                                     <label>
-                                        Search
-                                    </label>
-                                    <asp:TextBox ID="txtSearch" runat="server" onkeyup="Search_Gridview(this, 'gvitems')"
-                                        CssClass="form-control" placeholder="Search Category/Item.." ></asp:TextBox>
-                                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                        Prepared By</label>
+                                    <asp:TextBox ID="txtAccepted" runat="server" CssClass="form-control"></asp:TextBox>
+
                                 </div>
+                                <div class="col-lg-6">
+                                    <br />
+                                    <asp:Button ID="btnaddqueue" runat="server" Text="Add to Queue" OnClick="btnaddqueue_OnClick"
+                                        CssClass="btn btn-primary pos-btn1" />
+
+
+                                    &nbsp;&nbsp;&nbsp;<asp:Button ID="btngenerate" runat="server" Text="Check Qty" CssClass="btn btn-success"
+                                        OnClick="btngenerate_OnClick" />
+
+                                    &nbsp;&nbsp;&nbsp;<asp:Button ID="btnexecuteraw" runat="server" Text="Execute raw" CssClass="btn btn-warning"
+                                        Visible="true" OnClick="btnexecuteraw_OnClick" />
+
+                                    &nbsp;&nbsp;&nbsp;<asp:Button ID="btnPreview" runat="server" CssClass="btn btn-primary pos-btn1" OnClientClick="ClientSideClick(this)" UseSubmitBehavior="false" Text="Finish Raw"
+                                        OnClick="btnPrev_Click" Visible="true" />
+                                    <asp:Label ForeColor="Red" ID="lblMsg" runat="server"></asp:Label>
                                 </div>
+                            </div>
+                            <asp:ScriptManager ID="ScriptManager1" runat="server">
+                            </asp:ScriptManager>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-8">
+                        <div class="row panel-custom1">
+                            <div class="panel-header">
+                                <h1 class="page-header">Finished Goods Details</h1>
+                            </div>
+                            <asp:RadioButtonList ID="radchk" runat="server" OnSelectedIndexChanged="radchk_checked"
+                                AutoPostBack="true" Visible="false" RepeatColumns="2">
+                                <asp:ListItem Text="Single" Value="0"></asp:ListItem>
+                                <asp:ListItem Text="Bulk" Value="1" Selected="True"></asp:ListItem>
+                            </asp:RadioButtonList>
+
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group has-feedback">
+                                            <label>
+                                                Search
+                                            </label>
+                                            <asp:TextBox ID="txtSearch" runat="server" onkeyup="Search_Gridview(this, 'gvitems')"
+                                                CssClass="form-control" placeholder="Search Category/Item.."></asp:TextBox>
+                                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="table-responsive panel-grid-left">
-                                <asp:GridView ID="gvRawRequest" runat="server" AutoGenerateColumns="false" Width="100%"
-                                   cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" AllowSorting="true">
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="Category">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblcategorys" runat="server" Text='<%#Eval("Category")%>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Item Name">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblProduct" runat="server" Text='<%#Eval("Definition")%>'></asp:Label>
-                                                <asp:HiddenField ID="HDProductid" runat="server" Value='<%#Eval("ItemId") %>' />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Requested Stock From Store">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblQty" runat="server" Text='<%#Eval("Qty")%>' Width="100px"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Stock In Hand">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblProd_Qty" runat="server" Text='<%#Eval("Prod_Qty")%>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Frozen Stock In Hand" Visible="true">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="txtPendingfrozenqty" runat="server" Width="100px" runat="server"
-                                                    Text='<%#Eval("FrozenQty")%>' Enabled="false">0</asp:TextBox>
-                                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender6" runat="server"
-                                                    FilterType="Numbers,Custom" ValidChars="" TargetControlID="txtPendingfrozenqty" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Production Output Finished">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="txtreadyqty" runat="server" Width="100px">0</asp:TextBox>
-                                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender8" runat="server"
-                                                    FilterType="Numbers,Custom" ValidChars="" TargetControlID="txtreadyqty" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Production Damage">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="txtdamageqty" runat="server" Width="100px">0</asp:TextBox>
-                                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
-                                                    FilterType="Numbers,Custom" ValidChars="" TargetControlID="txtdamageqty" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Issue Frozen" Visible="true">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="txtfrozenqty" runat="server" Width="100px">0</asp:TextBox>
-                                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server"
-                                                    FilterType="Numbers,Custom" ValidChars="" TargetControlID="txtfrozenqty" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <%-- <asp:TemplateField HeaderText="Take Frozen" Visible="false">
+                                    <asp:GridView ID="gvRawRequest" runat="server" AutoGenerateColumns="false" Width="100%"
+                                        CssClass="table table-striped pos-table" padding="0" spacing="0" border="0" AllowSorting="true">
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Category">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblcategorys" runat="server" Text='<%#Eval("Category")%>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Item Name">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblProduct" runat="server" Text='<%#Eval("Definition")%>'></asp:Label>
+                                                    <asp:HiddenField ID="HDProductid" runat="server" Value='<%#Eval("ItemId") %>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Requested Stock From Store">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblQty" runat="server" Text='<%#Eval("Qty")%>' Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Stock In Hand">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblProd_Qty" runat="server" Text='<%#Eval("Prod_Qty")%>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Frozen Stock In Hand" Visible="true">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtPendingfrozenqty" runat="server" Width="100px" runat="server"
+                                                        Text='<%#Eval("FrozenQty")%>' Enabled="false">0</asp:TextBox>
+                                                    <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender6" runat="server"
+                                                        FilterType="Numbers,Custom" ValidChars="" TargetControlID="txtPendingfrozenqty" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Production Output Finished">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtreadyqty" runat="server" Width="100px">0</asp:TextBox>
+                                                    <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender8" runat="server"
+                                                        FilterType="Numbers,Custom" ValidChars="" TargetControlID="txtreadyqty" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Production Damage">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtdamageqty" runat="server" Width="100px">0</asp:TextBox>
+                                                    <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
+                                                        FilterType="Numbers,Custom" ValidChars="" TargetControlID="txtdamageqty" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Issue Frozen" Visible="true">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtfrozenqty" runat="server" Width="100px">0</asp:TextBox>
+                                                    <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server"
+                                                        FilterType="Numbers,Custom" ValidChars="" TargetControlID="txtfrozenqty" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <%-- <asp:TemplateField HeaderText="Take Frozen" Visible="false">
                                                                 <ItemTemplate>
                                                                     <asp:TextBox ID="txttakefrozen" runat="server" Width="100px" Enabled="true">0</asp:TextBox>
                                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender55" runat="server"
                                                                         FilterType="Numbers,Custom" ValidChars="" TargetControlID="txttakefrozen" />
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>--%>
-                                        <%--<asp:TemplateField HeaderText="Un Complete" Visible="true">
+                                            <%--<asp:TemplateField HeaderText="Un Complete" Visible="true">
                                                                 <ItemTemplate>
                                                                     <asp:TextBox ID="txtuncomplete" runat="server" Width="100px">0</asp:TextBox>
                                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender7" runat="server"
                                                                         FilterType="Numbers,Custom" ValidChars="" TargetControlID="txtuncomplete" />
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>--%>
-                                        <asp:TemplateField HeaderText="Production Output Stock" Visible="true">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="txtfinal" runat="server" Width="100px" Enabled="false">0</asp:TextBox>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                    <%--<FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                            <asp:TemplateField HeaderText="Production Output Stock" Visible="true">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtfinal" runat="server" Width="100px" Enabled="false">0</asp:TextBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                        <%--<FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
                                                         <HeaderStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
-                                </asp:GridView>
-                                <asp:GridView ID="gvitems" runat="server" AutoGenerateColumns="false"  OnRowDataBound="onrowdatabound"
-                                   cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" Width="100%">
-                                    <Columns>
-                                        <%--<asp:TemplateField HeaderText="Category">
+                                    </asp:GridView>
+                                    <asp:GridView ID="gvitems" runat="server" AutoGenerateColumns="false" OnRowDataBound="onrowdatabound"
+                                        CssClass="table table-striped pos-table" padding="0" spacing="0" border="0" Width="100%">
+                                        <Columns>
+                                            <%--<asp:TemplateField HeaderText="Category">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblCategory" runat="server" Text='<%#Eval("Category") %>'></asp:Label>
                                                     <asp:HiddenField ID="hideCategoryID" runat="server" Value='<%#Eval("CategoryID") %>' />
@@ -514,174 +502,175 @@ color:White;
                                                         FilterType="Custom,Numbers" ValidChars="." />
                                                 </ItemTemplate>
                                             </asp:TemplateField>--%>
-                                        <asp:TemplateField HeaderText="Category">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblCategory" runat="server" Text='<%#Eval("Category") %>'></asp:Label>
-                                                <asp:HiddenField ID="hideCategoryID" runat="server" Value='<%#Eval("CategoryID") %>' />
-                                                <asp:HiddenField ID="hideCategoryUserID" runat="server" Value='<%#Eval("CategoryUserID") %>' />
-                                                <asp:HiddenField ID="hideUOMID" runat="server" Value='<%#Eval("UOMID") %>' />
-                                                <asp:Label ID="lblqtytype" Visible="false" runat="server" Text='<%#Eval("qtytype") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Code">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblserial" runat="server" Text='<%#Eval("serial") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Item">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblDefinition" runat="server" Text='<%#Eval("Definition") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Stock In Hand">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblProd_Qty" runat="server" Text='<%#Eval("Prod_Qty")%>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Qty">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="txtQty" onBlur="ResetColor()" onFocus="ChangeColor()" runat="server"
-                                                    Width="50px" AutoPostBack="false">0</asp:TextBox>
-                                                <ajaxToolkit:FilteredTextBoxExtender ID="ftbe" runat="server" TargetControlID="txtQty"
-                                                    FilterType="Custom,Numbers" ValidChars="." />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Unit">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblom" runat="server" Width="50px" Text='<%#Eval("UOM") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                   <%-- <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                            <asp:TemplateField HeaderText="Category">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblCategory" runat="server" Text='<%#Eval("Category") %>'></asp:Label>
+                                                    <asp:HiddenField ID="hideCategoryID" runat="server" Value='<%#Eval("CategoryID") %>' />
+                                                    <asp:HiddenField ID="hideCategoryUserID" runat="server" Value='<%#Eval("CategoryUserID") %>' />
+                                                    <asp:HiddenField ID="hideUOMID" runat="server" Value='<%#Eval("UOMID") %>' />
+                                                    <asp:Label ID="lblqtytype" Visible="false" runat="server" Text='<%#Eval("qtytype") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Code">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblserial" runat="server" Text='<%#Eval("serial") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Item">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDefinition" runat="server" Text='<%#Eval("Definition") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Stock In Hand">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblProd_Qty" runat="server" Text='<%#Eval("Prod_Qty")%>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Qty">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtQty" onBlur="ResetColor()" onFocus="ChangeColor()" runat="server"
+                                                        Width="50px" AutoPostBack="false">0</asp:TextBox>
+                                                    <ajaxToolkit:FilteredTextBoxExtender ID="ftbe" runat="server" TargetControlID="txtQty"
+                                                        FilterType="Custom,Numbers" ValidChars="." />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Unit">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblom" runat="server" Width="50px" Text='<%#Eval("UOM") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                        <%-- <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
                                     <HeaderStyle BackColor="#428bca" ForeColor="White" HorizontalAlign="Center" />--%>
-                                    <%--<FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />--%>
-                                    <RowStyle CssClass="RowStyleBackGroundColor" ForeColor="Black" />
-                                    <%--<SelectedRowStyle  Font-Bold="True" ForeColor="white" />--%>
-                                    <%--<PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />--%>
-                                    <%--<HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />--%>
-                                    <%--<AlternatingRowStyle CssClass="RowAlternateStyleBackGroundColor" />--%>
-                                </asp:GridView>
-                                <div runat="server" id="single" visible="false">
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    Select Item</label>
-                                                <br />
-                                                <asp:DropDownList ID="drpitem" runat="server" CssClass="chzn-select">
-                                                </asp:DropDownList>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    Qty</label>
-                                                <br />
-                                                <asp:TextBox ID="txtqty" runat="server"></asp:TextBox>
-                                            </td>
-                                        </tr>
-                                    </table>
+                                        <%--<FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />--%>
+                                        <RowStyle CssClass="RowStyleBackGroundColor" ForeColor="Black" />
+                                        <%--<SelectedRowStyle  Font-Bold="True" ForeColor="white" />--%>
+                                        <%--<PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />--%>
+                                        <%--<HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />--%>
+                                        <%--<AlternatingRowStyle CssClass="RowAlternateStyleBackGroundColor" />--%>
+                                    </asp:GridView>
+                                    <div runat="server" id="single" visible="false">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <label>
+                                                        Select Item</label>
+                                                    <br />
+                                                    <asp:DropDownList ID="drpitem" runat="server" CssClass="chzn-select">
+                                                    </asp:DropDownList>
+                                                </td>
+                                                <td>
+                                                    <label>
+                                                        Qty</label>
+                                                    <br />
+                                                    <asp:TextBox ID="txtqty" runat="server"></asp:TextBox>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-                       
-                    <div class="col-lg-4">
-                     <div class="row panel-custom1">
-                    <div class="panel-header">
-                      <h1 class="page-header"><asp:Label ID="lblgridheading" runat="server"></asp:Label></h1>
-	                </div>
-
-                            <div class="panel-body">
-                           
-                            <div class="table-responsive panel-grid-left">
-                              <asp:GridView ID="gvqueueitems" runat="server" AutoGenerateColumns="false" Width="100%" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" Caption ="Production Item List"
-                                    Font-Names="Calibri" OnRowCommand="gvqueueitems_RowCommand" OnRowDeleting="gvqueueitems_RowDeleting">
-                                   <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                        HorizontalAlign="Center" ForeColor="White" />--%>
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="Category">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblCategory" runat="server" Text='<%#Eval("Category") %>'></asp:Label>
-                                                <asp:HiddenField ID="hideCategoryID" runat="server" Value='<%#Eval("CategoryID") %>' />
-                                                <asp:HiddenField ID="hideCategoryUserID" runat="server" Value='<%#Eval("CategoryUserID") %>' />
-                                                <asp:HiddenField ID="hideUOMID" runat="server" Value='<%#Eval("UOMID") %>' />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="Code">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblserial" runat="server"  Text='<%#Eval("serial") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Item">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblDefinition" runat="server" Text='<%#Eval("Definition") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Qty">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="txtQty" runat="server" Width="50px" Text='<%#Eval("Qty") %>' Enabled="false">0</asp:TextBox>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Unit">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblom" runat="server"  Text='<%#Eval("UOM") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField>
-                                            <ItemTemplate>
-                                                <asp:Button ID="plus" Text="+" runat="server" CommandName="plus" CommandArgument="<%# Container.DataItemIndex %>" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField>
-                                            <ItemTemplate>
-                                                <asp:Button ID="minus" Text="-" runat="server" CommandName="minus" CommandArgument="<%# Container.DataItemIndex %>" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:CommandField ShowDeleteButton="True" ButtonType="Button" />
-                                    </Columns>
-                                </asp:GridView>
-                                  
-                                <asp:GridView ID="GridView2" AutoGenerateColumns="False" ShowFooter="True" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" Caption="Raw Materials Details"
-                                    GridLines="Both" Width="100%" runat="server">
-                                   <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
-                                        HorizontalAlign="Center" ForeColor="White" />--%>
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="S.No">
-                                            <ItemTemplate>
-                                                <%#Container.DataItemIndex+1 %>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Ingredient Name">
-                                            <ItemTemplate>
-                                                <asp:HiddenField ID="Semiitemid" runat="server" Value='<%#Eval("Semiitemid") %>' />
-                                                <asp:Label ID="lblIngredientName" runat="server" Text='<%#Eval("IngredientName") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:BoundField HeaderText="Kitchen Stock" DataField="RawStock" />
-                                        <asp:TemplateField HeaderText="Qty">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblWantedRaw" runat="server" Text='<%#Eval("WantedRaw") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:BoundField HeaderText="Unit" DataField="UOM" />
-                                    </Columns>
-                                </asp:GridView>
-                              
-
-                               </div>
-                                <asp:Label ID="lblError" runat="server" Style="color: Red"></asp:Label>
-                           
-                            
                             </div>
                         </div>
                     </div>
-                
-            
-    </div>
-    </div>
-    </div>
-   
-  <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
+
+                    <div class="col-lg-4">
+                        <div class="row panel-custom1">
+                            <div class="panel-header">
+                                <h1 class="page-header">
+                                    <asp:Label ID="lblgridheading" runat="server"></asp:Label></h1>
+                            </div>
+
+                            <div class="panel-body">
+
+                                <div class="table-responsive panel-grid-left">
+                                    <asp:GridView ID="gvqueueitems" runat="server" AutoGenerateColumns="false" Width="100%" CssClass="table table-striped pos-table" padding="0" spacing="0" border="0" Caption="Production Item List"
+                                        Font-Names="Calibri" OnRowCommand="gvqueueitems_RowCommand" OnRowDeleting="gvqueueitems_RowDeleting">
+                                        <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                        HorizontalAlign="Center" ForeColor="White" />--%>
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Category">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblCategory" runat="server" Text='<%#Eval("Category") %>'></asp:Label>
+                                                    <asp:HiddenField ID="hideCategoryID" runat="server" Value='<%#Eval("CategoryID") %>' />
+                                                    <asp:HiddenField ID="hideCategoryUserID" runat="server" Value='<%#Eval("CategoryUserID") %>' />
+                                                    <asp:HiddenField ID="hideUOMID" runat="server" Value='<%#Eval("UOMID") %>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Code">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblserial" runat="server" Text='<%#Eval("serial") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Item">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDefinition" runat="server" Text='<%#Eval("Definition") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Qty">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtQty" runat="server" Width="50px" Text='<%#Eval("Qty") %>' Enabled="false">0</asp:TextBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Unit">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblom" runat="server" Text='<%#Eval("UOM") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                    <asp:Button ID="plus" Text="+" runat="server" CommandName="plus" CommandArgument="<%# Container.DataItemIndex %>" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                    <asp:Button ID="minus" Text="-" runat="server" CommandName="minus" CommandArgument="<%# Container.DataItemIndex %>" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:CommandField ShowDeleteButton="True" ButtonType="Button" />
+                                        </Columns>
+                                    </asp:GridView>
+
+                                    <asp:GridView ID="GridView2" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-striped pos-table" padding="0" spacing="0" border="0" Caption="Raw Materials Details"
+                                        GridLines="Both" Width="100%" runat="server">
+                                        <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
+                                        HorizontalAlign="Center" ForeColor="White" />--%>
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="S.No">
+                                                <ItemTemplate>
+                                                    <%#Container.DataItemIndex+1 %>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Ingredient Name">
+                                                <ItemTemplate>
+                                                    <asp:HiddenField ID="Semiitemid" runat="server" Value='<%#Eval("Semiitemid") %>' />
+                                                    <asp:Label ID="lblIngredientName" runat="server" Text='<%#Eval("IngredientName") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField HeaderText="Kitchen Stock" DataField="RawStock" />
+                                            <asp:TemplateField HeaderText="Qty">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblWantedRaw" runat="server" Text='<%#Eval("WantedRaw") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField HeaderText="Unit" DataField="UOM" />
+                                        </Columns>
+                                    </asp:GridView>
+
+
+                                </div>
+                                <asp:Label ID="lblError" runat="server" Style="color: Red"></asp:Label>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
         <script type="text/javascript">
             window.onload = function () {
                 $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });

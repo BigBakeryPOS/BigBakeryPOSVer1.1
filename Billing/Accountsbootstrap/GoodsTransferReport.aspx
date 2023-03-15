@@ -8,7 +8,7 @@
 <head>
     <meta content="" charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initialgvTransfer-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Goods Transfer Grid </title>
@@ -60,104 +60,107 @@
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <usc:Header ID="Header" runat="server" />
     <div class="container-fluid">
-	<div class="row">
-    <div class="col-lg-12">
-    <div class="row panel-custom1">
-        <div class="panel-header">
-          <h1 class="page-header">Goods Transfer Details</h1>
-	    </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row panel-custom1">
+                    <div class="panel-header">
+                        <h1 class="page-header">Goods Transfer Details</h1>
+                    </div>
 
-                <div class="panel-body">
-                    <div class="row">
-                            <form runat="server" id="form1" method="post">
-                            <asp:ScriptManager ID="ScriptManager1" runat="server">
-                            </asp:ScriptManager>
-                            
-                        <div class="col-lg-12">
+                    <div class="panel-body">
                         <div class="row">
-                               <%-- <label>
+                            <form runat="server" id="form1" method="post">
+                                <asp:ScriptManager ID="ScriptManager1" runat="server">
+                                </asp:ScriptManager>
+
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <%-- <label>
                                     Filter By</label>--%>
-                                <asp:DropDownList ID="ddlBranch" CssClass="form-control" Style="width: 150px;" runat="server" Visible="false">
-                                    <%--<asp:ListItem Text="Bill No" Value="1"></asp:ListItem>
+                                        <asp:DropDownList ID="ddlBranch" CssClass="form-control" Style="width: 150px;" runat="server" Visible="false">
+                                            <%--<asp:ListItem Text="Bill No" Value="1"></asp:ListItem>
                                             <asp:ListItem Text="Customer Name" Value="2"></asp:ListItem>
                                             <asp:ListItem Text="Area" Value="3"></asp:ListItem>
                                             <asp:ListItem Text="City" Value="4"></asp:ListItem>--%>
-                                </asp:DropDownList>
-                                <div class="col-lg-3">
-                                    <label>
-                                        Group</label>
-                                    <asp:DropDownList ID="ddlcategory" AutoPostBack="true" runat="server" class="form-control"
-                                         OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged">
-                                    </asp:DropDownList>
-                                </div>
-                                
-                            <div class="col-lg-3">
-                                <label>
-                                    From Date</label>
-                                <asp:TextBox ID="txtDate" class="form-control" runat="server"></asp:TextBox>
-                                <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="yyyy-MM-dd" TargetControlID="txtDate"
-                                    runat="server" CssClass="cal_Theme1">
-                                </ajaxToolkit:CalendarExtender>
-                                </div>
-                                <div class="col-lg-3">
-                                <label>
-                                    To Date</label>
-                                <asp:TextBox ID="txtToDate" class="form-control" runat="server"></asp:TextBox>
-                                <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="yyyy-MM-dd" TargetControlID="txtToDate"
-                                    runat="server" CssClass="cal_Theme1">
-                                </ajaxToolkit:CalendarExtender>
-                            </div>
-                            <div class="col-lg-3">
-                            <br />
-                                <asp:Button ID="btnsearch" runat="server" class="btn btn-info pos-btn1" Text="Search" 
-                                    OnClick="btnsearch_Click" />
-                              &nbsp;&nbsp;&nbsp;  <asp:Button ID="btnrefresh" runat="server" class="btn btn-secondary" Text="Reset"  />
-                                &nbsp;&nbsp;&nbsp; <asp:Button ID="button1" runat="server" class="btn btn-secondary" Text="Print"  onclick="btnPrint_Click"/>
-                                <asp:LinkButton ID="btnPrint" runat="server" onclick="btnPrint_Click" Visible="false">
-                                <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png"  Width="50px" Height="50px"/>
-                                </asp:LinkButton>
-                            </div>
-                            </div>
-                            </div>
-                         
-                            
-                        <div class="col-lg-12">
-                            <br />
+                                        </asp:DropDownList>
+                                        <div class="col-lg-3">
                                             <label>
-                                                    Goods Transfer/Damage/Missing Details Report
-                                            </label>
-                                       <div class="table-responsive panel-grid-left">
-                                            <asp:GridView ID="gvTransfer" runat="server" EmptyDataText="No Record Found" AutoGenerateColumns="false"
-                                                cssClass="table table-striped pos-table" padding="0" spacing="0" border="0" OnRowCommand="gvTransfer_RowCommand">
-                                                <Columns>
-                                                    <asp:BoundField HeaderText="DC No" DataField="DC_NO" />
-                                                    <asp:BoundField HeaderText="DC_Date" DataField="DC_Date" />
-                                                    <asp:BoundField HeaderText="Transferd To" DataField="branchcode" />
-                                                    <asp:BoundField HeaderText="Branch Req.No" DataField="BranchReqNo" />
-                                                    <asp:BoundField HeaderText="Category" DataField="category" />
-                                                    <asp:BoundField HeaderText="Item Name" DataField="Item" />
-                                                    <asp:BoundField HeaderText="Requested Qty" DataField="OrderQty" />
-                                                    <asp:BoundField HeaderText="Transfer Qty" DataField="SentQty" />
-                                                    <asp:BoundField HeaderText="Damage Qty" DataField="damageQty" />
-                                                    <asp:BoundField HeaderText="Missing Qty" DataField="MissingQty" />
-                                                </Columns>
-                                                <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
-                                                <HeaderStyle BackColor="#428bca" ForeColor="White" HorizontalAlign="Center" />
-                                            </asp:GridView>
-                                      
-                                            <asp:GridView ID="grid" runat="server" CssClass="mGrid">
-                                            </asp:GridView>
-                                        
-                            </div>
-                            </div>
-                            
+                                                Group</label>
+                                            <asp:DropDownList ID="ddlcategory" AutoPostBack="true" runat="server" class="form-control"
+                                                OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged">
+                                            </asp:DropDownList>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <label>
+                                                From Date</label>
+                                            <asp:TextBox ID="txtDate" class="form-control" runat="server"></asp:TextBox>
+                                            <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="yyyy-MM-dd" TargetControlID="txtDate"
+                                                runat="server" CssClass="cal_Theme1">
+                                            </ajaxToolkit:CalendarExtender>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>
+                                                To Date</label>
+                                            <asp:TextBox ID="txtToDate" class="form-control" runat="server"></asp:TextBox>
+                                            <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="yyyy-MM-dd" TargetControlID="txtToDate"
+                                                runat="server" CssClass="cal_Theme1">
+                                            </ajaxToolkit:CalendarExtender>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <br />
+                                            <asp:Button ID="btnsearch" runat="server" class="btn btn-info pos-btn1" Text="Search"
+                                                OnClick="btnsearch_Click" />
+                                            &nbsp;&nbsp;&nbsp; 
+                                            <asp:Button ID="btnrefresh" runat="server" class="btn btn-secondary" Text="Reset" />
+                                            &nbsp;&nbsp;&nbsp;
+                                            <asp:Button ID="button1" runat="server" class="btn btn-secondary" Text="Print" OnClick="btnPrint_Click" />
+                                            <asp:LinkButton ID="btnPrint" runat="server" OnClick="btnPrint_Click" Visible="false">
+                                                <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png" Width="50px" Height="50px" />
+                                            </asp:LinkButton>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-12">
+                                    <br />
+                                    <label>
+                                        Goods Transfer/Damage/Missing Details Report
+                                    </label>
+                                    <div class="table-responsive panel-grid-left">
+                                        <asp:GridView ID="gvTransfer" runat="server" EmptyDataText="No Record Found" AutoGenerateColumns="false"
+                                            CssClass="table table-striped pos-table" padding="0" spacing="0" border="0" OnRowCommand="gvTransfer_RowCommand">
+                                            <Columns>
+                                                <asp:BoundField HeaderText="DC No" DataField="DC_NO" />
+                                                <asp:BoundField HeaderText="DC_Date" DataField="DC_Date" />
+                                                <asp:BoundField HeaderText="Transferd To" DataField="branchcode" />
+                                                <asp:BoundField HeaderText="Branch Req.No" DataField="BranchReqNo" />
+                                                <asp:BoundField HeaderText="Category" DataField="category" />
+                                                <asp:BoundField HeaderText="Item Name" DataField="Item" />
+                                                <asp:BoundField HeaderText="MRP" DataField="MRP" />
+                                                <asp:BoundField HeaderText="Requested Qty" DataField="OrderQty" />
+                                                <asp:BoundField HeaderText="Transfer Qty" DataField="SentQty" />
+                                                <asp:BoundField HeaderText="Damage Qty" DataField="damageQty" />
+                                                <asp:BoundField HeaderText="Missing Qty" DataField="MissingQty" />                                                
+                                            </Columns>
+                                            <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                            <HeaderStyle BackColor="#428bca" ForeColor="White" HorizontalAlign="Center" />
+                                        </asp:GridView>
+
+                                        <asp:GridView ID="grid" runat="server" CssClass="mGrid">
+                                        </asp:GridView>
+
+                                    </div>
+                                </div>
+
                             </form>
-                            </div>
                         </div>
-                      
-    </div>
-    </div>
-    </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

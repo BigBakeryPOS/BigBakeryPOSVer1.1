@@ -63,7 +63,7 @@ namespace Billing.Accountsbootstrap
                     ddlcategory.DataTextField = "Category";
                     ddlcategory.DataValueField = "Categoryid";
                     ddlcategory.DataBind();
-                    ddlcategory.Items.Insert(0, "Select");
+                    ddlcategory.Items.Insert(0, "All");
                 }
 
                 //DataSet dsitem = objbs.AllItems();
@@ -561,6 +561,7 @@ namespace Billing.Accountsbootstrap
                         dtraw.Columns.Add("RawStock");
                         dtraw.Columns.Add("WantedRaw");
                         dtraw.Columns.Add("UOM");
+                        dtraw.Columns.Add("qtytype");
                         dsraw.Tables.Add(dtraw);
 
 
@@ -574,7 +575,7 @@ namespace Billing.Accountsbootstrap
                             DataTable dtraws = dsrawmerge.Tables[0];
 
                             var result1 = from r in dtraws.AsEnumerable()
-                                          group r by new { RawStock = r["RawStock"], IngredientName = r["IngredientName"], UOM = r["UOM"], Semiitemid = r["Semiitemid"] } into raw
+                                          group r by new { RawStock = r["RawStock"], IngredientName = r["IngredientName"], UOM = r["UOM"], Semiitemid = r["Semiitemid"], qtytype = r["qtytype"] } into raw
                                           select new
                                           {
                                               IngredientName = raw.Key.IngredientName,
@@ -582,6 +583,7 @@ namespace Billing.Accountsbootstrap
                                               RawStock = raw.Key.RawStock,
                                               total = raw.Sum(x => Convert.ToDouble(x["WantedRaw"])),
                                               UOM = raw.Key.UOM,
+                                              qtytype = raw.Key.qtytype,
                                           };
 
 
@@ -591,7 +593,15 @@ namespace Billing.Accountsbootstrap
 
                                 drraw["Semiitemid"] = g.Semiitemid;
                                 drraw["IngredientName"] = g.IngredientName;
-                                drraw["RawStock"] = Convert.ToDouble(g.RawStock).ToString("f3");
+                                if (g.qtytype.ToString() == "D")
+                                {
+                                    drraw["RawStock"] = Convert.ToDouble(g.RawStock).ToString(""+qtysetting+"");
+                                }
+                                else if(g.qtytype.ToString()=="E")
+                                {
+                                    drraw["RawStock"] = Convert.ToInt32(g.RawStock).ToString();
+
+                                }
 
                                 //  string RoundofWantedRaw = Math.Round(g.total).ToString("f3");
 
@@ -668,17 +678,28 @@ namespace Billing.Accountsbootstrap
             {
 
                 //TextBox txtQty = ((TextBox)e.Row.FindControl("txtQty"));
+               // lblqty;
                 Label lbqty = ((Label)e.Row.FindControl("lblProd_Qty"));
-
-
-                Label lblqtytype = ((Label)e.Row.FindControl("lblqtytype"));
-                if (lblqtytype.Text == "D")
-                {
-                    lbqty.Text = Convert.ToDouble(lbqty.Text).ToString("" + qtysetting + "");
-                }
+                Label lblqtytype = (Label)e.Row.FindControl("lblqtytype");
+                if (lbqty.Text == "")
+                { lbqty.Text = "0"; }
                 else
                 {
-                    lbqty.Text = Convert.ToDouble(lbqty.Text).ToString("0");
+
+                    if (lblqtytype.Text == "D")
+                    {
+                        lbqty.Text = Convert.ToDouble(lbqty.Text).ToString("" + qtysetting + "");
+                    }
+                    else if (lblqtytype.Text == "E")
+                    {
+                        if (lbqty.Text == "0.0000")
+                        { lbqty.Text = "0"; }
+                        else
+                        {
+                            int lblqty =Convert.ToInt32(lbqty.Text.ToString());
+                            lbqty.Text = lblqty.ToString();
+                        }
+                    }
                 }
 
                 //lblreceived_Qty.Text = Convert.ToDouble(lblreceived_Qty.Text).ToString("" + qtysetting + "");
@@ -842,6 +863,7 @@ namespace Billing.Accountsbootstrap
                 dtraw.Columns.Add("WantedRaw");
                 dtraw.Columns.Add("RawStock");
                 dtraw.Columns.Add("UOM");
+                dtraw.Columns.Add("qtytype");
                 dsraw.Tables.Add(dtraw);
 
                 DataSet dsrawmerge = new DataSet();
@@ -879,7 +901,7 @@ namespace Billing.Accountsbootstrap
                     dtraws = dsrawmerge.Tables[0];
 
                     var result1 = from r in dtraws.AsEnumerable()
-                                  group r by new { RawStock = r["RawStock"], IngredientName = r["IngredientName"], UOM = r["UOM"], Semiitemid = r["Semiitemid"] } into raw
+                                  group r by new { RawStock = r["RawStock"], IngredientName = r["IngredientName"], UOM = r["UOM"], Semiitemid = r["Semiitemid"], qtytype = r["qtytype"] } into raw
                                   select new
                                   {
                                       Semiitemid = raw.Key.Semiitemid,
@@ -887,6 +909,7 @@ namespace Billing.Accountsbootstrap
                                       RawStock = raw.Key.RawStock,
                                       total = raw.Sum(x => Convert.ToDouble(x["WantedRaw"])),
                                       UOM = raw.Key.UOM,
+                                      qtytype = raw.Key.qtytype,
                                   };
 
 
@@ -896,13 +919,21 @@ namespace Billing.Accountsbootstrap
 
                         drraw["Semiitemid"] = g.Semiitemid;
                         drraw["IngredientName"] = g.IngredientName;
-                        drraw["RawStock"] = Convert.ToDouble(g.RawStock).ToString("f3");
+                        if(g.qtytype.ToString()=="D")
+                        {
+                            drraw["RawStock"] = Convert.ToDouble(g.RawStock).ToString(""+qtysetting+"");
+                        }
+                        else if(g.qtytype.ToString()=="E")
+                        {
+                            drraw["RawStock"] = Convert.ToInt32(g.RawStock).ToString();
+                        }
+                        
 
                         //  string RoundofWantedRaw = Math.Round(g.total).ToString("f2");
 
                         drraw["WantedRaw"] = (g.total).ToString("f3");
                         drraw["UOM"] = g.UOM;
-
+                        drraw["qtytype"] = g.qtytype;
                         dsraw.Tables[0].Rows.Add(drraw);
                     }
                     GridView2.DataSource = dsraw.Tables[0];
@@ -942,6 +973,7 @@ namespace Billing.Accountsbootstrap
                 dtraw.Columns.Add("WantedRaw");
                 dtraw.Columns.Add("RawStock");
                 dtraw.Columns.Add("UOM");
+                dtraw.Columns.Add("qtytype");
                 dsraw.Tables.Add(dtraw);
 
                 DataSet dsrawmerge = new DataSet();
@@ -980,7 +1012,7 @@ namespace Billing.Accountsbootstrap
                         dtraws = dsrawmerge.Tables[0];
 
                         var result1 = from r in dtraws.AsEnumerable()
-                                      group r by new { RawStock = r["RawStock"], IngredientName = r["IngredientName"], UOM = r["UOM"], Semiitemid = r["Semiitemid"] } into raw
+                                      group r by new { RawStock = r["RawStock"], IngredientName = r["IngredientName"], UOM = r["UOM"], Semiitemid = r["Semiitemid"], qtytype = r["qtytype"] } into raw
                                       select new
                                       {
                                           Semiitemid = raw.Key.Semiitemid,
@@ -988,6 +1020,7 @@ namespace Billing.Accountsbootstrap
                                           RawStock = raw.Key.RawStock,
                                           total = raw.Sum(x => Convert.ToDouble(x["WantedRaw"])),
                                           UOM = raw.Key.UOM,
+                                          qtytype=raw.Key.qtytype,
                                       };
 
 
@@ -997,8 +1030,14 @@ namespace Billing.Accountsbootstrap
 
                             drraw["Semiitemid"] = g.Semiitemid;
                             drraw["IngredientName"] = g.IngredientName;
-                            drraw["RawStock"] = Convert.ToDouble(g.RawStock).ToString("f3");
-
+                            if (g.qtytype.ToString() == "D")
+                            {
+                                drraw["RawStock"] = Convert.ToDouble(g.RawStock).ToString(""+qtysetting+"");
+                            }
+                            else if(g.qtytype.ToString()=="E")
+                            {
+                                drraw["RawStock"] = Convert.ToInt32(g.RawStock).ToString();
+                            }
                             //  string RoundofWantedRaw = Math.Round(g.total).ToString("f2");
 
                             drraw["WantedRaw"] = (g.total).ToString("f3");

@@ -398,6 +398,11 @@
                                                                         <asp:Label ID="lblom" runat="server" Width="50px" Text='<%#Eval("UOM") %>'></asp:Label>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
+                                                                 <asp:TemplateField Visible="false">
+                                                                    <ItemTemplate>
+                                                                        <asp:Label ID="lblqtytype" runat="server" Visible="false" Width="50px" Text='<%#Eval("qtytype") %>'></asp:Label>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
                                                             </Columns>
                                                             <%-- <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />--%>
                                                             <RowStyle CssClass="RowStyleBackGroundColor" ForeColor="Black" />
@@ -412,7 +417,7 @@
                                                     Selected Requested Item List</label>
                                                 <div class="table-responsive panel-grid-left">
                                                     <asp:GridView ID="gvqueueitems" runat="server" AutoGenerateColumns="false" Width="100%" CssClass="table table-striped pos-table"
-                                                        padding="0" spacing="0" border="0" OnRowCommand="gvqueueitems_RowCommand" OnRowDeleting="gvqueueitems_RowDeleting">
+                                                        padding="0" spacing="0" border="0" OnRowCommand="gvqueueitems_RowCommand" OnRowDeleting="gvqueueitems_RowDeleting" >
                                                         <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
                                                     HorizontalAlign="Center" ForeColor="White" />--%>
                                                         <Columns>
@@ -449,7 +454,13 @@
                                                                     <asp:Label ID="lblom" runat="server" Width="50px" Text='<%#Eval("UOM") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
+                                                             <asp:TemplateField Visible="false">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblqtytype" runat="server" Visible="false" Width="50px" Text='<%#Eval("qtytype") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
                                                             <asp:TemplateField>
+
                                                                 <ItemTemplate>
                                                                     <asp:Button ID="plus" Text="+" runat="server" CommandName="plus" CommandArgument="<%# Container.DataItemIndex %>" />
                                                                 </ItemTemplate>

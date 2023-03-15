@@ -11,8 +11,7 @@ using System.Configuration;
 using System.Text;
 using System.Net.Mail;
 using System.Globalization;
-
-
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Billing.Accountsbootstrap
 {
@@ -587,11 +586,22 @@ namespace Billing.Accountsbootstrap
 
              if (e.Row.RowType == DataControlRowType.DataRow)
             {
+               
 
                 Label lblAvailable_Qty = ((Label)e.Row.FindControl("lblAvailable_Qty"));
-                
+                Label lblqtytype = (Label)e.Row.FindControl("lblqtytype");
 
-                lblAvailable_Qty.Text = Convert.ToDouble(lblAvailable_Qty.Text).ToString("" + qtysetting + "");
+                if (lblqtytype.Text == "E")
+                {
+
+                  
+                    lblAvailable_Qty.Text = Convert.ToInt32(lblAvailable_Qty.Text).ToString();
+                }
+                else if (lblqtytype.Text == "D")
+                {
+
+                    lblAvailable_Qty.Text = Convert.ToDouble(lblAvailable_Qty.Text).ToString("" + qtysetting + "");
+                }
 
             }
         }
@@ -626,6 +636,8 @@ namespace Billing.Accountsbootstrap
             dttt.Columns.Add(dct);
             dct = new DataColumn("Barcode");
             dttt.Columns.Add(dct);
+            dct = new DataColumn("qtytype");
+            dttt.Columns.Add(dct);
 
             dstd.Tables.Add(dttt);
 
@@ -646,13 +658,14 @@ namespace Billing.Accountsbootstrap
                     Label lblDefinition = (Label)gvitems.Rows[i].FindControl("lblDefinition");
                     Label lblAvailable_Qty = (Label)gvitems.Rows[i].FindControl("lblAvailable_Qty");
                     Label lblom = (Label)gvitems.Rows[i].FindControl("lblom");
-
+                    Label lblqtytype = (Label)gvitems.Rows[i].FindControl("lblqtytype");
                     TextBox txtQty = (TextBox)gvitems.Rows[i].FindControl("txtQty");
 
                     if (txtQty.Text == "")
                         txtQty.Text = "0";
+                  
 
-                    if (Convert.ToDouble(txtQty.Text) > 0)
+                    if (Convert.ToDouble(txtQty.Text) >0)
                     {
                         drNew = dttt.NewRow();
                         drNew["CategoryID"] = hideCategoryID.Value;
@@ -663,9 +676,19 @@ namespace Billing.Accountsbootstrap
 
                         drNew["Category"] = lblCategory.Text;
                         drNew["Definition"] = lblDefinition.Text;
-                        drNew["Available_Qty"] = Convert.ToDouble(lblAvailable_Qty.Text).ToString(""+qtysetting+"");
-                        drNew["Qty"] =  Convert.ToDouble(txtQty.Text).ToString(""+qtysetting+"");
+                        
+                        if (lblqtytype.Text == "D")
+                        {
+                            drNew["Available_Qty"] = Convert.ToDouble(lblAvailable_Qty.Text).ToString("" + qtysetting + "");
+                            drNew["Qty"] = Convert.ToDouble(txtQty.Text).ToString("" + qtysetting + "");
+                        }
+                        else if(lblqtytype.Text=="E")
+                        {
+                            drNew["Available_Qty"] = Convert.ToInt32(lblAvailable_Qty.Text).ToString();
+                            drNew["Qty"] = Convert.ToInt32(txtQty.Text).ToString();
+                        }
                         drNew["UOM"] = lblom.Text;
+                        drNew["qtytype"] = lblqtytype.Text;
 
                         dstd.Tables[0].Rows.Add(drNew);
                         dtddd = dstd.Tables[0];
@@ -692,7 +715,7 @@ namespace Billing.Accountsbootstrap
 
                     Label lblAvailable_Qty = (Label)gvitems.Rows[i].FindControl("lblAvailable_Qty");
                     Label lblom = (Label)gvitems.Rows[i].FindControl("lblom");
-
+                    Label lblqtytype = (Label)gvitems.Rows[i].FindControl("lblqtytype");
                     TextBox txtQty = (TextBox)gvitems.Rows[i].FindControl("txtQty");
                     if (txtQty.Text == "")
                         txtQty.Text = "0";
@@ -706,10 +729,19 @@ namespace Billing.Accountsbootstrap
                         drNew["Barcode"] = lblbarcode.Text;
                         drNew["Category"] = lblCategory.Text;
                         drNew["Definition"] = lblDefinition.Text;
-                        drNew["Available_Qty"] = Convert.ToDouble(lblAvailable_Qty.Text).ToString(""+qtysetting+"");
-                        drNew["Qty"] = Convert.ToDouble(txtQty.Text).ToString(""+qtysetting+"");
+                       
+                        if (lblqtytype.Text == "D")
+                        {
+                            drNew["Available_Qty"] = Convert.ToDouble(lblAvailable_Qty.Text).ToString("" + qtysetting + "");
+                            drNew["Qty"] = Convert.ToDouble(txtQty.Text).ToString("" + qtysetting + "");
+                        }
+                        else if (lblqtytype.Text == "E")
+                        {
+                            drNew["Available_Qty"] = Convert.ToInt32(lblAvailable_Qty.Text).ToString();
+                            drNew["Qty"] = Convert.ToInt32(txtQty.Text).ToString();
+                        }
                         drNew["UOM"] = lblom.Text;
-
+                        drNew["qtytype"] = lblqtytype.Text;
                         dstd.Tables[0].Rows.Add(drNew);
                         dtddd = dstd.Tables[0];
 
@@ -739,7 +771,7 @@ namespace Billing.Accountsbootstrap
             dtraw.Columns.Add("Available_Qty");
             dtraw.Columns.Add("Qty");
             dtraw.Columns.Add("UOM");
-
+            dtraw.Columns.Add("qtytype");
             dsraw.Tables.Add(dtraw);
 
             if (dstd.Tables[0].Rows.Count > 0)
@@ -749,7 +781,7 @@ namespace Billing.Accountsbootstrap
                 // DataTable dtraws = dsrawmerge.Tables[0];
 
                 var result1 = from r in dtddd.AsEnumerable()
-                              group r by new { CategoryID = r["CategoryID"], CategoryUserID = r["CategoryUserID"], UOMID = r["UOMID"], Category = r["Category"], Definition = r["Definition"], Available_Qty = r["Available_Qty"], UOM = r["UOM"], Barcode = r["Barcode"] } into raw
+                              group r by new { CategoryID = r["CategoryID"], CategoryUserID = r["CategoryUserID"], UOMID = r["UOMID"], Category = r["Category"], Definition = r["Definition"], Available_Qty = r["Available_Qty"], UOM = r["UOM"], Barcode = r["Barcode"] , qtytype = r["qtytype"] } into raw
                               select new
                               {
                                   CategoryID = raw.Key.CategoryID,
@@ -758,6 +790,7 @@ namespace Billing.Accountsbootstrap
                                   Category = raw.Key.Category,
                                   Definition = raw.Key.Definition,
                                   Barcode = raw.Key.Barcode,
+                                  qtytype=raw.Key.qtytype ,
                                   Available_Qty = raw.Key.Available_Qty,
                                   Qty = raw.Sum(x => Convert.ToDouble(x["Qty"])),
                                   UOM = raw.Key.UOM,
@@ -774,10 +807,18 @@ namespace Billing.Accountsbootstrap
                     drraw["Category"] = g.Category;
                     drraw["Barcode"] = g.Barcode;
                     drraw["Definition"] = g.Definition;
-                    drraw["Available_Qty"] = Convert.ToDouble(g.Available_Qty).ToString(""+qtysetting+"");
-                    drraw["Qty"] = Convert.ToDouble(g.Qty).ToString(""+qtysetting+"");
+                    if (g.qtytype.ToString() == "E")
+                    {
+                        drraw["Available_Qty"] = Convert.ToInt32(g.Available_Qty).ToString();
+                        drraw["Qty"] = Convert.ToInt32(g.Qty).ToString();
+                    }
+                    else if (g.qtytype.ToString() == "D")
+                    {
+                        drraw["Available_Qty"] = Convert.ToDouble(g.Available_Qty).ToString("" + qtysetting + "");
+                        drraw["Qty"] = Convert.ToDouble(g.Qty).ToString("" + qtysetting + "");
+                    }
                     drraw["UOM"] = g.UOM;
-
+                    drraw["qtytype"] = g.qtytype.ToString();
                     dsraw.Tables[0].Rows.Add(drraw);
                 }
                 gvqueueitems.DataSource = dsraw;
@@ -1052,15 +1093,24 @@ namespace Billing.Accountsbootstrap
 
         #endregion
 
-
-        protected void gvqueueitems_RowCommand(object sender, GridViewCommandEventArgs e)
+       
+            protected void gvqueueitems_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "plus")
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvqueueitems.Rows[rowIndex];
                 TextBox txtQty = (TextBox)gvqueueitems.Rows[rowIndex].Cells[4].FindControl("txtQty");
-                txtQty.Text = Convert.ToDouble(Convert.ToDouble(txtQty.Text) + 1).ToString(""+qtysetting+"");
+                Label lblqtytype = (Label)gvqueueitems.Rows[rowIndex].Cells[6].FindControl("lblqtytype");
+                if(lblqtytype.Text=="E")
+                {
+                    txtQty.Text = Convert.ToDouble(Convert.ToDouble(txtQty.Text) + 1).ToString();
+                }
+                else if(lblqtytype.Text=="D")
+                {
+                    txtQty.Text = Convert.ToDouble(Convert.ToDouble(txtQty.Text) + 1).ToString("" + qtysetting + "");
+                }
+               
             }
 
             if (e.CommandName == "minus")
@@ -1068,14 +1118,14 @@ namespace Billing.Accountsbootstrap
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvqueueitems.Rows[rowIndex];
                 TextBox txtQty = (TextBox)gvqueueitems.Rows[rowIndex].Cells[4].FindControl("txtQty");
-
-                if (Convert.ToDouble(txtQty.Text) > 0)
+                Label lblqtytype = (Label)gvqueueitems.Rows[rowIndex].Cells[6].FindControl("lblqtytype");
+                if (lblqtytype.Text == "E")
                 {
-                    txtQty.Text = Convert.ToDouble(Convert.ToDouble(txtQty.Text) - 1).ToString(""+qtysetting+"");
+                    txtQty.Text = Convert.ToInt32(Convert.ToInt32(txtQty.Text) - 1).ToString();
                 }
-                else
+                else if (lblqtytype.Text == "D")
                 {
-                    txtQty.Text = "0.00";
+                    txtQty.Text = Convert.ToDouble(Convert.ToDouble(txtQty.Text) - 1).ToString("" + qtysetting + "");
                 }
             }
 
@@ -1118,7 +1168,7 @@ namespace Billing.Accountsbootstrap
                 Label lblDefinition = (Label)gvqueueitems.Rows[i].FindControl("lblDefinition");
                 Label lblAvailable_Qty = (Label)gvqueueitems.Rows[i].FindControl("lblAvailable_Qty");
                 Label lblom = (Label)gvqueueitems.Rows[i].FindControl("lblom");
-
+                Label lblqtytype = (Label)gvqueueitems.Rows[i].FindControl("lblqtytype");
                 TextBox txtQty = (TextBox)gvqueueitems.Rows[i].FindControl("txtQty");
                 if (txtQty.Text == "")
                     txtQty.Text = "0";
@@ -1133,8 +1183,20 @@ namespace Billing.Accountsbootstrap
                     drNew["Category"] = lblCategory.Text;
                     drNew["Barcode"] = lblbarcode.Text;
                     drNew["Definition"] = lblDefinition.Text;
-                    drNew["Available_Qty"] = Convert.ToDouble(lblAvailable_Qty.Text).ToString(""+qtysetting+"");
-                    drNew["Qty"] = Convert.ToDouble(txtQty.Text).ToString(""+qtysetting+"");
+                    if (lblqtytype.Text == "D")
+                    {
+                        drNew["Available_Qty"] = Convert.ToDouble(lblAvailable_Qty.Text).ToString("" + qtysetting + "");
+                        drNew["Qty"] = Convert.ToDouble(txtQty.Text).ToString("" + qtysetting + "");
+                    }
+                    else if(lblqtytype.Text=="E")
+                    {
+                        drNew["Available_Qty"] = Convert.ToInt32(lblAvailable_Qty.Text).ToString();
+                        drNew["Qty"] = Convert.ToInt32(txtQty.Text).ToString();
+                    }
+
+                   
+                   
+
                     drNew["UOM"] = lblom.Text;
 
                     dstd.Tables[0].Rows.Add(drNew);
@@ -1231,8 +1293,16 @@ namespace Billing.Accountsbootstrap
                         hideUOMID.Value = dt.Rows[i]["UOMID"].ToString();
                         lblbarcode.Text = dt.Rows[i]["Barcode"].ToString();
                         lblDefinition.Text = dt.Rows[i]["Definition"].ToString();
-                        lblAvailable_Qty.Text = Convert.ToDouble(dt.Rows[i]["Available_Qty"]).ToString(""+qtysetting+"");
-                        txtQty.Text = Convert.ToDouble(dt.Rows[i]["Qty"]).ToString(""+qtysetting+"");
+                        if (lblom.Text == "Kgs")
+                        {
+                            lblAvailable_Qty.Text = Convert.ToDouble(dt.Rows[i]["Available_Qty"]).ToString("" + qtysetting + "");
+                            txtQty.Text = Convert.ToDouble(dt.Rows[i]["Qty"]).ToString("" + qtysetting + "");
+                        }
+                        else if(lblom.Text=="Nos")
+                        {
+                            lblAvailable_Qty.Text = Convert.ToInt32(dt.Rows[i]["Available_Qty"]).ToString();
+                            txtQty.Text = Convert.ToInt32(dt.Rows[i]["Qty"]).ToString();
+                        }
                         lblom.Text = dt.Rows[i]["UOM"].ToString();
 
                         rowIndex++;

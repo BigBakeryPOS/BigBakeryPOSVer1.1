@@ -212,7 +212,7 @@ namespace Billing.Accountsbootstrap
 
         protected void btnPrint_Click(object sender, EventArgs e)
         {
-
+           btnPrintFromCodeBehind_Click(sender,e);
         }
 
         protected void btnApp_Click(object sender, EventArgs e)
@@ -222,7 +222,7 @@ namespace Billing.Accountsbootstrap
             //    p.Start();
         }
 
-        protected void btnsyncclick(object sender, EventArgs e)
+        protected void btnitemsync_Click(object sender, EventArgs e)
         {
 
 
