@@ -11718,7 +11718,7 @@ namespace BusinessLayer
         }
 
 
-        public int insertCakeOrderNew(string sSalesTable, string BillNo, string BillDate, int CustomerID, double NetAmount, double Total, int Icnt, double dAdvance, int Ordeeno, string msg, string takenBy, string DeliveryDate, string DeliveryTime, int iPayMode, string BkNo, string paytype, string place, string pay, string ordertime, double CGST, double SGST, double STotal, string ordertype, string pickup, string delivercharge, int Ceremonies, bool checkedtype, string branchcode, double balance, string status, string discper, string discamount, string transamounttable, string discemp, string Fullbookno, string pbranch, string onlinecomment)
+        public int insertCakeOrderNew(string sSalesTable, string BillNo, string   BillDate, int CustomerID, double NetAmount, double Total, int Icnt, double dAdvance, int Ordeeno, string msg, string takenBy, string   DeliveryDate, string DeliveryTime, int iPayMode, string BkNo, string paytype, string place, string pay, string ordertime, double CGST, double SGST, double STotal, string ordertype, string pickup, string delivercharge, int Ceremonies, bool checkedtype, string branchcode, double balance, string status, string discper, string discamount, string transamounttable, string discemp, string Fullbookno, string pbranch, string onlinecomment)
         {
             int iSuccess = 0;
             string onlinesync = "N";
@@ -11766,7 +11766,7 @@ namespace BusinessLayer
         public int EditCakeOrderNew(string sSalesTable, string BillNo, string BillDate, int CustomerID, double NetAmount, double Total, int Icnt, double dAdvance, int Ordeeno, string msg, string takenBy, string DeliveryDate, string DeliveryTime, int iPayMode, string BkNo, string paytype, string place, string pay, string ordertime, double CGST, double SGST, double STotal, string ordertype, string pickup, string delivercharge, int Ceremonies, bool checkedtype, string branchcode, double balance, string status, string discper, string discamount, string refundamount, string transamounttable, string Epaymode, string entryby, string discemp)
         {
             int iSuccess = 0;
-            string Balancedate = DateTime.Now.ToString("yyyy-MM-dd hh:mm tt"); ;
+            string Balancedate = DateTime.Now.ToString("yyyy-MM-dd hh:mm tt"); 
             //  string sQry = "insert into " + sSalesTable + "( BillNo, OrderDate, CustomerID, NetAmount, Total,isCancel,ContactID,Advance,AdvanceDate,OrderNo,Messege,OrderTakenBy,DeliveryDate,Deliverytime,iPayMode,BookNo,PayType,Place,Paybill,OrderTime,CGST,SGST,STotal,OrderType,PickUpLocation,DeliveryCharge,Ceremonies,BalancePaid,Balance,Status,DiscountPer,DiscountAmount) values ('" + BillNo + "','" + BillDate + "','" + CustomerID + "','" + NetAmount + "','" + Total + "',0,1,'" + dAdvance + "','" + BillDate + "','" + Ordeeno + "','" + msg + "','" + takenBy + "','" + DeliveryDate + "','" + DeliveryTime + "'," + iPayMode + "," + BkNo + ",'" + paytype + "','" + place + "','" + pay + "','" + ordertime + "','" + CGST + "','" + SGST + "','" + STotal + "','" + ordertype + "','" + pickup + "','" + delivercharge + "'," + Ceremonies + ",'" + balance + "','" + balance + "','" + status + "','" + discper + "','" + discamount + "')";
             if (refundamount != "0")
             {

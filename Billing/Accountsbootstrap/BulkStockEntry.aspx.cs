@@ -1121,7 +1121,7 @@ namespace Billing.Accountsbootstrap
                 Label lblqtytype = (Label)gvqueueitems.Rows[rowIndex].Cells[6].FindControl("lblqtytype");
                 if (lblqtytype.Text == "E")
                 {
-                    txtQty.Text = Convert.ToDouble(Convert.ToDouble(txtQty.Text) - 1).ToString();
+                    txtQty.Text = Convert.ToInt32(Convert.ToInt32(txtQty.Text) - 1).ToString();
                 }
                 else if (lblqtytype.Text == "D")
                 {

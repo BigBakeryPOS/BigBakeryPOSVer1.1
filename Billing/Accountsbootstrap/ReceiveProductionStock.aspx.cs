@@ -678,17 +678,28 @@ namespace Billing.Accountsbootstrap
             {
 
                 //TextBox txtQty = ((TextBox)e.Row.FindControl("txtQty"));
+               // lblqty;
                 Label lbqty = ((Label)e.Row.FindControl("lblProd_Qty"));
                 Label lblqtytype = (Label)e.Row.FindControl("lblqtytype");
+                if (lbqty.Text == "")
+                { lbqty.Text = "0"; }
+                else
+                {
 
-               
-                if (lblqtytype.Text == "D")
-                {
-                    lbqty.Text = Convert.ToDouble(lbqty.Text).ToString("" + qtysetting + "");
-                }
-                else if(lblqtytype.Text=="E")
-                {
-                    lbqty.Text = Convert.ToInt32(lbqty.Text).ToString();
+                    if (lblqtytype.Text == "D")
+                    {
+                        lbqty.Text = Convert.ToDouble(lbqty.Text).ToString("" + qtysetting + "");
+                    }
+                    else if (lblqtytype.Text == "E")
+                    {
+                        if (lbqty.Text == "0.0000")
+                        { lbqty.Text = "0"; }
+                        else
+                        {
+                            int lblqty =Convert.ToInt32(lbqty.Text.ToString());
+                            lbqty.Text = lblqty.ToString();
+                        }
+                    }
                 }
 
                 //lblreceived_Qty.Text = Convert.ToDouble(lblreceived_Qty.Text).ToString("" + qtysetting + "");
