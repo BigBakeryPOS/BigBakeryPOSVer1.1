@@ -679,7 +679,7 @@ namespace Billing.Accountsbootstrap
 
                 //TextBox txtQty = ((TextBox)e.Row.FindControl("txtQty"));
                // lblqty;
-                Label lbqty = ((Label)e.Row.FindControl("lblProd_Qty"));
+                Label lbqty = (Label)e.Row.FindControl("lblProd_Qty");
                 Label lblqtytype = (Label)e.Row.FindControl("lblqtytype");
                 if (lbqty.Text == "")
                 { lbqty.Text = "0"; }
@@ -696,8 +696,8 @@ namespace Billing.Accountsbootstrap
                         { lbqty.Text = "0"; }
                         else
                         {
-                            int lblqty =Convert.ToInt32(lbqty.Text.ToString());
-                            lbqty.Text = lblqty.ToString();
+                           
+                            lbqty.Text =Convert.ToInt32(lbqty.Text).ToString(); 
                         }
                     }
                 }
