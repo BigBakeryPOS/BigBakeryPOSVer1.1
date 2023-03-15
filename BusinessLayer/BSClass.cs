@@ -23380,14 +23380,14 @@ namespace BusinessLayer
             DataSet ds = new DataSet();
             if (categoryid == "All")
             {
-                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.serial,isnull(ps.Prod_Qty,0) as Prod_Qty,b.qtytype  " +
+                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.serial,case when b.qtytype='D' then cast(isnull(ps.Prod_Qty,0) as decimal)  when b.qtytype='E' then cast(isnull(ps.Prod_Qty,0) as int) end as Prod_Qty,b.qtytype  " +
                     " from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblProductionQty_" + stable + " ps on ps.DescriptionId=b.CategoryUserID " +
                     " inner join tblUOM u on u.UOMID=b.unit  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1'  order by category asc";
                 ds = dbObj.InlineExecuteDataSet(sqry);
             }
             else
             {
-                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.serial,isnull(ps.Prod_Qty,0) as Prod_Qty,b.qtytype from tblcategory a " +
+                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.serial,case when b.qtytype='D' then cast(isnull(ps.Prod_Qty,0) as decimal)  when b.qtytype='E' then cast(isnull(ps.Prod_Qty,0) as int) end as Prod_Qty,b.qtytype from tblcategory a " +
                     " inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblProductionQty_" + stable + " ps on ps.DescriptionId=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit  " +
                     " where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + " order by category asc";
                 ds = dbObj.InlineExecuteDataSet(sqry);
