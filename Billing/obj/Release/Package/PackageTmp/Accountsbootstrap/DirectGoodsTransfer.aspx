@@ -628,6 +628,11 @@ color:White;
                                                 <asp:Label ID="lblom" runat="server" Text='<%#Eval("UOM") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+                                         <asp:TemplateField Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblqtytype" runat="server" Visible="false" Text='<%#Eval("qtytype") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:TemplateField>
                                             <ItemTemplate>
                                                 <asp:Button ID="plus" Text="+" runat="server" CommandName="plus" CommandArgument="<%# Container.DataItemIndex %>" />

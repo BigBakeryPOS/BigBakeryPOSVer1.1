@@ -176,7 +176,7 @@ namespace Billing.Accountsbootstrap
                 if (getallitembind.Tables[0].Rows.Count > 0)
                 {
                     drpitemsearch.DataSource = getallitembind.Tables[0];
-                    drpitemsearch.DataTextField = "defi";
+                    drpitemsearch.DataTextField = "definition";
                     drpitemsearch.DataValueField = "categoryuserid";
                     drpitemsearch.DataBind();
                     drpitemsearch.Items.Insert(0, "Select Item");

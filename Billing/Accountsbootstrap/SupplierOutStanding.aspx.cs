@@ -296,6 +296,7 @@ namespace Billing.Accountsbootstrap
 
                     SubTotalAmount = 0;
                     SubTotalQuantity = 0;
+                    SubTotalReceipt = 0;
 
                 }
                 if (IsGrandTotalRowNeedtoAdd)

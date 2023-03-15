@@ -271,7 +271,7 @@
                                         <label id="lblcap" runat="server">
                                             Selected Category Items</label>
                                         <div id="divid" runat="server" class="table-responsive panel-grid-left">
-                                            <asp:GridView ID="gvitems" runat="server" AutoGenerateColumns="false" CssClass="table table-striped pos-table" padding="0" spacing="0" border="0"
+                                            <asp:GridView ID="gvitems" runat="server" AutoGenerateColumns="false" CssClass="table table-striped pos-table" OnRowDataBound="onrowdatabound" padding="0" spacing="0" border="0"
                                                 Width="100%">
                                                <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
                                                     HorizontalAlign="Center" ForeColor="White" />--%>
@@ -310,6 +310,11 @@
                                                       <asp:TemplateField HeaderText="delaydays">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lbldelaydays" runat="server" Width="50px" Text='<%#Eval("delaydays") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                     <asp:TemplateField Visible="false" >
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblqtytype" runat="server" Visible="false" Width="50px" Text='<%#Eval("qtytype") %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                 </Columns>
@@ -355,6 +360,11 @@
                                                     <asp:TemplateField HeaderText="Unit">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblom" runat="server" Width="50px" Text='<%#Eval("UOM") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                     <asp:TemplateField Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblqtytype" runat="server" Visible="false" Width="50px" Text='<%#Eval("qtytype") %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField>

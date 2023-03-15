@@ -3666,7 +3666,9 @@ namespace Billing.Accountsbootstrap
                     dct = new DataColumn("PoQty");
                     dttt.Columns.Add(dct);
 
-                    
+
+                    dct = new DataColumn("RatePerkg");
+                    dttt.Columns.Add(dct);
 
                     dstd.Tables.Add(dttt);
 
@@ -3729,7 +3731,7 @@ namespace Billing.Accountsbootstrap
                             drNew["Pvalue"] = dr["Pvalue"];
                         }
 
-
+                        drNew["RatePerkg"] =Convert.ToDouble( Convert.ToDouble(drNew["rate"]) / Convert.ToDouble(drNew["Pvalue"])).ToString("f2");
                         drNew["PQty"] = dr["PUqty"];
                         drNew["Bname"] = "";
                         drNew["Hsncode"] = "";

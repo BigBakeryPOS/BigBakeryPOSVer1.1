@@ -606,6 +606,10 @@
                         <li id="SupplierOutStanding" runat="server" visible="false"><a href="../Accountsbootstrap/SupplierOutStanding.aspx">Supplier Summary/Detailed OutStanding </a></li>
                     </ul>
                 </li>
+                 <li id="ExpenseDetails" runat="server" visible="false"><a  href="../Accountsbootstrap/ExpenseDetails.aspx"
+                            runat="server">Expense Summary/Detailed Report</a></li>
+                  <li id="RawMaterialStock" runat="server" visible="false"><a  href="../Accountsbootstrap/RawMaterialStockReport.aspx"
+                            runat="server">Raw Material Stock Report</a></li>
                 <li id="ChartReport" runat="server" visible="false" class='has-sub'><a id="A9" runat="server" href="javascript:;">Chart Report</a>
                     <ul>
                         <li id="AnalysisReport" runat="server" visible="true"><a id="A15" href="../Accountsbootstrap/SalesandReturn_Report.aspx"

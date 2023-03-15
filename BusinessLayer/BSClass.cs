@@ -8738,7 +8738,7 @@ namespace BusinessLayer
                 " from tblsales_" + sTable + "  a,tblTransSales_" + sTable + " b,tblcategory c,tblCategoryUser d,tblCustomer e,tblsalestype f, tblSalesPaymode g ,tbluom k " +
                 " where a.salesid=b.salesuniqueid and  f.salestypeid=a.salestype and  a.BillNo=b.SalesID and c.categoryid=d.CategoryID and a.isnormal=b.isnormal " +
                 " and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and a.CustomerID=e.CustomerID and a.BillNo=" + ID + " and " +
-                " (a.salestype='" + salestypeid + "') and a.iPayMode = g.value   group by b.SubCategoryID,d.HSNCode,g.PayMode,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount,f.paymenttype,a.isnormal,a.SalesOrder,d.printitem,a.Roundoff,a.FullBill,Gstno,e.address ";
+                " (a.salestype='" + salestypeid + "') and a.iPayMode = g.value   group by b.SubCategoryID,d.HSNCode,g.PayMode,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount,f.paymenttype,a.isnormal,a.SalesOrder,d.printitem,a.Roundoff,a.FullBill,Gstno,e.address,a.salestype  ";
             }
 
             ds = dbObj.InlineExecuteDataSet(sqry);
