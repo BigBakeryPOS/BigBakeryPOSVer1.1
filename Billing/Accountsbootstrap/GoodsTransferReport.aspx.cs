@@ -46,7 +46,7 @@ namespace Billing.Accountsbootstrap
                 {
                     ddlBranch.DataSource = dsCustomer.Tables[0];
                     ddlBranch.DataTextField = "brancharea";
-                    ddlBranch.DataValueField = "branchname";
+                    ddlBranch.DataValueField = "branchcode";
                     ddlBranch.DataBind();
                     ddlBranch.Items.Insert(0, "All");
                 }
@@ -65,11 +65,12 @@ namespace Billing.Accountsbootstrap
                 //  if (scode == "Production")
                 {
                     // DataSet dT = objbs.GetTrasfDet(gdate);
-                    DataSet dT = objbs.getstocktransferreport( ddlcategory.SelectedValue, sFromdate, sTodate, scode);
+                    DataSet dT = objbs.getstocktransferreport( ddlBranch.SelectedValue ,ddlcategory.SelectedValue, sFromdate, sTodate, scode);
                     if (dT.Tables[0].Rows.Count > 0)
                     {
                         gvTransfer.DataSource = dT;
                         gvTransfer.DataBind();
+                        gvTransfer.Caption = "Goods Transfer/Damage/Missing Details Report for" + ddlBranch.SelectedItem.Text + "Branch and " + ddlcategory.SelectedItem.Text + "Group from " + Convert.ToDateTime(txtDate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txtToDate.Text).ToString("dd/MM/yyyy");
                     }
                     else
                     {
@@ -91,18 +92,21 @@ namespace Billing.Accountsbootstrap
                 DateTime dtTodate = Convert.ToDateTime(txtToDate.Text);
                 string sTodate = dtTodate.ToString("yyyy-MM-dd");
 
-                DataSet dT = objbs.getstocktransferreport(ddlcategory.SelectedValue, sFromdate, sTodate, scode);
+                DataSet dT = objbs.getstocktransferreport (ddlBranch.SelectedValue ,  ddlcategory.SelectedValue, sFromdate, sTodate, scode);
                 if (dT.Tables[0].Rows.Count > 0)
                 {
                     gvTransfer.DataSource = dT;
                     gvTransfer.DataBind();
+                    // lblcaption.Visible = true;
+                    // lblcaption.Text = " Goods Transfer/Damage/Missing Details Report for" + ddlBranch.SelectedItem.Text + ddlcategory.SelectedItem.Text +Convert.ToDateTime(txtDate.Text).ToString("dd/MM/yyyy") + "to" + Convert.ToDateTime(txtToDate.Text).ToString("dd/MM/yyyy");
+                    gvTransfer.Caption = "Goods Transfer/Damage/Missing Details Report for " + ddlBranch.SelectedItem.Text + " Branch and " + ddlcategory.SelectedItem.Text + " Group from " + Convert.ToDateTime(txtDate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txtToDate.Text).ToString("dd/MM/yyyy");
                 }
                 else
                 {
                     gvTransfer.DataSource = null;
                     gvTransfer.DataBind();
                 }
-                gvTransfer.Caption = "From :" + Convert.ToDateTime(txtDate.Text).ToString("dd/MM/yyyy") + "To :" + Convert.ToDateTime(txtToDate.Text).ToString("dd/MM/yyyy") + "-" + "Goods Transfer Detailed  Report";
+               
                 ScriptManager.RegisterStartupScript(this, typeof(Page), "printGrid", "printGrid();", true);
             }
         }
@@ -116,16 +120,20 @@ namespace Billing.Accountsbootstrap
             DateTime dtTodate = Convert.ToDateTime(txtToDate.Text);
             string sTodate = dtTodate.ToString("yyyy-MM-dd");
 
-            DataSet dT = objbs.getstocktransferreport(ddlcategory.SelectedValue, sFromdate, sTodate, scode);
+            DataSet dT = objbs.getstocktransferreport(ddlBranch.SelectedValue , ddlcategory.SelectedValue, sFromdate, sTodate, scode);
             if (dT.Tables[0].Rows.Count > 0)
             {
                 gvTransfer.DataSource = dT;
                 gvTransfer.DataBind();
+               // lblcaption.Visible = true;
+                gvTransfer.Caption = "Goods Transfer/Damage/Missing Details Report for " + ddlBranch.SelectedItem.Text + " Branch and " + ddlcategory.SelectedItem.Text + " Group from " + Convert.ToDateTime(txtDate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txtToDate.Text).ToString("dd/MM/yyyy");
+                // lblcaption.Text = " Goods Transfer/Damage/Missing Details Report for" + ddlBranch.SelectedItem.Text+" Branch" + ddlcategory.SelectedItem.Text+ " Group" +Convert.ToDateTime(txtDate.Text).ToString("dd/MM/yyyy") + "to" + Convert.ToDateTime(txtToDate.Text).ToString("dd/MM/yyyy");
             }
             else
             {
                 gvTransfer.DataSource = null;
                 gvTransfer.DataBind();
+                lblcaption.Visible = false;
             }
         }
         protected void btnsearch_Click(object sender, EventArgs e)
@@ -136,11 +144,14 @@ namespace Billing.Accountsbootstrap
             DateTime dtTodate = Convert.ToDateTime(txtToDate.Text);
             string sTodate = dtTodate.ToString("yyyy-MM-dd");
 
-            DataSet dT = objbs.getstocktransferreport(ddlcategory.SelectedValue, sFromdate, sTodate, scode);
+            DataSet dT = objbs.getstocktransferreport(ddlBranch.SelectedValue , ddlcategory.SelectedValue, sFromdate, sTodate, scode);
             if (dT.Tables[0].Rows.Count > 0)
             {
                 gvTransfer.DataSource = dT;
                 gvTransfer.DataBind();
+                //lblcaption.Visible = true;
+                gvTransfer.Caption = "Goods Transfer/Damage/Missing Details Report for " + ddlBranch.SelectedItem.Text + " Branch and " + ddlcategory.SelectedItem.Text + " Group from " + Convert.ToDateTime(txtDate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txtToDate.Text).ToString("dd/MM/yyyy");
+                //lblcaption.Text = " Goods Transfer/Damage/Missing Details Report for" + ddlBranch.SelectedItem.Text +" Branch" + ddlcategory.SelectedItem.Text +" Group" +Convert.ToDateTime(txtDate.Text).ToString("dd/MM/yyyy") + "to" + Convert.ToDateTime(txtToDate.Text).ToString("dd/MM/yyyy");
             }
             else
             {
@@ -150,6 +161,25 @@ namespace Billing.Accountsbootstrap
 
            
         }
+        protected void btnExport_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.AddHeader("content-disposition", "attachment;filename= GoodsTransferReport.xls");
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.ms-excel";
+            System.IO.StringWriter stringWrite = new System.IO.StringWriter();
+            System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
+            Div1.RenderControl(htmlWrite);
+            Response.Write(stringWrite.ToString());
+            Response.End();
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
+               server control at run time. */
+        }
+
 
         protected void gvGoodTransFer_RowCommand(object sender, GridViewCommandEventArgs e)
         {

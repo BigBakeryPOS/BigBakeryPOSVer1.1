@@ -76,15 +76,32 @@
 <body>
     <form id="form1" runat="server">
     <center>
+         <table border="1" width="595px" class="style1">
+            <tr>
+                <td colspan="2">
         <table border="1" width="595px" class="style1">
-            <tr style="font-family: Courier New; font-weight: bolder;">
-                <tr style="font-family: Courier New; font-weight: bold;" align="center">
-                    <td colspan="2" align="center">
+              <tr style="font-family: Courier New; font-weight: bold;" align="center">
+                    <td  align="center">
                         <asp:Label ID="l2" runat="server" Style="font-weight: bolder; font-size: x-large"
                             Visible="true">DELIVERY CHALLEN</asp:Label>
                         <br />
                     </td>
                 </tr>
+             <tr style="height: 10px">
+                            <td align="left"  style=" height: 5px" rowspan="3" >
+                                <b><asp:Label ID="lblbranch" runat="server" ></asp:Label> </b>
+                                <br />
+                               <asp:Label ID="lblbranchaddress" runat="server"></asp:Label><br />
+                               <label>MobileNo: </label> <asp:Label ID="lblMobileno" runat="server"></asp:Label><br />
+                               <label>GSTIN: </label><asp:Label ID="lblgstin" runat="server"></asp:Label><br />
+                                <label>Country : </label><asp:Label ID="lblcountry" runat="server"></asp:Label><label > , State : </label><asp:Label ID="lblstate1" runat="server"></asp:Label><br />
+                                <label>City : </label><asp:Label ID="lblcity1" runat="server" ></asp:Label><br />
+                               <label>E-Mail : </label><asp:Label ID="lblemail" runat="server"></asp:Label><br />
+                            </td>
+                </tr>
+           
+              
+            <tr>
                 <td colspan="2" align="center" style="font-size: x-large;">
                     <asp:Label ID="lblstore1" runat="server" Style="font-weight: bold; font-size: 36px"
                         Visible="true"></asp:Label>
@@ -99,7 +116,7 @@
                     <asp:Label ID="lblAddres" runat="server" Style="font-size: 18px"></asp:Label>
                 </td>
             </tr>
-         <%--   <tr style="font-family: Courier New; font-weight: bold;" align="center">
+        <%--   <tr style="font-family: Courier New; font-weight: bold;" align="center">
                 <td align="center" colspan="2">
                     <asp:Label ID="Label5" runat="server" Style="font-size: 18px">STATE CODE:</asp:Label><asp:Label
                         ID="lblStatecode" runat="server" Style="font-size: 18px"></asp:Label>,&nbsp&nbsp&nbsp
@@ -137,6 +154,9 @@
                 </td>
             </tr>--%>
         </table>
+                    </td></tr>
+             <tr>
+                 <td>
         <table border="1" width="595px" class="style1">
             <%-- <tr style="width: 100%; height: 35px">
                 <td align="left" width="30%">
@@ -275,6 +295,7 @@
                 </td>
             </tr>
         </table>
+                     </td></tr></table>
          <div runat="server" id="div2">
             <table border="0" width="595px" class="style1">
                 <tr>

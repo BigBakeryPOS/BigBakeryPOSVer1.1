@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GoodsTransferReport.aspx.cs"
-    Inherits="Billing.Accountsbootstrap.GoodsTransferReport" %>
+    Inherits="Billing.Accountsbootstrap.GoodsTransferReport"  %>
 
 <%@ Register TagPrefix="usc" TagName="Header" Src="~/HeaderMaster/Header.ascx" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
@@ -74,15 +74,16 @@
                                 </asp:ScriptManager>
 
                                 <div class="col-lg-12">
-                                    <div class="row">
-                                        <%-- <label>
-                                    Filter By</label>--%>
-                                        <asp:DropDownList ID="ddlBranch" CssClass="form-control" Style="width: 150px;" runat="server" Visible="false">
+                                        <div class="col-lg-3">
+                                         <label>
+                                   Branch</label>
+                                        <asp:DropDownList ID="ddlBranch" CssClass="form-control"  runat="server" Visible="true">
                                             <%--<asp:ListItem Text="Bill No" Value="1"></asp:ListItem>
                                             <asp:ListItem Text="Customer Name" Value="2"></asp:ListItem>
                                             <asp:ListItem Text="Area" Value="3"></asp:ListItem>
                                             <asp:ListItem Text="City" Value="4"></asp:ListItem>--%>
                                         </asp:DropDownList>
+                                            </div>
                                         <div class="col-lg-3">
                                             <label>
                                                 Group</label>
@@ -107,7 +108,8 @@
                                                 runat="server" CssClass="cal_Theme1">
                                             </ajaxToolkit:CalendarExtender>
                                         </div>
-                                        <div class="col-lg-3">
+                                            <div class="row">
+                                        <div class="col-lg-6">
                                             <br />
                                             <asp:Button ID="btnsearch" runat="server" class="btn btn-info pos-btn1" Text="Search"
                                                 OnClick="btnsearch_Click" />
@@ -118,16 +120,18 @@
                                             <asp:LinkButton ID="btnPrint" runat="server" OnClick="btnPrint_Click" Visible="false">
                                                 <asp:Image ID="imgprint" runat="server" ImageUrl="~/images/print (1).png" Width="50px" Height="50px" />
                                             </asp:LinkButton>
+                                             <asp:Button ID="btnExport" runat="server" class="btn btn-info pos-btn1" Text="Export To Excel"
+                                                OnClick="btnExport_Click" />
+                                            </div>
                                         </div>
-                                    </div>
+                                   
                                 </div>
 
-
+                                <div id="Div1" runat="server">
                                 <div class="col-lg-12">
                                     <br />
-                                    <label>
-                                        Goods Transfer/Damage/Missing Details Report
-                                    </label>
+                                    <asp:Label ID="lblcaption" runat="server" Visible="false"></asp:Label>
+                                   
                                     <div class="table-responsive panel-grid-left">
                                         <asp:GridView ID="gvTransfer" runat="server" EmptyDataText="No Record Found" AutoGenerateColumns="false"
                                             CssClass="table table-striped pos-table" padding="0" spacing="0" border="0" OnRowCommand="gvTransfer_RowCommand">
@@ -151,6 +155,7 @@
                                         <asp:GridView ID="grid" runat="server" CssClass="mGrid">
                                         </asp:GridView>
 
+                                    </div>
                                     </div>
                                 </div>
 

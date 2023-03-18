@@ -37,7 +37,7 @@ namespace Billing.Accountsbootstrap
             itemmergeornot = Request.Cookies["userInfo"]["itemmergeornot"].ToString();
 
 
-
+            
 
 
 
@@ -518,7 +518,7 @@ namespace Billing.Accountsbootstrap
                     }
                     else if(lblqtytype.Text=="E")
                     {
-                        drNew["Qty"] = Convert.ToInt32(txtQty.Text).ToString();
+                        drNew["Qty"] = Math.Floor(Convert.ToDouble(txtQty.Text)).ToString();
                     }
 
                     
@@ -808,7 +808,7 @@ namespace Billing.Accountsbootstrap
                         }
                         else if(lblqtytype.Text=="E")
                         {
-                            drNew["Qty"] = Convert.ToInt32(txtQty.Text).ToString();
+                            drNew["Qty"] = Math.Floor(Convert.ToDouble(txtQty.Text)).ToString();
                         }
                         drNew["UOM"] = lblom.Text;
                         drNew["serial"] = lblserial.Text;
@@ -862,7 +862,7 @@ namespace Billing.Accountsbootstrap
                         }
                         else if(lblqtytype.Text=="E")
                         {
-                            drNew["Qty"] = Convert.ToInt32(txtQty.Text).ToString();
+                            drNew["Qty"] = Math.Floor(Convert.ToDouble(txtQty.Text)).ToString();
                         }
                         
                         drNew["UOM"] = lblom.Text;
@@ -1050,7 +1050,7 @@ namespace Billing.Accountsbootstrap
                         }
                         else if(lblqtytype.Text=="E")
                         {
-                            drNew["Qty"] = Convert.ToInt32(txtQty.Text).ToString();
+                            drNew["Qty"] = Math.Floor(Convert.ToDouble(txtQty.Text)).ToString();
                         }
                         drNew["UOM"] = lblom.Text;
 
@@ -1107,7 +1107,7 @@ namespace Billing.Accountsbootstrap
                         }
                        else if(lblqtytype.Text=="E")
                         {
-                            drNew["Qty"] = Convert.ToInt32(txtQty.Text).ToString();
+                            drNew["Qty"] = Math.Floor(Convert.ToDouble(txtQty.Text)).ToString();
                         }
                        
                         drNew["UOM"] = lblom.Text;

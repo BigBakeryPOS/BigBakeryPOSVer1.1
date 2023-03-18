@@ -341,7 +341,7 @@ namespace Billing.Accountsbootstrap
                         if (lblqtytype.Text == "E")
                         {
                             drNew["Available_Qty"] = Convert.ToInt32(lblAvailable_Qty.Text).ToString();
-                            drNew["Qty"] = Convert.ToInt32(txtQty.Text).ToString();
+                            drNew["Qty"] = Math.Floor(Convert.ToDouble(txtQty.Text)).ToString();
 
                         }
                         else if(lblqtytype.Text=="D")
@@ -415,7 +415,7 @@ namespace Billing.Accountsbootstrap
                         if(lblqtytype.Text=="E")
                         {
                             drNew["Available_Qty"] = Convert.ToInt32(lblAvailable_Qty.Text).ToString();
-                            drNew["Qty"] = Convert.ToInt32(txtQty.Text).ToString();
+                            drNew["Qty"] = Math.Floor(Convert.ToDouble(txtQty.Text)).ToString();
                         }
                         else if(lblqtytype.Text=="D")
                         {
@@ -982,7 +982,7 @@ namespace Billing.Accountsbootstrap
                     if(lblqtytype.Text=="E")
                     {
                         drNew["Available_Qty"] =Convert.ToInt32(lblAvailable_Qty.Text).ToString(); ;
-                        drNew["Qty"] = Convert.ToInt32(txtQty.Text).ToString();
+                        drNew["Qty"] = Math.Floor(Convert.ToDouble(txtQty.Text)).ToString();
                     }
                     else if(lblqtytype.Text=="D")
                     {

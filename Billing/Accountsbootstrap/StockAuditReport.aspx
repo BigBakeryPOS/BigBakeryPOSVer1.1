@@ -133,7 +133,7 @@
                                             </label>
                                               <div class="table-responsive panel-grid-left">
                                             <asp:GridView ID="GVStockAlert" Width="100%" runat="server" cssClass="table table-striped pos-table" AutoGenerateColumns="false"
-                                                EmptyDataText="No Records Found" Caption="Stock Audit Detailed Report" padding="0" spacing="0" border="0">
+                                                EmptyDataText="No Records Found"  padding="0" spacing="0" border="0">
                                                 <Columns>
                                                     <asp:BoundField HeaderText="Category" DataField="category" />
                                                     <asp:BoundField HeaderText="Item Name" DataField="definition"/>

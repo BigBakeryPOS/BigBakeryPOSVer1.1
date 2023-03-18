@@ -21,12 +21,14 @@ namespace Billing.Accountsbootstrap
 
         string sTableName = "";
         string AllBranchAccess = "0";
+        string Store = "";
 
         decimal Total = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
              sTableName = Request.Cookies["userInfo"]["User"].ToString();
              AllBranchAccess = Request.Cookies["userInfo"]["AllBranchAccess"].ToString();
+            Store = Request.Cookies["userInfo"]["Store"].ToString();
              if (!IsPostBack)
              {
 
@@ -74,7 +76,7 @@ namespace Billing.Accountsbootstrap
                  {
                      gvReport.DataSource = ds;
                      gvReport.DataBind();
-                     gvReport.Caption = "Todays Balance Details ";
+                     gvReport.Caption = ddlBranch.SelectedItem.Text +" Order Balance Details on  " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") ;
                  }
                  else
                  {
@@ -158,9 +160,9 @@ namespace Billing.Accountsbootstrap
                 {
                     gvReport.DataSource = ds;
                     gvReport.DataBind();
-                    gvReport.Caption = "Todays Balance Details ";
+                    gvReport.Caption = ddlBranch.SelectedItem.Text + " Order Balance Details on  " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy");
 
-                }
+            }
                 else
                 {
                     gvReport.DataSource = null;

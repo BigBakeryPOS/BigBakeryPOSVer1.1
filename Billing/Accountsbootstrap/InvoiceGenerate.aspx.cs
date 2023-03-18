@@ -279,7 +279,7 @@ namespace Billing.Accountsbootstrap
                     }
                    
                 }
-                gvSalesValue.Caption = "SALES";
+                gvSalesValue.Caption = storename + " Invoice Generated for Sales from " + Convert.ToDateTime(txtfrmdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
                 DataView view = dsraw.Tables[0].DefaultView;
                 view.Sort = " Date,Category ASC";
 
@@ -291,7 +291,7 @@ namespace Billing.Accountsbootstrap
                 div1.Visible = false;
                 div4.Visible = true;
                 DataSet FullValuesorder = objBs.GetFullValuesFororderinvoice(ddlbranch.SelectedValue, txtfrmdate.Text, txttodate.Text);
-                gvorder.Caption = "Order Form";
+                gvorder.Caption = storename + " Invoice Generated for OrderForm from " + Convert.ToDateTime(txtfrmdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy");
                 DataView view = FullValuesorder.Tables[0].DefaultView;
                 view.Sort = "Billdate ASC";
                 gvorder.DataSource = view;

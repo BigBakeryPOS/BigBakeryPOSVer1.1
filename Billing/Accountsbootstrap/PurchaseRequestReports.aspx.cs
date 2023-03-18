@@ -15,12 +15,14 @@ namespace Billing.Accountsbootstrap
         BSClass objbs = new BSClass();
         string sCode = "";
         string sTableName = "";
+        string branch = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             sCode = Request.Cookies["userInfo"]["BranchCode"].ToString();
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
+            branch = Request.Cookies["userInfo"]["Store"].ToString();
             if (!IsPostBack)
             {
 
@@ -92,6 +94,7 @@ namespace Billing.Accountsbootstrap
           
             gvPurchaseEntry.DataSource = ds;
             gvPurchaseEntry.DataBind();
+            gvPurchaseEntry.Caption = branch + " Daily Stock Request Details from " + txtfromdate.Text + " to " + txttodate.Text;
         }
 
         //protected void gvPurchaseEntry_PageIndexChanging(object sender, GridViewPageEventArgs e)

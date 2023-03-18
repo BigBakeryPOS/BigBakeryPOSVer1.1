@@ -56,18 +56,33 @@ namespace Billing.Accountsbootstrap
                     idFranchisee.Visible = false;
                 }
 
-                if (sTableName.ToLower() == "co8")
+                //if (sTableName.ToLower() == "co8")
+                //{
+                //    lblpvtltd.Visible = true;
+                //    lblstore.Text = "(" + sStore + ")";
+                //}
+                //else
+                //{
+                //    lblpvtltd.Visible = false;
+                //    lblstore.Text = sStore;
+                //}
+
+                DataSet ds2 = objbs.getbranchdetails1(branchcode);
+                if (ds2.Tables[0].Rows.Count > 0)
                 {
-                    lblpvtltd.Visible = true;
-                    lblstore.Text = "(" + sStore + ")";
-                }
-                else
-                {
-                    lblpvtltd.Visible = false;
-                    lblstore.Text = sStore;
-                }
+
+                    lblbranch.Text = ds2.Tables[0].Rows[0]["branchname"].ToString();
+                    //lblbranch1.Text = ds1.Tables[0].Rows[0]["branchname"].ToString();
+                    lblbranchaddress.Text = ds2.Tables[0].Rows[0]["address"].ToString();
+                    lblcountry.Text = ds2.Tables[0].Rows[0]["Country"].ToString();
+                    lblstate1.Text = ds2.Tables[0].Rows[0]["State"].ToString();
+                    lblcity1.Text = ds2.Tables[0].Rows[0]["City"].ToString();
+                    lblMobileno.Text = ds2.Tables[0].Rows[0]["MobileNo"].ToString();
+                    lblgstin.Text = ds2.Tables[0].Rows[0]["GSTIN"].ToString();
+                    lblemail.Text = ds2.Tables[0].Rows[0]["Email"].ToString();
 
 
+                }
 
                 ds = objbs.PrintCakeOrder(sTableName, OrderNo);
                 if (ds.Tables[0].Rows.Count > 0)
@@ -89,8 +104,8 @@ namespace Billing.Accountsbootstrap
                     //    paymode1.Text = "Cash";
                     //}
                     //   lblstore.Text = sStore;
-                    lblAddres.Text = sAddress;
-                    lbltin.Text = sTin;
+                    //lblAddres.Text = sAddress;
+                   // lbltin.Text = sTin;
                     lblcg.Text = String.Format("{0:f2}", ds.Tables[0].Rows[0]["CGST"].ToString());
                     lblsg.Text = String.Format("{0:f2}", ds.Tables[0].Rows[0]["SGST"].ToString());
                     lblsubtotal.Text = String.Format("{0:f2}", ds.Tables[0].Rows[0]["STotal"].ToString());

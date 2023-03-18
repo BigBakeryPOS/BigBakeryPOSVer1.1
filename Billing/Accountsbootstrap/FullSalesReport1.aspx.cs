@@ -131,14 +131,15 @@ namespace Billing.Accountsbootstrap
                 return;
             }
 
-            Label123 = ddlBranch.SelectedItem.Text;
+            Label123 = ddlBranch.SelectedItem.Text + " Product Sales Report from " + txtfrmdate.Text + " to " + txttodate.Text ;
 
             if (ddlsalestype.SelectedValue == "1")
             {
                 DataSet FullValues = objBs.GetFullValuesForSalesdate1(ddlBranch.SelectedValue, txtfrmdate.Text, txttodate.Text);
-                gvSalesValue.Caption = "SALES";
+              //  gvSalesValue.Caption =
                 gvSalesValue.DataSource = FullValues;
                 gvSalesValue.DataBind();
+                gvSalesValue.Caption = Label123;
 
             }
             else
@@ -211,8 +212,9 @@ namespace Billing.Accountsbootstrap
 
             if (ddlsalestype.SelectedValue == "1")
             {
+                Label123 = ddlBranch.SelectedItem.Text + " Product Sales Report from " + txtfrmdate.Text + " to " + txttodate.Text;
                 FullValues = objBs.GetFullValuesForSalesdate1(ddlBranch.SelectedValue, txtfrmdate.Text, txttodate.Text);
-                gvSalesValue.Caption = "SALES";
+                gvSalesValue.Caption = Label123;
                 gvSalesValue.DataSource = FullValues;
                 gvSalesValue.DataBind();
 
@@ -401,7 +403,7 @@ namespace Billing.Accountsbootstrap
                 {
                     Label123 = "Blaack Forest Bakery Services";
                 }
-
+                Label123 = ddlBranch.SelectedItem.Text;
                 System.IO.StringWriter tw = new System.IO.StringWriter();
                 System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(tw);
                 DataGrid dgGrid = new DataGrid();

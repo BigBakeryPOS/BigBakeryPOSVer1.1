@@ -24,8 +24,22 @@
                 return false;
             }
         }
+
     </script>
     <script type="text/javascript">
+ function isDecimal(evt)
+    {
+       var charCode = (evt.which) ? evt.which : event.keyCode
+       var parts = evt.srcElement.value.split('.');
+       if(parts.length > 1 && charCode==46)
+          return false;
+       else
+       {
+          if (charCode == 46 || (charCode >= 48 && charCode <= 57))
+             return true;
+          return false;
+       }
+    }
         function ClientSideClick(myButton) {
             // Client side validation
             if (typeof (Page_ClientValidate) == 'function') {
@@ -250,7 +264,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Qty">
                                                         <ItemTemplate>
-                                                            <asp:TextBox ID="txtQty" runat="server" Width="50px" AutoPostBack="false">0</asp:TextBox>
+                                                            <asp:TextBox ID="txtQty" runat="server" Width="50px" onkeypress="return isDecimal(event)" AutoPostBack="false">0</asp:TextBox>
                                                             <ajaxToolkit:FilteredTextBoxExtender ID="ftbe" runat="server" TargetControlID="txtQty"
                                                                 FilterType="Custom,Numbers" ValidChars="." />
                                                         </ItemTemplate>
@@ -295,7 +309,9 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Qty">
                                                         <ItemTemplate>
-                                                            <asp:TextBox ID="txtQty" runat="server" Width="50px" Text='<%#Eval("Qty") %>' Enabled="false">0</asp:TextBox>
+                                                            <asp:TextBox ID="txtQty" runat="server" Width="50px" Text='<%#Eval("Qty") %>' onkeypress="return isDecimal(event)" Enabled="false">0</asp:TextBox>
+                                                             <ajaxToolkit:FilteredTextBoxExtender ID="ftbe1" runat="server" TargetControlID="txtQty"
+                                                                FilterType="Custom,Numbers" ValidChars="." />
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Unit">

@@ -880,6 +880,7 @@ namespace Billing.Accountsbootstrap
                         Label lblprimarynamevalue = (Label)gvcustomerorder.Rows[rowIndex].Cells[2].FindControl("lblprimarynamevalue");
                         TextBox txtPQty = (TextBox)gvcustomerorder.Rows[rowIndex].Cells[3].FindControl("txtPQty");
                         Label lblprimaryvalue = (Label)gvcustomerorder.Rows[rowIndex].Cells[2].FindControl("lblprimaryvalue");
+                        TextBox  txtRateperkg = (TextBox)gvcustomerorder.Rows[rowIndex].Cells[6].FindControl("txtRateperkg");
 
                         drCurrentRow = dtCurrentTable.NewRow();
                         drCurrentRow["sno"] = i + 1;
@@ -912,7 +913,7 @@ namespace Billing.Accountsbootstrap
                         dtCurrentTable.Rows[i - 1]["PUnits"] = lblprimaryname.Text;
                         dtCurrentTable.Rows[i - 1]["Pvalue"] = lblprimaryvalue.Text;
                         dtCurrentTable.Rows[i - 1]["PQty"] = txtPQty.Text;
-                        dtCurrentTable.Rows[i - 1]["Rateperkg"] = txtperkgrate.Text;
+                        //dtCurrentTable.Rows[i - 1]["Rateperkg"] = txtRateperkg.Text;
                         rowIndex++;
                         //ddlIngregients.Focus();
                         //ddlIngregients.Enabled = true;
@@ -1127,8 +1128,22 @@ namespace Billing.Accountsbootstrap
                 ddlmprimaryunits.Focus();
                 return;
             }
+            DateTime Exp;
+            if (txtmexpireddate.Text == "")
+            {
+                //1900/01/01
+                Exp= DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                txtmexpireddate.Text = Exp.ToString();
+            }
+            else
+            {
+                Exp = DateTime.ParseExact(txtmexpireddate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                txtmexpireddate.Text = Exp.ToString();
+            }
+          //  DateTime todaysDate = DateTime.ParseExact(DateTime.Now.ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-            if (txtmQty.Text == "0" || txtmQty.Text == "")
+           
+                if (txtmQty.Text == "0" || txtmQty.Text == "")
             {
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Enter  Valid Qty.Thank You!!!.');", true);
                 txtmQty.Focus();
@@ -1787,7 +1802,123 @@ namespace Billing.Accountsbootstrap
                         CreditorID1 = Convert.ToInt32(ddlbank.SelectedValue);
                     }
 
-                    string ledgerid = "";
+
+                    for (int i = 0; i < gvcustomerorder.Rows.Count; i++)
+                    {
+                        
+                        TextBox Amount = (TextBox)gvcustomerorder.Rows[i].FindControl("txtAmount");
+                        //DropDownList ddldef = (DropDownList)gvcustomerorder.Rows[i].FindControl("ddlDef");
+                        Label txtdefid = (Label)gvcustomerorder.Rows[i].FindControl("txtdefid");
+                        Label txtdefname = (Label)gvcustomerorder.Rows[i].FindControl("txtdefname");
+                        if (txtdefid.Text != "0")
+                        {
+                            string ingre = txtdefname.Text;
+                            int idef = Convert.ToInt32(txtdefid.Text);
+
+                            TextBox Qty = (TextBox)gvcustomerorder.Rows[i].FindControl("txtQty");
+                            decimal dQty = Convert.ToDecimal(Qty.Text);
+
+                            TextBox Rate = (TextBox)gvcustomerorder.Rows[i].FindControl("txtRate");
+                            decimal DRate = Convert.ToDecimal(Rate.Text);
+                            // DropDownList ddlunits = (DropDownList)gvcustomerorder.Rows[i].FindControl("ddlunits");
+                            Label lblunitsid = (Label)gvcustomerorder.Rows[i].FindControl("lblunitsid");
+                            decimal dAmount = Convert.ToDecimal(Amount.Text);
+
+                            TextBox billno = (TextBox)gvcustomerorder.Rows[i].FindControl("txtBillNo");
+
+                            DropDownList supplier = (DropDownList)gvcustomerorder.Rows[i].FindControl("ddSupplier");
+
+                            DropDownList paymode = (DropDownList)gvcustomerorder.Rows[i].FindControl("ddlPay");
+
+                            TextBox txtSupliername = (TextBox)gvcustomerorder.Rows[i].FindControl("txtsupplier");
+
+                            TextBox txtexpireddate = (TextBox)gvcustomerorder.Rows[i].FindControl("txtexpireddate");
+
+
+                            TextBox txtnarrations = (TextBox)gvcustomerorder.Rows[i].FindControl("txtnarrations");
+
+                            TextBox txtDisCount = (TextBox)gvcustomerorder.Rows[i].FindControl("txtDisCount");
+                            if (txtDisCount.Text == "")
+                                txtDisCount.Text = "0";
+
+                            TextBox txtDisCountAmount = (TextBox)gvcustomerorder.Rows[i].FindControl("txtDisCountAmount");
+                            if (txtDisCountAmount.Text == "")
+                                txtDisCountAmount.Text = "0";
+
+                            //DropDownList ddlprimaryunits = (DropDownList)gvcustomerorder.Rows[i].FindControl("ddlprimaryunits");
+                            Label lblprimarynamevalue = (Label)gvcustomerorder.Rows[i].FindControl("lblprimarynamevalue");
+                            Label lblprimaryvalue = (Label)gvcustomerorder.Rows[i].FindControl("lblprimaryvalue");
+                            TextBox txtperkgrate = (TextBox)gvcustomerorder.Rows[i].FindControl("txtRateperkg");
+                            TextBox txtpqty = (TextBox)gvcustomerorder.Rows[i].FindControl("txtpqty");
+                            #region Validation
+
+                            //if (txtdefname.Text == "Select IngredientName")
+                            //{
+
+                            //    ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Select Valid Ingredients Name.Thank You!!!.');", true);
+                            //    drpmingredents.Focus();
+                            //    return;
+                            //}
+
+                            if (lblprimarynamevalue.Text  == "Select PrimaryUom")
+                            {
+                                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Select Valid Primary Uom.Thank You!!!.');", true);
+                                ddlmprimaryunits.Focus();
+                                return;
+                            }
+                            DateTime Exp;
+                            if (txtexpireddate.Text == "")
+                            {
+                                //1900/01/01
+                                Exp = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                                txtexpireddate.Text = Exp.ToString();
+                            }
+                            else
+                            {
+                                Exp = DateTime.ParseExact(txtexpireddate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                                txtexpireddate.Text = Exp.ToString();
+                            }
+                            //  DateTime todaysDate = DateTime.ParseExact(DateTime.Now.ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+
+                            if (Qty.Text == "0" || Qty.Text == "")
+                            {
+                                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Enter  Valid Qty.Thank You!!!.');", true);
+                                //txtmQty.Focus();
+                                return;
+                            }
+
+                            if (Rate.Text == "0" || Rate.Text == "")
+                            {
+                                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Enter Valid Rate.Thank You!!!.');", true);
+                                Rate.Focus();
+                                return;
+                            }
+
+                            if (Amount.Text == "0" || Amount.Text == "")
+                            {
+                                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Enter Valid Rate.Thank You!!!.');", true);
+                               // Amount.Focus();
+                                return;
+                            }
+
+                            if (txtDisCount.Text == "")
+                                txtDisCount.Text = "0";
+                            if (txtDisCountAmount.Text == "")
+                                txtDisCountAmount.Text = "0";
+                            if (billno.Text == "")
+                                billno.Text = "0";
+
+                            #endregion
+
+                        }
+                    }
+
+
+
+
+
+                            string ledgerid = "";
                     DataSet dsledger1 = kbs.getCashledgerId123("PurchaseA/C_" + sTableName);
                     if (dsledger1.Tables[0].Rows.Count > 0)
                     {
@@ -1966,6 +2097,7 @@ namespace Billing.Accountsbootstrap
                         PONo = Convert.ToInt32(drpPO.SelectedValue);
                     }
 
+
                     int insertPurchase = kbs.updatePurchase(sTableName, txtbillno.Text, txtsdate1.Text, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), iSalesID, bank, chequeno, CreditorID1, ledgerid, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), txteditnarrations.Text, Province, Convert.ToDouble(txtDiscountAmount.Text), Convert.ToDouble(txtFreightCharge.Text), Convert.ToDouble(txtFreightChargeTax.Text), Convert.ToInt32(ddltax.SelectedValue), Convert.ToDouble(ddltax.SelectedItem.Text), Convert.ToDouble(txtroundoff.Text));
                     int trans1 = kbs.getduplisttrans123(hdPurid.Value, sTableName);
 
@@ -2105,16 +2237,25 @@ namespace Billing.Accountsbootstrap
 
         protected void txtdefQty_TextChanged(object sender, EventArgs e)
         {
-            //  TextBox txt = (TextBox)sender;
-            // GridViewRow row = (GridViewRow)txt.NamingContainer;
+            if (ddlmprimaryunits.SelectedValue == "Select PrimaryUom")
+            {
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Select Valid Primary Uom.Thank You!!!.');", true);
+                ddlmprimaryunits.Focus();
+                return;
+            }
+            else
+            {
 
-            string Qty = txtmQty.Text;
-            string Rate = txtmRate.Text;
-            string Amount = txtmAmount.Text;
-            string txttax = txtmBillNo.Text;
-            string DisCount = txtmDisCount.Text;
-           
-          
+                //  TextBox txt = (TextBox)sender;
+                // GridViewRow row = (GridViewRow)txt.NamingContainer;
+
+                string Qty = txtmQty.Text;
+                string Rate = txtmRate.Text;
+                string Amount = txtmAmount.Text;
+                string txttax = txtmBillNo.Text;
+                string DisCount = txtmDisCount.Text;
+
+
 
                 string ddlprimaryunits = ddlmprimaryunits.SelectedValue;
 
@@ -2137,121 +2278,122 @@ namespace Billing.Accountsbootstrap
                     ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Please Enter Rate');", true);
                     return;
                 }
-          
-           
-
-            if (Qty == "")
-                txtmQty.Text = "0";
-            if (Rate == "")
-                txtmRate.Text = "0";
-            if (Amount == "")
-                txtmAmount.Text = "0";
-            if (txttax == "")
-                txtmBillNo.Text = "0";
-            if (DisCount == "")
-                txtmDisCount.Text = "0";
-
-            decimal dAmount = 0;
-            decimal tax = 0;
-            decimal Disc = 0;
-            decimal Pqty = 0;
-
-            lblError.Visible = false;
-            //Button1.Enabled = true;
 
 
-            decimal dQty = Convert.ToDecimal(txtmQty.Text);
-            decimal DRate = Convert.ToDecimal(txtmRate.Text);
-            decimal DDisCount = Convert.ToDecimal(txtmDisCount.Text);
 
-            dAmount = dQty * DRate;
-
-            Pqty = dQty * Convert.ToDecimal(lblmprimaryvalue.Text);
-            Disc = (dAmount * DDisCount) / 100;
-
-            tax = ((dAmount - Disc) * Convert.ToDecimal(txttax) / 100);
-
-            decimal amt = (dAmount - Disc) + tax;
-
-            txtmAmount.Text = amt.ToString("f2");
-            txtmpqty.Text = Pqty.ToString("f2");
-
-            decimal samt = 0; decimal sdisc = 0; decimal ttltax = 0;
-
-            //for (int i = 0; i < gvcustomerorder.Rows.Count; i++)
-            {
-                //  TextBox txtsno = (TextBox)gvcustomerorder.Rows[i].FindControl("txtsno");
-                //txtsno.Text = (i + 1).ToString();
-
-                //TextBox txtQty = (TextBox)gvcustomerorder.Rows[i].FindControl("txtQty");
-                //TextBox txtRate = (TextBox)gvcustomerorder.Rows[i].FindControl("txtRate");
-                //TextBox txtBillNo = (TextBox)gvcustomerorder.Rows[i].FindControl("txtBillNo");
-                //TextBox txtDisCount = (TextBox)gvcustomerorder.Rows[i].FindControl("txtDisCount");
-
-                if (txtmQty.Text == "")
+                if (Qty == "")
                     txtmQty.Text = "0";
-                if (txtmRate.Text == "")
+                if (Rate == "")
                     txtmRate.Text = "0";
-                if (txtmBillNo.Text == "")
+                if (Amount == "")
+                    txtmAmount.Text = "0";
+                if (txttax == "")
                     txtmBillNo.Text = "0";
-                if (txtmDisCount.Text == "")
+                if (DisCount == "")
                     txtmDisCount.Text = "0";
 
-                decimal dAmount1 = Convert.ToDecimal(txtmQty.Text) * Convert.ToDecimal(txtmRate.Text);
+                decimal dAmount = 0;
+                decimal tax = 0;
+                decimal Disc = 0;
+                decimal Pqty = 0;
 
-                decimal disc1 = (dAmount1 * Convert.ToDecimal(txtmDisCount.Text)) / 100;
+                lblError.Visible = false;
+                //Button1.Enabled = true;
 
-                decimal tax1 = (((dAmount1 - disc1) * Convert.ToDecimal(txtmBillNo.Text)) / 100);
 
-                samt += (dAmount1 - disc1);
-                sdisc += disc1;
-                ttltax += tax1;
+                decimal dQty = Convert.ToDecimal(txtmQty.Text);
+                decimal DRate = Convert.ToDecimal(txtmRate.Text);
+                decimal DDisCount = Convert.ToDecimal(txtmDisCount.Text);
 
+                dAmount = dQty * DRate;
+
+                Pqty = dQty * Convert.ToDecimal(lblmprimaryvalue.Text);
+                Disc = (dAmount * DDisCount) / 100;
+
+                tax = ((dAmount - Disc) * Convert.ToDecimal(txttax) / 100);
+
+                decimal amt = (dAmount - Disc) + tax;
+
+                txtmAmount.Text = amt.ToString("f2");
+                txtmpqty.Text = Pqty.ToString("f2");
+
+                decimal samt = 0; decimal sdisc = 0; decimal ttltax = 0;
+
+                //for (int i = 0; i < gvcustomerorder.Rows.Count; i++)
+                {
+                    //  TextBox txtsno = (TextBox)gvcustomerorder.Rows[i].FindControl("txtsno");
+                    //txtsno.Text = (i + 1).ToString();
+
+                    //TextBox txtQty = (TextBox)gvcustomerorder.Rows[i].FindControl("txtQty");
+                    //TextBox txtRate = (TextBox)gvcustomerorder.Rows[i].FindControl("txtRate");
+                    //TextBox txtBillNo = (TextBox)gvcustomerorder.Rows[i].FindControl("txtBillNo");
+                    //TextBox txtDisCount = (TextBox)gvcustomerorder.Rows[i].FindControl("txtDisCount");
+
+                    if (txtmQty.Text == "")
+                        txtmQty.Text = "0";
+                    if (txtmRate.Text == "")
+                        txtmRate.Text = "0";
+                    if (txtmBillNo.Text == "")
+                        txtmBillNo.Text = "0";
+                    if (txtmDisCount.Text == "")
+                        txtmDisCount.Text = "0";
+
+                    decimal dAmount1 = Convert.ToDecimal(txtmQty.Text) * Convert.ToDecimal(txtmRate.Text);
+
+                    decimal disc1 = (dAmount1 * Convert.ToDecimal(txtmDisCount.Text)) / 100;
+
+                    decimal tax1 = (((dAmount1 - disc1) * Convert.ToDecimal(txtmBillNo.Text)) / 100);
+
+                    samt += (dAmount1 - disc1);
+                    sdisc += disc1;
+                    ttltax += tax1;
+
+                }
+
+                txtSubTotal.Text = samt.ToString("f2");
+                txtDiscountAmount.Text = sdisc.ToString("f2");
+                txttotal.Text = (samt + ttltax).ToString("f2");
+
+                if (rbdpurchasetype.SelectedValue == "1")
+                {
+                    txtcgst.Text = string.Format("{0:N2}", Convert.ToDouble(ttltax) / 2);
+                    txtsgst.Text = string.Format("{0:N2}", Convert.ToDouble(ttltax) / 2);
+                    txtigst.Text = "0.00";
+                }
+                else
+                {
+                    txtcgst.Text = "0.00";
+                    txtsgst.Text = "0.00";
+                    txtigst.Text = ttltax.ToString("f2");
+                }
+
+                #region FreightCharge
+
+                if (txtFreightCharge.Text == "")
+                    txtFreightCharge.Text = "0";
+
+                decimal Tax = (Convert.ToDecimal(txtFreightCharge.Text) * Convert.ToDecimal(ddltax.SelectedItem.Text)) / 100;
+                txtFreightChargeTax.Text = Tax.ToString("f2");
+
+                decimal GrndTotal = (Convert.ToDecimal(txtSubTotal.Text) + Convert.ToDecimal(txtcgst.Text) + Convert.ToDecimal(txtsgst.Text) + Convert.ToDecimal(txtigst.Text) + Convert.ToDecimal(txtFreightCharge.Text) + Tax);
+                txttotal.Text = GrndTotal.ToString("f2");
+
+                #endregion
+
+                double r = 0;
+                double roundoff = Convert.ToDouble(txttotal.Text) - Math.Floor(Convert.ToDouble(txttotal.Text));
+                if (roundoff > 0.5)
+                {
+                    r = Math.Round(Convert.ToDouble(txttotal.Text), MidpointRounding.AwayFromZero);
+                }
+                else
+                {
+                    r = Math.Floor(Convert.ToDouble(txttotal.Text));
+                }
+                txtroundoff.Text = Convert.ToString(r);
+
+                txtmDisCount.Focus();
             }
-
-            txtSubTotal.Text = samt.ToString("f2");
-            txtDiscountAmount.Text = sdisc.ToString("f2");
-            txttotal.Text = (samt + ttltax).ToString("f2");
-
-            if (rbdpurchasetype.SelectedValue == "1")
-            {
-                txtcgst.Text = string.Format("{0:N2}", Convert.ToDouble(ttltax) / 2);
-                txtsgst.Text = string.Format("{0:N2}", Convert.ToDouble(ttltax) / 2);
-                txtigst.Text = "0.00";
-            }
-            else
-            {
-                txtcgst.Text = "0.00";
-                txtsgst.Text = "0.00";
-                txtigst.Text = ttltax.ToString("f2");
-            }
-
-            #region FreightCharge
-
-            if (txtFreightCharge.Text == "")
-                txtFreightCharge.Text = "0";
-
-            decimal Tax = (Convert.ToDecimal(txtFreightCharge.Text) * Convert.ToDecimal(ddltax.SelectedItem.Text)) / 100;
-            txtFreightChargeTax.Text = Tax.ToString("f2");
-
-            decimal GrndTotal = (Convert.ToDecimal(txtSubTotal.Text) + Convert.ToDecimal(txtcgst.Text) + Convert.ToDecimal(txtsgst.Text) + Convert.ToDecimal(txtigst.Text) + Convert.ToDecimal(txtFreightCharge.Text) + Tax);
-            txttotal.Text = GrndTotal.ToString("f2");
-
-            #endregion
-
-            double r = 0;
-            double roundoff = Convert.ToDouble(txttotal.Text) - Math.Floor(Convert.ToDouble(txttotal.Text));
-            if (roundoff > 0.5)
-            {
-                r = Math.Round(Convert.ToDouble(txttotal.Text), MidpointRounding.AwayFromZero);
-            }
-            else
-            {
-                r = Math.Floor(Convert.ToDouble(txttotal.Text));
-            }
-            txtroundoff.Text = Convert.ToString(r);
-
-            txtmDisCount.Focus();
         }
        
             protected void txtdefQty_TextChangedOLD(object sender, EventArgs e)
@@ -3363,7 +3505,7 @@ namespace Billing.Accountsbootstrap
                 r = Math.Floor(Convert.ToDouble(txttotal.Text));
             }
             txtroundoff.Text = Convert.ToString(r);
-            txtperkgrate.Text = Convert.ToDouble(Convert.ToDouble(txtmRate.Text) / Convert.ToDouble(lblmprimaryvalue.Text)).ToString("f2");
+            txtperkgrate.Text = Convert.ToDouble(Convert.ToDouble(Convert.ToDouble(txtmRate.Text) / Convert.ToDouble(lblmprimaryvalue.Text)) + Convert.ToDouble(Convert.ToDouble(Convert.ToDouble(txtmBillNo.Text)) / Convert.ToDouble(Convert.ToDouble(txtmRate.Text) * Convert.ToDouble(lblmprimaryvalue.Text))) * 100) .ToString("f2");
 
            // TextBox txtexpireddate = (TextBox)txt.FindControl("txtexpireddate");
            // txtexpireddate.Focus();
@@ -3380,6 +3522,8 @@ namespace Billing.Accountsbootstrap
                 chksupplier.Checked = false;
                 chk_chksupplier(sender, e);
                 ddlsuplier.Enabled = true;
+                drpitemload.SelectedValue = "1";
+                drpitemload.Enabled = true;
             }
             else
             {
@@ -3389,8 +3533,8 @@ namespace Billing.Accountsbootstrap
                 chk_chksupplier(sender, e);
                 chksupplier.Enabled = false;
                 ddlsuplier.Enabled = false;
-
-
+                drpitemload.SelectedValue = "2";
+                drpitemload.Enabled = false;
             }
         }
 
@@ -4139,8 +4283,17 @@ namespace Billing.Accountsbootstrap
                 {
                     txtmQty.Text = "0";
                 }
+                if (txtmRate.Text == "0" || txtmRate.Text == "")
+                {
+                    txtmRate.Text = "0";
+                }
+                if (txtmBillNo.Text == "0" || txtmBillNo.Text == "")
+                {
+                    txtmBillNo.Text = "0";
+                }
 
                 txtmpqty.Text = (Convert.ToDouble(txtmQty.Text) * Convert.ToDouble(lblmprimaryvalue.Text)).ToString("0.00");
+                txtperkgrate.Text= Convert.ToDouble(Convert.ToDouble(Convert.ToDouble(txtmRate.Text) / Convert.ToDouble(lblmprimaryvalue.Text)) + Convert.ToDouble(Convert.ToDouble(Convert.ToDouble(txtmBillNo.Text)) / Convert.ToDouble(Convert.ToDouble(txtmRate.Text) * Convert.ToDouble(lblmprimaryvalue.Text))) * 100).ToString("f2");
             }
             
         }

@@ -242,7 +242,7 @@ namespace Billing.Accountsbootstrap
                     DataSet dstd = new DataSet();
 
                     DataSet FullValues = objBs.GetfulltaxvalNew(ddlBranch.SelectedValue, txtfrmdate.Text, txttodate.Text);
-                    gvSalesValue.Caption = "ORDER";
+                    gvSalesValue.Caption = ddlBranch.SelectedItem.Text + " Tax wise Order Report from " + txtfrmdate.Text + " to "+ txttodate.Text ;
 
                     if (FullValues.Tables[0].Rows.Count > 0)
                     {
@@ -334,6 +334,7 @@ namespace Billing.Accountsbootstrap
 
                     gvSalesValue.DataSource = dstd;
                     gvSalesValue.DataBind();
+                    gvSalesValue.Caption = ddlBranch.SelectedItem.Text + " Tax wise Order Report from " + txtfrmdate.Text + " to " + txttodate.Text;
 
                 }
 
@@ -439,6 +440,7 @@ namespace Billing.Accountsbootstrap
                     gvSalesValue.Style.Add("text-decoration", "none");
                     gvSalesValue.Style.Add("font-family", "Arial, Helvetica, sans-serif;");
                     gvSalesValue.Style.Add("font-size", "6px");
+                    gvSalesValue.Caption = ddlBranch.SelectedItem.Text + " Tax wise Order Report from " + txtfrmdate.Text + " to " + txttodate.Text;
 
                     StringReader sr = new StringReader(sw.ToString());
                     Document pdfDoc = new Document(PageSize.A2, 7f, 7f, 7f, 0f);

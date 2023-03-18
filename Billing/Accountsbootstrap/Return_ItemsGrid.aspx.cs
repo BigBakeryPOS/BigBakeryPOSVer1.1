@@ -125,6 +125,12 @@ namespace Billing.Accountsbootstrap
                 Production2.Visible = false;
                 selectvalues = ddlBranch.SelectedValue;
             }
+             if (sCode == "Prod")
+            {
+                ProductionNellai.Visible = false;
+                Production2.Visible = false;
+                selectvalues = ddlBranch.SelectedValue;
+            }
             if (sCode == "Production2")
             {
                 ProductionNellai.Visible = false;

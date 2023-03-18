@@ -106,7 +106,7 @@ namespace Billing.Accountsbootstrap
             string Branch = "";
 
             Table1.Visible = true;
-            lblprintcaptionn.Text = BranchNAme + " Grn-P/M Report from " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("dd/MM/yyyy");
+            lblprintcaptionn.Text = BranchNAme +" " + StoreName  + " Grn-P/M Report from " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("dd/MM/yyyy");
             ScriptManager.RegisterStartupScript(this, typeof(Page), "printGrid1", "printGrid1();", true);
             //Table1.Visible = false;
         }

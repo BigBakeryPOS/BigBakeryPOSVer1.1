@@ -190,7 +190,7 @@
                                 <div class="col-lg-12">
                                 <div class="table-responsive panel-grid-left">
                                     <asp:GridView ID="gvsales" align="center" EmptyDataText="No Records Found" runat="server"
-                                        Caption="Customer Ceremonies" ShowFooter="true" AutoGenerateColumns="false" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0">
+                                         ShowFooter="true" AutoGenerateColumns="false" cssClass="table table-striped pos-table" padding="0" spacing="0" border="0">
                                        <%-- <HeaderStyle BackColor="#990000" />
                                         <PagerSettings FirstPageText="1" Mode="Numeric" />--%>
                                         <Columns>

@@ -8,6 +8,8 @@ using System.Data;
 using System.Text;
 using BusinessLayer;
 using System.IO;
+using System.Security.Cryptography;
+
 namespace Billing.Accountsbootstrap
 {
     public partial class DetailedHourlyReport : System.Web.UI.Page
@@ -211,6 +213,7 @@ namespace Billing.Accountsbootstrap
 
                 gvReport.DataSource = dat;
                 gvReport.DataBind();
+                gvReport.Caption = ddlBranch.SelectedItem.Text + " " + radiomode.SelectedItem.Text + " Sales Detailed Report from " + txtFrom.Text + " to " + txtTo.Text;
             }
             }
 
@@ -358,6 +361,7 @@ namespace Billing.Accountsbootstrap
 
                 gridview.DataSource = dat;
                 gridview.DataBind();
+                gridview.Caption = ddlBranch.SelectedItem.Text + " " + radiomode.SelectedItem.Text + " Sales Detailed Report from " + txtFrom.Text + " to " + txtTo.Text;
             }
             Response.ClearContent();
             Response.AddHeader("content-disposition",

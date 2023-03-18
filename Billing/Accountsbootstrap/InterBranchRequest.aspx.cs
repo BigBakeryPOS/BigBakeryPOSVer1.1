@@ -221,7 +221,7 @@ namespace Billing.Accountsbootstrap
                         if (lblqtytype.Text == "E")
                         {
                             drNew["Available_Qty"] = Convert.ToInt32(lblAvailable_Qty.Text).ToString();
-                            drNew["Qty"] = Convert.ToInt32(txtQty.Text).ToString();
+                            drNew["Qty"] = Math.Floor(Convert.ToDouble(txtQty.Text)).ToString();
                         }
                         drNew["UOM"] = lblom.Text;
 
@@ -270,7 +270,7 @@ namespace Billing.Accountsbootstrap
                         if (lblqtytype.Text == "E")
                         {
                             drNew["Available_Qty"] = Convert.ToInt32(lblAvailable_Qty.Text).ToString();
-                            drNew["Qty"] = Convert.ToInt32(txtQty.Text).ToString();
+                            drNew["Qty"] = Math.Floor(Convert.ToDouble(txtQty.Text)).ToString();
                         }
                         drNew["UOM"] = lblom.Text;
 
@@ -609,7 +609,7 @@ namespace Billing.Accountsbootstrap
                 }
                 else if(lblqtytype.Text=="E")
                 {
-                    txtQty.Text = Convert.ToInt32(Convert.ToInt32(txtQty.Text) + 1).ToString();
+                    txtQty.Text = Convert.ToInt32(Math.Floor(Convert.ToDouble(txtQty.Text)) + 1).ToString();
                 }
             }
 
@@ -628,7 +628,7 @@ namespace Billing.Accountsbootstrap
                     }
                     else if (lblqtytype.Text == "E")
                     {
-                        txtQty.Text = Convert.ToInt32(Convert.ToInt32(txtQty.Text) - 1).ToString();
+                        txtQty.Text = Convert.ToInt32(Math.Floor(Convert.ToDouble(txtQty.Text)) - 1).ToString();
                     }
                 }
                 else
@@ -691,7 +691,7 @@ namespace Billing.Accountsbootstrap
                     if(lblqtytype.Text=="E")
                     {
                         drNew["Available_Qty"] =Convert.ToInt32(lblAvailable_Qty.Text).ToString();
-                        drNew["Qty"] =Convert.ToInt32(txtQty.Text).ToString();
+                        drNew["Qty"] =Math.Floor(Convert.ToDouble(txtQty.Text)).ToString();
 
                     }
                     if (lblqtytype.Text == "D")

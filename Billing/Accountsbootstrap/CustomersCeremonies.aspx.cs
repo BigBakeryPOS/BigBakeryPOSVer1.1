@@ -22,6 +22,7 @@ namespace Billing.Accountsbootstrap
         double Qty = 0;
         string AllBranchAccess = "0";
         string brach = string.Empty;
+        string Store = "";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -29,6 +30,7 @@ namespace Billing.Accountsbootstrap
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             sTableName =  Request.Cookies["userInfo"]["User"].ToString();
             AllBranchAccess = Request.Cookies["userInfo"]["AllBranchAccess"].ToString();
+            Store = Request.Cookies["userInfo"]["Store"].ToString();
 
             if (!IsPostBack)
             {
@@ -114,6 +116,8 @@ namespace Billing.Accountsbootstrap
             {
                 gvsales.DataSource = dsgrid;
                 gvsales.DataBind();
+                gvsales.Caption = Store + " Customer Ceremonies Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " +Convert.ToDateTime(txttodate.Text) +" for " +ddlcustomer.SelectedItem.Text + " Customer";
+
             }
             else
             {
@@ -227,6 +231,7 @@ namespace Billing.Accountsbootstrap
             {
                 gvsales.DataSource = dsgrid;
                 gvsales.DataBind();
+                gvsales.Caption = Store + " Customer Ceremonies Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text) + " for " + ddlcustomer.SelectedItem.Text + " Customer";
             }
             else
             {
@@ -262,6 +267,7 @@ namespace Billing.Accountsbootstrap
             {
                 gvsales.DataSource = dsgrid;
                 gvsales.DataBind();
+                gvsales.Caption = Store + " Customer Ceremonies Report from " + Convert.ToDateTime(txtfromdate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txttodate.Text) + " for " + ddlcustomer.SelectedItem.Text + " Customer";
             }
             else
             {

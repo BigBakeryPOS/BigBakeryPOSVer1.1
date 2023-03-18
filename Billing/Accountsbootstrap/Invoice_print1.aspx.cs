@@ -21,11 +21,14 @@ namespace Billing.Accountsbootstrap
        decimal TotalTaxAmount = 0;
         decimal CGSTAmount=0;
         decimal totaltax = 0;
-
+        string scode="";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.Cookies["userInfo"]["User"] != null)
+            {
                 sTableName = Request.Cookies["userInfo"]["User"].ToString();
+                scode = Request.Cookies["userInfo"]["BranchCode"].ToString();
+            }
             else
                 Response.Redirect("Login_Branch.aspx");
 
@@ -35,10 +38,29 @@ namespace Billing.Accountsbootstrap
                 string ID = Request.QueryString.Get("SalesId");
                 if (ID != null)
                 {
+                   
+                   
+
                     DataSet ds = objBs.getwholeSaleprint(sTableName, (ID));
+                    DataSet ds1 = objBs.getbranchdetails1(scode);
 
                     if (ds.Tables[0].Rows.Count > 0)
                     {
+                        if (ds1.Tables[0].Rows.Count>0)
+                        {
+
+                            lblbranch.Text = ds1.Tables[0].Rows[0]["branchname"].ToString();
+                            lblbranch1.Text = ds1.Tables[0].Rows[0]["branchname"].ToString();
+                            lblbranchaddress.Text = ds1.Tables[0].Rows[0]["address"].ToString();
+                            lblcountry.Text = ds1.Tables[0].Rows[0]["Country"].ToString();
+                            lblstate1.Text = ds1.Tables[0].Rows[0]["State"].ToString();
+                            lblcity1.Text = ds1.Tables[0].Rows[0]["City"].ToString();
+                            lblMobileno.Text = ds1.Tables[0].Rows[0]["MobileNo"].ToString();
+                            lblgstin.Text = ds1.Tables[0].Rows[0]["GSTIN"].ToString();
+                            lblemail.Text = ds1.Tables[0].Rows[0]["Email"].ToString();
+
+
+                                }
                         lblDeliveryNoteNo.Text = ds.Tables[0].Rows[0]["FullBillNo"].ToString();
                         lblDated.Text = Convert.ToDateTime(ds.Tables[0].Rows[0]["BillDate"]).ToString("dd/MM/yyyy");
 

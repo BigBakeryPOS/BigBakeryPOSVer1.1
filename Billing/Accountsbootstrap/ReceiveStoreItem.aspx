@@ -29,6 +29,7 @@
        }
       </style>
     <script type="text/javascript">
+
         //    function ClientSideClick(myButton) {
         //        // Client side validation
         //        if (typeof (Page_ClientValidate) == 'function') {
@@ -46,7 +47,24 @@
         //        return true;
         //    }
     </script>
+      <script type="text/javascript">
+ function isDecimal(evt)
+    {
+       var charCode = (evt.which) ? evt.which : event.keyCode
+       var parts = evt.srcElement.value.split('.');
+       if(parts.length > 1 && charCode==46)
+          return false;
+       else
+       {
+          if (charCode == 46 || (charCode >= 48 && charCode <= 57))
+             return true;
+          return false;
+       }
+    }
+</script>
     <script type="text/javascript">
+ 
+
         function Search_Gridview(strKey, strGV) {
             var strData = strKey.value.toLowerCase().split(" ");
             var tblData = document.getElementById(strGV);
@@ -65,7 +83,7 @@
                 tblData.rows[i].style.display = styleDisplay;
             }
         }    
-    </script>
+      </script>
     <link href="css/mGrid.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         #dialog
@@ -317,17 +335,23 @@
                                             </asp:TemplateField>
                                              <asp:TemplateField HeaderText="Accept Qty">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtacceptqty" runat="server" Text='<%#Eval("WantedRaw") %>' ></asp:TextBox>
+                                                    <asp:TextBox ID="txtacceptqty" runat="server" Text='<%#Eval("WantedRaw") %>'  onkeypress="return isDecimal(event)"  ></asp:TextBox>
+                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender6" runat="server"
+                                                    FilterType="Numbers,Custom" ValidChars="." TargetControlID="txtacceptqty" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                              <asp:TemplateField HeaderText="Missing Qty">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtmissingqty" runat="server" ></asp:TextBox>
+                                                    <asp:TextBox ID="txtmissingqty" runat="server"  onkeypress="return isDecimal(event)"  ></asp:TextBox>
+                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender7" runat="server"
+                                                    FilterType="Numbers,Custom" ValidChars="." TargetControlID="txtmissingqty" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                              <asp:TemplateField HeaderText="Damage Qty">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtdamageqty" runat="server" ></asp:TextBox>
+                                                    <asp:TextBox ID="txtdamageqty" runat="server"  onkeypress="return isDecimal(event)"  ></asp:TextBox>
+                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender8" runat="server"
+                                                    FilterType="Numbers,Custom" ValidChars="." TargetControlID="txtdamageqty" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:BoundField HeaderText="Unit" DataField="UOM" />
