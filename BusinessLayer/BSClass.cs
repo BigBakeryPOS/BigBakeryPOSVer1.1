@@ -17899,6 +17899,22 @@ namespace BusinessLayer
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
         }
+        public DataSet chkupdatecustomerEmail(string sEmail,string CustId )
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select * from tblledger where Email='" + sEmail + "'  and IsActive='Yes' and LedgerId<>'"+CustId+"' ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+        public DataSet chkupdatecustomerMobile( string sMobile,string CustId)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select * from tblledger where  MobileNo='" + sMobile + "' and IsActive='Yes' and LedgerId<>'"+CustId+"' ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+
+
 
         public DataSet duplicatecheckcustomercheck(string columnname, string Columnvalue)
         {
@@ -22877,7 +22893,7 @@ namespace BusinessLayer
             else if (requesttype == "")
             {
                 sqry = "select s.RequestNo,RequestDate,Prepared,c.IngreCategory as Category,cu.IngredientName as Definition,Qty,u.UOM as Unit  from " + Stable + " s  inner join  " + TansStable + " ts on  ts.RequestID=s.RequestNo  " +
-                    " inner join tblIngridents cu on cu.IngridID=ts.ItemId inner join tblIngridentsCategory c on c.IngCatID=cu.IngCatID " +
+                    " inner join tblIngridents cu on cu.IngridID=ts.RawItemId inner join tblIngridentsCategory c on c.IngCatID=cu.IngCatID " +
                     " inner join tblUOM u on u.UOMID=cu.Units  where s.RequestNo=" + RequestNo + "";
             }
             ds = dbObj.InlineExecuteDataSet(sqry);
