@@ -178,7 +178,7 @@ namespace Billing.Accountsbootstrap
                                         }
                                         else if(lblqtytype.ToString()=="E")
                                         {
-                                            drNew["Qty"] = Convert.ToInt32(txtQty).ToString();
+                                            drNew["Qty"] = Math.Floor(Convert.ToDouble(txtQty)).ToString();
 
                                         }
                                        
@@ -239,7 +239,7 @@ namespace Billing.Accountsbootstrap
                                         }
                                         else if(lblqtytype.ToString()=="E")
                                         {
-                                            drNew["Qty"] = Convert.ToInt32(txtQty).ToString();
+                                            drNew["Qty"] = Math.Floor(Convert.ToDouble(txtQty)).ToString();
                                         }
                                        
                                         drNew["UOM"] = lblom;
@@ -328,7 +328,7 @@ namespace Billing.Accountsbootstrap
                                         }
                                         else if (g.qtytype.ToString()=="E")
                                         {
-                                            drraw["Qty"] = Convert.ToInt32(g.Qty).ToString();
+                                            drraw["Qty"] =Math.Floor(Convert.ToDouble(g.Qty)).ToString();
                                         }
                                         drraw["UOM"] = g.UOM;
                                         drraw["serial"] = g.serial;
@@ -415,7 +415,7 @@ namespace Billing.Accountsbootstrap
                 }
                 else if(lblqtytype.Text=="E")
                 {
-                    txtQty.Text = Convert.ToInt32(Convert.ToDouble(txtQty.Text) + 1).ToString();
+                    txtQty.Text = Math.Floor(Convert.ToDouble(txtQty.Text) + 1).ToString();
                 }
             }
 
@@ -434,7 +434,8 @@ namespace Billing.Accountsbootstrap
                     }
                     else if (lblqtytype.Text == "E")
                     {
-                        txtQty.Text = Convert.ToInt32(Convert.ToDouble(txtQty.Text) - 1).ToString();
+                       
+                        txtQty.Text = Math.Floor(Convert.ToDouble(txtQty.Text) - 1).ToString();
                     }
                 }
                 else
@@ -944,7 +945,7 @@ namespace Billing.Accountsbootstrap
                     }
                     else if (g.qtytype.ToString() == "E")
                     {
-                        drraw["Qty"] = Convert.ToInt32(g.Qty).ToString();
+                        drraw["Qty"] = Math.Floor(Convert.ToDouble(g.Qty)).ToString();
                     }
                     drraw["UOM"] = g.UOM;
                     drraw["serial"] = g.serial;
@@ -1194,7 +1195,7 @@ namespace Billing.Accountsbootstrap
                         }
                         else if(g.qtytype.ToString()=="E")
                         {
-                            drraw["Qty"] = Convert.ToInt32(g.Qty).ToString();
+                            drraw["Qty"] =Math.Floor(Convert.ToDouble(g.Qty)).ToString();
                         }
                         drraw["UOM"] = g.UOM;
                         drraw["serial"] = g.serial;
@@ -1356,7 +1357,7 @@ namespace Billing.Accountsbootstrap
                 }
                 else if(lblqtytype.Text=="E")
                 {
-                    lbqty.Text = Convert.ToInt32(lbqty.Text).ToString();
+                    lbqty.Text = Math.Floor(Convert.ToDouble(lbqty.Text)).ToString();
                 }
                 else
                 {
