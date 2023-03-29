@@ -201,7 +201,7 @@
                                                     AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdProduct_CheckedChanged" />
 
                                             <asp:RadioButton ID="rbdcompany" runat="server" Text="Company Wise" CssClass="center-block" style="display:inline"
-                                                    AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdcompany_CheckedChanged" />
+                                                    AutoPostBack="true" GroupName="a"  />
                                             
                                                 <asp:RadioButton ID="rbdExpDate" runat="server" Text="Expired Date" CssClass="center-block" style="display:inline"
                                                     AutoPostBack="true" GroupName="a" OnCheckedChanged="rbdExpDate_CheckedChanged" />

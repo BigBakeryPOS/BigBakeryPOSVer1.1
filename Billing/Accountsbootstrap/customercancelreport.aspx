@@ -95,7 +95,7 @@
                                     <asp:TextBox runat="server" ID="txtfromdate" CssClass="form-control" AutoPostBack="true"
                                         OnTextChanged="txtfromdate_TextChanged">
                                     </asp:TextBox>
-                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="yyyy-MM-dd" TargetControlID="txtfromdate"
+                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" Format="dd/MM/yyyy" TargetControlID="txtfromdate"
                                         runat="server" CssClass="cal_Theme1">
                                     </ajaxToolkit:CalendarExtender>
                                 </div>
@@ -104,7 +104,7 @@
                                         To Date</label>
                                     <asp:TextBox runat="server" CssClass="form-control" ID="txttodate">
                                     </asp:TextBox>
-                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="yyyy-MM-dd" TargetControlID="txttodate"
+                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="dd/MM/yyyy" TargetControlID="txttodate"
                                         runat="server" CssClass="cal_Theme1">
                                     </ajaxToolkit:CalendarExtender>
                                 </div>
@@ -125,10 +125,10 @@
                                     
                                         <br />
                                         <asp:Label ID="lblbranch" runat="server" Font-Bold="true" Text="Store :" ForeColor="Black"></asp:Label>
-                                        <asp:Label ID="Label123" runat="server" Font-Bold="true" Text="" ForeColor="Black"></asp:Label>
+                                        
                                     
                                     <div class="table-responsive panel-grid-left" id="div1" runat="server">
-                                      
+                                      <asp:Label ID="Label123" runat="server" Font-Bold="true" Text="" ForeColor="Black"></asp:Label>
                                                     <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
                                                     <asp:GridView ID="gvCustsales" runat="server" AllowPaging="true" PageSize="150" cssClass="table table-striped pos-table"
                                                         DataKeyNames="BillNo,typeid,Branch" ShowFooter="true" OnPageIndexChanging="Page_Change" OnRowDataBound="gvCustsales_RowDataBound"

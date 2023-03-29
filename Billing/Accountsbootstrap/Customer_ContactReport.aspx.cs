@@ -18,6 +18,7 @@ namespace Billing
     public partial class Customer_ContactReport : System.Web.UI.Page
     {
         string Sort_Direction1 = "CustomerName ASC";
+        string branch = "";
         BSClass objBs = new BSClass();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,6 +28,7 @@ namespace Billing
             {
                 lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
                 lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
+                branch = Request.Cookies["userInfo"]["Store"].ToString();
                 ViewState["SortExpr"] = Sort_Direction1;
                 DataSet dSelect = objBs.CustomerReport(Convert.ToInt32(1));
                 gvcust.DataSource = dSelect;
@@ -58,6 +60,7 @@ namespace Billing
             dvEmp.Sort = ViewState["SortExpr"].ToString();
             gvcust.DataSource = dvEmp;
             gvcust.DataBind();
+            gvcust.Caption = branch + " Customer Contact Report ";
         }
         protected void Page_Change(object sender, GridViewPageEventArgs e)
         {
@@ -67,6 +70,7 @@ namespace Billing
             DataView dvEmployee = ds.Tables[0].DefaultView;
             gvcust.DataSource = dvEmployee;
             gvcust.DataBind();
+            gvcust.Caption = branch + " Customer Contact Report ";
 
         }
         protected void gvcust_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -85,6 +89,7 @@ namespace Billing
             GridView gvcust = new GridView();
             gvcust.DataSource = objBs.CustomerReport(Convert.ToInt32(1));
             gvcust.DataBind();
+            gvcust.Caption = branch + " Customer Contact Report ";
             Response.ClearContent();
             Response.AddHeader("content-disposition",
                 "attachment;filename=CustomersReport.xls");

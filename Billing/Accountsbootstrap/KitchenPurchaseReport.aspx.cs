@@ -26,6 +26,7 @@ namespace Billing.Accountsbootstrap
         string BranchNAme = "";
         string StoreName = "";
         string Password = "";
+        string branch="";
         System.Globalization.CultureInfo Cul = new System.Globalization.CultureInfo("en-GB", true);
         protected void Page_Load(object sender, EventArgs e)
         {

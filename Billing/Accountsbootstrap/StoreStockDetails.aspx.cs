@@ -25,6 +25,7 @@ namespace Billing.Accountsbootstrap
         string BranchNAme = "";
         string StoreName = "";
         string Password = "";
+        string store = "";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -34,7 +35,7 @@ namespace Billing.Accountsbootstrap
 
             sTableName = Request.Cookies["userInfo"]["BranchCode"].ToString();
             Password = Request.Cookies["userInfo"]["Password"].ToString();
-
+             store = Request.Cookies["userInfo"]["Store"].ToString();
             DataSet dsPlaceName = objBs.GetPlacename(lblUser.Text, Password);
             StoreName = dsPlaceName.Tables[0].Rows[0]["StoreName"].ToString();
             BranchNAme = dsPlaceName.Tables[0].Rows[0]["Place"].ToString();
@@ -61,6 +62,9 @@ namespace Billing.Accountsbootstrap
                     {
                         BankGrid.DataSource = ds;
                         BankGrid.DataBind();
+                        string caption = " <h4><b>" + " Store :  " + BranchNAme + " " + StoreName + " for " + ddlIngreCategory.SelectedItem.Text + " Category" + " Generate On " + DateTime.Now.ToString("MM/dd/yyyy hh:mm tt") + " </b></h4> ";
+                        BankGrid.Caption = caption;
+
                     }
                     else
                     {
@@ -85,6 +89,10 @@ namespace Billing.Accountsbootstrap
                 {
                     BankGrid.DataSource = ds;
                     BankGrid.DataBind();
+                    string caption = " <h4><b>" + " Store :  " + BranchNAme + " " + StoreName + " for " + ddlIngreCategory.SelectedItem.Text + " Category" + " Generate On " + DateTime.Now.ToString("MM/dd/yyyy hh:mm tt") + " </b></h4> ";
+                    BankGrid.Caption = caption;
+
+                    //  BankGrid.Caption = store + "in Store Raw Material Details for" + ddlIngreCategory.SelectedItem.Text + " Category";
                 }
                 else
                 {
@@ -106,8 +114,8 @@ namespace Billing.Accountsbootstrap
              //   if (rdbtype.SelectedValue == "1")
                 {
                     ScriptManager.RegisterStartupScript(this, typeof(Page), "printGrid", "printGrid();", true);
-                    string caption = " <h4><b>" + " Store :  " + BranchNAme + " " + StoreName + " Generate On " + DateTime.Now.ToString("MM/dd/yyyy hh:mm tt") + " </b></h4> ";
-                    BankGrid.Caption = caption;
+                    //string caption = " <h4><b>" + " Store :  " + BranchNAme + " " + StoreName + " for "+ ddlIngreCategory.SelectedItem.Text + " Category"+ " Generate On " + DateTime.Now.ToString("MM/dd/yyyy hh:mm tt") + " </b></h4> ";
+                    //BankGrid.Caption = caption;
                 }
              
             }
@@ -175,7 +183,7 @@ namespace Billing.Accountsbootstrap
                             BankGrid.Style.Add("text-decoration", "none");
                             BankGrid.Style.Add("font-family", "Arial, Helvetica, sans-serif;");
                             BankGrid.Style.Add("font-size", "6px");
-
+                           
                             StringReader sr = new StringReader(sw.ToString());
                             Document pdfDoc = new Document(PageSize.A2, 7f, 7f, 7f, 0f);
                             PdfWriter writer = PdfWriter.GetInstance(pdfDoc, Response.OutputStream);

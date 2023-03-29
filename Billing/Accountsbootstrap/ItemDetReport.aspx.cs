@@ -14,6 +14,7 @@ namespace Billing.Accountsbootstrap
     {
         DataSet tbllogin = new DataSet();
         BSClass objBs = new BSClass();
+        string branch = "";
         string Sort_Direction = "Description ASC";
         string Sort_Direction1 = "category ASC";
         string Rate = "";
@@ -25,9 +26,12 @@ namespace Billing.Accountsbootstrap
                 lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
                 lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
                 Rate = Request.Cookies["userInfo"]["Rate"].ToString();
+            branch = Request.Cookies["userInfo"]["Store"].ToString();
                 DataSet ds1 = objBs.gridcustomer();
                 gridview.DataSource = ds1;
                 gridview.DataBind();
+            gridview.Caption = branch + " " + "Items Report ";
+
             
 
         }
@@ -51,6 +55,7 @@ namespace Billing.Accountsbootstrap
                 {
                     gridview.DataSource = ds;
                     gridview.DataBind();
+                    gridview.Caption = branch + " " + "Items Report for " + txtdescription.Text + " Category";
                 }
                 else
                 {
@@ -64,6 +69,7 @@ namespace Billing.Accountsbootstrap
                 {
                     gridview.DataSource = ds;
                     gridview.DataBind();
+                    gridview.Caption = branch + " " + "Items Report for  "+txtdescription.Text + " Item";
                 }
                 else
                 {
@@ -121,6 +127,7 @@ namespace Billing.Accountsbootstrap
             ds = objBs.gridcustomer1();
             gridview.DataSource = ds;
             gridview.DataBind();
+            gridview.Caption = branch + " " + "Items Report ";
             Response.ClearContent();
             Response.AddHeader("content-disposition",
                 "attachment;filename=ItemReport.xls");

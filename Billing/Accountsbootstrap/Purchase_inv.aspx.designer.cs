@@ -474,6 +474,15 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.TextBox txtmQty;
 
         /// <summary>
+        /// ftbe control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender ftbe;
+
+        /// <summary>
         /// txtmDisCount control.
         /// </summary>
         /// <remarks>
@@ -481,6 +490,15 @@ namespace Billing.Accountsbootstrap
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtmDisCount;
+
+        /// <summary>
+        /// FilteredTextBoxExtender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender1;
 
         /// <summary>
         /// txtmDisCountAmount control.
@@ -492,6 +510,15 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.TextBox txtmDisCountAmount;
 
         /// <summary>
+        /// FilteredTextBoxExtender2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender2;
+
+        /// <summary>
         /// txtmBillNo control.
         /// </summary>
         /// <remarks>
@@ -501,6 +528,15 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.TextBox txtmBillNo;
 
         /// <summary>
+        /// FilteredTextBoxExtender4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender4;
+
+        /// <summary>
         /// txtmRate control.
         /// </summary>
         /// <remarks>
@@ -508,6 +544,15 @@ namespace Billing.Accountsbootstrap
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtmRate;
+
+        /// <summary>
+        /// FilteredTextBoxExtender5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender5;
 
         /// <summary>
         /// txtmAmount control.
@@ -535,6 +580,15 @@ namespace Billing.Accountsbootstrap
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
+
+        /// <summary>
+        /// dateValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator dateValidator;
 
         /// <summary>
         /// txtmpqty control.

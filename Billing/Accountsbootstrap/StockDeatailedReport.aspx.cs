@@ -142,7 +142,7 @@ namespace Billing.Accountsbootstrap
         }
         protected void Button2_Click(object sender, EventArgs e)
         {
-            caption.InnerText = BranchNAme + " Stock Detailed Report from " + Convert.ToDateTime(txtFrom.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("dd/MM/yyyy");
+            caption.InnerText = StoreName+ " "+ BranchNAme + " Stock Detailed Report from " + Convert.ToDateTime(txtFrom.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("dd/MM/yyyy");
             ScriptManager.RegisterStartupScript(this, typeof(Page), "printGrid", "printGrid();", true);
         }
         protected void Button3_Click(object sender, EventArgs e)

@@ -242,7 +242,7 @@ namespace Billing.Accountsbootstrap
                         //tot = Convert.ToDouble(Total);
 
                         getsummaryorder();
-                        gvCustsales.Caption = Label123.Text + "Sales Order Report From " + txtfromdate.Text + " To " + txttodate.Text + " For payment Mode :" + drpPayment.SelectedItem + " as on " + System.DateTime.Now.ToString("dd/MM/yyyy");
+                        gvCustsales.Caption = Label123.Text + " Sales Order Report From " + txtfromdate.Text + " To " + txttodate.Text + " For payment Mode :" + drpPayment.SelectedItem + " as on " + System.DateTime.Now.ToString("dd/MM/yyyy");
                         decimal dtotal = 0;
                         for (int i = 0; i < gvCustsales.Rows.Count; i++)
                         {
@@ -722,7 +722,7 @@ namespace Billing.Accountsbootstrap
             System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(tw);
             DataGrid dgGrid = new DataGrid();
             //  dgGrid.Caption = Label123.Text + " Order Form Report Generated on " + DateTime.Now.ToString();
-            dgGrid.Caption = "Sales Order Report From " + txtfromdate.Text + " To " + txttodate.Text + " For payment Mode :" + drpPayment.SelectedItem + " as on " + System.DateTime.Now.ToString("dd/MM/yyyy");
+            dgGrid.Caption = Label123 +" Sales Order Report From " + txtfromdate.Text + " To " + txttodate.Text + " For payment Mode :" + drpPayment.SelectedItem + " as on " + System.DateTime.Now.ToString("dd/MM/yyyy");
             dgGrid.DataSource = dt;
             dgGrid.DataBind();
             dgGrid.HeaderStyle.ForeColor = System.Drawing.Color.Black;

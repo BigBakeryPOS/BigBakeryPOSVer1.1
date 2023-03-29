@@ -23,10 +23,12 @@ namespace Billing.Accountsbootstrap
 
         string sTableName = "";
         string AllBranchAccess = "0";
+        string store = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
             AllBranchAccess = Request.Cookies["userInfo"]["AllBranchAccess"].ToString();
+            store = Request.Cookies["userInfo"]["Store"].ToString();
             if (!IsPostBack)
             {
 
@@ -232,7 +234,7 @@ namespace Billing.Accountsbootstrap
                         }
                         dt.Rows.Add(dr);
                     }
-                    gvorderinfo.Caption = "Cake Order Remainder Report";
+                    gvorderinfo.Caption = store +" Cake Order Remainder Report ";
                     gvorderinfo.DataSource = dt;
                     gvorderinfo.DataBind();
 

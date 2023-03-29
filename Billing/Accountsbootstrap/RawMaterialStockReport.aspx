@@ -11,7 +11,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <link href="css/mGrid.css" rel="stylesheet" type="text/css" />
-    <title>Stock Detailed Report </title>
+    <title>Raw Material Stock Report </title>
     <link rel="Stylesheet" type="text/css" href="../Styles/AjaxPopUp.css" />
     <script language="javascript" type="text/javascript" src="../js/Validation.js"></script>
     <link href="../Styles/chosen.css" rel="Stylesheet" />
@@ -209,6 +209,7 @@
                                                 <asp:BoundField HeaderText="Branch Amount" DataField="BranchAmount" DataFormatString='{0:f}' />
                                                 <asp:BoundField HeaderText="ClosingStockQty" DataField="ClosingStockQty" DataFormatString='{0:f}' />
                                                 <asp:BoundField HeaderText="ClosingStockAmount" DataField="ClosingStockAmount" DataFormatString='{0:f}' />
+
                                             </Columns>
                                             <%--<FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
                                     <HeaderStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />--%>

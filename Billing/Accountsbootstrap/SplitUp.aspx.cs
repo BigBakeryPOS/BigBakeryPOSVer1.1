@@ -12,8 +12,11 @@ namespace Billing.Accountsbootstrap
     {
         string sTableName = "";
         BSClass objbs = new BSClass();
+        string Store="";
         protected void Page_Load(object sender, EventArgs e)
-        { sTableName = Request.Cookies["userInfo"]["User"].ToString();
+        {
+            sTableName = Request.Cookies["userInfo"]["User"].ToString();
+            Store = Request.Cookies["userInfo"]["Store"].ToString();
             if (!IsPostBack)
             {
                 if (sTableName == "admin")
@@ -31,20 +34,20 @@ namespace Billing.Accountsbootstrap
                     DataSet davv = objbs.AdvancaPayment(sTableName, txtfrom.Text, txtto.Text);
                     gvAvance.DataSource = davv.Tables[0];
                     gvAvance.DataBind();
-                    gvAvance.Caption = "All Payment modes"+" From " + txtfrom.Text + " To " + txtto.Text;
+                    gvAvance.Caption = Store +" All Payment modes"+" From " + txtfrom.Text + " To " + txtto.Text;
                     
 
 
                     DataSet dBal = objbs.BalancePayment(sTableName, txtfrom.Text, txtto.Text);
                     gvBalance.DataSource = dBal.Tables[0];
                     gvBalance.DataBind();
-                    gvBalance.Caption = "All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
+                    gvBalance.Caption =Store + " All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
                     
 
                     DataSet dFull = objbs.FullPayment(sTableName, txtfrom.Text, txtto.Text);
                     gvFull.DataSource = dFull.Tables[0];
                     gvFull.DataBind();
-                    gvFull.Caption = "All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
+                    gvFull.Caption =Store + " All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
 
                     decimal adv = 0; decimal bal = 0; decimal full = 0;
                     for (int i = 0; i < gvAvance.Rows.Count; i++)
@@ -68,7 +71,7 @@ namespace Billing.Accountsbootstrap
                     DataTable dt = objbs.OrderPayMode(sTableName, txtfrom.Text, txtto.Text);
                     gvsplit.DataSource = dt;
                     gvsplit.DataBind();
-                    gvsplit.Caption = "All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
+                    gvsplit.Caption = Store +" All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
                 }
                
 
@@ -130,19 +133,19 @@ namespace Billing.Accountsbootstrap
                 DataSet davv = objbs.AdvancaPayment(ddlBranch.SelectedValue, txtfrom.Text, txtto.Text);
                 gvAvance.DataSource = davv.Tables[0];
                 gvAvance.DataBind();
-                gvAvance.Caption = "All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
+                gvAvance.Caption = ddlBranch.SelectedItem.Text + " All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
 
 
                 DataSet dBal = objbs.BalancePayment(ddlBranch.SelectedValue, txtfrom.Text, txtto.Text);
                 gvBalance.DataSource = dBal.Tables[0];
                 gvBalance.DataBind();
-                gvBalance.Caption = "All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
+                gvBalance.Caption = ddlBranch.SelectedItem.Text + " All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
 
 
                 DataSet dFull = objbs.FullPayment(ddlBranch.SelectedValue, txtfrom.Text, txtto.Text);
                 gvFull.DataSource = dFull.Tables[0];
                 gvFull.DataBind();
-                gvFull.Caption = "All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
+                gvFull.Caption = ddlBranch.SelectedItem.Text + " All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
 
                 decimal adv = 0; decimal bal = 0; decimal full = 0;
                 for (int i = 0; i < gvAvance.Rows.Count; i++)
@@ -168,26 +171,26 @@ namespace Billing.Accountsbootstrap
                 DataTable dt = objbs.OrderPayMode(ddlBranch.SelectedValue, txtfrom.Text, txtto.Text);
                 gvsplit.DataSource = dt;
                 gvsplit.DataBind();
-                gvsplit.Caption = "All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
+                gvsplit.Caption = ddlBranch.SelectedItem.Text + " All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
             }
             else
             {
                 DataSet davv = objbs.AdvancaPayment(sTableName, txtfrom.Text, txtto.Text);
                 gvAvance.DataSource = davv.Tables[0];
                 gvAvance.DataBind();
-                gvAvance.Caption = "All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
+                gvAvance.Caption = Store +" All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
 
 
                 DataSet dBal = objbs.BalancePayment(sTableName, txtfrom.Text, txtto.Text);
                 gvBalance.DataSource = dBal.Tables[0];
                 gvBalance.DataBind();
-                gvBalance.Caption = "All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
+                gvBalance.Caption = Store +" All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
 
 
                 DataSet dFull = objbs.FullPayment(sTableName, txtfrom.Text, txtto.Text);
                 gvFull.DataSource = dFull.Tables[0];
                 gvFull.DataBind();
-                gvFull.Caption = "All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
+                gvFull.Caption = Store +" All Payment modes" + " From " + txtfrom.Text + " To " + txtto.Text;
 
                 decimal adv = 0; decimal bal = 0; decimal full = 0;
                 for (int i = 0; i < gvAvance.Rows.Count; i++)
@@ -213,7 +216,7 @@ namespace Billing.Accountsbootstrap
                 DataTable dt = objbs.OrderPayMode(sTableName, txtfrom.Text, txtto.Text);
                 gvsplit.DataSource = dt;
                 gvsplit.DataBind();
-                gvsplit.Caption = "All Payment modes" + " From "  + txtfrom.Text + " To " + txtto.Text;
+                gvsplit.Caption =Store + " All Payment modes" + " From "  + txtfrom.Text + " To " + txtto.Text;
             }
         }
     }

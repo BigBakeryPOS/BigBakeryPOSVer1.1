@@ -81,6 +81,7 @@ namespace Billing.Accountsbootstrap
                 {
                     GVStockAlert.DataSource = dt;
                     GVStockAlert.DataBind();
+                    GVStockAlert.Caption = StoreName  + " Stock Detailed Report for " + Convert.ToDateTime(txtFrom.Text).ToString("dd/MM/yyyy") ;
 
                     for (int i = 0; i < GVStockAlert.Rows.Count; i++)
                     {
@@ -148,7 +149,7 @@ namespace Billing.Accountsbootstrap
         }
         protected void Button2_Click(object sender, EventArgs e)
         {
-            caption.InnerText = BranchNAme + " Stock Detailed Report from " + Convert.ToDateTime(txtFrom.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("dd/MM/yyyy");
+            //caption.InnerText = BranchNAme + " Stock Detailed Report from " + Convert.ToDateTime(txtFrom.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("dd/MM/yyyy");
             ScriptManager.RegisterStartupScript(this, typeof(Page), "printGrid", "printGrid();", true);
         }
         protected void Button3_Click(object sender, EventArgs e)

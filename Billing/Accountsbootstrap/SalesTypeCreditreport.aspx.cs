@@ -204,6 +204,7 @@ namespace Billing.Accountsbootstrap
                     dtsum.Columns.Add("dic");
                     dtsum.Columns.Add("qty");
                     dtsum.Columns.Add("cnt");
+                    dtsum.Columns.Add("bnch");
                     dssum.Tables.Add(dtsum);
 
 
@@ -219,7 +220,7 @@ namespace Billing.Accountsbootstrap
                             string dic = Convert.ToDouble(dss.Tables[0].Rows[i]["dic"]).ToString("0.00");
                             string qty = Convert.ToDouble(dss.Tables[0].Rows[i]["qty"]).ToString("0.000");
                             string biller = dss.Tables[0].Rows[i]["biller"].ToString();
-
+                            string branch = dsbranch1.Tables[0].Rows[0]["Storename"].ToString();
 
 
                             drsum = dtsum.NewRow();
@@ -228,6 +229,7 @@ namespace Billing.Accountsbootstrap
                             drsum["tot"] = tot;
                             drsum["dic"] = dic;
                             drsum["qty"] = qty;
+                            drsum["bnch"] = branch;
 
 
                             DataSet dfromtobill = objbs.getSalesBillCount_firsttobill_code(sTableName, sFrom, sTo, biller, "Y");

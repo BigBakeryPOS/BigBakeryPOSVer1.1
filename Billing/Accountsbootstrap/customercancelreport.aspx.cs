@@ -20,12 +20,14 @@ namespace Billing.Accountsbootstrap
         string sadmin = string.Empty;
         double tot = 0;
         string AllBranchAccess = "0";
+      
         protected void Page_Load(object sender, EventArgs e)
         {
             lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             sadmin = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
+
             ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
             scriptManager.RegisterPostBackControl(this.btnExport);
 
@@ -172,7 +174,6 @@ namespace Billing.Accountsbootstrap
                         //}
                         ////  DataSet dcustbranch = objbs.CustomerSalesBranch(sTableName, txtfromdate.Text, txttodate.Text);
                         DateTime sFrom = Convert.ToDateTime(txtfromdate.Text);
-
                         DateTime sTo = Convert.ToDateTime(txttodate.Text);
                         DataSet dsgrid = new DataSet();
                         DataSet ds1 = new DataSet();
@@ -292,6 +293,7 @@ namespace Billing.Accountsbootstrap
                 {
                     Label123.Text = "Blaack Forest Bakery Services";
                 }
+                Label123.Text  = ddlBranch.SelectedItem.Text + " Customer Cancelled Sales Report for " + drpPayment.SelectedItem.Text + " Paymode from " + txtfromdate.Text.ToString() + " to " + txttodate.Text.ToString();
                 DateTime sFrom = Convert.ToDateTime(txtfromdate.Text);
 
                 DateTime sTo = Convert.ToDateTime(txttodate.Text);
@@ -428,6 +430,7 @@ namespace Billing.Accountsbootstrap
                 {
                     Label123.Text = "Blaack Forest Bakery Services";
                 }
+                Label123.Text = ddlBranch.SelectedItem.Text + " Customer Cancelled Sales Report for " + drpPayment.SelectedItem.Text + " Paymode from " + txtfromdate.Text.ToString() + " to " + txttodate.Text.ToString();
                 DateTime sFrom = Convert.ToDateTime(txtfromdate.Text);
 
                 DateTime sTo = Convert.ToDateTime(txttodate.Text);
@@ -504,7 +507,7 @@ namespace Billing.Accountsbootstrap
             //  int sbranch = Convert.ToInt32(ddlBranch.SelectedValue);
             //  DataSet dsbranch1 = objbs.selectbranchmaster(sbranch);
             //  string name = string.Empty;
-            gridview.Caption = Label123.Text + " Sales Cancelled Report Generated on " + DateTime.Now.ToString();
+            gridview.Caption = Label123.Text + " Customer Cancelled Sales Report for " + drpPayment.SelectedItem.Text +" Paymode from " + txtfromdate.Text.ToString() + " to " + txttodate.Text.ToString() +  " Generated on " + DateTime.Now.ToString();
 
 
             // if (dsbranch1.Tables[0].Rows.Count > 0)
@@ -563,6 +566,7 @@ namespace Billing.Accountsbootstrap
                     Label123.Text = "Blaack Forest Bakery Services";
                 }
             }
+            Label123.Text = ddlBranch.SelectedItem.Text + " Customer Cancelled Sales Report for " + drpPayment.SelectedItem.Text + " Paymode from " + txtfromdate.Text.ToString() + " to " + txttodate.Text.ToString();
             //if (sTableName == "admin")
             //{
             //    gridview.DataSource = objbs.CustomerSalesAdmin1();
@@ -618,7 +622,8 @@ namespace Billing.Accountsbootstrap
             System.IO.StringWriter tw = new System.IO.StringWriter();
             System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(tw);
             DataGrid dgGrid = new DataGrid();
-            dgGrid.Caption = Label123.Text + " Sales Cancelled Report Generated on " + DateTime.Now.ToString();
+            dgGrid.Caption = Label123.Text;
+            //+ " Customer Cancelled Sales Report Generated on " + DateTime.Now.ToString();
             dgGrid.DataSource = dt;
             dgGrid.DataBind();
             dgGrid.HeaderStyle.ForeColor = System.Drawing.Color.Black;
@@ -719,6 +724,7 @@ namespace Billing.Accountsbootstrap
                 {
                     Label123.Text = "Blaack Forest Bakery Services";
                 }
+                Label123.Text = ddlBranch.SelectedItem.Text + " Customer Cancelled Report for " + drpPayment.SelectedItem.Text + " Paymode from " + txtfromdate.Text.ToString() + " to " + txttodate.Text.ToString();
                 //if (sTableName == "admin")
                 //{
                 //    DataSet dCustReport = objbs.CustomerSalesAdmin();
@@ -858,6 +864,7 @@ namespace Billing.Accountsbootstrap
                 {
                     Label123.Text = "Blaack Forest Bakery Services";
                 }
+                Label123.Text = ddlBranch.SelectedItem.Text + " Customer Cancelled Report for " + drpPayment.SelectedItem.Text + " Paymode from " + txtfromdate.Text.ToString() + " to " + txttodate.Text.ToString();
                 //DateTime sFrom = Convert.ToDateTime(txtfromdate.Text);
 
                 //DateTime sTo = Convert.ToDateTime(txttodate.Text);
@@ -1013,6 +1020,7 @@ namespace Billing.Accountsbootstrap
                     Label123.Text = "Blaack Forest Bakery Services";
                 }
             }
+            Label123.Text = ddlBranch.SelectedItem.Text + " Customer Cancelled Report for " + drpPayment.SelectedItem.Text + " Paymode from " + txtfromdate.Text.ToString() + " to " + txttodate.Text.ToString();
 
 
             if (e.Row.RowType == DataControlRowType.DataRow)

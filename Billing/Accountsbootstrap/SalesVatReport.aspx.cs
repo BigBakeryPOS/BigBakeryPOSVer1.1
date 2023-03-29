@@ -196,6 +196,7 @@ namespace Billing.Accountsbootstrap
             {
                 gridview.DataSource = ds1;
                 gridview.DataBind();
+                gridview.Caption = ddlBranch.SelectedItem.Text + " " + " Sales Amount and Vat Details Report on " + txttodate.Text;
             }
             else
             {

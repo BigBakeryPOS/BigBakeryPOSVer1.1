@@ -24,12 +24,14 @@ namespace Billing.Accountsbootstrap
         string sadmin = string.Empty;
         double tot = 0;
         string AllBranchAccess = "0";
+        string Store = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             sadmin = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
+            Store = Request.Cookies["userInfo"]["Store"].ToString();
 
             AllBranchAccess = Request.Cookies["userInfo"]["AllBranchAccess"].ToString();
 
@@ -92,6 +94,7 @@ namespace Billing.Accountsbootstrap
                 {
                     gvOrderForm.DataSource = ds.Tables[0];
                     gvOrderForm.DataBind();
+                    gvOrderForm.Caption = Store + " OrderForm Canclled Report from " + txtfromdate.Text + " to " + txttodate.Text;
                 }
                 else
                 {
@@ -145,6 +148,7 @@ namespace Billing.Accountsbootstrap
             {
                 gvOrderForm.DataSource = ds.Tables[0];
                 gvOrderForm.DataBind();
+                gvOrderForm.Caption = Store + " OrderForm Canclled Report from " + txtfromdate.Text + " to " + txttodate.Text;
             }
             else
             {
@@ -167,7 +171,7 @@ namespace Billing.Accountsbootstrap
                 {
                     dsgrid = objbs.OrderFormCancel(ds1.Tables[0].Rows[i]["BranchCode"].ToString(), from, TO);
                     ds.Merge(dsgrid);
-
+                    gvOrderForm.Caption = Store + " OrderForm Cancelled Report from " + txtfromdate.Text + " to " + txttodate.Text;
                 }
             }
             else
@@ -215,6 +219,7 @@ namespace Billing.Accountsbootstrap
                 DataGrid dgGrid = new DataGrid();
                 dgGrid.DataSource = ds;
                 dgGrid.DataBind();
+                dgGrid.Caption = Store + " OrderForm Cancelled Report from " + txtfromdate.Text + " to " + txttodate.Text;
                 dgGrid.HeaderStyle.ForeColor = System.Drawing.Color.Black;
                 dgGrid.HeaderStyle.BackColor = System.Drawing.Color.LightSkyBlue;
                 dgGrid.HeaderStyle.BorderColor = System.Drawing.Color.RoyalBlue;

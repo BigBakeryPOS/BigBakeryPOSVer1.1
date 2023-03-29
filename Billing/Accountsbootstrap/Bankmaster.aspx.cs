@@ -210,7 +210,10 @@ namespace Billing.Accountsbootstrap
                 DataSet ds = objBs.chkinsertcontact(txtemail.Text, txtmobileno.Text);
                 if (ds.Tables[0].Rows.Count != 0)
                 {
-                    lblerror.Text = "Email id or Mobile Number  already exists";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('EmailId / MobileNo  Already Exists.Thank you!!!.');", true);
+                    return;
+                    // lblerror.Text = "Email id or Mobile Number  already exists";
+                    // lblerror.Visible = true;
                 }
                 else
                 {
@@ -243,7 +246,7 @@ namespace Billing.Accountsbootstrap
                          string Debit = txtOBalance.Text;
                          LedgerId = objBs.insertbank(Convert.ToInt32(lblUserID.Text), txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(0), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, "", Convert.ToDouble("0"), Convert.ToDouble(Debit), ddlCDType.SelectedValue);
                      }
-
+                    Response.Redirect("../Accountsbootstrap/viewbank.aspx");
                     //for (int ii = 0; ii < griditem.Rows.Count; ii++)
                     //{
                     //    Label lblitemid = (Label)griditem.Rows[ii].FindControl("lblitemid");
@@ -265,13 +268,23 @@ namespace Billing.Accountsbootstrap
             }
             else
             {
-                DataSet dsmbl = objBs.chkupdatecustomer(txtemail.Text, txtmobileno.Text, txtcuscode.Text);
+                DataSet dsmbl = objBs.chkupdatecustomerEmail(txtemail.Text ,txtcuscode.Text);
                 if (dsmbl.Tables[0].Rows.Count != 0)
                 {
 
-                    lblerror.Text = "Email id or Mobile Number  already exists";
-
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('EmailId Already Exists.Thank you!!!.');", true);
                     return;
+
+                    
+                }
+                DataSet dsmbl1 = objBs.chkupdatecustomerMobile( txtmobileno.Text, txtcuscode.Text);
+                if (dsmbl.Tables[0].Rows.Count != 0)
+                {
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Mobile No Already Exists.Thank you!!!.');", true);
+                    return;
+
+
                 }
                 else
                 {

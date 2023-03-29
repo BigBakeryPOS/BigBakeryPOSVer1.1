@@ -32,6 +32,7 @@ namespace Billing.Accountsbootstrap
         double EGrandDamageQty = 0;
 
         string brach = string.Empty;
+        string branch = "";
         DateTime frmdate = new DateTime();
         DateTime todate = new DateTime();
 
@@ -43,7 +44,7 @@ namespace Billing.Accountsbootstrap
             lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
-
+            branch = Request.Cookies["userInfo"]["Store"].ToString();
 
             if (!IsPostBack)
             {
@@ -163,8 +164,8 @@ namespace Billing.Accountsbootstrap
                 gvsales.Visible = true;
                 gvsummary.Visible = false;
                 btnSummary.Visible = false;
-                btnDetails.Visible = true;
-                gvsales.Caption = "Kitchen Transfer Report From " + frmdate + " To " + todate;
+                btnDetails.Visible = true; 
+                gvsales.Caption =branch +" for "+ "Kitchen Usage Detailed Report From " + frmdate + " To " + todate + " for " + drpdept.SelectedItem.Text + "  "+ ddlIngridients.SelectedItem.Text + " Item" ;
             }
             else if (rdosummary.Checked == true)
             {
@@ -173,14 +174,17 @@ namespace Billing.Accountsbootstrap
                 {
                     gvsummary.DataSource = ds;
                     gvsummary.DataBind();
+                    gvsales.Caption = branch + " for " + "Kitchen Usage Summary Report From " + frmdate + " To " + todate + " for " + drpdept.SelectedItem.Text + "  " + ddlIngridients.SelectedItem.Text + " Item";
+                    gvsummary.Visible = true;
+
                 }
                 else
                 {
                     gvsummary.DataSource = null;
                     gvsummary.DataBind();
                 }
-                gvsummary.Caption = "Kitchen Transfer Report From " + frmdate + " To " + todate;
-                gvsummary.Visible = true;
+                //gvsummary.Caption = "Kitchen Transfer Report From " + frmdate + " To " + todate;
+               
                 gvsales.Visible = false;
                 btnSummary.Visible = true;
                 btnDetails.Visible = false;
@@ -194,6 +198,7 @@ namespace Billing.Accountsbootstrap
             DateTime frmdate = DateTime.ParseExact(txtfromdate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             DateTime todate = DateTime.ParseExact(txttodate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             DataSet ds1 = new DataSet();
+            string type = "";
             if (rdodetailed.Checked == true)
             {
                  ds1 = objBs.getreportforkitchenusage(sTableName, ddltype.SelectedValue, ddldcno.SelectedValue, frmdate, todate, ddlCategory.SelectedValue, ddlIngridients.SelectedValue, drpdept.SelectedValue);
@@ -205,10 +210,13 @@ namespace Billing.Accountsbootstrap
                         ds1.Tables[0].Rows[i]["RequestDate"] = Convert.ToDateTime(ds1.Tables[0].Rows[i]["RequestDate"]).ToString("dd/MMM/yyyy");
                     }
                 }
+                type = "Detailed";
+              
             }
             if(rdosummary.Checked==true )
             {
                  ds1 = objBs.getreportforkitchenusage_Summary(sTableName, ddltype.SelectedValue, ddldcno.SelectedValue, frmdate, todate, ddlCategory.SelectedValue, ddlIngridients.SelectedValue, drpdept.SelectedValue);
+                type = "Summary";
             }
 
             //end update
@@ -216,6 +224,7 @@ namespace Billing.Accountsbootstrap
             {
                 gridview.DataSource = ds1;
                 gridview.DataBind();
+                gridview.Caption = branch + " for " + "Kitchen Usage " + type + " Report From " + frmdate + " To " + todate + " for " + drpdept.SelectedItem.Text + "  " + ddlIngridients.SelectedItem.Text + " Item";
             }
             else
             {
@@ -224,7 +233,7 @@ namespace Billing.Accountsbootstrap
             }
 
 
-            gridview.Caption = "Kitchen Usage Report";
+           // gridview.Caption = "Kitchen Usage Report";
 
             Response.ClearContent();
             Response.AddHeader("content-disposition",

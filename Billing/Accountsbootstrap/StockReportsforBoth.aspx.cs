@@ -156,8 +156,9 @@ namespace Billing.Accountsbootstrap
                 {
                     Label123 = "Blaack Forest Bakery Services";
                 }
+                Label123 = Request.Cookies["userInfo"]["Store"].ToString();
 
-                lblstkreturn.Text = Label123 + " Stock Return and GRN(+)(-) Generated on From Date " + txtfrmdate.Text + " To Date " + txttodate.Text + " On " + DateTime.Now.ToString("dd/MM/yyyy HH:mm tt");
+                lblstkreturn.Text = " Stock Return and GRN(+)(-) Generated on" + Label123 + "From Date " + txtfrmdate.Text + " To Date " + txttodate.Text + " On " + DateTime.Now.ToString("dd/MM/yyyy HH:mm tt");
 
 
                 DataSet ds = new DataSet();
@@ -335,7 +336,7 @@ namespace Billing.Accountsbootstrap
             {
 
                 DataGrid dgGridCaption = new DataGrid();
-                dgGridCaption.Caption = Label123 + " Stock Return and GRN(+)(-) Generated on From Date " + txtfrmdate.Text + " To Date " + txttodate.Text + " On " + DateTime.Now.ToString("dd/MM/yyyy HH:mm tt");
+                dgGridCaption.Caption = " Stock Return and GRN(+)(-) Generated on" + Label123  + "From Date " + txtfrmdate.Text + " To Date " + txttodate.Text + " On " + DateTime.Now.ToString("dd/MM/yyyy HH:mm tt");
                 dgGridCaption.DataBind();
 
                 System.IO.StringWriter tw = new System.IO.StringWriter();
@@ -346,7 +347,7 @@ namespace Billing.Accountsbootstrap
 
                 GridViewRow gv2 = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Normal);
                 TableHeaderCell cell2 = new TableHeaderCell();
-                cell2.Text = Label123 + " Stock Return and GRN(+)(-) Generated on From Date " + txtfrmdate.Text + " To Date " + txttodate.Text + " On " + DateTime.Now.ToString("dd/MM/yyyy HH:mm tt");
+                cell2.Text = " Stock Return and GRN(+)(-) Generated on " + Label123 + "From Date " + txtfrmdate.Text + " To Date " + txttodate.Text + " On " + DateTime.Now.ToString("dd/MM/yyyy HH:mm tt");
                 cell2.Height = 300;
                 cell2.Width = 10000;
                 gv2.Controls.Add(cell2);

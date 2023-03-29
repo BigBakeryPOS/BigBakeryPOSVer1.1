@@ -88,6 +88,33 @@
 
 
         }
+
+ function Denomination1234() {
+
+
+            var gridData = document.getElementById('gvsummary');
+
+
+            var windowUrl = 'about:blank';
+            //set print document name for gridview
+            var uniqueName = new Date();
+            var windowName = 'Print_' + uniqueName.getTime();
+
+
+            var prtWindow = window.open(windowUrl, windowName,
+           'left=100,top=100,right=100,bottom=100,width=700,height=500');
+            prtWindow.document.write('<html><head></head>');
+            prtWindow.document.write('<body style="background:none !important">');
+
+            prtWindow.document.write(gridData.outerHTML);
+            prtWindow.document.write('</body></html>');
+            prtWindow.document.close();
+            prtWindow.focus();
+            prtWindow.print();
+            prtWindow.close();
+
+
+        }
     </script>
     <script type="text/javascript">
         function Search_Gridview(strKey, strGV) {
@@ -206,9 +233,12 @@
                                 <asp:Label ID="Label1" runat="server"></asp:Label>
                                 <asp:Button ID="btnexcel" runat="server" Text="Export Excel" Visible="true" CssClass="btn btn-success"
                                     OnClick="btnexcel_Click" />
-                                <asp:Button ID="btn" runat="server" Text="Print" Visible="true" CssClass="btn btn-secondary"
+                                <asp:Button ID="btnPrintDetails" runat="server" Text="Print" Visible="true" CssClass="btn btn-secondary"
                                     OnClientClick="Denomination123()" />
+                                  <asp:Button ID="btnPrintSummary" runat="server" Text="Print" Visible="false" CssClass="btn btn-secondary"
+                                    OnClientClick="Denomination1234()" />
                             </div>
+
                         </div>
                         <div class="row">
                             <div class="col-lg-12">

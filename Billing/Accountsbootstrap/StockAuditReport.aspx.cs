@@ -83,11 +83,13 @@ namespace Billing.Accountsbootstrap
             {
                 GVStockAlert.DataSource = getitemlist.Tables[0];
                 GVStockAlert.DataBind();
+                caption.InnerText = StoreName + " " + BranchNAme + " Stock Audit Detailed Report from " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("dd/MM/yyyy");
             }
             else
             {
                 GVStockAlert.DataSource = null;
                 GVStockAlert.DataBind();
+
             }
 
 
@@ -99,7 +101,7 @@ namespace Billing.Accountsbootstrap
             string Branch = "";
 
 
-            caption.InnerText = BranchNAme + " Stock Audit Detailed Report from " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("dd/MM/yyyy");
+            caption.InnerText  = StoreName+ " "+ BranchNAme + " Stock Audit Detailed Report from " + Convert.ToDateTime(txttodate.Text).ToString("dd/MM/yyyy") + " to " + Convert.ToDateTime(txtFrom.Text).ToString("dd/MM/yyyy");
             ScriptManager.RegisterStartupScript(this, typeof(Page), "printGrid", "printGrid();", true);
         }
 

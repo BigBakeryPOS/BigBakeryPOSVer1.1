@@ -475,6 +475,7 @@ namespace Billing.Accountsbootstrap
                 {
                     Label123.Text = "Blaack Forest Bakery Services";
                 }
+                Label123.Text = ddlBranch.SelectedItem.Text + " Sales Hourly Report on " + txtfromdate.Text;
 
                 DateTime sFrom = Convert.ToDateTime(txtfromdate.Text);
 
@@ -764,7 +765,7 @@ namespace Billing.Accountsbootstrap
                 {
                     Label123.Text = "Blaack Forest Bakery Services";
                 }
-
+                Label123.Text = ddlBranch.SelectedItem.Text + " Sales Hourly Report on " + txtfromdate.Text;
                 DateTime sFrom = Convert.ToDateTime(txtfromdate.Text);
 
             //    DateTime sTo = Convert.ToDateTime(txttodate.Text);
@@ -1003,6 +1004,7 @@ namespace Billing.Accountsbootstrap
                 {
                     dtotal12 += Convert.ToDecimal(grdtotal.Rows[i].Cells[1].Text);
                 }
+
                 decimal Total12 = dtotal12;
                 Label5.InnerText = Total12.ToString();
 
@@ -1066,7 +1068,7 @@ namespace Billing.Accountsbootstrap
                 {
                     Label123.Text = "Blaack Forest Bakery Services";
                 }
-
+                Label123.Text=ddlBranch.SelectedItem.Text + " Sales Hourly Report on " + txtfromdate.Text ;
                 DateTime sFrom = Convert.ToDateTime(txtfromdate.Text);
 
                 //    DateTime sTo = Convert.ToDateTime(txttodate.Text);
@@ -1397,6 +1399,7 @@ namespace Billing.Accountsbootstrap
                 dgGrid.DataSource = dstd.Tables[0];
                     ;
                 dgGrid.DataBind();
+                dgGrid.Caption = Label123.Text;
                 dgGrid.HeaderStyle.ForeColor = System.Drawing.Color.Black;
                 dgGrid.HeaderStyle.BackColor = System.Drawing.Color.LightSkyBlue;
                 dgGrid.HeaderStyle.BorderColor = System.Drawing.Color.RoyalBlue;

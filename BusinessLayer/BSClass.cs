@@ -8738,7 +8738,7 @@ namespace BusinessLayer
                 " from tblsales_" + sTable + "  a,tblTransSales_" + sTable + " b,tblcategory c,tblCategoryUser d,tblCustomer e,tblsalestype f, tblSalesPaymode g ,tbluom k " +
                 " where a.salesid=b.salesuniqueid and  f.salestypeid=a.salestype and  a.BillNo=b.SalesID and c.categoryid=d.CategoryID and a.isnormal=b.isnormal " +
                 " and b.CategoryID=c.categoryid and b.SubCategoryID=d.CategoryUserID and a.CustomerID=e.CustomerID and a.BillNo=" + ID + " and " +
-                " (a.salestype='" + salestypeid + "') and a.iPayMode = g.value   group by b.SubCategoryID,d.HSNCode,g.PayMode,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount,f.paymenttype,a.isnormal,a.SalesOrder,d.printitem,a.Roundoff,a.FullBill,Gstno,e.address ";
+                " (a.salestype='" + salestypeid + "') and a.iPayMode = g.value   group by b.SubCategoryID,d.HSNCode,g.PayMode,e.CustomerName,e.MobileNo,a.BillNo,a.BillDate,a.NetAmount,a.Advance,a.Total,b.UnitPrice,c.category,d.Definition,a.CashPaid,a.Balance,a.ipaymode,a.Tax,a.Biller,a.Attender,a.SGST,a.CGST,d.gst,a.NetAmount,a.Discount,f.paymenttype,a.isnormal,a.SalesOrder,d.printitem,a.Roundoff,a.FullBill,Gstno,e.address,a.salestype  ";
             }
 
             ds = dbObj.InlineExecuteDataSet(sqry);
@@ -17899,6 +17899,22 @@ namespace BusinessLayer
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
         }
+        public DataSet chkupdatecustomerEmail(string sEmail,string CustId )
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select * from tblledger where Email='" + sEmail + "'  and IsActive='Yes' and LedgerId<>'"+CustId+"' ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+        public DataSet chkupdatecustomerMobile( string sMobile,string CustId)
+        {
+            DataSet ds = new DataSet();
+            string sqry = "select * from tblledger where  MobileNo='" + sMobile + "' and IsActive='Yes' and LedgerId<>'"+CustId+"' ";
+            ds = dbObj.InlineExecuteDataSet(sqry);
+            return ds;
+        }
+
+
 
         public DataSet duplicatecheckcustomercheck(string columnname, string Columnvalue)
         {
@@ -21241,12 +21257,12 @@ namespace BusinessLayer
             //////   string sqry = "select (ts.qty- ts.Pending) as qty,ts.Itemid,cu.Definition,ISNULL(f.Qty,0) as FrozenQty  from tblReceiveRawMaterials_" + scode + " s inner join tbltransReceiveRawMaterials_" + scode + " ts on ts.RequestID=s.RequestNo inner join tblCategoryUser cu on cu.CategoryUserID=ts.ItemId left join tblFrozenStock_Prod f on f.ItemID=ts.ItemId where s.RequestNo=" + RequestNo + "";
             if (Categoryid == "All" || Categoryid == "Select")
             {
-                string sqry = " select isnull(ps.Prod_Qty,0) as Prod_Qty,c.Category,(ts.qty- ts.Pending) as qty,ts.Itemid,cu.Definition,ISNULL(f.Qty,0) as FrozenQty,cu.serial,cu.qtytytpe  from tblReceiveRawMaterials_" + scode + " s inner join tbltransReceiveRawMaterials_" + scode + " ts on ts.RequestID=s.RequestNo inner join tblCategoryUser cu on cu.CategoryUserID=ts.ItemId left join tblFrozenStock_" + scode + " f on f.ItemID=ts.ItemId  inner join tblcategory c on c.Categoryid=cu.CategoryID left join tblProductionQty_" + scode + " ps on ps.DescriptionId=cu.CategoryUserID where s.RequestNo=" + RequestNo + " and (ts.Qty-ts.Pending)>0 order by c.Category asc";
+                string sqry = " select case when cu.qtytype='E' then cast(isnull(ps.Prod_Qty,0) as int) when cu.qtytype='D' then cast(isnull(ps.Prod_Qty,0) as decimal) end as Prod_Qty,c.Category,(ts.qty- ts.Pending) as qty,ts.Itemid,cu.Definition,ISNULL(f.Qty,0) as FrozenQty,cu.serial,cu.qtytype,format(cast(cu.Mrp as decimal),'N2') as Mrp  from tblReceiveRawMaterials_" + scode + " s inner join tbltransReceiveRawMaterials_" + scode + " ts on ts.RequestID=s.RequestNo inner join tblCategoryUser cu on cu.CategoryUserID=ts.ItemId left join tblFrozenStock_" + scode + " f on f.ItemID=ts.ItemId  inner join tblcategory c on c.Categoryid=cu.CategoryID left join tblProductionQty_" + scode + " ps on ps.DescriptionId=cu.CategoryUserID where s.RequestNo=" + RequestNo + " and (ts.Qty-ts.Pending)>0 order by c.Category asc";
                 ds = dbObj.InlineExecuteDataSet(sqry);
             }
             else
             {
-                string sqry = " select isnull(ps.Prod_Qty,0) as Prod_Qty,c.Category,(ts.qty- ts.Pending) as qty,ts.Itemid,cu.Definition,ISNULL(f.Qty,0) as FrozenQty,cu.serial,cu.qtytype  from tblReceiveRawMaterials_" + scode + " s inner join tbltransReceiveRawMaterials_" + scode + " ts on ts.RequestID=s.RequestNo inner join tblCategoryUser cu on cu.CategoryUserID=ts.ItemId left join tblFrozenStock_" + scode + " f on f.ItemID=ts.ItemId  inner join tblcategory c on c.Categoryid=cu.CategoryID left join tblProductionQty_" + scode + " ps on ps.DescriptionId=cu.CategoryUserID where s.RequestNo=" + RequestNo + "  and c.Categoryid='" + Categoryid + "' and (ts.Qty-ts.Pending)>0 order by c.Category asc";
+                string sqry = " select case when cu.qtytype='E' then cast(isnull(ps.Prod_Qty,0) as int) when cu.qtytype='D' then cast(isnull(ps.Prod_Qty,0) as decimal) end as Prod_Qty,c.Category,(ts.qty- ts.Pending) as qty,ts.Itemid,cu.Definition,ISNULL(f.Qty,0) as FrozenQty,cu.serial,cu.qtytype,format(cast(cu.Mrp as decimal),'N2') as Mrp  from tblReceiveRawMaterials_" + scode + " s inner join tbltransReceiveRawMaterials_" + scode + " ts on ts.RequestID=s.RequestNo inner join tblCategoryUser cu on cu.CategoryUserID=ts.ItemId left join tblFrozenStock_" + scode + " f on f.ItemID=ts.ItemId  inner join tblcategory c on c.Categoryid=cu.CategoryID left join tblProductionQty_" + scode + " ps on ps.DescriptionId=cu.CategoryUserID where s.RequestNo=" + RequestNo + "  and c.Categoryid='" + Categoryid + "' and (ts.Qty-ts.Pending)>0 order by c.Category asc";
                 ds = dbObj.InlineExecuteDataSet(sqry);
             }
             return ds;
@@ -22681,6 +22697,14 @@ namespace BusinessLayer
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
         }
+        public DataSet getbranchdetails1(string ibranchcode)
+        {
+            DataSet ds = new DataSet();
+            // string sQry = "Select b.*,l.userid from tblbranch as b inner join tbllogin as l on l.Branchcode=b.branchcode where l.issuperadmin=b.branchtype and b.branchid='" + ibranchid + "' ";
+            string sQry = "Select b.* from tblbranch as b  where  b.branchcode='" + ibranchcode + "' ";
+            ds = dbObj.InlineExecuteDataSet(sQry);
+            return ds;
+        }
 
         public DataSet GetAttender_name(int ID, string sTable, string Mode, string salestypeid)
         {
@@ -22869,7 +22893,7 @@ namespace BusinessLayer
             else if (requesttype == "")
             {
                 sqry = "select s.RequestNo,RequestDate,Prepared,c.IngreCategory as Category,cu.IngredientName as Definition,Qty,u.UOM as Unit  from " + Stable + " s  inner join  " + TansStable + " ts on  ts.RequestID=s.RequestNo  " +
-                    " inner join tblIngridents cu on cu.IngridID=ts.ItemId inner join tblIngridentsCategory c on c.IngCatID=cu.IngCatID " +
+                    " inner join tblIngridents cu on cu.IngridID=ts.RawItemId inner join tblIngridentsCategory c on c.IngCatID=cu.IngCatID " +
                     " inner join tblUOM u on u.UOMID=cu.Units  where s.RequestNo=" + RequestNo + "";
             }
             ds = dbObj.InlineExecuteDataSet(sqry);
@@ -23380,14 +23404,14 @@ namespace BusinessLayer
             DataSet ds = new DataSet();
             if (categoryid == "All")
             {
-                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.serial,isnull(ps.Prod_Qty,0) as Prod_Qty,b.qtytype  " +
+                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.serial,case when b.qtytype='D' then cast(isnull(ps.Prod_Qty,0) as decimal)  when b.qtytype='E' then cast(isnull(ps.Prod_Qty,0) as int) end as Prod_Qty,b.qtytype,format(cast(b.Mrp as decimal),'N2') as Mrp  " +
                     " from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblProductionQty_" + stable + " ps on ps.DescriptionId=b.CategoryUserID " +
                     " inner join tblUOM u on u.UOMID=b.unit  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1'  order by category asc";
                 ds = dbObj.InlineExecuteDataSet(sqry);
             }
             else
             {
-                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.serial,isnull(ps.Prod_Qty,0) as Prod_Qty,b.qtytype from tblcategory a " +
+                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.serial,case when b.qtytype='D' then cast(isnull(ps.Prod_Qty,0) as decimal)  when b.qtytype='E' then cast(isnull(ps.Prod_Qty,0) as int) end as Prod_Qty,b.qtytype,format(cast(b.Mrp as decimal),'N2') as Mrp from tblcategory a " +
                     " inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblProductionQty_" + stable + " ps on ps.DescriptionId=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit  " +
                     " where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + " order by category asc";
                 ds = dbObj.InlineExecuteDataSet(sqry);
@@ -24554,22 +24578,41 @@ namespace BusinessLayer
             return ds;
         }
 
-        public DataSet getstocktransferreport(string categoryuserid, string Fromdate, string Todate, string stable)
+        public DataSet getstocktransferreport(string Branchid,string categoryuserid, string Fromdate, string Todate, string stable)
         {
             DataSet ds = new DataSet();
             string sQry = string.Empty;
-            if (categoryuserid == "All")
+            if (Branchid == "All")
             {
+                if (categoryuserid == "All")
+                {
 
-                sQry = "select a.dc_NO,a.DC_Date,a.BranchReqNo,a.branchcode,c.Category,d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty,b.damage_Qty as damageQty,b.Missing_Qty as MissingQty,d.MRP " +
-                        " from tblGoodTransfer_" + stable + " a,tbltransGoodsTransfer_" + stable + " b,tblcategory c,tblCategoryUser d  " +
-  " where convert(date,a.Dc_Date) between '" + Fromdate + "' and '" + Todate + "' and a.DC_NO=b.DC_No and b.CategoryId=c.categoryid and b.DescriptionId=d.CategoryUserID  and  a.BranchCode=b.BranchCode order by a.dc_No desc  ";
+                    sQry = "select a.dc_NO,a.DC_Date,a.BranchReqNo,a.branchcode,c.Category,d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty,b.damage_Qty as damageQty,b.Missing_Qty as MissingQty,d.MRP " +
+                            " from tblGoodTransfer_" + stable + " a,tbltransGoodsTransfer_" + stable + " b,tblcategory c,tblCategoryUser d  " +
+      " where convert(date,a.Dc_Date) between '" + Fromdate + "' and '" + Todate + "' and a.DC_NO=b.DC_No and b.CategoryId=c.categoryid and b.DescriptionId=d.CategoryUserID  and  a.BranchCode=b.BranchCode order by a.dc_No desc  ";
+                }
+                else
+                {
+                    sQry = "select a.dc_NO,a.DC_Date,a.BranchReqNo,a.branchcode,c.Category,d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty,b.damage_Qty as damageQty,b.Missing_Qty as MissingQty,d.MRP " +
+              " from tblGoodTransfer_" + stable + " a,tbltransGoodsTransfer_" + stable + " b,tblcategory c,tblCategoryUser d  " +
+    " where convert(date,a.Dc_Date) between '" + Fromdate + "' and '" + Todate + "' and a.DC_NO=b.DC_No and b.CategoryId=c.categoryid and b.DescriptionId=d.CategoryUserID  and  a.BranchCode=b.BranchCode and d.categoryid='" + categoryuserid + "' order by a.dc_No desc ";
+                }
             }
             else
             {
-                sQry = "select a.dc_NO,a.DC_Date,a.BranchReqNo,a.branchcode,c.Category,d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty,b.damage_Qty as damageQty,b.Missing_Qty as MissingQty,d.MRP " +
-          " from tblGoodTransfer_" + stable + " a,tbltransGoodsTransfer_" + stable + " b,tblcategory c,tblCategoryUser d  " +
-" where convert(date,a.Dc_Date) between '" + Fromdate + "' and '" + Todate + "' and a.DC_NO=b.DC_No and b.CategoryId=c.categoryid and b.DescriptionId=d.CategoryUserID  and  a.BranchCode=b.BranchCode and d.categoryid='" + categoryuserid + "' order by a.dc_No desc ";
+                if (categoryuserid == "All")
+                {
+
+                    sQry = "select a.dc_NO,a.DC_Date,a.BranchReqNo,a.branchcode,c.Category,d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty,b.damage_Qty as damageQty,b.Missing_Qty as MissingQty,d.MRP " +
+                            " from tblGoodTransfer_" + stable + " a,tbltransGoodsTransfer_" + stable + " b,tblcategory c,tblCategoryUser d  " +
+      " where convert(date,a.Dc_Date) between '" + Fromdate + "' and '" + Todate + "' and a.DC_NO=b.DC_No and b.CategoryId=c.categoryid and b.DescriptionId=d.CategoryUserID  and  a.BranchCode=b.BranchCode and b.branchcode='" + Branchid + "' order by a.dc_No desc  ";
+                }
+                else
+                {
+                    sQry = "select a.dc_NO,a.DC_Date,a.BranchReqNo,a.branchcode,c.Category,d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty,b.damage_Qty as damageQty,b.Missing_Qty as MissingQty,d.MRP " +
+              " from tblGoodTransfer_" + stable + " a,tbltransGoodsTransfer_" + stable + " b,tblcategory c,tblCategoryUser d  " +
+    " where convert(date,a.Dc_Date) between '" + Fromdate + "' and '" + Todate + "' and a.DC_NO=b.DC_No and b.CategoryId=c.categoryid and b.DescriptionId=d.CategoryUserID  and  a.BranchCode=b.BranchCode and d.categoryid='" + categoryuserid + "' and  b.branchcode='" + Branchid + "' order by a.dc_No desc ";
+                }
             }
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
@@ -35147,7 +35190,7 @@ namespace BusinessLayer
         public DataSet GetDirectGoodTrasnfer(string TableName)
         {
             DataSet ds = new DataSet();
-            string sqry = "select s.DC_NO,DC_Date,SentBY,SUM(Order_Qty) as Qty,Branch,Status,isstocked,ts.RequestNo   from  tblGoodTransfer_" + TableName + " s inner join tblTransGoodsTransfer_" + TableName + " ts  on ts.DC_No=s.DC_NO group by s.DC_NO,DC_Date,SentBY,Branch,Status,isstocked,ts.RequestNo  order by DC_Date desc ";
+            string sqry = "select s.DC_NO,DC_Date,SentBY,SUM(Order_Qty) as Qty,format(cast(sum(ts.order_qty * (ts.tRATE+(isnull(ts.tRATE,0) *(isnull(ts.tGST,0)/100))) )  as float),'N2') as  MRP,Branch,Status,isstocked,ts.RequestNo   from  tblGoodTransfer_" + TableName + " s inner join tblTransGoodsTransfer_" + TableName + " ts  on ts.DC_No=s.DC_NO inner join tblcategoryuser cu on cu.Itemid=ts.descriptionid group by s.DC_NO,DC_Date,SentBY,Branch,Status,isstocked,ts.RequestNo  order by Convert(varchar,DC_Date,100) desc ";
             ds = dbObj.InlineExecuteDataSet(sqry);
             return ds;
 
@@ -35164,7 +35207,7 @@ namespace BusinessLayer
         public DataSet itemforreqestNew_DirectTransfer_Barcodesearch(string categoryid, string stable, string searchbarcode)
         {
             DataSet ds = new DataSet();
-            string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and  b.barcode ='" + searchbarcode + "' order by category asc";
+            string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,format(cast(b.Mrp as decimal),'N2') as mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and  b.barcode ='" + searchbarcode + "' order by category asc";
             ds = dbObj.InlineExecuteDataSet(sqry);
 
             return ds;
@@ -35176,12 +35219,12 @@ namespace BusinessLayer
             string sqry = "";
             if (prodstockoption == "1")
             {
-                sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and  b.barcode ='" + searchbarcode + "' order by category asc";
+                sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,format(cast(b.Mrp as decimal),'N2') as mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and  b.barcode ='" + searchbarcode + "' order by category asc";
                 ds = dbObj.InlineExecuteDataSet(sqry);
             }
             else if (prodstockoption == "2")
             {
-                sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,isnull(c.Prod_Qty,0) as Qty,b.mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit left join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1'  and  b.barcode ='" + searchbarcode + "' order by category asc";
+                sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,isnull(c.Prod_Qty,0) as Qty,format(cast(b.Mrp as decimal),'N2') as mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit left join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1'  and  b.barcode ='" + searchbarcode + "' order by category asc";
                 ds = dbObj.InlineExecuteDataSet(sqry);
             }
 
@@ -35195,12 +35238,12 @@ namespace BusinessLayer
             {
                 // string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and a.categoryid in " + catid + "   order by category asc";
 
-                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp,b.serial  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0  order by category asc";
+                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then cast(isnull(c.Prod_Qty,0) as decimal) when b.qtytype='E' then cast(isnull(c.prod_Qty,0) as int) end  as Qty,format(cast(b.Mrp as decimal),'N2') as mrp ,b.serial,b.qtytype  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0  order by category asc";
                 ds = dbObj.InlineExecuteDataSet(sqry);
             }
             else
             {
-                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp,b.serial from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + " and c.Prod_Qty >0  order by category asc";
+                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then cast(isnull(c.Prod_Qty,0) as decimal) when b.qtytype='E' then cast(isnull(c.prod_Qty,0) as int) end as Qty,format(cast(b.Mrp as decimal),'N2') as mrp ,b.serial,b.qtytype from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + " and c.Prod_Qty >0  order by category asc";
                 ds = dbObj.InlineExecuteDataSet(sqry);
             }
             return ds;
@@ -35211,7 +35254,7 @@ namespace BusinessLayer
             DataSet ds = new DataSet();
             //if (categoryid == "All")
             {
-                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp,b.serial  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and (a.category like '%" + searchtext + "%' or b.definition like '%" + searchtext + "%')   order by category asc";
+                string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then cast(isnull(c.Prod_Qty,0) as decimal) when b.qtytype='E' then cast(isnull(c.prod_Qty,0) as int) end as Qty,format(cast(b.Mrp as decimal),'N2') as mrp,b.serial,b.qtytype  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and (a.category like '%" + searchtext + "%' or b.definition like '%" + searchtext + "%')   order by category asc";
 
                 ds = dbObj.InlineExecuteDataSet(sqry);
             }
@@ -35290,7 +35333,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
             // string sqry = "select d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty from tblGoodTransfer a,tblTransGoodsTransfer b,tblcategory c,tblCategoryUser d  where a.DC_NO=b.DC_No and b.CategoryId=c.categoryid and b.DescriptionId=d.CategoryUserID and a.BranchCode='" + BranchID + "' and a.DC_No='" + sDCNO + "' and  a.BranchCode=b.BranchCode ";
-            string sqry = " select a.dc_no,a.dc_date,a.sentby,sum(b.order_qty * cast(isnull(d.mrp,0) as float))  as totamnt,c.BranchName,c.BranchArea,c.mobileno,c.LandLine,a.Tripno  from tblgoodtransfer_" + BranchID + " as a  inner join tblTransGoodsTransfer_" + BranchID + " as b on b.dc_no=a.dc_no " +
+            string sqry = " select a.dc_no,a.dc_date,a.sentby,format(cast(sum(b.order_qty * (b.tRATE+(isnull(b.tRATE,0) *(isnull(b.tGST,0)/100))) )  as float),'N2') as totamnt,c.BranchName,c.BranchArea,c.mobileno,c.LandLine,a.Tripno  from tblgoodtransfer_" + BranchID + " as a  inner join tblTransGoodsTransfer_" + BranchID + " as b on b.dc_no=a.dc_no " +
  " inner join tblbranch as c on c.branchcode=a.branchcode inner join tblcategoryuser as d on d.categoryuserid=b.descriptionid " +
  " where a.DC_No='" + sDCNO + "' group by  a.dc_no,a.dc_date,a.sentby,c.BranchName,c.BranchArea,c.mobileno,c.LandLine,a.Tripno ";
             ds = dbObj.InlineExecuteDataSet(sqry);
@@ -35302,9 +35345,9 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
             // string sqry = "select d.Definition as Item ,b.Order_Qty as OrderQty,b.Received_Qty as SentQty from tblGoodTransfer a,tblTransGoodsTransfer b,tblcategory c,tblCategoryUser d  where a.DC_NO=b.DC_No and b.CategoryId=c.categoryid and b.DescriptionId=d.CategoryUserID and a.BranchCode='" + BranchID + "' and a.DC_No='" + sDCNO + "' and  a.BranchCode=b.BranchCode ";
-            string sqry = " select a.dc_no,a.dc_date,a.sentby,d.printitem,sum(b.order_qty) as Qty,d.mrp,sum(b.order_qty * cast(d.mrp as float))  as totmrp   from tblgoodtransfer_" + BranchID + " as a  inner join tblTransGoodsTransfer_" + BranchID + " as b on b.dc_no=a.dc_no " +
+            string sqry = " select a.dc_no,a.dc_date,a.sentby,d.printitem,sum(b.order_qty) as Qty,format(cast(d.mrp as decimal),'N2') as mrp,sum(b.order_qty * cast(d.mrp as float))  as totmrp,b.tgst   from tblgoodtransfer_" + BranchID + " as a  inner join tblTransGoodsTransfer_" + BranchID + " as b on b.dc_no=a.dc_no " +
  " inner join tblbranch as c on c.branchcode=a.branchcode inner join tblcategoryuser as d on d.categoryuserid=b.descriptionid " +
- " where a.DC_No='" + sDCNO + "' group by  a.dc_no,a.dc_date,a.sentby,d.mrp,d.printitem ";
+ " where a.DC_No='" + sDCNO + "' group by  a.dc_no,a.dc_date,a.sentby,d.mrp,d.printitem,b.tgst ";
             ds = dbObj.InlineExecuteDataSet(sqry);
 
             return ds;
@@ -39760,12 +39803,12 @@ namespace BusinessLayer
                 {
                     // string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and a.categoryid in " + catid + "   order by category asc";
 
-                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then cast(c.Prod_Qty as decimal) when b.qtytype='E' then cast(c.Prod_Qty as int) end  as Qty,b.mrp,b.serial,b.qtytype  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0  order by category asc";
+                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then cast(c.Prod_Qty as decimal) when b.qtytype='E' then cast(c.Prod_Qty as int) end  as Qty,format(cast(b.Mrp as decimal),'N2') as mrp ,b.serial,b.qtytype  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0  order by category asc";
                     ds = dbObj.InlineExecuteDataSet(sqry);
                 }
                 else
                 {
-                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then cast(c.Prod_Qty as decimal) when b.qtytype='E' then cast(c.Prod_Qty as int) end as Qty,b.mrp,b.serial,b.qtytype from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + " and c.Prod_Qty >0  order by category asc";
+                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then cast(c.Prod_Qty as decimal) when b.qtytype='E' then cast(c.Prod_Qty as int) end as Qty,format(cast(b.Mrp as decimal),'N2') as mrp ,b.serial,b.qtytype from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + " and c.Prod_Qty >0  order by category asc";
                     ds = dbObj.InlineExecuteDataSet(sqry);
                 }
             }
@@ -39775,12 +39818,12 @@ namespace BusinessLayer
                 {
                     // string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and a.categoryid in " + catid + "   order by category asc";
 
-                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then isnull(cast(c.Prod_Qty as  decimal),0) when b.qtytype='E' then isnull(cast(c.Prod_Qty as int),0) end as Qty,b.mrp,b.serial,b.qtytype  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit left join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1'  order by category asc";
+                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then isnull(cast(c.Prod_Qty as  decimal),0) when b.qtytype='E' then isnull(cast(c.Prod_Qty as int),0) end as Qty,format(cast(b.Mrp as decimal),'N2') as mrp ,b.serial,b.qtytype  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit left join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1'  order by category asc";
                     ds = dbObj.InlineExecuteDataSet(sqry);
                 }
                 else
                 {
-                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then isnull(cast(c.Prod_Qty as decimal),0) when b.qtytype='E' then isnll(cast(c.Prod_Qty as int),0) end as Qty,b.mrp,b.serial,b.qtytype from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit left join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + "  order by category asc";
+                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then isnull(cast(c.Prod_Qty as decimal),0) when b.qtytype='E' then isnll(cast(c.Prod_Qty as int),0) end as Qty,format(cast(b.Mrp as decimal),'N2') as mrp ,b.serial,b.qtytype from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit left join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + "  order by category asc";
                     ds = dbObj.InlineExecuteDataSet(sqry);
                 }
             }
@@ -40001,12 +40044,12 @@ namespace BusinessLayer
             if (rawmaterialid == "All")
             {
                 // sqry = "select * from tblcategoryuser as cu inner join tblcategory as c on c.categoryid=cu.categoryid inner join tblCategoryuserBranch as cb on cb.Itemid=cu.ItemID where BranchCode='" + scode + "' order by cu.categoryid asc";
-                sqry = "select * from tblingridents as a inner join tblingridentscategory as b on b.IngCatID=a.IngCatID order by b.IngreCategory asc ";
+                sqry = "select * from tblingridents as a inner join tblingridentscategory as b on b.IngCatID=a.IngCatID order by a.ingredientname asc ";
             }
             else
             {
                 // sqry = "select * from tblcategoryuser as cu inner join tblcategory as c on c.categoryid=cu.categoryid inner join tblCategoryuserBranch as cb on cb.Itemid=cu.ItemID where (" + categoryselect + ") and BranchCode='" + scode + "' order by cu.categoryid asc";
-                sqry = "select * from tblingridents as a inner join tblingridentscategory as b on b.IngCatID=a.IngCatID  where  a.IngridID=(" + rawmaterialid + ") order by b.IngreCategory asc ";
+                sqry = "select * from tblingridents as a inner join tblingridentscategory as b on b.IngCatID=a.IngCatID  where  a.IngridID=(" + rawmaterialid + ") order by a.ingredientname asc ";
             }
 
             DataSet getitem = dbObj.InlineExecuteDataSet(sqry);

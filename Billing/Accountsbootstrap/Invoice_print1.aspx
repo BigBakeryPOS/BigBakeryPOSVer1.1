@@ -73,18 +73,16 @@
                     <table width="100%" border="1" style="border: none; height: 10px">
                         <tr style="height: 10px">
                             <td align="left" class="style2" style="width: 40%; height: 10px" rowspan="3" colspan="3">
-                                <b>BLAACK FOREST 2020-21 </b>
+                                <b><asp:Label ID="lblbranch" runat="server" ></asp:Label> </b>
                                 <br />
-                                1st Floor, 2/232 Malligai Cross Street,<br />
-                                Gomathipuram II Road,<br />
-                                Madurai - 625020<br />
-                                B.O. Plot No : 1-15 Melur Main Road,<br />
-                                Opposite to Reliance Market<br />
-                                Uthangudi, Madurai - 620107<br />
-                                Mobile No : 9943363525<br />
-                                GSTIN/UIN: 33AWBPR0957L1ZA<br />
-                                State Name : Tamil Nadu, Code : 33<br />
-                                E-Mail : blaackforestmadurai @gmail.com<br />
+                               <asp:Label ID="lblbranchaddress" runat="server"></asp:Label><br />
+                               
+                              
+                              <label>MobileNo: </label> <asp:Label ID="lblMobileno" runat="server"></asp:Label><br />
+                               <label>GSTIN: </label><asp:Label ID="lblgstin" runat="server"></asp:Label><br />
+                                <label>Country : </label><asp:Label ID="lblcountry" runat="server"></asp:Label><label > , State : </label><asp:Label ID="lblstate1" runat="server"></asp:Label><br />
+                                <label>City : </label><asp:Label ID="lblcity1" runat="server" ></asp:Label><br />
+                               <label>E-Mail : </label><asp:Label ID="lblemail" runat="server"></asp:Label><br />
                             </td>
                             <td align="left" style="width: 30%; height: 5px; vertical-align: top">
                                 Delivery Note No. &nbsp e-Way BillNo.<br />
@@ -275,13 +273,13 @@
             <br />
             <table width="100%">
                 <tr>
-                    <td style="width: 50%">
+                    <td style="width: 50%" runat="server" visible="false">
                         Company's PAN &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>AWBPR0957L</b><br />
                         Declaration We declare that this invoice shows the actual price of the goods described
                         and that all particulars are true and correct
                     </td>
                     <td style="width: 50%; border: 1px solid black; text-align: right">
-                        For&nbsp&nbsp <b>Blaack Forest</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br />
+                        For&nbsp&nbsp <b><asp:Label ID="lblbranch1" runat="server"></asp:Label></b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br />
                         <br />
                         <br />
                         <br />

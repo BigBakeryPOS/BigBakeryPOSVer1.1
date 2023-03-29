@@ -31,7 +31,7 @@
         function Denomination123() {
 
 
-            var gridData = document.getElementById('IDValues');
+            var gridData = document.getElementById('gvreceiptamt');
 
 
             var windowUrl = 'about:blank';
