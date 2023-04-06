@@ -28,12 +28,21 @@
                     <td align="center">
                         <label style="font-weight: bold; font-size: larger">
                             INVOICE</label><br />
-                        <asp:Label ID="lblpvtltd" runat="server" Text="POTHYS Pvt Ltd" Style="font-weight: bold;
-                            font-size: x-large" Visible="false"></asp:Label><br />
-                        <asp:Label Style="font-weight: bold; font-size: larger" ID="lblstore" runat="server"></asp:Label><br />
-                        <asp:Label Style="font-size: small;" ID="lblAddres" runat="server"></asp:Label><br />
-                        GSTIN:
-                        <asp:Label ID="lbltin" runat="server"></asp:Label><br />
+                        </td>
+                        </tr>
+                        <tr style="height: 10px">
+                            <td align="left"  style=" height: 5px" rowspan="3" >
+                                <b><asp:Label ID="lblbranch" runat="server" ></asp:Label> </b>
+                                <br />
+                               <asp:Label ID="lblbranchaddress" runat="server"></asp:Label><br />
+                               <label>MobileNo: </label> <asp:Label ID="lblMobileno" runat="server"></asp:Label><br />
+                               <label>GSTIN: </label><asp:Label ID="lblgstin" runat="server"></asp:Label><br />
+                                <label>Country : </label><asp:Label ID="lblcountry" runat="server"></asp:Label><label > , State : </label><asp:Label ID="lblstate1" runat="server"></asp:Label><br />
+                                <label>City : </label><asp:Label ID="lblcity1" runat="server" ></asp:Label><br />
+                               <label>E-Mail : </label><asp:Label ID="lblemail" runat="server"></asp:Label><br />
+                            </td>
+                </tr>
+                <tr><td>
                          <div  id="idFranchisee" runat="server" visible="false">       
                          <asp:Label ID="Label3" runat="server" Style="font-size: x-large">(Franchisee: <asp:Label ID="lblfranchise" runat="server" ></asp:Label>)</asp:Label>
                          <%--<asp:Label ID="Label2" runat="server" Style="font-size: large">Keestu Mithai</asp:Label>--%>

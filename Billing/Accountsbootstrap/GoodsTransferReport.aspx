@@ -133,8 +133,8 @@
                                     <asp:Label ID="lblcaption" runat="server" Visible="false"></asp:Label>
                                    
                                     <div class="table-responsive panel-grid-left">
-                                        <asp:GridView ID="gvTransfer" runat="server" EmptyDataText="No Record Found" AutoGenerateColumns="false"
-                                            CssClass="table table-striped pos-table" padding="0" spacing="0" border="0" OnRowCommand="gvTransfer_RowCommand">
+                                        <asp:GridView ID="gvTransfer" runat="server" EmptyDataText="No Record Found" AutoGenerateColumns="false" ShowFooter="true"
+                                            CssClass="table table-striped pos-table" padding="0" spacing="0" border="0" OnRowDataBound="gvTransfer_OnRowDataBound"  OnRowCommand="gvTransfer_RowCommand">
                                             <Columns>
                                                 <asp:BoundField HeaderText="DC No" DataField="DC_NO" />
                                                 <asp:BoundField HeaderText="DC_Date" DataField="DC_Date" />
@@ -142,13 +142,14 @@
                                                 <asp:BoundField HeaderText="Branch Req.No" DataField="BranchReqNo" />
                                                 <asp:BoundField HeaderText="Category" DataField="category" />
                                                 <asp:BoundField HeaderText="Item Name" DataField="Item" />
-                                                <asp:BoundField HeaderText="MRP" DataField="MRP" />
-                                                <asp:BoundField HeaderText="Requested Qty" DataField="OrderQty" />
-                                                <asp:BoundField HeaderText="Transfer Qty" DataField="SentQty" />
-                                                <asp:BoundField HeaderText="Damage Qty" DataField="damageQty" />
-                                                <asp:BoundField HeaderText="Missing Qty" DataField="MissingQty" />                                                
+                                                <asp:BoundField HeaderText="MRP" DataField="MRP" DataFormatString='{0:f2}' />
+                                                <asp:BoundField HeaderText="Requested Qty" DataField="OrderQty" DataFormatString='{0:f3}' />
+                                                <asp:BoundField HeaderText="Transfer Qty" DataField="SentQty" DataFormatString='{0:f3}' />
+                                                <asp:BoundField HeaderText="Damage Qty" DataField="damageQty" DataFormatString='{0:f3}' />
+                                                <asp:BoundField HeaderText="Missing Qty" DataField="MissingQty" DataFormatString='{0:f3}' />  
+                                                 <asp:BoundField HeaderText="Amount" DataField="Amount" DataFormatString='{0:f2}' />  
                                             </Columns>
-                                            <FooterStyle BackColor="#990100" ForeColor="White" HorizontalAlign="Center" />
+                                            <FooterStyle BackColor="" ForeColor="Black" HorizontalAlign="Center" />
                                             <HeaderStyle BackColor="#428bca" ForeColor="White" HorizontalAlign="Center" />
                                         </asp:GridView>
 

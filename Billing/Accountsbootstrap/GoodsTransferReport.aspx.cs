@@ -191,5 +191,30 @@ namespace Billing.Accountsbootstrap
         {
             
         }
+        double TotalAmount = 0;
+        double TransferQty = 0;
+        protected void gvTransfer_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+
+           // DataSet dst = new DataSet();
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                // GrandTotal += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "acceptqty"));
+                TotalAmount += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "Amount"));
+                TransferQty  += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "SentQty"));
+
+
+            }
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                e.Row.Cells[7].Text = "Total";
+                // e.Row.Cells[3].Text = GrandTotal.ToString("f2");
+                e.Row.Cells[8].Text = TransferQty.ToString("f2");
+                e.Row.Cells[11].Text = TotalAmount.ToString("f2");
+
+
+            }
+        }
     }
 }

@@ -156,6 +156,31 @@
             text-align: center;
         }
     </style>
+     <script type="text/javascript">
+ function isDecimal(evt)
+    {
+       var charCode = (evt.which) ? evt.which : event.keyCode
+       var parts = evt.srcElement.value.split('.');
+       if(parts.length > 1 && charCode==46)
+          return false;
+       else
+       {
+          if (charCode == 46 || (charCode >= 48 && charCode <= 57))
+             return true;
+          return false;
+       }
+    }
+    
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
+        }
+       
+      </script>
     <script type="text/javascript">
         function ClientSideClick(myButton) {
             // Client side validation
@@ -319,12 +344,14 @@
                                             <label id="lblRawID" visible="false" runat="server">
                                             </label>
                                             <label>Per Qty Recipe</label>
-                                            <asp:TextBox ID="txtprepareqty" runat="server" CssClass="form-control" placeholder="Eg:100" onkeypress="return isNumberKey(event)"></asp:TextBox>
+                                            <asp:TextBox ID="txtprepareqty" runat="server" CssClass="form-control" placeholder="Eg:100" onkeypress="return isDecimal(event)"></asp:TextBox>
+                                             <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server" TargetControlID="txtprepareqty"
+                                                                FilterType="Custom,Numbers"  />
                                         </div>
                                         <div class="col-lg-3">
                                             <label>
                                                 Duration(Mins)</label>
-                                            <asp:TextBox ID="txtproductionhours" runat="server" CssClass="form-control" placeholder="Eg:45" onkeypress="return isNumberKey(event)"></asp:TextBox>
+                                            <asp:TextBox ID="txtproductionhours" runat="server" CssClass="form-control" placeholder="Eg:45" onkeypress="return isDecimal(event)"></asp:TextBox>
                                         </div>
 
                                         <div class="col-lg-12">
@@ -347,7 +374,9 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Required Qty">
                                                             <ItemTemplate>
-                                                                <asp:TextBox ID="txtrecqty" runat="server" onkeypress="return isNumberKey(event)"></asp:TextBox>
+                                                                <asp:TextBox ID="txtrecqty" runat="server" onkeypress="return isDecimal(event)"></asp:TextBox>
+                                                                  <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" TargetControlID="txtrecqty"
+                                                                FilterType="Custom,Numbers"  />
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="UOM">

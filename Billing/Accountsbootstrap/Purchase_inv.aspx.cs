@@ -377,6 +377,7 @@ namespace Billing.Accountsbootstrap
                             ddlPay.SelectedValue = Convert.ToInt32(dstd.Tables[0].Rows[vLoop]["Paymode"]).ToString();
                             //txtexpireddate.Text = Convert.ToDateTime(dstd.Tables[0].Rows[vLoop]["ExpDate"]).ToString("dd/MM/yyyy");
                             txtexpireddate.Text = Convert.ToDateTime(dstd.Tables[0].Rows[vLoop]["ExpDate"]).ToString("dd/MM/yyyy");
+                           
                             if (txtexpireddate.Text == "01/01/1900")
                             {
                                 txtexpireddate.Text = "0";
@@ -1113,6 +1114,8 @@ namespace Billing.Accountsbootstrap
             }
 
             #region Validation
+
+
 
             if (drpmingredents.SelectedValue == "Select IngredientName")
             {
@@ -2021,7 +2024,10 @@ namespace Billing.Accountsbootstrap
                             //}
                             //else
                             //{
-                            int Transpurchase = kbs.insertTransPurchase(sTableName, insertPurchase, idef, dQty, DRate, dAmount, Convert.ToDecimal(billno.Text), Convert.ToInt32(lblUserID.Text), lblunitsid.Text, Convert.ToDecimal(billno.Text), Convert.ToInt32(ddlsuplier.SelectedValue), "", txtexpireddate.Text, txtnarrations.Text, Convert.ToDouble(txtDisCount.Text), Convert.ToDouble(txtDisCountAmount.Text), lblprimarynamevalue.Text, Convert.ToDouble(lblprimaryvalue.Text), Convert.ToDouble(txtpqty.Text),Convert.ToDouble(txtperkgrate.Text));
+                           // DateTime  Expirydate = DateTime.ParseExact(txtexpireddate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                           
+
+                            int Transpurchase = kbs.insertTransPurchase(sTableName, insertPurchase, idef, dQty, DRate, dAmount, Convert.ToDecimal(billno.Text), Convert.ToInt32(lblUserID.Text), lblunitsid.Text, Convert.ToDecimal(billno.Text), Convert.ToInt32(ddlsuplier.SelectedValue), "", txtexpireddate.Text , txtnarrations.Text, Convert.ToDouble(txtDisCount.Text), Convert.ToDouble(txtDisCountAmount.Text), lblprimarynamevalue.Text, Convert.ToDouble(lblprimaryvalue.Text), Convert.ToDouble(txtpqty.Text),Convert.ToDouble(txtperkgrate.Text));
                             txtexpireddate.Text = "";
                             if (BillingType == "Purchase Order")
                             {
@@ -3948,7 +3954,7 @@ namespace Billing.Accountsbootstrap
                         txtexpireddate.Text = Convert.ToDateTime(dstd.Tables[0].Rows[vLoop]["ExpDate"]).ToString("dd/MM/yyyy");
                         if (txtexpireddate.Text == "01/01/1900")
                         {
-                            txtexpireddate.Text = "";
+                            txtexpireddate.Text = "0";
                         }
                         lblprimaryname.Text = dstd.Tables[0].Rows[vLoop]["PUnits"].ToString();
                         lblprimarynamevalue.Text = dstd.Tables[0].Rows[vLoop]["PUnitsvalue"].ToString();
