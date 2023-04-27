@@ -73,7 +73,8 @@ namespace Billing.Accountsbootstrap
                         lblcity.Text = ds.Tables[0].Rows[0]["City"].ToString();
                         lblstate.Text = ds.Tables[0].Rows[0]["Area"].ToString();
                         lblgst.Text = ds.Tables[0].Rows[0]["GSTno"].ToString();
-                        
+                        lblpaymode.Text = ds.Tables[0].Rows[0]["mod"].ToString();
+
                         #region Grid Bind
 
                         DataTable dttt;

@@ -169,7 +169,7 @@
                                                 <Columns>
                                                     <asp:BoundField HeaderText="Group" DataField="Category" />
                                                     <asp:BoundField HeaderText="Item" DataField="Definition" />
-                                                    <asp:BoundField HeaderText="GRN Qty" DataField="Qty" DataFormatString="{0:###,##0}" />
+                                                    <asp:BoundField HeaderText="GRN Qty" DataField="Qty" DataFormatString='{0:f3}' />
                                                     <asp:BoundField HeaderText="GRN By" DataField="grn by" />
                                                     <asp:BoundField HeaderText="GRN Type" DataField="type" />
                                                     <asp:BoundField HeaderText="Sign" DataField="signa" />
@@ -189,7 +189,7 @@
                                                     <asp:BoundField HeaderText="Date" DataField="Date" DataFormatString='{0:dd/MMM/yyyy}' />
                                                     <asp:BoundField HeaderText="Group" DataField="Category" />
                                                     <asp:BoundField HeaderText="Item" DataField="Definition" />
-                                                    <asp:BoundField HeaderText="GRN Qty" DataField="Qty" DataFormatString="{0:###,##0}" />
+                                                    <asp:BoundField HeaderText="GRN Qty" DataField="Qty" DataFormatString='{0:f3}' />
                                                     <asp:BoundField HeaderText="Rate" DataField="rate" DataFormatString="{0:###,##0}" />
                                                     <asp:BoundField HeaderText="Total Rate" DataField="totalrate" DataFormatString="{0:###,##0}" />
                                                     <asp:BoundField HeaderText="GRN By" DataField="grn by" />

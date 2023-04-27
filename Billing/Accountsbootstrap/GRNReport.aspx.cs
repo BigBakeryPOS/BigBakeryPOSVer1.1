@@ -17,6 +17,7 @@ namespace Billing.Accountsbootstrap
         string BranchNAme = "";
         string StoreName = "";
         string Password = "";
+        string qtysetting = "";
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -27,6 +28,7 @@ namespace Billing.Accountsbootstrap
             sCode = Request.Cookies["userInfo"]["BranchCode"].ToString();
 
             Password = Request.Cookies["userInfo"]["Password"].ToString();
+            qtysetting = Request.Cookies["userInfo"]["Qtysetting"].ToString();
 
             DataSet dsPlaceName = objBs.GetPlacename(lblUser.Text, Password);
 
@@ -201,6 +203,95 @@ namespace Billing.Accountsbootstrap
                 }
             }
         }
+
+        //protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+
+        //    string qtytype = "D";
+        //    string Available = "0";
+
+        //    if (e.Row.RowType == DataControlRowType.DataRow)
+        //    {
+        //        qtytype = (DataBinder.Eval(e.Row.DataItem, "qtytype")).ToString();
+
+
+        //        if (qtytype == "E")
+        //        {
+        //            e.Row.Cells[4].Text = Convert.ToDouble(e.Row.Cells[2].Text).ToString("0");
+        //        }
+        //        else
+        //        {
+        //            //DataBinder.Eval(e.Row.DataItem, "Available_QTY") = Convert.ToDouble(Available).ToString("" + qtysetting + "");
+        //            e.Row.Cells[4].Text = Convert.ToDouble(e.Row.Cells[2].Text).ToString("" + qtysetting + "");
+        //        }
+        //    }
+        //}
+        //protected void GVStockAlert_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+
+        //    string qtytype = "D";
+        //    string Available = "0";
+
+        //    if (e.Row.RowType == DataControlRowType.DataRow)
+        //    {
+        //        qtytype = (DataBinder.Eval(e.Row.DataItem, "qtytype")).ToString();
+
+
+        //        if (qtytype == "E")
+        //        {
+        //            e.Row.Cells[4].Text = Convert.ToDouble(e.Row.Cells[3].Text).ToString("0");
+        //        }
+        //        else
+        //        {
+        //            //DataBinder.Eval(e.Row.DataItem, "Available_QTY") = Convert.ToDouble(Available).ToString("" + qtysetting + "");
+        //            e.Row.Cells[4].Text = Convert.ToDouble(e.Row.Cells[3].Text).ToString("" + qtysetting + "");
+        //        }
+        //    }
+        //}
+        //protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+
+        //    string qtytype = "D";
+        //    string Available = "0";
+
+        //    if (e.Row.RowType == DataControlRowType.DataRow)
+        //    {
+        //        qtytype = (DataBinder.Eval(e.Row.DataItem, "qtytype")).ToString();
+
+
+        //        if (qtytype == "E")
+        //        {
+        //            e.Row.Cells[4].Text = Convert.ToDouble(e.Row.Cells[2].Text).ToString("0");
+        //        }
+        //        else
+        //        {
+        //            //DataBinder.Eval(e.Row.DataItem, "Available_QTY") = Convert.ToDouble(Available).ToString("" + qtysetting + "");
+        //            e.Row.Cells[4].Text = Convert.ToDouble(e.Row.Cells[2].Text).ToString("" + qtysetting + "");
+        //        }
+        //    }
+        //}
+        //protected void gvsales_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+
+        //    string qtytype = "D";
+        //    string Available = "0";
+
+        //    if (e.Row.RowType == DataControlRowType.DataRow)
+        //    {
+        //        qtytype = (DataBinder.Eval(e.Row.DataItem, "qtytype")).ToString();
+
+
+        //        if (qtytype == "E")
+        //        {
+        //            e.Row.Cells[4].Text = Convert.ToDouble(e.Row.Cells[3].Text).ToString("0");
+        //        }
+        //        else
+        //        {
+        //            //DataBinder.Eval(e.Row.DataItem, "Available_QTY") = Convert.ToDouble(Available).ToString("" + qtysetting + "");
+        //            e.Row.Cells[4].Text = Convert.ToDouble(e.Row.Cells[3].Text).ToString("" + qtysetting + "");
+        //        }
+        //    }
+        //}
 
         protected void Button2_Click(object sender, EventArgs e)
         {

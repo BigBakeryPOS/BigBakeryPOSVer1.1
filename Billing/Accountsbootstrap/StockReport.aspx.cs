@@ -106,7 +106,7 @@ namespace Billing.Accountsbootstrap
                 qtytype = (DataBinder.Eval(e.Row.DataItem, "qtytype")).ToString();
                 
 
-                if (qtytype == "D")
+                if (qtytype == "E")
                 {
                     e.Row.Cells[4].Text = Convert.ToDouble(e.Row.Cells[4].Text).ToString("0");
                 }

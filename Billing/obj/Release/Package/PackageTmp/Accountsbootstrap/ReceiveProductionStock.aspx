@@ -38,7 +38,19 @@
 
                 event.returnValue = false;
         }
-
+ function isDecimal(evt)
+    {
+       var charCode = (evt.which) ? evt.which : event.keyCode
+       var parts = evt.srcElement.value.split('.');
+       if(parts.length > 1 && charCode==46)
+          return false;
+       else
+       {
+          if (charCode == 46 || (charCode >= 48 && charCode <= 57))
+             return true;
+          return false;
+       }
+    }
     </script>
     <script type="text/javascript">
          function ClientSideClick(myButton) {
@@ -417,6 +429,12 @@
                                                     <asp:HiddenField ID="HDProductid" runat="server" Value='<%#Eval("ItemId") %>' />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
+                                             <asp:TemplateField HeaderText="MRP">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblMrp" runat="server" Text='<%#Eval("Mrp")%>'></asp:Label>
+                                                  
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Requested Stock From Store">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblQty" runat="server" Text='<%#Eval("Qty")%>' Width="100px"></asp:Label>
@@ -429,7 +447,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Frozen Stock In Hand" Visible="true">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtPendingfrozenqty" runat="server" Width="100px" runat="server"
+                                                    <asp:TextBox ID="txtPendingfrozenqty" runat="server" Width="100px" onkeypress="return isDecimal(event)"
                                                         Text='<%#Eval("FrozenQty")%>' Enabled="false">0</asp:TextBox>
                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender6" runat="server"
                                                         FilterType="Numbers,Custom" ValidChars="" TargetControlID="txtPendingfrozenqty" />
@@ -437,21 +455,21 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Production Output Finished">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtreadyqty" runat="server" Width="100px">0</asp:TextBox>
+                                                    <asp:TextBox ID="txtreadyqty" onkeypress="return isDecimal(event)" runat="server" Width="100px">0</asp:TextBox>
                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender8" runat="server"
                                                         FilterType="Numbers,Custom" ValidChars="" TargetControlID="txtreadyqty" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Production Damage">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtdamageqty" runat="server" Width="100px">0</asp:TextBox>
+                                                    <asp:TextBox ID="txtdamageqty" onkeypress="return isDecimal(event)" runat="server" Width="100px">0</asp:TextBox>
                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
                                                         FilterType="Numbers,Custom" ValidChars="" TargetControlID="txtdamageqty" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Issue Frozen" Visible="true">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtfrozenqty" runat="server" Width="100px">0</asp:TextBox>
+                                                    <asp:TextBox ID="txtfrozenqty" onkeypress="return isDecimal(event)" runat="server" Width="100px">0</asp:TextBox>
                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server"
                                                         FilterType="Numbers,Custom" ValidChars="" TargetControlID="txtfrozenqty" />
                                                 </ItemTemplate>
@@ -527,6 +545,11 @@
                                                     <asp:Label ID="lblDefinition" runat="server" Text='<%#Eval("Definition") %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
+                                             <asp:TemplateField HeaderText="MRP">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblMRP" runat="server" Text='<%#Eval("Mrp") %>' ></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Stock In Hand">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblProd_Qty" runat="server" Text='<%#Eval("Prod_Qty")%>'></asp:Label>
@@ -534,7 +557,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Qty">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtQty" onBlur="ResetColor()" onFocus="ChangeColor()" runat="server"
+                                                    <asp:TextBox ID="txtQty" onBlur="ResetColor()" onFocus="ChangeColor()" onkeypress="return isDecimal(event)" runat="server"
                                                         Width="50px" AutoPostBack="false">0</asp:TextBox>
                                                     <ajaxToolkit:FilteredTextBoxExtender ID="ftbe" runat="server" TargetControlID="txtQty"
                                                         FilterType="Custom,Numbers" ValidChars="." />
@@ -619,12 +642,20 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Qty">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtQty" runat="server" Width="50px" Text='<%#Eval("Qty") %>' Enabled="false">0</asp:TextBox>
+                                                    <asp:TextBox ID="txtQty" runat="server" Width="50px" Text='<%#Eval("Qty") %>' onkeypress="return isDecimal(event)" Enabled="false">0</asp:TextBox>
+                                                      <ajaxToolkit:FilteredTextBoxExtender ID="ftbe1" runat="server" TargetControlID="txtQty"
+                                                        FilterType="Custom,Numbers" ValidChars="." />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Unit">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblom" runat="server" Text='<%#Eval("UOM") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                           
+                                                 <asp:TemplateField Visible="false" HeaderText="qtytype">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblqtytype" Visible="false" runat="server" Text='<%#Eval("qtytype") %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField>

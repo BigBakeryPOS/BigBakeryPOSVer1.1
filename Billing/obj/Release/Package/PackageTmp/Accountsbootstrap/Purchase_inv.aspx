@@ -43,6 +43,22 @@
             alert('Your page is Redirected to Transfer page!');
         }
     </script>
+
+    <script type="text/javascript">
+ function isDecimal(evt)
+    {
+       var charCode = (evt.which) ? evt.which : event.keyCode
+       var parts = evt.srcElement.value.split('.');
+       if(parts.length > 1 && charCode==46)
+          return false;
+       else
+       {
+          if (charCode == 46 || (charCode >= 48 && charCode <= 57))
+             return true;
+          return false;
+       }
+    }
+</script>
     <style type="text/css">
         .Hide {
             display: none;
@@ -258,37 +274,48 @@
                                                     <label>
                                                         Qty
                                                     </label>
-                                                    <asp:TextBox class="form-control" Width="65px" OnTextChanged="txtdefQty_TextChanged"
+                                                    <asp:TextBox class="form-control" Width="65px"  onkeypress="return isDecimal(event)" OnTextChanged="txtdefQty_TextChanged"
                                                         AutoPostBack="true" ID="txtmQty" runat="server" MaxLength="10">0</asp:TextBox>
+                                                     <ajaxToolkit:FilteredTextBoxExtender ID="ftbe" runat="server" TargetControlID="txtmQty"
+                                                                FilterType="Custom,Numbers" ValidChars="." />
                                                 </td>
                                                 <td>
                                                     <label>
                                                         Disc %
                                                     </label>
-                                                    <asp:TextBox class="form-control" Width="65px" ID="txtmDisCount" OnTextChanged="txtDisCount_TextChanged"
+                                                    <asp:TextBox class="form-control" Width="65px" ID="txtmDisCount" onkeypress="return isDecimal(event)" OnTextChanged="txtDisCount_TextChanged"
                                                         AutoPostBack="true" runat="server" MaxLength="10">0</asp:TextBox>
+                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" TargetControlID="txtmDisCount"
+                                                                FilterType="Custom,Numbers" ValidChars="." />
                                                 </td>
                                                 <td>
                                                     <label>
                                                         Disc.Amnt
                                                     </label>
-                                                    <asp:TextBox class="form-control" Width="65px" ID="txtmDisCountAmount" OnTextChanged="txtDisCountAmount_TextChanged"
+                                                    <asp:TextBox class="form-control" Width="65px" ID="txtmDisCountAmount" onkeypress="return isDecimal(event)" OnTextChanged="txtDisCountAmount_TextChanged"
                                                         AutoPostBack="true" runat="server" MaxLength="10">0</asp:TextBox>
+                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" TargetControlID="txtmDisCountAmount"
+                                                                FilterType="Custom,Numbers" ValidChars="." />
+                                                    
                                                 </td>
                                                 <td>
                                                     <label>
                                                         GST%
                                                     </label>
-                                                    <asp:TextBox ID="txtmBillNo" runat="server" CssClass="form-control" Width="65px"
+                                                    <asp:TextBox ID="txtmBillNo" runat="server" CssClass="form-control"  onkeypress="return isDecimal(event)" Width="65px"
                                                         AutoPostBack="true" OnTextChanged="txtBillNo_TextChanged">0</asp:TextBox>
+                                                      <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" TargetControlID="txtmBillNo"
+                                                                FilterType="Custom,Numbers" ValidChars="." />
                                                 </td>
                                                 <td>
                                                     <label>
                                                         Rate
                                                     </label>
-                                                    <asp:TextBox Width="80px" Style="text-align: right" placeholder="Enter Rate" class="form-control"
-                                                        ID="txtmRate" runat="server" OnTextChanged="txtdefCatID_TextChangedOLD" AutoPostBack="true"
+                                                    <asp:TextBox Width="80px" Style="text-align: right" placeholder="Enter Rate" onkeypress="return isDecimal(event)" class="form-control"
+                                                        ID="txtmRate" runat="server" OnTextChanged="txtdefCatID_TextChangedOLD"  AutoPostBack="true"
                                                         MaxLength="10">0</asp:TextBox>
+                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server" TargetControlID="txtmRate"
+                                                                FilterType="Custom,Numbers" ValidChars="." />
                                                 </td>
                                                 <td>
                                                     <label>
@@ -302,11 +329,14 @@
                                                         Exp.Date
                                                     </label>
                                                     <br />
-                                                    <asp:TextBox ID="txtmexpireddate" runat="server" Enabled="true" Height="30px" Width="90px">0</asp:TextBox>
+                                                    <asp:TextBox ID="txtmexpireddate" runat="server" Enabled="true" ReadOnly="true" Height="30px" Width="90px">01/01/1900</asp:TextBox>
                                                     <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtmexpireddate"
                                                         PopupButtonID="txtmexpireddate" EnabledOnClient="true" Format="dd/MM/yyyy" runat="server"
                                                         CssClass="cal_Theme1">
                                                     </ajaxToolkit:CalendarExtender>
+                                                    <asp:CompareValidator id="dateValidator" runat="server"  Type="Date" Operator="DataTypeCheck" ControlToValidate="txtmexpireddate" 
+    ErrorMessage="Please enter a valid date.">
+</asp:CompareValidator>
                                                 </td>
                                                 <td>
                                                     <label>
@@ -431,8 +461,10 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Qty">
                                                         <ItemTemplate>
-                                                            <asp:TextBox class="form-control" Width="50px" OnTextChanged="txtdefQty_TextChangedOLD" Text='<%#Eval("Qty") %>'
+                                                            <asp:TextBox class="form-control" Width="50px" OnTextChanged="txtdefQty_TextChangedOLD" onkeypress="return isDecimal(event)"  Text='<%#Eval("Qty") %>'
                                                                 AutoPostBack="true" ID="txtQty" runat="server" MaxLength="10">0</asp:TextBox>
+                                                             <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" TargetControlID="txtQty"
+                                                                FilterType="Custom,Numbers" ValidChars="." />
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Disc %">
@@ -449,7 +481,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="GST%">
                                                         <ItemTemplate>
-                                                            <asp:TextBox ID="txtBillNo" runat="server" CssClass="form-control" Enabled="false" Width="50px" AutoPostBack="true" Text='<%#Eval("BillNo") %>'
+                                                            <asp:TextBox ID="txtBillNo" runat="server" CssClass="form-control" Enabled="false" Width="50px" AutoPostBack="true"  Text='<%#Eval("BillNo") %>'
                                                                 OnTextChanged="txtBillNo_TextChanged">0</asp:TextBox>
                                                         </ItemTemplate>
                                                         <%--<FooterStyle HorizontalAlign="Right" />
@@ -458,9 +490,11 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Rate">
                                                         <ItemTemplate>
-                                                            <asp:TextBox Width="100px" Style="text-align: right" placeholder="Enter Rate" Enabled="true" class="form-control" Text='<%#Eval("Rate") %>'
+                                                            <asp:TextBox Width="100px" Style="text-align: right" placeholder="Enter Rate" Enabled="true"  onkeypress="return isDecimal(event)"  class="form-control" Text='<%#Eval("Rate") %>'
                                                                 ID="txtRate" runat="server" OnTextChanged="txtdefCatID_TextChanged" AutoPostBack="true"
                                                                 MaxLength="10">0</asp:TextBox>
+                                                              <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server" TargetControlID="txtRate"
+                                                                FilterType="Custom,Numbers" ValidChars="." />
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Amount">

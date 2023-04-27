@@ -163,7 +163,7 @@
                                             <asp:BoundField HeaderText="Category " DataField="Category" Visible="true" />
                                             <asp:BoundField HeaderText="Item Name" DataField="Definition" />
                                             <asp:BoundField HeaderText="Quantity" Visible="false" DataField="Quantity" DataFormatString='{0:f3}' />
-                                            <asp:BoundField HeaderText="Available Quantity" DataField="Available_QTY"  />
+                                            <asp:BoundField HeaderText="Available Quantity" DataField="Available_QTY"   />
                                             <asp:BoundField HeaderText="Purchase Price" Visible="false" DataFormatString="{0:f}"
                                                 DataField="Rate" />
                                             <asp:BoundField HeaderText="Stock Total Price" Visible="false" DataFormatString="{0:f}"

@@ -714,6 +714,12 @@ namespace Billing.HeaderMaster
                                         SalesReport.Visible = true;
                                         DayEndReport.Visible = true;
                                     }
+                                    if (screen == "wholesalereport")
+                                    {
+                                        Reports.Visible = true;
+                                        SalesReport.Visible = true;
+                                        wholesalereport.Visible = true;
+                                    }
                                     ////////////////////////////////////////////////////
                                     if (screen == "Productionrep")
                                     {
@@ -2034,6 +2040,12 @@ namespace Billing.HeaderMaster
                                         SalesReport.Visible = true;
                                         DayEndReport.Visible = true;
                                     }
+                                    if (screen == "wholesalereport")
+                                    {
+                                        Reports.Visible = true;
+                                        SalesReport.Visible = true;
+                                        wholesalereport.Visible = true;
+                                    }
                                     ////////////////////////////////////////////////////
                                     if (screen == "Productionrep")
                                     {
@@ -3352,6 +3364,12 @@ namespace Billing.HeaderMaster
                                     Reports.Visible = true;
                                     SalesReport.Visible = true;
                                     DayEndReport.Visible = true;
+                                }
+                                if (screen == "wholesalereport")
+                                {
+                                    Reports.Visible = true;
+                                    SalesReport.Visible = true;
+                                    wholesalereport.Visible = true;
                                 }
                                 ////////////////////////////////////////////////////
                                 if (screen == "Productionrep")
@@ -4672,6 +4690,12 @@ namespace Billing.HeaderMaster
                                 Reports.Visible = true;
                                 SalesReport.Visible = true;
                                 DayEndReport.Visible = true;
+                            }
+                            if (screen == "wholesalereport")
+                            {
+                                Reports.Visible = true;
+                                SalesReport.Visible = true;
+                                wholesalereport.Visible = true;
                             }
                             ////////////////////////////////////////////////////
                             if (screen == "Productionrep")

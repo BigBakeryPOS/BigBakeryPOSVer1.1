@@ -157,6 +157,7 @@
                                                         <asp:BoundField HeaderText="DC_Date" DataField="DC_Date" />
                                                         <asp:BoundField HeaderText="Transferd To" DataField="Branch" />
                                                         <asp:BoundField HeaderText="Qty" DataField="Qty" DataFormatString="{0:f3}" />
+                                                         <asp:BoundField HeaderText="Amount" DataField="MRP" DataFormatString="{0:f2}" />
                                                         <asp:BoundField HeaderText="Status" DataField="Status" />
                                                         <asp:TemplateField HeaderText="View Details">
                                                             <ItemTemplate>

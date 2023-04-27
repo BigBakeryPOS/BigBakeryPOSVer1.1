@@ -541,6 +541,8 @@
                             runat="server">Sales Margin Report</a></li>
                         <li id="TaxWiseOrder" runat="server" visible="false"><a href="../Accountsbootstrap/FullSalesReport2.aspx">Tax Wise Order Report</a></li>
                         <li id="DayEndReport" runat="server" visible="false"><a href="../Accountsbootstrap/TwoReports.aspx">DayEnd Report</a></li>
+                        <li id="wholesalereport" runat="server" visible="false"><a href="../Accountsbootstrap/WholeSalesReport.aspx">Whole Sale Report</a></li>
+                        
                     </ul>
                 </li>
                 <li id="StockReport" class='has-sub' runat="server" visible="false"><a runat="server" href="javascript:;">Stock Report</a>

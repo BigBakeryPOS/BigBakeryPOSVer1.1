@@ -187,33 +187,33 @@ namespace Billing.Accountsbootstrap
         protected void gridview_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
 
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                if (superadmin == "1" || sTableName == "Pro")
-                {
-                    ((LinkButton)e.Row.FindControl("btnedit")).Enabled = true;
-                    ((LinkButton)e.Row.FindControl("btndel")).Enabled = true;
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+            //    if (superadmin == "1" || sTableName == "Pro")
+            //    {
+            //        ((LinkButton)e.Row.FindControl("btnedit")).Enabled = true;
+            //        ((LinkButton)e.Row.FindControl("btndel")).Enabled = true;
 
-                    ((Image)e.Row.FindControl("imdedit")).Enabled = true;
-                    ((Image)e.Row.FindControl("Image1")).Enabled = true;
-                }
-                else
-                {
-                    ((LinkButton)e.Row.FindControl("btnedit")).Enabled = false;
-                    ((LinkButton)e.Row.FindControl("btndel")).Visible = false;
+            //        ((Image)e.Row.FindControl("imdedit")).Enabled = true;
+            //        ((Image)e.Row.FindControl("Image1")).Enabled = true;
+            //    }
+            //    else
+            //    {
+            //        ((LinkButton)e.Row.FindControl("btnedit")).Enabled = false;
+            //        ((LinkButton)e.Row.FindControl("btndel")).Visible = false;
 
-                    ((Image)e.Row.FindControl("imdedit")).Enabled = false;
-                    ((Image)e.Row.FindControl("Image1")).Visible = false;
+            //        ((Image)e.Row.FindControl("imdedit")).Enabled = false;
+            //        ((Image)e.Row.FindControl("Image1")).Visible = false;
 
-                    ((Image)e.Row.FindControl("imgdisable1321")).Enabled = false;
-                    ((Image)e.Row.FindControl("imgdisable1321")).Visible = true;
-                }
+            //        ((Image)e.Row.FindControl("imgdisable1321")).Enabled = false;
+            //        ((Image)e.Row.FindControl("imgdisable1321")).Visible = true;
+            //    }
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-            }
+            //}
 
         }
 

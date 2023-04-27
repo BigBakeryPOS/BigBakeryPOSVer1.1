@@ -202,7 +202,7 @@
                                                 <label id="caption" runat="server" visible="true">
                                                 </label>
                                                 <asp:GridView ID="GVStockAlert" runat="server" cssClass="table table-striped pos-table" AutoGenerateColumns="false"
-                                                    EmptyDataText="No Records Found" Caption="Stock Detailed Report" padding="0" spacing="0" border="0">
+                                                    EmptyDataText="No Records Found"  padding="0" spacing="0" border="0">
                                                     <Columns>
                                                         <asp:BoundField HeaderText="Group" DataField="group" />
                                                         <asp:BoundField HeaderText="Item" DataField="Item" />

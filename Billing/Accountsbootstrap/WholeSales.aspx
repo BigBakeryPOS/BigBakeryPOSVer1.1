@@ -94,10 +94,10 @@
                                                     Bill No</label><br>
                                                 <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="RequiredFieldValidator4"
                                                     Text="*" ControlToValidate="txtbillno" ErrorMessage="Please enter Bill NO!" Style="color: Red" />
-                                                <asp:Label ID="lblPrefix" runat="server" Font-Bold="true" Font-Size="Larger" Text="AM / "></asp:Label>
+                                                <asp:Label ID="lblPrefix" runat="server" Font-Bold="true" Font-Size="Larger" Text="SW / "></asp:Label>
                                                 <asp:TextBox Width="50px" Enabled="false" ID="txtbillno" class="form-control" AutoPostBack="true" runat="server"></asp:TextBox>
                                                 <%--  <asp:Label ID="yearss" runat="server" Font-Bold="true" Font-Size="Larger" Text="/2020"></asp:Label>--%>
-                                                <asp:Label ID="yearss" runat="server" Font-Bold="true" Font-Size="Larger" Text=" / 21-22"></asp:Label>
+                                                <asp:Label ID="yearss" runat="server" Font-Bold="true" Font-Size="Larger" Text=" / 23-24"></asp:Label>
 
                                                 
                                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender7" runat="server"

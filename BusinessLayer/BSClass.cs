@@ -10634,7 +10634,7 @@ namespace BusinessLayer
             {
                 //sQry = "select distinct c.Category,d.definition,sum(b.Received_Qty) as Qty,'' as 'GRN By' from tblgoodtransfer a,tbltransgoodstransfer b,tblcategory c,tblcategoryuser d  where a.isreceived=1 and a.Dc_no=b.dc_no and c.categoryid=d.categoryid and b.descriptionid=d.categoryuserid and convert(date,a.DC_date) between '" + Dt + "' and '" + toDt + "' and a.Branch='" + sCode + "' and a.branchcode=a.branchcode group by c.Category,d.definition  union all  select distinct c.category,b.Definition,sum(a.GRN_Qty) as Qty,a.Name as 'GRN By' from tblgrn a,tblcategoryuser b,tblcategory c where UserID=" + userid + " and cast(Date as Date) between '" + Dt + "' and '" + toDt + "'  and a.categoryuserid=b.categoryuserid and b.categoryid=c.categoryid group by c.Category,b.definition,a.name order by category";
                 //  sQry = "select distinct a.DC_Date as Date,c.Category,d.definition,sum(b.Received_Qty) as Qty,'' as 'GRN By' from tblgoodtransfer a,tbltransgoodstransfer b,tblcategory c,tblcategoryuser d  where a.isreceived=1 and a.Dc_no=b.dc_no and c.categoryid=d.categoryid and b.descriptionid=d.categoryuserid and convert(date,a.DC_date) between '" + Dt + "' and '" + toDt + "' and a.Branch='" + sCode + "' and a.branchcode=a.branchcode group by c.Category,d.definition,a.DC_Date  union all  select distinct a.Date as Date,c.category,b.Definition,sum(a.GRN_Qty) as Qty,a.Name as 'GRN By' from tblgrn a,tblcategoryuser b,tblcategory c where UserID=" + userid + " and cast(Date as Date) between '" + Dt + "' and '" + toDt + "'  and a.categoryuserid=b.categoryuserid and b.categoryid=c.categoryid group by c.Category,b.definition,a.name,a.Date order by Date desc";
-                sQry = "select distinct a.date as Date,c.category,b.Definition,sum(a.GRN_Qty) as Qty,a.Name as 'GRN By',a.type+'-'+a.frombranchcode as type,isnull(a.requestno,0) as reqno,isnull(a.dc_no,0) as dcno from tblgrn a,tblcategoryuser b,tblcategory c where  cast(Date as Date) between '" + Dt + "' and '" + toDt + "'  and a.categoryuserid=b.categoryuserid and b.categoryid=c.categoryid  group by c.Category,b.definition,a.name,a.Date,a.type,a.requestno,a.dc_no,a.frombranchcode  order by Date desc";
+                sQry = "select distinct a.date as Date,c.category,b.Definition,sum(a.GRN_Qty) as Qty,a.Name as 'GRN By',a.type+'-'+a.frombranchcode as type,isnull(a.requestno,0) as reqno,isnull(a.dc_no,0) as dcno,b.qtytype from tblgrn a,tblcategoryuser b,tblcategory c where  cast(Date as Date) between '" + Dt + "' and '" + toDt + "'  and a.categoryuserid=b.categoryuserid and b.categoryid=c.categoryid  group by c.Category,b.definition,a.name,a.Date,a.type,a.requestno,a.dc_no,a.frombranchcode,b.qtytype  order by Date desc";
             }
             //else if (sCode == "NP" || sCode == "BB")
             //{
@@ -10741,7 +10741,7 @@ namespace BusinessLayer
             {
                 //sQry = "select distinct c.Category,d.definition,sum(b.Received_Qty) as Qty,'' as 'GRN by' from tblgoodtransfer a,tbltransgoodstransfer b,tblcategory c,tblcategoryuser d  where a.isreceived=1 and  a.Dc_no=b.dc_no and c.categoryid=d.categoryid and b.descriptionid=d.categoryuserid and convert(date,a.DC_date) between '" + Dt + "' and '" + toDt + "' and a.Branch='" + sCode + "' and d.categoryuserid=" + subcat + " group by c.Category,d.definition,b.Received_Qty   union all  select distinct c.category,b.Definition,sum(a.GRN_Qty) as Qty,a.Name as 'GRN By' from tblgrn a,tblcategoryuser b,tblcategory c where UserID=" + userid + " and cast(Date as Date) between '" + Dt + "' and '" + toDt + "'  and a.categoryuserid=b.categoryuserid and b.categoryid=c.categoryid and b.categoryuserid=" + subcat + " group by c.Category,b.definition,a.name  order by category";
                 // sQry = "select distinct a.DC_Date as Date,c.Category,d.definition,sum(b.Received_Qty) as Qty,'' as 'GRN by' from tblgoodtransfer a,tbltransgoodstransfer b,tblcategory c,tblcategoryuser d  where a.isreceived=1 and  a.Dc_no=b.dc_no and c.categoryid=d.categoryid and b.descriptionid=d.categoryuserid and convert(date,a.DC_date) between '" + Dt + "' and '" + toDt + "' and a.Branch='" + sCode + "' and d.categoryuserid=" + subcat + " group by c.Category,d.definition,b.Received_Qty,a.DC_Date   union all  select distinct a.date as Date,c.category,b.Definition,sum(a.GRN_Qty) as Qty,a.Name as 'GRN By' from tblgrn a,tblcategoryuser b,tblcategory c where UserID=" + userid + " and cast(Date as Date) between '" + Dt + "' and '" + toDt + "'  and a.categoryuserid=b.categoryuserid and b.categoryid=c.categoryid and b.categoryuserid=" + subcat + " group by c.Category,b.definition,a.name,a.Date  order by Date desc";
-                sQry = "select distinct a.date as Date,c.category,b.Definition,sum(a.GRN_Qty) as Qty,a.Name as 'GRN By',a.type,isnull(a.requestno,0) as reqno,isnull(a.dc_no,0) as dcno from tblgrn a,tblcategoryuser b,tblcategory c where  cast(Date as Date) between '" + Dt + "' and '" + toDt + "'  and a.categoryuserid=b.categoryuserid and b.categoryid=c.categoryid and b.categoryuserid=" + subcat + " group by c.Category,b.definition,a.name,a.Date,a.type,a.requestno,a.dc_no  order by Date desc";
+                sQry = "select distinct a.date as Date,c.category,b.Definition,sum(a.GRN_Qty) as Qty,a.Name as 'GRN By',a.type,isnull(a.requestno,0) as reqno,isnull(a.dc_no,0) as dcno,b.qtytype from tblgrn a,tblcategoryuser b,tblcategory c where  cast(Date as Date) between '" + Dt + "' and '" + toDt + "'  and a.categoryuserid=b.categoryuserid and b.categoryid=c.categoryid and b.categoryuserid=" + subcat + " group by c.Category,b.definition,a.name,a.Date,a.type,a.requestno,a.dc_no,b.qtytype  order by Date desc";
             }
             //else if (sCode == "NP" || sCode == "BB")
             //{
@@ -10843,7 +10843,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
             // string sQry = " select distinct c.category,d.Definition,sum(a.Quantity) as Quantity from tblTransSales_" + stable + " a, tblsales_" + stable + " b ,  tblcategory c,tblCategoryUser d where a.SalesID=b.BillNo and c.CategoryID=d.CategoryID  and b.cancelstatus='No'  and a.SubCategoryID=d.CategoryUserID and convert(date,b.BillDate) between '" + TO + "' and'" + Date + "' and a.SubCategoryID=" + subcat + " group by c.category,d.Definition ";
-            string sQry = " select distinct cast(b.BillDate as Date) Date,c.category,d.Definition,sum(a.Quantity) as Quantity from tblTransSales_" + stable + " a, tblsales_" + stable + " b ,  tblcategory c,tblCategoryUser d where b.salesid=a.salesuniqueid and a.SalesID=b.BillNo and c.CategoryID=d.CategoryID  and b.cancelstatus='No'  and a.SubCategoryID=d.CategoryUserID and convert(date,b.BillDate) between '" + Date + "' and'" + TO + "' and a.SubCategoryID=" + subcat + " group by c.category,d.Definition,cast(b.BillDate as Date) order by Date desc ";
+            string sQry = " select distinct cast(b.BillDate as Date) Date,c.category,d.Definition,sum(a.Quantity) as Quantity,d.qtytype from tblTransSales_" + stable + " a, tblsales_" + stable + " b ,  tblcategory c,tblCategoryUser d where b.salesid=a.salesuniqueid and a.SalesID=b.BillNo and c.CategoryID=d.CategoryID  and b.cancelstatus='No'  and a.SubCategoryID=d.CategoryUserID and convert(date,b.BillDate) between '" + Date + "' and'" + TO + "' and a.SubCategoryID=" + subcat + " group by c.category,d.Definition,cast(b.BillDate as Date),d.qtytype order by Date desc ";
 
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
@@ -10865,7 +10865,7 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
             //  string sQry = " select distinct c.category,d.Definition,sum(a.Quantity) as Quantity from tblTransSales_" + stable + " a, tblsales_" + stable + " b ,  tblcategory c,tblCategoryUser d where a.SalesID=b.BillNo and c.CategoryID=d.CategoryID   and a.SubCategoryID=d.CategoryUserID and convert(date,b.BillDate) between'" + Date + "' and '" + To + "' and b.cancelstatus='No'  group by c.category,d.Definition   ";
-            string sQry = " select distinct cast(b.BillDate as Date) Date,c.category,d.Definition,sum(a.Quantity) as Quantity from tblTransSales_" + stable + " a, tblsales_" + stable + " b ,  tblcategory c,tblCategoryUser d where b.salesid=a.salesuniqueid and a.SalesID=b.BillNo and c.CategoryID=d.CategoryID   and a.SubCategoryID=d.CategoryUserID and convert(date,b.BillDate) between'" + from + "' and '" + ToDate + "' and b.cancelstatus='No'  group by c.category,d.Definition,cast(b.BillDate as Date) order by Date desc   ";
+            string sQry = " select distinct cast(b.BillDate as Date) Date,c.category,d.Definition,sum(a.Quantity) as Quantity,d.qtytype from tblTransSales_" + stable + " a, tblsales_" + stable + " b ,  tblcategory c,tblCategoryUser d where b.salesid=a.salesuniqueid and a.SalesID=b.BillNo and c.CategoryID=d.CategoryID   and a.SubCategoryID=d.CategoryUserID and convert(date,b.BillDate) between'" + from + "' and '" + ToDate + "' and b.cancelstatus='No'  group by c.category,d.Definition,cast(b.BillDate as Date),d.qtytype order by Date desc   ";
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
         }
@@ -23230,6 +23230,43 @@ namespace BusinessLayer
             return ds;
         }
 
+
+        public DataSet directtransferrequest_new(string categoryid, string stable, string catid, string prodstockoption)
+        {
+            DataSet ds = new DataSet();
+            if (prodstockoption == "1")
+            {
+                if (categoryid == "All")
+                {
+                    // string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and a.categoryid in " + catid + "   order by category asc";
+
+                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then cast(c.Prod_Qty as decimal) when b.qtytype='E' then cast(c.Prod_Qty as int) end  as Qty,format(cast(b.Mrp as decimal),'N2') as mrp ,b.serial,b.qtytype,serial+' / '+Definition as defi  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0  order by category asc";
+                    ds = dbObj.InlineExecuteDataSet(sqry);
+                }
+                else
+                {
+                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then cast(c.Prod_Qty as decimal) when b.qtytype='E' then cast(c.Prod_Qty as int) end as Qty,format(cast(b.Mrp as decimal),'N2') as mrp ,b.serial,b.qtytype,serial+' / '+Definition as defi from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + " and c.Prod_Qty >0  order by category asc";
+                    ds = dbObj.InlineExecuteDataSet(sqry);
+                }
+            }
+            else if (prodstockoption == "2")
+            {
+                if (categoryid == "All")
+                {
+                    // string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,c.Prod_Qty as Qty,b.mrp  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit inner join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1' and c.Prod_Qty >0 and a.categoryid in " + catid + "   order by category asc";
+
+                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then isnull(cast(c.Prod_Qty as  decimal),0) when b.qtytype='E' then isnull(cast(c.Prod_Qty as int),0) end as Qty,format(cast(b.Mrp as decimal),'N2') as mrp ,b.serial,b.qtytype,serial+' / '+Definition as defi  from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit left join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.poduction='1'  order by category asc";
+                    ds = dbObj.InlineExecuteDataSet(sqry);
+                }
+                else
+                {
+                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then isnull(cast(c.Prod_Qty as decimal),0) when b.qtytype='E' then isnull(cast(c.Prod_Qty as int),0) end as Qty,format(cast(b.Mrp as decimal),'N2') as mrp ,b.serial,b.qtytype,serial+' / '+Definition as defi from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit left join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + "  order by category asc";
+                    ds = dbObj.InlineExecuteDataSet(sqry);
+                }
+            }
+            return ds;
+        }
+
         public DataSet itemforreqest_New(int categoryid, string stable, string type, string Ptype)
         {
             DataSet ds = new DataSet();
@@ -23764,7 +23801,8 @@ namespace BusinessLayer
         public DataSet PurchaseOrderList2(string potable)
         {
             DataSet ds = new DataSet();
-            string qr = "select distinct p.* from tblkitchenPurchaseorder_" + potable + " p inner join tbltranskitchenPurchaseorder_" + potable + " tp on p.purchaseorderID=tp.PurchaseorderID where ((tp.Qty-tp.PQty)) > 0";
+            //string qr = "select distinct p.* from tblkitchenPurchaseorder_" + potable + " p inner join tbltranskitchenPurchaseorder_" + potable + " tp on p.purchaseorderID=tp.PurchaseorderID where ((tp.Qty-tp.PQty)) > 0";
+            string qr = "select distinct p.* from tblkitchenPurchaseorder_" + potable + " p inner join tbltranskitchenPurchaseorder_" + potable + " tp on p.purchaseorderID=tp.PurchaseorderID where ((tp.Qty-tp.PQty)) > 0 and  p.Status = 'Yes'";
 
             ds = dbObj.InlineExecuteDataSet(qr);
             return ds;
@@ -34263,7 +34301,7 @@ namespace BusinessLayer
         public DataSet getwholeSaleprint(string sTableName, string salesid)
         {
             DataSet ds = new DataSet();
-            string sQry = "select s.*,c.*  from  tblWholesales_" + sTableName + " s inner join tblcustomer c on s.customerName=c.ledgerid Where s.SalesID='" + salesid + "'";
+            string sQry = "select s.*,c.*,d.paymode as mod  from  tblWholesales_" + sTableName + " s inner join tblcustomer c on s.customerName=c.ledgerid inner join tblpaymode as d on d.PayModeId=s.paymode Where s.SalesID='" + salesid + "'";
 
 
 
@@ -34275,7 +34313,7 @@ namespace BusinessLayer
         public DataSet getTranswholeSaleprint(string sTableName, string salesid)
         {
             DataSet ds = new DataSet();
-            string sQry = "select u.uom,uu.UOM as per,t.*,i.* from tblTransWholesales_Prod t inner join tblcategoryuser i on t.Item=i.CategoryUserID inner join tbluom u on u.UOMID=t.UOMID inner join tblUOM uu on uu.UOMID=i.unit where salesid='" + salesid + "'";
+            string sQry = "select u.uom,uu.UOM as per,t.*,i.* from tblTransWholesales_"+sTableName+" t inner join tblcategoryuser i on t.Item=i.CategoryUserID inner join tbluom u on u.UOMID=t.UOMID inner join tblUOM uu on uu.UOMID=i.unit where salesid='" + salesid + "'";
 
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
@@ -39364,7 +39402,7 @@ namespace BusinessLayer
 
             {
                 string sqry = "select distinct b.printitem,a.categoryid,a.category,b.categoryuserid,b.definition,isnull(c.Available_qty,0) as Available_qty, " +
-                    " UOM,u.UOMID,b.serial,b.barcode,b.MRP,b.Rate,b.gst,serial+' / '+Definition as defi from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c " +
+                    " UOM,u.UOMID,b.serial,b.barcode,b.MRP,b.Rate,b.gst,serial+' / '+Definition as defi,b.qtytype from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid left join tblstock_" + stable + " c " +
                     " on c.subcategoryid=b.categoryuserid inner join tblCategoryuserBranch d on  d.Itemid=b.CategoryUserID inner join tblUOM u on u.UOMID=b.unit " +
                     " where  a.IsActive='Yes' and  b.IsActive='Yes' and d.IsActive='Yes' and d.BranchCode='" + stable + "'  and ManualGrn='1'  " +
                     " and b.categoryuserid='" + itemid + "' order by category,Definition asc ";
@@ -39823,7 +39861,7 @@ namespace BusinessLayer
                 }
                 else
                 {
-                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then isnull(cast(c.Prod_Qty as decimal),0) when b.qtytype='E' then isnll(cast(c.Prod_Qty as int),0) end as Qty,format(cast(b.Mrp as decimal),'N2') as mrp ,b.serial,b.qtytype from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit left join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + "  order by category asc";
+                    string sqry = "select distinct a.categoryid,a.category,b.categoryuserid,b.definition,UOM,u.UOMID,b.GST,b.Rate,case when b.qtytype='D' then isnull(cast(c.Prod_Qty as decimal),0) when b.qtytype='E' then isnull(cast(c.Prod_Qty as int),0) end as Qty,format(cast(b.Mrp as decimal),'N2') as mrp ,b.serial,b.qtytype from tblcategory a inner join tblcategoryuser b on a.categoryid=b.categoryid inner join tblUOM u on u.UOMID=b.unit left join tblProductionQty_" + stable + " as c on c.DescriptionId=b.categoryuserid  where  a.IsActive='Yes' and  b.IsActive='Yes' and a.categoryid=" + categoryid + "  order by category asc";
                     ds = dbObj.InlineExecuteDataSet(sqry);
                 }
             }
@@ -40135,6 +40173,8 @@ namespace BusinessLayer
                     dr["BranchIssued Qty"] = Branchissueqty;
                     dr["BranchAmount"] = BranchAmount;
 
+                    
+
                     #region GET OP_STOCK
 
                     string Sopstock = string.Empty;
@@ -40207,8 +40247,11 @@ namespace BusinessLayer
                 }
 
 
-                #endregion
-            }
+        #endregion
+
+
+      
+    }
 
         }
 

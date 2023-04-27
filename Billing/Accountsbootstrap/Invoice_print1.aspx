@@ -66,7 +66,7 @@
                                     <asp:Label ID="lblid" runat="server" Visible="false"></asp:Label></label>
                                 <b>
                                     <label>
-                                        DELIVERY NOTE</label></b><br />
+                                        TAX INVOICE</label></b><br />
                             </td>
                         </tr>
                     </table>
@@ -100,7 +100,9 @@
                                 Supplier's Ref.
                             </td>
                             <td style="width: 20%; height: 10px; vertical-align: top">
-                                Mode/Terms of Payment
+                                Mode/Terms of Payment<br />
+                                <b>
+                                    <asp:Label ID="lblpaymode" runat="server"></asp:Label></b>
                             </td>
                         </tr>
                         <tr>

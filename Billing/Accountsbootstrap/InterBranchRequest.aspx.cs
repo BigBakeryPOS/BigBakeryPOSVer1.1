@@ -224,6 +224,7 @@ namespace Billing.Accountsbootstrap
                             drNew["Qty"] = Math.Floor(Convert.ToDouble(txtQty.Text)).ToString();
                         }
                         drNew["UOM"] = lblom.Text;
+                        drNew["qtytype"] = lblqtytype.Text;
 
                         dstd.Tables[0].Rows.Add(drNew);
                         dtddd = dstd.Tables[0];
@@ -273,6 +274,7 @@ namespace Billing.Accountsbootstrap
                             drNew["Qty"] = Math.Floor(Convert.ToDouble(txtQty.Text)).ToString();
                         }
                         drNew["UOM"] = lblom.Text;
+                        drNew["qtytype"] = lblqtytype.Text;
 
                         dstd.Tables[0].Rows.Add(drNew);
                         dtddd = dstd.Tables[0];
