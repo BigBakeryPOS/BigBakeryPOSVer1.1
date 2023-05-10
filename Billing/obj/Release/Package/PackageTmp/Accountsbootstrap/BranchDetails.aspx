@@ -323,6 +323,13 @@
                                                     <asp:ListItem Text="1" Value="1"></asp:ListItem>
                                                     <asp:ListItem Text="2" Value="2"></asp:ListItem>
                                                 </asp:DropDownList>
+                                                 <br />
+                                                <label>
+                                                    Purchase Order Rights(Needed)</label>
+                                                <asp:DropDownList ID="drppurchaseorderrights" runat="server" CssClass="form-control">
+                                                    <asp:ListItem Text="Yes" Value="Y"></asp:ListItem>
+                                                    <asp:ListItem Text="No" Value="N"></asp:ListItem>
+                                                </asp:DropDownList>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">

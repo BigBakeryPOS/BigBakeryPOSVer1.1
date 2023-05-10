@@ -309,12 +309,12 @@ namespace Billing.Accountsbootstrap
                      if (ddlCDType.SelectedValue == "Credit Note")
                      {
                          string Credite = txtOBalance.Text;
-                         iStatus = objBs.updatecontact(txtcuscode.Text, txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(0), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, "", "", 0, Convert.ToDouble(Credite), Convert.ToDouble("0"), ddlCDType.SelectedValue,"Inner");
+                         iStatus = objBs.updatecontact(txtcuscode.Text, txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(0), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, "", "", 0, Convert.ToDouble(Credite), Convert.ToDouble("0"), ddlCDType.SelectedValue,"Inner","NA");
                      }
                      else
                      {
                          string Debit = txtOBalance.Text;
-                         iStatus = objBs.updatecontact(txtcuscode.Text, txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(0), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, "", "", 0, Convert.ToDouble("0"), Convert.ToDouble(Debit), ddlCDType.SelectedValue,"Inner");
+                         iStatus = objBs.updatecontact(txtcuscode.Text, txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(0), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, "", "", 0, Convert.ToDouble("0"), Convert.ToDouble(Debit), ddlCDType.SelectedValue,"Inner", "NA");
                      }
                                         
                     //foreach (ListItem item in chkIngredient.Items)

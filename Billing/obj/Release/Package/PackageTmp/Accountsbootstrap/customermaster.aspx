@@ -135,6 +135,14 @@
                                                 </asp:DropDownList>
                                             </div>
                                             <br />
+                                             <div>
+                                                <label>
+                                                    Company Name</label>
+                                                <asp:TextBox CssClass="form-control" ID="txtcompanyname" MaxLength="50" runat="server"
+                                                    Style="text-transform: capitalize"></asp:TextBox>
+                                                <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="RequiredFieldValidator4" ControlToValidate="txtcompanyname"
+                                                    ErrorMessage="Please enter your Company name!" Style="color: Red" />
+                                            </div>
                                             <div>
                                                 <label>
                                                     Contact Name</label>

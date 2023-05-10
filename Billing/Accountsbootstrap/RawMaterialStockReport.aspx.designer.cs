@@ -114,6 +114,60 @@ namespace Billing.Accountsbootstrap
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
 
         /// <summary>
+        /// chkAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkAll;
+
+        /// <summary>
+        /// chkcategorylist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkcategorylist;
+
+        /// <summary>
+        /// lblsuberror control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblsuberror;
+
+        /// <summary>
+        /// ddlstcktype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlstcktype;
+
+        /// <summary>
+        /// ddlclosingstocktype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlclosingstocktype;
+
+        /// <summary>
+        /// ddldisplaytype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddldisplaytype;
+
+        /// <summary>
         /// ddlsuplier control.
         /// </summary>
         /// <remarks>

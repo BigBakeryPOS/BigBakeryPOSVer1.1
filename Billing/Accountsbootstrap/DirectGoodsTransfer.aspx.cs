@@ -425,7 +425,9 @@ namespace Billing.Accountsbootstrap
             else if (radbtntype.SelectedValue == "3")
             {
                 ddlrequestno_OnSelectedIndexChanged(sender, e);
-                txtCusName1.Focus();
+                txtmanualslno.Focus();
+                upcus.Update();
+                UpdatePanel1.Update();
             }
 
 
@@ -683,6 +685,7 @@ namespace Billing.Accountsbootstrap
 
             txtqty.Text = "";
             drpitemsearch.Focus();
+            txtmanualslno.Focus();
             UpdatePanel1.Update();
             upcus.Update();
 
@@ -697,7 +700,7 @@ namespace Billing.Accountsbootstrap
             }
             else
             {
-                DataSet ds = objbs.getitembyid(drpitemsearch.SelectedValue, sTableName);
+                DataSet ds = objbs.itemforreqest_DirectTransfer_new("All", sTableName,drpitemsearch.SelectedValue,ProdStockOption);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
 
@@ -711,7 +714,7 @@ namespace Billing.Accountsbootstrap
                     NlblCategory.Text = ds.Tables[0].Rows[0]["Category"].ToString();
                     NlblDefinition.Text = ds.Tables[0].Rows[0]["Definition"].ToString();
                     Nlblrate.Text = ds.Tables[0].Rows[0]["MRP"].ToString();
-                    Nlbqty.Text = ds.Tables[0].Rows[0]["Available_qty"].ToString();
+                     Nlbqty.Text = ds.Tables[0].Rows[0]["Qty"].ToString();
                     Nlblom.Text = ds.Tables[0].Rows[0]["UOM"].ToString();
                     Nlblbarcode.Text = ds.Tables[0].Rows[0]["barcode"].ToString();
                     Nlblqtytype.Text = ds.Tables[0].Rows[0]["Qtytype"].ToString();
@@ -1004,7 +1007,7 @@ namespace Billing.Accountsbootstrap
 
                 searchitemlist_OnClick(Server, e);
 
-                DataSet dsitems = objbs.itemforreqestNew_DirectTransfer_search((ddlcategory.SelectedValue), sTableName, txtserch.Text);
+                DataSet dsitems = objbs.itemforreqestNew_DirectTransfer_search((ddlcategory.SelectedValue), sTableName, txtserch.Text, ProdStockOption);
                 if (dsitems.Tables[0].Rows.Count > 0)
                 {
                     gvitems.DataSource = dsitems;
@@ -1025,6 +1028,7 @@ namespace Billing.Accountsbootstrap
             {
 
                 gvitems.Visible = true;
+                searchdiv.Visible = true;
                 posdropdown.Visible = false;
                 upcus.Visible = false;
                 drpitemsearch.Visible = false; ;
@@ -1072,6 +1076,7 @@ namespace Billing.Accountsbootstrap
                     gvitems.DataSource = null;
                     gvitems.DataBind();
                     gvitems.Visible = false;
+                    searchdiv.Visible = false;
                     posdropdown.Visible = false;
                     upcus.Visible = true;
                     drpitemsearch.Visible = false; ;
@@ -1086,6 +1091,7 @@ namespace Billing.Accountsbootstrap
                     gvitems.DataSource = null;
                     gvitems.DataBind();
                     gvitems.Visible = false;
+                    searchdiv.Visible = false;
                     posdropdown.Visible = true;
                     drpitemsearch.Visible = true;
                     sno.Visible = true;
@@ -1194,7 +1200,7 @@ namespace Billing.Accountsbootstrap
                     Label lblserial = (Label)gvitems.Rows[i].FindControl("lblserial");
 
                     TextBox txtQty = (TextBox)gvitems.Rows[i].FindControl("txtQty");
-                    Label lblqtytype = (Label)gvitems.Rows[i].FindControl("txtqtytype");
+                    Label lblqtytype = (Label)gvitems.Rows[i].FindControl("lblqtytype");
 
                     if (txtQty.Text == "")
                         txtQty.Text = "0";
@@ -1221,6 +1227,8 @@ namespace Billing.Accountsbootstrap
                         }
                         drNew["UOM"] = lblom.Text;
                         drNew["serial"] = lblserial.Text;
+                        drNew["qtytype"] = lblqtytype.Text;
+                        
 
                         dstd.Tables[0].Rows.Add(drNew);
                         dtddd = dstd.Tables[0];
@@ -1248,7 +1256,7 @@ namespace Billing.Accountsbootstrap
 
                     Label lblom = (Label)gvitems.Rows[i].FindControl("lblom");
                     Label lblserial = (Label)gvitems.Rows[i].FindControl("lblserial");
-                    Label lblqtytype = (Label)gvitems.Rows[0].FindControl("lblqytytype");
+                    Label lblqtytype = (Label)gvitems.Rows[i].FindControl("lblqytytype");
                     TextBox txtQty = (TextBox)gvitems.Rows[i].FindControl("txtQty");
                     if (txtQty.Text == "")
                         txtQty.Text = "0";
@@ -1464,6 +1472,7 @@ namespace Billing.Accountsbootstrap
                         drNew["UOM"] = lblom.Text;
 
                         drNew["serial"] = lblserial.Text;
+                        drNew["qtytype"] = lblqtytype.Text;
 
                         dstd.Tables[0].Rows.Add(drNew);
                         dtddd = dstd.Tables[0];

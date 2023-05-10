@@ -16,6 +16,7 @@ namespace Billing.Accountsbootstrap
         string scode = "";
         BSClass kbs = new BSClass();
         string Rate = "";
+        string porights = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             scode = Request.Cookies["userInfo"]["BranchCode"].ToString();
@@ -23,7 +24,7 @@ namespace Billing.Accountsbootstrap
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             sTableName = Request.Cookies["userInfo"]["BranchCode"].ToString();
             Rate = Request.Cookies["userInfo"]["Rate"].ToString();
-
+            porights = Request.Cookies["userinfo"]["poorderrights"].ToString();
 
             if (!Page.IsPostBack)
             {
@@ -740,7 +741,16 @@ namespace Billing.Accountsbootstrap
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            string POStatus = "";
 
+            if(porights == "Y")
+            {
+                POStatus = "YES";
+            }
+            else
+            {
+                POStatus = "NO";
+            }
 
             if(drpsubcompany.SelectedValue == "Select Company")
             {
@@ -848,7 +858,7 @@ namespace Billing.Accountsbootstrap
 
                     DateTime Date = DateTime.ParseExact(txtsdate1.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-                    int insertPurchase = kbs.insertPurchaseOrder(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), txtdcno.Text, Date, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), Province,drpsubcompany.SelectedValue);
+                    int insertPurchase = kbs.insertPurchaseOrder(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), txtdcno.Text, Date, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), Province,drpsubcompany.SelectedValue, POStatus);
 
 
 

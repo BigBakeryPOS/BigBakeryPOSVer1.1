@@ -76,7 +76,7 @@ namespace Billing.Accountsbootstrap
                 if (dsPO.Tables[0].Rows.Count > 0)
                 {
                     drpPO.DataSource = dsPO.Tables[0];
-                    drpPO.DataTextField = "BillNo";
+                    drpPO.DataTextField = "DCNO";
                     drpPO.DataValueField = "PurchaseID";
                     drpPO.DataBind();
                     drpPO.Items.Insert(0, "Select Purchase InvoiceNo");

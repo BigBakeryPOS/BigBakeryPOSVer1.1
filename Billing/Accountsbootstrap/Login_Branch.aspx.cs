@@ -275,7 +275,7 @@ namespace Billing.Accountsbootstrap
                         Session["StoreNo"] = dsbranch.Tables[0].Rows[0]["MobileNo"].ToString();
                         Session["TIN"] = dsbranch.Tables[0].Rows[0]["GSTIN"].ToString();
                         Session["Country"] = dsbranch.Tables[0].Rows[0]["Country"].ToString();
-                        //Session["NoOfBranch"] = dsbranch.Tables[0].Rows[0]["NoOfBranch"].ToString();
+                        Session["poorderrights"] = dsbranch.Tables[0].Rows[0]["Porderrights"].ToString();
                     }
 
                     else
@@ -285,6 +285,7 @@ namespace Billing.Accountsbootstrap
                         Session["StoreNo"] = dsLogin.Tables[0].Rows[0]["StoreNo"].ToString();
                         Session["TIN"] = dsLogin.Tables[0].Rows[0]["TIN"].ToString();
                         Session["Country"] = "Others";
+                        Session["poorderrights"] = "Y";
                     }
 
 
@@ -324,7 +325,7 @@ namespace Billing.Accountsbootstrap
                         userInfo["StoreNo"] = dsbranch.Tables[0].Rows[0]["MobileNo"].ToString();
                         userInfo["TIN"] = dsbranch.Tables[0].Rows[0]["GSTIN"].ToString();
                         userInfo["Country"] = dsbranch.Tables[0].Rows[0]["Country"].ToString();
-
+                        userInfo["poorderrights"] = dsbranch.Tables[0].Rows[0]["Porderrights"].ToString();
 
 
                     }
@@ -336,6 +337,7 @@ namespace Billing.Accountsbootstrap
                         userInfo["StoreNo"] = dsLogin.Tables[0].Rows[0]["StoreNo"].ToString();
                         userInfo["TIN"] = dsLogin.Tables[0].Rows[0]["TIN"].ToString();
                         userInfo["Country"] = "";
+                        userInfo["poorderrights"] = "Y";
 
                     }
                     userInfo["User"] = sUserDet[1].ToString();

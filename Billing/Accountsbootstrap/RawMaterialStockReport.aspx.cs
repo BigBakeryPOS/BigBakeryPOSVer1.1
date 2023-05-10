@@ -38,6 +38,15 @@ namespace Billing.Accountsbootstrap
             if (!IsPostBack)
             {
 
+                DataSet dsCategory = objBs.gridIngridentcategory();
+                if (dsCategory.Tables[0].Rows.Count > 0)
+                {
+                    chkcategorylist.DataSource = dsCategory.Tables[0];
+                    chkcategorylist.DataTextField = "IngreCategory";
+                    chkcategorylist.DataValueField = "IngCatID";
+                    chkcategorylist.DataBind();
+                }
+
                 DataSet dsCustomer = objBs.SupplierList11();
                 if (dsCustomer.Tables[0].Rows.Count > 0)
                 {
@@ -68,7 +77,7 @@ namespace Billing.Accountsbootstrap
                     drpsubcompany.Items.Insert(0, "All");
                 }
 
-                txtfromdate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                txtfromdate.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
 
                 
@@ -77,12 +86,27 @@ namespace Billing.Accountsbootstrap
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            
 
-           
+            string cond1 = "";
+
+            if (chkcategorylist.SelectedIndex >= 0)
+            {
+                foreach (ListItem listItem in chkcategorylist.Items)
+                {
+                    if (listItem.Text != "All")
+                    {
+                        if (listItem.Selected)
+                        {
+                            cond1 += " b.ingcatid='" + listItem.Value + "' ,";
+                        }
+                    }
+                }
+                cond1 = cond1.TrimEnd(',');
+                cond1 = cond1.Replace(",", "or");
 
 
-                DataTable dt = objBs.getreportforRawmaterialstock(ddlsuplier.SelectedValue,ddlraw.SelectedValue ,drpsubcompany.SelectedValue , Convert.ToDateTime(txtfromdate.Text), sCode);
+
+                DataTable dt = objBs.getreportforRawmaterialstock(ddlsuplier.SelectedValue,ddlraw.SelectedValue ,drpsubcompany.SelectedValue , txtfromdate.Text, sCode, cond1, ddlstcktype.SelectedValue, ddlclosingstocktype.SelectedValue);
                 if (dt.Rows.Count > 0)
                 {
                     BankGrid.DataSource = dt;
@@ -95,8 +119,14 @@ namespace Billing.Accountsbootstrap
                 BankGrid.DataSource = null;
                 BankGrid.DataBind();
                 }
-            
-          
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Please Select Atleast One Category.Thank You!!!');", true);
+                return;
+            }
+
+
         }
         protected void Button2_Click(object sender, EventArgs e)
         {

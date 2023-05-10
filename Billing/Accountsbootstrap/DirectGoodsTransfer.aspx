@@ -430,7 +430,7 @@
                                                     <label>
                                                         Search From Item Master
                                                     </label>
-                                                    <asp:DropDownList ID="drpitemsearch" runat="server" Visible="false"
+                                                    <asp:DropDownList ID="drpitemsearch" TabIndex="2" runat="server" Visible="false"
                                                         Font-Bold="true" OnSelectedIndexChanged="item_click" AutoPostBack="true"
                                                         Width="100%">
                                                     </asp:DropDownList>
@@ -755,11 +755,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="loading" align="center">
+               <%-- <div class="loading" align="center">
                         Loading. Please wait.<br />
                         <br />
                         <img src="../images/Preloader_10.gif" alt="" />
-                    </div>
+                    </div>--%>
                     <script type="text/javascript" src="ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
                     <script type="text/javascript" src="../css/select2.js"></script>
                     <link href="../css/select2.css" rel="stylesheet" />
