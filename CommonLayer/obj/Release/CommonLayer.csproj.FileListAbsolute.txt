@@ -24,3 +24,9 @@ C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\CommonLayer\ob
 C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\CommonLayer\obj\Release\CommonLayer.csproj.CoreCompileInputs.cache
 C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\CommonLayer\obj\Release\CommonLayer.dll
 C:\Users\intel\source\repos\BigBakeryPOSLatest\BigBakeryPOSVer1.1\CommonLayer\obj\Release\CommonLayer.pdb
+C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\CommonLayer\bin\Release\CommonLayer.dll
+C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\CommonLayer\bin\Release\CommonLayer.pdb
+C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\CommonLayer\obj\Release\CommonLayer.csproj.AssemblyReference.cache
+C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\CommonLayer\obj\Release\CommonLayer.csproj.CoreCompileInputs.cache
+C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\CommonLayer\obj\Release\CommonLayer.dll
+C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\CommonLayer\obj\Release\CommonLayer.pdb

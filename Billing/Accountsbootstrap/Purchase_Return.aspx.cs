@@ -48,6 +48,15 @@ namespace Billing.Accountsbootstrap
                     ddlpaymode.DataValueField = "Value";
                     ddlpaymode.DataBind();
                     ddlpaymode.Items.Insert(0, "Select Paymode");
+
+                    ddlbank.Enabled = false;
+                    txtcheque.Enabled = false;
+
+                    ddlbank.Visible = false;
+                    txtcheque.Visible = false;
+
+                    lblbank.Visible = false;
+                    lblChq.Visible = false;
                 }
 
                 DataSet dssubcompany = kbs.GetsubCompanyDetails();
@@ -76,7 +85,7 @@ namespace Billing.Accountsbootstrap
                 if (dsPO.Tables[0].Rows.Count > 0)
                 {
                     drpPO.DataSource = dsPO.Tables[0];
-                    drpPO.DataTextField = "BillNo";
+                    drpPO.DataTextField = "DCNO";
                     drpPO.DataValueField = "PurchaseID";
                     drpPO.DataBind();
                     drpPO.Items.Insert(0, "Select Purchase InvoiceNo");
@@ -134,13 +143,56 @@ namespace Billing.Accountsbootstrap
                             lblChq.Visible = false;
                         }
 
-                        if (dagent.Tables[0].Rows[0]["Province"].ToString() == "1")
+                       
+
+                        if (dagent.Tables[0].Rows[0]["BillingType"].ToString() == "Direct")
                         {
-                            rbdpurchasetype.SelectedValue = "1";
+                            rbtype.SelectedValue = "1";
+                            Div2.Visible = false;
+                            Div4.Visible = false;
+                            ddlsuplier.Enabled = false;
+                            drpmingredents.Enabled = true;
+                            btnSubmit.Enabled = true;
+                            rbtype.Enabled = true;
                         }
                         else
                         {
-                            rbdpurchasetype.SelectedValue = "2";
+                            
+                            rbtype.SelectedValue = "2";
+                            rbtype.Enabled = true;
+                            Div2.Visible = true;
+                            Div4.Visible = true;
+                            ddlsuplier.Enabled = false;
+
+                            DataSet dsPOup = kbs.PurchaseInvoiceNoList_update(sTableName);
+                            if (dsPOup.Tables[0].Rows.Count > 0)
+                            {
+                                drpPO.DataSource = dsPOup.Tables[0];
+                                drpPO.DataTextField = "DCNO";
+                                drpPO.DataValueField = "PurchaseID";
+                                drpPO.DataBind();
+                                drpPO.Items.Insert(0, "Select Purchase InvoiceNo");
+
+
+                            }
+
+                            drpPO.SelectedValue = dagent.Tables[0].Rows[0]["PurInvNo"].ToString();
+                            drpPO.Enabled = false;
+                            drpmingredents.Enabled = false;
+                            btnSubmit.Enabled = false;
+
+                        }
+
+                        int PONo1;
+                        if (rbtype.SelectedValue == "1")
+                        {
+                            //BillingType = "Direct";
+                            PONo1 = 0;
+                        }
+                        else
+                        {
+                           // BillingType = "Purchase";
+                            PONo1 = Convert.ToInt32(drpPO.SelectedValue);
                         }
 
                         txtSubTotal.Text = dagent.Tables[0].Rows[0]["SubTotal"].ToString();
@@ -355,6 +407,24 @@ namespace Billing.Accountsbootstrap
                             lblprimarynamevalue.Text = dstd.Tables[0].Rows[vLoop]["PUnitsvalue"].ToString();
                             txtpqty.Text = dstd.Tables[0].Rows[vLoop]["PQty"].ToString();
                             txtnarrations.Text = dstd.Tables[0].Rows[vLoop]["Narrations"].ToString();
+
+                            if (PONo1 != 0)
+                            {
+
+                                DataSet transpurupd = kbs.getPurchaseInvoicetranslist_update(PONo1.ToString(), sTableName, txtdefid.Text, lblprimarynamevalue.Text);
+                                if (transpurupd.Tables[0].Rows.Count > 0)
+                                {
+                                    lblpoqty.Text = transpurupd.Tables[0].Rows[0]["poqty"].ToString();
+
+                                    if (lblpoqty.Text == "0")
+                                    {
+                                        lblpoqty.Text = txtQty.Text;
+                                    }
+                                }
+                            }
+
+
+
                         }
                     }
 
@@ -363,7 +433,8 @@ namespace Billing.Accountsbootstrap
 
             }
 
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$('.chzn-select').chosen(); $('.chzn-select-deselect').chosen({ allow_single_deselect: true });", true);
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$(document).ready(function() { $('#ddlsuplier').select2(); });", true);
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$(document).ready(function() { $('#drpmingredents').select2(); });", true);
         }
 
         private void FirstGridViewRow()
@@ -623,7 +694,7 @@ namespace Billing.Accountsbootstrap
                     gvcustomerorder.DataBind();
 
 
-                    FirstGridViewRow();
+                   // FirstGridViewRow();
                     SetPreviousData();
                 }
             }
@@ -869,12 +940,16 @@ namespace Billing.Accountsbootstrap
                 Div2.Visible = false;
                 Div4.Visible = false;
                 ddlsuplier.Enabled = true;
+                drpmingredents.Enabled = true;
+                btnSubmit.Enabled = true;
             }
             else
             {
                 Div2.Visible = true;
                 Div4.Visible = true;
                 ddlsuplier.Enabled = false;
+                drpmingredents.Enabled = false;
+                btnSubmit.Enabled = false;
             }
         }
 
@@ -900,6 +975,15 @@ namespace Billing.Accountsbootstrap
             }
 
             #region
+
+
+            if (Convert.ToDouble(txtmpqty.Text) > Convert.ToDouble(txtavlqty.Text))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Return Qty is greater Than Avl Qty For this Item " + drpmingredents.SelectedItem.Text + "');", true);
+                return;
+            }
+
+
             int iq = 1;
             int ii = 1;
             string itemc = string.Empty;
@@ -1262,10 +1346,19 @@ namespace Billing.Accountsbootstrap
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (txtdcno.Text == "")
+
+            if (rbtype.SelectedValue == "2")
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Please Enter Bill No.Thank You!!!.');", true);
-                return;
+
+                if (txtdcno.Text == "")
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Please Enter Bill No.Thank You!!!.');", true);
+                    return;
+                }
+            }
+            else
+            {
+                txtdcno.Text = "0";
             }
 
             if (ddlsuplier.SelectedValue == "Select Supplier")
@@ -1281,6 +1374,27 @@ namespace Billing.Accountsbootstrap
 
             SetRowData();
             DataTable table = ViewState["CurrentTable"] as DataTable;
+
+            if (rbtype.SelectedValue == "2")
+            {
+                for (int i = 0; i < gvcustomerorder.Rows.Count; i++)
+                {
+                    TextBox rQty = (TextBox)gvcustomerorder.Rows[i].FindControl("txtQty");
+                    Label lblpoqty = (Label)gvcustomerorder.Rows[i].FindControl("lblpoqty");
+                    Label txtdefname = (Label)gvcustomerorder.Rows[i].FindControl("txtdefname");
+
+
+
+
+                    if (Convert.ToDouble(rQty.Text) > Convert.ToDouble(lblpoqty.Text))
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Return Qty is greater Than Purchase Qty For this Item " + txtdefname.Text + "');", true);
+                        return;
+                    }
+                }
+            }
+
+            
 
             if (table != null)
             {
@@ -1371,7 +1485,7 @@ namespace Billing.Accountsbootstrap
                         Province = "Outer";
                     }
 
-                    int insertPurchase = kbs.insertPurchaseReturn(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), txtbillno.Text, txtsdate1.Text, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), BillingType, PONo, Province, txtroundoff.Text,drpsubcompany.SelectedValue);
+                    int insertPurchase = kbs.insertPurchaseReturn(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), txtbillno.Text, txtsdate1.Text, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), BillingType, PONo, Province, txtroundoff.Text, drpsubcompany.SelectedValue);
 
 
                     for (int i = 0; i < gvcustomerorder.Rows.Count; i++)
@@ -1433,7 +1547,7 @@ namespace Billing.Accountsbootstrap
 
                                 if (BillingType == "Purchase")
                                 {
-                                    int iSucess = kbs.UpdatePurchaseInvoiceSTk(PONo, sTableName, dQty, idef);
+                                    int iSucess = kbs.UpdatePurchaseInvoiceSTk(PONo, sTableName, dQty, idef, Convert.ToDecimal(txtpqty.Text));
                                 }
                             }
                         }
@@ -1479,7 +1593,7 @@ namespace Billing.Accountsbootstrap
                         CreditorID1 = Convert.ToInt32(ddlbank.SelectedValue);
                     }
 
-                    DataSet dsledger1 = kbs.getCashledgerId123("PurchaseA/C_" + sTableName);
+                    DataSet dsledger1 = kbs.getCashledgerId123("PurchaseReturnA/C_" + sTableName);
                     string ledgerid = dsledger1.Tables[0].Rows[0]["LedgerID"].ToString();
 
                     string Province;
@@ -1508,7 +1622,7 @@ namespace Billing.Accountsbootstrap
                     int insertPurchase = kbs.updatePurchaseReturn(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), txtbillno.Text, txtsdate1.Text, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), BillingType, PONo, Province, txtroundoff.Text, iSalesID, drpsubcompany.SelectedValue);
 
                     //int insertPurchase = kbs.updatePurchase(sTableName, txtbillno.Text, txtsdate1.Text, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), iSalesID, bank, chequeno, CreditorID1, ledgerid, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), txteditnarrations.Text, Province, 0, 0, 0, 0, 0, 0);
-                    int trans1 = kbs.getduplisttrans123Rtn(iSalesID, sTableName);
+                    int trans1 = kbs.getduplisttrans123Rtn(iSalesID, sTableName, PONo.ToString(), BillingType);
 
                     int transdelete = kbs.getduplisttransdeleteRtn(iSalesID, sTableName);
 
@@ -1569,9 +1683,18 @@ namespace Billing.Accountsbootstrap
                                 int Transpurchase = kbs.insertTransPurchaseReturn(sTableName, Convert.ToInt32(iSalesID), idef, dQty, DRate, dAmount, Convert.ToDecimal(billno.Text), Convert.ToInt32(lblUserID.Text), lblunitsid.Text, Convert.ToDecimal(billno.Text), Convert.ToInt32(0), "", txtexpireddate.Text, txtnarrations.Text, Convert.ToDouble(txtDisCount.Text), Convert.ToDouble(txtDisCountAmount.Text), lblprimarynamevalue.Text, Convert.ToDouble(lblprimaryvalue.Text), Convert.ToDouble(txtpqty.Text), PONo);
                                 //int Transpurchase = kbs.insertTransPurchase(sTableName, insertPurchase, idef, dQty, DRate, dAmount, Convert.ToDecimal(billno.Text), Convert.ToInt32(lblUserID.Text), ddlunits.SelectedValue, Convert.ToDecimal(billno.Text), Convert.ToInt32(0), "", txtexpireddate.Text, txtnarrations.Text, Convert.ToDouble(txtDisCount.Text), Convert.ToDouble(txtDisCountAmount.Text), lblprimarynamevalue.Text, Convert.ToDouble(lblprimaryvalue.Text), Convert.ToDouble(txtpqty.Text));
 
+                                if (BillingType == "Purchase")
+                                {
+                                    int iSucess = kbs.UpdatePurchaseInvoiceSTk(PONo, sTableName, dQty, idef, Convert.ToDecimal(txtpqty.Text));
+                                }
 
                             }
                         }
+                    }
+
+                    if (BillingType == "Purchase")
+                    {
+                        int iSucess1 = kbs.UpdatePurchaseInvoiceSTkStatus(PONo, sTableName);
                     }
 
                     #endregion
@@ -3120,7 +3243,7 @@ namespace Billing.Accountsbootstrap
                             drNew["Ingredient"] = "";
                         }
                         drNew["IngredientID"] = dr["IngredientID"];
-                        drNew["Qty"] = Convert.ToInt32(dr["Qty"]) - Convert.ToInt32(dr["RQty"]);
+                        drNew["Qty"] = Convert.ToDouble(dr["Qty"]) - Convert.ToDouble(dr["RQty"]);
                         drNew["Rate"] = dr["Rate"];
                         drNew["Amount"] = dr["Amount"];
                         DataSet dsUOMName = kbs.GetUOMName(Convert.ToInt32(dr["IngredientID"]));
@@ -3179,7 +3302,7 @@ namespace Billing.Accountsbootstrap
                             drNew["Hsncode"] = dss.Tables[0].Rows[0]["HsnCode"].ToString();
 
                         }
-                        drNew["PQty"] = dr["PUqty"];
+                        drNew["PQty"] = Convert.ToDouble(dr["PUqty"]) - Convert.ToDouble(dr["RPUqty"]);
                         drNew["Bname"] = "";
                         drNew["Hsncode"] = "";
                         drNew["Narrations"] = "";
@@ -3263,7 +3386,7 @@ namespace Billing.Accountsbootstrap
                         lblprimaryvalue.Text = dstd.Tables[0].Rows[vLoop]["Pvalue"].ToString();
                         lblprimaryname.Text = dstd.Tables[0].Rows[vLoop]["PUnits"].ToString();
                         lblprimarynamevalue.Text = dstd.Tables[0].Rows[vLoop]["PUnitsvalue"].ToString();
-                        txtpqty.Text = Convert.ToDouble(dstd.Tables[0].Rows[vLoop]["PoQty"]).ToString();
+                        txtpqty.Text = Convert.ToDouble(dstd.Tables[0].Rows[vLoop]["PQty"]).ToString();
                         //  ddlDef.Enabled = false;
                     }
                 }
@@ -3385,6 +3508,18 @@ namespace Billing.Accountsbootstrap
                 txtmhsncode.Text = dss.Tables[0].Rows[0]["HsnCode"].ToString();
 
             }
+
+            // get total stock
+            DataSet getavlstock = kbs.InserttransrawitemacceptCheck(sTableName, drpmingredents.SelectedValue);
+                if (getavlstock.Tables[0].Rows.Count > 0)
+            {
+                txtavlqty.Text = getavlstock.Tables[0].Rows[0]["Qty"].ToString();
+            }
+            else
+            {
+                txtavlqty.Text = "0";
+            }
+
 
             if (ddlmprimaryunits.SelectedValue == "Select PrimaryUom")
             {

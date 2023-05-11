@@ -172,14 +172,15 @@
                                     <tr>
                                         <td>
                                             <asp:Label ID="lblprintcaptionn" runat="server" Visible="true"></asp:Label>
-                                            <asp:GridView ID="GridView2" runat="server"  AutoGenerateColumns="false" cssClass="table table-striped pos-table"
+                                            <asp:GridView ID="GridView2" runat="server"   AutoGenerateColumns="false" cssClass="table table-striped pos-table"
                                                 EmptyDataText="No Records Found" Caption="Summary Wise-Grn Qty" padding="0" spacing="0" border="0">
                                                 <Columns>
                                                     <asp:BoundField HeaderText="Group" DataField="Category" />
                                                     <asp:BoundField HeaderText="Item" DataField="Definition" />
-                                                    <asp:BoundField HeaderText="GRN Qty" DataField="Qty" DataFormatString="{0:###,##0}" />
+                                                    <asp:BoundField HeaderText="GRN Qty" DataField="Qty" DataFormatString='{0:f3}' />
                                                     <asp:BoundField HeaderText="GRN By" DataField="grn by" />
                                                     <asp:BoundField HeaderText="GRN Type" DataField="type" />
+                                                    <asp:BoundField HeaderText="QtyTYpe" Visible="false"  DataField="Qtytype" />
                                                 </Columns>
                                                 <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
                                                     HorizontalAlign="Center" ForeColor="White" />
@@ -193,17 +194,18 @@
                                             <label id="caption" runat="server" visible="true">
                                             </label>
                                             <div class="table-responsive panel-grid-left">
-                                            <asp:GridView ID="GVStockAlert" runat="server"  AutoGenerateColumns="false" cssClass="table table-striped pos-table"
+                                            <asp:GridView ID="GVStockAlert" runat="server"   AutoGenerateColumns="false" cssClass="table table-striped pos-table"
                                                 EmptyDataText="No Records Found" Caption="Grn Qty" padding="0" spacing="0" border="0">
                                                 <Columns>
                                                     <asp:BoundField HeaderText="Date" DataField="Date" DataFormatString='{0:dd/MMM/yyyy}' />
                                                     <asp:BoundField HeaderText="Group" DataField="Category" />
                                                     <asp:BoundField HeaderText="Item" DataField="Definition" />
-                                                    <asp:BoundField HeaderText="GRN Qty" DataField="Qty" DataFormatString="{0:###,##0}" />
+                                                    <asp:BoundField HeaderText="GRN Qty" DataField="Qty" DataFormatString='{0:f3}' />
                                                     <asp:BoundField HeaderText="GRN By" DataField="grn by" />
                                                     <asp:BoundField HeaderText="GRN Type" DataField="type" />
                                                     <asp:BoundField HeaderText="Branch Request No" DataField="Reqno" />
                                                     <asp:BoundField HeaderText="Goods Received NO" DataField="DcNo" />
+                                                    <asp:BoundField HeaderText="QtyTYpe" Visible="false"  DataField="Qtytype" />
                                                 </Columns>
                                                <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
                                                     HorizontalAlign="Center" ForeColor="White" />--%>
@@ -213,12 +215,12 @@
                                            
                                             <%--Other Branch GRN--%>
 
-                                            <asp:GridView ID="GridView1" Visible="false" runat="server" CssClass="mGrid" ShowHeader="false"
+                                            <asp:GridView ID="GridView1" Visible="false"  runat="server" CssClass="mGrid" ShowHeader="false"
                                                 AutoGenerateColumns="false" EmptyDataText="No Records Found">
                                                 <Columns>
                                                     <asp:BoundField DataField="Category" />
                                                     <asp:BoundField DataField="Definition" />
-                                                    <asp:BoundField DataField="Quantity" DataFormatString="{0:###,##0}" />
+                                                    <asp:BoundField DataField="Quantity" DataFormatString='{0:f3}' />
                                                 </Columns>
                                             </asp:GridView>
                                        
@@ -228,13 +230,14 @@
                                        <div class="col-lg-6">
                                        <br />
                                        <div class="table-responsive panel-grid-left">
-                                            <asp:GridView ID="gvsales" runat="server" cssClass="table table-striped pos-table" AutoGenerateColumns="false"
+                                            <asp:GridView ID="gvsales" runat="server"  cssClass="table table-striped pos-table" AutoGenerateColumns="false"
                                                 EmptyDataText="No Records Found" Caption="Sales_Qty" padding="0" spacing="0" border="0">
                                                 <Columns>
                                                     <asp:BoundField HeaderText="Date" DataField="Date" DataFormatString='{0:dd/MMM/yyyy}' />
                                                     <asp:BoundField HeaderText="Group" DataField="Category" />
                                                     <asp:BoundField HeaderText="Item" DataField="Definition" />
-                                                    <asp:BoundField HeaderText="Sales Qty" DataField="Quantity" DataFormatString="{0:###,##0}" />
+                                                    <asp:BoundField HeaderText="Sales Qty" DataField="Quantity" DataFormatString='{0:f3}'  />
+                                                    <asp:BoundField HeaderText="QtyTYpe" Visible="false"  DataField="Qtytype" />
                                                 </Columns>
                                                <%-- <HeaderStyle BackColor="#428bca" BorderColor="Gray" BorderStyle="Solid" BorderWidth="1px"
                                                     HorizontalAlign="Center" ForeColor="White" />--%>

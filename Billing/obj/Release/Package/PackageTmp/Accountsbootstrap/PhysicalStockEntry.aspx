@@ -156,7 +156,7 @@
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtrate" runat="server" CssClass="form-control"></asp:TextBox>
                                                     <asp:Label ID="lblbrate" ToolTip="Current Rate" Font-Bold="true" ForeColor="Red"
-                                                        Font-Size="Medium" runat="server" Text='<%#Eval("rate") %>'></asp:Label>
+                                                        Font-Size="Medium" runat="server" Text='<%#Eval("PerKgRate") %>'></asp:Label>
                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtenderd2" runat="server"
                                                         FilterType="Numbers,Custom" ValidChars="." TargetControlID="txtrate" />
                                                 </ItemTemplate>

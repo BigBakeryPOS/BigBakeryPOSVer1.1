@@ -30,8 +30,8 @@ namespace Billing.Accountsbootstrap
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
             IsSuperAdmin = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
-            Logintypeid = Session["LoginTypeId"].ToString();
-            BranchCode= Session["BranchCode"].ToString();
+            Logintypeid = Request.Cookies["userInfo"]["LoginTypeId"].ToString();
+            BranchCode= Request.Cookies["userInfo"]["BranchCode"].ToString();
             if (!IsPostBack)
             {
                 txtdate.Text = DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
@@ -60,11 +60,11 @@ namespace Billing.Accountsbootstrap
                     if (IsSuperAdmin == "1")
                     {
                         ddlPayMode.Items.Insert(0, "Payment");
-                        ddlPayMode.SelectedValue = "2";
+                        ddlPayMode.SelectedValue = "1";
                     }
                     else
                     {
-                        ddlPayMode.SelectedValue = "2";
+                        ddlPayMode.SelectedValue = "1";
                         ddlPayMode.Enabled = false;
                     }
                 }

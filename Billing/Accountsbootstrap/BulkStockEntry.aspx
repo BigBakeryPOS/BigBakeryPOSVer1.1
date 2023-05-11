@@ -214,28 +214,8 @@
                                                     <label>Need to Fill as Per Your daily Stock Request.Once Fill not Allow To change So Be careFull To fill this Request!!!. </label>
                                                 </blink>
                                             </div>
-                                            <div class="col-lg-1">
-                                                <label>
-                                                    GRN.No</label>
-                                                <asp:TextBox ID="txtpono" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <label>
-                                                    GRN. Date
-                                                </label>
-                                                <asp:TextBox ID="txtpodate" runat="server" CssClass="form-control"></asp:TextBox>
-                                                <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtpodate"
-                                                    Format="dd/MM/yyyy" PopupButtonID="txtnewexpiredDate" EnabledOnClient="true"
-                                                    runat="server" CssClass="cal_Theme1">
-                                                </ajaxToolkit:CalendarExtender>
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <label>
-                                                    Employee Name
-                                                </label>
-                                                <asp:TextBox ID="txtOrderBy" runat="server" CssClass="form-control"></asp:TextBox>
-                                            </div>
-                                            <div class="col-lg-2">
+                                           
+                                            <div runat="server" visible="true" class="col-lg-2">
                                                 <label>
                                                     Select Type</label>
                                                 <asp:RadioButtonList ID="radbtntype" runat="server" OnSelectedIndexChanged="radbtn_clicked"
@@ -265,6 +245,28 @@
                                                     CssClass="btn btn-danger pos-btn1" />
                                                 &nbsp;&nbsp;&nbsp;<asp:Button ID="btnexit" runat="server" Text="Exit" CssClass="btn btn-secondary" PostBackUrl="~/Accountsbootstrap/Stock.aspx" />
                                             </div>
+                                             <div class="col-lg-1">
+                                                <label>
+                                                    GRN.No</label>
+                                                <asp:TextBox ID="txtpono" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <label>
+                                                    GRN. Date
+                                                </label>
+                                                <asp:TextBox ID="txtpodate" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtpodate"
+                                                    Format="dd/MM/yyyy" PopupButtonID="txtnewexpiredDate" EnabledOnClient="true"
+                                                    runat="server" CssClass="cal_Theme1">
+                                                </ajaxToolkit:CalendarExtender>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <label>
+                                                    Employee Name
+                                                </label>
+                                                <asp:TextBox ID="txtOrderBy" runat="server" CssClass="form-control"></asp:TextBox>
+                                            </div>
+                                            
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="col-lg-6">
@@ -335,6 +337,7 @@
                                                                     <asp:Label ID="Nlbqty" runat="server" Width="50px" Text='<%#Eval("Qty") %>'></asp:Label>
                                                                     <asp:Label ID="Nlblom" runat="server" Width="50px" Text='<%#Eval("UOM") %>'></asp:Label>
                                                                     <asp:Label ID="Nlblbarcode" runat="server" Width="50px" Text='<%#Eval("barcode") %>'></asp:Label>
+                                                                    <asp:Label ID="Nlblqtytype" runat="server" Width="50px" Text='<%#Eval("Qtytype") %>'></asp:Label>
 
                                                                 </ContentTemplate>
                                                                 <Triggers>

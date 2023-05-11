@@ -96,42 +96,6 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
-        /// txtpono control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtpono;
-
-        /// <summary>
-        /// txtpodate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtpodate;
-
-        /// <summary>
-        /// CalendarExtender1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
-
-        /// <summary>
-        /// txtOrderBy control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOrderBy;
-
-        /// <summary>
         /// radbtntype control.
         /// </summary>
         /// <remarks>
@@ -175,6 +139,42 @@ namespace Billing.Accountsbootstrap
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnexit;
+
+        /// <summary>
+        /// txtpono control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtpono;
+
+        /// <summary>
+        /// txtpodate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtpodate;
+
+        /// <summary>
+        /// CalendarExtender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
+
+        /// <summary>
+        /// txtOrderBy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtOrderBy;
 
         /// <summary>
         /// searchdiv control.
@@ -364,6 +364,15 @@ namespace Billing.Accountsbootstrap
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Nlblbarcode;
+
+        /// <summary>
+        /// Nlblqtytype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Nlblqtytype;
 
         /// <summary>
         /// txtqty control.

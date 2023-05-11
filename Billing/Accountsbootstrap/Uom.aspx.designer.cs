@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Billing.Accountsbootstrap {
-    
-    
-    public partial class Uom {
-        
+namespace Billing.Accountsbootstrap
+{
+
+
+    public partial class Uom
+    {
+
         /// <summary>
         /// Header control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Billing.Accountsbootstrap {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Billing.HeaderMaster.Header Header;
-        
+
         /// <summary>
         /// lblWelcome control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Billing.Accountsbootstrap {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblWelcome;
-        
+
         /// <summary>
         /// lblUser control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Billing.Accountsbootstrap {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblUser;
-        
+
         /// <summary>
         /// lblUserID control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Billing.Accountsbootstrap {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblUserID;
-        
+
         /// <summary>
         /// f1 control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Billing.Accountsbootstrap {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm f1;
-        
+
         /// <summary>
         /// ScriptManager1 control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace Billing.Accountsbootstrap {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
+
         /// <summary>
         /// txtsearch control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace Billing.Accountsbootstrap {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtsearch;
-        
+
         /// <summary>
         /// btnresret control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace Billing.Accountsbootstrap {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnresret;
-        
+
         /// <summary>
         /// gv control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace Billing.Accountsbootstrap {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gv;
-        
+
         /// <summary>
         /// txtid control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace Billing.Accountsbootstrap {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtid;
-        
+
         /// <summary>
         /// txtuom control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace Billing.Accountsbootstrap {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtuom;
-        
+
         /// <summary>
         /// FilteredTextBoxExtendername control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace Billing.Accountsbootstrap {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtendername;
-        
+
         /// <summary>
         /// ddlIsActive control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace Billing.Accountsbootstrap {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlIsActive;
-        
+
         /// <summary>
         /// showtxt control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace Billing.Accountsbootstrap {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl showtxt;
-        
+
         /// <summary>
         /// txtnarration control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace Billing.Accountsbootstrap {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtnarration;
-        
+
         /// <summary>
         /// btnSubmit control.
         /// </summary>
@@ -155,7 +157,7 @@ namespace Billing.Accountsbootstrap {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
-        
+
         /// <summary>
         /// btnclaear control.
         /// </summary>
@@ -164,7 +166,7 @@ namespace Billing.Accountsbootstrap {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnclaear;
-        
+
         /// <summary>
         /// DivDeleteConfirmation control.
         /// </summary>

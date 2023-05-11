@@ -347,7 +347,7 @@ namespace Billing.Accountsbootstrap
 
                 searchitemlist_OnClick(Server, e);
 
-                DataSet dsitems = objbs.itemforreqestNew_DirectTransfer_search((ddlcategory.SelectedValue), sTableName, txtserch.Text);
+                DataSet dsitems = objbs.itemforreqestNew_DirectTransfer_search((ddlcategory.SelectedValue), sTableName, txtserch.Text,"1");
                 if (dsitems.Tables[0].Rows.Count > 0)
                 {
                     gvitems.DataSource = dsitems;

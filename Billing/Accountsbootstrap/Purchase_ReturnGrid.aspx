@@ -213,7 +213,7 @@
                                         <asp:BoundField HeaderText="Total" DataField="Total" DataFormatString='{0:f}' />
                                         <asp:BoundField HeaderText="Payment" DataField="Paymentmode" />
 
-                                         <asp:TemplateField HeaderText="Print"  Visible="true">
+                                         <asp:TemplateField HeaderText="Print"  Visible="false">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btnPrint" runat="server" CommandArgument='<%#Eval("PurchaseRtnID") %>'
                                                     CommandName="Print">

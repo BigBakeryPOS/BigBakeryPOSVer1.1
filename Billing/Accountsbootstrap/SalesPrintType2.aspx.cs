@@ -147,7 +147,14 @@ namespace Billing.Accountsbootstrap
                 idFranchisee.Visible = false;
             }
 
-            DataSet dsLogin = objBs.LoginImage(sTableName);
+            DataSet fillbranchdetails = objBs.getbranchcode(sTableName);
+            if (fillbranchdetails.Tables[0].Rows.Count > 0)
+            {
+                lblstore.Text  = fillbranchdetails.Tables[0].Rows[0]["BranchName"].ToString();
+                lblAddres.Text = fillbranchdetails.Tables[0].Rows[0]["Address"].ToString();
+            }
+
+                DataSet dsLogin = objBs.LoginImage(sTableName);
 
             if (dsLogin.Tables[0].Rows.Count > 0)
             {
@@ -265,7 +272,7 @@ namespace Billing.Accountsbootstrap
                     //  lblstore.Text = sStore;
                     lblstoreno.Text = StoreNo;
 
-                    lblAddres.Text = sAddress;
+                   // lblAddres.Text = sAddress;
                     lbltin.Text = sTin;
                     lblfssaino.Text = sfssaino;
                     decimal dTotal = Convert.ToDecimal(ds.Tables[0].Rows[0]["NetAmount"].ToString());
@@ -650,7 +657,7 @@ namespace Billing.Accountsbootstrap
                     //  lblstore.Text = sStore;
                     lblstoreno.Text = StoreNo;
 
-                    lblAddres.Text = sAddress;
+                   // lblAddres.Text = sAddress;
                     lbltin.Text = sTin;
                     lblfssaino.Text = sfssaino;
                     decimal dTotal = Convert.ToDecimal(ds.Tables[0].Rows[0]["gndtot"].ToString());

@@ -212,7 +212,7 @@
                                             <asp:BoundField HeaderText="Bill No" DataField="BillNo" />
                                             <asp:BoundField HeaderText="BillDate" DataField="BillDate" />
                                             <asp:BoundField HeaderText="CustomerName" DataField="CustomerName" />
-                                            <asp:BoundField HeaderText="Qty" DataField="Qty" />
+                                            <asp:BoundField HeaderText="Qty" DataField="Qty" DataFormatString="{0:f3}" />
                                             <asp:BoundField HeaderText="category" DataField="category" />
                                             <asp:BoundField HeaderText="Item" DataField="Definition" />
                                             <%--<asp:BoundField HeaderText="Tax" DataField="Tax" DataFormatString="{0:f}" />--%>

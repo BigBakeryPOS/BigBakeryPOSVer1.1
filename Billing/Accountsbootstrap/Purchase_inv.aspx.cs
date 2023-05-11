@@ -1665,7 +1665,7 @@ namespace Billing.Accountsbootstrap
                         GroupId = 2;
                     }
 
-                    int LedgerId = kbs.insertcontact(Convert.ToInt32(lblUserID.Text), txtsupplier.Text, txtmobileno.Text, "0", "", txtaddress.Text, txtcity.Text, "0", "test@gmail.com", Convert.ToInt32(6), GroupId, "0", txtgstno.Text, "0", "", "", 0, 0, 0, "Credit Note", "Inner");
+                    int LedgerId = kbs.insertcontact(Convert.ToInt32(lblUserID.Text), txtsupplier.Text, txtmobileno.Text, "0", "", txtaddress.Text, txtcity.Text, "0", "test@gmail.com", Convert.ToInt32(6), GroupId, "0", txtgstno.Text, "0", "", "", 0, 0, 0, "Credit Note", "Inner","NA");
 
 
                     Supplier = LedgerId;
@@ -1853,6 +1853,7 @@ namespace Billing.Accountsbootstrap
                             Label lblprimaryvalue = (Label)gvcustomerorder.Rows[i].FindControl("lblprimaryvalue");
                             TextBox txtperkgrate = (TextBox)gvcustomerorder.Rows[i].FindControl("txtRateperkg");
                             TextBox txtpqty = (TextBox)gvcustomerorder.Rows[i].FindControl("txtpqty");
+                            decimal PQty = Convert.ToDecimal(txtpqty.Text);
                             #region Validation
 
                             //if (txtdefname.Text == "Select IngredientName")
@@ -1870,7 +1871,7 @@ namespace Billing.Accountsbootstrap
                                 return;
                             }
                             DateTime Exp;
-                            if (txtexpireddate.Text == "")
+                            if (txtexpireddate.Text == "" || txtexpireddate.Text == "0")
                             {
                                 //1900/01/01
                                 Exp = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -1878,7 +1879,8 @@ namespace Billing.Accountsbootstrap
                             }
                             else
                             {
-                                Exp = DateTime.ParseExact(txtexpireddate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+                                Exp = DateTime.ParseExact(Convert.ToDateTime(txtexpireddate.Text).ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                                 txtexpireddate.Text = Exp.ToString();
                             }
                             //  DateTime todaysDate = DateTime.ParseExact(DateTime.Now.ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -1902,6 +1904,12 @@ namespace Billing.Accountsbootstrap
                             {
                                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Please Enter Valid Rate.Thank You!!!.');", true);
                                // Amount.Focus();
+                                return;
+                            }
+
+                            if(txtpqty.Text == "" || txtpqty.Text == "0")
+                            {
+                                ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Purchase Qty Mismatch.Thank You!!!.');", true);
                                 return;
                             }
 
@@ -2010,6 +2018,19 @@ namespace Billing.Accountsbootstrap
                             TextBox txtperkgrate = (TextBox)gvcustomerorder.Rows[i].FindControl("txtRateperkg");
                             TextBox txtpqty = (TextBox)gvcustomerorder.Rows[i].FindControl("txtpqty");
 
+                            DateTime Exp;
+                            if (txtexpireddate.Text == "")
+                            {
+                                //1900/01/01
+                                Exp = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                                txtexpireddate.Text = Exp.ToString();
+                            }
+                            else
+                            {
+                                Exp = DateTime.ParseExact( Convert.ToDateTime(txtexpireddate.Text).ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                                txtexpireddate.Text = Exp.ToString();
+                            }
+
                             //if (ddldef.SelectedValue == "Select IngredientName")
                             //{
 
@@ -2024,10 +2045,10 @@ namespace Billing.Accountsbootstrap
                             //}
                             //else
                             //{
-                           // DateTime  Expirydate = DateTime.ParseExact(txtexpireddate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                           
+                            // DateTime  Expirydate = DateTime.ParseExact(txtexpireddate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-                            int Transpurchase = kbs.insertTransPurchase(sTableName, insertPurchase, idef, dQty, DRate, dAmount, Convert.ToDecimal(billno.Text), Convert.ToInt32(lblUserID.Text), lblunitsid.Text, Convert.ToDecimal(billno.Text), Convert.ToInt32(ddlsuplier.SelectedValue), "", txtexpireddate.Text , txtnarrations.Text, Convert.ToDouble(txtDisCount.Text), Convert.ToDouble(txtDisCountAmount.Text), lblprimarynamevalue.Text, Convert.ToDouble(lblprimaryvalue.Text), Convert.ToDouble(txtpqty.Text),Convert.ToDouble(txtperkgrate.Text));
+
+                            int Transpurchase = kbs.insertTransPurchase(sTableName, insertPurchase, idef, dQty, DRate, dAmount, Convert.ToDecimal(billno.Text), Convert.ToInt32(lblUserID.Text), lblunitsid.Text, Convert.ToDecimal(billno.Text), Convert.ToInt32(Supplier), "", txtexpireddate.Text , txtnarrations.Text, Convert.ToDouble(txtDisCount.Text), Convert.ToDouble(txtDisCountAmount.Text), lblprimarynamevalue.Text, Convert.ToDouble(lblprimaryvalue.Text), Convert.ToDouble(txtpqty.Text),Convert.ToDouble(txtperkgrate.Text));
                             txtexpireddate.Text = "";
                             if (BillingType == "Purchase Order")
                             {

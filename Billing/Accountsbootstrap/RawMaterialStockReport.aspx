@@ -39,7 +39,7 @@
             var windowName = 'Print_' + uniqueName.getTime();
 
             var prtWindow = window.open(windowUrl, windowName,
-        'left=100,top=100,right=100,bottom=100,width=700,height=500');
+                'left=100,top=100,right=100,bottom=100,width=700,height=500');
 
             prtWindow.document.write('<html><head></head>');
             prtWindow.document.write('<body style="background:none !important">');
@@ -52,22 +52,39 @@
             prtWindow.close();
         }
     </script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("[id*=chkAll]").bind("click", function () {
+                if ($(this).is(":checked")) {
+                    $("[id*=chkcategorylist] input").attr("checked", "checked");
+                } else {
+                    $("[id*=chkcategorylist] input").removeAttr("checked");
+                }
+            });
+            $("[id*=chkcategorylist] input").bind("click", function () {
+                if ($("[id*=chkcategorylist] input:checked").length == $("[id*=chkcategorylist] input").length) {
+                    $("[id*=chkAll]").attr("checked", "checked");
+                } else {
+                    $("[id*=chkAll]").removeAttr("checked");
+                }
+            });
+        });
+    </script>
     <style>
-        .chkChoice input
-        {
+        .chkChoice input {
             margin-left: -30px;
         }
-        .chkChoice td
-        {
+
+        .chkChoice td {
             padding-left: 45px;
         }
-        
-        .chkChoice1 input
-        {
+
+        .chkChoice1 input {
             margin-left: -60px;
         }
-        .chkChoice1 td
-        {
+
+        .chkChoice1 td {
             padding-left: 100px;
         }
     </style>
@@ -98,20 +115,20 @@
     <asp:Label runat="server" ID="lblUser" ForeColor="White" Visible="false" CssClass="label"> </asp:Label>
     <asp:Label runat="server" ID="lblUserID" ForeColor="White" CssClass="label" Visible="false"> </asp:Label>
     <form id="Form1" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
-      <div class="container-fluid">
-	<div class="row">
-    <div class="col-lg-12">
-    <div class="row panel-custom1">
-        <div class="panel-header">
-          <h1 class="page-header">Raw Material Stock Report</h1>
-	    </div>
-         <div class="panel-body">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row panel-custom1">
+                        <div class="panel-header">
+                            <h1 class="page-header">Raw Material Stock Report</h1>
+                        </div>
+                        <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="row">
-                                        <div class="col-lg-3">
+                                        <div runat="server" visible="false" class="col-lg-3">
 
                                             <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="phono" ControlToValidate="txtsearch"
                                                 ErrorMessage="Please enter your searching Data!" Text="*" Style="color: White" />
@@ -126,21 +143,59 @@
 
                                             <label>
                                                 From date</label>
-                                            <asp:TextBox runat="server" ID="txtfromdate" CssClass="form-control" AutoPostBack="true"
-                                               > 
+                                            <asp:TextBox runat="server" ID="txtfromdate" CssClass="form-control" AutoPostBack="true"> 
                                             </asp:TextBox>
                                             <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtfromdate"
-                                                Format="dd/MM/yyyy" runat="server" CssClass="cal_Theme1">
+                                                Format="yyyy-MM-dd" runat="server" CssClass="cal_Theme1">
                                             </ajaxToolkit:CalendarExtender>
 
                                         </div>
-                                      
+                                        <div class="col-lg-3">
+
+                                            <label>Category</label>
+                                            <div style="overflow-y: scroll; height: 150px">
+                                                <div class="panel panel-default">
+                                                    <asp:CheckBox ID="chkAll" Text="Select All" runat="server" />
+                                                    <asp:CheckBoxList ID="chkcategorylist" runat="server" RepeatColumns="1" RepeatDirection="Horizontal"
+                                                        CssClass="chkChoice1" Width="19pc">
+                                                    </asp:CheckBoxList>
+                                                </div>
+                                            </div>
+                                            <asp:Label ID="lblsuberror" runat="server" Style="color: Red"></asp:Label>
+
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>TYPE </label>
+                                            <asp:DropDownList ID="ddlstcktype" runat="server" CssClass="form-control">
+                                                <asp:ListItem Text="All" Value="0" Selected="True"></asp:ListItem>
+                                                <asp:ListItem Text="+" Value="1"></asp:ListItem>
+                                                <asp:ListItem Text="-" Value="2"></asp:ListItem>
+                                                <asp:ListItem Text="Nil" Value="3"></asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>STOCK TYPE </label>
+                                            <asp:DropDownList ID="ddlclosingstocktype" runat="server" CssClass="form-control">
+                                                <asp:ListItem Text="All" Value="All" Selected="True"></asp:ListItem>
+                                                <asp:ListItem Text="With 0" Value="1"></asp:ListItem>
+                                                <asp:ListItem Text="WithOut 0" Value="2"></asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>DISPLAY TYPE</label>
+                                            <asp:DropDownList ID="ddldisplaytype" runat="server" CssClass="form-control">
+                                                <asp:ListItem Text="All" Value="All" Selected="True"></asp:ListItem>
+                                                <asp:ListItem Text="Only Qty" Value="1"></asp:ListItem>
+                                                <asp:ListItem Text="Only Value" Value="2"></asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+
                                         <div class="col-lg-3" runat="server" visible="false">
 
                                             <label>
                                                 Supplier</label>
                                             <asp:DropDownList CssClass="form-control" ID="ddlsuplier" AutoPostBack="true"
-                                                 runat="server">
+                                                runat="server">
                                             </asp:DropDownList>
 
                                         </div>
@@ -155,7 +210,7 @@
                                                 TabIndex="1" CssClass="form-control">
                                             </asp:DropDownList>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div runat="server" visible="false" class="col-lg-3">
 
                                             <label>
                                                 RawMaterials</label>
@@ -168,16 +223,15 @@
 
                                             <br />
                                             <asp:Button ID="btnPrint" runat="server" OnClick="Button1_Click" CssClass="btn btn-info pos-btn1"
-                                                Text="Search"  Width="100px" />
+                                                Text="Search" Width="100px" />
                                             &nbsp;&nbsp;&nbsp; 
-                                            <asp:Button ID="btnpdf" runat="server" Text="PDF" OnClick="Button2_Click" CssClass="btn btn-info"  Width="100px" />
+                                            <asp:Button ID="btnpdf" runat="server" Text="PDF" OnClick="Button2_Click" CssClass="btn btn-info" Width="100px" />
 
                                         </div>
                                         <div id="Div2" class="col-lg-1" runat="server" visible="true">
                                             <div class="form-group">
                                                 <br />
-                                                <asp:Button ID="btnExport" OnClick="Button3_Click" Text="Export to Excel" runat="server" Width="110px" CssClass="btn btn-success"
-                                                     />
+                                                <asp:Button ID="btnExport" OnClick="Button3_Click" Text="Export to Excel" runat="server" Width="110px" CssClass="btn btn-success" />
                                             </div>
                                         </div>
 
@@ -199,16 +253,40 @@
                                         NextPageText="Next" PreviousPageText="Previous" />--%>
                                             <Columns>
                                                 <asp:BoundField HeaderText="Product" DataField="Product" />
-                                                <asp:BoundField HeaderText="OpeningStock" DataField="OpeningStock"  DataFormatString='{0:f}'/>
-                                                <asp:BoundField HeaderText="Purchased Qty" DataField="Purchased Qty" HeaderStyle-HorizontalAlign="Center"  DataFormatString='{0:f}'/>
-                                                <asp:BoundField HeaderText="Rate" DataField="Rate" DataFormatString='{0:f}'/>
-                                                 <asp:BoundField HeaderText="Amount" DataField="PurchaseAmount" DataFormatString='{0:f}' />
-                                                <asp:BoundField HeaderText="Kitchen Issued Qty" DataField="KitchenIssued Qty" DataFormatString='{0:f}' />
+                                                <asp:BoundField HeaderText="Rate" DataField="Rate" DataFormatString='{0:f}' />
+                                                <asp:BoundField HeaderText="OpeningStock" DataField="OpeningStock" DataFormatString='{0:f}' />
+                                                <asp:BoundField HeaderText="Op Amount" DataField="OpeningStockAmount" DataFormatString='{0:f}' />
+
+                                                <asp:BoundField HeaderText="OpeningStock +" DataField="OpeningStockplus" DataFormatString='{0:f}' />
+                                                <asp:BoundField HeaderText="Op (+) Amount" DataField="OpeningStockAmountplus" DataFormatString='{0:f}' />
+
+
+                                                <asp:BoundField HeaderText="OpeningStock - " DataField="OpeningStockminus" DataFormatString='{0:f}' />
+                                                <asp:BoundField HeaderText="Op (-) Amount" DataField="OpeningStockAmountminus" DataFormatString='{0:f}' />
+
+
+                                                <asp:BoundField HeaderText="Purchased Qty" DataField="PurchasedQty" HeaderStyle-HorizontalAlign="Center" DataFormatString='{0:f}' />
+                                                <asp:BoundField HeaderText="Amount" DataField="PurchaseAmount" DataFormatString='{0:f}' />
+
+                                                <asp:BoundField HeaderText="Kitchen Issued Qty" DataField="KitchenIssuedQty" DataFormatString='{0:f}' />
                                                 <asp:BoundField HeaderText="Kitchen Amount" DataField="KitchenAmount" DataFormatString='{0:f}' />
-                                                  <asp:BoundField HeaderText="Branch Issued Qty" DataField="BranchIssued Qty" DataFormatString='{0:f}' />
+
+                                                <asp:BoundField HeaderText="Branch Issued Qty" DataField="BranchIssuedQty" DataFormatString='{0:f}' />
                                                 <asp:BoundField HeaderText="Branch Amount" DataField="BranchAmount" DataFormatString='{0:f}' />
-                                                <asp:BoundField HeaderText="ClosingStockQty" DataField="ClosingStockQty" DataFormatString='{0:f}' />
-                                                <asp:BoundField HeaderText="ClosingStockAmount" DataField="ClosingStockAmount" DataFormatString='{0:f}' />
+
+
+                                                <asp:BoundField HeaderText="Inter Store Issued Qty" DataField="InterstoretransferQty" DataFormatString='{0:f}' />
+                                                <asp:BoundField HeaderText="Inter Store Amount" DataField="InterstoretransferAmount" DataFormatString='{0:f}' />
+
+
+                                                <asp:BoundField HeaderText="PR Qty" DataField="Return" DataFormatString='{0:f}' />
+                                                <asp:BoundField HeaderText="PR Amount" DataField="ReturnRate" DataFormatString='{0:f}' />
+
+                                                <asp:BoundField HeaderText="ClosingStockQty" DataField="Available_Qty" DataFormatString='{0:f}' />
+                                                <asp:BoundField HeaderText="ClosingStockAmount" DataField="Available_QtyRate" DataFormatString='{0:f}' />
+
+                                                <asp:BoundField HeaderText="Stock +/-" DataField="StockPM" DataFormatString='{0:f}' />
+                                                <asp:BoundField HeaderText="Stock +/- Amount" DataField="StockRatePM" DataFormatString='{0:f}' />
 
                                             </Columns>
                                             <%--<FooterStyle BackColor="#336699" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
@@ -217,8 +295,8 @@
                                     </div>
                                 </div>
                             </div>
-    </div>
-    </div>
+                        </div>
+                    </div>
     </form>
 </body>
 </html>

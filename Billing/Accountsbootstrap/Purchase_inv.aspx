@@ -45,6 +45,27 @@
     </script>
 
     <script type="text/javascript">
+        var isShift = false;
+        var seperator = "/";
+        function DateFormat(txt, keyCode) {
+            if (keyCode == 16)
+                isShift = true;
+            //Validate that its Numeric
+            if (((keyCode >= 48 && keyCode <= 57) || keyCode == 8 ||
+                keyCode <= 37 || keyCode <= 39 ||
+                (keyCode >= 96 && keyCode <= 105)) && isShift == false) {
+                if ((txt.value.length == 2 || txt.value.length == 5) && keyCode != 8) {
+                    txt.value += seperator;
+                }
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
  function isDecimal(evt)
     {
        var charCode = (evt.which) ? evt.which : event.keyCode
@@ -190,7 +211,7 @@
                                                 Supplier&nbsp;&nbsp;<asp:CheckBox ID="chksupplier" runat="server" Text="New Supplier"
                                                     OnCheckedChanged="chk_chksupplier" AutoPostBack="true" />
                                             </label>
-                                            <asp:DropDownList ID="ddlsuplier" runat="server" TabIndex="2"  Width="100%"
+                                            <asp:DropDownList ID="ddlsuplier" runat="server" TabIndex="2"  Width="100%" 
                                                 AutoPostBack="true" OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged">
                                             </asp:DropDownList>
                                             <asp:TextBox ID="txtsupplier" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>
@@ -326,17 +347,19 @@
                                                 </td>
                                                 <td>
                                                     <label>
-                                                        Exp.Date
+                                                        Exp.Date(DD/MM/YYYY)
                                                     </label>
                                                     <br />
-                                                    <asp:TextBox ID="txtmexpireddate" runat="server" Enabled="true" ReadOnly="true" Height="30px" Width="90px">01/01/1900</asp:TextBox>
+                                                    <asp:TextBox ID="txtmexpireddate" runat="server" CssClass="form-control" placeholder="DD/MM/YYYY"  onkeyup="ValidateDate(this, event.keyCode)"
+                                            onkeydown="return DateFormat(this, event.keyCode)" ></asp:TextBox>
+                                                    <%--<asp:TextBox ID="txtmexpireddate" runat="server" Enabled="true" ReadOnly="true" Height="30px" Width="90px"></asp:TextBox>
                                                     <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtmexpireddate"
                                                         PopupButtonID="txtmexpireddate" EnabledOnClient="true" Format="dd/MM/yyyy" runat="server"
                                                         CssClass="cal_Theme1">
                                                     </ajaxToolkit:CalendarExtender>
                                                     <asp:CompareValidator id="dateValidator" runat="server"  Type="Date" Operator="DataTypeCheck" ControlToValidate="txtmexpireddate" 
     ErrorMessage="Please enter a valid date.">
-</asp:CompareValidator>
+</asp:CompareValidator>--%>
                                                 </td>
                                                 <td>
                                                     <label>

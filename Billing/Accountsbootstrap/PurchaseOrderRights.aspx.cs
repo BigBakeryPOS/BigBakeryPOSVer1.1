@@ -66,6 +66,27 @@ namespace Billing.Accountsbootstrap
 
 
                     }
+
+
+                    DataSet bank = objbs.Ledgerbank();
+                    if (bank.Tables[0].Rows.Count > 0)
+                    {
+                        ddlbank.DataSource = bank.Tables[0];
+                        ddlbank.DataTextField = "LedgerName";
+                        ddlbank.DataValueField = "LedgerID";
+                        ddlbank.DataBind();
+                        ddlbank.Items.Insert(0, "Select Bank");
+                    }
+
+                    DataSet Paymode = objbs.GetOthersPaymode();
+                    if (Paymode.Tables[0].Rows.Count > 0)
+                    {
+                        ddlpaymode.DataSource = Paymode.Tables[0];
+                        ddlpaymode.DataTextField = "Paymode";
+                        ddlpaymode.DataValueField = "Value";
+                        ddlpaymode.DataBind();
+                        ddlpaymode.Items.Insert(0, "Select Paymode");
+                    }
                 }
 
 
@@ -112,15 +133,27 @@ namespace Billing.Accountsbootstrap
 
                     ddlpaymode.SelectedValue = dagent.Tables[0].Rows[0]["Paymode"].ToString();
 
-                    if (dagent.Tables[0].Rows[0]["Paymode"].ToString() == "1")
-                    {
-                        ddlbank.Enabled = false;
-                        txtcheque.Enabled = false;
-                    }
-                    else
+                    if (ddlpaymode.SelectedValue == "4" || ddlpaymode.SelectedValue == "11" || ddlpaymode.SelectedValue == "15" || ddlpaymode.SelectedValue == "19")
                     {
                         ddlbank.Enabled = true;
                         txtcheque.Enabled = true;
+                        ddlbank.Visible = true;
+                        txtcheque.Visible = true;
+                        // lblbank.Visible = true;
+                        // lblChq.Visible = true;
+                        ddlbank.SelectedValue = dagent.Tables[0].Rows[0]["Bank"].ToString();
+                        txtcheque.Text = dagent.Tables[0].Rows[0]["ChequeNo"].ToString();
+                    }
+                    else
+                    {
+                        ddlbank.Enabled = false;
+                        txtcheque.Enabled = false;
+
+                        ddlbank.Visible = false;
+                        txtcheque.Visible = false;
+
+                       // lblbank.Visible = false;
+                      //  lblChq.Visible = false;
                     }
 
                     if (dagent.Tables[0].Rows[0]["Province"].ToString() == "Inner")
@@ -137,8 +170,7 @@ namespace Billing.Accountsbootstrap
                     txtsgst.Text = dagent.Tables[0].Rows[0]["SGST"].ToString();
                     txtigst.Text = dagent.Tables[0].Rows[0]["IGST"].ToString();
 
-                    ddlbank.SelectedValue = dagent.Tables[0].Rows[0]["Bank"].ToString();
-                    txtcheque.Text = dagent.Tables[0].Rows[0]["ChequeNo"].ToString();
+                    
 
 
                     DataSet transpur = objbs.getpotranslist(drpPO.SelectedValue, sTableName);
@@ -1184,7 +1216,7 @@ namespace Billing.Accountsbootstrap
             {
                 Response.Write("ViewState is null");
             }
-            SetPreviousData();
+            SetPreviousData();  
         }
 
 
@@ -1222,7 +1254,7 @@ namespace Billing.Accountsbootstrap
                 {
 
                     #region
-                    if (ddlpaymode.SelectedValue == "1" || ddlpaymode.SelectedValue == "2")
+                    if (ddlpaymode.SelectedValue == "1" || ddlpaymode.SelectedValue == "2" || ddlpaymode.SelectedValue == "18")
                     {
                         bank = 0;
                         chequeno = "000000";

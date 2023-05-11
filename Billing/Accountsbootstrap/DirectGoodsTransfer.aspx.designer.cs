@@ -69,6 +69,15 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
+        /// <summary>
         /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
@@ -159,6 +168,15 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.TextBox txtEntryBy;
 
         /// <summary>
+        /// radbtntype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList radbtntype;
+
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -204,6 +222,15 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
+        /// searchdiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl searchdiv;
+
+        /// <summary>
         /// txtSearch control.
         /// </summary>
         /// <remarks>
@@ -229,6 +256,195 @@ namespace Billing.Accountsbootstrap
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtbarcode;
+
+        /// <summary>
+        /// posdropdown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl posdropdown;
+
+        /// <summary>
+        /// sno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sno;
+
+        /// <summary>
+        /// txtmanualslno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtmanualslno;
+
+        /// <summary>
+        /// drpitemsearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList drpitemsearch;
+
+        /// <summary>
+        /// upcus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upcus;
+
+        /// <summary>
+        /// txtCusName1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCusName1;
+
+        /// <summary>
+        /// NlblCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NlblCategory;
+
+        /// <summary>
+        /// NhideCategoryID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField NhideCategoryID;
+
+        /// <summary>
+        /// NhideCategoryUserID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField NhideCategoryUserID;
+
+        /// <summary>
+        /// NhideUOMID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField NhideUOMID;
+
+        /// <summary>
+        /// NhdRate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField NhdRate;
+
+        /// <summary>
+        /// NhdGST control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField NhdGST;
+
+        /// <summary>
+        /// NlblDefinition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NlblDefinition;
+
+        /// <summary>
+        /// Nlblrate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Nlblrate;
+
+        /// <summary>
+        /// Nlbqty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Nlbqty;
+
+        /// <summary>
+        /// Nlblom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Nlblom;
+
+        /// <summary>
+        /// Nlblbarcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Nlblbarcode;
+
+        /// <summary>
+        /// Nlblqtytype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Nlblqtytype;
+
+        /// <summary>
+        /// Nlblserial control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Nlblserial;
+
+        /// <summary>
+        /// txtqty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtqty;
+
+        /// <summary>
+        /// divid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divid;
 
         /// <summary>
         /// gvRawRequest control.
@@ -267,13 +483,13 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.DropDownList drpitem;
 
         /// <summary>
-        /// txtqty control.
+        /// txtqty1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtqty;
+        protected global::System.Web.UI.WebControls.TextBox txtqty1;
 
         /// <summary>
         /// gvqueueitems control.
