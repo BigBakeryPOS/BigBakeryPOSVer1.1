@@ -141,15 +141,6 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.DropDownList drpPO;
 
         /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label1;
-
-        /// <summary>
         /// rbdpurchasetype control.
         /// </summary>
         /// <remarks>
@@ -159,22 +150,22 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.RadioButtonList rbdpurchasetype;
 
         /// <summary>
-        /// shwedit control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl shwedit;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label1;
 
         /// <summary>
-        /// txteditnarrations control.
+        /// ddlsuplier control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txteditnarrations;
+        protected global::System.Web.UI.WebControls.DropDownList ddlsuplier;
 
         /// <summary>
         /// lblpurchase control.
@@ -220,15 +211,6 @@ namespace Billing.Accountsbootstrap
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtdcno;
-
-        /// <summary>
-        /// ddlsuplier control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlsuplier;
 
         /// <summary>
         /// ddlpaymode control.
@@ -438,6 +420,15 @@ namespace Billing.Accountsbootstrap
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
 
         /// <summary>
+        /// txtavlqty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtavlqty;
+
+        /// <summary>
         /// txtmpqty control.
         /// </summary>
         /// <remarks>
@@ -571,6 +562,24 @@ namespace Billing.Accountsbootstrap
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtroundoff;
+
+        /// <summary>
+        /// shwedit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl shwedit;
+
+        /// <summary>
+        /// txteditnarrations control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txteditnarrations;
 
         /// <summary>
         /// Button1 control.

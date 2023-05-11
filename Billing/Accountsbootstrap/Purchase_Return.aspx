@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Invoice </title>
+    <title>Purchase Return </title>
     <link rel="stylesheet" href="../Styles/chosen.css" />
     <link href="../Accountsbootstrap/css/chosen.min.css" rel="stylesheet" type="text/css" />
     <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -64,20 +64,19 @@
 
                                 <div class="panel-body">
                                     <div class="row">
-                                         <div runat="server" visible="false" class="col-lg-2">
+                                        <div runat="server" visible="false" class="col-lg-2">
                                             <label>
                                                 Select Company</label>
                                             <asp:DropDownList ID="drpsubcompany" runat="server" TabIndex="1" CssClass="form-control">
                                             </asp:DropDownList>
                                         </div>
-                                            <asp:HiddenField ID="hdPurid" runat="server" />
+                                        <asp:HiddenField ID="hdPurid" runat="server" />
                                         <div class="col-lg-3">
                                             <label>
                                                 Billing Type :</label>
-
                                             <asp:RadioButtonList ID="rbtype" runat="server" RepeatColumns="2" AutoPostBack="true" Visible="true"
                                                 OnSelectedIndexChanged="rbtype_OnSelectedIndexChanged">
-                                                <asp:ListItem Text="Direct PurchaseReturn" Value="1" Selected="True"></asp:ListItem>
+                                                <asp:ListItem Text="Direct Purchase Return" Value="1" Selected="True"></asp:ListItem>
                                                 <asp:ListItem Text="From Purchase" Value="2"></asp:ListItem>
                                             </asp:RadioButtonList>
                                         </div>
@@ -94,14 +93,6 @@
                                             </div>
                                         </div>
 
-                                        </div>
-
-                                        <div class="row">
-
-                                        <label id="Label1" runat="server" visible="false">
-                                        </label>
-
-
                                         <div class="col-lg-3">
                                             <label>Purchase Return Type</label>
                                             <asp:RadioButtonList ID="rbdpurchasetype" runat="server" Enabled="false" RepeatColumns="2" AutoPostBack="true"
@@ -110,18 +101,27 @@
                                                 <asp:ListItem Text="Inter-State Purchase" Value="2"></asp:ListItem>
                                             </asp:RadioButtonList>
                                         </div>
-                                            <div class="col-lg-3">
-                                        <div id="shwedit" runat="server" visible="false">
-                                            <label>
-                                                Edit Narrations :</label>
-                                            <asp:TextBox CssClass="form-control" ID="txteditnarrations" runat="server"></asp:TextBox>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <label id="Label1" runat="server" visible="false">
+                                        </label>
+
+                                         <div class="col-lg-3">
+                                            <label>Supplier</label>
+                                            <asp:DropDownList ID="ddlsuplier" runat="server" TabIndex="2" width="100%" Enabled="false"
+                                                AutoPostBack="true" OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged">
+                                            </asp:DropDownList>
                                         </div>
-                                                </div>
+
+                                        
 
                                         <label id="lblpurchase" runat="server" visible="false">
                                         </label>
-
                                        
+
                                         <div class="col-lg-3">
                                             <label>Purchase Return Date</label>
                                             <asp:TextBox CssClass="form-control" ID="txtsdate1" runat="server" Enabled="false"
@@ -130,18 +130,13 @@
                                                 runat="server" CssClass="cal_Theme1">
                                             </ajaxToolkit:CalendarExtender>
                                         </div>
-                                             <div class="col-lg-3"  runat="server" visible="true">
+                                        <div class="col-lg-3" runat="server" visible="false">
                                             <label>Bill No</label>
                                             <asp:TextBox Visible="false" CssClass="form-control" ID="txtbillno" placeholder="Enter Bill No"
                                                 runat="server" Enabled="true"></asp:TextBox>
                                             <asp:TextBox CssClass="form-control" ID="txtdcno" placeholder="Enter Bill No" runat="server" Enabled="true"></asp:TextBox>
                                         </div>
-                                        <div class="col-lg-3">
-                                            <label>Supplier</label>
-                                            <asp:DropDownList ID="ddlsuplier" runat="server" TabIndex="2" CssClass="form-control" Enabled="false"
-                                                AutoPostBack="true" OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged">
-                                            </asp:DropDownList>
-                                        </div>
+
                                         <div class="col-lg-3">
                                             <label>
                                                 Paymode</label>
@@ -165,140 +160,149 @@
 
                                         </div>
                                     </div>
+                                    <br />
+                                    <div class="col-lg-12">
+                                        <asp:Panel ID="Panel2" runat="server" Height="85px" Width="100%">
+                                            <table border="1">
+                                                <tr>
+                                                    <td>
+                                                        <label>
+                                                            Select ingredents</label><br />
+                                                        <%--CssClass="chzn-select"--%>
+                                                        <asp:DropDownList ID="drpmingredents" runat="server" TabIndex="5" CssClass="chzn-select"
+                                                            Height="30px" Width="280px" AutoPostBack="true" OnSelectedIndexChanged="ddlDef_OnSelectedIndexChanged2">
+                                                        </asp:DropDownList>
+                                                    </td>
+                                                    <td>
+                                                        <label>
+                                                            Billing Name</label>
+                                                        <asp:TextBox ID="txtmbillingname" Width="150px" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    </td>
+                                                    <td>
+                                                        <label>
+                                                            Units</label><br />
+                                                        <asp:DropDownList ID="ddlmunits" Visible="false" CssClass="chzn-select" runat="server">
+                                                        </asp:DropDownList>
+                                                        <asp:Label ID="lblmunits" Width="50px" runat="server"></asp:Label>
+                                                        <asp:Label ID="lblmunitsid" Width="50px" runat="server"></asp:Label>
+                                                    </td>
+                                                    <td>
+                                                        <label>
+                                                            HSNCODE</label>
+                                                        <asp:TextBox ID="txtmhsncode" Width="100px" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    </td>
+                                                    <td>
+                                                        <label>
+                                                            Primary Unit
+                                                        </label>
+                                                        <br />
+                                                        <asp:DropDownList ID="ddlmprimaryunits" Width="150px" Enabled="true" CssClass="chzn-select"
+                                                            runat="server" OnSelectedIndexChanged="drpprimary_unit" AutoPostBack="true" Height="25px">
+                                                        </asp:DropDownList><br />
+                                                        <asp:Label ID="lblmprimaryvalue" runat="server"></asp:Label>
+                                                        <asp:Label ID="lblmDescriptionID" runat="server" Visible="false" CssClass="LabelText"></asp:Label>
+                                                    </td>
+                                                    
+                                                    <td>
+                                                        <label>
+                                                            Qty
+                                                        </label>
+                                                        <asp:TextBox class="form-control" Width="65px" OnTextChanged="txtdefQty_TextChanged2"
+                                                            AutoPostBack="true" ID="txtmQty" runat="server" MaxLength="10">0</asp:TextBox>
+                                                    </td>
+                                                    <td>
+                                                        <label>
+                                                            Disc %
+                                                        </label>
+                                                        <asp:TextBox class="form-control" Width="65px" ID="txtmDisCount" OnTextChanged="txtDisCount_TextChanged"
+                                                            AutoPostBack="true" runat="server" MaxLength="10">0</asp:TextBox>
+                                                    </td>
+                                                    <td>
+                                                        <label>
+                                                            Disc.Amnt
+                                                        </label>
+                                                        <asp:TextBox class="form-control" Width="65px" ID="txtmDisCountAmount" OnTextChanged="txtDisCountAmount_TextChanged"
+                                                            AutoPostBack="true" runat="server" MaxLength="10">0</asp:TextBox>
+                                                    </td>
+                                                    <td>
+                                                        <label>
+                                                            GST%
+                                                        </label>
+                                                        <asp:TextBox ID="txtmBillNo" runat="server" CssClass="form-control" Width="65px"
+                                                            AutoPostBack="true" OnTextChanged="txtBillNo_TextChanged1">0</asp:TextBox>
+                                                    </td>
+                                                    <td>
+                                                        <label>
+                                                            Rate
+                                                        </label>
+                                                        <asp:TextBox Width="80px" Style="text-align: right" placeholder="Enter Rate" class="form-control"
+                                                            ID="txtmRate" runat="server" OnTextChanged="txtdefCatID_TextChanged1" AutoPostBack="true"
+                                                            MaxLength="10">0</asp:TextBox>
+                                                    </td>
+                                                    <td>
+                                                        <label>
+                                                            Amount
+                                                        </label>
+                                                        <asp:TextBox Width="100px" Style="text-align: right" Enabled="false" class="form-control"
+                                                            ID="txtmAmount" runat="server" MaxLength="50">0</asp:TextBox>
+                                                    </td>
+                                                    <td>
+                                                        <label>
+                                                            Exp.Date
+                                                        </label>
+                                                        <br />
+                                                        <asp:TextBox ID="txtmexpireddate" runat="server" Enabled="true" Height="30px" Width="90px">0</asp:TextBox>
+                                                        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtmexpireddate"
+                                                            PopupButtonID="txtmexpireddate" EnabledOnClient="true" Format="dd/MM/yyyy" runat="server"
+                                                            CssClass="cal_Theme1">
+                                                        </ajaxToolkit:CalendarExtender>
+                                                    </td>
+                                                    <td>
+                                                        <label>
+                                                            Avl.Qty
+                                                        </label>
+                                                        <asp:TextBox class="form-control" Width="65px" 
+                                                            AutoPostBack="true" ID="txtavlqty" runat="server" MaxLength="10">0</asp:TextBox>
+                                                    </td>
+                                                    <td>
+                                                        <label>
+                                                            Ret.Qty
+                                                        </label>
+                                                        <asp:TextBox Width="80px" Style="text-align: right" Enabled="false" class="form-control"
+                                                            Height="25px" ID="txtmpqty" runat="server" MaxLength="50">0</asp:TextBox>
+                                                    </td>
+                                                    <td>
+                                                        <label>
+                                                            Narrations
+                                                        </label>
+                                                        <asp:TextBox Width="100px" Style="text-align: right" class="form-control" TextMode="MultiLine"
+                                                            Height="30px" ID="txtmnarrations" runat="server"></asp:TextBox>
+                                                        <asp:DropDownList ID="ddmSupplier" class="chzn-select" runat="server" AutoPostBack="true"
+                                                            Visible="false">
+                                                        </asp:DropDownList>
+                                                        <asp:TextBox ID="txtmsupplier" runat="server" placeholder="Enter SupplierName" CssClass="form-control"
+                                                            Visible="false"></asp:TextBox>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_OnClick" />
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
 
-                                      <div class="col-lg-12">
-                                    <asp:Panel ID="Panel2" runat="server" Height="85px"  Width="100%">
-                                        <table border="1">
-                                            <tr>
-                                                <td>
-                                                    <label>
-                                                        Select ingredents</label><br /><%--CssClass="chzn-select"--%>
-                                                    <asp:DropDownList ID="drpmingredents" runat="server" TabIndex="5" CssClass="chzn-select"
-                                                        Height="30px" Width="280px" AutoPostBack="true" OnSelectedIndexChanged="ddlDef_OnSelectedIndexChanged2">
-                                                    </asp:DropDownList>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        Billing Name</label>
-                                                    <asp:TextBox ID="txtmbillingname" Width="150px" runat="server" CssClass="form-control"></asp:TextBox>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        Units</label><br />
-                                                    <asp:DropDownList ID="ddlmunits" Visible="false" CssClass="chzn-select" runat="server">
-                                                    </asp:DropDownList>
-                                                    <asp:Label ID="lblmunits" Width="50px" runat="server"></asp:Label>
-                                                    <asp:Label ID="lblmunitsid" Width="50px" runat="server"></asp:Label>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        HSNCODE</label>
-                                                    <asp:TextBox ID="txtmhsncode" Width="100px" runat="server" CssClass="form-control"></asp:TextBox>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        Primary Unit
-                                                    </label>
-                                                    <br />
-                                                    <asp:DropDownList ID="ddlmprimaryunits" Width="150px" Enabled="true" CssClass="chzn-select"
-                                                        runat="server" OnSelectedIndexChanged="drpprimary_unit" AutoPostBack="true" Height="25px">
-                                                    </asp:DropDownList><br />
-                                                    <asp:Label ID="lblmprimaryvalue" runat="server"></asp:Label>
-                                                    <asp:Label ID="lblmDescriptionID" runat="server" Visible="false" CssClass="LabelText"></asp:Label>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        Qty
-                                                    </label>
-                                                    <asp:TextBox class="form-control" Width="65px" OnTextChanged="txtdefQty_TextChanged2"
-                                                        AutoPostBack="true" ID="txtmQty" runat="server" MaxLength="10">0</asp:TextBox>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        Disc %
-                                                    </label>
-                                                    <asp:TextBox class="form-control" Width="65px" ID="txtmDisCount" OnTextChanged="txtDisCount_TextChanged"
-                                                        AutoPostBack="true" runat="server" MaxLength="10">0</asp:TextBox>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        Disc.Amnt
-                                                    </label>
-                                                    <asp:TextBox class="form-control" Width="65px" ID="txtmDisCountAmount" OnTextChanged="txtDisCountAmount_TextChanged"
-                                                        AutoPostBack="true" runat="server" MaxLength="10">0</asp:TextBox>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        GST%
-                                                    </label>
-                                                    <asp:TextBox ID="txtmBillNo" runat="server" CssClass="form-control" Width="65px"
-                                                        AutoPostBack="true" OnTextChanged="txtBillNo_TextChanged1">0</asp:TextBox>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        Rate
-                                                    </label>
-                                                    <asp:TextBox Width="80px" Style="text-align: right" placeholder="Enter Rate" class="form-control"
-                                                        ID="txtmRate" runat="server" OnTextChanged="txtdefCatID_TextChanged1" AutoPostBack="true"
-                                                        MaxLength="10">0</asp:TextBox>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        Amount
-                                                    </label>
-                                                    <asp:TextBox Width="100px" Style="text-align: right" Enabled="false" class="form-control"
-                                                        ID="txtmAmount" runat="server" MaxLength="50">0</asp:TextBox>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        Exp.Date
-                                                    </label>
-                                                    <br />
-                                                    <asp:TextBox ID="txtmexpireddate" runat="server" Enabled="true" Height="30px" Width="90px">0</asp:TextBox>
-                                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtmexpireddate"
-                                                        PopupButtonID="txtmexpireddate" EnabledOnClient="true" Format="dd/MM/yyyy" runat="server"
-                                                        CssClass="cal_Theme1">
-                                                    </ajaxToolkit:CalendarExtender>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        Pur.Qty
-                                                    </label>
-                                                    <asp:TextBox Width="80px" Style="text-align: right" Enabled="false" class="form-control"
-                                                        Height="25px" ID="txtmpqty" runat="server" MaxLength="50">0</asp:TextBox>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        Narrations
-                                                    </label>
-                                                    <asp:TextBox Width="100px" Style="text-align: right" class="form-control" TextMode="MultiLine"
-                                                        Height="30px" ID="txtmnarrations" runat="server"></asp:TextBox>
-                                                    <asp:DropDownList ID="ddmSupplier" class="chzn-select" runat="server" AutoPostBack="true"
-                                                        Visible="false">
-                                                    </asp:DropDownList>
-                                                    <asp:TextBox ID="txtmsupplier" runat="server" placeholder="Enter SupplierName" CssClass="form-control"
-                                                        Visible="false"></asp:TextBox>
-                                                </td>
-                                                <td>
-                                                    <div class="form-group">
-                                                        <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_OnClick" />
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </table>
-
-                                    </asp:Panel>
+                                        </asp:Panel>
 
 
-                                </div>
-                                <br />
-                                <br />
+                                    </div>
+                                    <br />
+                                    <br />
 
                                     <div class="row">
 
                                         <div class="col-lg-12">
                                             <asp:Panel ID="Panel1" runat="server">
-                                                  <asp:HiddenField ID="hdRowIndex" runat="server" />
+                                                <asp:HiddenField ID="hdRowIndex" runat="server" />
                                                 <div class="table-responsive panel-grid-left">
                                                     <asp:GridView ID="gvcustomerorder" runat="server" AutoGenerateColumns="False" OnRowDeleting="grvStudentDetails_RowDeleting" CssClass="table table-striped pos-table"
                                                         OnRowDataBound="gvcustomerorder_RowDataBound" padding="0" spacing="0" border="0">
@@ -317,25 +321,25 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Ingredients">
                                                                 <ItemTemplate>
-                                                                  <%--  <asp:DropDownList ID="ddlDef" CssClass="form-control" runat="server" TabIndex="5" Enabled="false"
+                                                                    <%--  <asp:DropDownList ID="ddlDef" CssClass="form-control" runat="server" TabIndex="5" Enabled="false"
                                                                         Width="200px" AutoPostBack="true" OnSelectedIndexChanged="ddlDef_OnSelectedIndexChanged">
                                                                     </asp:DropDownList>--%>
-                                                                        <asp:Label ID="txtdefname" Width="350px" runat="server" Text='<%#Eval("Ingredient") %>'></asp:Label>
-                                                            <asp:Label ID="txtdefid" Visible="false" runat="server" Text='<%#Eval("IngredientID") %>'></asp:Label>
-                                                       
+                                                                    <asp:Label ID="txtdefname" Width="350px" runat="server" Text='<%#Eval("Ingredient") %>'></asp:Label>
+                                                                    <asp:Label ID="txtdefid" Visible="false" runat="server" Text='<%#Eval("IngredientID") %>'></asp:Label>
+
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Billing Name">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox ID="txtbillingname" Enabled="false" Width="100px" runat="server" CssClass="form-control"  Text='<%#Eval("Bname") %>'></asp:TextBox>
+                                                                    <asp:TextBox ID="txtbillingname" Enabled="false" Width="100px" runat="server" CssClass="form-control" Text='<%#Eval("Bname") %>'></asp:TextBox>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Units">
                                                                 <ItemTemplate>
-                                                                  <%--  <asp:DropDownList ID="ddlunits" Visible="true" CssClass="form-control" runat="server" Enabled="false">
+                                                                    <%--  <asp:DropDownList ID="ddlunits" Visible="true" CssClass="form-control" runat="server" Enabled="false">
                                                                     </asp:DropDownList>--%>
-                                                                    <asp:Label ID="lblunits" Width="85px" runat="server"  Text='<%#Eval("Units") %>'></asp:Label>
-                                                                        <asp:Label ID="lblunitsid" Visible="false" Width="20px" Text='<%#Eval("Unitsid") %>' runat="server"></asp:Label>
+                                                                    <asp:Label ID="lblunits" Width="85px" runat="server" Text='<%#Eval("Units") %>'></asp:Label>
+                                                                    <asp:Label ID="lblunitsid" Visible="false" Width="20px" Text='<%#Eval("Unitsid") %>' runat="server"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterStyle HorizontalAlign="Right" />
                                                                 <FooterTemplate>
@@ -352,9 +356,9 @@
                                                                 runat="server" OnSelectedIndexChanged="drpprimary_unit" AutoPostBack="true">
                                                             </asp:DropDownList>--%>
                                                                     <%--<asp:Label ID="lblprimaryvalue" runat="server"></asp:Label>--%>
-                                                           <asp:Label ID="lblprimaryname" Width="100px" Text='<%#Eval("PUnits") %>' runat="server"></asp:Label>
-                                                            <asp:Label ID="lblprimarynamevalue" Visible="false" Width="100px" Text='<%#Eval("PUnitsvalue") %>' runat="server"></asp:Label>
-                                                            <asp:Label ID="lblprimaryvalue" Visible="false" Text='<%#Eval("Pvalue") %>' runat="server"></asp:Label>
+                                                                    <asp:Label ID="lblprimaryname" Width="100px" Text='<%#Eval("PUnits") %>' runat="server"></asp:Label>
+                                                                    <asp:Label ID="lblprimarynamevalue" Visible="true" Width="100px" Text='<%#Eval("PUnitsvalue") %>' runat="server"></asp:Label>
+                                                                    <asp:Label ID="lblprimaryvalue" Visible="true" Text='<%#Eval("Pvalue") %>' runat="server"></asp:Label>
 
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
@@ -392,7 +396,7 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="GST%">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox ID="txtBillNo" runat="server" Enabled="false" CssClass="form-control" Width="100px" AutoPostBack="true"  Text='<%#Eval("BillNo") %>'
+                                                                    <asp:TextBox ID="txtBillNo" runat="server" Enabled="false" CssClass="form-control" Width="100px" AutoPostBack="true" Text='<%#Eval("BillNo") %>'
                                                                         OnTextChanged="txtBillNo_TextChanged">0</asp:TextBox>
                                                                 </ItemTemplate>
                                                                 <%--<FooterStyle HorizontalAlign="Right" />
@@ -432,7 +436,7 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Narrations">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox Width="200px" Height="35px" class="form-control" TextMode="MultiLine"  Text='<%#Eval("Narrations") %>'
+                                                                    <asp:TextBox Width="200px" Height="35px" class="form-control" TextMode="MultiLine" Text='<%#Eval("Narrations") %>'
                                                                         ID="txtnarrations" runat="server"></asp:TextBox>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
@@ -502,19 +506,19 @@
                                             <asp:TextBox ID="txtcgst" runat="server" CssClass="form-control" Enabled="false"
                                                 AutoPostBack="true">0</asp:TextBox>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-2">
                                             <label>
                                                 SGST</label>
                                             <asp:TextBox ID="txtsgst" runat="server" CssClass="form-control" Enabled="false"
                                                 AutoPostBack="true">0</asp:TextBox>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-2">
                                             <label>
                                                 IGST</label>
                                             <asp:TextBox ID="txtigst" runat="server" CssClass="form-control" Enabled="false"
                                                 AutoPostBack="true">0</asp:TextBox>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-2">
                                             <label>
                                                 Total</label>
                                             <asp:TextBox ID="txttotal" runat="server" Enabled="false"
@@ -524,6 +528,13 @@
                                             <label>
                                                 Round Off</label>
                                             <asp:TextBox ID="txtroundoff" runat="server" Enabled="false" CssClass="form-control">0</asp:TextBox>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div id="shwedit" runat="server" visible="false">
+                                                <label>
+                                                    Edit Narrations :</label>
+                                                <asp:TextBox CssClass="form-control" ID="txteditnarrations" runat="server"></asp:TextBox>
+                                            </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <br />
@@ -632,13 +643,14 @@
                     </div>
                 </div>
                 </div>      
-            <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
-                <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
-                <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
-                <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
-                <script type="text/javascript">
-                $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); 
-                </script>
+             <script type="text/javascript" src="ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                        <script type="text/javascript" src="../css/select2.js"></script>
+                        <link href="../css/select2.css" rel="stylesheet" />
+                        
+                        <script type="text/javascript">
+                            $(document).ready(function () { $("#ddlsuplier").select2(); });
+                            $(document).ready(function () { $("#drpmingredents").select2(); });
+                        </script>
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="gvcustomerorder" EventName="RowCommand" />

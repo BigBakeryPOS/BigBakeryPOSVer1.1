@@ -211,7 +211,7 @@
                                                 Supplier&nbsp;&nbsp;<asp:CheckBox ID="chksupplier" runat="server" Text="New Supplier"
                                                     OnCheckedChanged="chk_chksupplier" AutoPostBack="true" />
                                             </label>
-                                            <asp:DropDownList ID="ddlsuplier" runat="server" TabIndex="2"  Width="100%"
+                                            <asp:DropDownList ID="ddlsuplier" runat="server" TabIndex="2"  Width="100%" 
                                                 AutoPostBack="true" OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged">
                                             </asp:DropDownList>
                                             <asp:TextBox ID="txtsupplier" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>

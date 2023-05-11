@@ -10,6 +10,7 @@ using System.Net.NetworkInformation;
 using System.Data.SqlClient;
 using System.Net;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 
 namespace BusinessLayer
 {
@@ -18707,7 +18708,7 @@ namespace BusinessLayer
             return stock;
         }
 
-        public int getduplisttrans123Rtn(string iSalesID, string Table)
+        public int getduplisttrans123Rtn(string iSalesID, string Table,string Purchasebillno,string billtype)
         {
             int stock = 0;
 
@@ -18734,7 +18735,7 @@ namespace BusinessLayer
                         {
                             decimal AvlQty = Convert.ToDecimal(dcheck.Tables[0].Rows[0]["Qty"].ToString());
 
-                            decimal dQty = AvlQty - Convert.ToDecimal(trans.Tables[0].Rows[i]["PUqty"]);
+                            decimal dQty = AvlQty + Convert.ToDecimal(trans.Tables[0].Rows[i]["PUqty"]);
 
                             Query = " update tblRawMatlStock_" + Table + " set Qty=" + dQty + " where IngredientID=" + trans.Tables[0].Rows[i]["IngredientID"] + "   ";
 
@@ -18744,7 +18745,27 @@ namespace BusinessLayer
 
                         }
 
+                        string qrr = "select distinct PurchaseID from tblkitchenPurchase_" + Table + " a where a.PurchaseID='" + Purchasebillno + "'";
+                       DataSet ds2 = dbObj.InlineExecuteDataSet(qrr);
+                        if (ds2.Tables[0].Rows.Count > 0)
+                        {
+                            // insert stock - expiry date  
+                            //string sQry11 = "insert into tblRawMatlStockExp_" + Table + " (IngredientID,Qty,ExpiredDate)values(" + IngredientID + "," + Qty + ",'" + ExpiryDate1.ToString("yyyy-MM-dd") + "') ";
+                            string sQry11 = " update tblRawMatlStockExp_" + Table + " set Qty=Qty + " + trans.Tables[0].Rows[i]["PUqty"] + " where IngredientID=" + trans.Tables[0].Rows[i]["IngredientID"] + " and PurchaseID=" + ds2.Tables[0].Rows[0]["PurchaseID"].ToString() + "";
+                            stock = dbObj.InlineExecuteNonQuery(sQry11);
+                        }
 
+                        if (billtype == "Purchase")
+                        {
+                            //string sQry11 = " update tbltranskitchenPurchase_" + Table + " set Status='NO', RQty=RQty - " + trans.Tables[0].Rows[i]["Qty"] + " , RPUQTY=RPUQTY - " + trans.Tables[0].Rows[i]["PUqty"] + "  where IngredientID=" + trans.Tables[0].Rows[i]["IngredientID"] + " and purchaseid=" + ds2.Tables[0].Rows[0]["PurchaseID"].ToString() + "  ";
+                            string sQry11 = " update tbltranskitchenPurchase_" + Table + " set Status='NO', RQty=RQty - " + trans.Tables[0].Rows[i]["Qty"] + ", RPUQTY = RPUQTY - " + trans.Tables[0].Rows[i]["PUqty"] + "  where IngredientID=" + trans.Tables[0].Rows[i]["IngredientID"] + " and purchaseid=" + ds2.Tables[0].Rows[0]["PurchaseID"].ToString() + "  ";
+                            stock = dbObj.InlineExecuteNonQuery(sQry11);
+
+                            string sQry121 = " update tblkitchenPurchase_" + Table + " set Status = 'NO'  where  purchaseid='" + ds2.Tables[0].Rows[0]["PurchaseID"].ToString() + "' ";
+                            stock = dbObj.InlineExecuteNonQuery(sQry121);
+
+
+                        }
 
                     }
                 }
@@ -19187,15 +19208,19 @@ namespace BusinessLayer
         {
             int TransNo = 0;
             int iSucess = 0;
+            int pno = 0;
+            string billtype = "";
 
             DataSet ds1 = new DataSet();
-            string qy1 = "select Daybookid from tblkitchenPurchaseReturn_" + Table + " where  purchasertnid='" + ID + "' ";
+            string qy1 = "select Daybookid,purinvno,billingtype from tblkitchenPurchaseReturn_" + Table + " where  purchasertnid='" + ID + "' ";
             ds1 = dbObj.InlineExecuteDataSet(qy1);
 
             if (ds1.Tables[0].Rows.Count > 0)
             {
 
                 TransNo = Convert.ToInt32(ds1.Tables[0].Rows[0]["Daybookid"].ToString());
+                pno = Convert.ToInt32(ds1.Tables[0].Rows[0]["purinvno"].ToString());
+                billtype = ds1.Tables[0].Rows[0]["billingtype"].ToString();
             }
 
             string sQry1 = "delete from tblDayBook_" + Table + " where TransNo='" + TransNo + "' ";
@@ -19231,6 +19256,17 @@ namespace BusinessLayer
 
 
                         stock = dbObj.InlineExecuteNonQuery(Query);
+
+                        if (billtype == "Purchase")
+                        {
+                            string sQry11 = " update tbltranskitchenPurchase_" + Table + " set Status='NO', RQty=RQty - " + trans.Tables[0].Rows[i]["Qty"] + ", RPUQTY = RPUQTY - " + trans.Tables[0].Rows[i]["PUqty"] + "  where IngredientID=" + trans.Tables[0].Rows[i]["IngredientID"] + " and purchaseid=" + pno + "  ";
+                            iSucess = dbObj.InlineExecuteNonQuery(sQry11);
+
+                            string sQry121 = " update tblkitchenPurchase_" + Table + " set Status = 'NO'  where  purchaseid='" + pno + "' ";
+                            iSucess = dbObj.InlineExecuteNonQuery(sQry121);
+
+
+                        }
                     }
                 }
             }
@@ -24159,9 +24195,19 @@ namespace BusinessLayer
             return ds;
         }
 
+        public DataSet PurchaseInvoiceNoList_update(string potable)
+        {
+            DataSet ds = new DataSet();
+            string qr = "select * from tblkitchenPurchase_" + potable + " p   ";
+
+            ds = dbObj.InlineExecuteDataSet(qr);
+            return ds;
+        }
+
         public DataSet getPurchaseInvoicelist(string iSalesID, string Table)
         {
             DataSet ds = new DataSet();
+            //string qr = "select * from tblkitchenPurchase_" + Table + " where billno='" + iSalesID + "'";
             string qr = "select * from tblkitchenPurchase_" + Table + " where PurchaseID='" + iSalesID + "'";
             ds = dbObj.InlineExecuteDataSet(qr);
             return ds;
@@ -24171,7 +24217,19 @@ namespace BusinessLayer
         {
             DataSet ds = new DataSet();
             //string qr = "select * from tblkitchenPurchase_" + Table + " a inner join tbltranskitchenPurchase_" + Table + " b on a.PurchaseID = b.purchaseID where a.billno='" + iSalesID + "' and b.status='NO'";
-            string qr = "select * from tblkitchenPurchase_" + Table + " a inner join tbltranskitchenPurchase_" + Table + " b on a.PurchaseID = b.purchaseID where a.purchaseID='" + iSalesID + "' and b.status='NO'";
+            string qr = "select * from tblkitchenPurchase_" + Table + " a inner join tbltranskitchenPurchase_" + Table + " b " +
+                " on a.PurchaseID = b.purchaseID where a.purchaseID='" + iSalesID + "' and b.status='NO'";
+
+            ds = dbObj.InlineExecuteDataSet(qr);
+            return ds;
+        }
+
+        public DataSet getPurchaseInvoicetranslist_update(string iSalesID, string Table, string ingid, string puid)
+        {
+            DataSet ds = new DataSet();
+            //string qr = "select * from tblkitchenPurchase_" + Table + " a inner join tbltranskitchenPurchase_" + Table + " b on a.PurchaseID = b.purchaseID where a.billno='" + iSalesID + "' and b.status='NO'";
+            string qr = "select isnull((b.qty - b.rqty),0) as poqty  from tblkitchenPurchase_" + Table + " a inner join tbltranskitchenPurchase_" + Table + " b " +
+                " on a.PurchaseID = b.purchaseID where a.purchaseID='" + iSalesID + "' and b.IngredientID='" + ingid + "' and b.punitsid='" + puid + "' and b.status='NO'";
 
             ds = dbObj.InlineExecuteDataSet(qr);
             return ds;
@@ -24204,7 +24262,12 @@ namespace BusinessLayer
             ds2 = dbObj.InlineExecuteDataSet(qy2);
             TransNo = Convert.ToInt32(ds2.Tables[0].Rows[0]["TransNo"].ToString());
 
-            string sQry = "insert into tblkitchenPurchaseReturn_" + Table + "(PurchaseRtnDate,BillNo,EntryDate,Subtotal,Tax,Total,Supplier,Paymode,Bank,ChequeNo,Daybookid,CGST,SGST,IGST,DCNO,EntryUserID,BillingType,PurInvNo,Province,RoundOff,subcompanyid) values('" + Convert.ToDateTime(date1).ToString("yyyy/MM/dd") + "'," + BillNo + ",'" + Convert.ToDateTime(date1).ToString("yyyy/MM/dd hh:mm tt") + "'," + Subtotal + "," + Tax + "," + Total + "," + Supplier + "," + Paymode + "," + bank + ",'" + chequeno + "'," + TransNo + ",'" + cgst + "','" + sgst + "','" + igst + "','" + dcno + "'," + EntryUserID + ",'" + billingtype + "','" + pono + "','" + Province + "','" + RoundOff + "','" + subcompanyid + "')";
+            string sQry = "insert into tblkitchenPurchaseReturn_" + Table + "(PurchaseRtnDate,BillNo,EntryDate,Subtotal,Tax,Total, " +
+                " Supplier,Paymode,Bank,ChequeNo,Daybookid,CGST,SGST,IGST,DCNO,EntryUserID,BillingType,PurInvNo,Province,RoundOff " +
+                " ,subcompanyid) values('" + Convert.ToDateTime(date1).ToString("yyyy/MM/dd") + "'," + BillNo + ", " +
+                " '" + Convert.ToDateTime(date1).ToString("yyyy/MM/dd hh:mm tt") + "'," + Subtotal + "," + Tax + "," + Total + "," + Supplier + ", " +
+                " " + Paymode + "," + bank + ",'" + chequeno + "'," + TransNo + ",'" + cgst + "','" + sgst + "','" + igst + "', " +
+                " '" + dcno + "'," + EntryUserID + ",'" + billingtype + "','" + pono + "','" + Province + "','" + RoundOff + "','" + subcompanyid + "')";
             save = dbObj.InlineExecuteNonQuery(sQry);
 
             //if (billingtype == "Purchase Order")
@@ -24264,7 +24327,7 @@ namespace BusinessLayer
 
                 double ttlQtyrate = ((Qtyrate1 + Qtyrate2) / (Convert.ToDouble(Qty) + Convert.ToDouble(AvlQty)));
 
-                decimal dQty = AvlQty - Qty;
+                decimal dQty = AvlQty - Convert.ToDecimal(PUqty);
 
                 //  decimal dQty = AvlQty + Qty;
 
@@ -24279,7 +24342,7 @@ namespace BusinessLayer
                 {
                     // insert stock - expiry date  
                     //string sQry11 = "insert into tblRawMatlStockExp_" + Table + " (IngredientID,Qty,ExpiredDate)values(" + IngredientID + "," + Qty + ",'" + ExpiryDate1.ToString("yyyy-MM-dd") + "') ";
-                    string sQry11 = " update tblRawMatlStockExp_" + Table + " set Qty=Qty - " + Qty + " where IngredientID=" + IngredientID + " and PurchaseID=" + ds2.Tables[0].Rows[0]["PurchaseID"].ToString() + "";
+                    string sQry11 = " update tblRawMatlStockExp_" + Table + " set Qty=Qty - " + PUqty + " where IngredientID=" + IngredientID + " and PurchaseID=" + ds2.Tables[0].Rows[0]["PurchaseID"].ToString() + "";
                     save1 = dbObj.InlineExecuteNonQuery(sQry11);
                 }
             }
@@ -24297,22 +24360,23 @@ namespace BusinessLayer
         }
 
 
-        public int UpdatePurchaseInvoiceSTk(int ID, string Table, decimal pQty, int IngredientID)
+        public int UpdatePurchaseInvoiceSTk(int ID, string Table, decimal pQty, int IngredientID,decimal puqty)
         {
             int TransNo = 0;
             int iSucess = 0;
 
-            DataSet ds1 = new DataSet();
-            string qy1 = "select * from tblkitchenPurchase_" + Table + " where  billno='" + ID + "' ";
-            ds1 = dbObj.InlineExecuteDataSet(qy1);
+            ////DataSet ds1 = new DataSet();
+            //////string qy1 = "select * from tblkitchenPurchase_" + Table + " where  billno='" + ID + "' ";
+            ////string qy1 = "select * from tblkitchenPurchase_" + Table + " where  purchaseid='" + ID + "' ";
+            ////ds1 = dbObj.InlineExecuteDataSet(qy1);
 
-            if (ds1.Tables[0].Rows.Count > 0)
-            {
+            ////if (ds1.Tables[0].Rows.Count > 0)
+            ////{
 
-                TransNo = Convert.ToInt32(ds1.Tables[0].Rows[0]["PurchaseID"].ToString());
-            }
-
-            string sQry11 = " update tbltranskitchenPurchase_" + Table + " set RQty=RQty + " + pQty + " where IngredientID=" + IngredientID + " and purchaseid=" + TransNo + "  ";
+            ////    TransNo = Convert.ToInt32(ds1.Tables[0].Rows[0]["PurchaseID"].ToString());
+            ////}
+            TransNo = ID;
+            string sQry11 = " update tbltranskitchenPurchase_" + Table + " set RQty=RQty + " + pQty + ",RPUQTY=RPUQTY + " + puqty + " where IngredientID=" + IngredientID + " and purchaseid=" + TransNo + "  ";
             iSucess = dbObj.InlineExecuteNonQuery(sQry11);
 
             string sQry121 = " update tbltranskitchenPurchase_" + Table + " set Status='YES' where IngredientID=" + IngredientID + " and purchaseid=" + TransNo + " and Qty=RQty";
@@ -24326,15 +24390,15 @@ namespace BusinessLayer
             int TransNo = 0;
             int iSucess = 0;
 
-            DataSet ds1 = new DataSet();
-            string qy1 = "select * from tblkitchenPurchase_" + Table + " where  billno='" + ID + "' ";
-            ds1 = dbObj.InlineExecuteDataSet(qy1);
+            //DataSet ds1 = new DataSet();
+            //string qy1 = "select * from tblkitchenPurchase_" + Table + " where  billno='" + ID + "' ";
+            //ds1 = dbObj.InlineExecuteDataSet(qy1);
 
-            if (ds1.Tables[0].Rows.Count > 0)
-            {
-                TransNo = Convert.ToInt32(ds1.Tables[0].Rows[0]["PurchaseID"].ToString());
-            }
-
+            //if (ds1.Tables[0].Rows.Count > 0)
+            //{
+            //    TransNo = Convert.ToInt32(ds1.Tables[0].Rows[0]["PurchaseID"].ToString());
+            //}
+            TransNo = ID;
             DataSet ds12 = new DataSet();
             string qy12 = "select Status from tbltranskitchenPurchase_" + Table + " where purchaseid='" + TransNo + "' group by Status";
             ds12 = dbObj.InlineExecuteDataSet(qy12);
@@ -24343,7 +24407,7 @@ namespace BusinessLayer
             {
                 if (ds12.Tables[0].Rows[0]["Status"].ToString() == "YES")
                 {
-                    string sQry11 = " update tblkitchenPurchase_" + Table + " set Status = 'YES'  where  billno='" + ID + "' ";
+                    string sQry11 = " update tblkitchenPurchase_" + Table + " set Status = 'YES'  where  purchaseid='" + ID + "' ";
                     iSucess = dbObj.InlineExecuteNonQuery(sQry11);
                 }
             }
@@ -24371,7 +24435,8 @@ namespace BusinessLayer
         public DataSet getpurchaseReturnMaster(string Table)
         {
             DataSet ds = new DataSet();
-            string sQry = " select c.ledgername as CustomerName,kp.*,case kp.Paymode when 1 then 'Cash' when 2 then 'Credit' else 'Cheque' end as PaymentMode from  tblkitchenPurchaseReturn_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier order by kp.PurchaseRtnID desc";
+            //string sQry = " select c.ledgername as CustomerName,kp.*,case kp.Paymode when 1 then 'Cash' when 2 then 'Credit' else 'Cheque' end as PaymentMode from  tblkitchenPurchaseReturn_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier order by kp.PurchaseRtnID desc";
+            string sQry = " select  c.ledgername as CustomerName,kp.*,sp.paymode as PaymentMode from  tblkitchenPurchaseReturn_" + Table + " kp inner join tblledger c on c.ledgerID=kp.Supplier  inner join tblsalespaymode sp on kp.Paymode=sp.value order by kp.BillNo desc";
             ds = dbObj.InlineExecuteDataSet(sQry);
             return ds;
         }
