@@ -113,7 +113,7 @@ namespace Billing.Accountsbootstrap
 
         protected void ddlcategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblhead.Text = "Production Report Details From " + Session["Store"].ToString() + " Date " + txtdate.Text + " and To Date " + txttodate.Text + "";
+            lblhead.Text = "Production Report Details From " + Request.Cookies["userInfo"]["Store"].ToString() + " Date " + txtdate.Text + " and To Date " + txttodate.Text + "";
             DataSet d = objbs.PRoduction_Reports(Convert.ToDateTime(txtdate.Text).ToString(("yyyy-MM-dd")), sCode, ddlcategory.SelectedValue, txttodate.Text);
             gvprodstock.DataSource = d;
             gvprodstock.DataBind();
@@ -128,7 +128,7 @@ namespace Billing.Accountsbootstrap
         protected void btnsearch_Click(object sender, EventArgs e)
         {
            // if (sCode == "Production" || sCode == "Production2")
-            lblhead.Text = "Production Report Details From " + Session["Store"].ToString() + " Date " + txtdate.Text + " and To Date " + txttodate.Text + "";
+            lblhead.Text = "Production Report Details From " + Request.Cookies["userInfo"]["Store"].ToString() + " Date " + txtdate.Text + " and To Date " + txttodate.Text + "";
             {
                 DataSet d = objbs.PRoduction_Reports(Convert.ToDateTime(txtdate.Text).ToString(("yyyy-MM-dd")), sCode, ddlcategory.SelectedValue, txttodate.Text);
                 gvprodstock.DataSource = d;
@@ -178,7 +178,7 @@ namespace Billing.Accountsbootstrap
             Response.ContentType = "application/vnd.ms-excel";
             System.IO.StringWriter stringWrite = new System.IO.StringWriter();
             System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
-            lblhead.Text = "Production Report Details From " + Session["Store"].ToString() +" Date " + txtdate.Text + " and To Date " + txttodate.Text + "";
+            lblhead.Text = "Production Report Details From " + Request.Cookies["userInfo"]["Store"].ToString() +" Date " + txtdate.Text + " and To Date " + txttodate.Text + "";
                 Response.AddHeader("content-disposition", "attachment;filename= Productionreport.xls");
                 div1.RenderControl(htmlWrite);
            
@@ -217,8 +217,8 @@ namespace Billing.Accountsbootstrap
                 DataSet d = objbs.PRoduction_Reports(Convert.ToDateTime(txtdate.Text).ToString(("yyyy-MM-dd")), sCode, ddlcategory.SelectedValue, txttodate.Text);
                 gvprodstock.DataSource = d;
                 gvprodstock.DataBind();
-                gvprodstock.Caption = "Production Report Details From " + Session["Store"].ToString() + " Date " + txtdate.Text + " and To Date " + txttodate.Text + "";
-                gridraw.Caption = "Raw Materials Report Details From " + Session["Store"].ToString() + " Date " + txtdate.Text + " and To Date " + txttodate.Text + "";
+                gvprodstock.Caption = "Production Report Details From " + Request.Cookies["userInfo"]["Store"].ToString() + " Date " + txtdate.Text + " and To Date " + txttodate.Text + "";
+                gridraw.Caption = "Raw Materials Report Details From " + Request.Cookies["userInfo"]["Store"].ToString() + " Date " + txtdate.Text + " and To Date " + txttodate.Text + "";
                 ScriptManager.RegisterStartupScript(this, typeof(Page), "printGrid", "printGrid();", true);
             }
             //else if (sCode == "Production4")

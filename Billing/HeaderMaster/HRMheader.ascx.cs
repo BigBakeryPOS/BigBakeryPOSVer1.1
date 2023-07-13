@@ -11,9 +11,9 @@ namespace Billing.HeaderMaster
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblUserID.Text = Session["empid"].ToString();
-            lblUser.Text = Session["UserName"].ToString();
-            lblServiceID.Text = Session["serviceID"].ToString();
+            lblUserID.Text = Request.Cookies["userInfo"]["empid"].ToString();
+            lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
+            lblServiceID.Text = Request.Cookies["userInfo"]["serviceID"].ToString();
 
             if (Convert.ToInt32(lblUserID.Text) == 7)
             {

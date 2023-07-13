@@ -16,9 +16,9 @@ namespace Billing.Accountsbootstrap
         string sTableName = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblUser.Text = Session["UserName"].ToString();
-            lblUserID.Text = Session["UserID"].ToString();
-            sTableName = Session["User"].ToString();
+            lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
+            lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
+            sTableName = Request.Cookies["userInfo"]["User"].ToString();
 
             if (!IsPostBack)
             {

@@ -16,6 +16,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
 using System.Configuration;
+using DocumentFormat.OpenXml.Drawing.Spreadsheet;
 
 namespace Billing.Accountsbootstrap
 {
@@ -25,6 +26,7 @@ namespace Billing.Accountsbootstrap
         string Sort_Direction = "Sno DESC";
 
         DataTable dt = new DataTable();
+        DataTable dtaddon = new DataTable();
         DataTable dtt = new DataTable();
         string sTableName = "";
         BSClass objbs = new BSClass();
@@ -240,6 +242,7 @@ namespace Billing.Accountsbootstrap
                     DataColumn col = new DataColumn("Sno", typeof(int));
                     dt.Columns.Add(col);
                     //dt.Columns.Add("Sno");
+                    dt.Columns.Add("Rowid");
                     dt.Columns.Add("CategoryID");
                     dt.Columns.Add("CategoryUserID");
                     dt.Columns.Add("Stockid");
@@ -261,6 +264,23 @@ namespace Billing.Accountsbootstrap
                     dt.Columns.Add("HQty");
                     dt.Columns.Add("mrp");
                     dt.Columns.Add("mrpamount");
+
+                    dt.Columns.Add("maintainstock");
+                    dt.Columns.Add("addon");
+                    dt.Columns.Add("cookinginstruction");
+                    dt.Columns.Add("kotreq");
+                    dt.Columns.Add("cookingnotes");
+
+                    dt.Columns.Add("addonAmount");
+                    dt.Columns.Add("CESS");
+
+                    dt.Columns.Add("addonitemtotRate");
+                    dt.Columns.Add("addonitemtotAmount");
+
+                    dt.Columns.Add("addonRate");
+                    dt.Columns.Add("addontotAmount");
+
+
                     ViewState["dt"] = dt;
                     gvlist.DataSource = dt;
                     gvlist.DataBind();
@@ -274,7 +294,45 @@ namespace Billing.Accountsbootstrap
                     //gvlst.DataSource = dtt;
                     //gvlst.DataBind();
                 }
+                if (dtaddon.Columns.Count > 0)
+                {
+                    gridaddon.DataSource = dtaddon;
+                    gridaddon.DataBind();
+                }
+                else
+                {
+                    DataColumn col = new DataColumn("Rowid", typeof(int));
+                    dtaddon.Columns.Add(col);
+                    //dt.Columns.Add("Sno");
+                    //dt.Columns.Add("Rowid");
+                    dtaddon.Columns.Add("CategoryID");
+                    dtaddon.Columns.Add("CategoryUserID");
+                    dtaddon.Columns.Add("Definition");
 
+
+                    dtaddon.Columns.Add("mrp");
+                    dtaddon.Columns.Add("Rate");
+
+                    dtaddon.Columns.Add("Qty");
+
+                    dtaddon.Columns.Add("TAX");
+
+                    dtaddon.Columns.Add("Cattype");
+
+                    dtaddon.Columns.Add("maintainstock");
+                    dtaddon.Columns.Add("addon");
+                    dtaddon.Columns.Add("cookinginstruction");
+                    dtaddon.Columns.Add("kotreq");
+
+
+                    dtaddon.Columns.Add("Amount");
+                    dtaddon.Columns.Add("TotalAmount");
+
+                    ViewState["dtaddon"] = dtaddon;
+
+                    gridaddon.DataSource = dtaddon;
+                    gridaddon.DataBind();
+                }
 
 
 
@@ -989,6 +1047,8 @@ namespace Billing.Accountsbootstrap
                         decimal HQty = 0;
                         decimal GST = 0;
                         decimal iQty = 0;
+
+
                         decimal SQty = 0;
                         string sItem = "";
                         decimal dCalTotal = 0;
@@ -999,9 +1059,22 @@ namespace Billing.Accountsbootstrap
                         string sTempSession = "";
                         decimal mrpamnt = 0;
 
+                        decimal CESS = 0;
+                        //decimal mrpamnt = 0;
+                        decimal addonamount = 0;
+                        string addon = "N";
+                        string cookinginstruction = "N";
+                        string maintainstock = "N";
+                        string kotreq = "N";
+
                         string margin = "0";
                         string margingst = "0";
                         string paymsntgateway = "0";
+
+
+                        string Qtytype = "E";
+
+
 
                         tblBill.Visible = true;
                         dt = (DataTable)ViewState["dt"];
@@ -1012,12 +1085,13 @@ namespace Billing.Accountsbootstrap
                         string[] commandArgs = drpitemsearch.SelectedValue.Split(new char[] { ',' });
                         string categoryuserid = commandArgs[0];
                         string cattype = commandArgs[1];
+                        maintainstock = commandArgs[2];
 
 
                         // dCat = objbs.GetStockDetails(Convert.ToInt32(btn.CommandArgument), Convert.ToInt32(lblUserID.Text), sTableName);
                         if (cattype == "N")
                         {
-                            dCat = objbs.GetStockDetails_Ratetype(Convert.ToInt32(categoryuserid), Convert.ToInt32(lblUserID.Text), sTableName, StockOption, lblratetype.Text, lblmrptype.Text);
+                            dCat = objbs.GetStockDetails_Ratetype(Convert.ToInt32(categoryuserid), Convert.ToInt32(lblUserID.Text), sTableName, StockOption, lblratetype.Text, lblmrptype.Text, maintainstock);
                         }
                         else if (cattype == "C")
                         {
@@ -1039,6 +1113,18 @@ namespace Billing.Accountsbootstrap
                                 GST = Convert.ToDecimal(dCat.Tables[0].Rows[i]["GST"].ToString());
                                 Shwqty = Convert.ToDecimal(dCat.Tables[0].Rows[i]["QTY"].ToString());
                                 mrpamnt = Convert.ToDecimal(dCat.Tables[0].Rows[i]["mrp"]);
+
+                                Qtytype = dCat.Tables[0].Rows[i]["QTYtype"].ToString();
+
+                                addon = dCat.Tables[0].Rows[i]["addon"].ToString();
+                                maintainstock = dCat.Tables[0].Rows[i]["Maintainstock"].ToString();
+                                kotreq = dCat.Tables[0].Rows[i]["KotReq"].ToString();
+                                cookinginstruction = dCat.Tables[0].Rows[i]["CookingReq"].ToString();
+
+
+
+
+
                                 DateTime expDate = Convert.ToDateTime(dCat.Tables[0].Rows[0]["Expirydate"].ToString());
                                 if (lblisinclusiverate.Text == "Y")
                                 {
@@ -1096,7 +1182,11 @@ namespace Billing.Accountsbootstrap
 
                                         decimal DRATE = Math.Round(drateee + commamnt + commperamnt, 0);
 
+                                        int max = Convert.ToInt32(dt.AsEnumerable()
+                                        .Max(row => row["Rowid"]));
+
                                         dr["Sno"] = totcnt;
+                                        dr["Rowid"] = max + 1;
                                         dr["CategoryID"] = dCat.Tables[0].Rows[i]["categoryid"].ToString();
                                         dr["CategoryUserID"] = dCat.Tables[0].Rows[i]["categoryuserid"].ToString();
                                         dr["definition"] = dCat.Tables[0].Rows[i]["Printitem"].ToString();
@@ -1117,6 +1207,11 @@ namespace Billing.Accountsbootstrap
                                         //  dr["Itemid"] = dCat.Tables[0].Rows[i]["Itemid"].ToString();
                                         // dr["RecQty"] = Reqty.ToString();
                                         dr["Orirate"] = dRate.ToString();
+                                        dr["Addonamount"] = "0";
+                                        dr["CESS"] = "0";
+
+
+
                                         if (dAvlQty >= Qty)
                                         {
 
@@ -1134,6 +1229,10 @@ namespace Billing.Accountsbootstrap
 
 
                                     decimal Sqtyy = 0;
+                                    string cookingnotes = "";
+                                    // decimal addonrate = 0;
+                                    decimal addontotAmount = 0;
+
 
                                     {
 
@@ -1145,6 +1244,9 @@ namespace Billing.Accountsbootstrap
                                                 Qty = Convert.ToDecimal(rows[0]["Qty"].ToString());
                                                 HQty = Convert.ToDecimal(rows[0]["HQty"].ToString());
                                                 Sqtyy = Convert.ToDecimal(rows[0]["ShwQty"].ToString());
+                                                cookingnotes = rows[0]["cookingnotes"].ToString();
+                                                addontotAmount = Convert.ToDecimal(rows[0]["addontotAmount"]);
+
                                                 if (cattype == "N")
                                                 {
                                                     //  Qty = Qty + 1;
@@ -1157,32 +1259,179 @@ namespace Billing.Accountsbootstrap
                                                     Qty = Qty + Convert.ToDecimal(txtmanualqty.Text);
                                                     Sqtyy = Sqtyy + Shwqty;
                                                 }
+
+
                                             }
+
+                                            rows[0]["cookingnotes"] = cookingnotes;
+
+                                            if (StockOption == "2")
+                                            {
+                                                if (maintainstock == "N")
+                                                {
+                                                    if (Qtytype == "E")
+                                                    {
+                                                        rows[0]["Qty"] = Qty.ToString("0");
+                                                        rows[0]["ShwQty"] = Sqtyy.ToString("0");
+                                                    }
+                                                    else if (Qtytype == "D")
+                                                    {
+                                                        rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                                        rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                                    }
+
+                                                    decimal amt = Convert.ToDecimal(Qty) * dRate;
+                                                    rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
+                                                    //rows[0]["addontotAmount"] = addontotAmount;
+                                                    rows[0]["addonitemtotAmount"] = (amt + addontotAmount).ToString("" + ratesetting + "");
+                                                    if (rows[0]["addonamount"] == "")
+                                                    {
+                                                        addonamount = 0;
+                                                    }
+                                                    else
+                                                    {
+                                                        addonamount = Convert.ToDecimal(rows[0]["addonamount"]);
+                                                    }
+                                                    Qty = Convert.ToDecimal(rows[0]["addonamount"].ToString());
+                                                    decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt + addonamount;
+                                                    rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                                }
+                                                else if (maintainstock == "Y")
+                                                {
+                                                    if ((dAvlQty + HQty) >= Qty)
+                                                    {
+                                                        //rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                                        //rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                                        if (Qtytype == "E")
+                                                        {
+                                                            rows[0]["Qty"] = Qty.ToString("0");
+                                                            rows[0]["ShwQty"] = Sqtyy.ToString("0");
+                                                        }
+                                                        else if (Qtytype == "D")
+                                                        {
+                                                            rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                                            rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                                        }
+
+                                                        if (rows[0]["addonamount"] == "")
+                                                        {
+                                                            addonamount = 0;
+                                                        }
+                                                        else
+                                                        {
+                                                            addonamount = Convert.ToDecimal(rows[0]["addonamount"]);
+                                                        }
+
+                                                        decimal amt = Convert.ToDecimal(Qty) * dRate;
+                                                        rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
+                                                        rows[0]["addonitemtotAmount"] = (amt + addontotAmount).ToString("" + ratesetting + "");
+                                                        decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt + addonamount;
+                                                        rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                                    }
+                                                    else
+                                                    {
+                                                        ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Chk Categoryid and Name Wise-Qty Not Enough For this Item " + sItem + ".Thank You!!!');", true);
+                                                        return;
+                                                    }
+                                                }
+                                            }
+
                                             if (StockOption == "1")
                                             {
-                                                if ((dAvlQty + HQty) >= Qty)
+                                                if (maintainstock == "N")
                                                 {
-                                                    rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
-                                                    rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
-                                                    decimal amt = Convert.ToDecimal(Qty) * dRate;
+                                                    if (Qtytype == "E")
+                                                    {
+                                                        rows[0]["Qty"] = Qty.ToString("0");
+                                                        rows[0]["ShwQty"] = Sqtyy.ToString("0");
+                                                    }
+                                                    else if (Qtytype == "D")
+                                                    {
+                                                        rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                                        rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                                    }
+                                                    if (rows[0]["addonamount"] == "")
+                                                    {
+                                                        addonamount = 0;
+                                                    }
+                                                    else
+                                                    {
+                                                        addonamount = Convert.ToDecimal(rows[0]["addonamount"]);
+                                                    }
 
-                                                    rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
-                                                    decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
-                                                    rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
-                                                }
-                                            }
-                                            else
-                                            {
-                                                if ((dAvlQty + HQty) >= Qty)
-                                                {
-                                                    rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
-                                                    rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+
                                                     decimal amt = Convert.ToDecimal(Qty) * dRate;
                                                     rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
-                                                    decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
+                                                    rows[0]["addonitemtotAmount"] = (amt + addontotAmount).ToString("" + ratesetting + "");
+
+                                                    decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt + addonamount;
                                                     rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
                                                 }
+                                                else
+                                                {
+                                                    if ((dAvlQty + HQty) >= Qty)
+                                                    {
+                                                        //rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                                        //rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                                        if (Qtytype == "E")
+                                                        {
+                                                            rows[0]["Qty"] = Qty.ToString("0");
+                                                            rows[0]["ShwQty"] = Sqtyy.ToString("0");
+                                                        }
+                                                        else if (Qtytype == "D")
+                                                        {
+                                                            rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                                            rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                                        }
+
+                                                        if (rows[0]["addonamount"] == "")
+                                                        {
+                                                            addonamount = 0;
+                                                        }
+                                                        else
+                                                        {
+                                                            addonamount = Convert.ToDecimal(rows[0]["addonamount"]);
+                                                        }
+
+                                                        decimal amt = Convert.ToDecimal(Qty) * dRate;
+                                                        rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
+                                                        rows[0]["addonitemtotAmount"] = (amt + addontotAmount).ToString("" + ratesetting + "");
+                                                        decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt + addonamount;
+                                                        rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                                    }
+                                                    else
+                                                    {
+                                                        ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Chk Categoryid and Name Wise-Qty Not Enough For this Item " + sItem + ".Thank You!!!');", true);
+                                                        return;
+                                                    }
+                                                }
                                             }
+
+                                            //if (StockOption == "1")
+                                            //{
+                                            //    if ((dAvlQty + HQty) >= Qty)
+                                            //    {
+                                            //        rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                            //        rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                            //        decimal amt = Convert.ToDecimal(Qty) * dRate;
+
+                                            //        rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
+                                            //        decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
+                                            //        rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                            //    }
+                                            //}
+                                            //else
+                                            //{
+                                            //    if ((dAvlQty + HQty) >= Qty)
+                                            //    {
+                                            //        rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                            //        rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                            //        decimal amt = Convert.ToDecimal(Qty) * dRate;
+                                            //        rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
+                                            //        decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
+                                            //        rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                            //    }
+                                            //}
                                             //else
                                             //{
                                             //    ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Chk Item Name Wise-Qty Not Enough For this Item " + sItem + ".Thank You!!!');", true);
@@ -1203,11 +1452,18 @@ namespace Billing.Accountsbootstrap
                                             decimal amt = 0;
                                             decimal mrpamt = 0;
 
+                                            int max = Convert.ToInt32(dt.AsEnumerable()
+                       .Max(row => row["Rowid"]));
+
                                             dr["Sno"] = totcnt;
+                                            dr["Rowid"] = max + 1;
                                             dr["CategoryID"] = dCat.Tables[0].Rows[i]["categoryid"].ToString();
                                             dr["CategoryUserID"] = dCat.Tables[0].Rows[i]["categoryuserid"].ToString();
                                             dr["definition"] = dCat.Tables[0].Rows[i]["Printitem"].ToString();
                                             dr["StockID"] = iSubCatID; //dCat.Tables[0].Rows[i]["StockID"].ToString();
+
+
+
                                             dr["Available_QTY"] = Convert.ToDecimal(dAvlQty).ToString("" + qtysetting + "");// dCat.Tables[0].Rows[i]["Available_QTY"].ToString();
                                             dr["Qty"] = Convert.ToDecimal(Qty).ToString();//Qty.ToString("0");
                                             dr["ShwQty"] = Shwqty.ToString("" + qtysetting + "");
@@ -1236,18 +1492,123 @@ namespace Billing.Accountsbootstrap
                                             //  dr["Itemid"] = dCat.Tables[0].Rows[i]["Itemid"].ToString();
                                             // dr["RecQty"] = Reqty.ToString();
                                             dr["Orirate"] = dRate.ToString();
-                                            if (dAvlQty >= Qty)
-                                            {
+                                            dr["Addonamount"] = "0";
+                                            dr["CESS"] = "0";
+                                            dr["maintainstock"] = dCat.Tables[0].Rows[i]["Maintainstock"].ToString();
+                                            dr["addon"] = dCat.Tables[0].Rows[i]["addon"].ToString();
+                                            dr["cookinginstruction"] = dCat.Tables[0].Rows[i]["CookingReq"].ToString();
+                                            dr["kotreq"] = dCat.Tables[0].Rows[i]["KotReq"].ToString();
+                                            dr["addonamount"] = "0";
+                                            dr["addonRate"] = "0";
+                                            dr["addontotAmount"] = "0";
+                                            dr["addonitemtotAmount"] = "0";
 
-                                                dt.Rows.Add(dr);
-                                            }
-                                            else
+                                            dr["addonRate"] = "0";
+                                            decimal addonrte = Convert.ToDecimal(dr["addonRate"]);
+                                            dr["addonitemtotRate"] = Convert.ToDecimal(dRate + addonrte).ToString("" + ratesetting + "");
+                                            dr["Tax"] = Convert.ToDecimal(GST);
+                                            dr["CESS"] = Convert.ToDecimal(CESS);
+                                            dr["mrp"] = Convert.ToDecimal(dCat.Tables[0].Rows[i]["mrp"]).ToString("" + ratesetting + "");
+                                            dr["cattype"] = cattype;
+                                            dr["combo"] = comboo;
+
+                                            if (StockOption == "2")
                                             {
-                                                dt.Rows.Add(dr);
-                                                //ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Chk Item Name Wise-Qty Not Enough For this Item " + sItem + ".Thank You!!!');", true);
-                                                //txtmanualqty.Focus();
-                                                //return;
+                                                if (maintainstock == "N")
+                                                {
+
+                                                    {
+                                                        amt = Convert.ToDecimal(Qty) * dRate;
+                                                        mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
+                                                    }
+                                                    dr["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                                    dr["Amount"] = amt.ToString("" + ratesetting + "");
+                                                    dr["addontotAmount"] = "0";
+                                                    dr["addonitemtotAmount"] = "0";
+                                                    decimal addonitemtotamnt = Convert.ToDecimal(dr["addonitemtotAmount"]);
+                                                    dr["addonitemtotAmount"] = (amt + addonitemtotamnt).ToString("" + ratesetting + "");
+                                                    //  dr["Itemid"] = dCat.Tables[0].Rows[i]["Itemid"].ToString();
+                                                    // dr["RecQty"] = Reqty.ToString();
+                                                    dr["Orirate"] = dRate.ToString();
+
+                                                    dt.Rows.Add(dr);
+                                                }
+                                                else if (maintainstock == "Y")
+                                                {
+                                                    {
+                                                        amt = Convert.ToDecimal(Qty) * dRate;
+                                                        mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
+                                                    }
+                                                    dr["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                                    dr["Amount"] = amt.ToString("" + ratesetting + "");
+                                                    dr["addonitemtotAmount"] = "0";
+                                                    dr["addontotAmount"] = "0";
+                                                    decimal addonitemtotamnt = Convert.ToDecimal(dr["addonitemtotAmount"]);
+                                                    dr["addonitemtotAmount"] = (amt + addonitemtotamnt).ToString("" + ratesetting + "");
+                                                    //  dr["Itemid"] = dCat.Tables[0].Rows[i]["Itemid"].ToString();
+                                                    // dr["RecQty"] = Reqty.ToString();
+                                                    dr["Orirate"] = dRate.ToString();
+                                                    if (dAvlQty >= Qty)
+                                                    {
+
+                                                        dt.Rows.Add(dr);
+                                                    }
+                                                    else
+                                                    {
+                                                        ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Chk Category and Name Wise-Qty Not Enough For this Item " + sItem + ".Thank You!!!');", true);
+                                                        return;
+                                                    }
+                                                }
+
                                             }
+
+
+                                            if (StockOption == "1")
+                                            {
+                                                {
+                                                    amt = Convert.ToDecimal(Qty) * dRate;
+                                                    mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
+                                                }
+                                                dr["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                                dr["Amount"] = amt.ToString("" + ratesetting + "");
+                                                dr["addonitemtotAmount"] = "0";
+                                                decimal addonitemtotamnt = Convert.ToDecimal(dr["addonitemtotAmount"]);
+                                                dr["addonitemtotAmount"] = (amt + addonitemtotamnt).ToString("" + ratesetting + "");
+                                                //  dr["Itemid"] = dCat.Tables[0].Rows[i]["Itemid"].ToString();
+                                                // dr["RecQty"] = Reqty.ToString();
+                                                dr["Orirate"] = dRate.ToString();
+                                                if (maintainstock == "N")
+                                                {
+                                                    dt.Rows.Add(dr);
+                                                }
+                                                else
+                                                {
+                                                    if (dAvlQty >= Qty)
+                                                    {
+
+                                                        dt.Rows.Add(dr);
+                                                    }
+                                                    else
+                                                    {
+                                                        ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Chk Categoryid and Name Wise-Qty Not Enough For this Item " + sItem + ".Thank You!!!');", true);
+                                                        return;
+                                                    }
+                                                }
+                                            }
+
+
+                                            //if (dAvlQty >= Qty)
+                                            //{
+
+                                            //    dt.Rows.Add(dr);
+                                            //}
+                                            //else
+                                            //{
+                                            //    dt.Rows.Add(dr);
+                                            //    //ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Chk Item Name Wise-Qty Not Enough For this Item " + sItem + ".Thank You!!!');", true);
+                                            //    //txtmanualqty.Focus();
+                                            //    //return;
+                                            //}
 
                                             ViewState["dt"] = dt;
                                             txtmanualslno.Text = (totcnt + 1).ToString();
@@ -1348,6 +1709,16 @@ namespace Billing.Accountsbootstrap
                         string margingst = "0";
                         string paymsntgateway = "0";
 
+                        decimal CESS = 0;
+                        //decimal mrpamnt = 0;
+                        decimal addonamount = 0;
+                        string addon = "N";
+                        string cookinginstruction = "N";
+                        //  string maintainstock = "N";
+                        string kotreq = "N";
+
+                        string Qtytype = "E";
+
                         tblBill.Visible = true;
                         dt = (DataTable)ViewState["dt"];
                         //dtt = (DataTable)ViewState["dtt"];
@@ -1360,12 +1731,21 @@ namespace Billing.Accountsbootstrap
 
                         string categoryuserid = Nlblstockid.Text;
                         string cattype = Nlblcattype.Text;
+                        string maintainstock = "Y";
+
+                        // get maintainstock query
+
+                        DataSet getitem = objbs.SelectDefinition(Convert.ToInt32(categoryuserid));
+                        if (getitem.Tables[0].Rows.Count > 0)
+                        {
+                            maintainstock = getitem.Tables[0].Rows[0]["Maintainstock"].ToString();
+                        }
 
 
                         // dCat = objbs.GetStockDetails(Convert.ToInt32(btn.CommandArgument), Convert.ToInt32(lblUserID.Text), sTableName);
                         // if (cattype == "N")
                         {
-                            dCat = objbs.GetStockDetails_Ratetype(Convert.ToInt32(categoryuserid), Convert.ToInt32(lblUserID.Text), sTableName, StockOption, lblratetype.Text, lblmrptype.Text);
+                            dCat = objbs.GetStockDetails_Ratetype(Convert.ToInt32(categoryuserid), Convert.ToInt32(lblUserID.Text), sTableName, StockOption, lblratetype.Text, lblmrptype.Text, maintainstock);
                         }
                         //else if (cattype == "C")
                         //{
@@ -1444,7 +1824,11 @@ namespace Billing.Accountsbootstrap
 
                                         decimal DRATE = Math.Round(drateee + commamnt + commperamnt, 0);
 
+                                        int max = Convert.ToInt32(dt.AsEnumerable()
+                       .Max(row => row["Rowid"]));
+
                                         dr["Sno"] = totcnt;
+                                        dr["Rowid"] = max + 1;
                                         dr["CategoryID"] = dCat.Tables[0].Rows[i]["categoryid"].ToString();
                                         dr["CategoryUserID"] = dCat.Tables[0].Rows[i]["categoryuserid"].ToString();
                                         dr["definition"] = dCat.Tables[0].Rows[i]["Printitem"].ToString();
@@ -1465,6 +1849,8 @@ namespace Billing.Accountsbootstrap
                                         //  dr["Itemid"] = dCat.Tables[0].Rows[i]["Itemid"].ToString();
                                         // dr["RecQty"] = Reqty.ToString();
                                         dr["Orirate"] = dRate.ToString();
+                                        dr["Addonamount"] = "0";
+                                        dr["CESS"] = "0";
                                         if (dAvlQty >= Qty)
                                         {
 
@@ -1478,6 +1864,8 @@ namespace Billing.Accountsbootstrap
                                 else
                                 {
                                     decimal Sqtyy = 0;
+                                    string cookingnotes = "";
+                                    decimal addontotAmount = 0;
 
                                     {
 
@@ -1489,6 +1877,9 @@ namespace Billing.Accountsbootstrap
                                                 Qty = Convert.ToDecimal(rows[0]["Qty"].ToString());
                                                 HQty = Convert.ToDecimal(rows[0]["HQty"].ToString());
                                                 Sqtyy = Convert.ToDecimal(rows[0]["ShwQty"].ToString());
+                                                cookingnotes = rows[0]["cookingnotes"].ToString();
+                                                addontotAmount = Convert.ToDecimal(rows[0]["addontotAmount"]);
+
                                                 if (cattype == "N")
                                                 {
                                                     //  Qty = Qty + 1;
@@ -1502,31 +1893,176 @@ namespace Billing.Accountsbootstrap
                                                     Sqtyy = Sqtyy + Shwqty;
                                                 }
                                             }
+
+                                            rows[0]["cookingnotes"] = cookingnotes;
+
+                                            if (StockOption == "2")
+                                            {
+                                                if (maintainstock == "N")
+                                                {
+                                                    if (Qtytype == "E")
+                                                    {
+                                                        rows[0]["Qty"] = Qty.ToString("0");
+                                                        rows[0]["ShwQty"] = Sqtyy.ToString("0");
+                                                    }
+                                                    else if (Qtytype == "D")
+                                                    {
+                                                        rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                                        rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                                    }
+
+                                                    decimal amt = Convert.ToDecimal(Qty) * dRate;
+                                                    rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
+                                                    //rows[0]["addontotAmount"] = addontotAmount;
+                                                    rows[0]["addonitemtotAmount"] = (amt + addontotAmount).ToString("" + ratesetting + "");
+                                                    if (rows[0]["addonamount"] == "")
+                                                    {
+                                                        addonamount = 0;
+                                                    }
+                                                    else
+                                                    {
+                                                        addonamount = Convert.ToDecimal(rows[0]["addonamount"]);
+                                                    }
+                                                    Qty = Convert.ToDecimal(rows[0]["addonamount"].ToString());
+                                                    decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt + addonamount;
+                                                    rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                                }
+                                                else if (maintainstock == "Y")
+                                                {
+                                                    if ((dAvlQty + HQty) >= Qty)
+                                                    {
+                                                        //rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                                        //rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                                        if (Qtytype == "E")
+                                                        {
+                                                            rows[0]["Qty"] = Qty.ToString("0");
+                                                            rows[0]["ShwQty"] = Sqtyy.ToString("0");
+                                                        }
+                                                        else if (Qtytype == "D")
+                                                        {
+                                                            rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                                            rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                                        }
+
+                                                        if (rows[0]["addonamount"] == "")
+                                                        {
+                                                            addonamount = 0;
+                                                        }
+                                                        else
+                                                        {
+                                                            addonamount = Convert.ToDecimal(rows[0]["addonamount"]);
+                                                        }
+
+                                                        decimal amt = Convert.ToDecimal(Qty) * dRate;
+                                                        rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
+                                                        rows[0]["addonitemtotAmount"] = (amt + addontotAmount).ToString("" + ratesetting + "");
+                                                        decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt + addonamount;
+                                                        rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                                    }
+                                                    else
+                                                    {
+                                                        ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Chk Categoryid and Name Wise-Qty Not Enough For this Item " + sItem + ".Thank You!!!');", true);
+                                                        return;
+                                                    }
+                                                }
+                                            }
+
                                             if (StockOption == "1")
                                             {
-                                                if ((dAvlQty + HQty) >= Qty)
+                                                if (maintainstock == "N")
                                                 {
-                                                    rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
-                                                    rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
-                                                    decimal amt = Convert.ToDecimal(Qty) * dRate;
+                                                    if (Qtytype == "E")
+                                                    {
+                                                        rows[0]["Qty"] = Qty.ToString("0");
+                                                        rows[0]["ShwQty"] = Sqtyy.ToString("0");
+                                                    }
+                                                    else if (Qtytype == "D")
+                                                    {
+                                                        rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                                        rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                                    }
+                                                    if (rows[0]["addonamount"] == "")
+                                                    {
+                                                        addonamount = 0;
+                                                    }
+                                                    else
+                                                    {
+                                                        addonamount = Convert.ToDecimal(rows[0]["addonamount"]);
+                                                    }
 
-                                                    rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
-                                                    decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
-                                                    rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
-                                                }
-                                            }
-                                            else
-                                            {
-                                                if ((dAvlQty + HQty) >= Qty)
-                                                {
-                                                    rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
-                                                    rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+
                                                     decimal amt = Convert.ToDecimal(Qty) * dRate;
                                                     rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
-                                                    decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
+                                                    rows[0]["addonitemtotAmount"] = (amt + addontotAmount).ToString("" + ratesetting + "");
+
+                                                    decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt + addonamount;
                                                     rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
                                                 }
+                                                else
+                                                {
+                                                    if ((dAvlQty + HQty) >= Qty)
+                                                    {
+                                                        //rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                                        //rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                                        if (Qtytype == "E")
+                                                        {
+                                                            rows[0]["Qty"] = Qty.ToString("0");
+                                                            rows[0]["ShwQty"] = Sqtyy.ToString("0");
+                                                        }
+                                                        else if (Qtytype == "D")
+                                                        {
+                                                            rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                                            rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                                        }
+
+                                                        if (rows[0]["addonamount"] == "")
+                                                        {
+                                                            addonamount = 0;
+                                                        }
+                                                        else
+                                                        {
+                                                            addonamount = Convert.ToDecimal(rows[0]["addonamount"]);
+                                                        }
+
+                                                        decimal amt = Convert.ToDecimal(Qty) * dRate;
+                                                        rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
+                                                        rows[0]["addonitemtotAmount"] = (amt + addontotAmount).ToString("" + ratesetting + "");
+                                                        decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt + addonamount;
+                                                        rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                                    }
+                                                    else
+                                                    {
+                                                        ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Chk Categoryid and Name Wise-Qty Not Enough For this Item " + sItem + ".Thank You!!!');", true);
+                                                        return;
+                                                    }
+                                                }
                                             }
+
+                                            //if (StockOption == "1")
+                                            //{
+                                            //    if ((dAvlQty + HQty) >= Qty)
+                                            //    {
+                                            //        rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                            //        rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                            //        decimal amt = Convert.ToDecimal(Qty) * dRate;
+
+                                            //        rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
+                                            //        decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
+                                            //        rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                            //    }
+                                            //}
+                                            //else
+                                            //{
+                                            //    if ((dAvlQty + HQty) >= Qty)
+                                            //    {
+                                            //        rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                            //        rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                            //        decimal amt = Convert.ToDecimal(Qty) * dRate;
+                                            //        rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
+                                            //        decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
+                                            //        rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                            //    }
+                                            //}
                                         }
                                         else
                                         {
@@ -1539,7 +2075,11 @@ namespace Billing.Accountsbootstrap
                                             decimal amt = 0;
                                             decimal mrpamt = 0;
 
+                                            int max = Convert.ToInt32(dt.AsEnumerable()
+                      .Max(row => row["Rowid"]));
+
                                             dr["Sno"] = totcnt;
+                                            dr["Rowid"] = max + 1;
                                             dr["CategoryID"] = dCat.Tables[0].Rows[i]["categoryid"].ToString();
                                             dr["CategoryUserID"] = dCat.Tables[0].Rows[i]["categoryuserid"].ToString();
                                             dr["definition"] = dCat.Tables[0].Rows[i]["Printitem"].ToString();
@@ -1547,11 +2087,21 @@ namespace Billing.Accountsbootstrap
                                             dr["Available_QTY"] = Convert.ToDecimal(dAvlQty).ToString("" + qtysetting + "");// dCat.Tables[0].Rows[i]["Available_QTY"].ToString();
                                             dr["Qty"] = Convert.ToDecimal(Qty).ToString();//Qty.ToString("0");
                                             dr["ShwQty"] = Shwqty.ToString("" + qtysetting + "");
+                                            //dr["Rate"] = Convert.ToDecimal(dRate).ToString("" + ratesetting + "");
+                                            //dr["Tax"] = Convert.ToDecimal(GST);
+                                            //dr["mrp"] = Convert.ToDecimal(dCat.Tables[0].Rows[i]["mrp"]).ToString("" + ratesetting + "");
+                                            //dr["cattype"] = cattype;
+                                            //dr["combo"] = comboo;
                                             dr["Rate"] = Convert.ToDecimal(dRate).ToString("" + ratesetting + "");
+                                            dr["addonRate"] = "0";
+                                            decimal addonrte = Convert.ToDecimal(dr["addonRate"]);
+                                            dr["addonitemtotRate"] = Convert.ToDecimal(dRate + addonrte).ToString("" + ratesetting + "");
                                             dr["Tax"] = Convert.ToDecimal(GST);
+                                            dr["CESS"] = Convert.ToDecimal(CESS);
                                             dr["mrp"] = Convert.ToDecimal(dCat.Tables[0].Rows[i]["mrp"]).ToString("" + ratesetting + "");
                                             dr["cattype"] = cattype;
                                             dr["combo"] = comboo;
+
                                             dr["Cqty"] = Shwqty.ToString("" + qtysetting + "");
                                             if (dr["Hqty"].ToString() == "0" || dr["Hqty"].ToString() == "")
                                             {
@@ -1573,17 +2123,100 @@ namespace Billing.Accountsbootstrap
                                             //  dr["Itemid"] = dCat.Tables[0].Rows[i]["Itemid"].ToString();
                                             // dr["RecQty"] = Reqty.ToString();
                                             dr["Orirate"] = dRate.ToString();
-                                            if (dAvlQty >= Qty)
-                                            {
 
-                                                dt.Rows.Add(dr);
-                                            }
-                                            else
+                                            dr["maintainstock"] = dCat.Tables[0].Rows[i]["Maintainstock"].ToString();
+                                            dr["addon"] = dCat.Tables[0].Rows[i]["addon"].ToString();
+                                            dr["cookinginstruction"] = dCat.Tables[0].Rows[i]["CookingReq"].ToString();
+                                            dr["kotreq"] = dCat.Tables[0].Rows[i]["KotReq"].ToString();
+                                            dr["addonamount"] = "0";
+                                            dr["addonRate"] = "0";
+                                            dr["addontotAmount"] = "0";
+                                            dr["addonitemtotAmount"] = "0";
+
+
+
+                                            if (StockOption == "2")
                                             {
-                                                dt.Rows.Add(dr);
-                                                //ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Chk Item Name Wise-Qty Not Enough For this Item " + sItem + ".Thank You!!!');", true);
-                                                //txtmanualqty.Focus();
-                                                //return;
+                                                if (maintainstock == "N")
+                                                {
+
+                                                    {
+                                                        amt = Convert.ToDecimal(Qty) * dRate;
+                                                        mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
+                                                    }
+                                                    dr["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                                    dr["Amount"] = amt.ToString("" + ratesetting + "");
+                                                    dr["addontotAmount"] = "0";
+                                                    dr["addonitemtotAmount"] = "0";
+                                                    decimal addonitemtotamnt = Convert.ToDecimal(dr["addonitemtotAmount"]);
+                                                    dr["addonitemtotAmount"] = (amt + addonitemtotamnt).ToString("" + ratesetting + "");
+                                                    //  dr["Itemid"] = dCat.Tables[0].Rows[i]["Itemid"].ToString();
+                                                    // dr["RecQty"] = Reqty.ToString();
+                                                    dr["Orirate"] = dRate.ToString();
+
+                                                    dt.Rows.Add(dr);
+                                                }
+                                                else if (maintainstock == "Y")
+                                                {
+                                                    {
+                                                        amt = Convert.ToDecimal(Qty) * dRate;
+                                                        mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
+                                                    }
+                                                    dr["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                                    dr["Amount"] = amt.ToString("" + ratesetting + "");
+                                                    dr["addonitemtotAmount"] = "0";
+                                                    dr["addontotAmount"] = "0";
+                                                    decimal addonitemtotamnt = Convert.ToDecimal(dr["addonitemtotAmount"]);
+                                                    dr["addonitemtotAmount"] = (amt + addonitemtotamnt).ToString("" + ratesetting + "");
+                                                    //  dr["Itemid"] = dCat.Tables[0].Rows[i]["Itemid"].ToString();
+                                                    // dr["RecQty"] = Reqty.ToString();
+                                                    dr["Orirate"] = dRate.ToString();
+                                                    if (dAvlQty >= Qty)
+                                                    {
+
+                                                        dt.Rows.Add(dr);
+                                                    }
+                                                    else
+                                                    {
+                                                        ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Chk Category and Name Wise-Qty Not Enough For this Item " + sItem + ".Thank You!!!');", true);
+                                                        return;
+                                                    }
+                                                }
+
+                                            }
+
+
+                                            if (StockOption == "1")
+                                            {
+                                                {
+                                                    amt = Convert.ToDecimal(Qty) * dRate;
+                                                    mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
+                                                }
+                                                dr["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                                dr["Amount"] = amt.ToString("" + ratesetting + "");
+                                                dr["addonitemtotAmount"] = "0";
+                                                decimal addonitemtotamnt = Convert.ToDecimal(dr["addonitemtotAmount"]);
+                                                dr["addonitemtotAmount"] = (amt + addonitemtotamnt).ToString("" + ratesetting + "");
+                                                //  dr["Itemid"] = dCat.Tables[0].Rows[i]["Itemid"].ToString();
+                                                // dr["RecQty"] = Reqty.ToString();
+                                                dr["Orirate"] = dRate.ToString();
+                                                if (maintainstock == "N")
+                                                {
+                                                    dt.Rows.Add(dr);
+                                                }
+                                                else
+                                                {
+                                                    if (dAvlQty >= Qty)
+                                                    {
+
+                                                        dt.Rows.Add(dr);
+                                                    }
+                                                    else
+                                                    {
+                                                        ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Chk Categoryid and Name Wise-Qty Not Enough For this Item " + sItem + ".Thank You!!!');", true);
+                                                        return;
+                                                    }
+                                                }
                                             }
 
                                             ViewState["dt"] = dt;
@@ -1885,12 +2518,139 @@ namespace Billing.Accountsbootstrap
             txtdiscou_TextChanged(sender, e);
         }
 
+        protected void subButton1_Click(object sender, EventArgs e)
+        {
+
+            Button btn = (Button)sender;
+
+            #region load Item
+
+            DataSet dcatchk = objbs.gettingsubcategorycategorybyid(btn.CommandArgument);
+            if (dcatchk.Tables[0].Rows.Count > 0)
+            {
+                String cattype = dcatchk.Tables[0].Rows[0]["cattype"].ToString();
+                String CategoryID = dcatchk.Tables[0].Rows[0]["CategoryID"].ToString();
+
+
+                DataSet dCat = objbs.SelectDistinctItems_subcategory(Convert.ToInt32(CategoryID), Convert.ToInt32(lblUserID.Text), sTableName, cattype, StockOption, lblmrptype.Text, Convert.ToInt32(btn.CommandArgument));
+                Session["SubID"] = Convert.ToInt32(btn.CommandArgument);
+                int icount = dCat.Tables[0].Rows.Count;
+
+
+
+                DataTable dt1 = new DataTable();
+                DataRow dr1 = null;
+                dt1.Columns.Add(new DataColumn("Definition", typeof(string)));
+                dt1.Columns.Add(new DataColumn("CategoryUserID", typeof(string)));
+                dt1.Columns.Add(new DataColumn("Cattype", typeof(string)));
+                dt1.Columns.Add(new DataColumn("maintainstock", typeof(string)));
+
+                DataTable dt2 = new DataTable();
+                DataRow dr2 = null;
+                dt2.Columns.Add(new DataColumn("Definition", typeof(string)));
+                dt2.Columns.Add(new DataColumn("CategoryUserID", typeof(string)));
+                dt2.Columns.Add(new DataColumn("Cattype", typeof(string)));
+                dt2.Columns.Add(new DataColumn("maintainstock", typeof(string)));
+
+
+                DataTable dt3 = new DataTable();
+                DataRow dr3 = null;
+                dt3.Columns.Add(new DataColumn("Definition", typeof(string)));
+                dt3.Columns.Add(new DataColumn("CategoryUserID", typeof(string)));
+                dt3.Columns.Add(new DataColumn("Cattype", typeof(string)));
+                dt3.Columns.Add(new DataColumn("maintainstock", typeof(string)));
+
+                int iChk = icount / 3;
+                for (int i = 0; i < icount; i++)
+                {
+                    decimal dStock = Convert.ToDecimal(dCat.Tables[0].Rows[i]["Available_QTY"].ToString());
+                    string sTock = dStock.ToString("" + qtysetting + "");
+                    DateTime Date1 = Convert.ToDateTime(dCat.Tables[0].Rows[i]["Expirydate"].ToString());
+                    //string sDate1 = Date1.ToString("dd/MM/yy");
+
+                    dr1 = dt1.NewRow();
+                    dr1["Definition"] = dCat.Tables[0].Rows[i]["Printitem"].ToString() + Environment.NewLine + " (" + sTock + ")" + " - " + Convert.ToDouble(dCat.Tables[0].Rows[i]["raate"]).ToString("" + ratesetting + "");
+                    dr1["CategoryUserID"] = dCat.Tables[0].Rows[i]["StockID"].ToString();
+                    dr1["Cattype"] = cattype;
+                    dr1["maintainstock"] = dCat.Tables[0].Rows[i]["maintainstock"].ToString();
+                    btn.ID = dCat.Tables[0].Rows[i]["StockID"].ToString();
+
+                    dt1.Rows.Add(dr1);
+
+
+
+                    i = i + 1;
+                    if (i < icount)
+                    {
+                        decimal dStock1 = Convert.ToDecimal(dCat.Tables[0].Rows[i]["Available_QTY"].ToString());
+
+
+                        string sTock1 = dStock1.ToString("" + qtysetting + "");
+                        DateTime Date2 = Convert.ToDateTime(dCat.Tables[0].Rows[i]["Expirydate"].ToString());
+                        // string sDate2 = Date2.ToString("dd/MM/yy");
+
+                        dr2 = dt2.NewRow();
+                        dr2["Definition"] = dCat.Tables[0].Rows[i]["Printitem"].ToString() + Environment.NewLine + " (" + sTock1 + ")" + " - " + Convert.ToDouble(dCat.Tables[0].Rows[i]["raate"]).ToString("" + ratesetting + "");
+                        dr2["CategoryUserID"] = dCat.Tables[0].Rows[i]["StockID"].ToString();
+                        dr2["Cattype"] = cattype;
+                        dr2["maintainstock"] = dCat.Tables[0].Rows[i]["maintainstock"].ToString();
+                        btn.ID = dCat.Tables[0].Rows[i]["StockID"].ToString();
+                        dt2.Rows.Add(dr2);
+
+
+                    }
+
+                    i = i + 1;
+                    if (i < icount)
+                    {
+
+                        decimal dStock2 = Convert.ToDecimal(dCat.Tables[0].Rows[i]["Available_QTY"].ToString());
+                        string sTock2 = dStock2.ToString("" + qtysetting + "");
+
+                        DateTime Date3 = Convert.ToDateTime(dCat.Tables[0].Rows[i]["Expirydate"].ToString());
+
+
+                        // string sDate3 = Date3.ToString("dd/MM/yy");
+
+                        dr3 = dt3.NewRow();
+                        dr3["Definition"] = dCat.Tables[0].Rows[i]["Printitem"].ToString() + Environment.NewLine + " (" + sTock2 + ")" + " - " + Convert.ToDouble(dCat.Tables[0].Rows[i]["raate"]).ToString("" + ratesetting + "");
+                        dr3["CategoryUserID"] = dCat.Tables[0].Rows[i]["StockID"].ToString();
+                        dr3["Cattype"] = cattype;
+                        dr3["maintainstock"] = dCat.Tables[0].Rows[i]["maintainstock"].ToString();
+                        btn.ID = dCat.Tables[0].Rows[i]["StockID"].ToString();
+
+                        dt3.Rows.Add(dr3);
+
+                    }
+
+
+
+
+
+
+                }
+
+                GridView2.DataSource = dt1;
+                GridView2.DataBind();
+                GridView3.DataSource = dt2;
+                GridView3.DataBind();
+                GridView4.DataSource = dt3;
+                GridView4.DataBind();
+            }
+            #endregion
+
+
+
+        }
+
         protected void Button1_Click(object sender, EventArgs e)
         {
 
             Button btn = (Button)sender;
 
             // Checking category
+
+            #region load Item
 
             DataSet dcatchk = objbs.gettingcategorybyid(btn.CommandArgument);
             if (dcatchk.Tables[0].Rows.Count > 0)
@@ -1920,12 +2680,14 @@ namespace Billing.Accountsbootstrap
                 dt1.Columns.Add(new DataColumn("Definition", typeof(string)));
                 dt1.Columns.Add(new DataColumn("CategoryUserID", typeof(string)));
                 dt1.Columns.Add(new DataColumn("Cattype", typeof(string)));
+                dt1.Columns.Add(new DataColumn("maintainstock", typeof(string)));
 
                 DataTable dt2 = new DataTable();
                 DataRow dr2 = null;
                 dt2.Columns.Add(new DataColumn("Definition", typeof(string)));
                 dt2.Columns.Add(new DataColumn("CategoryUserID", typeof(string)));
                 dt2.Columns.Add(new DataColumn("Cattype", typeof(string)));
+                dt2.Columns.Add(new DataColumn("maintainstock", typeof(string)));
 
 
                 DataTable dt3 = new DataTable();
@@ -1933,6 +2695,7 @@ namespace Billing.Accountsbootstrap
                 dt3.Columns.Add(new DataColumn("Definition", typeof(string)));
                 dt3.Columns.Add(new DataColumn("CategoryUserID", typeof(string)));
                 dt3.Columns.Add(new DataColumn("Cattype", typeof(string)));
+                dt3.Columns.Add(new DataColumn("maintainstock", typeof(string)));
 
                 int iChk = icount / 3;
                 for (int i = 0; i < icount; i++)
@@ -1946,6 +2709,7 @@ namespace Billing.Accountsbootstrap
                     dr1["Definition"] = dCat.Tables[0].Rows[i]["Printitem"].ToString() + Environment.NewLine + " (" + sTock + ")" + " - " + Convert.ToDouble(dCat.Tables[0].Rows[i]["raate"]).ToString("" + ratesetting + "");
                     dr1["CategoryUserID"] = dCat.Tables[0].Rows[i]["StockID"].ToString();
                     dr1["Cattype"] = cattype;
+                    dr1["maintainstock"] = dCat.Tables[0].Rows[i]["maintainstock"].ToString();
                     btn.ID = dCat.Tables[0].Rows[i]["StockID"].ToString();
 
                     dt1.Rows.Add(dr1);
@@ -1966,6 +2730,7 @@ namespace Billing.Accountsbootstrap
                         dr2["Definition"] = dCat.Tables[0].Rows[i]["Printitem"].ToString() + Environment.NewLine + " (" + sTock1 + ")" + " - " + Convert.ToDouble(dCat.Tables[0].Rows[i]["raate"]).ToString("" + ratesetting + "");
                         dr2["CategoryUserID"] = dCat.Tables[0].Rows[i]["StockID"].ToString();
                         dr2["Cattype"] = cattype;
+                        dr2["maintainstock"] = dCat.Tables[0].Rows[i]["maintainstock"].ToString();
                         btn.ID = dCat.Tables[0].Rows[i]["StockID"].ToString();
                         dt2.Rows.Add(dr2);
 
@@ -1988,6 +2753,7 @@ namespace Billing.Accountsbootstrap
                         dr3["Definition"] = dCat.Tables[0].Rows[i]["Printitem"].ToString() + Environment.NewLine + " (" + sTock2 + ")" + " - " + Convert.ToDouble(dCat.Tables[0].Rows[i]["raate"]).ToString("" + ratesetting + "");
                         dr3["CategoryUserID"] = dCat.Tables[0].Rows[i]["StockID"].ToString();
                         dr3["Cattype"] = cattype;
+                        dr3["maintainstock"] = dCat.Tables[0].Rows[i]["maintainstock"].ToString();
                         btn.ID = dCat.Tables[0].Rows[i]["StockID"].ToString();
 
                         dt3.Rows.Add(dr3);
@@ -2033,269 +2799,886 @@ namespace Billing.Accountsbootstrap
 
                 // GridView2.Rows[0].Cells[0].Controls.Add(GridView2);
             }
+            #endregion
 
 
-        }
-        protected void gvlist_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            int index = Convert.ToInt32(e.CommandArgument);
+            #region SUB CATEGORY LOAD
+            DataSet dsubcatchk = objbs.gettingsubcategorybyid(btn.CommandArgument);
+            if (dsubcatchk.Tables[0].Rows.Count > 0)
 
-            GridViewRow gvRow = gvlist.Rows[index];
-            dt = (DataTable)ViewState["dt"];
-            //   dtt = (DataTable)ViewState["dtt"];
-            //  TableCell Item = gvlist.Rows[index].Cells[3];
-            Label Item = (Label)gvRow.FindControl("CategoryUserid");
-            Label lblcattype = (Label)gvRow.FindControl("lblcattype");
-            Label lblcombo = (Label)gvRow.FindControl("lblcombo");
-            TextBox ShwQty = (TextBox)gvRow.FindControl("txtshwqty");
-            TextBox txtcqty = (TextBox)gvRow.FindControl("txtcqty");
-            //  TextBox Rate = (TextBox)gvRow.FindControl("Rate");
-            // TextBox Amount = (TextBox)gvRow.FindControl("Amount");
-            //TableCell Quantity = gvlist.Rows[index].Cells[5];
-            //TableCell Rate = gvlist.Rows[index].Cells[6];
-            //TableCell Amount = gvlist.Rows[index].Cells[8];
-            if (e.CommandName == "minus")
             {
-                foreach (DataRow dr in dt.Rows)
+                //  String cattype = dcatchk.Tables[0].Rows[0]["cattype"].ToString();
+
+
+                //DataSet dCat = objbs.SelectDistinctItems(Convert.ToInt32(btn.CommandArgument), Convert.ToInt32(lblUserID.Text), sTableName, cattype, StockOption, lblmrptype.Text);
+                //Session["SubID"] = Convert.ToInt32(btn.CommandArgument);
+                int icount = dsubcatchk.Tables[0].Rows.Count;
+
+                //var d = dCat.Tables[0];// here ds is your dataset.
+                //int count = d.Rows.Count;
+                //var x = new DataTable();
+                //for (int i = 0; i <= count; i++)
+                //{
+                //    var dr = d.Rows[i];
+                //    x.Rows.Add(dr.ItemArray);
+                //    d.Rows.RemoveAt(i);
+                //}
+                //var ret = new DataSet();
+                //ret.Tables.Add(x);
+                //ret.Tables.Add(d);
+
+                DataTable dtsub1 = new DataTable();
+                DataRow drsub1 = null;
+                dtsub1.Columns.Add(new DataColumn("Definition", typeof(string)));
+                dtsub1.Columns.Add(new DataColumn("subcategoryid", typeof(string)));
+
+
+                DataTable dtsub2 = new DataTable();
+                DataRow drsub2 = null;
+                dtsub2.Columns.Add(new DataColumn("Definition", typeof(string)));
+                dtsub2.Columns.Add(new DataColumn("subcategoryid", typeof(string)));
+
+
+
+                DataTable dtsub3 = new DataTable();
+                DataRow drsub3 = null;
+                dtsub3.Columns.Add(new DataColumn("Definition", typeof(string)));
+                dtsub3.Columns.Add(new DataColumn("subcategoryid", typeof(string)));
+
+
+                int iChk = icount / 3;
+                for (int i = 0; i < icount; i++)
                 {
-                    if (lblcattype.Text == "N")
+                    // decimal dStock = Convert.ToDecimal(dCat.Tables[0].Rows[i]["Available_QTY"].ToString());
+                    // string sTock = dStock.ToString("" + qtysetting + "");
+                    //  DateTime Date1 = Convert.ToDateTime(dCat.Tables[0].Rows[i]["Expirydate"].ToString());
+                    //string sDate1 = Date1.ToString("dd/MM/yy");
+
+                    drsub1 = dtsub1.NewRow();
+                    drsub1["Definition"] = dsubcatchk.Tables[0].Rows[i]["SubCategoryName"].ToString();
+                    drsub1["SubCategoryId"] = dsubcatchk.Tables[0].Rows[i]["SubCategoryId"].ToString();
+                    dtsub1.Rows.Add(drsub1);
+
+
+
+                    i = i + 1;
+                    if (i < icount)
                     {
-                        if (dr["CategoryUserid"].ToString() == Item.Text && lblcattype.Text == dr["cattype"].ToString())
-                        {
-                            decimal qty = Convert.ToDecimal(dr["Qty"].ToString());
-                            decimal shwqty = Convert.ToDecimal(dr["ShwQty"].ToString());
-                            //  int minQty = Convert.ToInt32(dr["recQty"].ToString());
-                            decimal rate = Convert.ToDecimal(dr["Rate"].ToString());
-                            decimal cqty = Convert.ToDecimal(dr["cQty"].ToString());
-                            decimal amt = 0;
-                            //  int final = qty - minQty;
-                            decimal shwfinal = qty - 1;
-                            decimal shwqtyy = shwqty - cqty;
-                            dr["Qty"] = shwfinal.ToString();
-                            dr["ShwQty"] = shwqtyy.ToString();
+                        drsub2 = dtsub2.NewRow();
+                        drsub2["Definition"] = dsubcatchk.Tables[0].Rows[i]["SubCategoryName"].ToString();
+                        drsub2["SubCategoryId"] = dsubcatchk.Tables[0].Rows[i]["SubCategoryId"].ToString();
+                        dtsub2.Rows.Add(drsub2);
 
-                            amt = shwfinal * rate;
-                            dr["Amount"] = amt.ToString("" + ratesetting + "");
-                            if (dr["Qty"].ToString() == "0" && lblcattype.Text == dr["cattype"].ToString())
-                            {
-                                dt.Rows.Remove(dr);
-                            }
-                            if (shwfinal < 0)
-                            {
-                                dt.Rows.Remove(dr);
-                            }
-                            ViewState["dt"] = dt;
 
-                            break;
-                        }
                     }
-                    else if (lblcattype.Text == "C")
+
+                    i = i + 1;
+                    if (i < icount)
                     {
 
+                        drsub3 = dtsub3.NewRow();
+                        drsub3["Definition"] = dsubcatchk.Tables[0].Rows[i]["SubCategoryName"].ToString();
+                        drsub3["SubCategoryId"] = dsubcatchk.Tables[0].Rows[i]["SubCategoryId"].ToString();
+                        dtsub3.Rows.Add(drsub3);
 
-                        for (int i = 0; i < dt.Rows.Count; i++)
-                        {
-                            if (lblcombo.Text == dt.Rows[i]["combo"].ToString())
-                            {
-                                //dt.Rows.RemoveAt(i);
-                                decimal qty = Convert.ToDecimal(dt.Rows[i]["Qty"].ToString());
-                                decimal shwqty = Convert.ToDecimal(dt.Rows[i]["ShwQty"].ToString());
-                                decimal cqty = Convert.ToDecimal(dt.Rows[i]["Cqty"].ToString());
-                                decimal rate = Convert.ToDecimal(dt.Rows[i]["Rate"].ToString());
-                                decimal amt = 0;
-                                //  int final = qty - minQty;
-                                decimal shwfinal = qty - 1;
-                                decimal shqtyy = cqty * 1;
-
-                                decimal shqtyy1 = shwqty - shqtyy;
-
-                                dt.Rows[i]["Qty"] = shwfinal.ToString();
-                                dt.Rows[i]["ShwQty"] = shqtyy1.ToString();
-                                amt = shwfinal * rate;
-                                dt.Rows[i]["Amount"] = amt.ToString("" + ratesetting + "");
-                                if (dt.Rows[i]["Qty"].ToString() == "0" || dt.Rows[i]["Qty"].ToString() == "0.0000")
-                                {
-                                    //dt.Rows.Remove(dt[i]);
-                                    //  dt.Rows.Remove(dt.Rows[i]);
-                                }
-
-                            }
-                        }
-                        for (int i = dt.Rows.Count - 1; i >= 0; i--)
-                            if (dt.Rows[i]["Qty"].ToString() == "0" || dt.Rows[i]["Qty"].ToString() == "0.0000")
-                                dt.Rows.RemoveAt(i);
-
-                        ViewState["dt"] = dt;
-                        break;
                     }
+
+
+
+
+
+
                 }
 
-
-                // Total();
-                //int dtcount = dt.Rows.Count;
-
-
-
-                //if (lblcattype.Text == "N")
-                //{
-                //    for (int ii = dtt.Rows.Count - 1; ii >= 0; ii--)
-                //        if (Item.Text == dtt.Rows[ii]["CategoryUserid"].ToString())
-                //        {
-                //            decimal qty = Convert.ToDecimal(dtt.Rows[ii]["Qty"].ToString());
-                //            //decimal shwqty = Convert.ToDecimal(dtt.Rows[ii]["ShwQty"].ToString());
-
-
-                //            decimal amt = 0;
-                //            //  int final = qty - minQty;
-                //            decimal shwfinal = qty - Convert.ToDecimal(ShwQty.Text);
-                //            dtt.Rows[ii]["Qty"] = shwfinal.ToString();
-                //            if (dtt.Rows[ii]["Qty"].ToString() == "0" || dtt.Rows[ii]["Qty"].ToString() == "0.0000")
-                //            {
-                //                //dt.Rows.Remove(dt[i]);
-                //                //  dt.Rows.Remove(dt.Rows[i]);
-                //                dtt.Rows.RemoveAt(ii);
-                //            }
-
-                //        }
-                //}
-                //else if (lblcattype.Text == "C")
-                //{
-                //    DataSet dCat = objbs.GetStockDetailscombo(Convert.ToInt32(lblcombo.Text), Convert.ToInt32(lblUserID.Text), sTableName);
-                //    if (dCat.Tables[0].Rows.Count > 0)
-                //    {
-                //        for (int kk = 0; kk < dCat.Tables[0].Rows.Count; kk++)
-                //        {
-
-                //            string categoryuserid = dCat.Tables[0].Rows[kk]["icatid"].ToString();
-                //            double showwqty = Convert.ToDouble(dCat.Tables[0].Rows[kk]["QTY"]);
-
-                //            for (int ii = dtt.Rows.Count - 1; ii >= 0; ii--)
-                //            {
-                //                if (categoryuserid == dtt.Rows[ii]["CategoryUserid"].ToString())
-                //                {
-                //                    decimal qty = Convert.ToDecimal(dtt.Rows[ii]["Qty"].ToString());
-                //                    //decimal shwqty = Convert.ToDecimal(dtt.Rows[ii]["ShwQty"].ToString());
-
-
-                //                    decimal amt = 0;
-                //                    //  int final = qty - minQty;
-                //                    decimal shwfinal = qty - Convert.ToDecimal(showwqty);
-                //                    dtt.Rows[ii]["Qty"] = shwfinal.ToString();
-                //                    if (dtt.Rows[ii]["Qty"].ToString() == "0" || dtt.Rows[ii]["Qty"].ToString() == "0.0000")
-                //                    {
-                //                        //dt.Rows.Remove(dt[i]);
-                //                        //  dt.Rows.Remove(dt.Rows[i]);
-                //                        dtt.Rows.RemoveAt(ii);
-                //                    }
-
-                //                }
-                //            }
-                //        }
-                //    }
-                //}
-
-                //ViewState["dtt"] = dtt;
+                gridviewsub1.DataSource = dtsub1;
+                gridviewsub1.DataBind();
+                gridviewsub2.DataSource = dtsub2;
+                gridviewsub2.DataBind();
+                gridviewsub3.DataSource = dtsub3;
+                gridviewsub3.DataBind();
 
             }
             else
             {
-                foreach (DataRow dr in dt.Rows)
+                gridviewsub1.DataSource = null;
+                gridviewsub1.DataBind();
+                gridviewsub2.DataSource = null;
+                gridviewsub2.DataBind();
+                gridviewsub3.DataSource = null;
+                gridviewsub3.DataBind();
+            }
+            #endregion 
+
+        }
+
+        protected void CancelNo_click(object sender, EventArgs e)
+        {
+            gridtempaddon.DataSource = null;
+            gridtempaddon.DataBind();
+            UpdatePanel2.Update();
+            UpdatePanel.Update();
+            UpdatePanel1.Update();
+        }
+
+        protected void CancelYes_click(object sender, EventArgs e)
+        {
+            int rowid = 0;
+            double totaddonamount = 0;
+            string Itemtax = "0";
+
+            double addrate = 0;
+            double addamount = 0;
+
+
+            for (int i = 0; i < gridtempaddon.Rows.Count; i++)
+            {
+                Label lblrowid = (Label)gridtempaddon.Rows[i].FindControl("lblrowid");
+                rowid = Convert.ToInt32(lblrowid.Text);
+            }
+
+            DataTable DTGVSizeQty = (DataTable)ViewState["dtaddon"];
+            DataRow[] DRaddon = DTGVSizeQty.Select("RowId='" + rowid + "'");
+            for (int i = 0; i < DRaddon.Length; i++)
+                DRaddon[i].Delete();
+            DTGVSizeQty.AcceptChanges();
+
+
+            #region MAIN GRID MINUS ADDON AMOUNT
+            // double addonamount = 0;
+            DataTable DTGVSizeQtymainminus = (DataTable)ViewState["dt"];
+            DataRow[] DRmainitemminus = DTGVSizeQtymainminus.Select("RowId='" + rowid + "'");
+            if (DRmainitemminus.Length > 0)
+            {
+                double minQty = Convert.ToDouble(DRmainitemminus[0]["Qty"]);
+                double minRate = Convert.ToDouble(DRmainitemminus[0]["Rate"]);
+                double minMrp = Convert.ToDouble(DRmainitemminus[0]["mrp"]);
+                DRmainitemminus[0]["Amount"] = (minQty * minRate).ToString("" + ratesetting + "");
+                DRmainitemminus[0]["MrpAmount"] = (minQty * minMrp).ToString("" + ratesetting + "");
+
+
+                DRmainitemminus[0]["addonitemtotRate"] = (minQty * minRate).ToString("" + ratesetting + "");
+                DRmainitemminus[0]["Addonitemtotamount"] = (minQty * minRate).ToString("" + ratesetting + "");
+
+                DRmainitemminus[0]["addonRate"] = "0";
+                DRmainitemminus[0]["addontotamount"] = "0";
+            }
+
+            gvlist.DataSource = DTGVSizeQtymainminus;
+            gvlist.DataBind();
+            #endregion
+
+
+
+
+
+
+            double addonamount = 0;
+            DataTable DTGVSizeQtymain1 = (DataTable)ViewState["dt"];
+            DataRow[] DRmainitem1 = DTGVSizeQtymain1.Select("RowId='" + rowid + "'");
+            if (DRmainitem1.Length > 0)
+            {
+                Itemtax = DRmainitem1[0]["Tax"].ToString();
+                //  Itemtax = DRmainitem1[0]["Tax"].ToString();
+                //DRmainitem1[0]["mrpAmount"] = (Convert.ToDouble(DRmainitem[0]["mrpAmount"]) + totaddonamount).ToString();
+            }
+
+            //GridViewRow gvRow = gvlist.Rows[Convert.ToInt32(ViewState["indexno"])];
+            //dt = (DataTable)ViewState["dt"];
+            ////   dtt = (DataTable)ViewState["dtt"];
+            ////  TableCell Item = gvlist.Rows[index].Cells[3];
+            //Label Item = (Label)gvRow.FindControl("CategoryUserid");
+            //Label lblcattype = (Label)gvRow.FindControl("lblcattype");
+            //Label lblcombo = (Label)gvRow.FindControl("lblcombo");
+            //TextBox ShwQty = (TextBox)gvRow.FindControl("txtshwqty");
+            //TextBox txtcqty = (TextBox)gvRow.FindControl("txtcqty");
+            //TextBox Definition = (TextBox)gvRow.FindControl("Definition");
+
+
+            //Label lblcooknotes = (Label)gvRow.FindControl("lblcooknotes");
+
+            //DataRow[] rows = dt.Select("Definition='" + Definition.Text + "' AND CategoryUserid='" + Item.Text + "'");
+            //if (rows.Length > 0)
+            //{
+            //    rows[0]["cookingnotes"] = txtcookinginstruction.Text;
+            //    //lblcooknotes.Text = txtcookinginstruction.Text;
+            //}
+            //UpdatePanel2.Update();
+            //gvlist.DataSource = dt;
+            //gvlist.DataBind();
+
+
+            ViewState["dtaddon"] = DTGVSizeQty;
+            gridaddon.DataSource = DTGVSizeQty;
+            gridaddon.DataBind();
+            dtaddon = (DataTable)ViewState["dtaddon"];
+
+            DataRow[] rows = dtaddon.Select("Rowid='" + rowid + "'");
+            if (rows.Length > 0)
+            {
+
+            }
+            else
+            {
+                for (int ii = 0; ii < gridtempaddon.Rows.Count; ii++)
                 {
-                    if (lblcattype.Text == "N")
+                    Label lblrowid = (Label)gridtempaddon.Rows[ii].FindControl("lblrowid");
+
+                    Label lbladdonCategoryID = (Label)gridtempaddon.Rows[ii].FindControl("lbladdonCategoryID");
+                    Label lbladdonCategoryUserID = (Label)gridtempaddon.Rows[ii].FindControl("lbladdonCategoryUserID");
+                    Label lbladdonmrp = (Label)gridtempaddon.Rows[ii].FindControl("lbladdonmrp");
+
+                    Label lbladdoncattype = (Label)gridtempaddon.Rows[ii].FindControl("lbladdoncattype");
+
+
+                    Label lbladdonmaintainstock = (Label)gridtempaddon.Rows[ii].FindControl("lbladdonmaintainstock");
+                    Label lbladdoncookinginstruction = (Label)gridtempaddon.Rows[ii].FindControl("lbladdoncookinginstruction");
+                    Label lbladdonaddon = (Label)gridtempaddon.Rows[ii].FindControl("lbladdonaddon");
+                    Label lbladdonkotreq = (Label)gridtempaddon.Rows[ii].FindControl("lbladdonkotreq");
+
+
+
+
+                    TextBox lbladdonDefinition = (TextBox)gridtempaddon.Rows[ii].FindControl("lbladdonDefinition");
+                    TextBox lbladdonRate = (TextBox)gridtempaddon.Rows[ii].FindControl("lbladdonRate");
+                    TextBox mrpamount = (TextBox)gridtempaddon.Rows[ii].FindControl("mrpamount");
+                    TextBox Amount = (TextBox)gridtempaddon.Rows[ii].FindControl("Amount");
+
+                    DropDownList drpaddonqty = (DropDownList)gridtempaddon.Rows[ii].FindControl("drpaddonqty");
+
+
+                    if (drpaddonqty.SelectedValue != "0")
                     {
-                        if (dr["CategoryUserid"].ToString() == Item.Text && lblcattype.Text == dr["cattype"].ToString())
+
+                        DataRow dr = dtaddon.NewRow();
+
+                        dr["Rowid"] = lblrowid.Text;
+                        dr["CategoryID"] = lbladdonCategoryID.Text;
+                        dr["CategoryUserID"] = lbladdonCategoryUserID.Text;
+                        dr["definition"] = lbladdonDefinition.Text;
+                        dr["Tax"] = Itemtax;
+                        dr["mrp"] = lbladdonmrp.Text;
+
+                        dr["Cattype"] = lbladdoncattype.Text;
+
+                        dr["maintainstock"] = lbladdonmaintainstock.Text;
+                        dr["addon"] = lbladdonaddon.Text;
+                        dr["cookinginstruction"] = lbladdoncookinginstruction.Text;
+                        dr["kotreq"] = lbladdonkotreq.Text;
+
+
+                        double ratee = (Convert.ToDouble(lbladdonmrp.Text) / (Convert.ToDouble(Itemtax) + 100)) * 100;
+                        addrate = addrate + ratee;
+                        dr["Rate"] = ratee.ToString("" + ratesetting + "");
+                        dr["Qty"] = drpaddonqty.SelectedValue;
+
+                        dr["Amount"] = (ratee * Convert.ToDouble(drpaddonqty.SelectedValue)).ToString("" + ratesetting + "");
+
+                        addamount = addamount + (ratee * Convert.ToDouble(drpaddonqty.SelectedValue));
+
+
+                        dr["TotalAmount"] = mrpamount.Text;
+                        totaddonamount = totaddonamount + Convert.ToDouble(mrpamount.Text);
+                        dtaddon.Rows.Add(dr);
+                    }
+                }
+                ViewState["dtaddon"] = dtaddon;
+            }
+
+            gridaddon.DataSource = dtaddon;
+            gridaddon.DataBind();
+
+            #region MAIN GRID ADDED ADDON AMOUNT
+            // double addonamount = 0;
+            DataTable DTGVSizeQtymain = (DataTable)ViewState["dt"];
+            DataRow[] DRmainitem = DTGVSizeQtymain.Select("RowId='" + rowid + "'");
+            if (DRmainitem.Length > 0)
+            {
+                DRmainitem[0]["addonamount"] = totaddonamount;
+                DRmainitem[0]["mrpAmount"] = (Convert.ToDouble(DRmainitem[0]["mrpAmount"]) + totaddonamount).ToString("" + ratesetting + "");
+                DRmainitem[0]["addonRate"] = addrate.ToString("" + ratesetting + "");
+
+                double additemrate = Convert.ToDouble(DRmainitem[0]["addonitemtotRate"]);
+                DRmainitem[0]["addonitemtotRate"] = (addrate + additemrate).ToString("" + ratesetting + "");
+
+                double additemtotrate = Convert.ToDouble(DRmainitem[0]["addonitemtotAmount"]);
+                DRmainitem[0]["addontotAmount"] = addamount.ToString("" + ratesetting + "");
+
+                DRmainitem[0]["addonitemtotAmount"] = (additemtotrate + addamount).ToString("" + ratesetting + "");
+
+
+
+            }
+
+            gvlist.DataSource = DTGVSizeQtymain;
+            gvlist.DataBind();
+            #endregion
+
+
+            gridtempaddon.DataSource = null;
+            gridtempaddon.DataBind();
+
+            txtdiscou_TextChanged(sender, e);
+
+            UpdatePanel2.Update();
+            UpdatePanel.Update();
+            UpdatePanel1.Update();
+
+        }
+        protected void gvlist_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName != "Addon")
+            {
+
+                lblcookingitem.Text = "";
+                txtcookinginstruction.Text = "";
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                ViewState["indexno"] = e.CommandArgument.ToString();
+
+                GridViewRow gvRow = gvlist.Rows[index];
+                dt = (DataTable)ViewState["dt"];
+                //   dtt = (DataTable)ViewState["dtt"];
+                //  TableCell Item = gvlist.Rows[index].Cells[3];
+                Label Item = (Label)gvRow.FindControl("CategoryUserid");
+                Label lblcattype = (Label)gvRow.FindControl("lblcattype");
+                Label lblcombo = (Label)gvRow.FindControl("lblcombo");
+                TextBox ShwQty = (TextBox)gvRow.FindControl("txtshwqty");
+                TextBox txtcqty = (TextBox)gvRow.FindControl("txtcqty");
+
+                TextBox Definition = (TextBox)gvRow.FindControl("Definition");
+
+                Label lblcooknotes = (Label)gvRow.FindControl("lblcooknotes");
+
+                Label lblcookinginstruction = (Label)gvRow.FindControl("lblcookinginstruction");
+                Label lbladdon = (Label)gvRow.FindControl("lbladdon");
+
+                Label lblrowid = (Label)gvRow.FindControl("lblrowid");
+
+                //  TextBox Rate = (TextBox)gvRow.FindControl("Rate");
+                // TextBox Amount = (TextBox)gvRow.FindControl("Amount");
+                //TableCell Quantity = gvlist.Rows[index].Cells[5];
+                //TableCell Rate = gvlist.Rows[index].Cells[6];
+                //TableCell Amount = gvlist.Rows[index].Cells[8];
+                if (e.CommandName == "minus")
+                {
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        if (lblcattype.Text == "N")
                         {
-                            dt.Rows.Remove(dr);
+                            if (dr["CategoryUserid"].ToString() == Item.Text && lblcattype.Text == dr["cattype"].ToString())
+                            {
+                                decimal qty = Convert.ToDecimal(dr["Qty"].ToString());
+                                decimal shwqty = Convert.ToDecimal(dr["ShwQty"].ToString());
+                                //  int minQty = Convert.ToInt32(dr["recQty"].ToString());
+                                decimal mrprate = Convert.ToDecimal(dr["mrp"].ToString());
+                                decimal rate = Convert.ToDecimal(dr["Rate"].ToString());
+                                decimal adonamount = Convert.ToDecimal(dr["addonamount"].ToString());
+                                decimal cqty = Convert.ToDecimal(dr["cQty"].ToString());
+                                decimal amt = 0;
+                                decimal mrpamt = 0;
+                                //  int final = qty - minQty;
+                                decimal shwfinal = qty - 1;
+                                decimal shwqtyy = shwqty - cqty;
+                                dr["Qty"] = shwfinal.ToString();
+                                dr["ShwQty"] = shwqtyy.ToString();
+
+                                amt = shwfinal * rate;
+                                mrpamt = shwfinal * mrprate;
+                                dr["Amount"] = (amt + adonamount).ToString("" + ratesetting + "");
+                                dr["mrpamount"] = (mrpamt + adonamount).ToString("" + ratesetting + "");
+                                if (dr["Qty"].ToString() == "0" && lblcattype.Text == dr["cattype"].ToString())
+                                {
+                                    dt.Rows.Remove(dr);
+
+                                    DataTable DTGVSizeQty = (DataTable)ViewState["dtaddon"];
+                                    DataRow[] DRaddon = DTGVSizeQty.Select("RowId='" + lblrowid.Text + "'");
+                                    for (int i = 0; i < DRaddon.Length; i++)
+                                        DRaddon[i].Delete();
+                                    DTGVSizeQty.AcceptChanges();
+
+                                    ViewState["dtaddon"] = DTGVSizeQty;
+                                    gridaddon.DataSource = DTGVSizeQty;
+                                    gridaddon.DataBind();
+                                }
+                                if (shwfinal < 0)
+                                {
+                                    dt.Rows.Remove(dr);
+                                }
+                                ViewState["dt"] = dt;
+
+                                break;
+                            }
+                        }
+                        else if (lblcattype.Text == "C")
+                        {
+
+
+                            for (int i = 0; i < dt.Rows.Count; i++)
+                            {
+                                if (lblcombo.Text == dt.Rows[i]["combo"].ToString())
+                                {
+                                    //dt.Rows.RemoveAt(i);
+                                    decimal qty = Convert.ToDecimal(dt.Rows[i]["Qty"].ToString());
+                                    decimal shwqty = Convert.ToDecimal(dt.Rows[i]["ShwQty"].ToString());
+                                    decimal cqty = Convert.ToDecimal(dt.Rows[i]["Cqty"].ToString());
+                                    decimal rate = Convert.ToDecimal(dt.Rows[i]["Rate"].ToString());
+                                    decimal amt = 0;
+                                    //  int final = qty - minQty;
+                                    decimal shwfinal = qty - 1;
+                                    decimal shqtyy = cqty * 1;
+
+                                    decimal shqtyy1 = shwqty - shqtyy;
+
+                                    dt.Rows[i]["Qty"] = shwfinal.ToString();
+                                    dt.Rows[i]["ShwQty"] = shqtyy1.ToString();
+                                    amt = shwfinal * rate;
+                                    dt.Rows[i]["Amount"] = amt.ToString("" + ratesetting + "");
+                                    if (dt.Rows[i]["Qty"].ToString() == "0" || dt.Rows[i]["Qty"].ToString() == "0.0000")
+                                    {
+                                        //dt.Rows.Remove(dt[i]);
+                                        //  dt.Rows.Remove(dt.Rows[i]);
+                                    }
+
+                                }
+                            }
+                            for (int i = dt.Rows.Count - 1; i >= 0; i--)
+                                if (dt.Rows[i]["Qty"].ToString() == "0" || dt.Rows[i]["Qty"].ToString() == "0.0000")
+                                    dt.Rows.RemoveAt(i);
+
                             ViewState["dt"] = dt;
                             break;
                         }
                     }
-                    else if (lblcattype.Text == "C")
+
+
+                    // Total();
+                    //int dtcount = dt.Rows.Count;
+
+
+
+                    //if (lblcattype.Text == "N")
+                    //{
+                    //    for (int ii = dtt.Rows.Count - 1; ii >= 0; ii--)
+                    //        if (Item.Text == dtt.Rows[ii]["CategoryUserid"].ToString())
+                    //        {
+                    //            decimal qty = Convert.ToDecimal(dtt.Rows[ii]["Qty"].ToString());
+                    //            //decimal shwqty = Convert.ToDecimal(dtt.Rows[ii]["ShwQty"].ToString());
+
+
+                    //            decimal amt = 0;
+                    //            //  int final = qty - minQty;
+                    //            decimal shwfinal = qty - Convert.ToDecimal(ShwQty.Text);
+                    //            dtt.Rows[ii]["Qty"] = shwfinal.ToString();
+                    //            if (dtt.Rows[ii]["Qty"].ToString() == "0" || dtt.Rows[ii]["Qty"].ToString() == "0.0000")
+                    //            {
+                    //                //dt.Rows.Remove(dt[i]);
+                    //                //  dt.Rows.Remove(dt.Rows[i]);
+                    //                dtt.Rows.RemoveAt(ii);
+                    //            }
+
+                    //        }
+                    //}
+                    //else if (lblcattype.Text == "C")
+                    //{
+                    //    DataSet dCat = objbs.GetStockDetailscombo(Convert.ToInt32(lblcombo.Text), Convert.ToInt32(lblUserID.Text), sTableName);
+                    //    if (dCat.Tables[0].Rows.Count > 0)
+                    //    {
+                    //        for (int kk = 0; kk < dCat.Tables[0].Rows.Count; kk++)
+                    //        {
+
+                    //            string categoryuserid = dCat.Tables[0].Rows[kk]["icatid"].ToString();
+                    //            double showwqty = Convert.ToDouble(dCat.Tables[0].Rows[kk]["QTY"]);
+
+                    //            for (int ii = dtt.Rows.Count - 1; ii >= 0; ii--)
+                    //            {
+                    //                if (categoryuserid == dtt.Rows[ii]["CategoryUserid"].ToString())
+                    //                {
+                    //                    decimal qty = Convert.ToDecimal(dtt.Rows[ii]["Qty"].ToString());
+                    //                    //decimal shwqty = Convert.ToDecimal(dtt.Rows[ii]["ShwQty"].ToString());
+
+
+                    //                    decimal amt = 0;
+                    //                    //  int final = qty - minQty;
+                    //                    decimal shwfinal = qty - Convert.ToDecimal(showwqty);
+                    //                    dtt.Rows[ii]["Qty"] = shwfinal.ToString();
+                    //                    if (dtt.Rows[ii]["Qty"].ToString() == "0" || dtt.Rows[ii]["Qty"].ToString() == "0.0000")
+                    //                    {
+                    //                        //dt.Rows.Remove(dt[i]);
+                    //                        //  dt.Rows.Remove(dt.Rows[i]);
+                    //                        dtt.Rows.RemoveAt(ii);
+                    //                    }
+
+                    //                }
+                    //            }
+                    //        }
+                    //    }
+                    //}
+
+                    //ViewState["dtt"] = dtt;
+
+                }
+                else if (e.CommandName == "remove")
+                {
+                    foreach (DataRow dr in dt.Rows)
                     {
+                        if (lblcattype.Text == "N")
+                        {
+                            if (dr["CategoryUserid"].ToString() == Item.Text && lblcattype.Text == dr["cattype"].ToString())
+                            {
+                                DataTable DTGVSizeQty = (DataTable)ViewState["dtaddon"];
+                                DataRow[] DRaddon = DTGVSizeQty.Select("RowId='" + lblrowid.Text + "'");
+                                for (int i = 0; i < DRaddon.Length; i++)
+                                    DRaddon[i].Delete();
+                                DTGVSizeQty.AcceptChanges();
+
+                                ViewState["dtaddon"] = DTGVSizeQty;
+                                gridaddon.DataSource = DTGVSizeQty;
+                                gridaddon.DataBind();
 
 
-                        for (int i = 0; i < dt.Rows.Count; i++)
+                                dt.Rows.Remove(dr);
+                                ViewState["dt"] = dt;
+                                break;
+                            }
+                        }
+                        else if (lblcattype.Text == "C")
                         {
 
 
-                            for (int ii = dt.Rows.Count - 1; ii >= 0; ii--)
-                                if (lblcombo.Text == dt.Rows[ii]["combo"].ToString())
-                                    dt.Rows.RemoveAt(ii);
+                            for (int i = 0; i < dt.Rows.Count; i++)
+                            {
 
+
+                                for (int ii = dt.Rows.Count - 1; ii >= 0; ii--)
+                                    if (lblcombo.Text == dt.Rows[ii]["combo"].ToString())
+                                        dt.Rows.RemoveAt(ii);
+
+                            }
+                            ViewState["dt"] = dt;
+                            break;
                         }
-                        ViewState["dt"] = dt;
-                        break;
                     }
+
+                    //if (lblcattype.Text == "N")
+                    //{
+                    //    for (int ii = dtt.Rows.Count - 1; ii >= 0; ii--)
+                    //        if (Item.Text == dtt.Rows[ii]["CategoryUserid"].ToString())
+                    //            dtt.Rows.RemoveAt(ii);
+                    //}
+                    //else if (lblcattype.Text == "C")
+                    //{
+                    //    DataSet dCat = objbs.GetStockDetailscombo(Convert.ToInt32(lblcombo.Text), Convert.ToInt32(lblUserID.Text), sTableName);
+                    //    if (dCat.Tables[0].Rows.Count > 0)
+                    //    {
+                    //        for (int kk = 0; kk < dCat.Tables[0].Rows.Count; kk++)
+                    //        {
+
+                    //            string categoryuserid = dCat.Tables[0].Rows[kk]["icatid"].ToString();
+                    //            double showwqty = Convert.ToDouble(dCat.Tables[0].Rows[kk]["QTY"]);
+
+                    //            for (int ii = dtt.Rows.Count - 1; ii >= 0; ii--)
+                    //            {
+                    //                if (categoryuserid == dtt.Rows[ii]["CategoryUserid"].ToString())
+                    //                {
+                    //                    decimal qty = Convert.ToDecimal(dtt.Rows[ii]["Qty"].ToString());
+                    //                    //decimal shwqty = Convert.ToDecimal(dtt.Rows[ii]["ShwQty"].ToString());
+
+
+                    //                    decimal amt = 0;
+                    //                    //  int final = qty - minQty;
+                    //                    decimal shwfinal = qty - Convert.ToDecimal(showwqty);
+                    //                    dtt.Rows[ii]["Qty"] = shwfinal.ToString();
+                    //                    if (dtt.Rows[ii]["Qty"].ToString() == "0" || dtt.Rows[ii]["Qty"].ToString() == "0.0000")
+                    //                    {
+                    //                        dtt.Rows.RemoveAt(ii);
+                    //                    }
+
+                    //                }
+                    //            }
+                    //        }
+                    //    }
+                    //}
+
+                    //ViewState["dtt"] = dtt;
+
                 }
 
-                //if (lblcattype.Text == "N")
-                //{
-                //    for (int ii = dtt.Rows.Count - 1; ii >= 0; ii--)
-                //        if (Item.Text == dtt.Rows[ii]["CategoryUserid"].ToString())
-                //            dtt.Rows.RemoveAt(ii);
-                //}
-                //else if (lblcattype.Text == "C")
-                //{
-                //    DataSet dCat = objbs.GetStockDetailscombo(Convert.ToInt32(lblcombo.Text), Convert.ToInt32(lblUserID.Text), sTableName);
-                //    if (dCat.Tables[0].Rows.Count > 0)
-                //    {
-                //        for (int kk = 0; kk < dCat.Tables[0].Rows.Count; kk++)
-                //        {
+                UpdatePanel.Update();
 
-                //            string categoryuserid = dCat.Tables[0].Rows[kk]["icatid"].ToString();
-                //            double showwqty = Convert.ToDouble(dCat.Tables[0].Rows[kk]["QTY"]);
-
-                //            for (int ii = dtt.Rows.Count - 1; ii >= 0; ii--)
-                //            {
-                //                if (categoryuserid == dtt.Rows[ii]["CategoryUserid"].ToString())
-                //                {
-                //                    decimal qty = Convert.ToDecimal(dtt.Rows[ii]["Qty"].ToString());
-                //                    //decimal shwqty = Convert.ToDecimal(dtt.Rows[ii]["ShwQty"].ToString());
+                DataView dvEmp = dt.DefaultView;
+                dvEmp.Sort = "Sno Desc";
+                gvlist.DataSource = dvEmp;
+                gvlist.DataBind();
+                getdisablecolumn();
 
 
-                //                    decimal amt = 0;
-                //                    //  int final = qty - minQty;
-                //                    decimal shwfinal = qty - Convert.ToDecimal(showwqty);
-                //                    dtt.Rows[ii]["Qty"] = shwfinal.ToString();
-                //                    if (dtt.Rows[ii]["Qty"].ToString() == "0" || dtt.Rows[ii]["Qty"].ToString() == "0.0000")
-                //                    {
-                //                        dtt.Rows.RemoveAt(ii);
-                //                    }
 
-                //                }
-                //            }
-                //        }
-                //    }
-                //}
 
-                //ViewState["dtt"] = dtt;
+                // Total();
+                txtdiscou_TextChanged(sender, e);
+                if (Convert.ToDouble(lbloritot.Text) < Convert.ToDouble(lblmaxdiscount.Text))
+                {
+                    chkdisc.Checked = false;
+                    disc_checkedchanged(sender, e);
 
+                }
             }
-
-            UpdatePanel.Update();
-
-            DataView dvEmp = dt.DefaultView;
-            dvEmp.Sort = "Sno Desc";
-            gvlist.DataSource = dvEmp;
-            gvlist.DataBind();
-            getdisablecolumn();
-
-
-            //DataView dvEmp1 = dtt.DefaultView;
-            //gvlst.DataSource = dvEmp1;
-            //gvlst.DataBind();
-
-            // Total();
-            txtdiscou_TextChanged(sender, e);
-            if (Convert.ToDouble(lbloritot.Text) < Convert.ToDouble(lblmaxdiscount.Text))
+            else if (e.CommandName == "Addon")
             {
-                chkdisc.Checked = false;
-                disc_checkedchanged(sender, e);
+                DataSet dstd1 = new DataSet();
+                DataTable dtddd1 = new DataTable();
+                DataRow drNew1;
+                DataColumn dct1;
+                DataTable dttt1 = new DataTable();
 
+                #region
+
+                dct1 = new DataColumn("RowId");
+                dttt1.Columns.Add(dct1);
+                dct1 = new DataColumn("CategoryID");
+                dttt1.Columns.Add(dct1);
+                dct1 = new DataColumn("CategoryUserID");
+                dttt1.Columns.Add(dct1);
+                dct1 = new DataColumn("Definition");
+                dttt1.Columns.Add(dct1);
+                dct1 = new DataColumn("mrp");
+                dttt1.Columns.Add(dct1);
+                dct1 = new DataColumn("Rate");
+                dttt1.Columns.Add(dct1);
+
+                dct1 = new DataColumn("Cattype");
+                dttt1.Columns.Add(dct1);
+
+
+                dct1 = new DataColumn("maintainstock");
+                dttt1.Columns.Add(dct1);
+                dct1 = new DataColumn("addon");
+                dttt1.Columns.Add(dct1);
+                dct1 = new DataColumn("cookinginstruction");
+                dttt1.Columns.Add(dct1);
+                dct1 = new DataColumn("kotreq");
+                dttt1.Columns.Add(dct1);
+
+
+
+
+                dct1 = new DataColumn("Tax");
+                dttt1.Columns.Add(dct1);
+
+
+                dstd1.Tables.Add(dttt1);
+                string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
+                string rowid = commandArgs[0];
+                string itemname = commandArgs[1];
+                lbldisplayitemname.Text = itemname;
+                DataSet getaddonitem = objbs.getaddoncategoryanditem("A");
+                if (getaddonitem.Tables[0].Rows.Count > 0)
+                {
+                    for (int vLoop = 0; vLoop < getaddonitem.Tables[0].Rows.Count; vLoop++)
+                    {
+
+                        drNew1 = dttt1.NewRow();
+
+                        drNew1["RowId"] = rowid;
+                        drNew1["CategoryID"] = getaddonitem.Tables[0].Rows[vLoop]["CategoryID"].ToString();
+                        drNew1["CategoryUserID"] = getaddonitem.Tables[0].Rows[vLoop]["CategoryUserID"].ToString();
+                        drNew1["Definition"] = getaddonitem.Tables[0].Rows[vLoop]["Definition"].ToString();
+                        drNew1["mrp"] = getaddonitem.Tables[0].Rows[vLoop]["mrp"].ToString();
+                        drNew1["Rate"] = getaddonitem.Tables[0].Rows[vLoop]["Rate"].ToString();
+
+                        drNew1["Cattype"] = getaddonitem.Tables[0].Rows[vLoop]["cattype"].ToString();
+
+                        drNew1["maintainstock"] = getaddonitem.Tables[0].Rows[vLoop]["maintainstock"].ToString();
+                        drNew1["addon"] = getaddonitem.Tables[0].Rows[vLoop]["addon"].ToString();
+                        drNew1["cookinginstruction"] = getaddonitem.Tables[0].Rows[vLoop]["cookingReq"].ToString();
+                        drNew1["kotreq"] = getaddonitem.Tables[0].Rows[vLoop]["kotreq"].ToString();
+
+
+                        dstd1.Tables[0].Rows.Add(drNew1);
+                        dtddd1 = dstd1.Tables[0];
+
+                    }
+                    dtddd1.Merge(dttt1);
+                    if (dtddd1.Rows.Count > 0)
+                    {
+                        gridtempaddon.DataSource = dtddd1;
+                        gridtempaddon.DataBind();
+                        this.ModalPopupExtender1.Show();
+                        UpdatePanel2.Update();
+                        UpdatePanel.Update();
+                        UpdatePanel1.Update();
+                    }
+                    else
+                    {
+                        gridtempaddon.DataSource = null;
+                        gridtempaddon.DataBind();
+                    }
+
+                    dtaddon = (DataTable)ViewState["dtaddon"];
+
+                    if (dtaddon.Rows.Count > 0)
+                    {
+
+
+                        DataRow[] rows = dtaddon.Select("Rowid='" + rowid + "'");
+                        for (int i = 0; i < rows.Length; i++)
+                        {
+                            //  drNew1 = dttt1.NewRow();
+
+                            string row = rows[i]["Rowid"].ToString();
+                            string CategoryID = rows[i]["CategoryID"].ToString();
+                            string CategoryUserID = rows[i]["CategoryUserID"].ToString();
+                            string Definition = rows[i]["Definition"].ToString();
+                            string mrp = rows[i]["mrp"].ToString();
+                            string Rate = rows[i]["Rate"].ToString();
+                            string Qty = rows[i]["Qty"].ToString();
+
+                            string Tax = rows[i]["Tax"].ToString();
+
+                            string Cattype = rows[i]["Cattype"].ToString();
+
+                            string Amount = rows[i]["Amount"].ToString();
+                            string TotalAmount = rows[i]["TotalAmount"].ToString();
+
+                            for (int ii = 0; ii < gridtempaddon.Rows.Count; ii++)
+                            {
+                                Label lblrowid = (Label)gridtempaddon.Rows[ii].FindControl("lblrowid");
+                                Label lbladdonCategoryUserID = (Label)gridtempaddon.Rows[ii].FindControl("lbladdonCategoryUserID");
+                                Label lbladdonCategoryID = (Label)gridtempaddon.Rows[ii].FindControl("lbladdonCategoryID");
+
+                                Label lbladdonmrp = (Label)gridtempaddon.Rows[ii].FindControl("lbladdonmrp");
+
+                                Label lbladdontax = (Label)gridtempaddon.Rows[ii].FindControl("lbladdontax");
+                                Label lbladdoncattype = (Label)gridtempaddon.Rows[ii].FindControl("lbladdoncattype");
+
+                                TextBox lbladdonDefinition = (TextBox)gridtempaddon.Rows[ii].FindControl("lbladdonDefinition");
+                                TextBox lbladdonRate = (TextBox)gridtempaddon.Rows[ii].FindControl("lbladdonRate");
+                                TextBox tempmrpamount = (TextBox)gridtempaddon.Rows[ii].FindControl("mrpamount");
+                                TextBox tempAmount = (TextBox)gridtempaddon.Rows[ii].FindControl("Amount");
+
+                                DropDownList drpaddonqty = (DropDownList)gridtempaddon.Rows[ii].FindControl("drpaddonqty");
+                                if (lblrowid.Text == row && lbladdonCategoryUserID.Text == CategoryUserID)
+                                {
+                                    lblrowid.Text = row;
+                                    lbladdonCategoryID.Text = CategoryID;
+                                    lbladdonCategoryUserID.Text = CategoryUserID;
+                                    lbladdonmrp.Text = mrp;
+                                    lbladdonDefinition.Text = Definition;
+                                    lbladdonRate.Text = Rate;
+                                    tempmrpamount.Text = TotalAmount;
+                                    tempAmount.Text = Amount;
+                                    drpaddonqty.SelectedValue = Qty;
+                                    lbladdontax.Text = Tax;
+                                    lbladdoncattype.Text = Cattype;
+                                }
+                            }
+                        }
+                    }
+                    #endregion
+                }
             }
+            else if (e.CommandName == "addinstruction")
+            {
+
+                //if (lblcookinginstruction.Text == "Y")
+                //{
+
+                //    txtcookinginstruction.Text = lblcooknotes.Text;
+                //    lblcookingitem.Text = Definition.Text;
+
+                //    mpe.Show();
+                //    // UpdatePanel4.Update();
+                //    UpdatePanel2.Update();
+                //}
+                //else
+                //{
+                //    ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Not Allow to Cooking Instruction For this Item.Thank You!!!');", true);
+                //    return;
+                //}
+            }
+
+
         }
         protected void gvlist_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                // string status = ((System.Web.UI.WebControls.Label)e.Row.FindControl("lblstatus")).Text;
+                Label lblcookinginstruction = (Label)e.Row.FindControl("lblcookinginstruction");
+                TextBox txtcookingnotes = (TextBox)e.Row.FindControl("txtcookingnotes");
+                if (lblcookinginstruction.Text == "Y")
+                {
+                    txtcookingnotes.Visible = true;
+                }
+                else
+                {
+                    txtcookingnotes.Visible = false;
+                }
+                Label lbladdon = (Label)e.Row.FindControl("lbladdon");
+
+                ImageButton imgaddon = (ImageButton)e.Row.FindControl("imgaddon");
+
+
+
+                if (lbladdon.Text == "Y")
+                {
+                    imgaddon.Visible = true;
+                }
+                else
+                {
+                    imgaddon.Visible = false;
+                }
+            }
+        }
+
+        protected void getcookingnotes(object sender, EventArgs e)
+        {
+            TextBox ddl = (TextBox)sender;
+            GridViewRow row = (GridViewRow)ddl.NamingContainer;
+            TextBox txtcookingnotes = (TextBox)row.FindControl("txtcookingnotes");
+            Label ddlcategory1 = (Label)row.FindControl("CategoryUserid");
+            Label StockID = (Label)row.FindControl("StockID");
+            TextBox defini = (TextBox)row.FindControl("Definition");
+
+            dt = (DataTable)ViewState["dt"];
+
+            DataRow[] rows = dt.Select("Definition='" + defini.Text + "' AND CategoryUserid='" + ddlcategory1.Text + "'");
+            if (rows.Length > 0)
+            {
+                rows[0]["cookingnotes"] = txtcookingnotes.Text;
+            }
+            gvlist.DataSource = dt;
+            gvlist.DataBind();
+        }
+
+        protected void drpempqty_chnaged(object sender, EventArgs e)
+        {
+            decimal Qty = 0;
+            decimal mrpRate = 0;
+            decimal TotmrpAmount = 0;
+
+            DropDownList ddl = (DropDownList)sender;
+            GridViewRow row = (GridViewRow)ddl.NamingContainer;
+            Label lblrowid = (Label)row.FindControl("lblrowid");
+            Label lbladdonmrp = (Label)row.FindControl("lbladdonmrp");
+            DropDownList drpaddonqty = (DropDownList)row.FindControl("drpaddonqty");
+            TextBox mrpamount = (TextBox)row.FindControl("mrpamount");
+
+            //if (txtaddonQty.Text == "")
+            //    txtaddonQty.Text = "0";
+
+            Qty = Convert.ToDecimal((drpaddonqty.SelectedValue));
+            mrpRate = Convert.ToDecimal((lbladdonmrp.Text));
+
+            TotmrpAmount = Qty * mrpRate;
+            mrpamount.Text = TotmrpAmount.ToString("0.00");
+
+            ModalPopupExtender1.Show();
+            UpdatePanel.Update();
+            UpdatePanel2.Update();
+            UpdatePanel1.Update();
+
+
         }
 
         protected void txtqty_chnaged(object sender, EventArgs e)
@@ -2324,6 +3707,10 @@ namespace Billing.Accountsbootstrap
             Label StockID = (Label)row.FindControl("StockID");
             TextBox defini = (TextBox)row.FindControl("Definition");
             TextBox txtQty = (TextBox)row.FindControl("txtQty");
+
+            Label lblmaintainstock = (Label)row.FindControl("lblmaintainstock");
+
+
             if (txtQty.Text == "")
                 txtQty.Text = "0";
 
@@ -2344,7 +3731,7 @@ namespace Billing.Accountsbootstrap
 
             dt = (DataTable)ViewState["dt"];
             DataSet dCat = new DataSet();
-            dCat = objbs.GetStockDetails_Ratetype(Convert.ToInt32(StockID.Text), Convert.ToInt32(lblUserID.Text), sTableName, StockOption, lblratetype.Text, lblmrptype.Text);
+            dCat = objbs.GetStockDetails_Ratetype(Convert.ToInt32(StockID.Text), Convert.ToInt32(lblUserID.Text), sTableName, StockOption, lblratetype.Text, lblmrptype.Text, lblmaintainstock.Text);
 
             if (dCat.Tables[0].Rows.Count > 0)
             {
@@ -2403,13 +3790,14 @@ namespace Billing.Accountsbootstrap
                 //}
                 //else
                 {
-
+                    decimal addontotAmount = 0;
                     DataRow[] rows = dt.Select("Definition='" + defini.Text + "' AND CategoryUserid='" + ddlcategory1.Text + "'");
                     if (rows.Length > 0)
                     {
 
 
                         Qty = Convert.ToDecimal(rows[0]["Qty"].ToString());
+                        addontotAmount = Convert.ToDecimal(rows[0]["addontotAmount"]);
 
                         Qty = Convert.ToDecimal(txtQty.Text);
                         // QtyT = Convert.ToDecimal(txtQty.Text) * Convert.ToDecimal(arg[0].ToString());
@@ -2436,10 +3824,12 @@ namespace Billing.Accountsbootstrap
                                 //rows[0]["Amount"] = amt.ToString("f2");
                                 rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
                                 rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
+                                rows[0]["addonitemtotAmount"] = amt + addontotAmount.ToString("" + ratesetting + "");
                             }
                         }
                         else
                         {
+                            if (lblmaintainstock.Text == "N")
                             {
                                 if (Qtytype == "D")
                                 {
@@ -2453,8 +3843,33 @@ namespace Billing.Accountsbootstrap
 
                                 decimal amt = Convert.ToDecimal(Qty) * dRate;
                                 rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
+                                rows[0]["addonitemtotAmount"] = amt + addontotAmount.ToString("" + ratesetting + "");
                                 decimal mrpamt = Convert.ToDecimal(Qty) * mrpRate;
                                 rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                            }
+                            else if (lblmaintainstock.Text == "Y")
+                            {
+                                if (dAvlQty >= Qty)
+                                {
+                                    if (Qtytype == "D")
+                                    {
+                                        rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                    }
+                                    else if (Qtytype == "E")
+                                    {
+                                        rows[0]["Qty"] = Qty.ToString("0");
+                                    }
+
+
+
+                                    decimal amt = Convert.ToDecimal(Qty) * dRate;
+                                    //decimal amt = Convert.ToDecimal(Qty) * Convert.ToDecimal(Qty) * dRate;
+                                    decimal mrpamt = Convert.ToDecimal(Qty) * mrpRate;
+                                    //rows[0]["Amount"] = amt.ToString("f2");
+                                    rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                    rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
+                                    rows[0]["addonitemtotAmount"] = amt + addontotAmount.ToString("" + ratesetting + "");
+                                }
                             }
                         }
                         // rows[0]["RecQty"] = recQty.ToString();
@@ -2645,7 +4060,9 @@ namespace Billing.Accountsbootstrap
             decimal Qty = 0;
             decimal HQty = 0;
             decimal GST = 0;
+            decimal CESS = 0;
             decimal mrpamnt = 0;
+            decimal addonamount = 0;
             decimal iQty = 0;
             decimal SQty = 0;
             string sItem = "";
@@ -2661,21 +4078,29 @@ namespace Billing.Accountsbootstrap
             string paymsntgateway = "0";
             string Qtytype = "E";
 
+            string addon = "N";
+            string cookinginstruction = "N";
+            string maintainstock = "N";
+            string kotreq = "N";
+
             tblBill.Visible = true;
             dt = (DataTable)ViewState["dt"];
             //dtt = (DataTable)ViewState["dtt"];
             DataSet dCat = new DataSet();
             Button btn = (Button)sender;
 
+            string HttpCookieValue = "";
+
             string[] commandArgs = btn.CommandArgument.ToString().Split(new char[] { ',' });
             string categoryuserid = commandArgs[0];
             string cattype = commandArgs[1];
+            string maintainstockk = commandArgs[2];
 
 
             // dCat = objbs.GetStockDetails(Convert.ToInt32(btn.CommandArgument), Convert.ToInt32(lblUserID.Text), sTableName);
             if (cattype == "N")
             {
-                dCat = objbs.GetStockDetails_Ratetype(Convert.ToInt32(categoryuserid), Convert.ToInt32(lblUserID.Text), sTableName, StockOption, lblratetype.Text, lblmrptype.Text);
+                dCat = objbs.GetStockDetails_Ratetype(Convert.ToInt32(categoryuserid), Convert.ToInt32(lblUserID.Text), sTableName, StockOption, lblratetype.Text, lblmrptype.Text, maintainstockk);
             }
             else if (cattype == "C")
             {
@@ -2699,9 +4124,18 @@ namespace Billing.Accountsbootstrap
                     stockID = Convert.ToInt32(dCat.Tables[0].Rows[i]["CategoryUserid"].ToString());
                     dAvlQty = Convert.ToDecimal(dCat.Tables[0].Rows[i]["Available_QTY"].ToString());
                     GST = Convert.ToDecimal(dCat.Tables[0].Rows[i]["GST"].ToString());
+                    CESS = Convert.ToDecimal(dCat.Tables[0].Rows[i]["CESS"].ToString());
                     mrpamnt = Convert.ToDecimal(dCat.Tables[0].Rows[i]["mrp"]);
                     Shwqty = Convert.ToDecimal(dCat.Tables[0].Rows[i]["QTY"].ToString());
                     Qtytype = dCat.Tables[0].Rows[i]["QTYtype"].ToString();
+
+
+                    addon = dCat.Tables[0].Rows[i]["addon"].ToString();
+                    maintainstock = dCat.Tables[0].Rows[i]["Maintainstock"].ToString();
+                    kotreq = dCat.Tables[0].Rows[i]["KotReq"].ToString();
+                    cookinginstruction = dCat.Tables[0].Rows[i]["CookingReq"].ToString();
+
+
                     //if (dAvlQty < Shwqty)
                     //{
                     //    Shwqty = dAvlQty;
@@ -2771,7 +4205,11 @@ namespace Billing.Accountsbootstrap
 
                             decimal DRATE = Math.Round(drateee + commamnt + commperamnt, 0);
 
+                            int max = Convert.ToInt32(dt.AsEnumerable()
+                      .Max(row => row["Rowid"]));
+
                             dr["Sno"] = totcnt;
+                            dr["Rowid"] = max + 1;
                             dr["CategoryID"] = dCat.Tables[0].Rows[i]["categoryid"].ToString();
                             dr["CategoryUserID"] = dCat.Tables[0].Rows[i]["categoryuserid"].ToString();
                             dr["definition"] = dCat.Tables[0].Rows[i]["Printitem"].ToString();
@@ -2808,6 +4246,9 @@ namespace Billing.Accountsbootstrap
 
 
                         decimal Sqtyy = 0;
+                        string cookingnotes = "";
+                        // decimal addonrate = 0;
+                        decimal addontotAmount = 0;
 
                         {
 
@@ -2819,6 +4260,9 @@ namespace Billing.Accountsbootstrap
                                     Qty = Convert.ToDecimal(rows[0]["Qty"].ToString());
                                     HQty = Convert.ToDecimal(rows[0]["HQty"].ToString());
                                     Sqtyy = Convert.ToDecimal(rows[0]["ShwQty"].ToString());
+                                    cookingnotes = rows[0]["cookingnotes"].ToString();
+                                    addontotAmount = Convert.ToDecimal(rows[0]["addontotAmount"]);
+                                    //decimal Ratee = rows[0]["addonRate"].ToString();
                                     if (cattype == "N")
                                     {
                                         if (lblqtytype.Text == "Y")
@@ -2842,31 +4286,12 @@ namespace Billing.Accountsbootstrap
                                     }
                                 }
 
+                                rows[0]["cookingnotes"] = cookingnotes;
+
                                 if (StockOption == "2")
                                 {
-                                    if (Qtytype == "E")
+                                    if (maintainstock == "N")
                                     {
-                                        rows[0]["Qty"] = Qty.ToString("0");
-                                        rows[0]["ShwQty"] = Sqtyy.ToString("0");
-                                    }
-                                    else if (Qtytype == "D")
-                                    {
-                                        rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
-                                        rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
-                                    }
-
-                                    decimal amt = Convert.ToDecimal(Qty) * dRate;
-                                    rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
-                                    decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
-                                    rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
-                                }
-
-                                if (StockOption == "1")
-                                {
-                                    if ((dAvlQty + HQty) >= Qty)
-                                    {
-                                        //rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
-                                        //rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
                                         if (Qtytype == "E")
                                         {
                                             rows[0]["Qty"] = Qty.ToString("0");
@@ -2880,13 +4305,128 @@ namespace Billing.Accountsbootstrap
 
                                         decimal amt = Convert.ToDecimal(Qty) * dRate;
                                         rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
-                                        decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
+                                        //rows[0]["addontotAmount"] = addontotAmount;
+                                        rows[0]["addonitemtotAmount"] = (amt + addontotAmount).ToString("" + ratesetting + "");
+                                        if (rows[0]["addonamount"] == "")
+                                        {
+                                            addonamount = 0;
+                                        }
+                                        else
+                                        {
+                                            addonamount = Convert.ToDecimal(rows[0]["addonamount"]);
+                                        }
+                                        Qty = Convert.ToDecimal(rows[0]["addonamount"].ToString());
+                                        decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt + addonamount;
+                                        rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                    }
+                                    else if (maintainstock == "Y")
+                                    {
+                                        if ((dAvlQty + HQty) >= Qty)
+                                        {
+                                            //rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                            //rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                            if (Qtytype == "E")
+                                            {
+                                                rows[0]["Qty"] = Qty.ToString("0");
+                                                rows[0]["ShwQty"] = Sqtyy.ToString("0");
+                                            }
+                                            else if (Qtytype == "D")
+                                            {
+                                                rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                                rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                            }
+
+                                            if (rows[0]["addonamount"] == "")
+                                            {
+                                                addonamount = 0;
+                                            }
+                                            else
+                                            {
+                                                addonamount = Convert.ToDecimal(rows[0]["addonamount"]);
+                                            }
+
+                                            decimal amt = Convert.ToDecimal(Qty) * dRate;
+                                            rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
+                                            rows[0]["addonitemtotAmount"] = (amt + addontotAmount).ToString("" + ratesetting + "");
+                                            decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt + addonamount;
+                                            rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                        }
+                                        else
+                                        {
+                                            ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Chk Categoryid and Name Wise-Qty Not Enough For this Item " + sItem + ".Thank You!!!');", true);
+                                            return;
+                                        }
+                                    }
+                                }
+
+                                if (StockOption == "1")
+                                {
+                                    if (maintainstock == "N")
+                                    {
+                                        if (Qtytype == "E")
+                                        {
+                                            rows[0]["Qty"] = Qty.ToString("0");
+                                            rows[0]["ShwQty"] = Sqtyy.ToString("0");
+                                        }
+                                        else if (Qtytype == "D")
+                                        {
+                                            rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                            rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                        }
+                                        if (rows[0]["addonamount"] == "")
+                                        {
+                                            addonamount = 0;
+                                        }
+                                        else
+                                        {
+                                            addonamount = Convert.ToDecimal(rows[0]["addonamount"]);
+                                        }
+
+
+                                        decimal amt = Convert.ToDecimal(Qty) * dRate;
+                                        rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
+                                        rows[0]["addonitemtotAmount"] = (amt + addontotAmount).ToString("" + ratesetting + "");
+
+                                        decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt + addonamount;
                                         rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
                                     }
                                     else
                                     {
-                                        ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Chk Categoryid and Name Wise-Qty Not Enough For this Item " + sItem + ".Thank You!!!');", true);
-                                        return;
+                                        if ((dAvlQty + HQty) >= Qty)
+                                        {
+                                            //rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                            //rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                            if (Qtytype == "E")
+                                            {
+                                                rows[0]["Qty"] = Qty.ToString("0");
+                                                rows[0]["ShwQty"] = Sqtyy.ToString("0");
+                                            }
+                                            else if (Qtytype == "D")
+                                            {
+                                                rows[0]["Qty"] = Qty.ToString("" + qtysetting + "");
+                                                rows[0]["ShwQty"] = Sqtyy.ToString("" + qtysetting + "");
+                                            }
+
+                                            if (rows[0]["addonamount"] == "")
+                                            {
+                                                addonamount = 0;
+                                            }
+                                            else
+                                            {
+                                                addonamount = Convert.ToDecimal(rows[0]["addonamount"]);
+                                            }
+
+                                            decimal amt = Convert.ToDecimal(Qty) * dRate;
+                                            rows[0]["Amount"] = amt.ToString("" + ratesetting + "");
+                                            rows[0]["addonitemtotAmount"] = (amt + addontotAmount).ToString("" + ratesetting + "");
+                                            decimal mrpamt = Convert.ToDecimal(Qty) * mrpamnt + addonamount;
+                                            rows[0]["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                        }
+                                        else
+                                        {
+                                            ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Chk Categoryid and Name Wise-Qty Not Enough For this Item " + sItem + ".Thank You!!!');", true);
+                                            return;
+                                        }
                                     }
                                 }
                                 ////{
@@ -2918,38 +4458,120 @@ namespace Billing.Accountsbootstrap
                                 DataRow dr = dt.NewRow();
                                 if (StockOption == "1")
                                 {
-                                    if (lblqtytype.Text == "Y")
+                                    if (maintainstock == "N")
                                     {
-                                        if (dAvlQty > 1)
+
+                                        if (lblqtytype.Text == "Y")
                                         {
                                             Qty = Qty + 1;
                                         }
                                         else
                                         {
-                                            Qty = dAvlQty;
+                                            Qty = 0;
                                         }
                                     }
-                                    else
+                                    else if (maintainstock == "Y")
                                     {
-                                        if (dAvlQty > 1)
+                                        if (lblqtytype.Text == "Y")
                                         {
-                                            Qty = 0;
+                                            if (dAvlQty > 1)
+                                            {
+                                                Qty = Qty + 1;
+                                            }
+                                            else
+                                            {
+                                                Qty = dAvlQty;
+                                            }
                                         }
                                         else
                                         {
-                                            Qty = dAvlQty;
+                                            if (dAvlQty > 1)
+                                            {
+                                                Qty = 0;
+                                            }
+                                            else
+                                            {
+                                                Qty = dAvlQty;
+                                            }
                                         }
                                     }
+                                    //if (lblqtytype.Text == "Y")
+                                    //{
+                                    //    if (maintainstock == "N")
+                                    //    {
+                                    //        if (dAvlQty > 1)
+                                    //        {
+                                    //            Qty = Qty + 1;
+                                    //        }
+                                    //        else
+                                    //        {
+                                    //            Qty = 1;
+                                    //        }
+                                    //    }
+                                    //    else
+                                    //    {
+                                    //        if (dAvlQty > 1)
+                                    //        {
+                                    //            Qty = Qty + 1;
+                                    //        }
+                                    //        else
+                                    //        {
+                                    //            Qty = dAvlQty;
+                                    //        }
+                                    //    }
+
+
+                                    //}
+                                    //else
+                                    //{
+                                    //    if (dAvlQty > 1)
+                                    //    {
+                                    //        Qty = 0;
+                                    //    }
+                                    //    else
+                                    //    {
+                                    //        Qty = dAvlQty;
+                                    //    }
+                                    //}
                                 }
                                 else
                                 {
-                                    if (lblqtytype.Text == "Y")
+                                    if (maintainstock == "N")
                                     {
-                                        Qty = Qty + 1;
+
+                                        if (lblqtytype.Text == "Y")
+                                        {
+                                            Qty = Qty + 1;
+                                        }
+                                        else
+                                        {
+                                            Qty = 0;
+                                        }
                                     }
-                                    else
+                                    else if (maintainstock == "Y")
                                     {
-                                        Qty = 0;
+                                        if (lblqtytype.Text == "Y")
+                                        {
+                                            if (dAvlQty > 1)
+                                            {
+                                                Qty = Qty + 1;
+                                            }
+                                            else
+                                            {
+                                                Qty = dAvlQty;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (dAvlQty > 1)
+                                            {
+                                                Qty = 0;
+                                            }
+                                            else
+                                            {
+                                                Qty = dAvlQty;
+                                            }
+                                        }
                                     }
 
 
@@ -2957,11 +4579,26 @@ namespace Billing.Accountsbootstrap
                                 decimal amt = 0;
                                 decimal mrpamt = 0;
 
+                                int max = Convert.ToInt32(dt.AsEnumerable()
+                      .Max(row => row["Rowid"]));
+
                                 dr["Sno"] = totcnt;
+                                dr["Rowid"] = max + 1;
                                 dr["CategoryID"] = dCat.Tables[0].Rows[i]["categoryid"].ToString();
                                 dr["CategoryUserID"] = dCat.Tables[0].Rows[i]["categoryuserid"].ToString();
                                 dr["definition"] = dCat.Tables[0].Rows[i]["Printitem"].ToString();
                                 dr["StockID"] = iSubCatID; //dCat.Tables[0].Rows[i]["StockID"].ToString();
+
+                                dr["maintainstock"] = dCat.Tables[0].Rows[i]["Maintainstock"].ToString();
+                                dr["addon"] = dCat.Tables[0].Rows[i]["addon"].ToString();
+                                dr["cookinginstruction"] = dCat.Tables[0].Rows[i]["CookingReq"].ToString();
+                                dr["kotreq"] = dCat.Tables[0].Rows[i]["KotReq"].ToString();
+                                dr["addonamount"] = "0";
+                                dr["addonRate"] = "0";
+                                dr["addontotAmount"] = "0";
+                                dr["addonitemtotAmount"] = "0";
+
+
 
                                 if (Qtytype == "E")
                                 {
@@ -2980,7 +4617,11 @@ namespace Billing.Accountsbootstrap
                                 }
 
                                 dr["Rate"] = Convert.ToDecimal(dRate).ToString("" + ratesetting + "");
+                                dr["addonRate"] = "0";
+                                decimal addonrte = Convert.ToDecimal(dr["addonRate"]);
+                                dr["addonitemtotRate"] = Convert.ToDecimal(dRate + addonrte).ToString("" + ratesetting + "");
                                 dr["Tax"] = Convert.ToDecimal(GST);
+                                dr["CESS"] = Convert.ToDecimal(CESS);
                                 dr["mrp"] = Convert.ToDecimal(dCat.Tables[0].Rows[i]["mrp"]).ToString("" + ratesetting + "");
                                 dr["cattype"] = cattype;
                                 dr["combo"] = comboo;
@@ -2997,17 +4638,51 @@ namespace Billing.Accountsbootstrap
 
                                 if (StockOption == "2")
                                 {
+                                    if (maintainstock == "N")
                                     {
-                                        amt = Convert.ToDecimal(Qty) * dRate;
-                                        mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
-                                    }
-                                    dr["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
-                                    dr["Amount"] = amt.ToString("" + ratesetting + "");
-                                    //  dr["Itemid"] = dCat.Tables[0].Rows[i]["Itemid"].ToString();
-                                    // dr["RecQty"] = Reqty.ToString();
-                                    dr["Orirate"] = dRate.ToString();
 
-                                    dt.Rows.Add(dr);
+                                        {
+                                            amt = Convert.ToDecimal(Qty) * dRate;
+                                            mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
+                                        }
+                                        dr["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                        dr["Amount"] = amt.ToString("" + ratesetting + "");
+                                        dr["addontotAmount"] = "0";
+                                        dr["addonitemtotAmount"] = "0";
+                                        decimal addonitemtotamnt = Convert.ToDecimal(dr["addonitemtotAmount"]);
+                                        dr["addonitemtotAmount"] = (amt + addonitemtotamnt).ToString("" + ratesetting + "");
+                                        //  dr["Itemid"] = dCat.Tables[0].Rows[i]["Itemid"].ToString();
+                                        // dr["RecQty"] = Reqty.ToString();
+                                        dr["Orirate"] = dRate.ToString();
+
+                                        dt.Rows.Add(dr);
+                                    }
+                                    else if (maintainstock == "Y")
+                                    {
+                                        {
+                                            amt = Convert.ToDecimal(Qty) * dRate;
+                                            mrpamt = Convert.ToDecimal(Qty) * mrpamnt;
+                                        }
+                                        dr["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
+                                        dr["Amount"] = amt.ToString("" + ratesetting + "");
+                                        dr["addonitemtotAmount"] = "0";
+                                        dr["addontotAmount"] = "0";
+                                        decimal addonitemtotamnt = Convert.ToDecimal(dr["addonitemtotAmount"]);
+                                        dr["addonitemtotAmount"] = (amt + addonitemtotamnt).ToString("" + ratesetting + "");
+                                        //  dr["Itemid"] = dCat.Tables[0].Rows[i]["Itemid"].ToString();
+                                        // dr["RecQty"] = Reqty.ToString();
+                                        dr["Orirate"] = dRate.ToString();
+                                        if (dAvlQty >= Qty)
+                                        {
+
+                                            dt.Rows.Add(dr);
+                                        }
+                                        else
+                                        {
+                                            ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Chk Category and Name Wise-Qty Not Enough For this Item " + sItem + ".Thank You!!!');", true);
+                                            return;
+                                        }
+                                    }
 
                                 }
 
@@ -3020,18 +4695,28 @@ namespace Billing.Accountsbootstrap
                                     }
                                     dr["mrpAmount"] = mrpamt.ToString("" + ratesetting + "");
                                     dr["Amount"] = amt.ToString("" + ratesetting + "");
+                                    dr["addonitemtotAmount"] = "0";
+                                    decimal addonitemtotamnt = Convert.ToDecimal(dr["addonitemtotAmount"]);
+                                    dr["addonitemtotAmount"] = (amt + addonitemtotamnt).ToString("" + ratesetting + "");
                                     //  dr["Itemid"] = dCat.Tables[0].Rows[i]["Itemid"].ToString();
                                     // dr["RecQty"] = Reqty.ToString();
                                     dr["Orirate"] = dRate.ToString();
-                                    if (dAvlQty >= Qty)
+                                    if (maintainstock == "N")
                                     {
-
                                         dt.Rows.Add(dr);
                                     }
                                     else
                                     {
-                                        ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Chk Categoryid and Name Wise-Qty Not Enough For this Item " + sItem + ".Thank You!!!');", true);
-                                        return;
+                                        if (dAvlQty >= Qty)
+                                        {
+
+                                            dt.Rows.Add(dr);
+                                        }
+                                        else
+                                        {
+                                            ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Chk Categoryid and Name Wise-Qty Not Enough For this Item " + sItem + ".Thank You!!!');", true);
+                                            return;
+                                        }
                                     }
                                 }
                                 ViewState["dt"] = dt;
@@ -4060,16 +5745,19 @@ namespace Billing.Accountsbootstrap
             decimal total = 0;
             decimal total1 = 0;
             decimal getGST = 0;
+            decimal getCESS = 0;
             decimal disco = 0;
             decimal disTotal = 0;
             double r = 0;
             decimal grandtotal = 0;
             decimal cgstot = 0;
             decimal sgstot = 0;
+            decimal cesstot = 0;
             decimal distot = 0;
             decimal Tot = 0;
             decimal dis = 0;
             decimal TQty = 0;
+            decimal addonamount = 0;
             // decimal Discamt = 0;
 
 
@@ -4086,6 +5774,7 @@ namespace Billing.Accountsbootstrap
                 decimal tooo = Convert.ToDecimal(dr["Amount"]);
                 decimal tooo1 = Convert.ToDecimal(dr["Amount"]);
                 decimal tQty1 = Convert.ToDecimal(dr["Qty"]);
+                decimal addonamount1 = Convert.ToDecimal(dr["Addonamount"]);
 
                 total += Convert.ToDecimal(dr["Amount"]);
                 total1 += Convert.ToDecimal(dr["Amount"]);
@@ -4125,9 +5814,13 @@ namespace Billing.Accountsbootstrap
                 string GSt = (dr["Tax"]).ToString();
                 string amountt = (dr["Tax"]).ToString();
                 decimal gsthaf1 = Convert.ToDecimal(GSt) / 2;
+                decimal cessf1 = Convert.ToDecimal(dr["CESS"]);
+
+                decimal ncessamount1 = (Convert.ToDecimal(tooo) * Convert.ToDecimal(cessf1)) / 100;
+                //decimal dTotal1 = ngstamount1 + ngstamount1 + tooo;
 
                 decimal ngstamount1 = (Convert.ToDecimal(tooo) * Convert.ToDecimal(gsthaf1)) / 100;
-                decimal dTotal1 = ngstamount1 + ngstamount1 + tooo;
+                decimal dTotal1 = ngstamount1 + ngstamount1 + tooo + ncessamount1;
 
 
                 decimal oringstamount1 = (Convert.ToDecimal(tooo1) * Convert.ToDecimal(gsthaf1)) / 100;
@@ -4136,10 +5829,13 @@ namespace Billing.Accountsbootstrap
 
                 decimal gstamt1 = ngstamount1;
                 decimal cgstamt1 = ngstamount1;
+                decimal ccessamt1 = ncessamount1;
                 cgstot = cgstot + cgstamt1;
                 sgstot = sgstot + gstamt1;
+                cesstot = cesstot + ccessamt1;
                 grandtotal = grandtotal + dTotal1;
                 Oritotal = Oritotal + Oritot;
+                addonamount = addonamount + addonamount1;
             }
 
 
@@ -4153,6 +5849,7 @@ namespace Billing.Accountsbootstrap
 
             lblcgst.Text = (cgstot).ToString("" + ratesetting + "");
             lblsgst.Text = (sgstot).ToString("" + ratesetting + "");
+            lblcess.Text = (cesstot).ToString("" + ratesetting + "");
             // decimal Grand = grandtotal + Packing;
             decimal Packing = Convert.ToDecimal(0);
             decimal Delivery = Convert.ToDecimal(0);
@@ -4207,14 +5904,14 @@ namespace Billing.Accountsbootstrap
 
 
 
-            txtTax.Text = (cgstot + sgstot).ToString("" + ratesetting + "");
+            txtTax.Text = (cgstot + sgstot + cesstot).ToString("" + ratesetting + "");
 
 
 
             //lbltotal.Text = Convert.ToString(Grand1);
-            lblGrandTotal.Text = (Grand1).ToString("" + ratesetting + "");
+            lblGrandTotal.Text = (Grand1 + addonamount).ToString("" + ratesetting + "");
 
-            lbldisplay.InnerText = Grand1.ToString("" + ratesetting + "");
+            lbldisplay.InnerText = (Grand1 + addonamount).ToString("" + ratesetting + "");
             txttotqty.Text = TQty.ToString("" + qtysetting + "");
 
             //DataSet getexchngevalue = objbs.getiCurrencyvalues(drpexchangecurrency.SelectedValue);
@@ -5857,6 +7554,7 @@ namespace Billing.Accountsbootstrap
             dtraw.Columns.Add("Aqty");
             dtraw.Columns.Add("Sqty");
             dtraw.Columns.Add("Hqty");
+            dtraw.Columns.Add("Mstock");
             dsraw.Tables.Add(dtraw);
 
             dt = (DataTable)ViewState["dt"];
@@ -5864,12 +7562,13 @@ namespace Billing.Accountsbootstrap
             {
 
                 var result1 = from r in dt.AsEnumerable()
-                              group r by new { Categoryuserid = r["CategoryUserid"], Categoryid = r["Categoryid"], item = r["Definition"] } into raw
+                              group r by new { Categoryuserid = r["CategoryUserid"], Categoryid = r["Categoryid"], item = r["Definition"], maintainstock = r["maintainstock"] } into raw
                               select new
                               {
                                   Categoryuserid = raw.Key.Categoryuserid,
                                   Categoryid = raw.Key.Categoryid,
                                   item = raw.Key.item,
+                                  maintainstock = raw.Key.maintainstock,
                                   total = raw.Sum(x => Convert.ToDouble(x["Qty"])),
                                   Htotal = raw.Sum(x => Convert.ToDouble(x["HQty"])),
                               };
@@ -5884,6 +7583,7 @@ namespace Billing.Accountsbootstrap
                     drraw["Categoryuserid"] = g.Categoryuserid;
                     drraw["Categoryid"] = g.Categoryid;
                     drraw["item"] = g.item;
+                    drraw["Mstock"] = g.maintainstock;
                     DataSet getstock = objbs.GetStockAvailable(Convert.ToInt32(g.Categoryuserid), sTableName);
                     if (getstock.Tables[0].Rows.Count > 0)
                     {
@@ -5903,7 +7603,24 @@ namespace Billing.Accountsbootstrap
                     {
                         if (StockOption == "2")
                         {
-                            dsraw.Tables[0].Rows.Add(drraw);
+                            if (g.maintainstock == "N")
+                            {
+
+                                dsraw.Tables[0].Rows.Add(drraw);
+                            }
+                            else if (g.maintainstock == "Y")
+                            {
+                                if ((avlqty + hqty) >= sqty)
+                                {
+                                    dsraw.Tables[0].Rows.Add(drraw);
+                                }
+                                else
+                                {
+                                    ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Insuffient Avaliable Qty For this item Name " + g.item + " .Thank you!!!');", true);
+                                    return;
+                                }
+
+                            }
                         }
 
                         if (StockOption == "1")
@@ -6314,7 +8031,7 @@ namespace Billing.Accountsbootstrap
                                     Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, ddattender.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(),
                                     ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text),
                                     lblmargin.Text, lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, Attenderid, "0",
-                                    txtDiscount.Text, ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, lblRound.Text, "tblTranssalesAmount_" + sTableName + "", Billerid, "", "", "", "");
+                                    txtDiscount.Text, ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, lblRound.Text, "tblTranssalesAmount_" + sTableName + "", Billerid, "", "", "", "", lblcess.Text);
 
 
                                 int isalesid = Convert.ToInt32(OrderBill);
@@ -6344,6 +8061,29 @@ namespace Billing.Accountsbootstrap
                                     double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
                                     double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
+                                    Label lblmaintainstock = (Label)gvlist.Rows[i].FindControl("lblmaintainstock");
+                                    Label lbladdon = (Label)gvlist.Rows[i].FindControl("lbladdon");
+                                    Label lblcookinginstruction = (Label)gvlist.Rows[i].FindControl("lblcookinginstruction");
+                                    Label lblkotreq = (Label)gvlist.Rows[i].FindControl("lblkotreq");
+                                    TextBox txtcookingnotes = (TextBox)gvlist.Rows[i].FindControl("txtcookingnotes");
+                                    Label lblrowid = (Label)gvlist.Rows[i].FindControl("lblrowid");
+                                    Label lblcess = (Label)gvlist.Rows[i].FindControl("lblcess");
+
+
+                                    TextBox txtaddonRate = (TextBox)gvlist.Rows[i].FindControl("txtaddonRate");
+                                    TextBox txtaddonitemtotRate = (TextBox)gvlist.Rows[i].FindControl("txtaddonitemtotRate");
+
+                                    TextBox txtaddontotAmount = (TextBox)gvlist.Rows[i].FindControl("txtaddontotAmount");
+                                    TextBox txtaddonitemtotAmount = (TextBox)gvlist.Rows[i].FindControl("txtaddonitemtotAmount");
+
+                                    TextBox txtaddonamount = (TextBox)gvlist.Rows[i].FindControl("txtaddonamount");
+
+                                    // Label lblrowid = (Label)gvlist.Rows[i].FindControl("lblrowid");
+                                    Label lblmrp = (Label)gvlist.Rows[i].FindControl("lblmrp");
+                                    double mrptotal = Convert.ToDouble(rate.Text) * Convert.ToDouble(lblmrp.Text);
+
+
+
                                     // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
 
                                     if (lblitemdiscount.Text == "")
@@ -6354,16 +8094,71 @@ namespace Billing.Accountsbootstrap
                                     //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
                                     //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
-                                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
-                                   // int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
+                                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text),
+                                        Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text),
+                                        Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text),
+                                        lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text),
+                                        lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice),
+                                        Convert.ToDouble(examount), lblmaintainstock.Text, lbladdon.Text, lblcookinginstruction.Text, lblkotreq.Text, txtcookingnotes.Text,
+                                        txtaddonitemtotRate.Text, txtaddonitemtotAmount.Text, txtaddonRate.Text, txtaddontotAmount.Text, txtaddonamount.Text, lblcess.Text, lblmrp.Text, mrptotal.ToString(), lblrowid.Text);
+                                    // int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
 
                                     // if (StockOption == "1")
-                                  //  {
-                                        double Istock = Convert.ToDouble(Qty.Text) * Convert.ToDouble(txtcqty.Text);
-                                        iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
-                                   // }
+                                    //  {
+                                    double Istock = Convert.ToDouble(Qty.Text) * Convert.ToDouble(txtcqty.Text);
+                                    iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry", lblmaintainstock.Text);
+                                    // }
                                     // iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(stock.Text)); 
                                     //7 dec
+                                }
+
+                                for (int i = 0; i < gridaddon.Rows.Count; i++)
+                                {
+
+                                    Label lblrowid = (Label)gridaddon.Rows[i].FindControl("lblrowid");
+
+
+                                    Label lbladdonCategoryID = (Label)gridaddon.Rows[i].FindControl("lbladdonCategoryID");
+                                    Label lbladdonCategoryUserID = (Label)gridaddon.Rows[i].FindControl("lbladdonCategoryUserID");
+
+
+
+                                    Label lbladdontax = (Label)gridaddon.Rows[i].FindControl("lbladdontax");
+                                    Label lbladdoncattype = (Label)gridaddon.Rows[i].FindControl("lbladdoncattype");
+                                    Label lbladdonmaintainstock = (Label)gridaddon.Rows[i].FindControl("lbladdonmaintainstock");
+                                    Label lbladdonaddon = (Label)gridaddon.Rows[i].FindControl("lbladdonaddon");
+                                    TextBox lbladdoncookinginstruction = (TextBox)gridaddon.Rows[i].FindControl("lbladdoncookinginstruction");
+                                    Label lbladdonkotreq = (Label)gridaddon.Rows[i].FindControl("lbladdonkotreq");
+
+                                    Label lbladdonmrp = (Label)gridaddon.Rows[i].FindControl("lbladdonmrp");
+                                    TextBox lbladdonRate = (TextBox)gridaddon.Rows[i].FindControl("lbladdonRate");
+
+
+                                    TextBox txtaddonQty = (TextBox)gridaddon.Rows[i].FindControl("txtaddonQty");
+
+
+
+                                    TextBox Amount = (TextBox)gridaddon.Rows[i].FindControl("Amount");
+                                    TextBox mrpamount = (TextBox)gridaddon.Rows[i].FindControl("mrpamount");
+
+
+                                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(lbladdonCategoryID.Text), 
+                                        Convert.ToDouble(txtaddonQty.Text),
+                                       Convert.ToDouble(lbladdonRate.Text), Convert.ToDouble(0), Convert.ToDouble(Amount.Text),
+                                       Convert.ToInt32(lbladdonCategoryUserID.Text), Convert.ToInt32(0), Convert.ToDouble(lbladdontax.Text),
+                                       lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtaddonQty.Text),
+                                       lbladdoncattype.Text, "0", Convert.ToDouble(1), Convert.ToDouble(lbladdonRate.Text),
+                                       Convert.ToDouble(Amount.Text), lbladdonmaintainstock.Text, lbladdonaddon.Text, lbladdoncookinginstruction.Text,
+                                       lbladdonkotreq.Text, "","0", "0", "0","0", "0", "0", lbladdonmrp.Text,
+                                       mrpamount.Text, lblrowid.Text);
+
+
+                                    int iStatusaddon1 = objbs.insertTransSalesAddon(sTableName, drpsalestype.SelectedValue, isalesid.ToString(), lblrowid.Text,
+                                        lbladdonCategoryID.Text, lbladdonCategoryUserID.Text, lbladdontax.Text, lbladdoncattype.Text, lbladdonmaintainstock.Text,
+                                        lbladdonaddon.Text, lbladdoncookinginstruction.Text, lbladdonkotreq.Text, lbladdonmrp.Text, lbladdonRate.Text,
+                                        txtaddonQty.Text, Amount.Text, mrpamount.Text);
+
+
                                 }
 
                                 // Update OnlineOrder Fresh
@@ -6508,7 +8303,7 @@ namespace Billing.Accountsbootstrap
                         {
                             //int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, ddlApproved.SelectedValue, ddattender.SelectedValue, Session["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text));
 
-                            int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(lbldisco.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, ddattender.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), lblmargin.Text, lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, Attenderid, "0", txtDiscount.Text, ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, lblRound.Text, "tblTranssalesAmount_" + sTableName + "", Billerid, "", "", "", "");
+                            int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(lbldisco.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, ddattender.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), lblmargin.Text, lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, Attenderid, "0", txtDiscount.Text, ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, lblRound.Text, "tblTranssalesAmount_" + sTableName + "", Billerid, "", "", "", "", lblcess.Text);
 
                             int isalesid = Convert.ToInt32(OrderBill);
 
@@ -6538,30 +8333,103 @@ namespace Billing.Accountsbootstrap
                                 double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
                                 double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
+                                Label lblmaintainstock = (Label)gvlist.Rows[i].FindControl("lblmaintainstock");
+                                Label lbladdon = (Label)gvlist.Rows[i].FindControl("lbladdon");
+                                Label lblcookinginstruction = (Label)gvlist.Rows[i].FindControl("lblcookinginstruction");
+                                Label lblkotreq = (Label)gvlist.Rows[i].FindControl("lblkotreq");
+                                TextBox txtcookingnotes = (TextBox)gvlist.Rows[i].FindControl("txtcookingnotes");
+                                Label lblrowid = (Label)gvlist.Rows[i].FindControl("lblrowid");
+                                Label lblcess = (Label)gvlist.Rows[i].FindControl("lblcess");
+
+
+                                TextBox txtaddonRate = (TextBox)gvlist.Rows[i].FindControl("txtaddonRate");
+                                TextBox txtaddonitemtotRate = (TextBox)gvlist.Rows[i].FindControl("txtaddonitemtotRate");
+
+                                TextBox txtaddontotAmount = (TextBox)gvlist.Rows[i].FindControl("txtaddontotAmount");
+                                TextBox txtaddonitemtotAmount = (TextBox)gvlist.Rows[i].FindControl("txtaddonitemtotAmount");
+
+                                TextBox txtaddonamount = (TextBox)gvlist.Rows[i].FindControl("txtaddonamount");
+
+                                // Label lblrowid = (Label)gvlist.Rows[i].FindControl("lblrowid");
+                                Label lblmrp = (Label)gvlist.Rows[i].FindControl("lblmrp");
+                                double mrptotal = Convert.ToDouble(rate.Text) * Convert.ToDouble(lblmrp.Text);
+
+                                // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
+
                                 if (lblitemdiscount.Text == "")
                                 {
                                     lblitemdiscount.Text = "0";
                                 }
 
-
                                 //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
                                 //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
-                                //int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, "0", drpsalestype.SelectedValue);
-
-                                //iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
-
-                                int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
+                                int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text),
+                                    Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text),
+                                    Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text),
+                                    lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text),
+                                    lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice),
+                                    Convert.ToDouble(examount), lblmaintainstock.Text, lbladdon.Text, lblcookinginstruction.Text, lblkotreq.Text, txtcookingnotes.Text,
+                                    txtaddonitemtotRate.Text, txtaddonitemtotAmount.Text, txtaddonRate.Text, txtaddontotAmount.Text, txtaddonamount.Text, lblcess.Text, lblmrp.Text, mrptotal.ToString(), lblrowid.Text);
 
                                 //  if (StockOption == "1")
                                 {
                                     double Istock = Convert.ToDouble(Qty.Text) * Convert.ToDouble(txtcqty.Text);
-                                    iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
+                                    iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry", lblmaintainstock.Text);
                                 }
 
 
                                 // iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(stock.Text)); 
                                 //7 dec
+                            }
+
+                            for (int i = 0; i < gridaddon.Rows.Count; i++)
+                            {
+
+                                Label lblrowid = (Label)gridaddon.Rows[i].FindControl("lblrowid");
+
+
+                                Label lbladdonCategoryID = (Label)gridaddon.Rows[i].FindControl("lbladdonCategoryID");
+                                Label lbladdonCategoryUserID = (Label)gridaddon.Rows[i].FindControl("lbladdonCategoryUserID");
+
+
+
+                                Label lbladdontax = (Label)gridaddon.Rows[i].FindControl("lbladdontax");
+                                Label lbladdoncattype = (Label)gridaddon.Rows[i].FindControl("lbladdoncattype");
+                                Label lbladdonmaintainstock = (Label)gridaddon.Rows[i].FindControl("lbladdonmaintainstock");
+                                Label lbladdonaddon = (Label)gridaddon.Rows[i].FindControl("lbladdonaddon");
+                                Label lbladdoncookinginstruction = (Label)gridaddon.Rows[i].FindControl("lbladdoncookinginstruction");
+                                Label lbladdonkotreq = (Label)gridaddon.Rows[i].FindControl("lbladdonkotreq");
+
+                                Label lbladdonmrp = (Label)gridaddon.Rows[i].FindControl("lbladdonmrp");
+                                TextBox lbladdonRate = (TextBox)gridaddon.Rows[i].FindControl("lbladdonRate");
+
+
+                                TextBox txtaddonQty = (TextBox)gridaddon.Rows[i].FindControl("txtaddonQty");
+
+
+
+                                TextBox Amount = (TextBox)gridaddon.Rows[i].FindControl("Amount");
+                                TextBox mrpamount = (TextBox)gridaddon.Rows[i].FindControl("mrpamount");
+
+
+                                int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(lbladdonCategoryID.Text),
+                                    Convert.ToDouble(txtaddonQty.Text),
+                                   Convert.ToDouble(lbladdonRate.Text), Convert.ToDouble(0), Convert.ToDouble(Amount.Text),
+                                   Convert.ToInt32(lbladdonCategoryUserID.Text), Convert.ToInt32(0), Convert.ToDouble(lbladdontax.Text),
+                                   lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtaddonQty.Text),
+                                   lbladdoncattype.Text, "0", Convert.ToDouble(1), Convert.ToDouble(lbladdonRate.Text),
+                                   Convert.ToDouble(Amount.Text), lbladdonmaintainstock.Text, lbladdonaddon.Text, lbladdoncookinginstruction.Text,
+                                   lbladdonkotreq.Text, "", "0", "0", "0", "0", "0", "0", lbladdonmrp.Text,
+                                   mrpamount.Text, lblrowid.Text);
+
+
+                                int iStatusaddon1 = objbs.insertTransSalesAddon(sTableName, drpsalestype.SelectedValue, isalesid.ToString(), lblrowid.Text,
+                                    lbladdonCategoryID.Text, lbladdonCategoryUserID.Text, lbladdontax.Text, lbladdoncattype.Text, lbladdonmaintainstock.Text,
+                                    lbladdonaddon.Text, lbladdoncookinginstruction.Text, lbladdonkotreq.Text, lbladdonmrp.Text, lbladdonRate.Text,
+                                    txtaddonQty.Text, Amount.Text, mrpamount.Text);
+
+
                             }
 
                             // Update OnlineOrder Fresh
@@ -6670,7 +8538,7 @@ namespace Billing.Accountsbootstrap
                             //else
                             {
                                 // int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(txtDiscount.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, ddlApproved.SelectedValue, ddattender.SelectedValue, Session["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text));
-                                int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(lbldisco.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, ddattender.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), lblmargin.Text, lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, Attenderid, "0", txtDiscount.Text, ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, lblRound.Text, "tblTranssalesAmount_" + sTableName + "", Billerid, "", "", "", "");
+                                int OrderBill = objbs.insertOrdersalesnew("tblSales_" + sTableName, Convert.ToInt32(lblUserID.Text), txtBillNo.Text, txtBillDate.Text, Convert.ToInt32(iCustid), Convert.ToDouble(lbltotal.Text), Convert.ToDouble(lblGrandTotal.Text), Convert.ToDouble(txtTax.Text), Convert.ToDouble(lbldisco.Text), Convert.ToInt32("0"), Convert.ToInt32(1), Convert.ToDouble(txtAdvance.Text), Convert.ToInt32(0), "", "", "", "", "", Convert.ToInt16(drpPayment.SelectedValue), Convert.ToDecimal(txtReceived.Text), Convert.ToDecimal(txtBal.Text), txtgiven.Text, Approved, ddattender.SelectedValue, Request.Cookies["userInfo"]["empcode"].ToString(), ddlCashier.SelectedValue, Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), lblmargin.Text, lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, Attenderid, "0", txtDiscount.Text, ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, lblRound.Text, "tblTranssalesAmount_" + sTableName + "", Billerid, "", "", "", "", lblcess.Text);
 
                                 int isalesid = Convert.ToInt32(OrderBill);
 
@@ -6702,6 +8570,29 @@ namespace Billing.Accountsbootstrap
                                     double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
                                     double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
+                                    Label lblmaintainstock = (Label)gvlist.Rows[i].FindControl("lblmaintainstock");
+                                    Label lbladdon = (Label)gvlist.Rows[i].FindControl("lbladdon");
+                                    Label lblcookinginstruction = (Label)gvlist.Rows[i].FindControl("lblcookinginstruction");
+                                    Label lblkotreq = (Label)gvlist.Rows[i].FindControl("lblkotreq");
+                                    TextBox txtcookingnotes = (TextBox)gvlist.Rows[i].FindControl("txtcookingnotes");
+                                    Label lblrowid = (Label)gvlist.Rows[i].FindControl("lblrowid");
+                                    Label lblcess = (Label)gvlist.Rows[i].FindControl("lblcess");
+
+
+                                    TextBox txtaddonRate = (TextBox)gvlist.Rows[i].FindControl("txtaddonRate");
+                                    TextBox txtaddonitemtotRate = (TextBox)gvlist.Rows[i].FindControl("txtaddonitemtotRate");
+
+                                    TextBox txtaddontotAmount = (TextBox)gvlist.Rows[i].FindControl("txtaddontotAmount");
+                                    TextBox txtaddonitemtotAmount = (TextBox)gvlist.Rows[i].FindControl("txtaddonitemtotAmount");
+
+                                    TextBox txtaddonamount = (TextBox)gvlist.Rows[i].FindControl("txtaddonamount");
+
+                                    // Label lblrowid = (Label)gvlist.Rows[i].FindControl("lblrowid");
+                                    Label lblmrp = (Label)gvlist.Rows[i].FindControl("lblmrp");
+                                    double mrptotal = Convert.ToDouble(rate.Text) * Convert.ToDouble(lblmrp.Text);
+
+                                    // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
+
                                     if (lblitemdiscount.Text == "")
                                     {
                                         lblitemdiscount.Text = "0";
@@ -6710,19 +8601,70 @@ namespace Billing.Accountsbootstrap
                                     //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
                                     //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
-                                    //int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, "0", drpsalestype.SelectedValue);
-
-                                    //iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
-
-                                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
+                                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text),
+                                        Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text),
+                                        Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text),
+                                        lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text),
+                                        lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice),
+                                        Convert.ToDouble(examount), lblmaintainstock.Text, lbladdon.Text, lblcookinginstruction.Text, lblkotreq.Text, txtcookingnotes.Text,
+                                        txtaddonitemtotRate.Text, txtaddonitemtotAmount.Text, txtaddonRate.Text, txtaddontotAmount.Text, txtaddonamount.Text, lblcess.Text, lblmrp.Text, mrptotal.ToString(), lblrowid.Text);
 
                                     //  if (StockOption == "1")
                                     {
                                         double Istock = Convert.ToDouble(Qty.Text) * Convert.ToDouble(txtcqty.Text);
-                                        iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
+                                        iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry", lblmaintainstock.Text);
                                     }
                                     // iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(stock.Text)); 
                                     //7 dec
+                                }
+
+                                for (int i = 0; i < gridaddon.Rows.Count; i++)
+                                {
+
+                                    Label lblrowid = (Label)gridaddon.Rows[i].FindControl("lblrowid");
+
+
+                                    Label lbladdonCategoryID = (Label)gridaddon.Rows[i].FindControl("lbladdonCategoryID");
+                                    Label lbladdonCategoryUserID = (Label)gridaddon.Rows[i].FindControl("lbladdonCategoryUserID");
+
+
+
+                                    Label lbladdontax = (Label)gridaddon.Rows[i].FindControl("lbladdontax");
+                                    Label lbladdoncattype = (Label)gridaddon.Rows[i].FindControl("lbladdoncattype");
+                                    Label lbladdonmaintainstock = (Label)gridaddon.Rows[i].FindControl("lbladdonmaintainstock");
+                                    Label lbladdonaddon = (Label)gridaddon.Rows[i].FindControl("lbladdonaddon");
+                                    TextBox lbladdoncookinginstruction = (TextBox)gridaddon.Rows[i].FindControl("lbladdoncookinginstruction");
+                                    Label lbladdonkotreq = (Label)gridaddon.Rows[i].FindControl("lbladdonkotreq");
+
+                                    Label lbladdonmrp = (Label)gridaddon.Rows[i].FindControl("lbladdonmrp");
+                                    TextBox lbladdonRate = (TextBox)gridaddon.Rows[i].FindControl("lbladdonRate");
+
+
+                                    TextBox txtaddonQty = (TextBox)gridaddon.Rows[i].FindControl("txtaddonQty");
+
+
+
+                                    TextBox Amount = (TextBox)gridaddon.Rows[i].FindControl("Amount");
+                                    TextBox mrpamount = (TextBox)gridaddon.Rows[i].FindControl("mrpamount");
+
+
+                                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(lbladdonCategoryID.Text),
+                                        Convert.ToDouble(txtaddonQty.Text),
+                                       Convert.ToDouble(lbladdonRate.Text), Convert.ToDouble(0), Convert.ToDouble(Amount.Text),
+                                       Convert.ToInt32(lbladdonCategoryUserID.Text), Convert.ToInt32(0), Convert.ToDouble(lbladdontax.Text),
+                                       lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtaddonQty.Text),
+                                       lbladdoncattype.Text, "0", Convert.ToDouble(1), Convert.ToDouble(lbladdonRate.Text),
+                                       Convert.ToDouble(Amount.Text), lbladdonmaintainstock.Text, lbladdonaddon.Text, lbladdoncookinginstruction.Text,
+                                       lbladdonkotreq.Text, "", "0", "0", "0", "0", "0", "0", lbladdonmrp.Text,
+                                       mrpamount.Text, lblrowid.Text);
+
+
+                                    int iStatusaddon1 = objbs.insertTransSalesAddon(sTableName, drpsalestype.SelectedValue, isalesid.ToString(), lblrowid.Text,
+                                        lbladdonCategoryID.Text, lbladdonCategoryUserID.Text, lbladdontax.Text, lbladdoncattype.Text, lbladdonmaintainstock.Text,
+                                        lbladdonaddon.Text, lbladdoncookinginstruction.Text, lbladdonkotreq.Text, lbladdonmrp.Text, lbladdonRate.Text,
+                                        txtaddonQty.Text, Amount.Text, mrpamount.Text);
+
+
                                 }
 
                                 // Update OnlineOrder Fresh
@@ -6934,7 +8876,7 @@ namespace Billing.Accountsbootstrap
                                     txtgiven.Text, Approved, "0", Request.Cookies["userInfo"]["empcode"].ToString(), ddlCashier.SelectedValue,
                                     Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, lblRound.Text, lblmargin.Text,
                                     lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, Attenderid, "1",
-                                    txtDiscount.Text, ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, "tblTranssalesAmount_" + sTableName + "", Billerid, "", "", "", "");
+                                    txtDiscount.Text, ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, "tblTranssalesAmount_" + sTableName + "", Billerid, "", "", "", "", lblcess.Text);
 
 
                                 int isalesid = Convert.ToInt32(OrderBill);
@@ -6967,6 +8909,30 @@ namespace Billing.Accountsbootstrap
                                     double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
                                     double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
+                                    Label lblmaintainstock = (Label)gvlist.Rows[i].FindControl("lblmaintainstock");
+                                    Label lbladdon = (Label)gvlist.Rows[i].FindControl("lbladdon");
+                                    Label lblcookinginstruction = (Label)gvlist.Rows[i].FindControl("lblcookinginstruction");
+                                    Label lblkotreq = (Label)gvlist.Rows[i].FindControl("lblkotreq");
+                                    TextBox txtcookingnotes = (TextBox)gvlist.Rows[i].FindControl("txtcookingnotes");
+                                    Label lblrowid = (Label)gvlist.Rows[i].FindControl("lblrowid");
+                                    Label lblcess = (Label)gvlist.Rows[i].FindControl("lblcess");
+
+
+                                    TextBox txtaddonRate = (TextBox)gvlist.Rows[i].FindControl("txtaddonRate");
+                                    TextBox txtaddonitemtotRate = (TextBox)gvlist.Rows[i].FindControl("txtaddonitemtotRate");
+
+                                    TextBox txtaddontotAmount = (TextBox)gvlist.Rows[i].FindControl("txtaddontotAmount");
+                                    TextBox txtaddonitemtotAmount = (TextBox)gvlist.Rows[i].FindControl("txtaddonitemtotAmount");
+
+                                    TextBox txtaddonamount = (TextBox)gvlist.Rows[i].FindControl("txtaddonamount");
+
+
+                                    //  Label lblrowid = (Label)gvlist.Rows[i].FindControl("lblrowid");
+                                    Label lblmrp = (Label)gvlist.Rows[i].FindControl("lblmrp");
+                                    double mrptotal = Convert.ToDouble(rate.Text) * Convert.ToDouble(lblmrp.Text);
+
+                                    // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
+
                                     if (lblitemdiscount.Text == "")
                                     {
                                         lblitemdiscount.Text = "0";
@@ -6975,15 +8941,17 @@ namespace Billing.Accountsbootstrap
                                     //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
                                     //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
-                                    //int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, "0", drpsalestype.SelectedValue);
-
-                                    //iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
-
-                                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
+                                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text),
+                                        Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text),
+                                        Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text),
+                                        lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text),
+                                        lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice),
+                                        Convert.ToDouble(examount), lblmaintainstock.Text, lbladdon.Text, lblcookinginstruction.Text, lblkotreq.Text, txtcookingnotes.Text,
+                                        txtaddonitemtotRate.Text, txtaddonitemtotAmount.Text, txtaddonRate.Text, txtaddontotAmount.Text, txtaddonamount.Text, lblcess.Text, lblmrp.Text, mrptotal.ToString(), lblrowid.Text);
                                     // if (StockOption == "1")
                                     {
                                         double Istock = Convert.ToDouble(Qty.Text) * Convert.ToDouble(txtcqty.Text);
-                                        iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
+                                        iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry", lblmaintainstock.Text);
                                     }
 
 
@@ -7187,7 +9155,7 @@ namespace Billing.Accountsbootstrap
                                 txtgiven.Text, Approved, Attenderid, Request.Cookies["userInfo"]["empcode"].ToString(), ddlCashier.SelectedValue,
                                 Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, lblRound.Text, lblmargin.Text,
                                 lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, "0", "1", txtDiscount.Text,
-                                ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, "tblTranssalesAmount_" + sTableName + "", Billerid, "", "", "", "");
+                                ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, "tblTranssalesAmount_" + sTableName + "", Billerid, "", "", "", "", lblcess.Text);
 
                             int isalesid = Convert.ToInt32(OrderBill);
 
@@ -7220,6 +9188,29 @@ namespace Billing.Accountsbootstrap
                                 double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
                                 double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
+                                Label lblmaintainstock = (Label)gvlist.Rows[i].FindControl("lblmaintainstock");
+                                Label lbladdon = (Label)gvlist.Rows[i].FindControl("lbladdon");
+                                Label lblcookinginstruction = (Label)gvlist.Rows[i].FindControl("lblcookinginstruction");
+                                Label lblkotreq = (Label)gvlist.Rows[i].FindControl("lblkotreq");
+                                TextBox txtcookingnotes = (TextBox)gvlist.Rows[i].FindControl("txtcookingnotes");
+                                Label lblrowid = (Label)gvlist.Rows[i].FindControl("lblrowid");
+                                Label lblcess = (Label)gvlist.Rows[i].FindControl("lblcess");
+
+
+                                TextBox txtaddonRate = (TextBox)gvlist.Rows[i].FindControl("txtaddonRate");
+                                TextBox txtaddonitemtotRate = (TextBox)gvlist.Rows[i].FindControl("txtaddonitemtotRate");
+
+                                TextBox txtaddontotAmount = (TextBox)gvlist.Rows[i].FindControl("txtaddontotAmount");
+                                TextBox txtaddonitemtotAmount = (TextBox)gvlist.Rows[i].FindControl("txtaddonitemtotAmount");
+
+                                TextBox txtaddonamount = (TextBox)gvlist.Rows[i].FindControl("txtaddonamount");
+
+                                //  Label lblrowid = (Label)gvlist.Rows[i].FindControl("lblrowid");
+                                Label lblmrp = (Label)gvlist.Rows[i].FindControl("lblmrp");
+                                double mrptotal = Convert.ToDouble(rate.Text) * Convert.ToDouble(lblmrp.Text);
+
+                                // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
+
                                 if (lblitemdiscount.Text == "")
                                 {
                                     lblitemdiscount.Text = "0";
@@ -7228,16 +9219,18 @@ namespace Billing.Accountsbootstrap
                                 //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
                                 //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
-                                //int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, "0", drpsalestype.SelectedValue);
-
-                                //iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
-
-                                int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
+                                int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text),
+                                    Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text),
+                                    Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text),
+                                    lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text),
+                                    lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice),
+                                    Convert.ToDouble(examount), lblmaintainstock.Text, lbladdon.Text, lblcookinginstruction.Text, lblkotreq.Text, txtcookingnotes.Text,
+                                    txtaddonitemtotRate.Text, txtaddonitemtotAmount.Text, txtaddonRate.Text, txtaddontotAmount.Text, txtaddonamount.Text, lblcess.Text, lblmrp.Text, mrptotal.ToString(), lblrowid.Text);
 
                                 //  if (StockOption == "1")
                                 {
                                     double Istock = Convert.ToDouble(Qty.Text) * Convert.ToDouble(txtcqty.Text);
-                                    iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
+                                    iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry", lblmaintainstock.Text);
                                 }
 
 
@@ -7398,7 +9391,7 @@ namespace Billing.Accountsbootstrap
                                     txtgiven.Text, Approved, "0", Request.Cookies["userInfo"]["empcode"].ToString(), ddlCashier.SelectedValue,
                                     Convert.ToDouble(lblcgst.Text), Convert.ToDouble(lblsgst.Text), Convert.ToDouble(lblsubttl.Text), 0, lblRound.Text, lblmargin.Text,
                                     lblmargintax.Text, lblpaygate.Text, drpsalestype.SelectedValue, txtorderno.Text, lblisnormal.Text, Attenderid, "1", txtDiscount.Text,
-                                    ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, "tblTranssalesAmount_" + sTableName + "", Billerid, "", "", "", "");
+                                    ApprovedID, txtonlineamount.Text, txtbillcode.Text, Billgenerate, taxsetting, currency, "tblTranssalesAmount_" + sTableName + "", Billerid, "", "", "", "", lblcess.Text);
 
                                 int isalesid = Convert.ToInt32(OrderBill);
 
@@ -7429,26 +9422,49 @@ namespace Billing.Accountsbootstrap
                                     double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
                                     double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
+                                    Label lblmaintainstock = (Label)gvlist.Rows[i].FindControl("lblmaintainstock");
+                                    Label lbladdon = (Label)gvlist.Rows[i].FindControl("lbladdon");
+                                    Label lblcookinginstruction = (Label)gvlist.Rows[i].FindControl("lblcookinginstruction");
+                                    Label lblkotreq = (Label)gvlist.Rows[i].FindControl("lblkotreq");
+                                    TextBox txtcookingnotes = (TextBox)gvlist.Rows[i].FindControl("txtcookingnotes");
+                                    Label lblrowid = (Label)gvlist.Rows[i].FindControl("lblrowid");
+                                    Label lblcess = (Label)gvlist.Rows[i].FindControl("lblcess");
+
+
+                                    TextBox txtaddonRate = (TextBox)gvlist.Rows[i].FindControl("txtaddonRate");
+                                    TextBox txtaddonitemtotRate = (TextBox)gvlist.Rows[i].FindControl("txtaddonitemtotRate");
+
+                                    TextBox txtaddontotAmount = (TextBox)gvlist.Rows[i].FindControl("txtaddontotAmount");
+                                    TextBox txtaddonitemtotAmount = (TextBox)gvlist.Rows[i].FindControl("txtaddonitemtotAmount");
+
+                                    TextBox txtaddonamount = (TextBox)gvlist.Rows[i].FindControl("txtaddonamount");
+
+                                    // Label lblrowid = (Label)gvlist.Rows[i].FindControl("lblrowid");
+                                    Label lblmrp = (Label)gvlist.Rows[i].FindControl("lblmrp");
+                                    double mrptotal = Convert.ToDouble(rate.Text) * Convert.ToDouble(lblmrp.Text);
+
+                                    // Label lblrecqty = (Label)gvlist.Rows[i].FindControl("lblrecqty");
+
                                     if (lblitemdiscount.Text == "")
                                     {
                                         lblitemdiscount.Text = "0";
                                     }
 
-
                                     //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
                                     //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
-                                    //int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, "0", drpsalestype.SelectedValue);
-
-                                    //iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
-
-
-                                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text), lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text), lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice), Convert.ToDouble(examount));
+                                    int iStatus1 = objbs.insertTransSales(sTableName, isalesid, Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text),
+                                        Convert.ToDouble(rate.Text), Convert.ToDouble(lblitemdiscount.Text), Convert.ToDouble(Amt.Text),
+                                        Convert.ToInt32(CategoryUserid.Text), Convert.ToInt32(StockID.Text), Convert.ToDouble(tax.Text),
+                                        lblisnormal.Text, Attenderid, drpsalestype.SelectedValue, Convert.ToDouble(txtshwqty.Text),
+                                        lblcattype.Text, lblcombo.Text, Convert.ToDouble(txtcqty.Text), Convert.ToDouble(exunitprice),
+                                        Convert.ToDouble(examount), lblmaintainstock.Text, lbladdon.Text, lblcookinginstruction.Text, lblkotreq.Text, txtcookingnotes.Text,
+                                        txtaddonitemtotRate.Text, txtaddonitemtotAmount.Text, txtaddonRate.Text, txtaddontotAmount.Text, txtaddonamount.Text, lblcess.Text, lblmrp.Text, mrptotal.ToString(), lblrowid.Text);
 
                                     // if (StockOption == "1")
                                     {
                                         double Istock = Convert.ToDouble(Qty.Text) * Convert.ToDouble(txtcqty.Text);
-                                        iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry");
+                                        iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Sales Entry", lblmaintainstock.Text);
                                     }
                                     //else
                                     //{
@@ -7611,7 +9627,7 @@ namespace Billing.Accountsbootstrap
             }
         }
 
-        private int UpdateStockAvailable(int iCat, int iSubCat, decimal iQty, string sDate, string iStockID, string isalesid, string Screen)
+        private int UpdateStockAvailable(int iCat, int iSubCat, decimal iQty, string sDate, string iStockID, string isalesid, string Screen, string maintainstock)
         {
             decimal iAQty = 0;
             decimal iRemQty = 0;
@@ -7625,7 +9641,14 @@ namespace Billing.Accountsbootstrap
             }
             if (StockOption == "1")
             {
-                iRemQty = iAQty - iQty;
+                if (maintainstock == "Y")
+                {
+                    iRemQty = iAQty - iQty;
+                }
+                else if (maintainstock == "N")
+                {
+
+                }
             }
             iSuccess = objbs.updateSalesStock(iRemQty, iCat, iSubCat, sDate, Convert.ToInt32(iStockID), Convert.ToInt32(lblUserID.Text), sTableName, "-", Screen, iQty.ToString(), isalesid, StockOption);
 
@@ -7698,6 +9721,7 @@ namespace Billing.Accountsbootstrap
             drpitemsearch.ClearSelection();
             lblcgst.Text = "0";
             lblsgst.Text = "0";
+            lblcess.Text = "0";
             lblsubttl.Text = "0";
             lblisnormal.Text = "Y";
             txtorderno.Text = "";
@@ -7901,7 +9925,7 @@ namespace Billing.Accountsbootstrap
             {
                 DataColumn col = new DataColumn("Sno", typeof(int));
                 dt.Columns.Add(col);
-                //dt.Columns.Add("Sno");
+                dt.Columns.Add("Rowid");
                 dt.Columns.Add("CategoryID");
                 dt.Columns.Add("CategoryUserID");
                 dt.Columns.Add("Stockid");
@@ -7923,6 +9947,12 @@ namespace Billing.Accountsbootstrap
                 dt.Columns.Add("HQty");
                 dt.Columns.Add("mrp");
                 dt.Columns.Add("mrpamount");
+                dt.Columns.Add("maintainstock");
+                dt.Columns.Add("addon");
+                dt.Columns.Add("cookinginstruction");
+                dt.Columns.Add("kotreq");
+                dt.Columns.Add("addonAmount");
+                dt.Columns.Add("CESS");
                 ViewState["dt"] = dt;
             }
 
@@ -8570,8 +10600,12 @@ namespace Billing.Accountsbootstrap
                         totcnt = countt + 1;
                         DataRow dr = dt.NewRow();
 
+                        int max = Convert.ToInt32(dt.AsEnumerable()
+                      .Max(row => row["Rowid"]));
+
                         decimal amt = 0;
                         dr["Sno"] = totcnt;
+                        dr["Rowid"] = max + 1;
                         dr["CategoryID"] = CatID;
                         dr["CategoryUserID"] = stockID;
                         dr["definition"] = sItem;
@@ -8643,6 +10677,7 @@ namespace Billing.Accountsbootstrap
             dtraw.Columns.Add("Item");
             dtraw.Columns.Add("Aqty");
             dtraw.Columns.Add("Sqty");
+            dtraw.Columns.Add("Mstock");
             dsraw.Tables.Add(dtraw);
 
             dt = (DataTable)ViewState["dt"];
@@ -8650,12 +10685,13 @@ namespace Billing.Accountsbootstrap
             {
 
                 var result1 = from r in dt.AsEnumerable()
-                              group r by new { Categoryuserid = r["CategoryUserid"], Categoryid = r["Categoryid"], item = r["Definition"] } into raw
+                              group r by new { Categoryuserid = r["CategoryUserid"], Categoryid = r["Categoryid"], item = r["Definition"], maintainstock = r["maintainstock"] } into raw
                               select new
                               {
                                   Categoryuserid = raw.Key.Categoryuserid,
                                   Categoryid = raw.Key.Categoryid,
                                   item = raw.Key.item,
+                                  maintainstock = raw.Key.maintainstock,
                                   total = raw.Sum(x => Convert.ToDouble(x["ShwQty"])),
                               };
 
@@ -8668,6 +10704,7 @@ namespace Billing.Accountsbootstrap
                     drraw["Categoryuserid"] = g.Categoryuserid;
                     drraw["Categoryid"] = g.Categoryid;
                     drraw["item"] = g.item;
+                    drraw["Mstock"] = g.maintainstock;
                     DataSet getstock = objbs.GetStockAvailable(Convert.ToInt32(g.Categoryuserid), sTableName);
                     if (getstock.Tables[0].Rows.Count > 0)
                     {
@@ -8689,14 +10726,21 @@ namespace Billing.Accountsbootstrap
 
                     if (StockOption == "1")
                     {
-                        if (avlqty >= sqty)
+                        if (g.maintainstock == "Y")
+                        {
+                            if (avlqty >= sqty)
+                            {
+                                dsraw.Tables[0].Rows.Add(drraw);
+                            }
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Insuffient Avaliable Qty For this item Name " + g.item + " .Thank you!!!');", true);
+                                return;
+                            }
+                        }
+                        else if (g.maintainstock == "N")
                         {
                             dsraw.Tables[0].Rows.Add(drraw);
-                        }
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Insuffient Avaliable Qty For this item Name " + g.item + " .Thank you!!!');", true);
-                            return;
                         }
                     }
 
@@ -8803,6 +10847,7 @@ namespace Billing.Accountsbootstrap
             dtraw.Columns.Add("Aqty");
             dtraw.Columns.Add("Sqty");
             dtraw.Columns.Add("Hqty");
+            dtraw.Columns.Add("Mstock");
             dsraw.Tables.Add(dtraw);
 
             dt = (DataTable)ViewState["dt"];
@@ -8810,12 +10855,13 @@ namespace Billing.Accountsbootstrap
             {
 
                 var result1 = from r in dt.AsEnumerable()
-                              group r by new { Categoryuserid = r["CategoryUserid"], Categoryid = r["Categoryid"], item = r["Definition"] } into raw
+                              group r by new { Categoryuserid = r["CategoryUserid"], Categoryid = r["Categoryid"], item = r["Definition"], maintainstock = r["maintainstock"] } into raw
                               select new
                               {
                                   Categoryuserid = raw.Key.Categoryuserid,
                                   Categoryid = raw.Key.Categoryid,
                                   item = raw.Key.item,
+                                  maintainstock = raw.Key.maintainstock,
                                   total = raw.Sum(x => Convert.ToDouble(x["ShwQty"])),
                                   Htotal = raw.Sum(x => Convert.ToDouble(x["HQty"])),
                               };
@@ -8830,6 +10876,7 @@ namespace Billing.Accountsbootstrap
                     drraw["Categoryuserid"] = g.Categoryuserid;
                     drraw["Categoryid"] = g.Categoryid;
                     drraw["item"] = g.item;
+                    drraw["Mstock"] = g.maintainstock;
                     DataSet getstock = objbs.GetStockAvailable(Convert.ToInt32(g.Categoryuserid), sTableName);
                     if (getstock.Tables[0].Rows.Count > 0)
                     {
@@ -8854,14 +10901,21 @@ namespace Billing.Accountsbootstrap
 
                         if (StockOption == "1")
                         {
-                            if ((avlqty + hqty) >= sqty)
+                            if (g.maintainstock == "Y")
+                            {
+                                if ((avlqty + hqty) >= sqty)
+                                {
+                                    dsraw.Tables[0].Rows.Add(drraw);
+                                }
+                                else
+                                {
+                                    ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Insuffient Avaliable Qty For this item Name " + g.item + " .Thank you!!!');", true);
+                                    return;
+                                }
+                            }
+                            else if (g.maintainstock == "N")
                             {
                                 dsraw.Tables[0].Rows.Add(drraw);
-                            }
-                            else
-                            {
-                                ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Insuffient Avaliable Qty For this item Name " + g.item + " .Thank you!!!');", true);
-                                return;
                             }
                         }
                     }
@@ -9107,6 +11161,11 @@ namespace Billing.Accountsbootstrap
                                     double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
                                     double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
+                                    Label lblmaintainstock = (Label)gvlist.Rows[i].FindControl("lblmaintainstock");
+                                    Label lbladdon = (Label)gvlist.Rows[i].FindControl("lbladdon");
+                                    Label lblcookinginstruction = (Label)gvlist.Rows[i].FindControl("lblcookinginstruction");
+                                    Label lblkotreq = (Label)gvlist.Rows[i].FindControl("lblkotreq");
+
                                     //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
                                     //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
@@ -9118,7 +11177,7 @@ namespace Billing.Accountsbootstrap
                                         double Istock = Convert.ToDouble(Qty.Text) * Convert.ToDouble(txtcqty.Text);
 
                                         //iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD");
-                                        iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD");
+                                        iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD", lblmaintainstock.Text);
                                     }
                                     // iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(stock.Text)); 
                                     //7 dec
@@ -9234,6 +11293,11 @@ namespace Billing.Accountsbootstrap
                                 double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
                                 double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
+                                Label lblmaintainstock = (Label)gvlist.Rows[i].FindControl("lblmaintainstock");
+                                Label lbladdon = (Label)gvlist.Rows[i].FindControl("lbladdon");
+                                Label lblcookinginstruction = (Label)gvlist.Rows[i].FindControl("lblcookinginstruction");
+                                Label lblkotreq = (Label)gvlist.Rows[i].FindControl("lblkotreq");
+
                                 //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
                                 //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
@@ -9251,7 +11315,7 @@ namespace Billing.Accountsbootstrap
                                     double Istock = Convert.ToDouble(Qty.Text) * Convert.ToDouble(txtcqty.Text);
 
                                     //iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD");
-                                    iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD");
+                                    iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD", lblmaintainstock.Text);
                                 }
                                 // iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(stock.Text)); 
                                 //7 dec
@@ -9384,6 +11448,12 @@ namespace Billing.Accountsbootstrap
                                     double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
                                     double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
+
+                                    Label lblmaintainstock = (Label)gvlist.Rows[i].FindControl("lblmaintainstock");
+                                    Label lbladdon = (Label)gvlist.Rows[i].FindControl("lbladdon");
+                                    Label lblcookinginstruction = (Label)gvlist.Rows[i].FindControl("lblcookinginstruction");
+                                    Label lblkotreq = (Label)gvlist.Rows[i].FindControl("lblkotreq");
+
                                     //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
                                     //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
@@ -9401,7 +11471,7 @@ namespace Billing.Accountsbootstrap
                                         double Istock = Convert.ToDouble(Qty.Text) * Convert.ToDouble(txtcqty.Text);
 
                                         //iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD");
-                                        iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD");
+                                        iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD", lblmaintainstock.Text);
                                     }
                                     // iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(stock.Text)); 
                                     //7 dec
@@ -9549,6 +11619,11 @@ namespace Billing.Accountsbootstrap
                                     double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
                                     double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
+                                    Label lblmaintainstock = (Label)gvlist.Rows[i].FindControl("lblmaintainstock");
+                                    Label lbladdon = (Label)gvlist.Rows[i].FindControl("lbladdon");
+                                    Label lblcookinginstruction = (Label)gvlist.Rows[i].FindControl("lblcookinginstruction");
+                                    Label lblkotreq = (Label)gvlist.Rows[i].FindControl("lblkotreq");
+
                                     //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
                                     //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
@@ -9566,7 +11641,7 @@ namespace Billing.Accountsbootstrap
                                         double Istock = Convert.ToDouble(Qty.Text) * Convert.ToDouble(txtcqty.Text);
 
                                         //iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD");
-                                        iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD");
+                                        iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD", lblmaintainstock.Text);
                                     }
                                     // iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(stock.Text)); 
                                     //7 dec
@@ -9679,6 +11754,11 @@ namespace Billing.Accountsbootstrap
                                 double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
                                 double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
+                                Label lblmaintainstock = (Label)gvlist.Rows[i].FindControl("lblmaintainstock");
+                                Label lbladdon = (Label)gvlist.Rows[i].FindControl("lbladdon");
+                                Label lblcookinginstruction = (Label)gvlist.Rows[i].FindControl("lblcookinginstruction");
+                                Label lblkotreq = (Label)gvlist.Rows[i].FindControl("lblkotreq");
+
                                 //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
                                 //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
@@ -9701,7 +11781,7 @@ namespace Billing.Accountsbootstrap
                                     double Istock = Convert.ToDouble(Qty.Text) * Convert.ToDouble(txtcqty.Text);
 
                                     //iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD");
-                                    iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD");
+                                    iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD", lblmaintainstock.Text);
                                 }
                                 // iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(stock.Text)); 
                                 //7 dec
@@ -9776,6 +11856,11 @@ namespace Billing.Accountsbootstrap
                                     double exunitprice = Convert.ToDouble(rate.Text) * Convert.ToDouble(1);
                                     double examount = Convert.ToDouble(Amt.Text) * Convert.ToDouble(1);
 
+                                    Label lblmaintainstock = (Label)gvlist.Rows[i].FindControl("lblmaintainstock");
+                                    Label lbladdon = (Label)gvlist.Rows[i].FindControl("lbladdon");
+                                    Label lblcookinginstruction = (Label)gvlist.Rows[i].FindControl("lblcookinginstruction");
+                                    Label lblkotreq = (Label)gvlist.Rows[i].FindControl("lblkotreq");
+
                                     //int iStatus1 = objbs.insertTransSales("tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"),tax.Text);
                                     //   int iStatus1 = objbs.insertTransSales("tblSales_" + sTableName, "tblTransSales_" + sTableName, Convert.ToInt32(isalesid), Convert.ToInt32(catid.Text), Convert.ToDouble(Qty.Text), Convert.ToDouble(rate.Text), Convert.ToDouble(0), Convert.ToDouble(Amt.Text), Convert.ToInt32(ItemID.Text), Convert.ToInt32(stock.Text), extra, Convert.ToDouble(SHWQty.Text), combo.Text, DateTime.Now.ToString("yyyy-MM-dd"), tax.Text, iSalesno, Convert.ToDouble(lblrecqty.Text));
 
@@ -9798,7 +11883,7 @@ namespace Billing.Accountsbootstrap
                                         double Istock = Convert.ToDouble(Qty.Text) * Convert.ToDouble(txtcqty.Text);
 
                                         //iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD");
-                                        iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD");
+                                        iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Istock), "", Convert.ToString(StockID.Text), isalesid.ToString(), "Kot/HOLD", lblmaintainstock.Text);
                                     }
                                     // iStockSuccess = UpdateStockAvailable(Convert.ToInt32(catid.Text), Convert.ToInt32(CategoryUserid.Text), Convert.ToDecimal(Qty.Text), "", Convert.ToString(stock.Text)); 
                                     //7 dec
@@ -9994,6 +12079,8 @@ namespace Billing.Accountsbootstrap
                 }
                 else
                 {
+
+
                     procedurename = "sp_GetLedgerPOS1I";
                 }
 

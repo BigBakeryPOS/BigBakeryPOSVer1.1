@@ -128,6 +128,20 @@ namespace Billing.Accountsbootstrap
             {
 
 
+                DataSet dsbranch = objBs.getbranchFilling("0");
+                if (dsbranch.Tables[0].Rows.Count > 0)
+                {
+                    drpbranchlist.DataSource = dsbranch.Tables[0];
+                    drpbranchlist.DataTextField = "BranchArea";
+                    drpbranchlist.DataValueField = "BranchId";
+                    drpbranchlist.DataBind();
+                    drpbranchlist.Items.Insert(0, "Select Outlet");
+                   // drpfrombranch.SelectedValue = frombranchid;
+                }
+
+
+
+
 
                 Session["UserID"] = "";
                 Session["UserName"] = "";
@@ -226,6 +240,29 @@ namespace Billing.Accountsbootstrap
             Response.Cookies["Password"].Value = password.Text.Trim();
 
 
+            if(drpbranchlist.SelectedValue == "Select Outlet")
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Select Outlet.');", true);
+                return;
+            }
+            else
+            {
+                // get username and password for branch
+                DataSet getbranchpassword = objBs.getbranchid(drpbranchlist.SelectedValue);
+                if (getbranchpassword.Tables[0].Rows.Count > 0)
+                {
+
+                    username.Text = getbranchpassword.Tables[0].Rows[0]["username"].ToString();
+                    password.Text = getbranchpassword.Tables[0].Rows[0]["password"].ToString();
+
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Something Went Wrong While Selecting Branch.Thank you!!!.');", true);
+                    return;
+                }
+            }
+
 
             if (username.Text == "")
             {
@@ -242,6 +279,10 @@ namespace Billing.Accountsbootstrap
             }
             else
             {
+               
+
+
+
                 dsLogin = objBs.Login(username.Text, password.Text);
                 if (dsLogin.Tables[0].Rows.Count == 0)
                 {
@@ -276,6 +317,7 @@ namespace Billing.Accountsbootstrap
                         Session["TIN"] = dsbranch.Tables[0].Rows[0]["GSTIN"].ToString();
                         Session["Country"] = dsbranch.Tables[0].Rows[0]["Country"].ToString();
                         Session["poorderrights"] = dsbranch.Tables[0].Rows[0]["Porderrights"].ToString();
+                        Session["isbatchwise"] = dsbranch.Tables[0].Rows[0]["isbatchwise"].ToString();
                     }
 
                     else
@@ -286,6 +328,7 @@ namespace Billing.Accountsbootstrap
                         Session["TIN"] = dsLogin.Tables[0].Rows[0]["TIN"].ToString();
                         Session["Country"] = "Others";
                         Session["poorderrights"] = "Y";
+                        Session["isbatchwise"] = "N";
                     }
 
 
@@ -326,6 +369,7 @@ namespace Billing.Accountsbootstrap
                         userInfo["TIN"] = dsbranch.Tables[0].Rows[0]["GSTIN"].ToString();
                         userInfo["Country"] = dsbranch.Tables[0].Rows[0]["Country"].ToString();
                         userInfo["poorderrights"] = dsbranch.Tables[0].Rows[0]["Porderrights"].ToString();
+                        userInfo["isbatchwise"] = dsbranch.Tables[0].Rows[0]["isbatchwise"].ToString();
 
 
                     }
@@ -338,6 +382,7 @@ namespace Billing.Accountsbootstrap
                         userInfo["TIN"] = dsLogin.Tables[0].Rows[0]["TIN"].ToString();
                         userInfo["Country"] = "";
                         userInfo["poorderrights"] = "Y";
+                        userInfo["isbatchwise"] = "N";
 
                     }
                     userInfo["User"] = sUserDet[1].ToString();
@@ -448,6 +493,9 @@ namespace Billing.Accountsbootstrap
                         userInfo["defaultcurrency"] = getbranch.Tables[0].Rows[0]["defaultcurrency"].ToString();
                         Session["defaultcurrency"] = getbranch.Tables[0].Rows[0]["defaultcurrency"].ToString();
 
+                        userInfo["isbatchwise"] = getbranch.Tables[0].Rows[0]["isbatchwise"].ToString();
+                        Session["isbatchwise"] = getbranch.Tables[0].Rows[0]["isbatchwise"].ToString();
+
 
 
                     }
@@ -542,10 +590,13 @@ namespace Billing.Accountsbootstrap
                         userInfo["defaultcurrency"] = "1";
                         Session["defaultcurrency"] = "1";
 
+                        userInfo["isbatchwise"] = "N";
+                        Session["isbatchwise"] = "N";
+
 
                     }
 
-                    DataSet bill = objBs.Biller(Session["User"].ToString(), txtemp.Text);
+                    DataSet bill = objBs.Biller(Session["User"].ToString(), txtemp.Text, txtempusername.Text);
                     if (bill.Tables[0].Rows.Count > 0)
                     {
                         Session["ReportDay"] = bill.Tables[0].Rows[0]["Reportdays"].ToString();

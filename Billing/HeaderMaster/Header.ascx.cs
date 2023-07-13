@@ -1179,8 +1179,7 @@ namespace Billing.HeaderMaster
 
                                     if (screen == "PrimaryUOMmaster")
                                     {
-                                        semiprodmenu.Visible = true;
-                                        semimaster.Visible = true;
+                                        MasterMenu.Visible = true;
                                         PrimaryUOMmaster.Visible = true;
                                     }
 
@@ -1276,6 +1275,26 @@ namespace Billing.HeaderMaster
                                         MasterMenu.Visible = true;
                                         attender.Visible = true;
                                     }
+
+                                    if (screen == "deptmaster")
+                                    {
+                                        MasterMenu.Visible = true;
+                                        deptmaster.Visible = true;
+                                    }
+                                    if (screen == "shapemaster")
+                                    {
+                                        MasterMenu.Visible = true;
+                                        shapemaster.Visible = true;
+                                    }
+
+                                    if(screen == "flavourmaster")
+                                    {
+                                        MasterMenu.Visible = true;
+                                        flavourmaster.Visible = true;
+                                    }
+
+
+
 
                                     if (screen == "Msetting")
                                     {
@@ -1655,6 +1674,30 @@ namespace Billing.HeaderMaster
                                     {
                                         RequestAccept.Visible = true;
                                         StockMaster.Visible = true;
+
+                                    }
+
+                                    if (screen == "dailyprodreq")
+                                    {
+                                        RequestAccept.Visible = true;
+                                        dailyprodreq.Visible = true;
+                                        packingprocess.Visible = true;
+
+                                    }
+
+                                    if (screen == "dailyprodrec")
+                                    {
+                                        RequestAccept.Visible = true;
+                                        dailyprodrec.Visible = true;
+                                        packingprocess.Visible = true;
+
+                                    }
+
+                                    if (screen == "dailyprodpack")
+                                    {
+                                        RequestAccept.Visible = true;
+                                        dailyprodpack.Visible = true;
+                                        packingprocess.Visible = true;
 
                                     }
 
@@ -2496,8 +2539,7 @@ namespace Billing.HeaderMaster
 
                                 if (screen == "PrimaryUOMmaster")
                                 {
-                                    semiprodmenu.Visible = true;
-                                    semimaster.Visible = true;
+                                    MasterMenu.Visible = true;
                                     PrimaryUOMmaster.Visible = true;
                                 }
 
@@ -2589,6 +2631,25 @@ namespace Billing.HeaderMaster
                                     MasterMenu.Visible = true;
                                     attender.Visible = true;
                                 }
+
+
+                                if (screen == "deptmaster")
+                                {
+                                    MasterMenu.Visible = true;
+                                    deptmaster.Visible = true;
+                                }
+                                if (screen == "shapemaster")
+                                {
+                                    MasterMenu.Visible = true;
+                                    shapemaster.Visible = true;
+                                }
+
+                                if (screen == "flavourmaster")
+                                {
+                                    MasterMenu.Visible = true;
+                                    flavourmaster.Visible = true;
+                                }
+
 
                                 if (screen == "Msetting")
                                 {
@@ -2962,6 +3023,30 @@ namespace Billing.HeaderMaster
                                 {
                                     RequestAccept.Visible = true;
                                     StockMaster.Visible = true;
+
+                                }
+
+                                if (screen == "dailyprodreq")
+                                {
+                                    RequestAccept.Visible = true;
+                                    dailyprodreq.Visible = true;
+                                    packingprocess.Visible = true;
+
+                                }
+
+                                if (screen == "dailyprodrec")
+                                {
+                                    RequestAccept.Visible = true;
+                                    dailyprodrec.Visible = true;
+                                    packingprocess.Visible = true;
+
+                                }
+
+                                if (screen == "dailyprodpack")
+                                {
+                                    RequestAccept.Visible = true;
+                                    dailyprodpack.Visible = true;
+                                    packingprocess.Visible = true;
 
                                 }
 
@@ -3824,8 +3909,7 @@ namespace Billing.HeaderMaster
 
                             if (screen == "PrimaryUOMmaster")
                             {
-                                semiprodmenu.Visible = true;
-                                semimaster.Visible = true;
+                                MasterMenu.Visible = true;
                                 PrimaryUOMmaster.Visible = true;
                             }
 
@@ -3917,6 +4001,24 @@ namespace Billing.HeaderMaster
                             {
                                 MasterMenu.Visible = true;
                                 attender.Visible = true;
+                            }
+
+
+                            if (screen == "deptmaster")
+                            {
+                                MasterMenu.Visible = true;
+                                deptmaster.Visible = true;
+                            }
+                            if (screen == "shapemaster")
+                            {
+                                MasterMenu.Visible = true;
+                                shapemaster.Visible = true;
+                            }
+
+                            if (screen == "flavourmaster")
+                            {
+                                MasterMenu.Visible = true;
+                                flavourmaster.Visible = true;
                             }
 
                             if (screen == "Msetting")
@@ -4285,6 +4387,30 @@ namespace Billing.HeaderMaster
                             {
                                 RequestAccept.Visible = true;
                                 StockMaster.Visible = true;
+
+                            }
+
+                            if (screen == "dailyprodreq")
+                            {
+                                RequestAccept.Visible = true;
+                                dailyprodreq.Visible = true;
+                                packingprocess.Visible = true;
+
+                            }
+
+                            if (screen == "dailyprodrec")
+                            {
+                                RequestAccept.Visible = true;
+                                dailyprodrec.Visible = true;
+                                packingprocess.Visible = true;
+
+                            }
+
+                            if (screen == "dailyprodpack")
+                            {
+                                RequestAccept.Visible = true;
+                                dailyprodpack.Visible = true;
+                                packingprocess.Visible = true;
 
                             }
 

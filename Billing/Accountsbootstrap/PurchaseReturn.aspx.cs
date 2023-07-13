@@ -25,10 +25,10 @@ namespace Billing
         {
 
             //btnadd.Attributes.Add("onclick", "return valchk();"); // Validation Check lines
-            lblUser.Text = Session["UserName"].ToString();
-            lblUserID.Text = Session["UserID"].ToString();
-            sTableName = Session["User"].ToString();
-            scode = Session["BranchCode"].ToString();
+            lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
+            lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
+            sTableName = Request.Cookies["userInfo"]["User"].ToString();
+            scode = Request.Cookies["userInfo"]["BranchCode"].ToString();
             StockOption = Request.Cookies["userInfo"]["StockOption"].ToString();
 
             if (!IsPostBack)

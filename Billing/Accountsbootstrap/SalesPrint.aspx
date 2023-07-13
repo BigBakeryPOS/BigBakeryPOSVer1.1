@@ -296,6 +296,15 @@
                         <asp:Label ID="lblsgst" runat="server" Font-Bold="true" Font-Size="20px"></asp:Label>
                     </td>
                 </tr>
+                 <tr style="" border="1" id="TRCESS" visible="false" runat="server">
+
+                   <td colspan="2" align="right" style="padding-right: 17px">
+                        <label style="font-size: 20px">
+                            CESS:
+                        </label>
+                        <asp:Label ID="lblcess" runat="server" Font-Bold="true" Font-Size="20px"></asp:Label>
+                    </td>
+                </tr>
                 <tr style="" border="1" id="TAXID" runat="server">
                     <td colspan="2" align="right" style="padding-right: 17px">
                         <label style="font-size: medium">

@@ -177,6 +177,7 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:BoundField HeaderText="LoginTypeName" DataField="LoginTypeName" />
+                                            <asp:BoundField HeaderText="Role Name" DataField="emprolename" />
                                           
                                             <asp:TemplateField HeaderText="Edit">
                                                 <ItemTemplate>

@@ -611,7 +611,7 @@
                                                         <asp:TemplateField HeaderText="Qty">
                                                             <ItemTemplate>
                                                                 <asp:TextBox ID="txtQty" onBlur="ResetColor()" onFocus="ChangeColor()" runat="server"
-                                                                    Width="200px" AutoPostBack="false" onkeypress="return isDecimal(event)"></asp:TextBox>
+                                                                    Width="200px" AutoPostBack="false" ></asp:TextBox>
                                                                 <ajaxToolkit:FilteredTextBoxExtender ID="ftbe" runat="server" TargetControlID="txtQty"
                                                                     FilterType="Custom,Numbers" ValidChars="." />
                                                             </ItemTemplate>
@@ -692,7 +692,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Qty">
                                                         <ItemTemplate>
-                                                            <asp:TextBox ID="txtQty" runat="server" Width="50px" class="form-control" onkeypress="return isDecimal(event)" Text='<%#Eval("Qty") %>'
+                                                            <asp:TextBox ID="txtQty" runat="server" Width="100px" class="form-control" onkeypress="return isDecimal(event)" Text='<%#Eval("Qty") %>'
                                                                 Enabled="true">0</asp:TextBox>
                                                             <ajaxToolkit:FilteredTextBoxExtender ID="ftxtex" runat="server" TargetControlID="txtQty"
                                                                 FilterType="Custom,Numbers" ValidChars="." />

@@ -251,7 +251,7 @@
                                     <label>Allow Request</label>
                                     <br />
                                     <br />
-
+                                    <asp:CheckBoxList ID="chkprimaryuom" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" ></asp:CheckBoxList>
 
                                     <br />
                                     <br />

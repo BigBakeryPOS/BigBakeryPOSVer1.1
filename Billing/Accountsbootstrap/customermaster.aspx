@@ -138,59 +138,113 @@
                                              <div>
                                                 <label>
                                                     Company Name</label>
-                                                <asp:TextBox CssClass="form-control" ID="txtcompanyname" MaxLength="50" runat="server"
+                                                  <asp:TextBox CssClass="form-control" ID="txtcustomername" MaxLength="50" runat="server"
                                                     Style="text-transform: capitalize"></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="RequiredFieldValidator4" ControlToValidate="txtcompanyname"
-                                                    ErrorMessage="Please enter your Company name!" Style="color: Red" />
+                                                <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="reqName" ControlToValidate="txtcustomername"
+                                                    ErrorMessage="Please enter Company name!" Style="color: Red" />
+                                               
                                             </div>
                                             <div>
                                                 <label>
-                                                    Contact Name</label>
-                                                <asp:TextBox CssClass="form-control" ID="txtcustomername" MaxLength="50" runat="server"
+                                                   Primary Contact Name</label>
+                                                 <asp:TextBox CssClass="form-control" ID="txtcompanyname" MaxLength="50" runat="server"
                                                     Style="text-transform: capitalize"></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="reqName" ControlToValidate="txtcustomername"
-                                                    ErrorMessage="Please enter your name!" Style="color: Red" />
+                                                <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="RequiredFieldValidator4" ControlToValidate="txtcompanyname"
+                                                    ErrorMessage="Please enter your Contact name!" Style="color: Red" />
+
+                                               
                                             </div>
                                              <div>
                                                 <label>
-                                                    Mobile No</label>
+                                                   Primary Mobile No</label>
                                                 <asp:TextBox CssClass="form-control" ID="txtmobileno" MaxLength="10" Placeholder=""
                                                     runat="server"></asp:TextBox>
                                                 <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="mobno" ControlToValidate="txtmobileno"
                                                     ErrorMessage="Please enter your Mobile No!" Style="color: Red" /><br />
                                                
                                             </div>
+                                            <div id="bankdetails" runat="server" visible="false">
+                                             <div>
+                                                <label>
+                                                   Secondary Contact Name</label>
+                                                <asp:TextBox CssClass="form-control" ID="txtseccontactname" MaxLength="50" runat="server"
+                                                    Style="text-transform: capitalize"></asp:TextBox>
+                                                <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="reqsecname" ControlToValidate="txtseccontactname"
+                                                    ErrorMessage="Please enter your name!" Style="color: Red" Enabled="false"/>
+                                            </div>
+                                             <div>
+                                                <label>
+                                                   Secondary Mobile No</label>
+                                                <asp:TextBox CssClass="form-control" ID="txtsecmobileno" MaxLength="10" Placeholder=""
+                                                    runat="server"></asp:TextBox>
+                                                <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="secmobno" ControlToValidate="txtsecmobileno"
+                                                    ErrorMessage="Please enter your Secondary Mobile No!" Style="color: Red" Enabled="false"/><br />
+                                               
+                                            </div>
+                                             <div>
+                                                <label>
+                                                    Bank Name</label>
+                                                <asp:TextBox CssClass="form-control" ID="txtbankname" MaxLength="15" runat="server"
+                                                    Style="text-transform: capitalize"></asp:TextBox>
+                                                <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="bank" ControlToValidate="txtbankname"
+                                                    ErrorMessage="Please enter your Bank Name!" Style="color: Red" Enabled="false"/>
+                                            </div>
+                                             <div>
+                                                <label>
+                                                    Branch Name</label>
+                                                <asp:TextBox CssClass="form-control" ID="txtbranchname"  runat="server" 
+                                                    Style="text-transform: capitalize"></asp:TextBox>
+                                                <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="branch" ControlToValidate="txtbranchname"
+                                                    ErrorMessage="Please enter your Branch Name!" Style="color: Red" Enabled="false"/>
+                                            </div>
+                                             <div>
+                                                <label>
+                                                    IFSC Code</label>
+                                                <asp:TextBox CssClass="form-control" ID="txtifsccode"  runat="server" 
+                                                    Style="text-transform: capitalize"></asp:TextBox>
+                                                <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="ifsccode" ControlToValidate="txtifsccode"
+                                                    ErrorMessage="Please enter your IFSC Code!" Style="color: Red" Enabled="false"/>
+                                            </div>
+                                             <div>
+                                                <label>
+                                                    Account No</label>
+                                                <asp:TextBox CssClass="form-control" ID="txtAccno"  runat="server" 
+                                                    Style="text-transform: capitalize"></asp:TextBox>
+                                                <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="accno" ControlToValidate="txtAccno"
+                                                    ErrorMessage="Please enter your Account Number!" Style="color: Red" Enabled="false"/>
+                                            </div>
+                                                </div>
                                              <div>
                                                 <label>
                                                     Address</label>
                                                 <asp:TextBox CssClass="form-control" ID="txtaddress" MaxLength="150" runat="server" TextMode="MultiLine"
                                                     Style="text-transform: capitalize"></asp:TextBox>
                                                 <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="address" ControlToValidate="txtaddress"
-                                                    ErrorMessage="Please enter your Address!" Style="color: Red" />
+                                                    ErrorMessage="Please enter your Address!" Style="color: Red" Enabled="false"/>
                                             </div>
                                             <div>
                                                 <label>
                                                     Area</label>
                                                 <asp:TextBox CssClass="form-control" ID="txtarea" MaxLength="30" runat="server" Style="text-transform: capitalize"></asp:TextBox>
                                                 <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="RequiredFieldValidator3" ControlToValidate="txtarea"
-                                                    ErrorMessage="Please enter your Area!" Style="color: Red" />
+                                                    ErrorMessage="Please enter your Area!" Style="color: Red" Enabled="false"/>
                                             </div>
                                             <div>
                                                 <label>
                                                     City</label>
                                                 <asp:TextBox CssClass="form-control" ID="txtcity" MaxLength="30" runat="server" Style="text-transform: capitalize"></asp:TextBox>
                                                 <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="city" ControlToValidate="txtcity"
-                                                    ErrorMessage="Please enter your City!" Style="color: Red" />
+                                                    ErrorMessage="Please enter your City!" Style="color: Red" Enabled="false"/>
                                             </div>
                                             <div>
                                                 <label>
                                                     Pincode</label>
                                                 <asp:TextBox CssClass="form-control" ID="txtpincode" MaxLength="6" runat="server"></asp:TextBox>
                                                 <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="pincode" ControlToValidate="txtpincode"
-                                                    ErrorMessage="Please enter your Pin Code!" Style="color: Red" />
+                                                    ErrorMessage="Please enter your Pin Code!" Style="color: Red" Enabled="false"/>
                                                 <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator1" ValidationGroup="val1"
                                                     ControlToValidate="txtpincode" ValidationExpression="^[0-9]{6}$" ErrorMessage="Please enter a 6 digit pin code!"
-                                                    Style="color: Red" />
+                                                    Style="color: Red" Enabled="false"/>
                                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server"
                                                     FilterType="Numbers,Custom" ValidChars=" -," TargetControlID="txtpincode" />
                                             </div>
@@ -202,7 +256,7 @@
                                                     FilterType="Numbers,Custom" ValidChars=" -," TargetControlID="txtmobileno" />
                                                 <asp:RegularExpressionValidator runat="server" ID="rexNumber" ValidationGroup="val1"
                                                     ControlToValidate="txtmobileno" ValidationExpression="^[0-9]{10}$" ErrorMessage="Please enter a 10 digit number!"
-                                                    Style="color: Red" />
+                                                    Style="color: Red" Enabled="false"/>
 
                                             </div>
                                             <div runat="server" visible="false">
@@ -210,7 +264,7 @@
                                                     Land Line No</label>
                                                 <asp:TextBox CssClass="form-control" ID="txtphoneno" MaxLength="15" runat="server"></asp:TextBox>
                                                 <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="phono" ControlToValidate="txtphoneno"
-                                                    ErrorMessage="Please enter your Phone No!" Style="color: Red" />
+                                                    ErrorMessage="Please enter your Phone No!" Style="color: Red" Enabled="false"/>
                                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server"
                                                     FilterType="Numbers,Custom" ValidChars=" -," TargetControlID="txtphoneno" />
                                             </div>
@@ -230,7 +284,7 @@
                                                     GST NO</label>
                                                 <asp:TextBox CssClass="form-control" ID="txtgstno" placeholder="Enter GSTIN NO" runat="server"></asp:TextBox>
                                                 <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="RequiredFieldValidator1"
-                                                    ControlToValidate="txtgstno" ErrorMessage="Please enter GST No!" Style="color: Red" />
+                                                    ControlToValidate="txtgstno" ErrorMessage="Please enter GST No!" Style="color: Red" Enabled="false"/>
 
 
                                             </div>
@@ -242,10 +296,10 @@
                                                 <asp:TextBox CssClass="form-control" ID="txtemail" placeholder="For Ex: test@gmail.com"
                                                     runat="server"></asp:TextBox>
                                                 <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="email" ControlToValidate="txtemail"
-                                                    ErrorMessage="Please enter your Email!" Style="color: Red" />
+                                                    ErrorMessage="Please enter your Email!" Style="color: Red" Enabled="false"/>
                                                 <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator2" ValidationGroup="val1"
                                                     ControlToValidate="txtemail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
-                                                    ErrorMessage="Please enter a correct Email Id!" Style="color: Red" />
+                                                    ErrorMessage="Please enter a correct Email Id!" Style="color: Red" Enabled="false"/>
                                             </div>
 
                                             <div>
@@ -253,7 +307,7 @@
                                                     Opening Balance</label>
                                                 <asp:RequiredFieldValidator runat="server" ValidationGroup="val1" ID="RequiredFieldValidator2"
                                                     ControlToValidate="txtOBalance" Text="*" ErrorMessage="Please enter your opening balance amount!"
-                                                    Style="color: Red" />
+                                                    Style="color: Red" Enabled="false"/>
                                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server"
                                                     FilterType="Numbers,Custom" ValidChars="." TargetControlID="txtOBalance" />
                                                 <asp:TextBox CssClass="form-control" ID="txtOBalance" runat="server"

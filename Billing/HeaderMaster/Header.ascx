@@ -297,15 +297,24 @@
                 <li id="notificationmsg" runat="server" visible="false"><a href="../Accountsbootstrap/NotificationPage.aspx">Notification Alert</a></li>
                 <li id="tablemaster" runat="server" visible="false"><a href="../Accountsbootstrap/TableMaster.aspx">Table Master</a></li>
                 <li id="attender" runat="server" visible="false"><a href="../Accountsbootstrap/AttenderMaster.aspx">Attender Master</a></li>
+
+                <li id="deptmaster" runat="server" visible="false"><a href="../Accountsbootstrap/DepartmentMaster.aspx">Department Master</a></li>
+                <li id="shapemaster" runat="server" visible="false"><a href="../Accountsbootstrap/ShapeMaster.aspx">Shape Master</a></li>
+
+
                 <li id="IBSM" runat="server" visible="false"><a href="../Accountsbootstrap/InterBranchSetting.aspx">Intet Branch Setting Master</a></li>
                 <li id="IPS" runat="server" visible="false"><a href="../Accountsbootstrap/InterProdSetting.aspx">Intet Prod/Store Setting Master</a></li>
                 <li id="STSIS" runat="server" visible="false"><a href="../Accountsbootstrap/StoreItemSetting.aspx">Store To Shop Item Setting Master</a></li>
                 <li id="UOM" runat="server" visible="false"><a href="../Accountsbootstrap/Uom.aspx">Uom Master</a></li>
+                 <li id="PrimaryUOMmaster" runat="server" visible="false"><a id="A21" href="../Accountsbootstrap/PrimaryUOM.aspx"
+                            runat="server">Primary Uom</a></li>
                 <li id="vehiclemaster" runat="server" visible="false"><a href="../Accountsbootstrap/VehicleMaster.aspx">Vehicle Master</a></li>
                 <li id="TAX" runat="server" visible="false"><a href="../Accountsbootstrap/Tax.aspx">Tax Master</a></li>
                 <li id="Category" runat="server" visible="false"><a href="../Accountsbootstrap/categorygrid.aspx">Group Master</a></li>
                 <li id="Msetting" runat="server" visible="false"><a href="../Accountsbootstrap/MarginSetting.aspx">Margin Setting</a></li>
                 <li id="subcategory" runat="server" visible="false"><a href="../Accountsbootstrap/SubCategory.aspx">Sub Category Master</a></li>
+                <%--<li id="varientratemaster" runat="server" visible="false"><a href="../Accountsbootstrap/VarientRateMaster.aspx">Varient Rate Master</a></li>--%>
+                <li id="flavourmaster" runat="server" visible="false"><a href="../Accountsbootstrap/FlavourMaster.aspx">Flavour Master</a></li>
                 <li id="Item" runat="server" visible="false"><a href="../Accountsbootstrap/Descriptiongrid.aspx">Item Master</a></li>
                 <li id="combo" runat="server" visible="false"><a href="../Accountsbootstrap/ComboGrid.aspx">Combo Master</a></li>
                 <li id="itemupdate" runat="server" visible="false"><a href="../Accountsbootstrap/itemupdatescreen.aspx">Quick Item Update</a></li>
@@ -343,7 +352,7 @@
                 <li id="subcompany" runat="server" visible="false"><a href="../Accountsbootstrap/PurchaseCompanyDetailsGrid.aspx">Sub Company Master</a></li>
                 <li id="currencymaster" runat="server" visible="false"><a href="../Accountsbootstrap/CurrencyMaster.aspx">Currency Master</a></li>
                 <li id="Ratesettingmaster" runat="server" visible="false"><a href="../Accountsbootstrap/RateSettingMaster.aspx">Rate Setting Master</a></li>
-                
+
 
 
 
@@ -426,7 +435,14 @@
                 <li id="DISENT" runat="server" visible="false"><a href="../Accountsbootstrap/dispatchentry.aspx">Dispatch Entry</a></li>
                 <li id="ISSR" runat="server" visible="false"><a href="../Accountsbootstrap/InterStoreGrid.aspx">Inter Store Stock Request</a> </li>
                 <li id="ISSRFS" runat="server" visible="false"><a href="../Accountsbootstrap/RequestFromStoreGrid.aspx">Inter Store Stock Request From Store</a> </li>
-                <li id="ISGRG" runat="server" visible="false"><a href="../Accountsbootstrap/InterstoreGoodsReceivedGrid.aspx">Inter Production Stock Received</a> </li>
+                <li id="ISGRG" runat="server" visible="false"><a href="../Accountsbootstrap/InterstoreGoodsReceivedGrid.aspx">Inter Store Stock Received</a> </li>
+                <li id="packingprocess" class='has-sub' runat="server" visible="false"><a id="A41" runat="server">Packing Process</a>
+                    <ul>
+                        <li id="dailyprodreq" runat="server" visible="false"><a href="../Accountsbootstrap/DAilyProductionStockGrid.aspx">Daily Production Stock Request </a></li>
+                        <li id="dailyprodrec" runat="server" visible="false"><a href="../Accountsbootstrap/DailyProdReceiveStoreItemGrid.aspx">Daily Production Stock Receive </a></li>
+                        <li id="dailyprodpack" runat="server" visible="false"><a href="../Accountsbootstrap/packingStockGrid.aspx">Daily Production Stock Packing </a></li>
+                    </ul>
+                </li>
             </ul>
         </li>
         <li id="Payments" visible="false" runat="server" class='has-sub'><a href="javascript:;" style="color: White">Receipts </a>
@@ -447,8 +463,7 @@
                             runat="server">Semi Category</a></li>
                         <li id="SemiItemMaster" runat="server" visible="false"><a id="A20" href="../Accountsbootstrap/SemiItemMaster.aspx"
                             runat="server">Semi Item Master</a></li>
-                        <li id="PrimaryUOMmaster" runat="server" visible="false"><a id="A21" href="../Accountsbootstrap/PrimaryUOM.aspx"
-                            runat="server">Primary Uom</a></li>
+                       
                     </ul>
                 </li>
                 <li id="semirequestMenu" class='has-sub' runat="server" visible="false"><a id="A22" href="javascript:;"
@@ -542,7 +557,7 @@
                         <li id="TaxWiseOrder" runat="server" visible="false"><a href="../Accountsbootstrap/FullSalesReport2.aspx">Tax Wise Order Report</a></li>
                         <li id="DayEndReport" runat="server" visible="false"><a href="../Accountsbootstrap/TwoReports.aspx">DayEnd Report</a></li>
                         <li id="wholesalereport" runat="server" visible="false"><a href="../Accountsbootstrap/WholeSalesReport.aspx">Whole Sale Report</a></li>
-                        
+
                     </ul>
                 </li>
                 <li id="StockReport" class='has-sub' runat="server" visible="false"><a runat="server" href="javascript:;">Stock Report</a>
@@ -608,10 +623,10 @@
                         <li id="SupplierOutStanding" runat="server" visible="false"><a href="../Accountsbootstrap/SupplierOutStanding.aspx">Supplier Summary/Detailed OutStanding </a></li>
                     </ul>
                 </li>
-                 <li id="ExpenseDetails" runat="server" visible="false"><a  href="../Accountsbootstrap/ExpenseDetails.aspx"
-                            runat="server">Expense Summary/Detailed Report</a></li>
-                  <li id="RawMaterialStock" runat="server" visible="false"><a  href="../Accountsbootstrap/RawMaterialStockReport.aspx"
-                            runat="server">Raw Material Stock Report</a></li>
+                <li id="ExpenseDetails" runat="server" visible="false"><a href="../Accountsbootstrap/ExpenseDetails.aspx"
+                    runat="server">Expense Summary/Detailed Report</a></li>
+                <li id="RawMaterialStock" runat="server" visible="false"><a href="../Accountsbootstrap/RawMaterialStockReport.aspx"
+                    runat="server">Raw Material Stock Report</a></li>
                 <li id="ChartReport" runat="server" visible="false" class='has-sub'><a id="A9" runat="server" href="javascript:;">Chart Report</a>
                     <ul>
                         <li id="AnalysisReport" runat="server" visible="true"><a id="A15" href="../Accountsbootstrap/SalesandReturn_Report.aspx"
@@ -641,6 +656,19 @@
                         <li id="SalesandReceiptReport" runat="server" visible="true"><a href="../Accountsbootstrap/SalesandReceiptReport.aspx">Sales and Receipt Report</a></li>
                     </ul>
                 </li>
+                 <li id="PackingProcessReport" class='has-sub' runat="server" visible="true"><a id="A42"
+                        runat="server">Packing Process Report</a>
+                        <ul>
+                            <li id="Li8" runat="server" visible="true"><a href="../Accountsbootstrap/DailyProductionStockRequestReport.aspx">
+                                Daily Production Stock Request</a></li>
+                            <li id="Li9" runat="server" visible="true"><a href="../Accountsbootstrap/DailyProductionStockReceiveReport.aspx">
+                                Daily Production Stock Receive</a></li>
+                            <li id="Li10" runat="server" visible="true"><a href="../Accountsbootstrap/DailyStockReport.aspx">
+                                Daily Stock Report</a></li>
+                            <li id="Li7" runat="server" visible="true"><a href="../Accountsbootstrap/DailyPackingProcessReport.aspx">
+                                Packing Report</a></li>
+                        </ul>
+                    </li>
                 <li id="billfrom" runat="server" visible="false"><a href="javascript:;" style="color: Silver"></a>
                 </li>
                 <li id="AccountsReport" class='has-sub' runat="server" visible="false"><a id="A33" runat="server" href="javascript:;">Accounts Report</a>

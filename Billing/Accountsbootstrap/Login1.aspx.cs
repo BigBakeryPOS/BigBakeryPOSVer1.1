@@ -48,6 +48,10 @@ namespace Billing.Accountsbootstrap
 
             //if( userInfo["LBranch"] = "S")
 
+            Response.Redirect("../Logintype.aspx");
+
+            
+
             if (Request.Cookies["userInfo"]["LBranch"] == null)
             {
                 Response.Redirect("Login_prod.aspx");
@@ -300,7 +304,7 @@ namespace Billing.Accountsbootstrap
                     
 
 
-                    DataSet bill = objBs.Biller(Session["User"].ToString(), txtemp.Text);
+                    DataSet bill = objBs.Biller(Session["User"].ToString(), txtemp.Text, "0");
                     if (bill.Tables[0].Rows.Count > 0)
                     {
                         Session["ReportDay"] = bill.Tables[0].Rows[0]["Reportdays"].ToString();

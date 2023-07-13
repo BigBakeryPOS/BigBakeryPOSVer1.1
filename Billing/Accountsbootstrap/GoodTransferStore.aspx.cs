@@ -28,6 +28,7 @@ namespace Billing.Accountsbootstrap
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             sTableName = Request.Cookies["userInfo"]["BranchCode"].ToString();
 
+            txtAccepted.Text = Request.Cookies["userInfo"]["Biller"].ToString();
 
             if (!IsPostBack)
             {

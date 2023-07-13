@@ -21,8 +21,8 @@ namespace Billing.Accountsbootstrap
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            superadmin = Session["IsSuperAdmin"].ToString();
-            sTableName = Session["User"].ToString();
+            superadmin = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
+            sTableName = Request.Cookies["userInfo"]["User"].ToString();
 
             DataSet dacess1 = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "tablemaster");
             if (dacess1.Tables[0].Rows.Count > 0)
@@ -41,8 +41,8 @@ namespace Billing.Accountsbootstrap
                 gridview.DataBind();
 
                 // btnadd.Attributes.Add("onclick", "return valchk();"); // Validation Check lines
-                lblUser.Text = Session["UserName"].ToString();
-                lblUserID.Text = Session["UserID"].ToString();
+                lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
+                lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
 
 
                 DataSet dacess = new DataSet();

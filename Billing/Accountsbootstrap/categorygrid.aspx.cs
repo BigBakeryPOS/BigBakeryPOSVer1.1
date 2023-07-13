@@ -282,8 +282,20 @@ namespace Billing.Accountsbootstrap
             {
                 if (e.CommandArgument.ToString() != "")
                 {
-                    objBs.deletecategorymaster(e.CommandArgument.ToString());
-                    Response.Redirect("categorygrid.aspx");
+                    // check this category used  in item master or not
+                    DataSet checkitemmastercat = objBs.checkitemmastercateogry(e.CommandArgument.ToString());
+                    if (checkitemmastercat.Tables[0].Rows.Count > 0)
+                    {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('This Category Cannot Delete bcoz This is used in Item Master.Thank You!!!');", true);
+                        return;
+                    }
+                    else
+                    {
+
+
+                        objBs.deletecategorymaster(e.CommandArgument.ToString());
+                        Response.Redirect("categorygrid.aspx");
+                    }
                 }
             }
 

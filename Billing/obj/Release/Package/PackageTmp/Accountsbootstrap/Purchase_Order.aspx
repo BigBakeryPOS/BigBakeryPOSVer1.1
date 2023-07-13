@@ -61,6 +61,7 @@
                             <div class="row panel-custom1">
                                 <div class="panel-header">
                                     <h1 class="page-header">Purchase Order Entry</h1>
+                                    Entry By : <asp:Label ID="lblbillername" runat="server"  ></asp:Label> <asp:Label ID="lblbillerid" Visible="false" runat="server"  ></asp:Label>
                                 </div>
 
                                 <div class="panel-body">

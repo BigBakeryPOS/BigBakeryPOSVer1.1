@@ -32,7 +32,7 @@ namespace Billing.Accountsbootstrap
             empid = Request.Cookies["userInfo"]["Empid"].ToString();
             frombranchid = Request.Cookies["userInfo"]["BranchID"].ToString();
 
-
+            txtOrderBy.Text = Request.Cookies["userInfo"]["Biller"].ToString();
 
             if (!IsPostBack)
             {

@@ -31,7 +31,7 @@ namespace Billing.Accountsbootstrap
             if (!IsPostBack)
             {
 
-                DataSet dacess1 = objBs.getuseraccessscreen(Session["EmpId"].ToString(), "attender");
+                DataSet dacess1 = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "attender");
                 if (dacess1.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.ToBoolean(dacess1.Tables[0].Rows[0]["active"]) == false)

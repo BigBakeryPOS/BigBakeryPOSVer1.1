@@ -41,12 +41,12 @@ namespace Billing.Accountsbootstrap
                     //drpbranch.Items.Insert(0, "Select ReceiveNo");
                 }
 
-                DataSet dslogintype = objBs.getlogintype();
+                DataSet dslogintype = objBs.getlogintype_new();
                 if (dslogintype.Tables[0].Rows.Count > 0)
                 {
                     drplogintype.DataSource = dslogintype;
-                    drplogintype.DataTextField = "LoginTypeName";
-                    drplogintype.DataValueField = "LoginType";
+                    drplogintype.DataTextField = "name";
+                    drplogintype.DataValueField = "Roleid";
                     drplogintype.DataBind();
                     drplogintype.Items.Insert(0, "Select LoginType");
                 }
@@ -112,7 +112,7 @@ namespace Billing.Accountsbootstrap
                         txtmobile.Text = ds1.Tables[0].Rows[0]["Mobile"].ToString();
 
                         txtreportdays.Text = ds1.Tables[0].Rows[0]["ReportDays"].ToString();
-                        drplogintype.SelectedValue = ds1.Tables[0].Rows[0]["Logintype"].ToString();
+                        drplogintype.SelectedValue = ds1.Tables[0].Rows[0]["roleid"].ToString();
                         drpbilltype.SelectedValue = ds1.Tables[0].Rows[0]["BillType"].ToString();
                         drpbranch.SelectedValue = ds1.Tables[0].Rows[0]["BranchID"].ToString();
                         drpbranch.Enabled = false;

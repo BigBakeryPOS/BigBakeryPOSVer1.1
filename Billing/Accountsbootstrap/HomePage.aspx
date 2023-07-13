@@ -159,44 +159,45 @@
 				<div class="panel panel-custom1">
 				<div class="panel-body">
 					<div class="row item-card-row">
-						<div class="col-sm-3 item-card-col"><a href="newbutton.aspx"><div class="card item-card"><i class="bi-receipt-cutoff icon-default-color" style="font-size: 2em;"></i>
-							<p>New Bill</p></div></a> 
+
+						<div class="col-sm-3 item-card-col" ><asp:HyperLink  NavigateUrl="newbutton.aspx" runat="server" ID="newbutton" Enabled="false"><div class="card item-card" ><i runat="server"  class="bi-receipt-cutoff icon-default-color" style="font-size: 2em;"></i>
+							<p>New Bill</p></div></asp:HyperLink>
+							</div>
+						<div class="col-sm-3 item-card-col" ><asp:HyperLink NavigateUrl="OrderGrid.aspx" ID="order" runat="server" Enabled="false"><div class="card item-card"><i class="bi-cart3 icon-default-color" style="font-size: 2em;"></i>
+							<p>New Order</p></div></asp:HyperLink> 
 						</div>
-						<div class="col-sm-3 item-card-col"><a href="OrderGrid.aspx"><div class="card item-card"><i class="bi-cart3 icon-default-color" style="font-size: 2em;"></i>
-							<p>New Order</p></div></a> 
+						<div class="col-sm-3 item-card-col" ><asp:HyperLink NavigateUrl="Descriptiongrid.aspx" ID="description" runat="server" Enabled="false"><div class="card item-card"><i class="bi-cup-hot icon-default-color" style="font-size: 2em;"></i>
+							<p>Products</p></div></asp:HyperLink> 
 						</div>
-						<div class="col-sm-3 item-card-col"><a href="Descriptiongrid.aspx"><div class="card item-card"><i class="bi-cup-hot icon-default-color" style="font-size: 2em;"></i>
-							<p>Products</p></div></a> 
+						<div class="col-sm-3 item-card-col"><asp:HyperLink NavigateUrl="StockReport.aspx" ID="stockreport" runat="server" Enabled="false"><div class="card item-card"><i class="bi-ui-checks-grid icon-default-color" style="font-size: 2em;"></i>
+							<p>Check Stock</p></div></asp:HyperLink> 
 						</div>
-						<div class="col-sm-3 item-card-col"><a href="stockgrid.aspx"><div class="card item-card"><i class="bi-ui-checks-grid icon-default-color" style="font-size: 2em;"></i>
-							<p>Check Stock</p></div></a> 
+						<div class="col-sm-3 item-card-col" ><asp:HyperLink NavigateUrl="TodaysDeliveryOrder.aspx" ID="todaydelivery" runat="server" Enabled="false"><div class="card item-card"><i class="bi-calendar-check icon-default-color" style="font-size: 2em;"></i>
+							<p>Today Delivery</p></div></asp:HyperLink> 
 						</div>
-						<div class="col-sm-3 item-card-col"><a href="TodaysDeliveryOrder.aspx"><div class="card item-card"><i class="bi-calendar-check icon-default-color" style="font-size: 2em;"></i>
-							<p>Today Delivery</p></div></a> 
+						<div class="col-sm-3 item-card-col" ><asp:HyperLink NavigateUrl="Expensegrid.aspx" ID="expense" runat="server" Enabled="false"><div class="card item-card"><i class="fa fa-bitcoin icon-default-color" style="font-size: 2em;"></i>
+							<p>Expentry</p></div></asp:HyperLink> 
 						</div>
-						<div class="col-sm-3 item-card-col"><a href="#"><div class="card item-card"><i class="bi-people icon-default-color" style="font-size: 2em;"></i>
-							<p>Customers</p></div></a> 
-						</div>
-						<div class="col-sm-3 item-card-col"><a href="#"><div class="card item-card"><i class="bi-grid-3x2-gap icon-default-color" style="font-size: 2em;"></i>
-							<p>Running Table</p></div></a> 
+						<div class="col-sm-3 item-card-col" ><asp:HyperLink NavigateUrl="RestaurantSalesKot.aspx" ID="restaurantsaleskot" runat="server" Enabled="false"><div class="card item-card"><i class="bi-grid-3x2-gap icon-default-color" style="font-size: 2em;"></i>
+							<p>Running Table</p></div></asp:HyperLink> 
 						</div>
 						<%--<div class="col-sm-3 item-card-col"><a href="#"><div class="card item-card"><i class="bi-repeat icon-default-color" style="font-size: 2em;"></i>
 							<p>Synchronise</p></div></a> 
 						</div>--%>
-						<div class="col-sm-3 item-card-col"><a href="#"><div class="card item-card"><i class="bi-printer icon-default-color" style="font-size: 2em;"></i>
-							<p>Bill Reprint</p></div></a> 
+						<div class="col-sm-3 item-card-col" ><asp:HyperLink NavigateUrl="SalesGrid.aspx" ID="salesgrid" runat="server" Enabled="false"><div class="card item-card"><i class="bi-printer icon-default-color" style="font-size: 2em;"></i>
+							<p>Bill Reprint</p></div></asp:HyperLink> 
 						</div>
-						<div class="col-sm-3 item-card-col"><a href="billsetting.aspx"><div class="card item-card"><i class="bi-receipt icon-default-color" style="font-size: 2em;"></i>
-							<p>Bill Settlement</p></div></a> 
+						<div class="col-sm-3 item-card-col" ><asp:HyperLink NavigateUrl="billsetting.aspx" ID="billsettings" runat="server" Enabled="false"><div class="card item-card"><i class="bi-receipt icon-default-color" style="font-size: 2em;"></i>
+							<p>Bill Settlement</p></div></asp:HyperLink> 
 						</div>
-                        <div class="col-sm-3 item-card-col"><a href="BillSettingForOrder.aspx"><div class="card item-card"><i class="bi-receipt icon-default-color" style="font-size: 2em;"></i>
-							<p>Order Settlement</p></div></a> 
+                        <div class="col-sm-3 item-card-col" ><asp:HyperLink NavigateUrl="BillSettingForOrder.aspx" ID="billsettingsfororder" runat="server" Enabled="false"><div class="card item-card"><i class="bi-receipt icon-default-color" style="font-size: 2em;"></i>
+							<p>Order Settlement</p></div></asp:HyperLink> 
 						</div>
-                         <div class="col-sm-3 item-card-col"><a href="stockgrid.aspx"><div class="card item-card"><i class="bi-receipt icon-default-color" style="font-size: 2em;"></i>
-							<p>GRN Master</p></div></a> 
+                         <div class="col-sm-3 item-card-col" ><asp:HyperLink NavigateUrl="stockgrid.aspx" ID="stockgrid" runat="server" Enabled="false"><div class="card item-card"><i class="bi-receipt icon-default-color" style="font-size: 2em;"></i>
+							<p>GRN Master</p></div></asp:HyperLink> 
 						</div>
 					</div> 	
-						 
+					</div>	 
 				</div>
 				</div>
                 <div class="row">
@@ -318,9 +319,7 @@
                                     <marquee direction="up" scrollamount="2" style="background: #fff; min-height: 200px" >
                        <a href="../Accountsbootstrap/TodaysDeliveryOrder.aspx" ><asp:Label ID="lblDeliveryDetails"  runat="server"></asp:Label></a> </b><br /> 
 
-                          <%--<asp:LinkButton ID="LinkButton1" PostBackUrl="../Accountsbootstrap/TodaysDeliveryOrder.aspx" runat="server"></asp:LinkButton></b><br />--%>
-                        
-                         </marquee>
+                          <%--<asp:LinkButton ID="LinkButton1" PostBackUrl="../Accountsbootstrap/TodaysDeliveryOrder.aspx" runat="server"></asp:LinkButton></b><br />--%></marquee>
                                 
                             </div>
                         </div>

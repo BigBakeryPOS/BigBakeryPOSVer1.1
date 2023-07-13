@@ -229,15 +229,17 @@
                                  <asp:CheckBox ID="chkproductioncategory" Visible="false" runat="server" Width="20px"/>
 <%--                                <label>Show Production</label>
                                 <br />--%>
-                                <asp:CheckBox ID="chkmanualgrn" runat="server" Width="20px" />
+                                <asp:CheckBox ID="chkmanualgrn"  runat="server" Width="20px" />
                                 <label>Show Manual GRN</label>
                                 
                             <br /><br />
                                 <label>Category Type</label>
                                 <asp:DropDownList ID="drpcattype" runat="server" CssClass="form-control">
                                     <asp:ListItem Text="Normal Category" Value="N" Selected="True"></asp:ListItem>
-                                    <asp:ListItem Text="Combo Category" Value="C"></asp:ListItem>
-                                    <asp:ListItem Text="Happy Hours Category" Value="H"></asp:ListItem>
+                                    <%--<asp:ListItem Text="Combo Category" Value="C"></asp:ListItem>
+                                    <asp:ListItem Text="Happy Hours Category" Value="H"></asp:ListItem>--%>
+                                    <asp:ListItem Text="Addon Category" Value="A" ></asp:ListItem>
+                                    <asp:ListItem Text="Birthday Accessories" Value="B" ></asp:ListItem>
                                 </asp:DropDownList>
                           
                             <br />

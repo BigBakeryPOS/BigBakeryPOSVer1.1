@@ -132,6 +132,15 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.DropDownList drplogintype;
 
         /// <summary>
+        /// txtemprole control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtemprole;
+
+        /// <summary>
         /// UpdatePanel7 control.
         /// </summary>
         /// <remarks>

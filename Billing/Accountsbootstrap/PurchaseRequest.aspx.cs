@@ -18,10 +18,10 @@ namespace Billing.Accountsbootstrap
         string scode = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblUser.Text = Session["UserName"].ToString();
-            lblUserID.Text = Session["UserID"].ToString();
-            sTableName = Session["User"].ToString();
-            scode = Session["BranchCode"].ToString();
+            lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
+            lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
+            sTableName = Request.Cookies["userInfo"]["User"].ToString();
+            scode = Request.Cookies["userInfo"]["BranchCode"].ToString();
            
 
             if (!IsPostBack)

@@ -15,7 +15,7 @@
     <link href="../Accountsbootstrap/css/chosen.min.css" rel="stylesheet" type="text/css" />--%>
 
 
-     
+
 
 
     <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -66,20 +66,18 @@
     </script>
 
     <script type="text/javascript">
- function isDecimal(evt)
-    {
-       var charCode = (evt.which) ? evt.which : event.keyCode
-       var parts = evt.srcElement.value.split('.');
-       if(parts.length > 1 && charCode==46)
-          return false;
-       else
-       {
-          if (charCode == 46 || (charCode >= 48 && charCode <= 57))
-             return true;
-          return false;
-       }
-    }
-</script>
+        function isDecimal(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            var parts = evt.srcElement.value.split('.');
+            if (parts.length > 1 && charCode == 46)
+                return false;
+            else {
+                if (charCode == 46 || (charCode >= 48 && charCode <= 57))
+                    return true;
+                return false;
+            }
+        }
+    </script>
     <style type="text/css">
         .Hide {
             display: none;
@@ -102,6 +100,7 @@
                             <div class="row panel-custom1">
                                 <div class="panel-header">
                                     <h1 class="page-header">Purchase Entry</h1>
+                                    Entry By : <asp:Label ID="lblbillername" runat="server"  ></asp:Label> <asp:Label ID="lblbillerid" Visible="false" runat="server"  ></asp:Label>
                                 </div>
                                 <asp:HiddenField ID="hdPurid" runat="server" />
                                 <div class="panel-body">
@@ -152,7 +151,7 @@
                                         </label>
                                     </div>
                                     <div class="row">
-                                         <div runat="server" visible="false" class="col-lg-2">
+                                        <div runat="server" visible="false" class="col-lg-2">
                                             <label>
                                                 Select Company</label>
                                             <asp:DropDownList ID="drpsubcompany" runat="server" TabIndex="1" CssClass="form-control">
@@ -164,6 +163,15 @@
                                             <asp:TextBox Visible="false" CssClass="form-control" ID="txtbillno" placeholder="Enter Bill No"
                                                 runat="server" Enabled="false"></asp:TextBox>
                                             <asp:TextBox CssClass="form-control" ID="txtdcno" placeholder="Enter Bill No" runat="server"></asp:TextBox>
+                                            <br />
+                                            <label>
+                                                Supplier&nbsp;&nbsp;<asp:CheckBox ID="chksupplier" runat="server" Text="New Supplier"
+                                                    OnCheckedChanged="chk_chksupplier" AutoPostBack="true" />
+                                            </label>
+                                            <asp:DropDownList ID="ddlsuplier" runat="server" TabIndex="2" Width="100%"
+                                                AutoPostBack="true" OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged">
+                                            </asp:DropDownList>
+                                            <asp:TextBox ID="txtsupplier" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>
                                         </div>
                                         <div class="col-lg-2">
                                             <label>
@@ -173,16 +181,35 @@
                                             <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="dd/MM/yyyy hh:mm tt"
                                                 TargetControlID="txtsdate1" runat="server" CssClass="cal_Theme1">
                                             </ajaxToolkit:CalendarExtender>
+                                            <br />
+                                             <label>Address</label>
+                                            <asp:TextBox ID="txtaddress" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                                         </div>
                                         <div class="col-lg-2">
                                             <label>
                                                 Paymode</label>
                                             <asp:DropDownList ID="ddlpaymode" runat="server" AutoPostBack="true" TabIndex="3"
                                                 CssClass="form-control" OnSelectedIndexChanged="ddlpaymode_OnSelectedIndexChanged">
-                                              <%--  <asp:ListItem Text="Select Payment" Value="0" Enabled="true"></asp:ListItem>
+                                                <%--  <asp:ListItem Text="Select Payment" Value="0" Enabled="true"></asp:ListItem>
                                                 <asp:ListItem Text="Cash" Value="1"></asp:ListItem>
                                                 <asp:ListItem Text="Credit" Value="2" Enabled="true"></asp:ListItem>--%>
                                             </asp:DropDownList>
+                                            <br />
+                                            <label>
+                                                invoice Upload 1</label>
+                                            <asp:UpdatePanel ID="UpdatePanel" runat="server">
+                                                <ContentTemplate>
+                                                    <asp:FileUpload ID="fp_Upload" runat="server" Style="display: inline" Width="45%" />
+                                                    <asp:Button ID="btnUpload123" runat="server" Text="Upload" CssClass="btn btn-danger pos-btn1"
+                                                        OnClick="btnUpload_Clickimg" /><asp:Image ID="img_Photo" runat="server"
+                                                            Width="5pc" BorderColor="1" />
+                                                    <asp:Label ID="lblFile_Path" runat="server" Visible="false"></asp:Label>
+                                                </ContentTemplate>
+                                                <Triggers>
+                                                    <asp:PostBackTrigger ControlID="btnUpload123" />
+                                                </Triggers>
+                                            </asp:UpdatePanel>
+                                            <br />
                                         </div>
 
                                         <div class="col-lg-2">
@@ -193,32 +220,71 @@
                                                 <asp:ListItem Text="IngredientName" Value="1" Selected="True"></asp:ListItem>
                                                 <asp:ListItem Text="BIngredientName" Value="2"></asp:ListItem>
                                             </asp:DropDownList>
+
+                                            <br />
+                                            <label>
+                                                invoice Upload 2</label>
+                                            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                                <ContentTemplate>
+                                                    <asp:FileUpload ID="fp_Upload2" runat="server" Style="display: inline" Width="45%" />
+                                                    <asp:Button ID="btnUpload1232" runat="server" Text="Upload" CssClass="btn btn-danger pos-btn1"
+                                                        OnClick="btnUpload_Clickimg2" /><asp:Image ID="img_Photo2" runat="server"
+                                                            Width="5pc" BorderColor="1" />
+                                                    <asp:Label ID="lblFile_Path2" runat="server" Visible="false"></asp:Label>
+                                                </ContentTemplate>
+                                                <Triggers>
+                                                    <asp:PostBackTrigger ControlID="btnUpload1232" />
+                                                </Triggers>
+                                            </asp:UpdatePanel>
+                                            <br />
+                                            
                                         </div>
                                         <div class="col-lg-2">
                                             <label>
                                                 Item Load</label>
                                             <asp:DropDownList ID="drpitemload" runat="server" CssClass="form-control" Enabled="true" AutoPostBack="true" OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged">
-                                                <asp:ListItem Text="Load All Item" Value="1" Selected="True" ></asp:ListItem>
-                                                <asp:ListItem Text="Load Supplier Item Only" Value="2" ></asp:ListItem>
+                                                <asp:ListItem Text="Load All Item" Value="1" Selected="True"></asp:ListItem>
+                                                <asp:ListItem Text="Load Supplier Item Only" Value="2"></asp:ListItem>
                                             </asp:DropDownList>
+
+                                             <br />
+                                            <label>
+                                                invoice Upload 3</label>
+                                            <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                                                <ContentTemplate>
+                                                    <asp:FileUpload ID="fp_Upload3" runat="server" Style="display: inline" Width="45%" />
+                                                    <asp:Button ID="btnUpload1233" runat="server" Text="Upload" CssClass="btn btn-danger pos-btn1"
+                                                        OnClick="btnUpload_Clickimg3" /><asp:Image ID="img_Photo3" runat="server"
+                                                            Width="5pc" BorderColor="1" />
+                                                    <asp:Label ID="lblFile_Path3" runat="server" Visible="false"></asp:Label>
+                                                </ContentTemplate>
+                                                <Triggers>
+                                                    <asp:PostBackTrigger ControlID="btnUpload1233" />
+                                                </Triggers>
+                                            </asp:UpdatePanel>
+                                            <br />
+                                            
+                                        </div>
+                                        <div class="col-lg-2">
+
+                                             <label id="lblbank" runat="server">Select Bank</label>
+                                        <asp:DropDownList ID="ddlbank" runat="server" AutoPostBack="true" CssClass="form-control"
+                                            Visible="false">
+                                        </asp:DropDownList>
+                                            <br />
+
+                                            <label id="lblChq" runat="server">Enter Cheque/Card no</label>
+                                        <asp:TextBox CssClass="form-control" ID="txtcheque" placeholder="Enter Cheque/Card no" runat="server"
+                                            Visible="false"></asp:TextBox>
                                         </div>
 
                                     </div>
                                     <br />
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label>
-                                                Supplier&nbsp;&nbsp;<asp:CheckBox ID="chksupplier" runat="server" Text="New Supplier"
-                                                    OnCheckedChanged="chk_chksupplier" AutoPostBack="true" />
-                                            </label>
-                                            <asp:DropDownList ID="ddlsuplier" runat="server" TabIndex="2"  Width="100%" 
-                                                AutoPostBack="true" OnSelectedIndexChanged="ddlsuplier_OnSelectedIndexChanged">
-                                            </asp:DropDownList>
-                                            <asp:TextBox ID="txtsupplier" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>
                                         </div>
                                         <div class="col-lg-3" id="dvaddress" runat="server">
-                                            <label>Address</label>
-                                            <asp:TextBox ID="txtaddress" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+                                           
                                         </div>
                                         <div class="col-lg-2" id="dvmobile" runat="server" visible="false">
                                             <label>
@@ -237,28 +303,17 @@
                                         </div>
                                     </div>
                                     <br />
-                                   <div class="col-lg-2">
-                                             <label id="lblbank" runat="server">Select Bank</label>
-                                            <asp:DropDownList ID="ddlbank" runat="server" AutoPostBack="true" CssClass="form-control"
-                                                Visible="false">
-                                            </asp:DropDownList>
-                                        </div>
-                                        <div class="col-lg-2">
-                                             <label id="lblChq" runat="server">Enter Cheque/Card no</label>
-                                            <asp:TextBox CssClass="form-control" ID="txtcheque" placeholder="Enter Cheque/Card no" runat="server"
-                                                Visible="false"></asp:TextBox>
-
-                                        </div>
                                 </div>
 
                                 <div class="col-lg-12">
-                                    <asp:Panel ID="Panel2" runat="server" Height="85px"  Width="100%">
+                                    <asp:Panel ID="Panel2" runat="server" Height="85px" Width="100%">
                                         <table border="1">
                                             <tr>
                                                 <td>
                                                     <label>
-                                                        Select ingredents</label><br /><%--CssClass="chzn-select"--%>
-                                                    <asp:DropDownList ID="drpmingredents" runat="server" TabIndex="5" 
+                                                        Select ingredents</label><br />
+                                                    <%--CssClass="chzn-select"--%>
+                                                    <asp:DropDownList ID="drpmingredents" runat="server" TabIndex="5"
                                                         Height="30px" Width="280px" AutoPostBack="true" OnSelectedIndexChanged="ddlDef_OnSelectedIndexChanged">
                                                     </asp:DropDownList>
                                                 </td>
@@ -295,10 +350,10 @@
                                                     <label>
                                                         Qty
                                                     </label>
-                                                    <asp:TextBox class="form-control" Width="65px"  onkeypress="return isDecimal(event)" OnTextChanged="txtdefQty_TextChanged"
+                                                    <asp:TextBox class="form-control" Width="65px" onkeypress="return isDecimal(event)" OnTextChanged="txtdefQty_TextChanged"
                                                         AutoPostBack="true" ID="txtmQty" runat="server" MaxLength="10">0</asp:TextBox>
-                                                     <ajaxToolkit:FilteredTextBoxExtender ID="ftbe" runat="server" TargetControlID="txtmQty"
-                                                                FilterType="Custom,Numbers" ValidChars="." />
+                                                    <ajaxToolkit:FilteredTextBoxExtender ID="ftbe" runat="server" TargetControlID="txtmQty"
+                                                        FilterType="Custom,Numbers" ValidChars="." />
                                                 </td>
                                                 <td>
                                                     <label>
@@ -306,8 +361,8 @@
                                                     </label>
                                                     <asp:TextBox class="form-control" Width="65px" ID="txtmDisCount" onkeypress="return isDecimal(event)" OnTextChanged="txtDisCount_TextChanged"
                                                         AutoPostBack="true" runat="server" MaxLength="10">0</asp:TextBox>
-                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" TargetControlID="txtmDisCount"
-                                                                FilterType="Custom,Numbers" ValidChars="." />
+                                                    <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" TargetControlID="txtmDisCount"
+                                                        FilterType="Custom,Numbers" ValidChars="." />
                                                 </td>
                                                 <td>
                                                     <label>
@@ -315,28 +370,28 @@
                                                     </label>
                                                     <asp:TextBox class="form-control" Width="65px" ID="txtmDisCountAmount" onkeypress="return isDecimal(event)" OnTextChanged="txtDisCountAmount_TextChanged"
                                                         AutoPostBack="true" runat="server" MaxLength="10">0</asp:TextBox>
-                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" TargetControlID="txtmDisCountAmount"
-                                                                FilterType="Custom,Numbers" ValidChars="." />
-                                                    
+                                                    <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" TargetControlID="txtmDisCountAmount"
+                                                        FilterType="Custom,Numbers" ValidChars="." />
+
                                                 </td>
                                                 <td>
                                                     <label>
                                                         GST%
                                                     </label>
-                                                    <asp:TextBox ID="txtmBillNo" runat="server" CssClass="form-control"  onkeypress="return isDecimal(event)" Width="65px"
+                                                    <asp:TextBox ID="txtmBillNo" runat="server" CssClass="form-control" onkeypress="return isDecimal(event)" Width="65px"
                                                         AutoPostBack="true" OnTextChanged="txtBillNo_TextChanged">0</asp:TextBox>
-                                                      <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" TargetControlID="txtmBillNo"
-                                                                FilterType="Custom,Numbers" ValidChars="." />
+                                                    <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" TargetControlID="txtmBillNo"
+                                                        FilterType="Custom,Numbers" ValidChars="." />
                                                 </td>
                                                 <td>
                                                     <label>
                                                         Rate
                                                     </label>
                                                     <asp:TextBox Width="80px" Style="text-align: right" placeholder="Enter Rate" onkeypress="return isDecimal(event)" class="form-control"
-                                                        ID="txtmRate" runat="server" OnTextChanged="txtdefCatID_TextChangedOLD"  AutoPostBack="true"
+                                                        ID="txtmRate" runat="server" OnTextChanged="txtdefCatID_TextChangedOLD" AutoPostBack="true"
                                                         MaxLength="10">0</asp:TextBox>
-                                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server" TargetControlID="txtmRate"
-                                                                FilterType="Custom,Numbers" ValidChars="." />
+                                                    <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server" TargetControlID="txtmRate"
+                                                        FilterType="Custom,Numbers" ValidChars="." />
                                                 </td>
                                                 <td>
                                                     <label>
@@ -350,8 +405,8 @@
                                                         Exp.Date(DD/MM/YYYY)
                                                     </label>
                                                     <br />
-                                                    <asp:TextBox ID="txtmexpireddate" runat="server" CssClass="form-control" placeholder="DD/MM/YYYY"  onkeyup="ValidateDate(this, event.keyCode)"
-                                            onkeydown="return DateFormat(this, event.keyCode)" ></asp:TextBox>
+                                                    <asp:TextBox ID="txtmexpireddate" runat="server" CssClass="form-control" placeholder="DD/MM/YYYY" onkeyup="ValidateDate(this, event.keyCode)"
+                                                        onkeydown="return DateFormat(this, event.keyCode)"></asp:TextBox>
                                                     <%--<asp:TextBox ID="txtmexpireddate" runat="server" Enabled="true" ReadOnly="true" Height="30px" Width="90px"></asp:TextBox>
                                                     <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="txtmexpireddate"
                                                         PopupButtonID="txtmexpireddate" EnabledOnClient="true" Format="dd/MM/yyyy" runat="server"
@@ -368,16 +423,16 @@
                                                     <asp:TextBox Width="80px" Style="text-align: right" Enabled="false" class="form-control"
                                                         Height="25px" ID="txtmpqty" runat="server" MaxLength="50">0</asp:TextBox>
                                                 </td>
-                                                  <td>
+                                                <td>
                                                     <label>
-                                                       Per Kg
+                                                        Per Kg
                                                     </label>
                                                     <asp:Label Width="20px" Style="text-align: right" Enabled="false" class="form-control"
                                                         Height="25px" ID="lblperkg" runat="server" MaxLength="50">1</asp:Label>
                                                 </td>
-                                                 <td>
+                                                <td>
                                                     <label>
-                                                       Per Kg Rate
+                                                        Per Kg Rate
                                                     </label>
                                                     <asp:TextBox Width="50px" Style="text-align: right" Enabled="false" class="form-control"
                                                         Height="25px" ID="txtperkgrate" runat="server" MaxLength="70"></asp:TextBox>
@@ -484,9 +539,9 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Qty">
                                                         <ItemTemplate>
-                                                            <asp:TextBox class="form-control" Width="50px" OnTextChanged="txtdefQty_TextChangedOLD" onkeypress="return isDecimal(event)"  Text='<%#Eval("Qty") %>'
+                                                            <asp:TextBox class="form-control" Width="50px" OnTextChanged="txtdefQty_TextChangedOLD" onkeypress="return isDecimal(event)" Text='<%#Eval("Qty") %>'
                                                                 AutoPostBack="true" ID="txtQty" runat="server" MaxLength="10">0</asp:TextBox>
-                                                             <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" TargetControlID="txtQty"
+                                                            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" TargetControlID="txtQty"
                                                                 FilterType="Custom,Numbers" ValidChars="." />
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -504,7 +559,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="GST%">
                                                         <ItemTemplate>
-                                                            <asp:TextBox ID="txtBillNo" runat="server" CssClass="form-control" Enabled="false" Width="50px" AutoPostBack="true"  Text='<%#Eval("BillNo") %>'
+                                                            <asp:TextBox ID="txtBillNo" runat="server" CssClass="form-control" Enabled="false" Width="50px" AutoPostBack="true" Text='<%#Eval("BillNo") %>'
                                                                 OnTextChanged="txtBillNo_TextChanged">0</asp:TextBox>
                                                         </ItemTemplate>
                                                         <%--<FooterStyle HorizontalAlign="Right" />
@@ -513,10 +568,10 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Rate">
                                                         <ItemTemplate>
-                                                            <asp:TextBox Width="100px" Style="text-align: right" placeholder="Enter Rate" Enabled="true"  onkeypress="return isDecimal(event)"  class="form-control" Text='<%#Eval("Rate") %>'
+                                                            <asp:TextBox Width="100px" Style="text-align: right" placeholder="Enter Rate" Enabled="true" onkeypress="return isDecimal(event)" class="form-control" Text='<%#Eval("Rate") %>'
                                                                 ID="txtRate" runat="server" OnTextChanged="txtdefCatID_TextChanged" AutoPostBack="true"
                                                                 MaxLength="10">0</asp:TextBox>
-                                                              <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server" TargetControlID="txtRate"
+                                                            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server" TargetControlID="txtRate"
                                                                 FilterType="Custom,Numbers" ValidChars="." />
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -544,7 +599,7 @@
                                                                 ID="txtpqty" runat="server" MaxLength="50">0</asp:TextBox>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                     <asp:TemplateField HeaderText="Rate /kg">
+                                                    <asp:TemplateField HeaderText="Rate /kg">
                                                         <ItemTemplate>
                                                             <asp:TextBox Width="100px" Enabled="false" class="form-control" Text='<%#Eval("Rateperkg") %>'
                                                                 ID="txtRateperkg" runat="server" MaxLength="70">0</asp:TextBox>
@@ -635,9 +690,9 @@
                                             <asp:TextBox ID="txtcgst" runat="server" CssClass="form-control" Enabled="false"
                                                 AutoPostBack="true">0</asp:TextBox>
                                         </div>
-                                        </div>
+                                    </div>
 
-                                         <div class="col-lg-12">
+                                    <div class="col-lg-12">
                                         <div class="col-lg-2">
                                             <label>
                                                 SGST</label>
@@ -746,13 +801,13 @@
                 </div>     
             
                 <script type="text/javascript" src="ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-                        <script type="text/javascript" src="../css/select2.js"></script>
-                        <link href="../css/select2.css" rel="stylesheet" />
-                        
-                        <script type="text/javascript">
-                            $(document).ready(function () { $("#ddlsuplier").select2(); });
-                            $(document).ready(function () { $("#drpmingredents").select2(); });
-                        </script>
+                <script type="text/javascript" src="../css/select2.js"></script>
+                <link href="../css/select2.css" rel="stylesheet" />
+
+                <script type="text/javascript">
+                    $(document).ready(function () { $("#ddlsuplier").select2(); });
+                    $(document).ready(function () { $("#drpmingredents").select2(); });
+                </script>
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="gvcustomerorder" EventName="RowCommand" />

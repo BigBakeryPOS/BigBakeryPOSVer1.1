@@ -55,6 +55,9 @@ namespace Billing.Accountsbootstrap
             //CalendarExtender1.EndDate = DateTime.Today.AddMonths(1);
             //CalendarExtender2.StartDate = DateTime.Today;
 
+           //CalendarExtender2.StartDate = DateTime.Today;
+           //CalendarExtender2.EndDate = DateTime.Today.AddDays(89);
+
             if (synccakeorder == "Y")
             {
                 chkchecklist.Checked = true;

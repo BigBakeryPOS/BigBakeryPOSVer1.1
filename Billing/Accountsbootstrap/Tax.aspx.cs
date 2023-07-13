@@ -20,13 +20,13 @@ namespace Billing.Accountsbootstrap
         string sTableName = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["User"].ToString() != null)
-                sTableName = Session["User"].ToString();
+            if (Request.Cookies["userInfo"]["User"].ToString() != null)
+                sTableName = Request.Cookies["userInfo"]["User"].ToString();
             else
                 Response.Redirect("Login_Branch.aspx");
 
-            lblUser.Text = Session["UserName"].ToString();
-            lblUserID.Text = Session["UserID"].ToString();
+            lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
+            lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
            
             if (!IsPostBack)
             {

@@ -1297,89 +1297,96 @@ namespace Billing.Accountsbootstrap
             }
 
 
-            #region Summary
-
-            DataTable dtraw = new DataTable();
-            DataSet dsraw = new DataSet();
-            DataRow drraw;
-
-            dtraw.Columns.Add("CategoryID");
-            dtraw.Columns.Add("CategoryUserID");
-            dtraw.Columns.Add("UOMID");
-
-            dtraw.Columns.Add("Category");
-            dtraw.Columns.Add("Definition");
-
-            dtraw.Columns.Add("Qty");
-            dtraw.Columns.Add("UOM");
-
-            dtraw.Columns.Add("serial");
-
-            dtraw.Columns.Add("Rate");
-            dtraw.Columns.Add("GST");
-            dtraw.Columns.Add("qtytype");
-
-            dsraw.Tables.Add(dtraw);
-
-            if (dstd.Tables[0].Rows.Count > 0)
+            if (itemmergeornot == "Y")
             {
-                #region
-
-                // DataTable dtraws = dsrawmerge.Tables[0];
-
-                var result1 = from r in dtddd.AsEnumerable()
-                              group r by new { CategoryID = r["CategoryID"], CategoryUserID = r["CategoryUserID"], UOMID = r["UOMID"], Category = r["Category"], Definition = r["Definition"], UOM = r["UOM"], Rate = r["Rate"], GST = r["GST"], serial = r["serial"], qtytype = r["qtytype"] } into raw
-                              select new
-                              {
-                                  CategoryID = raw.Key.CategoryID,
-                                  CategoryUserID = raw.Key.CategoryUserID,
-                                  UOMID = raw.Key.UOMID,
-                                  Category = raw.Key.Category,
-                                  Definition = raw.Key.Definition,
-                                  Qty = raw.Sum(x => Convert.ToDouble(x["Qty"])),
-                                  UOM = raw.Key.UOM,
-                                  serial = raw.Key.serial,
-                                  Rate = raw.Key.Rate,
-                                  GST = raw.Key.GST,
-                                  qtytype = raw.Key.qtytype,
-
-                              };
-
-
-                foreach (var g in result1)
-                {
-                    drraw = dtraw.NewRow();
-
-                    drraw["CategoryID"] = g.CategoryID;
-                    drraw["CategoryUserID"] = g.CategoryUserID;
-                    drraw["UOMID"] = g.UOMID;
-                    drraw["Category"] = g.Category;
-                    drraw["Definition"] = g.Definition;
-                    if (g.qtytype.ToString() == "D")
-                    {
-                        drraw["Qty"] = Convert.ToDouble(g.Qty).ToString("" + qtysetting + "");
-                    }
-                    else if (g.qtytype.ToString() == "E")
-                    {
-                        drraw["Qty"] = Math.Floor(Convert.ToDouble(g.Qty)).ToString();
-                    }
-                    drraw["UOM"] = g.UOM;
-                    drraw["serial"] = g.serial;
-
-                    drraw["Rate"] = g.Rate;
-                    drraw["GST"] = g.GST;
-                    drraw["qtytype"] = g.qtytype;
-
-                    dsraw.Tables[0].Rows.Add(drraw);
-                }
-                gvqueueitems.DataSource = dsraw;
+                gvqueueitems.DataSource = dtddd;
                 gvqueueitems.DataBind();
+            }
+            else if (itemmergeornot == "N")
+            {
+                #region Summary
+
+                DataTable dtraw = new DataTable();
+                DataSet dsraw = new DataSet();
+                DataRow drraw;
+
+                dtraw.Columns.Add("CategoryID");
+                dtraw.Columns.Add("CategoryUserID");
+                dtraw.Columns.Add("UOMID");
+
+                dtraw.Columns.Add("Category");
+                dtraw.Columns.Add("Definition");
+
+                dtraw.Columns.Add("Qty");
+                dtraw.Columns.Add("UOM");
+
+                dtraw.Columns.Add("serial");
+
+                dtraw.Columns.Add("Rate");
+                dtraw.Columns.Add("GST");
+                dtraw.Columns.Add("qtytype");
+                dsraw.Tables.Add(dtraw);
+
+                if (dstd.Tables[0].Rows.Count > 0)
+                {
+                    #region
+
+                    // DataTable dtraws = dsrawmerge.Tables[0];
+
+                    var result1 = from r in dtddd.AsEnumerable()
+                                  group r by new { CategoryID = r["CategoryID"], CategoryUserID = r["CategoryUserID"], UOMID = r["UOMID"], Category = r["Category"], Definition = r["Definition"], UOM = r["UOM"], Rate = r["Rate"], GST = r["GST"], serial = r["serial"], qtytype = r["qtytype"] } into raw
+                                  select new
+                                  {
+                                      CategoryID = raw.Key.CategoryID,
+                                      CategoryUserID = raw.Key.CategoryUserID,
+                                      UOMID = raw.Key.UOMID,
+                                      Category = raw.Key.Category,
+                                      Definition = raw.Key.Definition,
+                                      Qty = raw.Sum(x => Convert.ToDouble(x["Qty"])),
+                                      UOM = raw.Key.UOM,
+                                      serial = raw.Key.serial,
+                                      Rate = raw.Key.Rate,
+                                      GST = raw.Key.GST,
+                                      qtytype = raw.Key.qtytype,
+
+                                  };
+
+
+                    foreach (var g in result1)
+                    {
+                        drraw = dtraw.NewRow();
+
+                        drraw["CategoryID"] = g.CategoryID;
+                        drraw["CategoryUserID"] = g.CategoryUserID;
+                        drraw["UOMID"] = g.UOMID;
+                        drraw["Category"] = g.Category;
+                        drraw["Definition"] = g.Definition;
+                        if (g.qtytype.ToString() == "D")
+                        {
+                            drraw["Qty"] = Convert.ToDouble(g.Qty).ToString("" + qtysetting + "");
+                        }
+                        else if (g.qtytype.ToString() == "E")
+                        {
+                            drraw["Qty"] = Math.Floor(Convert.ToDouble(g.Qty)).ToString();
+                        }
+                        drraw["UOM"] = g.UOM;
+                        drraw["serial"] = g.serial;
+
+                        drraw["Rate"] = g.Rate;
+                        drraw["GST"] = g.GST;
+                        drraw["qtytype"] = g.qtytype;
+
+                        dsraw.Tables[0].Rows.Add(drraw);
+                    }
+                    gvqueueitems.DataSource = dsraw;
+                    gvqueueitems.DataBind();
+
+                    #endregion
+                }
+
 
                 #endregion
             }
-
-
-            #endregion
         }
 
         protected void btnaddqueue_OnClick(object sender, EventArgs e)

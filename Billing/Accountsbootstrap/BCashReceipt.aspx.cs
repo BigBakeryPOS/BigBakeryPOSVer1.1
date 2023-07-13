@@ -20,7 +20,7 @@ namespace Billing.Accountsbootstrap
             if (!IsPostBack)
             {
 
-                sTableName = Session["User"].ToString();
+                sTableName = Request.Cookies["userInfo"]["User"].ToString();
 
                 string ISalesId = Request.QueryString.Get("ReceiptID");
 

@@ -15,6 +15,8 @@ namespace Billing.Accountsbootstrap
         string scode = "";
         BSClass kbs = new BSClass();
         string Rate = "";
+        string Biller = "";
+        string Billerid = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             scode = Request.Cookies["userInfo"]["BranchCode"].ToString();
@@ -22,6 +24,13 @@ namespace Billing.Accountsbootstrap
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             sTableName = Request.Cookies["userInfo"]["BranchCode"].ToString();
             Rate = Request.Cookies["userInfo"]["Rate"].ToString();
+
+            Biller = Request.Cookies["userInfo"]["Biller"].ToString();
+            Billerid = Request.Cookies["userInfo"]["Empid"].ToString();
+
+
+            lblbillername.Text = Biller;
+            lblbillerid.Text = Billerid;
 
 
             if (!Page.IsPostBack)
@@ -81,17 +90,15 @@ namespace Billing.Accountsbootstrap
                     ddlbank.Items.Insert(0, "Select Bank");
                 }
 
-                DataSet dsPO = kbs.PurchaseInvoiceNoList(sTableName);
-                if (dsPO.Tables[0].Rows.Count > 0)
-                {
-                    drpPO.DataSource = dsPO.Tables[0];
-                    drpPO.DataTextField = "DCNO";
-                    drpPO.DataValueField = "PurchaseID";
-                    drpPO.DataBind();
-                    drpPO.Items.Insert(0, "Select Purchase InvoiceNo");
-
-
-                }
+                //DataSet dsPO = kbs.PurchaseInvoiceNoList(sTableName);
+                //if (dsPO.Tables[0].Rows.Count > 0)
+                //{
+                //    drpPO.DataSource = dsPO.Tables[0];
+                //    drpPO.DataTextField = "DCNO";
+                //    drpPO.DataValueField = "PurchaseID";
+                //    drpPO.DataBind();
+                //    drpPO.Items.Insert(0, "Select Purchase InvoiceNo");
+                //}
 
                 rbtype_OnSelectedIndexChanged(sender, e);
                 DataSet dNo = kbs.entryno(sTableName);
@@ -947,7 +954,7 @@ namespace Billing.Accountsbootstrap
             {
                 Div2.Visible = true;
                 Div4.Visible = true;
-                ddlsuplier.Enabled = false;
+                ddlsuplier.Enabled = true;
                 drpmingredents.Enabled = false;
                 btnSubmit.Enabled = false;
             }
@@ -1485,7 +1492,7 @@ namespace Billing.Accountsbootstrap
                         Province = "Outer";
                     }
 
-                    int insertPurchase = kbs.insertPurchaseReturn(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), txtbillno.Text, txtsdate1.Text, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), BillingType, PONo, Province, txtroundoff.Text, drpsubcompany.SelectedValue);
+                    int insertPurchase = kbs.insertPurchaseReturn(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), txtbillno.Text, txtsdate1.Text, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), BillingType, PONo, Province, txtroundoff.Text, drpsubcompany.SelectedValue,lblbillername.Text,lblbillerid.Text);
 
 
                     for (int i = 0; i < gvcustomerorder.Rows.Count; i++)
@@ -2814,6 +2821,10 @@ namespace Billing.Accountsbootstrap
         {
             gvcustomerorder.DataSource = null;
             gvcustomerorder.DataBind();
+
+            drpPO.ClearSelection();
+            drpPO.Items.Clear();
+
             ViewState["CurrentTable"] = null;
             string itemname = "IngredientName";
             if (ddlsuplier.SelectedValue == "" || ddlsuplier.SelectedValue == "0" || ddlsuplier.SelectedValue == "Select Supplier")
@@ -2821,6 +2832,20 @@ namespace Billing.Accountsbootstrap
                 int supplier = 0;
 
                 supplier = Convert.ToInt32(ddlsuplier.SelectedValue);
+
+                DataSet dsPO = kbs.PurchaseInvoiceNoList_supplierlist(sTableName, ddlsuplier.SelectedValue);
+                if (dsPO.Tables[0].Rows.Count > 0)
+                {
+                    drpPO.DataSource = dsPO.Tables[0];
+                    drpPO.DataTextField = "DCNO";
+                    drpPO.DataValueField = "PurchaseID";
+                    drpPO.DataBind();
+                    drpPO.Items.Insert(0, "Select Purchase InvoiceNo");
+                }
+                else
+                {
+                    drpPO.Items.Insert(0, "Select Purchase InvoiceNo");
+                }
 
 
                 DataSet dsCategory = kbs.GetSupplierIngredient(Convert.ToInt32(supplier), "1");
@@ -2886,6 +2911,21 @@ namespace Billing.Accountsbootstrap
                 }
                 int supplier = 0;
                 supplier = Convert.ToInt32(ddlsuplier.SelectedValue);
+
+                DataSet dsPO = kbs.PurchaseInvoiceNoList_supplierlist(sTableName, ddlsuplier.SelectedValue);
+                if (dsPO.Tables[0].Rows.Count > 0)
+                {
+                    drpPO.DataSource = dsPO.Tables[0];
+                    drpPO.DataTextField = "DCNO";
+                    drpPO.DataValueField = "PurchaseID";
+                    drpPO.DataBind();
+                    drpPO.Items.Insert(0, "Select Purchase InvoiceNo");
+                }
+                else
+                {
+                    drpPO.Items.Insert(0, "Select Purchase InvoiceNo");
+                }
+
 
                 DataSet dsCategory = kbs.GetSupplierIngredient(Convert.ToInt32(supplier), "1");
 
@@ -3114,7 +3154,63 @@ namespace Billing.Accountsbootstrap
                     txtsdate1.Text = Convert.ToDateTime(dagent.Tables[0].Rows[0]["BillDate"]).ToString("yyyy-MM-dd"); // dagent.Tables[0].Rows[0]["OrderDate"].ToString("yyyy-MM-dd");
 
                     ddlsuplier.SelectedValue = dagent.Tables[0].Rows[0]["Supplier"].ToString();
-                    ddlsuplier_OnSelectedIndexChanged(sender, e);
+                    //ddlsuplier_OnSelectedIndexChanged(sender, e);
+
+                    DataSet dss1 = kbs.getsupplierdetais(ddlsuplier.SelectedValue);
+                    if (dss1.Tables[0].Rows.Count > 0)
+                    {
+                        if (dss1.Tables[0].Rows[0]["Province"].ToString() == "Inner" || dss1.Tables[0].Rows[0]["Province"].ToString() == "")
+                        {
+                            rbdpurchasetype.SelectedValue = "1";
+                        }
+                        else
+                        {
+                            rbdpurchasetype.SelectedValue = "2";
+                        }
+                    }
+                    else
+                    {
+                        rbdpurchasetype.SelectedValue = "1";
+                    }
+                    int supplier = 0;
+                    supplier = Convert.ToInt32(ddlsuplier.SelectedValue);
+
+                   
+
+
+                    DataSet dsCategory = kbs.GetSupplierIngredient(Convert.ToInt32(supplier), "1");
+                    string itemname = "IngredientName";
+                    if (dsCategory.Tables[0].Rows.Count > 0)
+                    {
+                        drpmingredents.DataSource = dsCategory.Tables[0];
+                        drpmingredents.DataTextField = itemname;
+                        drpmingredents.DataValueField = "IngridID";
+                        drpmingredents.DataBind();
+                        drpmingredents.Items.Insert(0, "Select IngredientName");
+                    }
+
+                    DataSet dunits = kbs.UNITS();
+                    if (dunits.Tables[0].Rows.Count > 0)
+                    {
+                        ddlmunits.DataSource = dunits.Tables[0];
+                        ddlmunits.DataTextField = "UOM";
+                        ddlmunits.DataValueField = "UOMID";
+                        ddlmunits.DataBind();
+                    }
+
+                    DataSet dprimary = kbs.PrimaryUNITS();
+                    if (dprimary.Tables[0].Rows.Count > 0)
+                    {
+                        ddlmprimaryunits.DataSource = dprimary.Tables[0];
+                        ddlmprimaryunits.DataTextField = "Primaryname";
+                        ddlmprimaryunits.DataValueField = "PrimaryUOMID";
+                        ddlmprimaryunits.DataBind();
+                        ddlmprimaryunits.Items.Insert(0, "Select PrimaryUom");
+                    }
+
+
+
+
                     ddlpaymode.SelectedValue = dagent.Tables[0].Rows[0]["Paymode"].ToString();
 
                     if (dagent.Tables[0].Rows[0]["Paymode"].ToString() == "4" || dagent.Tables[0].Rows[0]["Paymode"].ToString() == "11" || dagent.Tables[0].Rows[0]["Paymode"].ToString() == "15" || dagent.Tables[0].Rows[0]["Paymode"].ToString() == "19")

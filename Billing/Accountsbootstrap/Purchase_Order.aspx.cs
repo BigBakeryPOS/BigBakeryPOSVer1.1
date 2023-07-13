@@ -17,6 +17,8 @@ namespace Billing.Accountsbootstrap
         BSClass kbs = new BSClass();
         string Rate = "";
         string porights = "";
+        string Biller = "";
+        string Billerid = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             scode = Request.Cookies["userInfo"]["BranchCode"].ToString();
@@ -25,6 +27,13 @@ namespace Billing.Accountsbootstrap
             sTableName = Request.Cookies["userInfo"]["BranchCode"].ToString();
             Rate = Request.Cookies["userInfo"]["Rate"].ToString();
             porights = Request.Cookies["userinfo"]["poorderrights"].ToString();
+
+            Biller = Request.Cookies["userInfo"]["Biller"].ToString();
+            Billerid = Request.Cookies["userInfo"]["Empid"].ToString();
+
+
+            lblbillername.Text = Biller;
+            lblbillerid.Text = Billerid;
 
             if (!Page.IsPostBack)
             {
@@ -858,7 +867,7 @@ namespace Billing.Accountsbootstrap
 
                     DateTime Date = DateTime.ParseExact(txtsdate1.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-                    int insertPurchase = kbs.insertPurchaseOrder(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), txtdcno.Text, Date, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), Province,drpsubcompany.SelectedValue, POStatus);
+                    int insertPurchase = kbs.insertPurchaseOrder(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), txtdcno.Text, Date, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), Province,drpsubcompany.SelectedValue, POStatus, lblbillername.Text,lblbillerid.Text);
 
 
 
@@ -1716,6 +1725,7 @@ namespace Billing.Accountsbootstrap
             GridViewRow row = (GridViewRow)ddl.NamingContainer;
 
             DropDownList ddlDef = (DropDownList)row.FindControl("ddlDef");
+            DropDownList ddlmprimaryunits = (DropDownList)row.FindControl("ddlprimaryunits");
 
             DataSet dss = kbs.getingreUnits(ddlDef.SelectedValue, "0", "2");
             if (dss.Tables[0].Rows.Count > 0)
@@ -1728,6 +1738,28 @@ namespace Billing.Accountsbootstrap
 
                 TextBox txtQty = (TextBox)row.FindControl("txtQty");
                 txtQty.Focus();
+
+                DataSet dprimary = kbs.PrimaryUNITS_ingridentcheck(ddlDef.SelectedValue);
+                if (dprimary.Tables[0].Rows.Count > 0)
+                {
+                    ddlmprimaryunits.DataSource = dprimary.Tables[0];
+                    ddlmprimaryunits.DataTextField = "Primaryname";
+                    ddlmprimaryunits.DataValueField = "PrimaryUOMID";
+                    ddlmprimaryunits.DataBind();
+                    ddlmprimaryunits.Items.Insert(0, "Select PrimaryUom");
+                }
+                else
+                {
+                    DataSet dprimaryy = kbs.PrimaryUNITS();
+                    if (dprimaryy.Tables[0].Rows.Count > 0)
+                    {
+                        ddlmprimaryunits.DataSource = dprimaryy.Tables[0];
+                        ddlmprimaryunits.DataTextField = "Primaryname";
+                        ddlmprimaryunits.DataValueField = "PrimaryUOMID";
+                        ddlmprimaryunits.DataBind();
+                        ddlmprimaryunits.Items.Insert(0, "Select PrimaryUom");
+                    }
+                }
             }
         }
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewButton.aspx.cs" EnableEventValidation="true"
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewButton.aspx.cs" EnableEventValidation="false"
     Inherits="Billing.Accountsbootstrap.NewButton" %>
 
 <%@ Register TagPrefix="usc" TagName="Header" Src="~/HeaderMaster/Header.ascx" %>
@@ -39,6 +39,34 @@
 
 
     </script>
+
+    <script>
+        function klose() {
+            var sub = document.getElementById("popup");
+
+            sub.style.display = 'none';
+
+        }
+    </script>
+
+<%--   <script type="text/javascript">
+       window.onload = function () {
+           // Get the textbox element using its ID
+           var textbox = document.getElementById("txtmanualqty");
+
+           // Attach the keyup event handler
+           textbox.addEventListener("keyup", function () {
+               // Get the dropdown element using its ID
+               var dropdown = document.getElementById("drpitemsearch");
+
+               // Focus on the dropdown
+               dropdown.focus();
+
+               // Select the contents of the dropdown
+               dropdown.select();
+           });
+       };
+   </script>--%>
 
 
 
@@ -124,7 +152,7 @@
                                                             <asp:DropDownList ID="drpitemsearch1" Visible="false" runat="server" OnSelectedIndexChanged="item_click" AutoPostBack="true" CssClass="chzn-select" Width="368px">
                                                             </asp:DropDownList>
 
-                                                            <asp:DropDownList ID="drpitemsearch" Width="385px" runat="server" OnSelectedIndexChanged="item_click" AutoPostBack="true" >
+                                                            <asp:DropDownList ID="drpitemsearch" Width="385px" runat="server" OnSelectedIndexChanged="item_click" AutoPostBack="true">
                                                             </asp:DropDownList>
                                                             <asp:TextBox ID="txtbrcode" runat="server" CssClass="form-control" Width="368px"
                                                                 placeholder="For Weight Machine Barcode Scan" OnTextChanged="barchnaged_text"
@@ -175,6 +203,51 @@
                                             <table style="margin-top: 10px;">
                                                 <tr>
                                                     <td align="left" valign="top" style="width: 15%">
+                                                        <asp:GridView ID="gridviewsub1" runat="server" Width="100%" ShowHeader="false" GridLines="None"
+                                                            BorderColor="White" AutoGenerateColumns="false">
+                                                            <Columns>
+                                                                <asp:TemplateField>
+                                                                    <ItemTemplate>
+                                                                        <asp:Button ID="Button2" Font-Bold="true" runat="server"
+                                                                            Text='<%#Eval("Definition")%>' CommandArgument='<%#Eval("subcategoryid") %>'
+                                                                            CssClass="btn btn-link btn-main-cat" OnClick="subButton1_Click" />
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                            </Columns>
+                                                        </asp:GridView>
+                                                    </td>
+                                                    <td valign="top" style="width: 15%">
+                                                        <asp:GridView ID="gridviewsub2" runat="server" Width="100%" ShowHeader="false" GridLines="None"
+                                                            BorderColor="White" AutoGenerateColumns="false">
+                                                            <Columns>
+                                                                <asp:TemplateField>
+                                                                    <ItemTemplate>
+                                                                        <asp:Button ID="Button2" runat="server" CssClass="btn btn-link btn-main-cat" Font-Bold="true"
+                                                                            Text='<%#Eval("Definition")%>' CommandArgument='<%#Eval("subcategoryid")%>' OnClick="subButton1_Click" />
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                            </Columns>
+                                                        </asp:GridView>
+                                                    </td>
+                                                    <td valign="top" style="width: 15%">
+                                                        <asp:GridView ID="gridviewsub3" GridLines="None"
+                                                            runat="server" Width="100%" ShowHeader="false" BorderColor="White" AutoGenerateColumns="false">
+                                                            <Columns>
+                                                                <asp:TemplateField ItemStyle-Wrap="true">
+                                                                    <ItemTemplate>
+                                                                        <asp:Button ID="Button2" runat="server" CssClass="btn btn-link btn-main-cat" Font-Bold="true"
+                                                                            Text='<%#Eval("Definition")%>' CommandArgument='<%#Eval("subcategoryid") %>' OnClick="subButton1_Click" />
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                            </Columns>
+                                                        </asp:GridView>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <hr />
+                                            <table style="margin-top: 10px;">
+                                                <tr>
+                                                    <td align="left" valign="top" style="width: 15%">
                                                         <asp:GridView ID="GridView2" runat="server" Width="100%" ShowHeader="false" GridLines="None"
                                                             BorderColor="White" AutoGenerateColumns="false"
                                                             OnRowDataBound="GridView2_RowDataBound">
@@ -182,7 +255,7 @@
                                                                 <asp:TemplateField>
                                                                     <ItemTemplate>
                                                                         <asp:Button ID="Button2" Font-Bold="true" runat="server"
-                                                                            Text='<%#Eval("Definition")%>' CommandArgument='<%#Eval("CategoryUserID") +","+ Eval("cattype")%>'
+                                                                            Text='<%#Eval("Definition")%>' CommandArgument='<%#Eval("CategoryUserID") +","+ Eval("cattype")+","+ Eval("maintainstock")%>'
                                                                             CssClass="btn btn-link btn-bill-item"
                                                                             OnClick="Button2_Click" />
                                                                     </ItemTemplate>
@@ -198,7 +271,7 @@
                                                                 <asp:TemplateField>
                                                                     <ItemTemplate>
                                                                         <asp:Button ID="Button2" runat="server" CssClass="btn btn-link btn-bill-item" Font-Bold="true"
-                                                                            Text='<%#Eval("Definition")%>' CommandArgument='<%#Eval("CategoryUserID")+","+ Eval("cattype")%>'
+                                                                            Text='<%#Eval("Definition")%>' CommandArgument='<%#Eval("CategoryUserID")+","+ Eval("cattype")+","+ Eval("maintainstock")%>'
                                                                             OnClick="Button2_Click" />
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
@@ -212,7 +285,7 @@
                                                                 <asp:TemplateField ItemStyle-Wrap="true">
                                                                     <ItemTemplate>
                                                                         <asp:Button ID="Button2" runat="server" CssClass="btn btn-link btn-bill-item" Font-Bold="true"
-                                                                            Text='<%#Eval("Definition")%>' CommandArgument='<%#Eval("CategoryUserID") +","+ Eval("cattype")%>'
+                                                                            Text='<%#Eval("Definition")%>' CommandArgument='<%#Eval("CategoryUserID") +","+ Eval("cattype")+","+ Eval("maintainstock")%>'
                                                                             OnClick="Button2_Click" />
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
@@ -223,7 +296,19 @@
                                             </table>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
+                                    <%--<script type="text/javascript" >
+                                        alert("HI");
+                                        // Register startup script to focus the DropDownList after a text change event
+                                        function focusDropDownList() {
+                                            var dropdown = document.getElementById("<%= drpitemsearch.ClientID %>");
+                                            dropdown.focus();
+                                        }
 
+                                        var prm = Sys.WebForms.PageRequestManager.getInstance();
+                                        prm.add_endRequest(function () {
+                                            focusDropDownList();
+                                        });
+                                    </script>--%>
                                 </div>
 
 
@@ -385,15 +470,21 @@
                                                     HeaderStyle-BackColor="#d8d8d8" HeaderStyle-ForeColor="Black" OnRowCommand="gvlist_RowCommand" BorderWidth="0"
                                                     OnRowDataBound="gvlist_RowDataBound">
                                                     <Columns>
-                                                        <asp:TemplateField HeaderText="Cat.Type" ItemStyle-Width="10">
+                                                        <asp:TemplateField HeaderText="Cat.Type" Visible="false" ItemStyle-Width="10">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblcattype" runat="server" Text='<%#Eval("cattype") %>' Visible="true"></asp:Label>
+                                                                <asp:Label ID="lblmaintainstock" runat="server" Text='<%#Eval("maintainstock") %>' Visible="true"></asp:Label>
+                                                                <asp:Label ID="lbladdon" runat="server" Text='<%#Eval("addon") %>' Visible="true"></asp:Label>
+                                                                <asp:Label ID="lblcookinginstruction" runat="server" Text='<%#Eval("cookinginstruction") %>' Visible="true"></asp:Label>
+                                                                <asp:Label ID="lblkotreq" runat="server" Text='<%#Eval("kotreq") %>' Visible="true"></asp:Label>
+
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="S.No" ItemStyle-Width="10">
                                                             <ItemTemplate>
                                                                 <%--<asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />--%>
                                                                 <asp:Label ID="lblRowNumber" Text='<%#Convert.ToInt32(Eval("Sno")) %>' runat="server" />
+                                                                <asp:Label ID="lblrowid" Visible="false" Text='<%#Convert.ToInt32(Eval("Rowid")) %>' runat="server" />
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField Visible="false" ItemStyle-CssClass="hidden" ItemStyle-Font-Size="Smaller">
@@ -417,6 +508,12 @@
                                                             <ItemTemplate>
                                                                 <asp:TextBox ID="Definition" runat="server" Width="100%" Text='<%#Eval("Definition") %>'
                                                                     Enabled="false"></asp:TextBox>
+                                                                <asp:TextBox ID="txtcookingnotes" placeholder="Add Cooking Instruction" OnTextChanged="getcookingnotes" AutoPostBack="true" runat="server" Width="100%" Text='<%#Eval("cookingnotes") %>'
+                                                                    Enabled="true" TextMode="MultiLine"></asp:TextBox>
+                                                                <asp:Label ID="lblcooknotes" runat="server" Text='<%#Eval("cookingnotes") %>' Visible="false"></asp:Label>
+                                                                <asp:ImageButton ID="imginstruction" runat="server" Visible="false" ToolTip="Instruction" CommandName="addinstruction"
+                                                                    CommandArgument='<%# ((GridViewRow) Container).RowIndex %>' Height="25px" Width="25px"
+                                                                    ImageUrl="~/images/instruction.png" />
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Stock" ItemStyle-Font-Size="Smaller">
@@ -428,6 +525,7 @@
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblitemdiscount" runat="server" Text='<%#Eval("Disamt") %>' Style="display: none">0</asp:Label>
                                                                 <asp:Label ID="txttax" Visible="false" runat="server" Text='<%#Eval("TAX") %>'></asp:Label>
+                                                                <asp:Label ID="lblcess" runat="server" Text='<%#Eval("cess") %>' Visible="true"></asp:Label>
                                                                 <asp:TextBox ID="txtQty" AutoPostBack="true" Width="100%" Enabled="true" OnTextChanged="txtqty_chnaged"
                                                                     Text='<%#Eval("Qty") %>' runat="server"></asp:TextBox>
                                                                 <asp:TextBox ID="txtshwqty" Visible="false" Width="100%" Enabled="false" Text='<%#Eval("ShwQty") %>'
@@ -441,6 +539,13 @@
                                                                 <asp:Label ID="lblmrp" runat="server" Text='<%#Eval("mrp") %>' Visible="true"></asp:Label>
                                                                 <asp:TextBox ID="Rate" Width="100%" Text='<%#Eval("Rate") %>' Visible="false" Enabled="false"
                                                                     runat="server"></asp:TextBox>
+                                                                
+                                                                <asp:TextBox ID="txtaddonRate" Width="100%" Text='<%#Eval("addonRate") %>' Visible="false" Enabled="false"
+                                                                    runat="server"></asp:TextBox>
+                                                                <asp:TextBox ID="txtaddonitemtotRate" Width="100%" Text='<%#Eval("addonitemtotRate") %>' Visible="false" Enabled="false"
+                                                                    runat="server"></asp:TextBox>
+
+                                                                
                                                                 <asp:TextBox ID="txtrate" Visible="false" Width="100%" Text='<%#Eval("OriRate") %>'
                                                                     Enabled="false" runat="server"></asp:TextBox>
                                                             </ItemTemplate>
@@ -451,6 +556,16 @@
                                                                     Style="text-align: right; font-weight: bold;" runat="server" Enabled="false"></asp:TextBox>
                                                                 <asp:TextBox ID="mrpamount" Width="100%" Text='<%#Eval("mrpAmount") %>' Style="text-align: right; font-weight: bold;"
                                                                     runat="server" Enabled="false"></asp:TextBox>
+
+                                                                <asp:TextBox ID="txtaddontotAmount" Width="100%" Text='<%#Eval("addontotAmount") %>' Visible="false"
+                                                                    Style="text-align: right; font-weight: bold;" runat="server" Enabled="false"></asp:TextBox>
+
+                                                                <asp:TextBox ID="txtaddonitemtotAmount" Width="100%" Text='<%#Eval("addonitemtotAmount") %>' Visible="false"
+                                                                    Style="text-align: right; font-weight: bold;" runat="server" Enabled="false"></asp:TextBox>
+
+
+                                                                <asp:TextBox ID="txtaddonamount" Width="100%" Text='<%#Eval("addonAmount") %>' Visible="false"
+                                                                    Style="text-align: right; font-weight: bold;" runat="server" Enabled="false"></asp:TextBox>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField>
@@ -467,6 +582,20 @@
                                                                     ImageUrl="~/images/cancel-circle.png" />
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
+                                                        <asp:TemplateField>
+                                                            <ItemTemplate>
+                                                                <asp:ImageButton ID="imgaddon" runat="server" ToolTip="Cancel Item" CommandName="Addon"
+                                                                    CommandArgument='<%#Eval("RowId") +","+ Eval("Definition") %>' Height="25px" Width="25px"
+                                                                    ImageUrl="~/images/addon.png" />
+                                                                <%--<asp:LinkButton ID="btnView" runat="server" CommandArgument='<%#Eval("RowId") %>'
+                                                                    CommandName="Addon">
+                                                                    <asp:Image ID="imgaddon" runat="server" Height="25px" Width="25px" ImageUrl="~/images/addon.png" />
+                                                                </asp:LinkButton>--%>
+                                                                <%-- <asp:ImageButton ID="imgaddon" runat="server" ToolTip="Addon Item" CommandName="Addon"
+                                                                    CommandArgument='<%# ((GridViewRow) Container).RowIndex %>' Height="25px" Width="25px"
+                                                                    ImageUrl="~/images/addon.png" />--%>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
                                                     </Columns>
                                                 </asp:GridView>
                                                 <asp:GridView ID="gvlst" runat="server" AutoGenerateColumns="false" Visible="true"
@@ -480,6 +609,53 @@
                                                                 <asp:Label ID="lbbQty" runat="server" Text='<%#Eval("Sqty","{0:n}") %>' Visible="true"></asp:Label>
                                                                 <asp:Label ID="lblaqty" runat="server" Text='<%#Eval("AQty","{0:n}") %>' Visible="true"></asp:Label>
                                                                 <%--<asp:Label ID="lblcombocount" runat="server" Text='<%#Eval("combocount","{0:n}") %>' Visible="true"></asp:Label>--%>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                                <asp:GridView ID="gridaddon" runat="server" AutoGenerateColumns="false" Visible="false"
+                                                    Width="100%" GridLines="Both" HeaderStyle-BackColor="Black">
+                                                    <Columns>
+                                                        <asp:TemplateField HeaderText="" ItemStyle-Width="10">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblrowid" runat="server" Text='<%#Eval("Rowid") %>' Visible="true"></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Item Name" ItemStyle-Width="10">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lbladdonCategoryID" runat="server" Text='<%#Eval("CategoryID") %>' Visible="true"></asp:Label>
+                                                                <asp:Label ID="lbladdonCategoryUserID" runat="server" Text='<%#Eval("CategoryUserID") %>'
+                                                                    Visible="true"></asp:Label>
+                                                                <asp:TextBox ID="lbladdonDefinition" runat="server" Width="100%" Text='<%#Eval("Definition") %>'
+                                                                    Enabled="false"></asp:TextBox>
+                                                                <asp:Label ID="lbladdontax" runat="server" Text='<%#Eval("Tax") %>' Visible="true"></asp:Label>
+                                                                <asp:Label ID="lbladdoncattype" runat="server" Text='<%#Eval("Cattype") %>' Visible="true"></asp:Label>
+                                                                <asp:Label ID="lbladdonmaintainstock" runat="server" Text='<%#Eval("maintainstock") %>' Visible="true"></asp:Label>
+                                                                <asp:Label ID="lbladdonaddon" runat="server" Text='<%#Eval("addon") %>' Visible="true"></asp:Label>
+                                                                <asp:Label ID="lbladdoncookinginstruction" runat="server" Text='<%#Eval("cookinginstruction") %>' Visible="true"></asp:Label>
+                                                                <asp:Label ID="lbladdonkotreq" runat="server" Text='<%#Eval("kotreq") %>' Visible="true"></asp:Label>
+
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="MRP" ItemStyle-Width="10">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lbladdonmrp" runat="server" Text='<%#Eval("mrp") %>' Visible="true"></asp:Label>
+                                                                <asp:TextBox ID="lbladdonRate" Width="100%" Text='<%#Eval("Rate") %>' Visible="true" Enabled="false"
+                                                                    runat="server"></asp:TextBox>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Qty" ItemStyle-Width="10%" ItemStyle-Font-Size="Smaller">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox ID="txtaddonQty" AutoPostBack="true" Width="100%" Enabled="true" OnTextChanged="txtqty_chnaged"
+                                                                    Text='<%#Eval("Qty") %>' runat="server"></asp:TextBox>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderStyle-Width="15%" HeaderText="Amount" ItemStyle-Font-Size="Smaller">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox ID="Amount" Width="100%" Text='<%#Eval("Amount") %>' Visible="true"
+                                                                    Style="text-align: right; font-weight: bold;" runat="server" Enabled="false"></asp:TextBox>
+                                                                <asp:TextBox ID="mrpamount" Width="100%" Text='<%#Eval("TotalAmount") %>' Style="text-align: right; font-weight: bold;"
+                                                                    runat="server" Enabled="false"></asp:TextBox>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                     </Columns>
@@ -533,7 +709,7 @@
                                                 Text="Cancel" OnClick="btnCancel_Click" />
 
                                             <asp:Button ID="Button5" runat="server" CssClass="btn btn-warning btn-sm"
-                                                Visible="true" Text="Hold Bill" OnClick="btnhold_check" />
+                                                Visible="false" Text="Hold Bill" OnClick="btnhold_check" />
 
                                             <asp:Button ID="Button4" runat="server" CssClass="btn pos-btn1 btn-sm" Text="Smry.Bills" Visible="false"
                                                 PostBackUrl="~/Accountsbootstrap/Home_Page.aspx" />
@@ -581,7 +757,11 @@
                                             </td>
                                         </tr>
                                         <tr id="tr18" runat="server">
-                                            <td width="50px"></td>
+                                            <td width="50px">
+                                                <label id="Label1" runat="server">
+                                                    CESS:</label>
+                                                <asp:Label ID="lblcess" runat="server" Width="50px">0</asp:Label>
+                                            </td>
                                             <td width="50px"></td>
                                             <td width="50px"></td>
                                             <td width="30px"></td>
@@ -1314,7 +1494,7 @@
                         <script type="text/javascript" src="ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
                         <script type="text/javascript" src="../css/select2.js"></script>
                         <link href="../css/select2.css" rel="stylesheet" />
-                        
+
                         <script type="text/javascript">
                             $(document).ready(function () { $("#drpitemsearch").select2(); });
                         </script>
@@ -1341,7 +1521,6 @@
                         <script src="Scripts/chosen.jquery.js" type="text/javascript"></script>--%>
                         <%--<script type="text/javascript">                   
                             $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>--%>
-
                     </ContentTemplate>
                 </asp:UpdatePanel>
                 <asp:UpdateProgress ID="prgLoadingStatus" runat="server" DynamicLayout="true">
@@ -1385,7 +1564,120 @@
                 </div>
             </div>
         </asp:Panel>
-        <link href="../css/billingstyle.css" rel="stylesheet" />
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <div title="What's Your Name" id="popup" class="messagepop">
+                    <asp:LinkButton Text="" ID="lnkFake" runat="server"></asp:LinkButton>
+                    <ajaxToolkit:ModalPopupExtender ID="mpe" runat="server" PopupControlID="pnlPopup"
+                        TargetControlID="lnkFake" CancelControlID="btnClose" BackgroundCssClass="modalBackground">
+                    </ajaxToolkit:ModalPopupExtender>
+                    <asp:Panel Width="30%" class="popupConfirmation" ID="pnlPopup" Style="display: none; background: #fffbd6"
+                        runat="server">
+                        <div class="popup_Container">
+                            <div class="popup_Titlebar" id="PopupHeader1">
+
+
+                                <div class="TitlebarRight" onclick="$get('ButtonDeleteCancel').click();">
+                                </div>
+                            </div>
+                            <div runat="server" visible="true" align="center" style="color: Red" class="popup_Body">
+                                <div id="noneed" runat="server" visible="false">
+                                    <b>Cooking Instruction : For
+                                    <asp:Label ID="lblcookingitem" runat="server"></asp:Label>
+                                        <asp:TextBox ID="txtcookinginstruction" runat="server" placeholder="Enter Cooking Notes "></asp:TextBox>
+                                    </b>
+                                    <p>
+                                        Are you sure want to Save this Cooking instruction?
+                                    </p>
+                                </div>
+
+                                <asp:Button ID="btnyes" OnClick="CancelYes_click" runat="server" Text="Yes" CssClass="button" />
+                                <asp:Button ID="btnClose" runat="server" Text="No" CssClass="button" />
+                            </div>
+
+                        </div>
+                    </asp:Panel>
+                </div>
+                <asp:Button ID="btnShowPopup" runat="server" Style="display: none" />
+                <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="btnShowPopup" PopupControlID="Panel1"
+                    CancelControlID="btnCancell" BackgroundCssClass="modalBackground">
+                </ajaxToolkit:ModalPopupExtender>
+                <asp:Panel ID="Panel1" runat="server" BackColor="White" Height="269px" Width="400px" Style="display: none">
+                    <div align="center" style="color: Red" class="TitlebarLeft">
+                        Cooking Notes !!!
+                                    <asp:Label ID="lbldisplayitemname" runat="server" Font-Bold="true"></asp:Label>
+                        <asp:GridView ID="gridtempaddon" runat="server" CssClass="table table-condensed table-hover table-pos-bill" AutoGenerateColumns="false" Width="100%"
+                            HeaderStyle-BackColor="#d8d8d8" HeaderStyle-ForeColor="Black" GridLines="Both">
+                            <Columns>
+                                <%--  <asp:TemplateField HeaderText="" ItemStyle-Width="10">
+                                            <ItemTemplate>
+                                                <asp:CheckBox ID="chkitemid" runat="server" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>--%>
+                                <asp:TemplateField HeaderText="Item Name" ItemStyle-Width="10">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblrowid" runat="server" Text='<%#Eval("RowID") %>' Visible="true"></asp:Label>
+                                        <asp:Label ID="lbladdonCategoryID" runat="server" Text='<%#Eval("CategoryID") %>' Visible="true"></asp:Label>
+                                        <asp:Label ID="lbladdonCategoryUserID" runat="server" Text='<%#Eval("CategoryUserID") %>'
+                                            Visible="true"></asp:Label>
+                                        <asp:TextBox ID="lbladdonDefinition" runat="server" Width="100%" Text='<%#Eval("Definition") %>'
+                                            Enabled="false"></asp:TextBox>
+
+                                        <asp:Label ID="lbladdontax" runat="server" Text='<%#Eval("Tax") %>' Visible="true"></asp:Label>
+                                        <asp:Label ID="lbladdoncattype" runat="server" Text='<%#Eval("Cattype") %>' Visible="true"></asp:Label>
+                                        <asp:Label ID="lbladdonmaintainstock" runat="server" Text='<%#Eval("maintainstock") %>' Visible="true"></asp:Label>
+                                        <asp:Label ID="lbladdonaddon" runat="server" Text='<%#Eval("addon") %>' Visible="true"></asp:Label>
+                                        <asp:Label ID="lbladdoncookinginstruction" runat="server" Text='<%#Eval("cookinginstruction") %>' Visible="true"></asp:Label>
+                                        <asp:Label ID="lbladdonkotreq" runat="server" Text='<%#Eval("kotreq") %>' Visible="true"></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="MRP" ItemStyle-Width="10">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lbladdonmrp" runat="server" Text='<%#Eval("mrp") %>' Visible="true"></asp:Label>
+                                        <asp:TextBox ID="lbladdonRate" Width="100%" Text='<%#Eval("Rate") %>' Visible="false" Enabled="false"
+                                            runat="server"></asp:TextBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Qty" ItemStyle-Width="20%" ItemStyle-Font-Size="Smaller">
+                                    <ItemTemplate>
+                                        <%--<asp:TextBox ID="txtaddonQty" AutoPostBack="true" Width="100%" Enabled="true" OnTextChanged="txttempqty_chnaged"
+                                                    runat="server"></asp:TextBox>--%>
+                                        <asp:DropDownList ID="drpaddonqty" runat="server" CssClass="form-control" OnSelectedIndexChanged="drpempqty_chnaged" AutoPostBack="true">
+                                            <asp:ListItem Text="0" Value="0"></asp:ListItem>
+                                            <asp:ListItem Text="1" Value="1"></asp:ListItem>
+                                            <asp:ListItem Text="2" Value="2"></asp:ListItem>
+                                            <asp:ListItem Text="3" Value="3"></asp:ListItem>
+                                            <asp:ListItem Text="4" Value="4"></asp:ListItem>
+                                            <asp:ListItem Text="5" Value="5"></asp:ListItem>
+                                            <asp:ListItem Text="6" Value="6"></asp:ListItem>
+                                            <asp:ListItem Text="7" Value="7"></asp:ListItem>
+                                            <asp:ListItem Text="8" Value="8"></asp:ListItem>
+                                            <asp:ListItem Text="9" Value="9"></asp:ListItem>
+                                            <asp:ListItem Text="10" Value="10"></asp:ListItem>
+                                        </asp:DropDownList>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderStyle-Width="15%" HeaderText="Amount" ItemStyle-Font-Size="Smaller">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="Amount" Width="100%" Visible="false"
+                                            Style="text-align: right; font-weight: bold;" runat="server" Enabled="false"></asp:TextBox>
+                                        <asp:TextBox ID="mrpamount" Width="100%" Style="text-align: right; font-weight: bold;"
+                                            runat="server" Enabled="false"></asp:TextBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+
+                    <asp:Button ID="btnUpdate" CommandName="Update" runat="server" Text="Update" OnClick="CancelYes_click" />
+                    <asp:Button ID="btnCancell" runat="server" Text="Cancel" OnClick="CancelNo_click" />
+                </asp:Panel>
+
+
+
+                <link href="../css/billingstyle.css" rel="stylesheet" />
+            </ContentTemplate>
+        </asp:UpdatePanel>
 
     </form>
 </body>

@@ -84,6 +84,18 @@ namespace Billing.Accountsbootstrap
 
                 }
 
+                DataSet dprimaryunits = kbs.GridPrimaryUNITS();
+                if (dprimaryunits.Tables[0].Rows.Count > 0)
+                {
+                    chkprimaryuom.DataSource = dprimaryunits.Tables[0];
+                    chkprimaryuom.DataTextField = "PrimaryName";
+                    chkprimaryuom.DataValueField = "PrimaryUomid";
+                    chkprimaryuom.DataBind();
+
+                }
+
+                
+
 
                 DataSet dIngCat = kbs.getIngCat();
                 if (dIngCat.Tables[0].Rows.Count > 0)
@@ -121,6 +133,27 @@ namespace Billing.Accountsbootstrap
                             chkallow.Checked = false;
                         }
 
+                        DataSet ds5 = kbs.gettransingrident(idEdit);
+                        if (ds5.Tables[0].Rows.Count > 0)
+                        {
+                            #region
+
+                            if (ds5.Tables[0].Rows.Count > 0)
+                            {
+                                for (int i = 0; i < chkprimaryuom.Items.Count; i++)
+                                {
+                                    for (int j = 0; j < ds5.Tables[0].Rows.Count; j++)
+                                    {
+                                        if (chkprimaryuom.Items[i].Value == ds5.Tables[0].Rows[j]["Primaryuomid"].ToString())
+                                        {
+                                            chkprimaryuom.Items[i].Selected = true;
+                                        }
+                                    }
+                                }
+                            }
+                            #endregion
+                        }
+
                         btnSubmit.Text = "Update";
                         btnSubmit.Visible = true;
                     }
@@ -138,7 +171,17 @@ namespace Billing.Accountsbootstrap
         {
             string isallow = "";
 
-            if (txtingre.Text.Trim() == "" || txtingre.Text.Trim() == "0")
+            if (chkprimaryuom.SelectedIndex >= 0)
+            {
+
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Please Select Atleast One Primary Uom.Thank You!!!');", true);
+                return;
+            }
+
+                if (txtingre.Text.Trim() == "" || txtingre.Text.Trim() == "0")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Enter Ingredient');", true);
             }
@@ -176,6 +219,20 @@ namespace Billing.Accountsbootstrap
                     else
                     {
                         int insert = kbs.insert_ingredients(txtingre.Text, Convert.ToInt32(lblUserID.Text), ddlunits.SelectedValue, txtQuantity.Text, Convert.ToInt32(ddlIngreCategory.SelectedValue), txtingreCode.Text, isallow, Convert.ToInt32(ddltax.SelectedValue), Convert.ToDouble(ddltax.SelectedItem.Text),txthsncode.Text);
+
+
+                        foreach (ListItem listItem in chkprimaryuom.Items)
+                        {
+                            //if (listItem.Text != "All")
+                            {
+                                if (listItem.Selected)
+                                {
+                                    // insert into transtable
+                                    int transinsert = kbs.insertTRans_ingredients(listItem.Value);
+                                }
+                            }
+                        }
+
                         Response.Redirect("../Accountsbootstrap/Ingridients.aspx");
                     }
 
@@ -184,7 +241,24 @@ namespace Billing.Accountsbootstrap
                 else
                 {
 
+                    
+
                     int insert = kbs.insert_ingredients(txtingre.Text, Convert.ToInt32(lblUserID.Text), ddlunits.SelectedValue, txtQuantity.Text, Convert.ToInt32(ddlIngreCategory.SelectedValue), txtingreCode.Text, isallow, Convert.ToInt32(ddltax.SelectedValue), Convert.ToDouble(ddltax.SelectedItem.Text), txthsncode.Text);
+
+                    foreach (ListItem listItem in chkprimaryuom.Items)
+                    {
+                        //if (listItem.Text != "All")
+                        {
+                            if (listItem.Selected)
+                            {
+                                // insert into transtable
+                                int transinsert = kbs.insertTRans_ingredients(listItem.Value);
+                            }
+                        }
+                    }
+
+
+
                     Response.Redirect("../Accountsbootstrap/Ingridients.aspx");
                 }
                 #endregion
@@ -206,7 +280,22 @@ namespace Billing.Accountsbootstrap
                     }
                     else
                     {
+                        // delete trans ingridents
+                        int idelete = kbs.deletetransIntegr(idEdit);
+
                         int update = kbs.update_ingredients(txtingre.Text, Convert.ToInt32(idEdit), ddlunits.SelectedValue, txtQuantity.Text, Convert.ToInt32(ddlIngreCategory.SelectedValue), txtingreCode.Text, isallow, Convert.ToInt32(ddltax.SelectedValue), Convert.ToDouble(ddltax.SelectedItem.Text), txthsncode.Text);
+                        foreach (ListItem listItem in chkprimaryuom.Items)
+                        {
+                            //if (listItem.Text != "All")
+                            {
+                                if (listItem.Selected)
+                                {
+                                    // insert into transtable
+                                    int transinsert = kbs.UpdateTRans_ingredients(listItem.Value, idEdit);
+                                }
+                            }
+                        }
+
                         Response.Redirect("../Accountsbootstrap/Ingridients.aspx");
                     }
 
@@ -216,6 +305,17 @@ namespace Billing.Accountsbootstrap
                 {
 
                     int insert = kbs.insert_ingredients(txtingre.Text, Convert.ToInt32(lblUserID.Text), ddlunits.SelectedValue, txtQuantity.Text, Convert.ToInt32(ddlIngreCategory.SelectedValue), txtingreCode.Text, isallow, Convert.ToInt32(ddltax.SelectedValue), Convert.ToDouble(ddltax.SelectedItem.Text), txthsncode.Text);
+                    foreach (ListItem listItem in chkprimaryuom.Items)
+                    {
+                        //if (listItem.Text != "All")
+                        {
+                            if (listItem.Selected)
+                            {
+                                // insert into transtable
+                                int transinsert = kbs.insertTRans_ingredients(listItem.Value);
+                            }
+                        }
+                    }
                     Response.Redirect("Ingridients.aspx");
                 }
 

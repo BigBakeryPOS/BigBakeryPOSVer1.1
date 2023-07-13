@@ -99,7 +99,8 @@ namespace Billing.Accountsbootstrap
                         txtUserid.Text = ds1.Tables[0].Rows[0]["RoleID"].ToString();
                         drplogintype.Enabled = false;
                         drplogintype.SelectedValue = ds1.Tables[0].Rows[0]["LogintypeID"].ToString();
-
+                        txtemprole.Text = ds1.Tables[0].Rows[0]["emprolename"].ToString();
+                        txtemprole.Enabled = false;
                         #region Rights Set
 
                         int idd = Convert.ToInt32(txtUserid.Text);
@@ -1038,7 +1039,7 @@ namespace Billing.Accountsbootstrap
                     //}
                 }
                 #region                                   
-                int iStatus = objBs.insertRolewithaccess(drplogintype.SelectedValue, ds, Convert.ToInt32(empid));
+                int iStatus = objBs.insertRolewithaccess(drplogintype.SelectedValue, ds, Convert.ToInt32(empid),txtemprole.Text);
                 Response.Redirect("../Accountsbootstrap/UserRoleGrid.aspx");
                 #endregion
             }

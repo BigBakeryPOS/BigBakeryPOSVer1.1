@@ -16,6 +16,9 @@ namespace Billing.Accountsbootstrap
         string scode = "";
         BSClass kbs = new BSClass();
         string Rate = "";
+        string Biller = "";
+        string Billerid = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.Cookies["userInfo"]["BranchCode"] != null)
@@ -30,6 +33,13 @@ namespace Billing.Accountsbootstrap
             lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             sTableName = Request.Cookies["userInfo"]["BranchCode"].ToString();
             Rate = Request.Cookies["userInfo"]["Rate"].ToString();
+
+            Biller = Request.Cookies["userInfo"]["Biller"].ToString();
+            Billerid = Request.Cookies["userInfo"]["Empid"].ToString();
+
+
+            lblbillername.Text = Biller;
+            lblbillerid.Text = Billerid;
 
 
             if (!Page.IsPostBack)
@@ -130,6 +140,21 @@ namespace Billing.Accountsbootstrap
                         drpsubcompany.SelectedValue = dagent.Tables[0].Rows[0]["subcompanyid"].ToString();
                         ddlsuplier_OnSelectedIndexChanged(sender, e);
                         ddlpaymode.SelectedValue = dagent.Tables[0].Rows[0]["Paymode"].ToString();
+
+
+                        lblFile_Path.Text = dagent.Tables[0].Rows[0]["invupload1"].ToString();
+                        img_Photo.ImageUrl = dagent.Tables[0].Rows[0]["invupload1"].ToString();
+
+
+                        lblFile_Path2.Text = dagent.Tables[0].Rows[0]["invupload2"].ToString();
+                        img_Photo2.ImageUrl = dagent.Tables[0].Rows[0]["invupload2"].ToString();
+
+
+                        lblFile_Path3.Text = dagent.Tables[0].Rows[0]["invupload3"].ToString();
+                        img_Photo3.ImageUrl = dagent.Tables[0].Rows[0]["invupload3"].ToString();
+
+
+
 
                         if (dagent.Tables[0].Rows[0]["Paymode"].ToString() == "4" || dagent.Tables[0].Rows[0]["Paymode"].ToString() == "11" || dagent.Tables[0].Rows[0]["Paymode"].ToString() == "15" || dagent.Tables[0].Rows[0]["Paymode"].ToString() == "19")
                         {
@@ -405,6 +430,42 @@ namespace Billing.Accountsbootstrap
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "$(document).ready(function() { $('#drpmingredents').select2(); });", true);
         }
 
+        protected void btnUpload_Clickimg(object sender, EventArgs e)
+        {
+
+            if (fp_Upload.HasFile)
+            {
+                string fileName = System.IO.Path.GetFileName(fp_Upload.PostedFile.FileName);
+                fp_Upload.PostedFile.SaveAs(Server.MapPath("~/Files/") + fileName);
+                lblFile_Path.Text = "~/Files/" + fp_Upload.PostedFile.FileName;
+                img_Photo.ImageUrl = "~/Files/" + fp_Upload.PostedFile.FileName;
+            }
+        }
+
+        protected void btnUpload_Clickimg2(object sender, EventArgs e)
+        {
+
+            if (fp_Upload2.HasFile)
+            {
+                string fileName = System.IO.Path.GetFileName(fp_Upload2.PostedFile.FileName);
+                fp_Upload2.PostedFile.SaveAs(Server.MapPath("~/Files/") + fileName);
+                lblFile_Path2.Text = "~/Files/" + fp_Upload2.PostedFile.FileName;
+                img_Photo2.ImageUrl = "~/Files/" + fp_Upload2.PostedFile.FileName;
+            }
+        }
+
+
+        protected void btnUpload_Clickimg3(object sender, EventArgs e)
+        {
+
+            if (fp_Upload3.HasFile)
+            {
+                string fileName = System.IO.Path.GetFileName(fp_Upload3.PostedFile.FileName);
+                fp_Upload3.PostedFile.SaveAs(Server.MapPath("~/Files/") + fileName);
+                lblFile_Path3.Text = "~/Files/" + fp_Upload3.PostedFile.FileName;
+                img_Photo3.ImageUrl = "~/Files/" + fp_Upload3.PostedFile.FileName;
+            }
+        }
 
         protected void chk_chksupplier(object sender, EventArgs e)
         {
@@ -1665,7 +1726,7 @@ namespace Billing.Accountsbootstrap
                         GroupId = 2;
                     }
 
-                    int LedgerId = kbs.insertcontact(Convert.ToInt32(lblUserID.Text), txtsupplier.Text, txtmobileno.Text, "0", "", txtaddress.Text, txtcity.Text, "0", "test@gmail.com", Convert.ToInt32(6), GroupId, "0", txtgstno.Text, "0", "", "", 0, 0, 0, "Credit Note", "Inner","NA");
+                    int LedgerId = kbs.insertcontact(Convert.ToInt32(lblUserID.Text), txtsupplier.Text, txtmobileno.Text, "0", "", txtaddress.Text, txtcity.Text, "0", "test@gmail.com", Convert.ToInt32(6), GroupId, "0", txtgstno.Text, "0", "", "", 0, 0, 0, "Credit Note", "Inner","NA", "", "", "", "", "", "");
 
 
                     Supplier = LedgerId;
@@ -1968,7 +2029,7 @@ namespace Billing.Accountsbootstrap
                     DateTime Date = DateTime.ParseExact(txtsdate1.Text, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
 
 
-                    int insertPurchase = kbs.insertPurchase(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), txtbillno.Text, Date, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(Supplier), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), BillingType, PONo, Province, Convert.ToDouble(txtDiscountAmount.Text), Convert.ToDouble(txtFreightCharge.Text), Convert.ToDouble(txtFreightChargeTax.Text), Convert.ToInt32(ddltax.SelectedValue), Convert.ToDouble(ddltax.SelectedItem.Text), Convert.ToDouble(txtroundoff.Text), drpitemchnage.SelectedValue, drpitemload.SelectedValue,drpsubcompany.SelectedValue);
+                    int insertPurchase = kbs.insertPurchase(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), txtbillno.Text, Date, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(Supplier), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), BillingType, PONo, Province, Convert.ToDouble(txtDiscountAmount.Text), Convert.ToDouble(txtFreightCharge.Text), Convert.ToDouble(txtFreightChargeTax.Text), Convert.ToInt32(ddltax.SelectedValue), Convert.ToDouble(ddltax.SelectedItem.Text), Convert.ToDouble(txtroundoff.Text), drpitemchnage.SelectedValue, drpitemload.SelectedValue,drpsubcompany.SelectedValue,lblFile_Path.Text, lblFile_Path2.Text, lblFile_Path3.Text,lblbillername.Text,lblbillerid.Text);
 
 
                     for (int i = 0; i < gvcustomerorder.Rows.Count; i++)
@@ -2125,7 +2186,7 @@ namespace Billing.Accountsbootstrap
                     }
 
 
-                    int insertPurchase = kbs.updatePurchase(sTableName, txtbillno.Text, txtsdate1.Text, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), iSalesID, bank, chequeno, CreditorID1, ledgerid, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), txteditnarrations.Text, Province, Convert.ToDouble(txtDiscountAmount.Text), Convert.ToDouble(txtFreightCharge.Text), Convert.ToDouble(txtFreightChargeTax.Text), Convert.ToInt32(ddltax.SelectedValue), Convert.ToDouble(ddltax.SelectedItem.Text), Convert.ToDouble(txtroundoff.Text));
+                    int insertPurchase = kbs.updatePurchase(sTableName, txtbillno.Text, txtsdate1.Text, "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), iSalesID, bank, chequeno, CreditorID1, ledgerid, txtcgst.Text, txtsgst.Text, txtigst.Text, txtdcno.Text, Convert.ToInt32(lblUserID.Text), txteditnarrations.Text, Province, Convert.ToDouble(txtDiscountAmount.Text), Convert.ToDouble(txtFreightCharge.Text), Convert.ToDouble(txtFreightChargeTax.Text), Convert.ToInt32(ddltax.SelectedValue), Convert.ToDouble(ddltax.SelectedItem.Text), Convert.ToDouble(txtroundoff.Text), lblFile_Path.Text, lblFile_Path2.Text, lblFile_Path3.Text);
                     int trans1 = kbs.getduplisttrans123(hdPurid.Value, sTableName);
 
                     int transdelete = kbs.getduplisttransdeletePur(hdPurid.Value, sTableName);
@@ -4297,6 +4358,28 @@ namespace Billing.Accountsbootstrap
                 }
                 //  TextBox txthsncode = (TextBox)row.FindControl("txthsncode");
                 txtmhsncode.Text = dss.Tables[0].Rows[0]["HsnCode"].ToString();
+
+                DataSet dprimary = kbs.PrimaryUNITS_ingridentcheck(drpmingredents.SelectedValue);
+                if (dprimary.Tables[0].Rows.Count > 0)
+                {
+                    ddlmprimaryunits.DataSource = dprimary.Tables[0];
+                    ddlmprimaryunits.DataTextField = "Primaryname";
+                    ddlmprimaryunits.DataValueField = "PrimaryUOMID";
+                    ddlmprimaryunits.DataBind();
+                    ddlmprimaryunits.Items.Insert(0, "Select PrimaryUom");
+                }
+                else
+                {
+                    DataSet dprimaryy = kbs.PrimaryUNITS();
+                    if (dprimaryy.Tables[0].Rows.Count > 0)
+                    {
+                        ddlmprimaryunits.DataSource = dprimaryy.Tables[0];
+                        ddlmprimaryunits.DataTextField = "Primaryname";
+                        ddlmprimaryunits.DataValueField = "PrimaryUOMID";
+                        ddlmprimaryunits.DataBind();
+                        ddlmprimaryunits.Items.Insert(0, "Select PrimaryUom");
+                    }
+                }
 
             }
 

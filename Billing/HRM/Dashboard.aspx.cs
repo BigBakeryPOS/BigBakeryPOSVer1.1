@@ -25,7 +25,7 @@ namespace HRM
 
 
             int month = 0;
-            string emp_code = Session["empid"].ToString();
+            string emp_code = Request.Cookies["userInfo"]["empid"].ToString();
             #region message from admin
             string sdate = DateTime.Now.ToString("dd-MM-yyyy");
 
@@ -94,13 +94,13 @@ namespace HRM
             #endregion
 
             #region declaration
-            string emp_code1 = Session["empid"].ToString();
+            string emp_code1 = Request.Cookies["userInfo"]["empid"].ToString();
             DateTime dt1 = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
             int sunday = CountSundays(Convert.ToInt32(dt1.Year), Convert.ToInt32(dt1.Month));
             #endregion
             #region Checkin/out
-            lblempid.Text = Session["empid"].ToString();
-            lblempname.Text = Session["UserName"].ToString();
+            lblempid.Text = Request.Cookies["userInfo"]["empid"].ToString();
+            lblempname.Text = Request.Cookies["userInfo"]["UserName"].ToString();
             string today = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
 

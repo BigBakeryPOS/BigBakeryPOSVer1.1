@@ -60,6 +60,7 @@
                             <div class="row panel-custom1">
                                 <div class="panel-header">
                                     <h1 class="page-header">Purchase Return Entry</h1>
+                                     Entry By : <asp:Label ID="lblbillername" runat="server"  ></asp:Label> <asp:Label ID="lblbillerid" Visible="false" runat="server"  ></asp:Label>
                                 </div>
 
                                 <div class="panel-body">
@@ -357,7 +358,7 @@
                                                             </asp:DropDownList>--%>
                                                                     <%--<asp:Label ID="lblprimaryvalue" runat="server"></asp:Label>--%>
                                                                     <asp:Label ID="lblprimaryname" Width="100px" Text='<%#Eval("PUnits") %>' runat="server"></asp:Label>
-                                                                    <asp:Label ID="lblprimarynamevalue" Visible="true" Width="100px" Text='<%#Eval("PUnitsvalue") %>' runat="server"></asp:Label>
+                                                                    <asp:Label ID="lblprimarynamevalue" Visible="false" Width="100px" Text='<%#Eval("PUnitsvalue") %>' runat="server"></asp:Label>
                                                                     <asp:Label ID="lblprimaryvalue" Visible="true" Text='<%#Eval("Pvalue") %>' runat="server"></asp:Label>
 
                                                                 </ItemTemplate>

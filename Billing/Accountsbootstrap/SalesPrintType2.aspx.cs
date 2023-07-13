@@ -15,21 +15,28 @@ using System.Web.UI.WebControls.WebParts;
 using System.Drawing.Printing;
 using System.Drawing.Imaging;
 using System.Drawing;
+using DocumentFormat.OpenXml.Spreadsheet;
+
 namespace Billing.Accountsbootstrap
 {
     public partial class SalesPrintType2 : System.Web.UI.Page
     {
         BSClass objBs = new BSClass();
+        
+
         string sTableName = "";
         string sStore = "";
         string sAddress = "";
         string sTin = "";
-        string sfssaino = "";
         string StoreNo = "";
         string State = "";
         string StateNo = "";
         double damt = 0;
         double totq = 0;
+        string Printtype = "N";
+        string fssaino = "Nil";
+
+        string Country = "Nil";
 
         string currency = "";
         string taxsplitupsetting = "";
@@ -37,7 +44,8 @@ namespace Billing.Accountsbootstrap
         string BillPrintLogo = "";
         string ratesetting = "";
         string qtysetting = "";
-        string Billgenerate = "";
+        string BillGenerateSetting = "";
+        string PrintOption = "Nil";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,23 +59,53 @@ namespace Billing.Accountsbootstrap
 
 
             sTableName = Request.QueryString.Get("User").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
-            sStore = Request.QueryString.Get("Store").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
-            sAddress = Request.QueryString.Get("Address").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
-            StoreNo = Request.QueryString.Get("StoreNo").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
-            sTin = Request.QueryString.Get("TIN").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
-            sfssaino = Request.QueryString.Get("fssaino").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+         //   sStore = Request.QueryString.Get("Store").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+          //  sAddress = Request.QueryString.Get("Address").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+          //  StoreNo = Request.QueryString.Get("StoreNo").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+          //  sTin = Request.QueryString.Get("TIN").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+         //   sfssaino = Request.QueryString.Get("fssaino").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
 
             State = "TN" ;
             StateNo = "33";
 
+            DataSet fillbranchdetails = objBs.getbranchcode(sTableName);
+            if (fillbranchdetails.Tables[0].Rows.Count > 0)
+            {
+
+                fssaino = fillbranchdetails.Tables[0].Rows[0]["Fssaino"].ToString();
+                Printtype = fillbranchdetails.Tables[0].Rows[0]["Printtype"].ToString();
+                Country = fillbranchdetails.Tables[0].Rows[0]["Country"].ToString();
+                currency = fillbranchdetails.Tables[0].Rows[0]["currency"].ToString();
+                taxsetting = fillbranchdetails.Tables[0].Rows[0]["TaxSetting"].ToString();
+                taxsplitupsetting = fillbranchdetails.Tables[0].Rows[0]["Billtaxsplitupshown"].ToString();
+                BillPrintLogo = fillbranchdetails.Tables[0].Rows[0]["BillPrintLogo"].ToString();
+                ratesetting = fillbranchdetails.Tables[0].Rows[0]["Ratesetting"].ToString();
+                qtysetting = fillbranchdetails.Tables[0].Rows[0]["Qtysetting"].ToString();
+                BillGenerateSetting = fillbranchdetails.Tables[0].Rows[0]["BillGenerateSetting"].ToString();
+                fssaino = fillbranchdetails.Tables[0].Rows[0]["Fssaino"].ToString();
+
+                sStore = fillbranchdetails.Tables[0].Rows[0]["branchname"].ToString();
+                sAddress = fillbranchdetails.Tables[0].Rows[0]["Address"].ToString();
+                StoreNo = fillbranchdetails.Tables[0].Rows[0]["MobileNo"].ToString();
+                sTin = fillbranchdetails.Tables[0].Rows[0]["GSTIN"].ToString();
+                PrintOption = fillbranchdetails.Tables[0].Rows[0]["PrintOption"].ToString();
+
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, typeof(System.Web.UI.Page), "SelectGiven", "alert('Something Went Wrong in Branch MAster.Thank You!!!');", true);
+                return;
+            }
+
+
             // need to change after  FOR APP NOT WORKING
-            currency = Request.Cookies["userInfo"]["Currency"].ToString();
-            taxsetting = Request.Cookies["userInfo"]["TaxSetting"].ToString();
-            taxsplitupsetting = Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString();
-            BillPrintLogo = Request.Cookies["userInfo"]["BillPrintLogo"].ToString();
-            ratesetting = Request.Cookies["userInfo"]["Ratesetting"].ToString();
-            qtysetting = Request.Cookies["userInfo"]["Qtysetting"].ToString();
-            Billgenerate = Request.Cookies["userInfo"]["BillGenerateSetting"].ToString();
+            //currency = Request.Cookies["userInfo"]["Currency"].ToString();
+            //taxsetting = Request.Cookies["userInfo"]["TaxSetting"].ToString();
+            //taxsplitupsetting = Request.Cookies["userInfo"]["Billtaxsplitupshown"].ToString();
+            //BillPrintLogo = Request.Cookies["userInfo"]["BillPrintLogo"].ToString();
+            //ratesetting = Request.Cookies["userInfo"]["Ratesetting"].ToString();
+            //qtysetting = Request.Cookies["userInfo"]["Qtysetting"].ToString();
+            //Billgenerate = Request.Cookies["userInfo"]["BillGenerateSetting"].ToString();
 
             if (sTableName.ToLower() == "co6" || sTableName.ToLower() == "co7")
             {
@@ -147,11 +185,11 @@ namespace Billing.Accountsbootstrap
                 idFranchisee.Visible = false;
             }
 
-            DataSet fillbranchdetails = objBs.getbranchcode(sTableName);
-            if (fillbranchdetails.Tables[0].Rows.Count > 0)
+            DataSet fillbranchdetailss = objBs.getbranchcode(sTableName);
+            if (fillbranchdetailss.Tables[0].Rows.Count > 0)
             {
-                lblstore.Text  = fillbranchdetails.Tables[0].Rows[0]["BranchName"].ToString();
-                lblAddres.Text = fillbranchdetails.Tables[0].Rows[0]["Address"].ToString();
+                lblstore.Text  = fillbranchdetailss.Tables[0].Rows[0]["BranchName"].ToString();
+                lblAddres.Text = fillbranchdetailss.Tables[0].Rows[0]["Address"].ToString();
             }
 
                 DataSet dsLogin = objBs.LoginImage(sTableName);
@@ -224,12 +262,12 @@ namespace Billing.Accountsbootstrap
                     }
                    // lblgstno.Text = ds.Tables[0].Rows[0]["gstno"].ToString();
                     //lblbillno.Text = ds.Tables[0].Rows[0]["BillNo"].ToString();
-                    if (Billgenerate == "1")
+                    if (BillGenerateSetting == "1")
                     {
 
                         lblbillno.Text = ds.Tables[0].Rows[0]["FullBill"].ToString();
                     }
-                    else if (Billgenerate == "2")
+                    else if (BillGenerateSetting == "2")
                     {
                         lblbillno.Text = ds.Tables[0].Rows[0]["BillNo"].ToString();
                     }
@@ -274,7 +312,7 @@ namespace Billing.Accountsbootstrap
 
                    // lblAddres.Text = sAddress;
                     lbltin.Text = sTin;
-                    lblfssaino.Text = sfssaino;
+                    lblfssaino.Text = fssaino;
                     decimal dTotal = Convert.ToDecimal(ds.Tables[0].Rows[0]["NetAmount"].ToString());
                     lbltotal.Text = dTotal.ToString("f2");
                     lblTax.Text = Convert.ToDecimal(ds.Tables[0].Rows[0]["Tax"]).ToString("" + ratesetting + "");
@@ -572,7 +610,7 @@ namespace Billing.Accountsbootstrap
 
                     if (lblautomastic.Text == "Y")
                     {
-                        ClientScript.RegisterStartupScript(typeof(Page), "closePage", "window.close();", true);
+                        ClientScript.RegisterStartupScript(typeof(System.Web.UI.Page), "closePage", "window.close();", true);
                     }
                     //PrintDocument doc = new PrintDocument();
                     ////doc.PrintPage += this.Doc_PrintPage;
@@ -604,7 +642,7 @@ namespace Billing.Accountsbootstrap
                             string yourUrl1 = "SalesLiveKitchenPrint.aspx?Mode=Sales&iSalesID=" + iD + "&type=" + type.ToString() + "&Store=" + sStore;
 
                             //  Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " PrintPanel()", true);
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow2", "window.open('" + yourUrl1 + "');", true);
+                            ScriptManager.RegisterStartupScript(Page, typeof(System.Web.UI.Page), "OpenWindow2", "window.open('" + yourUrl1 + "');", true);
 
                         }
                     }
@@ -659,7 +697,7 @@ namespace Billing.Accountsbootstrap
 
                    // lblAddres.Text = sAddress;
                     lbltin.Text = sTin;
-                    lblfssaino.Text = sfssaino;
+                    lblfssaino.Text = fssaino;
                     decimal dTotal = Convert.ToDecimal(ds.Tables[0].Rows[0]["gndtot"].ToString());
                     lblGrand.Text = dTotal.ToString("" + ratesetting + "");
 
@@ -700,7 +738,7 @@ namespace Billing.Accountsbootstrap
 
                     if (lblautomastic.Text == "Y")
                     {
-                        ClientScript.RegisterStartupScript(typeof(Page), "closePage", "window.close();", true);
+                        ClientScript.RegisterStartupScript(typeof(System.Web.UI.Page), "closePage", "window.close();", true);
                     }
                     //PrintDocument doc = new PrintDocument();
                     ////doc.PrintPage += this.Doc_PrintPage;

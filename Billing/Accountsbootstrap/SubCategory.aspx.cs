@@ -36,6 +36,16 @@ namespace Billing.Accountsbootstrap
                 lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
                 lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
 
+                DataSet dsCategory = objBs.gridcategory();
+                if (dsCategory.Tables[0].Rows.Count > 0)
+                {
+                    ddlcategory.DataSource = dsCategory.Tables[0];
+                    ddlcategory.DataTextField = "category";
+                    ddlcategory.DataValueField = "CategoryID";
+                    ddlcategory.DataBind();
+                    ddlcategory.Items.Insert(0, "Select Category");
+                }
+
 
                 DataSet dID = objBs.getmaxsubcatid();
                 if (dID.Tables[0].Rows.Count > 0)
@@ -79,6 +89,16 @@ namespace Billing.Accountsbootstrap
                 if (iCat != "" || iCat != null)
                 {
 
+                    DataSet dsCategory = objBs.gridcategory();
+                    if (dsCategory.Tables[0].Rows.Count > 0)
+                    {
+                        ddlcategory.DataSource = dsCategory.Tables[0];
+                        ddlcategory.DataTextField = "category";
+                        ddlcategory.DataValueField = "CategoryID";
+                        ddlcategory.DataBind();
+                        ddlcategory.Items.Insert(0, "Select Category");
+                    }
+
                     DataSet ds = objBs.getupdatedsubcategory(iCat);
                     if (ds.Tables[0].Rows.Count > 0)
                     {
@@ -86,6 +106,7 @@ namespace Billing.Accountsbootstrap
                         
                         txtsubcategoryId.Text = ds.Tables[0].Rows[0]["subID"].ToString();
                         txtsubcategory.Text = ds.Tables[0].Rows[0]["SubCategoryName"].ToString();
+                        ddlcategory.SelectedValue = ds.Tables[0].Rows[0]["catid"].ToString();
                     }
 
                 }
@@ -149,33 +170,33 @@ namespace Billing.Accountsbootstrap
         protected void gridview_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
 
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                if (superadmin == "1" || sTableName == "Pro")
-                {
-                    ((LinkButton)e.Row.FindControl("btnedit")).Enabled = true;
-                    ((LinkButton)e.Row.FindControl("btndel")).Enabled = true;
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+            //    if (superadmin == "1" || sTableName == "Pro")
+            //    {
+            //        ((LinkButton)e.Row.FindControl("btnedit")).Enabled = true;
+            //        ((LinkButton)e.Row.FindControl("btndel")).Enabled = true;
 
-                    ((Image)e.Row.FindControl("imdedit")).Enabled = true;
-                    ((Image)e.Row.FindControl("Image1")).Enabled = true;
-                }
-                else
-                {
-                    ((LinkButton)e.Row.FindControl("btnedit")).Enabled = false;
-                    ((LinkButton)e.Row.FindControl("btndel")).Visible = false;
+            //        ((Image)e.Row.FindControl("imdedit")).Enabled = true;
+            //        ((Image)e.Row.FindControl("Image1")).Enabled = true;
+            //    }
+            //    else
+            //    {
+            //        ((LinkButton)e.Row.FindControl("btnedit")).Enabled = false;
+            //        ((LinkButton)e.Row.FindControl("btndel")).Visible = false;
 
-                    ((Image)e.Row.FindControl("imdedit")).Enabled = false;
-                    ((Image)e.Row.FindControl("Image1")).Visible = false;
+            //        ((Image)e.Row.FindControl("imdedit")).Enabled = false;
+            //        ((Image)e.Row.FindControl("Image1")).Visible = false;
 
-                    ((Image)e.Row.FindControl("imgdisable1321")).Enabled = false;
-                    ((Image)e.Row.FindControl("imgdisable1321")).Visible = true;
-                }
+            //        ((Image)e.Row.FindControl("imgdisable1321")).Enabled = false;
+            //        ((Image)e.Row.FindControl("imgdisable1321")).Visible = true;
+            //    }
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-            }
+            //}
 
         }
 
@@ -215,29 +236,44 @@ namespace Billing.Accountsbootstrap
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            if (ddlcategory.SelectedValue == "Select Category")
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Please Select Category');", true);
+                ddlcategory.Focus();
+                return;
+            }
 
             if (btnSave.Text == "Save")
             {
-                DataSet dsCategory = objBs.DuplicatesubCatcheck(txtsubcategory.Text);
+                DataSet dsCategory = objBs.DuplicatesubCatcheck(txtsubcategory.Text,ddlcategory.SelectedValue);
                 if (dsCategory.Tables[0].Rows.Count > 0)
                 {
 
-                    lblerror.Text = "This Sub Category has already Exists please enter a new one";
+                    lblerror.Text = "This Sub Category and Category has already Exists please enter a new one";
 
                 }
                 else
                 {
-                    int iStatus = objBs.InsertSubCategory(txtsubcategory.Text);
+                    int iStatus = objBs.InsertSubCategory(txtsubcategory.Text, ddlcategory.SelectedValue);
                     Response.Redirect("../Accountsbootstrap/SubCategory.aspx");
                 }
             }
 
             else
             {
+                DataSet dsCategory = objBs.DuplicatesubCatcheck_update(txtsubcategory.Text, ddlcategory.SelectedValue,txtsubcategoryId.Text);
+                if (dsCategory.Tables[0].Rows.Count > 0)
+                {
 
+                    lblerror.Text = "This Sub Category and Category has already Exists please enter a new one";
 
-                objBs.updatesubcategory(Convert.ToInt32(txtsubcategoryId.Text), txtsubcategory.Text);
-                Response.Redirect("SubCategory.aspx");
+                }
+                else
+                {
+
+                    objBs.updatesubcategory(Convert.ToInt32(txtsubcategoryId.Text), txtsubcategory.Text, ddlcategory.SelectedValue);
+                    Response.Redirect("SubCategory.aspx");
+                }
             }
         }
 

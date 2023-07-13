@@ -226,7 +226,7 @@
                                                         <asp:ListItem Text="No" Value="N"></asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
-                                                <div runat="server" visible="false">
+                                                <div runat="server" visible="true">
                                                     <br />
                                                     <label>
                                                         Order Form Online Sync
@@ -247,7 +247,7 @@
                                                     </asp:DropDownList>
                                                     <br />
                                                 </div>
-                                                <div runat="server" visible="false">
+                                                <div runat="server" visible="true">
                                                     <label>
                                                         Dispatch Goods Directly
                                                     </label>
@@ -359,6 +359,13 @@
                                                 <label>
                                                     Order From Book No check</label>
                                                 <asp:DropDownList ID="drporderbooknocheck" runat="server" CssClass="form-control">
+                                                    <asp:ListItem Text="Yes" Value="Y"></asp:ListItem>
+                                                    <asp:ListItem Text="No" Value="N"></asp:ListItem>
+                                                </asp:DropDownList>
+                                                 <br />
+                                                <label>
+                                                    Is BatchWise Production Needed</label>
+                                                <asp:DropDownList ID="drpbatchwise" runat="server" CssClass="form-control">
                                                     <asp:ListItem Text="Yes" Value="Y"></asp:ListItem>
                                                     <asp:ListItem Text="No" Value="N"></asp:ListItem>
                                                 </asp:DropDownList>

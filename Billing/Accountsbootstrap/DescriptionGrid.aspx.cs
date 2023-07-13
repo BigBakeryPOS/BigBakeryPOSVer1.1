@@ -498,6 +498,25 @@ namespace Billing.Accountsbootstrap
                     string RateType = dr["RateType"].ToString();
                     string QtyType = dr["QtyType"].ToString();
 
+                    string ItemType = dr["ITEMTYPE"].ToString();
+
+
+                    string ADDON = dr["ADDON"].ToString();
+
+                    string STOCKMAINTAIN = dr["STOCKMAINTAIN"].ToString();
+                    string KOTREQ = dr["KOTREQ"].ToString();
+                    string COOKINGINSTRUCTIONREQ = dr["COOKINGINSTRUCTIONREQ"].ToString();
+
+                    string BARCODEREQ = dr["BARCODEREQ"].ToString();
+                    //string COOKINGINSTRUCTIONREQ = dr["COOKINGINSTRUCTIONREQ"].ToString();
+                    string Produom = dr["Produom"].ToString();
+
+                    string Receiveqty = dr["Receiveqty"].ToString();
+
+
+
+
+
                     if ((Convert.ToString(dr["Category"]) == null) || (Convert.ToString(dr["Category"]) == ""))
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Plz Check Category  in  " + CategoryName + " ');", true);
@@ -531,6 +550,69 @@ namespace Billing.Accountsbootstrap
                     else
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Plz Check Production Type  in " + ProdType + ".It may be P/I/R.Thank You');", true);
+                        return;
+                    }
+
+
+                    if(ItemType == "F" || ItemType == "O")
+                    {
+
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Plz Check Item Type  in " + ItemType + ".It may be F/O.Thank You');", true);
+                        return;
+
+                    }
+
+                    if(ADDON == "Y" || ADDON == "N")
+                    {
+
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Plz Check Addon  in " + ADDON + ".It may be Y/N.Thank You');", true);
+                        return;
+                    }
+
+                    if (STOCKMAINTAIN == "Y" || STOCKMAINTAIN == "N")
+                    {
+
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Plz Check Stock Maintain  in " + STOCKMAINTAIN + ".It may be Y/N.Thank You');", true);
+                        return;
+                    }
+
+                    if (KOTREQ == "Y" || KOTREQ == "N")
+                    {
+
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Plz Check Kot Required  in " + KOTREQ + ".It may be Y/N.Thank You');", true);
+                        return;
+                    }
+
+                    if (COOKINGINSTRUCTIONREQ == "Y" || COOKINGINSTRUCTIONREQ == "N")
+                    {
+
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Plz Check Cooking Instruction Required  in " + COOKINGINSTRUCTIONREQ + ".It may be Y/N.Thank You');", true);
+                        return;
+                    }
+
+
+                    if (BARCODEREQ == "Y" || BARCODEREQ == "N")
+                    {
+
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Plz Check Barcode Required  in " + BARCODEREQ + ".It may be Y/N.Thank You');", true);
                         return;
                     }
 
@@ -590,6 +672,13 @@ namespace Billing.Accountsbootstrap
                     if ((Convert.ToString(dr["UOM"]) == null) || (Convert.ToString(dr["UOM"]) == ""))
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Plz Check UOM in  " + CategoryName + "');", true);
+                        // ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Plz Check UOM in  " + CategoryName + "');", true);
+                        return;
+                    }
+
+                    if ((Convert.ToString(dr["prodUOM"]) == null) || (Convert.ToString(dr["prodUOM"]) == ""))
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Plz Check Prod.UOM in  " + CategoryName + "');", true);
                         // ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('Plz Check UOM in  " + CategoryName + "');", true);
                         return;
                     }
@@ -658,6 +747,23 @@ namespace Billing.Accountsbootstrap
                     string description = ds.Tables[0].Rows[j]["Description"].ToString();
                     string RateType = ds.Tables[0].Rows[j]["RateType"].ToString();
                     string QtyType = ds.Tables[0].Rows[j]["QtyType"].ToString();
+
+                    string itemtype = ds.Tables[0].Rows[j]["itemtype"].ToString();
+                    string ADDON = ds.Tables[0].Rows[j]["ADDON"].ToString();
+                    string STOCKMAINTAIN = ds.Tables[0].Rows[j]["STOCKMAINTAIN"].ToString();
+                    string KOTREQ = ds.Tables[0].Rows[j]["KOTREQ"].ToString();
+                    string COOKINGINSTRUCTIONREQ = ds.Tables[0].Rows[j]["COOKINGINSTRUCTIONREQ"].ToString();
+                    string BARCODEREQ = ds.Tables[0].Rows[j]["BARCODEREQ"].ToString();
+
+                    string SubCategory = ds.Tables[0].Rows[j]["SubCategory"].ToString();
+
+                    string EXPIRYDAY = ds.Tables[0].Rows[j]["EXPIRYDAY"].ToString();
+
+                    string produom = ds.Tables[0].Rows[j]["produom"].ToString();
+
+                    string Receiveqty = ds.Tables[0].Rows[j]["Receiveqty"].ToString();
+
+
 
 
 
@@ -749,6 +855,23 @@ namespace Billing.Accountsbootstrap
 
                     #endregion
 
+                    #region  ProdUOM
+
+                    int ProdUOMid = 0;
+                    DataSet dsprodUOM = objBs.getUOMValue(produom);
+                    if (dsprodUOM.Tables[0].Rows.Count > 0)
+                    {
+                        ProdUOMid = Convert.ToInt32(dsprodUOM.Tables[0].Rows[0]["UOMID"].ToString());
+                    }
+                    else
+                    {
+                        int iStatus = objBs.InsertUOM(produom, "Yes", "", "");
+                        DataSet dsprodUOM1 = objBs.getUOMValue(produom);
+                        ProdUOMid = Convert.ToInt32(dsprodUOM1.Tables[0].Rows[0]["UOMID"].ToString());
+                    }
+
+                    #endregion
+
                     //int UOMid = 0;
                     //DataSet dsUOM = objBs.getUOMValue(UOM);
                     //if (dsUOM.Tables[0].Rows.Count > 0)
@@ -769,6 +892,7 @@ namespace Billing.Accountsbootstrap
                     string doubleqt = "\"";
 
                     int categoryid = 0;
+                    
                     DataSet dsCategory = objBs.categorysrchgridnew(Category.Replace(singleqt, doubleqt));
                     if (dsCategory.Tables[0].Rows.Count > 0)
                     {
@@ -789,7 +913,40 @@ namespace Billing.Accountsbootstrap
 
                     #endregion
 
-                    #region Item
+                    #region Sub Category
+                    string subcategoryid = "0";
+                    if (SubCategory == "")
+                    {
+
+                    }
+                    else
+                    {
+                        string subsingleqt = "'";
+                        string subdoubleqt = "\"";
+
+                        
+                        DataSet dssubCategory = objBs.subcategorysrchgridnew(SubCategory.Replace(subsingleqt, subdoubleqt), categoryid.ToString());
+                        if (dssubCategory.Tables[0].Rows.Count > 0)
+                        {
+                            subcategoryid = (dssubCategory.Tables[0].Rows[0]["SubCategoryId"].ToString());
+                        }
+                        else
+                        {
+                            // int iStatus = objBs.InsertCatforAll(Category, CategoryCode, ProductionType);
+                            int iStatus = objBs.InsertSubCategory(SubCategory.Replace(subsingleqt, subdoubleqt), categoryid.ToString());
+                            DataSet dsCat = objBs.subcategorysrchgridnew(SubCategory,categoryid.ToString());
+                            subcategoryid = (dsCat.Tables[0].Rows[0]["SubCategoryId"].ToString());
+                        }
+                    }
+                    #endregion
+
+                    if (EXPIRYDAY == "")
+                        EXPIRYDAY = "0";
+
+                    if (Receiveqty == "")
+                        Receiveqty = "1";
+
+                        #region Item
                     DataSet dsitem = objBs.defsrchgrid(Item, categoryid.ToString());
                     if (dsitem.Tables[0].Rows.Count > 0)
                     {
@@ -798,7 +955,7 @@ namespace Billing.Accountsbootstrap
                     else
                     {
                         int iStatus = objBs.InsertitemforAll(categoryid, Item, Convert.ToDouble(ORate), Convert.ToDouble(Tax), TaxId, UOMid, Empcode, 
-                            Minimumstock, HSNCode, Foodtype, BarCode, MRP, SerialNo, description,RateType,QtyType);
+                            Minimumstock, HSNCode, Foodtype, BarCode, MRP, SerialNo, description,RateType,QtyType, EXPIRYDAY,itemtype,subcategoryid,ADDON,STOCKMAINTAIN,KOTREQ,COOKINGINSTRUCTIONREQ,BARCODEREQ,produom,ProdUOMid,Receiveqty);
                         int ibrachinsert = objBs.insertbranchitemvalues();
                     }
 

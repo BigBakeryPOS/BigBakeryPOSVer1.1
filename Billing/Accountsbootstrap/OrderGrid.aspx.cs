@@ -28,6 +28,8 @@ namespace Billing.Accountsbootstrap
         string fssaino = "Nil";
         DBAccess DBAccess = new DBAccess();
 
+        
+
         private string connnectionString;
         private string connnectionStringMain;
         protected void Page_Load(object sender, EventArgs e)
@@ -45,6 +47,8 @@ namespace Billing.Accountsbootstrap
             fssaino = Request.Cookies["userInfo"]["fssaino"].ToString();
 
             txtRef.Text = txtRef.Text.Replace(",", "");
+
+           
 
             olddiv.Visible = false;
             Newdiv.Visible = false;
@@ -442,7 +446,7 @@ namespace Billing.Accountsbootstrap
             if (lblbooknocheck.Text == "N")
             {
 
-                Response.Redirect("OrderForm.aspx?ABookno=" + txtbookNo.Text);
+                Response.Redirect("cakeOrderForm.aspx?ABookno=" + txtbookNo.Text);
             }
             else
             {
@@ -594,7 +598,7 @@ namespace Billing.Accountsbootstrap
 
                     }
 
-                    Response.Redirect("OrderForm.aspx?ABookno=" + txtbookNo.Text);
+                    Response.Redirect("CakeOrderForm.aspx?ABookno=" + txtbookNo.Text);
                 }
             }
         }
@@ -608,7 +612,7 @@ namespace Billing.Accountsbootstrap
                 string billtype = "Cbill";
 
                 if (txtnam.Text != "")
-                    Response.Redirect("OrderForm.aspx?OrderNo=" + ViewState["orderNo"].ToString() + "&Name=" + txtnam.Text + "&BillType=" + billtype);
+                    Response.Redirect("CakeOrderForm.aspx?OrderNo=" + ViewState["orderNo"].ToString() + "&Name=" + txtnam.Text + "&BillType=" + billtype);
                 else
                     ScriptManager.RegisterStartupScript(this, typeof(Page), "alertMessage", "alert('Enter Your Name');", true);
             }
@@ -617,7 +621,7 @@ namespace Billing.Accountsbootstrap
                 string billtype = "Ebill";
 
                 if (txtnam.Text != "")
-                    Response.Redirect("OrderForm.aspx?OrderNo=" + ViewState["orderNo"].ToString() + "&Name=" + txtnam.Text + "&BillType=" + billtype);
+                    Response.Redirect("CakeOrderForm.aspx?OrderNo=" + ViewState["orderNo"].ToString() + "&Name=" + txtnam.Text + "&BillType=" + billtype);
                 else
                     ScriptManager.RegisterStartupScript(this, typeof(Page), "alertMessage", "alert('Enter Your Name');", true);
             }
@@ -626,7 +630,7 @@ namespace Billing.Accountsbootstrap
                 string billtype = "PAmount";
 
                 if (txtnam.Text != "")
-                    Response.Redirect("OrderForm.aspx?OrderNo=" + ViewState["orderNo"].ToString() + "&Name=" + txtnam.Text + "&BillType=" + billtype);
+                    Response.Redirect("CakeOrderForm.aspx?OrderNo=" + ViewState["orderNo"].ToString() + "&Name=" + txtnam.Text + "&BillType=" + billtype);
                 else
                     ScriptManager.RegisterStartupScript(this, typeof(Page), "alertMessage", "alert('Enter Your Name');", true);
             }

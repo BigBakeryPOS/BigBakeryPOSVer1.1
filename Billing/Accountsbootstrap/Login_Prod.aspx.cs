@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 using BusinessLayer;
 using System.Data;
 using System.Text;
-using System.Text;
 using System.Net;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -16,6 +15,13 @@ using System.Management;
 using DataLayer;
 using System.Data.OleDb;
 using System.Configuration;
+using System.Globalization;
+using System.Net.Mail;
+using System.Net.Mime;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 
 namespace Billing.Accountsbootstrap
 {
@@ -42,6 +48,15 @@ namespace Billing.Accountsbootstrap
 
             //  string externalip = new WebClient().DownloadString("http://icanhazip.com");
 
+
+            DataSet dsLogin = objBs.LoginImage();
+
+            if (dsLogin.Tables[0].Rows.Count > 0)
+            {
+                log.ImageUrl = dsLogin.Tables[0].Rows[0]["Imagepath"].ToString();
+            }
+
+            IDOtpEnter.Visible = false;
             string ipaddress;
             ipaddress = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
             if (ipaddress == "" || ipaddress == null)
@@ -113,6 +128,20 @@ namespace Billing.Accountsbootstrap
             {
 
 
+                DataSet dsbranch = objBs.getbranchFilling("2");
+                if (dsbranch.Tables[0].Rows.Count > 0)
+                {
+                    drpbranchlist.DataSource = dsbranch.Tables[0];
+                    drpbranchlist.DataTextField = "BranchArea";
+                    drpbranchlist.DataValueField = "BranchId";
+                    drpbranchlist.DataBind();
+                    drpbranchlist.Items.Insert(0, "Select Outlet");
+                    // drpfrombranch.SelectedValue = frombranchid;
+                }
+
+
+
+
 
                 Session["UserID"] = "";
                 Session["UserName"] = "";
@@ -131,6 +160,7 @@ namespace Billing.Accountsbootstrap
                 Session["ReportDay"] = "";
                 Session["LOnlSale"] = "";
                 Session["ismasterlock"] = "";
+                Session["Billcode"] = "";
                 //var fromAddress = "pratheepkumar@onlinehanger.com";
                 //var toAddress = "harishbabu@bigdbiz.com";
                 ////const string fromPassword = "online@123";
@@ -195,12 +225,43 @@ namespace Billing.Accountsbootstrap
 
 
         }
+
+        protected void btnSeeting_OnClick(object sender, EventArgs e)
+        {
+            txtEmail.Visible = false;
+            txtEmail.Text = "rajaram@bigdbiz.in";
+            UserName_OnTextChanged(sender, e);
+        }
+
         protected void LoginButton_Click(object sender, EventArgs e)
         {
 
             Response.Cookies["UserName"].Value = username.Text.Trim();
             Response.Cookies["Password"].Value = password.Text.Trim();
 
+
+            if (drpbranchlist.SelectedValue == "Select Outlet")
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Select Outlet.');", true);
+                return;
+            }
+            else
+            {
+                // get username and password for branch
+                DataSet getbranchpassword = objBs.getbranchid(drpbranchlist.SelectedValue);
+                if (getbranchpassword.Tables[0].Rows.Count > 0)
+                {
+
+                    username.Text = getbranchpassword.Tables[0].Rows[0]["username"].ToString();
+                    password.Text = getbranchpassword.Tables[0].Rows[0]["password"].ToString();
+
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Something Went Wrong While Selecting Branch.Thank you!!!.');", true);
+                    return;
+                }
+            }
 
 
             if (username.Text == "")
@@ -218,6 +279,10 @@ namespace Billing.Accountsbootstrap
             }
             else
             {
+
+
+
+
                 dsLogin = objBs.Login(username.Text, password.Text);
                 if (dsLogin.Tables[0].Rows.Count == 0)
                 {
@@ -231,11 +296,42 @@ namespace Billing.Accountsbootstrap
                     Session["UserName"] = username.Text;
                     Session["Password"] = password.Text;
                     Session["IsSuperAdmin"] = dsLogin.Tables[0].Rows[0]["IsSuperAdmin"].ToString();
+                    // Session["Billcode"] = dsLogin.Tables[0].Rows[0]["Billcode"].ToString();
+
+
+                    //Session["Store"] = dsLogin.Tables[0].Rows[0]["StoreName"].ToString();
+                    //Session["Address"] = dsLogin.Tables[0].Rows[0]["Address"].ToString();
+                    //Session["StoreNo"] = dsLogin.Tables[0].Rows[0]["StoreNo"].ToString();
+                    //Session["TIN"] = dsLogin.Tables[0].Rows[0]["TIN"].ToString();
+
+                    string code = dsLogin.Tables[0].Rows[0]["BranchCode"].ToString();
                     Session["BranchCode"] = dsLogin.Tables[0].Rows[0]["BranchCode"].ToString();
-                    Session["Store"] = dsLogin.Tables[0].Rows[0]["StoreName"].ToString();
-                    Session["Address"] = dsLogin.Tables[0].Rows[0]["Address"].ToString();
-                    Session["StoreNo"] = dsLogin.Tables[0].Rows[0]["StoreNo"].ToString();
-                    Session["TIN"] = dsLogin.Tables[0].Rows[0]["TIN"].ToString();
+
+                    DataSet dsbranch = objBs.getbranchcode(code);
+                    if (dsbranch.Tables[0].Rows.Count > 0)
+                    {
+
+                        Session["Store"] = dsbranch.Tables[0].Rows[0]["BranchName"].ToString();
+                        Session["Address"] = dsbranch.Tables[0].Rows[0]["Address"].ToString();
+                        Session["StoreNo"] = dsbranch.Tables[0].Rows[0]["MobileNo"].ToString();
+                        Session["TIN"] = dsbranch.Tables[0].Rows[0]["GSTIN"].ToString();
+                        Session["Country"] = dsbranch.Tables[0].Rows[0]["Country"].ToString();
+                        Session["poorderrights"] = dsbranch.Tables[0].Rows[0]["Porderrights"].ToString();
+                        Session["isbatchwise"] = dsbranch.Tables[0].Rows[0]["isbatchwise"].ToString();
+                    }
+
+                    else
+                    {
+                        Session["Store"] = dsLogin.Tables[0].Rows[0]["StoreName"].ToString();
+                        Session["Address"] = dsLogin.Tables[0].Rows[0]["Address"].ToString();
+                        Session["StoreNo"] = dsLogin.Tables[0].Rows[0]["StoreNo"].ToString();
+                        Session["TIN"] = dsLogin.Tables[0].Rows[0]["TIN"].ToString();
+                        Session["Country"] = "Others";
+                        Session["poorderrights"] = "Y";
+                        Session["isbatchwise"] = "N";
+                    }
+
+
                     string sUser = dsLogin.Tables[0].Rows[0]["Sales"].ToString();
                     string[] sUserDet = sUser.Split('_');
                     Session["User"] = sUserDet[1].ToString();
@@ -246,7 +342,9 @@ namespace Billing.Accountsbootstrap
                     Session["LOnlSale"] = dsLogin.Tables[0].Rows[0]["LOnlSale"].ToString();
                     Session["MOnlSale"] = dsLogin.Tables[0].Rows[0]["MOnlSale"].ToString();
                     Session["ismasterlock"] = dsLogin.Tables[0].Rows[0]["ismasterlock"].ToString();
-                    Session["LBranch"] = "P";
+                    Session["LBranch"] = "B";
+                    Session["state"] = 0;
+                    Session["statecode"] = 0;
 
 
                     HttpCookie userInfo = new HttpCookie("userInfo");
@@ -256,10 +354,37 @@ namespace Billing.Accountsbootstrap
                     userInfo["Password"] = password.Text;
                     userInfo["IsSuperAdmin"] = dsLogin.Tables[0].Rows[0]["IsSuperAdmin"].ToString();
                     userInfo["BranchCode"] = dsLogin.Tables[0].Rows[0]["BranchCode"].ToString();
-                    userInfo["Store"] = dsLogin.Tables[0].Rows[0]["StoreName"].ToString();
-                    userInfo["Address"] = dsLogin.Tables[0].Rows[0]["Address"].ToString();
-                    userInfo["StoreNo"] = dsLogin.Tables[0].Rows[0]["StoreNo"].ToString();
-                    userInfo["TIN"] = dsLogin.Tables[0].Rows[0]["TIN"].ToString();
+                    //userInfo["Billcode"] = dsLogin.Tables[0].Rows[0]["Billcode"].ToString();
+
+                    //userInfo["Store"] = dsLogin.Tables[0].Rows[0]["StoreName"].ToString();
+                    //userInfo["Address"] = dsLogin.Tables[0].Rows[0]["Address"].ToString();
+                    //userInfo["StoreNo"] = dsLogin.Tables[0].Rows[0]["StoreNo"].ToString();
+                    //userInfo["TIN"] = dsLogin.Tables[0].Rows[0]["TIN"].ToString();
+
+                    if (dsbranch.Tables[0].Rows.Count > 0)
+                    {
+                        userInfo["Store"] = dsbranch.Tables[0].Rows[0]["BranchName"].ToString();
+                        userInfo["Address"] = dsbranch.Tables[0].Rows[0]["Address"].ToString();
+                        userInfo["StoreNo"] = dsbranch.Tables[0].Rows[0]["MobileNo"].ToString();
+                        userInfo["TIN"] = dsbranch.Tables[0].Rows[0]["GSTIN"].ToString();
+                        userInfo["Country"] = dsbranch.Tables[0].Rows[0]["Country"].ToString();
+                        userInfo["poorderrights"] = dsbranch.Tables[0].Rows[0]["Porderrights"].ToString();
+                        userInfo["isbatchwise"] = dsbranch.Tables[0].Rows[0]["isbatchwise"].ToString();
+
+
+                    }
+
+                    else
+                    {
+                        userInfo["Store"] = dsLogin.Tables[0].Rows[0]["StoreName"].ToString();
+                        userInfo["Address"] = dsLogin.Tables[0].Rows[0]["Address"].ToString();
+                        userInfo["StoreNo"] = dsLogin.Tables[0].Rows[0]["StoreNo"].ToString();
+                        userInfo["TIN"] = dsLogin.Tables[0].Rows[0]["TIN"].ToString();
+                        userInfo["Country"] = "";
+                        userInfo["poorderrights"] = "Y";
+                        userInfo["isbatchwise"] = "N";
+
+                    }
                     userInfo["User"] = sUserDet[1].ToString();
                     userInfo["Mode"] = "";
                     userInfo["Rate"] = dsLogin.Tables[0].Rows[0]["Rate"].ToString();
@@ -268,8 +393,10 @@ namespace Billing.Accountsbootstrap
                     userInfo["LOnlSale"] = dsLogin.Tables[0].Rows[0]["LOnlSale"].ToString();
                     userInfo["MOnlSale"] = dsLogin.Tables[0].Rows[0]["MOnlSale"].ToString();
                     userInfo["ismasterlock"] = dsLogin.Tables[0].Rows[0]["ismasterlock"].ToString();
-                    userInfo["LBranch"] = "P";
-                    //userInfo["Mtype"] = = dsLogin.Tables[0].Rows[0]["ismasterlock"].ToString();
+                    userInfo["LBranch"] = "B";
+
+                    userInfo["state"] = dsLogin.Tables[0].Rows[0]["state"].ToString();
+                    userInfo["statecode"] = dsLogin.Tables[0].Rows[0]["Statecode"].ToString();
 
                     // Get Branch 
                     DataSet getbranch = objBs.getbranchcode(dsLogin.Tables[0].Rows[0]["BranchCode"].ToString());
@@ -363,6 +490,13 @@ namespace Billing.Accountsbootstrap
                         userInfo["itemmergeornot"] = getbranch.Tables[0].Rows[0]["itemmergeornot"].ToString();
                         Session["itemmergeornot"] = getbranch.Tables[0].Rows[0]["itemmergeornot"].ToString();
 
+                        userInfo["defaultcurrency"] = getbranch.Tables[0].Rows[0]["defaultcurrency"].ToString();
+                        Session["defaultcurrency"] = getbranch.Tables[0].Rows[0]["defaultcurrency"].ToString();
+
+                        userInfo["isbatchwise"] = getbranch.Tables[0].Rows[0]["isbatchwise"].ToString();
+                        Session["isbatchwise"] = getbranch.Tables[0].Rows[0]["isbatchwise"].ToString();
+
+
 
                     }
                     else
@@ -453,9 +587,16 @@ namespace Billing.Accountsbootstrap
                         userInfo["itemmergeornot"] = "Y";
                         Session["itemmergeornot"] = "Y";
 
+                        userInfo["defaultcurrency"] = "1";
+                        Session["defaultcurrency"] = "1";
+
+                        userInfo["isbatchwise"] = "N";
+                        Session["isbatchwise"] = "N";
+
+
                     }
 
-                    DataSet bill = objBs.Biller(Session["User"].ToString(), txtemp.Text);
+                    DataSet bill = objBs.Biller(Session["User"].ToString(), txtemp.Text, txtempusername.Text);
                     if (bill.Tables[0].Rows.Count > 0)
                     {
                         Session["ReportDay"] = bill.Tables[0].Rows[0]["Reportdays"].ToString();
@@ -466,6 +607,7 @@ namespace Billing.Accountsbootstrap
                         Session["LoginType"] = bill.Tables[0].Rows[0]["LogintypeName"].ToString();
                         string logintypeid = bill.Tables[0].Rows[0]["Logintype"].ToString();
                         Session["LoginTypeId"] = logintypeid;
+                        Session["AllBranchAccess"] = bill.Tables[0].Rows[0]["AllBranchAccess"].ToString();
 
 
                         userInfo["ReportDay"] = bill.Tables[0].Rows[0]["Reportdays"].ToString();
@@ -475,6 +617,40 @@ namespace Billing.Accountsbootstrap
                         userInfo["BranchID"] = bill.Tables[0].Rows[0]["BranchID"].ToString();
                         userInfo["LoginType"] = bill.Tables[0].Rows[0]["LogintypeName"].ToString();
                         userInfo["LoginTypeId"] = logintypeid;
+                        userInfo["AllBranchAccess"] = bill.Tables[0].Rows[0]["AllBranchAccess"].ToString();
+
+
+                        if (txtEmail.Text != "rajaram@bigdbiz.in")
+                        {
+                            DataSet dsLogin1 = objBs.GetSetting();
+
+                            if (dsLogin1.Tables[0].Rows.Count > 0)
+                            {
+
+                                // DateTime fromdate = DateTime.Parse(Convert.ToDateTime(dsLogin1.Tables[0].Rows[0]["ToDate"].ToString()).ToShortDateString());
+                                // DateTime todate = DateTime.Parse(Convert.ToDateTime(DateTime.Now.ToString()).ToShortDateString());
+
+
+                                string Fdate = dsLogin1.Tables[0].Rows[0]["ToDate"].ToString();
+                                string Tdate = DateTime.Now.ToString("yyyy/MM/dd");
+
+
+                                Fdate = Decrypt(Fdate);
+
+
+
+                                if (Convert.ToDateTime(Fdate) < Convert.ToDateTime(Tdate))
+                                {
+                                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Your Big POS Software License Expired, Please Contact Bigdbiz Solutions.');", true);
+                                    return;
+                                }
+
+                                //Response.Cookies.Add(userInfo);
+
+                                //Response.Redirect("../Accountsbootstrap/Homepage.aspx");
+                            }
+                        }
+
 
                         DataSet getbranchid = objBs.getbranchid(bill.Tables[0].Rows[0]["BranchID"].ToString());
                         if (getbranchid.Tables[0].Rows.Count > 0)
@@ -484,11 +660,15 @@ namespace Billing.Accountsbootstrap
 
                             Session["BType"] = getbranchid.Tables[0].Rows[0]["BranchType"].ToString();
                             userInfo["BType"] = getbranchid.Tables[0].Rows[0]["BranchType"].ToString();
-
                         }
 
                         userInfo.Expires.AddYears(4);
                         Response.Cookies.Add(userInfo);
+
+                        //if (txtEmail.Text == "rajaram@bigdbiz.in")
+                        //{
+                        //    Response.Redirect("../Accountsbootstrap/AdminSetting.aspx");
+                        //}
 
                         if (logintypeid == null || logintypeid == "")
                         {
@@ -501,11 +681,11 @@ namespace Billing.Accountsbootstrap
                         }
                         else if (logintypeid == "2")
                         {
-                            Response.Redirect("../Accountsbootstrap/Home_Page.aspx");
+                            Response.Redirect("../Accountsbootstrap/Home.aspx");
                         }
                         else if (logintypeid == "3")
                         {
-                            Response.Redirect("../Accountsbootstrap/newbutton.aspx");
+                            Response.Redirect("../Accountsbootstrap/HomePage.aspx");
                         }
                         else if (logintypeid == "4")
                         {
@@ -517,7 +697,7 @@ namespace Billing.Accountsbootstrap
                         }
                         else if (logintypeid == "6" || logintypeid == "7" || logintypeid == "8" || logintypeid == "1007")
                         {
-                            Response.Redirect("../Accountsbootstrap/HomePage.aspx");
+                            Response.Redirect("../Accountsbootstrap/Home_Page.aspx");
                         }
                     }
                     else
@@ -535,6 +715,226 @@ namespace Billing.Accountsbootstrap
         protected void Registration_Form(object sender, EventArgs e)
         {
             Response.Redirect("../Accountsbootstrap/RegistrationForm.aspx");
+        }
+
+        private string Decrypt(string cipherText)
+        {
+            string EncryptionKey = "MAKV2SPBNI99212";
+            byte[] cipherBytes = Convert.FromBase64String(cipherText);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(cipherBytes, 0, cipherBytes.Length);
+                        cs.Close();
+                    }
+                    cipherText = Encoding.Unicode.GetString(ms.ToArray());
+                }
+            }
+            return cipherText;
+        }
+
+        protected void UserName_OnTextChanged(object sender, EventArgs e)
+        {
+
+            if (txtEmail.Text == "rajaram@bigdbiz.in")
+            {
+                IDOtpEnter.Visible = false;
+                btnOTP.Visible = true;
+                btnComplete.Visible = false;
+                btn.Visible = false;
+                password.Focus();
+
+
+            }
+
+            else
+            {
+                IDOtpEnter.Visible = false;
+                btnOTP.Visible = false;
+                btnComplete.Visible = false;
+                btn.Visible = true;
+                password.Focus();
+
+            }
+
+
+        }
+
+
+        public string randomOTP = "";
+        protected void btnOTPClick(object sender, EventArgs e)
+        {
+
+
+
+            btnOTP.Visible = false;
+            txtOTP.Focus();
+            btnComplete.Visible = true;
+            IDOtpEnter.Visible = true;
+            txtOTP.Visible = true;
+
+            StringBuilder sbmail3 = new StringBuilder();
+            randomOTP = CreateRandomPassword(4);
+
+            #region EMailFormat-OTP
+            string EmailOTP = "";
+
+            EmailOTP = "rajaram@bigdbiz.in";
+            sbmail3.Append("<div style='border='0' width='100%'>");
+            sbmail3.Append("<table width='100%' border='0' style='padding:13px; border: 1px solid red;'><tr><td>");
+            sbmail3.Append("<p align='center'><img align=\"center\" alt=\"\" src=\"cid:Pic1\" width=\"147\" style=\"max-width:147px; padding-bottom: 0; display: inline !important; vertical-align: bottom;\" class=\"mcnImage\"></p>");
+            sbmail3.Append("<p>Dear <strong>" + "Sir/Madam" + "</strong>,</p>");
+            sbmail3.Append("<br>");
+            sbmail3.Append("<p>Proceed to confirm your Login with the OTP given.</p>");
+            sbmail3.Append("<br>");
+            sbmail3.Append("<h3>Your OTP is : " + randomOTP + "</h3>");
+            sbmail3.Append("<br>");
+            sbmail3.Append("<br>");
+
+            sbmail3.Append("</td>");
+            sbmail3.Append("</tr>");
+            sbmail3.Append("</table>");
+            sbmail3.Append("</div>");
+
+            int isuces = objBs.InsertOTPDetails("rajaram@bigdbiz.in", randomOTP);
+
+            sendpasswordemailOTPNew(EmailOTP, sbmail3.ToString());
+
+
+
+            // updPnl.Update();
+            //ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('OTP Sent Your MailID. Please Enter your OTP.');", true);
+
+            // upotp.Update();
+            // return;
+            #endregion
+
+
+            btnOTP.Visible = false;
+            txtOTP.Focus();
+            btnComplete.Visible = true;
+            IDOtpEnter.Visible = true;
+
+        }
+        public static void sendpasswordemailOTPNew(string UserEmail, string Message)
+        {
+            try
+            {
+                string StmpHost = ConfigurationManager.AppSettings["EmailHost"].ToString();
+                string StmpUserName = ConfigurationManager.AppSettings["AdminEmailID"].ToString();
+                string StmpPassword = ConfigurationManager.AppSettings["AdminPassword"].ToString();
+                int StmpPort = Convert.ToInt32(ConfigurationManager.AppSettings["EmailPort"]);
+
+
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient(StmpHost);
+                mail.From = new MailAddress(StmpUserName, "Bigdbiz");
+                mail.To.Add(UserEmail);
+                mail.To.Add(StmpUserName);
+                mail.Subject = "BIGDBIZ : OTP Verification";
+
+                //AlternateView avHtml = AlternateView.CreateAlternateViewFromString("<img alt='BrownieHeaven' src=\"cid:Pic1\" height='15%' width='50%' >", null, MediaTypeNames.Text.Html);
+                AlternateView avHtml = AlternateView.CreateAlternateViewFromString(Message, null, MediaTypeNames.Text.Html);
+
+                LinkedResource img = new LinkedResource(HttpContext.Current.Server.MapPath("../img/footer/logo.png"), MediaTypeNames.Image.Jpeg);
+                img.ContentId = "Pic1";
+                avHtml.LinkedResources.Add(img);
+
+
+                mail.AlternateViews.Add(avHtml);
+                //mail.AlternateViews.Add(avHtml1);
+                mail.IsBodyHtml = true;
+
+
+                //mail.Body = Message;
+                mail.IsBodyHtml = true;
+                SmtpServer.Port = StmpPort;
+                SmtpServer.Credentials = new System.Net.NetworkCredential(StmpUserName, StmpPassword);
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+                mail.Dispose();
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public static string CreateRandomPassword(int PasswordLength)
+        {
+            //string _allowedChars = "0123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ";
+            string _allowedChars = "0123456789";
+            Random randNum = new Random();
+            char[] chars = new char[PasswordLength];
+            int allowedCharCount = _allowedChars.Length;
+            for (int i = 0; i < PasswordLength; i++)
+            {
+                chars[i] = _allowedChars[(int)((_allowedChars.Length) * randNum.NextDouble())];
+            }
+            return new string(chars);
+        }
+
+        string randomOTPCheck = "";
+
+        protected void btnComplete_OnClick(object sender, EventArgs e)
+        {
+            if (txtOTP.Text != "")
+            {
+                DataSet dsOTPCheck = objBs.CheckOTP("rajaram@bigdbiz.in", txtOTP.Text);
+
+                if (dsOTPCheck.Tables[0].Rows.Count > 0)
+                {
+                    randomOTPCheck = Convert.ToString(dsOTPCheck.Tables[0].Rows[0]["OTP"].ToString());
+                }
+                else
+                {
+                    randomOTPCheck = "";
+                }
+
+                if (randomOTPCheck == txtOTP.Text)
+                {
+                    DataSet dsOTPDelete = objBs.DeleteOTP();
+
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Your OTP Verfied Successfully.');", true);
+
+                    /////////raja
+
+
+
+                    txtOTP.Text = "";
+                    txtOTP.Visible = false;
+                    btnComplete.Visible = false;
+                    btnOTP.Visible = false;
+                    btn.Visible = true;
+                    IDOtpEnter.Visible = false;
+                    txtEmail.Visible = false;
+                    username.Focus();
+
+                    Response.Redirect("../Accountsbootstrap/CompanyDetailGrid.aspx");
+
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Please Enter Valied OTP.');", true);
+                }
+            }
+
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myscript", "alert('Please Enter Your OTP.');", true);
+                return;
+            }
+
+
         }
     }
 }

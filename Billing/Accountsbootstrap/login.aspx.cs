@@ -261,7 +261,7 @@ namespace Billing.Accountsbootstrap
 
 
 
-                        DataSet bill = objBs.Biller(Session["User"].ToString(), txtemp.Text);
+                        DataSet bill = objBs.Biller(Session["User"].ToString(), txtemp.Text,"0");
 
 
                        Session["empcode"] = txtemp.Text;

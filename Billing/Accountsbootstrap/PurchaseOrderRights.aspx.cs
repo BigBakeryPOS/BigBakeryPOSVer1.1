@@ -21,6 +21,9 @@ namespace Billing.Accountsbootstrap
         string sTableName = "";
         string sCode = "";
 
+        string Biller = "";
+        string Billerid = "";
+
         string strPreviousRowID = string.Empty;
 
 
@@ -35,7 +38,12 @@ namespace Billing.Accountsbootstrap
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
             sCode = Request.Cookies["userInfo"]["BranchCode"].ToString();
 
+            Biller = Request.Cookies["userInfo"]["Biller"].ToString();
+            Billerid = Request.Cookies["userInfo"]["Empid"].ToString();
 
+
+            lblbillername.Text = Biller;
+            lblbillerid.Text = Billerid;
 
             if (!IsPostBack)
             {
@@ -1328,7 +1336,7 @@ namespace Billing.Accountsbootstrap
                     DateTime Date = DateTime.ParseExact(txtDCDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
 
-                    int insertPurchase = objbs.insertPurchaseRights(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, Convert.ToInt32(lblUserID.Text), Convert.ToInt32(drpPO.SelectedValue), Province, Date);
+                    int insertPurchase = objbs.insertPurchaseRights(sTableName, Convert.ToInt32(ledgerid), Convert.ToInt32(CreditorID1), "", Convert.ToDecimal(txtSubTotal.Text), Convert.ToDecimal(0), Convert.ToDecimal(txttotal.Text), Convert.ToInt32(ddlsuplier.SelectedValue), Convert.ToInt32(ddlpaymode.SelectedValue), bank, chequeno, txtcgst.Text, txtsgst.Text, txtigst.Text, Convert.ToInt32(lblUserID.Text), Convert.ToInt32(drpPO.SelectedValue), Province, Date,lblbillername.Text,lblbillerid.Text);
 
                     DataSet dspurchaseorderID = objbs.GettransPpurchaseid(sTableName, Convert.ToInt32(drpPO.SelectedValue));
 

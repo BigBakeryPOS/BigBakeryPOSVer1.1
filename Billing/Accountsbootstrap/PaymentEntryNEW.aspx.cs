@@ -28,6 +28,8 @@ namespace Billing.Accountsbootstrap
             IsSuperAdmin = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
             userid = Request.Cookies["userInfo"]["UserID"].ToString();
 
+            txtEntryBy.Text = Request.Cookies["userInfo"]["Biller"].ToString();
+
             if (!IsPostBack)
             {
                 DataSet ds1 = objbs.getPaymentnumber(sTableName);

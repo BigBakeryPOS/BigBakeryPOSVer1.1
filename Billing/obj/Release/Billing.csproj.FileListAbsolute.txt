@@ -212,3 +212,4 @@ C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Release
 C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Release\Billing.csproj.CopyComplete
 C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Release\Billing.dll
 C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\obj\Release\Billing.pdb
+C:\Users\LENOVO\Source\Repos\BigBakeryPOS\BigBakeryPOSVer1.1\Billing\bin\AjaxControlToolkit.dll

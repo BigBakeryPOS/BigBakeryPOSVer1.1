@@ -109,7 +109,7 @@ $("[id$=myButtonControlID]").click(function(e) {
        
         <div id="Div1" class="col-lg-3" runat="server" visible="true">
             <label>Stock Closing Name</label>
-            <asp:TextBox ID="txtnam" runat="server"  CssClass="form-control" ></asp:TextBox>
+            <asp:TextBox ID="txtnam" runat="server" Enabled="false"  CssClass="form-control" ></asp:TextBox>
         </div>
         <div id="Div2" class="col-lg-3" runat="server" visible="false">
             <label>Filter Items</label>
@@ -118,7 +118,7 @@ $("[id$=myButtonControlID]").click(function(e) {
         </div>
         <div class="col-lg-3">
             <label>Date Selection</label>
-            <asp:TextBox ID="txtdate" runat="server" CssClass="form-control" 
+            <asp:TextBox ID="txtdate" runat="server" CssClass="form-control"  Enabled="false"
                 placeholder="Select Date"></asp:TextBox>
             <ajaxToolkit:CalendarExtender ID="CalendarExtender2" Format="yyyy-MM-dd" TargetControlID="txtdate"
                 runat="server" CssClass="cal_Theme1">

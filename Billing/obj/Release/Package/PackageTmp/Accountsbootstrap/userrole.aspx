@@ -89,6 +89,11 @@
                         <asp:DropDownList ID="drplogintype" runat="server" CssClass="form-control">
                         </asp:DropDownList>
                     </div>
+                    <div class="form-group ">
+                        <label>
+                            Enter Employee Role</label>
+                        <asp:TextBox ID="txtemprole" runat="server" CssClass="form-control" ></asp:TextBox>
+                    </div>
                 </div>
                 <div class="col-md-9" style="height: calc(100vh - 215px); overflow-y: auto;">
                     <!-- right -->

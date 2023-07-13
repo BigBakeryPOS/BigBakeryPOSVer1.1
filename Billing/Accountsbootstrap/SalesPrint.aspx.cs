@@ -38,6 +38,8 @@ namespace Billing.Accountsbootstrap
         string ratesetting = "";
         string qtysetting = "";
         string BillGenerateSetting = "";
+        string PrintOption = "Nil";
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -48,14 +50,15 @@ namespace Billing.Accountsbootstrap
             //    StoreNo = Session["StoreNo"].ToString();
 
             //    sTin = Session["TIN"].ToString();
-            
+
 
             sTableName = Request.QueryString.Get("User").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
-            sStore = Request.QueryString.Get("Store").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
-            sAddress = Request.QueryString.Get("Address").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
-            StoreNo = Request.QueryString.Get("StoreNo").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
-            sTin = Request.QueryString.Get("TIN").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
-            
+            //    KOTPrint = Request.QueryString.Get("KOTPrint").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+            //  sStore = Request.QueryString.Get("Store").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+            //  sAddress = Request.QueryString.Get("Address").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+            //  StoreNo = Request.QueryString.Get("StoreNo").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+            //  sTin = Request.QueryString.Get("TIN").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
+
 
 
 
@@ -70,6 +73,13 @@ namespace Billing.Accountsbootstrap
             //ratesetting = Request.Cookies["userInfo"]["Ratesetting"].ToString();
             //qtysetting = Request.Cookies["userInfo"]["Qtysetting"].ToString();
             //Billgenerate = Request.Cookies["userInfo"]["BillGenerateSetting"].ToString();
+
+            int iD = Convert.ToInt32(Request.QueryString.Get("iSalesID"));
+            string type = (Request.QueryString.Get("Type")).ToString();
+            int NewiD = Convert.ToInt32(Request.QueryString.Get("NewiSalesID"));
+            string sMode = Request.QueryString.Get("Mode");
+
+
 
             // get below parameter from database 
 
@@ -89,11 +99,36 @@ namespace Billing.Accountsbootstrap
                 BillGenerateSetting = fillbranchdetails.Tables[0].Rows[0]["BillGenerateSetting"].ToString();
                 fssaino = fillbranchdetails.Tables[0].Rows[0]["Fssaino"].ToString();
 
+                sStore = fillbranchdetails.Tables[0].Rows[0]["branchname"].ToString();
+                sAddress = fillbranchdetails.Tables[0].Rows[0]["Address"].ToString();
+                StoreNo = fillbranchdetails.Tables[0].Rows[0]["MobileNo"].ToString();
+                sTin = fillbranchdetails.Tables[0].Rows[0]["GSTIN"].ToString();
+                PrintOption = fillbranchdetails.Tables[0].Rows[0]["PrintOption"].ToString();
+
             }
             else
             {
                 ScriptManager.RegisterStartupScript(this, typeof(Page), "SelectGiven", "alert('Something Went Wrong in Branch MAster.Thank You!!!');", true);
                 return;
+            }
+
+
+
+
+            if (PrintOption == "1")
+            {
+
+            }
+            else
+            {
+                if (sMode == "Sales" || sMode == "sales")
+                {
+
+                    string yourUrl = "";
+                    Response.Redirect("SalesPrintType2.aspx?Mode=Sales&Type=" + type + "&iSalesID=" + iD + "&User="+ sTableName + "&Store=" + sStore + "&StoreNo=" + StoreNo + "&Address=" + sAddress + "&TIN=" + sTin + "&state=TN&statecode=33&fssaino=" + fssaino + "&KOTPrint=false&Country=" + Country + "&Currency=" + currency + "&TaxSetting=" + taxsetting + "&Billtaxsplitupshown=" + taxsplitupsetting + "&BillPrintLogo=" + BillPrintLogo + "&Ratesetting=" + ratesetting + "&Qtysetting=" + qtysetting + "&BillGenerateSetting=" + BillGenerateSetting + "&Printtype=" + Printtype);
+                    //ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow1", "window.open('" + yourUrl + "');", true);
+
+                }
             }
 
             //Printtype = Request.QueryString.Get("Printtype").ToString().Replace("_Space_", " ").Replace("_Comma_", ",");
@@ -258,10 +293,7 @@ namespace Billing.Accountsbootstrap
 
 
 
-            int iD = Convert.ToInt32(Request.QueryString.Get("iSalesID"));
-            string type = (Request.QueryString.Get("Type")).ToString();
-            int NewiD = Convert.ToInt32(Request.QueryString.Get("NewiSalesID"));
-            string sMode = Request.QueryString.Get("Mode");
+
 
             lblfssaino.Text = fssaino.ToString();
 
@@ -445,6 +477,17 @@ namespace Billing.Accountsbootstrap
                         iddiscamt.Visible = false;
                     }
 
+                    if (ds.Tables[0].Rows[0]["cess"].ToString() != "0.0000")
+                    {
+                        TRCESS.Visible = true;
+                        decimal cess = (Convert.ToDecimal(ds.Tables[0].Rows[0]["cess"].ToString()));
+                        lblcess.Text = cess.ToString("" + ratesetting + "");
+                    }
+                    else
+                    {
+                        TRCESS.Visible = false;
+                    }
+
                     lblGrand.Text = Convert.ToDecimal(ds.Tables[0].Rows[0]["Total"]).ToString("" + ratesetting + "");
 
                     /////////////////////////Rajaram //////////////////////////////////
@@ -505,12 +548,12 @@ namespace Billing.Accountsbootstrap
                         gvPrint.DataSource = Itembinding;
                         gvPrint.DataBind();
                         int cntt = gvPrint.Rows.Count;
-                        
+
 
                         Label4.Text = cntt.ToString("0");
 
 
-                       
+
 
 
                         #region GROUP WISE GST

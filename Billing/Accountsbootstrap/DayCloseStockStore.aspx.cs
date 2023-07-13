@@ -18,6 +18,7 @@ namespace Billing.Accountsbootstrap
         string StoreName = "";
         string Password = "";
         BSClass objbs = new BSClass();
+        string Biller = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
@@ -26,6 +27,10 @@ namespace Billing.Accountsbootstrap
             sCode = Request.Cookies["userInfo"]["BranchCode"].ToString();
 
             Password = Request.Cookies["userInfo"]["Password"].ToString();
+
+            Biller = Request.Cookies["userInfo"]["Biller"].ToString();
+
+            txtnam.Text = Biller;
 
             DataSet dsPlaceName = objbs.GetPlacename(lblUser.Text, Password);
 

@@ -18,8 +18,8 @@ namespace Billing.Accountsbootstrap
         protected void Page_Load(object sender, EventArgs e)
         {
               
-            lblUser.Text = Session["UserName"].ToString();
-            lblUserID.Text = Session["UserID"].ToString();
+            lblUser.Text = Request.Cookies["userInfo"]["UserName"].ToString();
+            lblUserID.Text = Request.Cookies["userInfo"]["UserID"].ToString();
             if (!IsPostBack)
             {
                 DataSet dacess1 = objBs.getuseraccessscreen(Request.Cookies["userInfo"]["EmpId"].ToString(), "UserRole");

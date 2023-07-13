@@ -352,7 +352,7 @@ color:White;
                                             <div class="form-group">
                                                 <label>
                                                     Accepted By</label>
-                                                <asp:TextBox ID="txtAccepted" runat="server" CssClass="form-control" Width="150px"
+                                                <asp:TextBox ID="txtAccepted" runat="server" CssClass="form-control" Width="150px" Enabled="false"
                                                     required></asp:TextBox>
                                             </div>
                                         </div>

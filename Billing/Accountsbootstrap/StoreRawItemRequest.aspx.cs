@@ -41,7 +41,7 @@ namespace Billing.Accountsbootstrap
             sTableName = Request.Cookies["userInfo"]["User"].ToString();
             sCode = Request.Cookies["userInfo"]["BranchCode"].ToString();
 
-
+            txtAccepted.Text = Request.Cookies["userInfo"]["Biller"].ToString();
 
             if (!IsPostBack)
             {

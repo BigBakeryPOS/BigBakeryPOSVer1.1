@@ -9,6 +9,7 @@ using DataLayer;
 using System.Data;
 using System.Text;
 using System.Globalization;
+using Org.BouncyCastle.Ocsp;
 
 
 namespace Billing.Accountsbootstrap
@@ -23,183 +24,251 @@ namespace Billing.Accountsbootstrap
         string ratesetting = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            string dt = DateTime.Today.ToString("yyyy-MM-dd");
-            sTableName = Request.Cookies["userInfo"]["BranchCode"].ToString();
-            currency = Request.Cookies["userInfo"]["Currency"].ToString();
-            ratesetting = Request.Cookies["userInfo"]["Ratesetting"].ToString();
-
-            #region Sales
-            DataSet ds_Sales = objBs.Dashboard_SalesAll(dt, "tblSales_" + sTableName);
-            DataSet ds_SalesCount = objBs.Dashboard_SalesCountAll(dt, "tblSales_" + sTableName);
-            if (ds_Sales.Tables[0].Rows.Count > 0)
+            string sCode = ""; string Empid = "";
+            Empid = Request.Cookies["userInfo"]["Empid"].ToString();
+            string sUserChk = Request.Cookies["userInfo"]["IsSuperAdmin"].ToString();
+            if (!IsPostBack)
             {
-
-                if (sTableName == "Admin")
+                DataSet dacess = objBs.getuseraccess(Empid);
+                if (dacess.Tables[0].Rows.Count > 0)
                 {
-                    IDTodaySales.Visible = true;
-                    IDTodaySalesCount.Visible = true;
-                }
-
-                else
-                {
-                    IDTodaySales.Visible = false;
-                    IDTodaySalesCount.Visible = true;
-                }
-
-                double amount = 0;
-                for (int i = 0; i < ds_Sales.Tables[0].Rows.Count; i++)
-                {
-                    if (ds_Sales.Tables[0].Rows[i]["Sum"].ToString() != "")
+                    for (int i = 0; i < dacess.Tables[0].Rows.Count; i++)
                     {
-                        amount += Convert.ToDouble(ds_Sales.Tables[0].Rows[i]["Sum"].ToString());
+                        string screen = dacess.Tables[0].Rows[i]["screencode"].ToString();
+
+                        if (sUserChk != "1")
+                        {
+                            //if (objBs.getsettingid("8"))
+                            //{
+                            //    DataSet checkdenomaiantiondone = objBs.checkdenomination_Previousday(sTableName);
+                            //    if (checkdenomaiantiondone.Tables[0].Rows.Count > 0)
+                            //    {
+                                    if(screen== "Newbutton")
+                                    {
+                                        newbutton.Enabled = true;
+                                    }
+                                    if (screen == "OrderForm")
+                                    {
+                                        order.Enabled = true;
+                                    }
+                                    if (screen == "Item")
+                                    {
+                                        description.Enabled = true;
+                                    }
+                                    if (screen == "Stockrep")
+                                    {
+                                        stockreport.Enabled = true;
+                                    }
+                                    if (screen == "TodaysDelivery")
+                                    {
+                                        todaydelivery.Enabled = true;
+                                    }
+                                    if (screen == "PaymentEntry")
+                                    {
+                                        expense.Enabled = true;
+                                    }
+                                    if (screen == "restkotsales")
+                                    {
+                                        restaurantsaleskot.Enabled = true;
+                                    }
+                                    if (screen == "Sales")
+                                    {
+                                        salesgrid.Enabled = true;
+                                    }
+                                    if (screen == "billset")
+                                    {
+                                        billsettings.Enabled = true;
+                                    }
+                                    if (screen == "orderset")
+                                    {
+                                        billsettingsfororder.Enabled = true;
+                                    }
+                                    if (screen == "StockMaster")
+                                    {
+                                        stockgrid.Enabled = true;
+                                    }
+                               // }
+                           // }
+                        }
                     }
                 }
+                string dt = DateTime.Today.ToString("yyyy-MM-dd");
+                sTableName = Request.Cookies["userInfo"]["BranchCode"].ToString();
+                currency = Request.Cookies["userInfo"]["Currency"].ToString();
+                ratesetting = Request.Cookies["userInfo"]["Ratesetting"].ToString();
 
-                if (amount > 0)
+                #region Sales
+                DataSet ds_Sales = objBs.Dashboard_SalesAll(dt, "tblSales_" + sTableName);
+                DataSet ds_SalesCount = objBs.Dashboard_SalesCountAll(dt, "tblSales_" + sTableName);
+                if (ds_Sales.Tables[0].Rows.Count > 0)
                 {
+
                     if (sTableName == "Admin")
                     {
-                        lblSales.Text = ""+currency+" " + amount.ToString(""+ratesetting+"");
-                        lblSalesCount.Text += ds_SalesCount.Tables[0].Rows[0]["Count"].ToString();
-
                         IDTodaySales.Visible = true;
                         IDTodaySalesCount.Visible = true;
                     }
 
                     else
                     {
-                        lblSales.Text = "" + currency + " " + amount.ToString(""+ratesetting+"");
-                        lblSalesCount.Text += ds_SalesCount.Tables[0].Rows[0]["Count"].ToString();
-
                         IDTodaySales.Visible = false;
                         IDTodaySalesCount.Visible = true;
+                    }
+
+                    double amount = 0;
+                    for (int i = 0; i < ds_Sales.Tables[0].Rows.Count; i++)
+                    {
+                        if (ds_Sales.Tables[0].Rows[i]["Sum"].ToString() != "")
+                        {
+                            amount += Convert.ToDouble(ds_Sales.Tables[0].Rows[i]["Sum"].ToString());
+                        }
+                    }
+
+                    if (amount > 0)
+                    {
+                        if (sTableName == "Admin")
+                        {
+                            lblSales.Text = "" + currency + " " + amount.ToString("" + ratesetting + "");
+                            lblSalesCount.Text += ds_SalesCount.Tables[0].Rows[0]["Count"].ToString();
+
+                            IDTodaySales.Visible = true;
+                            IDTodaySalesCount.Visible = true;
+                        }
+
+                        else
+                        {
+                            lblSales.Text = "" + currency + " " + amount.ToString("" + ratesetting + "");
+                            lblSalesCount.Text += ds_SalesCount.Tables[0].Rows[0]["Count"].ToString();
+
+                            IDTodaySales.Visible = false;
+                            IDTodaySalesCount.Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        lblSales.Text = "" + currency + " 0";
+                        lblSalesCount.Text = "0";
                     }
                 }
                 else
                 {
                     lblSales.Text = "" + currency + " 0";
                     lblSalesCount.Text = "0";
+
+                    if (sTableName == "Admin")
+                    {
+                        IDTodaySales.Visible = true;
+                        IDTodaySalesCount.Visible = true;
+                    }
+
+                    else
+                    {
+                        IDTodaySales.Visible = false;
+                        IDTodaySalesCount.Visible = true;
+                    }
                 }
-            }
-            else
-            {
-                lblSales.Text = ""+currency+" 0";
-                lblSalesCount.Text = "0";
+                #endregion
+
+                #region Customer
+
+                DataSet ds_Customer = objBs.Dashboard_Customerledgercount(1);
+                DataSet ds_Order = objBs.Dashboard_OrderBalance(dt, "tblOrder_" + sTableName);
 
                 if (sTableName == "Admin")
                 {
-                    IDTodaySales.Visible = true;
-                    IDTodaySalesCount.Visible = true;
-                }
+                    IDOrderBalance.Visible = true;
+                    IDCustomer.Visible = true;
 
-                else
-                {
-                    IDTodaySales.Visible = false;
-                    IDTodaySalesCount.Visible = true;
-                }
-            }
-            #endregion
-
-            #region Customer
-
-            DataSet ds_Customer = objBs.Dashboard_Customerledgercount(1);
-            DataSet ds_Order = objBs.Dashboard_OrderBalance(dt, "tblOrder_" + sTableName);
-
-            if (sTableName == "Admin")
-            {
-                IDOrderBalance.Visible = true;
-                IDCustomer.Visible = true;
-
-                if (ds_Customer.Tables[0].Rows.Count > 0)
-                {
-                    lblCustomers.Text = (ds_Customer.Tables[0].Rows[0]["Count"].ToString());
-
-                    for (int i = 0; i < ds_Order.Tables[0].Rows.Count; i++)
+                    if (ds_Customer.Tables[0].Rows.Count > 0)
                     {
-                        if (ds_Order.Tables[0].Rows[i]["Sum"].ToString() != "")
+                        lblCustomers.Text = (ds_Customer.Tables[0].Rows[0]["Count"].ToString());
+
+                        for (int i = 0; i < ds_Order.Tables[0].Rows.Count; i++)
                         {
-                            lblCustomerOrderBalance.Text += (ds_Order.Tables[0].Rows[i]["Sum"].ToString());
+                            if (ds_Order.Tables[0].Rows[i]["Sum"].ToString() != "")
+                            {
+                                lblCustomerOrderBalance.Text += (ds_Order.Tables[0].Rows[i]["Sum"].ToString());
+                            }
                         }
+
+
                     }
 
-
-                }
-
-                else
-                {
-                    lblCustomers.Text = "0";
-                    lblCustomerOrderBalance.Text = "0.00";
-                }
-
-            }
-
-            else
-            {
-                IDOrderBalance.Visible = false;
-                IDCustomer.Visible = true;
-
-                if (ds_Customer.Tables[0].Rows.Count > 0)
-                {
-                    lblCustomers.Text = (ds_Customer.Tables[0].Rows[0]["Count"].ToString());
-
-                    for (int i = 0; i < ds_Order.Tables[0].Rows.Count; i++)
-                    {
-                        if (ds_Order.Tables[0].Rows[i]["Sum"].ToString() != "")
-                        {
-                            lblCustomerOrderBalance.Text += (ds_Order.Tables[0].Rows[i]["Sum"].ToString());
-                        }
-                    }
-                }
-
-                else
-                {
-                    lblCustomers.Text = "0";
-                    lblCustomerOrderBalance.Text = "0.00";
-                }
-            }
-
-
-            #endregion
-
-            #region Expeneses
-            DataSet ds_Expenses = objBs.Dashboard_Expenses(dt, "tblDayBook_" + sTableName);
-            if (ds_Expenses.Tables[0].Rows.Count > 0)
-            {
-                if (ds_Expenses.Tables[0].Rows[0]["Sum"].ToString() != null)
-                {
-                    string exp_amt = ds_Expenses.Tables[0].Rows[0]["Sum"].ToString();
-                    if (exp_amt != "")
-                    {
-                        exp_amt = Convert.ToString(Math.Round((Convert.ToDecimal(exp_amt)), 2));
-                        lblExpenses.Text = ""+currency+". " + Convert.ToDouble(exp_amt).ToString(""+ratesetting+"");
-                    }
                     else
                     {
-                        lblExpenses.Text = ""+currency+". 0";
+                        lblCustomers.Text = "0";
+                        lblCustomerOrderBalance.Text = "0.00";
+                    }
+
+                }
+
+                else
+                {
+                    IDOrderBalance.Visible = false;
+                    IDCustomer.Visible = true;
+
+                    if (ds_Customer.Tables[0].Rows.Count > 0)
+                    {
+                        lblCustomers.Text = (ds_Customer.Tables[0].Rows[0]["Count"].ToString());
+
+                        for (int i = 0; i < ds_Order.Tables[0].Rows.Count; i++)
+                        {
+                            if (ds_Order.Tables[0].Rows[i]["Sum"].ToString() != "")
+                            {
+                                lblCustomerOrderBalance.Text += (ds_Order.Tables[0].Rows[i]["Sum"].ToString());
+                            }
+                        }
+                    }
+
+                    else
+                    {
+                        lblCustomers.Text = "0";
+                        lblCustomerOrderBalance.Text = "0.00";
                     }
                 }
-            }
-            else
-            {
-                lblExpenses.Text = ""+currency+". 0";
-            }
-            #endregion
 
 
-            #region sales Amount
+                #endregion
 
-            DataSet dsalesAmt = Abj.SalesAmt(sTableName);
-            if (dsalesAmt.Tables[0].Rows[0]["Total"].ToString() != "")
-            {
-                lblsales1.Text = ""+currency+" " + Convert.ToDecimal(dsalesAmt.Tables[0].Rows[0]["Total"]).ToString(""+ratesetting+"");
-                lbltotalamountt.Text = ""+currency+" " + Convert.ToDecimal(dsalesAmt.Tables[0].Rows[0]["Total"]).ToString(""+ratesetting+"");
-            }
-            else
-            {
-                lblsales1.Text = ""+currency+" " + "0";
-                lbltotalamountt.Text = ""+currency+" " + "0";
-            }
-           
+                #region Expeneses
+                DataSet ds_Expenses = objBs.Dashboard_Expenses(dt, "tblDayBook_" + sTableName);
+                if (ds_Expenses.Tables[0].Rows.Count > 0)
+                {
+                    if (ds_Expenses.Tables[0].Rows[0]["Sum"].ToString() != null)
+                    {
+                        string exp_amt = ds_Expenses.Tables[0].Rows[0]["Sum"].ToString();
+                        if (exp_amt != "")
+                        {
+                            exp_amt = Convert.ToString(Math.Round((Convert.ToDecimal(exp_amt)), 2));
+                            lblExpenses.Text = "" + currency + ". " + Convert.ToDouble(exp_amt).ToString("" + ratesetting + "");
+                        }
+                        else
+                        {
+                            lblExpenses.Text = "" + currency + ". 0";
+                        }
+                    }
+                }
+                else
+                {
+                    lblExpenses.Text = "" + currency + ". 0";
+                }
+                #endregion
+
+
+                #region sales Amount
+
+                DataSet dsalesAmt = Abj.SalesAmt(sTableName);
+                if (dsalesAmt.Tables[0].Rows[0]["Total"].ToString() != "")
+                {
+                    lblsales1.Text = "" + currency + " " + Convert.ToDecimal(dsalesAmt.Tables[0].Rows[0]["Total"]).ToString("" + ratesetting + "");
+                    lbltotalamountt.Text = "" + currency + " " + Convert.ToDecimal(dsalesAmt.Tables[0].Rows[0]["Total"]).ToString("" + ratesetting + "");
+                }
+                else
+                {
+                    lblsales1.Text = "" + currency + " " + "0";
+                    lbltotalamountt.Text = "" + currency + " " + "0";
+                }
+
                 DataSet dtodaysCash = objBs.GetCashDashBoard(sTableName);
                 DataSet dtodaysCard = objBs.GetCardDashBoard(sTableName);
                 if (dtodaysCash.Tables[0].Rows.Count > 0)
@@ -382,9 +451,11 @@ namespace Billing.Accountsbootstrap
                 }
 
                 #endregion
-            
-        }
 
+            }
+
+
+        }
         protected void Delivery_OnClick(object sender, EventArgs e)
         {
             Response.Redirect("TodaysDeliveryOrder.aspx");

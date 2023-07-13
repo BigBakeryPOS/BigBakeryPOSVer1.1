@@ -121,6 +121,7 @@
                                 <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast"
                                     NextPageText="Next" PreviousPageText="Previous" />--%>
                                 <Columns>
+                                    <asp:BoundField HeaderText="Category Name" DataField="category" />
                                     <asp:BoundField HeaderText="Sub Category Name" DataField="SubCategoryName" />
                                     <asp:TemplateField HeaderText="Edit" ItemStyle-Width="60px">
                                         <ItemTemplate>
@@ -171,9 +172,15 @@
                             <asp:TextBox CssClass="form-control" ID="txtsubcategoryId" runat="server" Visible="false"></asp:TextBox>
 
 
-                            <label>Sub Category Name</label>
+                            
                             <label id="lblsubCatID" visible="false" runat="server">
                             </label>
+                        <label>Select Category</label>
+                                
+                                <asp:DropDownList runat="server" ID="ddlcategory" class="form-control">
+                                </asp:DropDownList>
+                        <br />
+                        <label>Sub Category Name</label>
                             <asp:TextBox CssClass="form-control" ID="txtsubcategory" runat="server" placeholder="To Add New Sub Category"
                                 Style="text-transform: capitalize"></asp:TextBox>
                             <asp:RequiredFieldValidator runat="server" ID="txtcat" ControlToValidate="txtsubcategory"

@@ -79,6 +79,7 @@ namespace Billing.Accountsbootstrap
                     head1.InnerHtml = "Supplier Master";
                     head2.InnerHtml = "Supplier Master";
                     ddlCustomerType.SelectedValue = "6";
+                    bankdetails.Visible = true;
                 }
                 else if (srch.Text == "4")
                 {
@@ -123,6 +124,12 @@ namespace Billing.Accountsbootstrap
                         txtcuscode.Text = ds1.Tables[0].Rows[0]["Ledgerid"].ToString();
                         txtcustomername.Text = ds1.Tables[0].Rows[0]["CustomerName"].ToString();
                         txtmobileno.Text = ds1.Tables[0].Rows[0]["MobileNo"].ToString();
+                        txtseccontactname.Text = ds1.Tables[0].Rows[0]["Seccontactname"].ToString();
+                        txtsecmobileno.Text = ds1.Tables[0].Rows[0]["Secmobileno"].ToString();
+                        txtbankname.Text = ds1.Tables[0].Rows[0]["Bankname"].ToString();
+                        txtbranchname.Text = ds1.Tables[0].Rows[0]["Branchname"].ToString();
+                        txtifsccode.Text = ds1.Tables[0].Rows[0]["Ifsccode"].ToString();
+                        txtAccno.Text = ds1.Tables[0].Rows[0]["Accountno"].ToString();
                         txtphoneno.Text = ds1.Tables[0].Rows[0]["PhoneNo"].ToString();
                         txtarea.Text = ds1.Tables[0].Rows[0]["Area"].ToString();
                         txtaddress.Text = ds1.Tables[0].Rows[0]["Address"].ToString();
@@ -292,18 +299,18 @@ namespace Billing.Accountsbootstrap
 
                 #region CHEck GST Number
 
-                if (txtgstno.Text == "Nil")
-                {
-                }
-                else
-                {
-                    DataSet dgstcheck = objBs.duplicatecheckcustomercheck("Gstno", txtgstno.Text);
-                    if (dgstcheck.Tables[0].Rows.Count > 0)
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Gst No Already Exists.Thank you!!!.');", true);
-                        return;
-                    }
-                }
+                //if (txtgstno.Text == "Nil")
+                //{
+                //}
+                //else
+                //{
+                //    DataSet dgstcheck = objBs.duplicatecheckcustomercheck("Gstno", txtgstno.Text);
+                //    if (dgstcheck.Tables[0].Rows.Count > 0)
+                //    {
+                //        ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", "alert('Gst No Already Exists.Thank you!!!.');", true);
+                //        return;
+                //    }
+                //}
 
                 // CHECK CONTACT NAME
                 string str = txtcustomername.Text.Replace(" ", String.Empty);
@@ -409,12 +416,12 @@ namespace Billing.Accountsbootstrap
                     if (ddlCDType.SelectedValue == "Credit Note")
                     {
                         string Credite = txtOBalance.Text;
-                        LedgerId = objBs.insertcontact(Convert.ToInt32(lblUserID.Text), txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble(Credite), Convert.ToDouble("0"), ddlCDType.SelectedValue, drpProvince.SelectedValue,txtcompanyname.Text);
+                        LedgerId = objBs.insertcontact(Convert.ToInt32(lblUserID.Text), txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble(Credite), Convert.ToDouble("0"), ddlCDType.SelectedValue, drpProvince.SelectedValue,txtcompanyname.Text,txtseccontactname.Text,txtsecmobileno.Text,txtbankname.Text,txtbranchname.Text,txtifsccode.Text,txtAccno.Text);
                     }
                     else
                     {
                         string Debit = txtOBalance.Text;
-                        LedgerId = objBs.insertcontact(Convert.ToInt32(lblUserID.Text), txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble("0"), Convert.ToDouble(Debit), ddlCDType.SelectedValue, drpProvince.SelectedValue,txtcompanyname.Text);
+                        LedgerId = objBs.insertcontact(Convert.ToInt32(lblUserID.Text), txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble("0"), Convert.ToDouble(Debit), ddlCDType.SelectedValue, drpProvince.SelectedValue,txtcompanyname.Text, txtseccontactname.Text, txtsecmobileno.Text, txtbankname.Text, txtbranchname.Text, txtifsccode.Text, txtAccno.Text);
                     }
                     for (int ii = 0; ii < griditem.Rows.Count; ii++)
                     {
@@ -549,12 +556,12 @@ namespace Billing.Accountsbootstrap
                 if (ddlCDType.SelectedValue == "Credit Note")
                 {
                     string Credite = txtOBalance.Text;
-                    iStatus = objBs.updatecontact(txtcuscode.Text, txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble(Credite), Convert.ToDouble("0"), ddlCDType.SelectedValue,drpProvince.SelectedValue,txtcompanyname.Text);
+                    iStatus = objBs.updatecontact(txtcuscode.Text, txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble(Credite), Convert.ToDouble("0"), ddlCDType.SelectedValue,drpProvince.SelectedValue,txtcompanyname.Text, txtseccontactname.Text, txtsecmobileno.Text, txtbankname.Text, txtbranchname.Text, txtifsccode.Text, txtAccno.Text);
                 }
                 else
                 {
                     string Debit = txtOBalance.Text;
-                    iStatus = objBs.updatecontact(txtcuscode.Text, txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble("0"), Convert.ToDouble(Debit), ddlCDType.SelectedValue,drpProvince.SelectedValue, txtcompanyname.Text);
+                    iStatus = objBs.updatecontact(txtcuscode.Text, txtcustomername.Text, txtmobileno.Text, txtphoneno.Text, txtarea.Text, txtaddress.Text, txtcity.Text, txtpincode.Text, txtemail.Text, Convert.ToInt32(ddlCustomerType.SelectedValue), GroupId, txtdisc.Text, txtgstno.Text, txtpaymentdays.Text, txtusername.Text, txtpassword.Text, branchid, Convert.ToDouble("0"), Convert.ToDouble(Debit), ddlCDType.SelectedValue,drpProvince.SelectedValue, txtcompanyname.Text, txtseccontactname.Text, txtsecmobileno.Text, txtbankname.Text, txtbranchname.Text, txtifsccode.Text, txtAccno.Text);
                 }
 
                 for (int ii = 0; ii < griditem.Rows.Count; ii++)

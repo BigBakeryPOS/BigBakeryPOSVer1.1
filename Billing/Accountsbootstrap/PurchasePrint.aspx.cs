@@ -20,7 +20,7 @@ namespace Billing.Accountsbootstrap
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            sTableName = Session["BranchCode"].ToString();
+            sTableName = Request.Cookies["userInfo"]["BranchCode"].ToString();
 
 
             if (!IsPostBack)

@@ -456,6 +456,15 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.DropDownList drporderbooknocheck;
 
         /// <summary>
+        /// drpbatchwise control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList drpbatchwise;
+
+        /// <summary>
         /// drpprintlogo control.
         /// </summary>
         /// <remarks>

@@ -546,6 +546,24 @@ namespace Billing.Accountsbootstrap
         protected global::System.Web.UI.WebControls.Label lblsgst;
 
         /// <summary>
+        /// TRCESS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow TRCESS;
+
+        /// <summary>
+        /// lblcess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblcess;
+
+        /// <summary>
         /// TAXID control.
         /// </summary>
         /// <remarks>

@@ -270,7 +270,7 @@
                                 <div class="col-lg-2">
                                     <label>
                                         Entry by</label>
-                                    <asp:TextBox ID="txtEntryBy" CssClass="form-control" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtEntryBy" Enabled="false" CssClass="form-control" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-4">
                                     <br />
