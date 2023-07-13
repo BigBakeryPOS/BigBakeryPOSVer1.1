@@ -17,7 +17,7 @@
 <body class="loginpage">
     <div align="center">
         <label>
-            MAC ADDRESS:</label><asp:Label ID="macaddress" runat="server"></asp:Label>
+            MAC ADDRESS : </label><asp:Label ID="macaddress" runat="server"></asp:Label>
     </div>
     <div class="container">
         <form class="form-signin" id="Form1" runat="server">

@@ -41863,7 +41863,7 @@ string Fullbookno, string pbranch, string onlinecomment, string protype)
         }
         #endregion
 
-        #region Query for Varient Rate Master
+        #region Query for Flavour Rate Master
         public DataSet gridflavourmaster()
         {
             DataSet ds = new DataSet();
